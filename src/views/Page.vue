@@ -11,28 +11,36 @@
 		components: {
 			Common,
 		},
-		name: 'Home',
+		name: 'customPages',
 		data () {
 			return {
 				pageContent: [],
 			}
 		},
+		watch: {
+	        "$route"(val,oldval){
+	            if(val.params.page_id!=oldval.params.page_id){
+	                this.getPageContent();
+	            }
+	         }
+	    },
 		mounted(){
-			this.getHomePage();
+			this.getPageContent();
 		},
 		methods: {
-			getHomePage(){
+			getPageContent(){
 				this.$axios({
 					method: 'get',
-					url:'/api/v1/pages?type=1',
+					url:'/api/v1/customPages?id='+this.$route.params.page_id,
 				}).then(res => {
 					console.log(res);
 					if(res.status == 200){
-						this.pageContent = res.data.modules;
-						console.log(this.pageContent)
-					}else{
-						this.$router.push('/');
-					}
+	                    this.pageContent = res.data.modules;
+	                    console.log(this.pageContent)
+	                }else{
+	                    this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
+						this.$router.push('/ErrorPage');
+	                }
 				}).catch(error=>{
 
 				});

@@ -7,10 +7,12 @@ import ContactUs from '@/views/ContactUs'
 import Language from '@/views/Language'
 
 import Advisors from '@/views/Advisors'
+import Page from '@/views/Page'
+import ErrorPage from '@/views/ErrorPage'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
   {
     path: '/',
@@ -35,9 +37,32 @@ export default new Router({
       component: Language,
     },{
       path: '/Advisors',
-      name: 'Advisors',
+      name: '顾问',
       component: Advisors,
+    },{
+      path: '/Page/:page_id',
+      name: '自定义页面',
+      component: Page,
     }]
-  }
+  },
+  {
+      path: '/ErrorPage',
+      name: '报错页面',
+      component: ErrorPage,
+    }
   ]
 })
+
+//push
+const VueRouterPush = Router.prototype.push 
+Router.prototype.push = function push (to) {
+    return VueRouterPush.call(this, to).catch(err => err)
+}
+
+//replace
+const VueRouterReplace = Router.prototype.replace
+Router.prototype.replace = function replace (to) {
+  return VueRouterReplace.call(this, to).catch(err => err)
+}
+
+export default router;

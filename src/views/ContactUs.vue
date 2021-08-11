@@ -90,10 +90,7 @@ export default {
 	/deep/ .van-cell{
 		margin-bottom: 10px;padding: 0px 16px;
 	}
-    .contactUs{
-        width: 100%;
-        background: #F3F5F7;
-    }
+    .contactUs{width: 100%;min-height: calc(100vh - 60px);background: #F3F5F7;}
     .contactUs_info{padding: 20px 30px;background-color: #FFC80B;}
     .contactUs_title{font-weight: 500;text-align: left;}
     .contactUs_info .fcs{margin-left: 30%;}

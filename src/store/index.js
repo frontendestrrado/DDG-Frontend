@@ -13,6 +13,8 @@ export default new Vuex.Store({
             tabbar: '/Index',
             title: 'Home',
         },
+        token:sessionStorage["token"]?sessionStorage["token"]:'',
+        token_type:sessionStorage["token_type"]?sessionStorage["token_type"]:'',
     },
     getters: {
 
@@ -37,9 +39,11 @@ export default new Vuex.Store({
             });
         },
         setToken (state,val) {
+            sessionStorage.setItem('token',val);
             state.token=val;
         },
         setTokenType (state,val) {
+            sessionStorage.setItem('token_type',val);
             state.token_type=val;
         },
         // 页面语言

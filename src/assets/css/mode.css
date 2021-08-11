@@ -1,3 +1,6 @@
+.container{
+    background-color: #fff;
+}
 /* banner模块 */
 .advimg {
     width: 100%;
@@ -66,7 +69,7 @@
 }
 
 /* 富文本模块 */
-.index-rich{width: 94%;display: block;margin: 0 auto;}
+.index-rich{width: 94%;display: block;margin: 0 auto;text-align: left;}
 .index-rich img{max-width: 100%;}
 /* 标题模块 */
 .index-title{width: 100%;display: block;}

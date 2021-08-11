@@ -27,7 +27,7 @@
 			</van-row> -->
 			<van-row class="fcb" style="height: 100%;">
 				<van-col :span="4">
-					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#FFC80B" size="30" @click="isShowTopUl=true;changeActTab('','');"/>
+					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#FFC80B" size="30" @click="changeActTab('','');"/>
 					<!-- <van-image
 						v-if="$store.state.currentPage.tabbar != '/Index'"
 			  			class="logo hv"
@@ -41,7 +41,7 @@
 			  			class="logo hv"
 				      	:src="require('@/assets/img/logo.png')"
 				      	fit="contain"
-				      	@click="isShowTopUl=true;changeActTab('/Index', 'Home');"/>
+				      	@click="changeActTab('/Index', 'Home');"/>
 				    <div v-else>{{$store.state.currentPage.title}}</div>
 
 			  	</van-col>
@@ -52,12 +52,12 @@
 			</van-row>
 			<!-- <van-overlay :show="!isShowTopUl" /> -->
 			<ul class="menuInfo fontPB" v-if="!isShowTopUl">
-	  			<li class="hv" v-for="(item,index) in tabItem" @click="isShowTopUl=true;">{{item.title}}</li>
+	  			<li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li>
 
-	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/Advisors', 'Advisors');">Advisors</li>
-	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
-	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
-	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/Language', 'Languages');">Language</li>
+	  			<li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li>
+	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
+	  			<li class="hv" @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
+	  			<li class="hv" @click="changeActTab('/Language', 'Languages');">Language</li>
 	  		</ul>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 export default {
 	data () {
 		return {
-			barList: [],
+			tabList: [],
 			isShowSale:0,
 			isShowTopUl:true,
 			lang:this.$i18n.locale,
@@ -85,19 +85,10 @@ export default {
 					value: 'zh-TW',
 				},
 			],
-			tabItem: [
-				{id:1,title: 'About Us',},
-				{id:2,title: 'Product & Services',},
-				{id:3,title: 'News & Events Center',},
-				{id:4,title: 'Legal Development',},
-				{id:5,title: 'PR & social media',},
-				{id:6,title: 'Academy',},
-				{id:7,title: 'Tool’s box',},
-				{id:8,title: 'Advisors’ login',},
-			],
 		}
 	},
 	mounted(){
+		this.getTabbar();
 		this.getUserInfo();
 		let lang = this.$i18n.locale;
 		this.$store.commit('changeLang',lang);
@@ -117,7 +108,22 @@ export default {
   		}
   	},
 	methods:{
+		// 获取头部导航条
+		getTabbar(){
+			this.$axios({
+                method: 'get',
+                url:'api/v1/navigations',
+            }).then(res => {
+				console.log(res);
+				this.tabList = res.data;
+			})
+			.catch(error=>{
+				console.log(JSON.stringify(error));
+			})
+		},
 		changeActTab(name,title){
+			console.log(name);
+			this.isShowTopUl=true;
 			if(name == ''){
 				let len = this.$router.history.current.matched.length;
 				console.log(this.$router.history.current.matched[len-2])
