@@ -4,9 +4,9 @@
 			<Banner v-if="item.type === 1" :bannerData='item'></Banner>
 			<RichText v-if="item.type === 2 && item.content" :richTextData='item'></RichText>
 			<TilText v-if="item.type === 3" :titleData='item'></TilText>
-			<Movie v-if="item.type === 4" :movieData='item'></Movie>
-			<MultiImg v-if="item.type === 5" :imgData='item'></MultiImg>
-			<Graphic v-if="item.type === 6" :graphicData='item'></Graphic>
+			<Movie v-if="item.type === 5" :movieData='item'></Movie>
+			<MultiImg v-if="item.type === 6" :imgData='item'></MultiImg>
+			<Graphic v-if="item.type === 7" :graphicData='item'></Graphic>
 			<!-- <TextMode v-if="item.type === 7" :textData='item'></TextMode> -->
 		</div>
 	</div>
@@ -65,12 +65,12 @@
 						"path":null
 					},
 					{
-						"id":3,"type":4,"height":200,"automatic":0,
+						"id":3,"type":5,"height":200,"automatic":0,
 						"movie":"https://www.wennoanimal.com/uploads/admin/202105/19/60a4b0dceab16.mp4"
 					},
 					{
 						"id":4,
-						"type":5,
+						"type":6,
 						"height":200,
 						"showcase_type":2,
 						"bg_color":"#ffffff",
@@ -123,7 +123,7 @@
 						"layout": 4,	// 布局：1单列 2二列 3三列 4四列 5五列
 						"layout_font_in_image": 1,	// 嵌入文字 1上 2中 3下
 						"layout_images_text": 4,	// 图文布局：1上文下图 2下文上图 3左文右图 4 右文左图
-						"type": 6,
+						"type": 7,
 					},
 					{
 						"content_color": "#d9d9d9",
@@ -142,7 +142,7 @@
 						"title_bold": 1,
 						"title_color": "#666666",
 						"title_size": "14",
-						"type": 7,
+						"type": 8,
 					},
 				],
 			},

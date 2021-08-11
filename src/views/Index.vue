@@ -1,7 +1,7 @@
 <template>
 	<div class="hello">
-		<Common></Common>
-		<!-- <Common :pageData='pageContent'></Common> -->
+		<!-- <Common></Common> -->
+		<Common :pageData='pageContent'></Common>
 	</div>
 </template>
 
@@ -18,8 +18,26 @@
 			}
 		},
 		mounted(){
+			this.getHomePage();
 		},
 		methods: {
+			getHomePage(){
+				this.$axios({
+					method: 'get',
+					url:'api/v1/pages?type=1',
+				}).then(res => {
+					console.log(res);
+					if(res.status == 200){
+						this.pageContent = res.data.modules;
+						console.log(this.pageContent)
+					}else{
+						this.$router.push('/');
+					}
+				}).catch(error=>{
+
+				});
+			}
+
 		},
 	}
 </script>

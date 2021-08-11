@@ -43,4 +43,8 @@ li {
 a {
 	color: #42b983;
 }
+main{/*background-color: #fff;*/background-color: #F3F5F7;min-height: calc(100vh - 80px);}
+@media screen and (max-width: 768px){
+	main{min-height: calc(100vh - 60px);}
+}
 </style>

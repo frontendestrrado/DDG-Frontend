@@ -67,7 +67,7 @@
 
 /* 富文本模块 */
 .index-rich{width: 94%;display: block;margin: 0 auto;}
-
+.index-rich img{max-width: 100%;}
 /* 标题模块 */
 .index-title{width: 100%;display: block;}
 .index-title-div{width: 94%;display: flex;align-items: center;margin: 0 auto;padding: 10px 0;}

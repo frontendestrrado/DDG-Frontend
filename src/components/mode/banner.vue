@@ -5,7 +5,7 @@
 				<div class="bannerContent" @click="goBanner(item.path)">
 					<van-image
 					style="width: 100%;height:auto;"
-					:src="item.image"
+					:src="item.image?item.image:require('@/assets/img/test.png')"
 					fit="contain"
 					/>
 				</div>

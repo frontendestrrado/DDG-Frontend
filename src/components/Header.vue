@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="header-main">
-			<van-row style="height: 100%;" v-if="$store.state.isPC">
+			<!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
 			  		<van-image
 			  			class="logo hv"
@@ -11,55 +11,53 @@
 			  	</van-col>
 			  	<van-col :span="12">
 			  		<ul class="tab fontPR">
-	  					<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  					<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  					<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  					<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  					<li class="hv" @click="isShowTopUl=true;">animal</li>
+	  					<li class="hv" v-for="(item,index) in tabItem" @click="isShowTopUl=true;">{{item.title}}</li>
 			  		</ul>
 			  	</van-col>
 			  	<van-col :span="6">
-					<van-icon name="wap-nav"  color="#FFC80B" size="40"/>
 					<div class="main-right fontPM">
 						<div class="right-item hv" style="margin-left: 5px;">
-							<div>{{ lang }}</div>
-							<el-select v-model="lang" @change="changeLang($event)">
-								<el-option
-									v-if="item.title=='en'||item.title=='zh-TW'||item.title=='zh-CN'"
-									v-for="item in language"
-									:key="item.title"
-									:label="item.language"
-									:value="item.title">
-									<span style="display: inline-block;color: #8492a6;font-size: 13px">{{ item.language }}</span>
-							  </el-option>
-						  </el-select>
+							<van-dropdown-menu active-color="#FFC80B">
+								<van-dropdown-item v-model="lang" :options="language" @change='changeLang'/>
+							</van-dropdown-menu>
+
 						</div>
 					</div>
 			  	</van-col>
-			</van-row>
-			<van-row style="height: 100%;" v-else>
+			</van-row> -->
+			<van-row class="fcb" style="height: 100%;">
 				<van-col :span="4">
-					<van-icon name="arrow-left" color="#FFC80B" size="30"/>
-				</van-col>
-			  	<van-col :span="16" class="tc">
-			  		<van-image
+					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#FFC80B" size="30" @click="isShowTopUl=true;changeActTab('','');"/>
+					<!-- <van-image
+						v-if="$store.state.currentPage.tabbar != '/Index'"
 			  			class="logo hv"
 				      	:src="require('@/assets/img/logo.png')"
 				      	fit="contain"
-				      	@click="isShowTopUl=true;changeActTab('Index');"/>
+				      	@click="isShowTopUl=true;$router.push('/Index');"/> -->
+				</van-col>
+			  	<van-col :span="16" class="tc">
+			  		<van-image
+						v-if="$store.state.currentPage.tabbar == '/Index'"
+			  			class="logo hv"
+				      	:src="require('@/assets/img/logo.png')"
+				      	fit="contain"
+				      	@click="isShowTopUl=true;changeActTab('/Index', 'Home');"/>
+				    <div v-else>{{$store.state.currentPage.title}}</div>
+
 			  	</van-col>
 			  	<van-col :span="4">
 					<van-icon v-if="isShowTopUl" name="wap-nav" color="#FFC80B" size="30" @click="isShowTopUl=false;" />
 					<van-icon v-else name="cross" color="#FFC80B" size="30" @click="isShowTopUl=true;" />
 			  	</van-col>
 			</van-row>
-			<ul class="menuInfo fontPB" v-if="!$store.state.isPC&&!isShowTopUl">
-	  			<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  			<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  			<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  			<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  			<li class="hv" @click="isShowTopUl=true;">animal</li>
-	  			<li class="hv" @click="isShowTopUl=true;">animal</li>
+			<!-- <van-overlay :show="!isShowTopUl" /> -->
+			<ul class="menuInfo fontPB" v-if="!isShowTopUl">
+	  			<li class="hv" v-for="(item,index) in tabItem" @click="isShowTopUl=true;">{{item.title}}</li>
+
+	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/Advisors', 'Advisors');">Advisors</li>
+	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
+	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
+	  			<li class="hv" @click="isShowTopUl=true;changeActTab('/Language', 'Languages');">Language</li>
 	  		</ul>
 		</div>
 	</div>
@@ -75,44 +73,43 @@ export default {
 			lang:this.$i18n.locale,
 	        language:[	
 	        	{
-					language: 'English',
-					title: 'en',
+					text: 'English',
+					value: 'en',
 				},
 				{
-					language: '中文简体',
-					title: 'zh-CN',
+					text: '中文简体',
+					value: 'zh-CN',
 				},
 				{
-					language: '中文繁體',
-					title: 'zh-TW',
+					text: '中文繁體',
+					value: 'zh-TW',
 				},
+			],
+			tabItem: [
+				{id:1,title: 'About Us',},
+				{id:2,title: 'Product & Services',},
+				{id:3,title: 'News & Events Center',},
+				{id:4,title: 'Legal Development',},
+				{id:5,title: 'PR & social media',},
+				{id:6,title: 'Academy',},
+				{id:7,title: 'Tool’s box',},
+				{id:8,title: 'Advisors’ login',},
 			],
 		}
 	},
 	mounted(){
 		this.getUserInfo();
-		this.isSale();
-		if(this.$sessionStorage.actTab){
-			this.$store.commit('setActTab',this.$sessionStorage.actTab);
-		}
-		let language = this.$route.query.lang;
 		let lang = this.$i18n.locale;
-		console.log(lang,language);
-		if(!!language){
-			this.$store.commit('changeLanguage',language);
-			this.setShowImg(language);
-		}else{
-			this.$store.commit('changeLanguage',lang);
-			this.setShowImg(lang);
-		}
-		console.log(this.$router.history.current.path);
-		if(this.$router.history.current.path.indexOf('/Animal')!=-1){
-			this.$store.commit('setActTab','AnimalLibrary');
-	    }
+		this.$store.commit('changeLang',lang);
+
+		let path = this.$router.history.current.path?this.$router.history.current.path:'/Index';
+		let biaoti = this.$router.history.current.name;
+		console.log(path, biaoti);
+		this.$store.commit('changePage',{tabbar: path, title: biaoti});
 	},
 	watch: {
  		isShowTopUl(){
-			if(!this.$store.state.isPC&&!this.isShowTopUl){
+			if(!this.isShowTopUl){
 				document.body.style.overflow='hidden';
 			}else{
 				document.body.style.overflow='';
@@ -120,32 +117,33 @@ export default {
   		}
   	},
 	methods:{
-		changeActTab(name){
-			this.$store.commit('setActTab',name);
-			this.setShowImg(this.$i18n.locale);
+		changeActTab(name,title){
+			if(name == ''){
+				let len = this.$router.history.current.matched.length;
+				console.log(this.$router.history.current.matched[len-2])
+				let path = this.$router.history.current.matched[len-2].path?this.$router.history.current.matched[len-2].path:'/Index';
+				let biaoti = this.$router.history.current.matched[len-2].name;
+				console.log(path, biaoti);
+				this.$store.commit('changePage',{tabbar: path, title: biaoti});
+				this.$router.push(path);
+			}else{
+				this.$store.commit('changePage',{tabbar: name, title: title});
+				this.$router.push(name);
+			}
 		},
 		changeLang(val){
-			this.setShowImg(val);
+			console.log(val);
 			this.$i18n.locale = val;
-            this.$store.commit('setAnimal','');
-            this.$store.commit('setAnimalBg','Land');
-			if(this.$store.state.actTab=='AnimalLibrary'){
-				let query = this.$router.history.current.query;
-				let path = this.$router.history.current.path;
-				this.$router.push(path);
-				window.location.reload();
-			}else{
-				window.location.reload();
-			}
+			this.$Local(val);
+			window.location.reload();
 			sessionStorage.setItem('language',val);
-			// this.$options.methods.choonseLang(val);
 		},
 		choonseLang(lang){
 			this.$axios({
                 method: 'get',
                 url:'/api/setLocale?lang='+lang,
                 headers: {
-                    "Authorization": this.$localStorage.token_type+this.$localStorage.token,
+                    "Authorization": this.$sessionStorage.token_type+this.$sessionStorage.token,
                 },
             }).then(response => {
 				console.log(response);
@@ -156,34 +154,14 @@ export default {
 			})
 		},
 		getUserInfo(){
-			if (this.$localStorage.token) {
-
-          	} else {
-            	return false;
-          	}
+			
 		},
 	},
 }
 </script>
 <style scoped>
-	/deep/ .el-input--suffix .el-input__inner{
-		background:transparent;border:none;width:110px;padding:0 0 0 30px;margin-left:-30px;
-	}
-	/deep/ .el-select{
-		width:5px;opacity:0;
-	}
-	/deep/ .el-input>.el-input__inner, input{
-		width:5px;opacity:0;height:24px;line-height:24px;
-	}
-	/deep/ .el-select .el-input__inner:focus{
-		background:transparent;border:none;
-	}
-	/deep/ .el-icon-arrow-up:before,/deep/ .el-input__icon:after{
-		content:'';
-	}
-	/deep/ .el-badge{
-		z-index: 1;
-	}
+	/deep/ .van-dropdown-menu, /deep/ .van-dropdown-menu__item, /deep/ .van-dropdown-menu__bar{background-color: #C6C6C6;box-shadow:none;}
+	/deep/ .van-dropdown-menu__title::after{display: none;}
 	.header{
 		width: 100%;
 		height: 80px;
@@ -204,7 +182,6 @@ export default {
 		line-height: 26px;
 		display: flex;
 		justify-content: space-around;
-		margin-top: 37px;
 		color:#7B5C55;
 	}
 	.tap>li{
@@ -221,7 +198,6 @@ export default {
 		line-height: 24px;
 		color: #7B5D56;
 		font-size: 16px;
-		margin-top: 38px;
 		display: flex;
 		justify-content: space-around;
 	}
@@ -240,6 +216,22 @@ export default {
 	.right-item .langImg{
 		width:30px;height:20px;
 	}
+	/*下拉选项*/
+	.menuInfo{
+		position:fixed;height:auto;top:80px;right:0;width:auto;padding: 0 20px;
+		z-index:10;text-align:center;line-height:40px;background-color:#FFC80B;
+		font-size:24px;color:#7B5C55;overflow-y: auto;min-height: 100%;
+	}
+	.active{
+		border-bottom:none;
+	}
+	.right-item{
+		position:relative;
+	}
+	.right-item span{
+		position:absolute;bottom:-20px;left:0%;
+		text-indent:0px;font-size:14px;
+	}
     /*手机*/
     @media screen and (max-width: 768px){
     	.header{
@@ -253,7 +245,7 @@ export default {
 			display:inline-flex;height:30px;line-height: 30px;margin-top: 25px;margin-left: 20px;
 		}
 		.logo{
-			width: 64.5px;
+			width: 45px;
 		}
 		.main-right{
 			width: 100%;
@@ -261,14 +253,14 @@ export default {
 			line-height: 24px;
 			color: #7B5D56;
 			font-size: 16px;
-			margin-top: 28px;
 			display: flex;
 			justify-content: space-around;
 		}
+		/*下拉选项*/
 		.menuInfo{
-			position:fixed;height:auto;width:100%;top:60px;left:0;width:100%;
+			position:fixed;height:auto;width:100%;top:60px;left:0;width:100%;padding: 0;
 			z-index:10;text-align:center;line-height:40px;background-color:#FFC80B;
-			font-size:24px;color:#7B5C55;
+			font-size:20px;color:#7B5C55;
 		}
 		.active{
 			border-bottom:none;
@@ -279,12 +271,6 @@ export default {
 		.right-item span{
 			position:absolute;bottom:-20px;left:0%;
 			text-indent:0px;font-size:14px;
-		}
-		/deep/ .el-badge__content{
-		    font-size: 10px;
-		    height: 12px;
-		    line-height: 12px;
-		    padding:0 4px;
 		}
     }
     /*平板*/
@@ -346,9 +332,12 @@ export default {
     }
     /*大屏幕*/
     @media screen and (min-width: 1200px){
+    	.header{
+			height: 80px;
+		}
     	.header-main{
     		width:90%;
-			max-width: 1200px;
+			max-width: 1200px;height: 80px;
 			margin: auto;
 		}
     }
