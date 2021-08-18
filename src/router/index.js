@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/views/Home'
 import Index from '@/views/Index'
 import Login from '@/views/Login'
+import Personal from '@/views/Personal'
 import ContactUs from '@/views/ContactUs'
 import Language from '@/views/Language'
 
@@ -27,6 +28,10 @@ const router = new Router({
       path: '/Login',
       name: '登录',
       component: Login,
+    },{
+      path: '/Personal',
+      name: '个人信息',
+      component: Personal,
     },{
       path: '/ContactUs',
       name: '联系我们',

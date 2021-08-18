@@ -56,7 +56,8 @@
 
 	  			<li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li>
 	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
-	  			<li class="hv" @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
+	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/Personal', 'Personal');">Personal</li>
+	  			<li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
 	  			<li class="hv" @click="changeActTab('/Language', 'Languages');">Language</li>
 	  		</ul>
 		</div>
@@ -105,7 +106,7 @@ export default {
 			}else{
 				document.body.style.overflow='';
 			}
-  		}
+		}
   	},
 	methods:{
 		// 获取头部导航条

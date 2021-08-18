@@ -1,12 +1,12 @@
 <template>
-	<div class="container">
+	<div class="main_container">
 		<div v-for="(item,index) in pageData" :key="index">
 			<Banner v-if="item.type === 1" :bannerData='item'></Banner>
 			<RichText v-if="item.type === 2 && item.content" :richTextData='item'></RichText>
 			<TilText v-if="item.type === 3" :titleData='item'></TilText>
 			<Movie v-if="item.type === 5" :movieData='item'></Movie>
-			<MultiImg v-if="item.type === 6" :imgData='item'></MultiImg>
-			<Graphic v-if="item.type === 7" :graphicData='item'></Graphic>
+			<Graphic v-if="item.type === 6" :graphicData='item'></Graphic>
+			<!-- <MultiImg v-if="item.type === 6" :imgData='item'></MultiImg> -->
 			<!-- <TextMode v-if="item.type === 7" :textData='item'></TextMode> -->
 		</div>
 	</div>

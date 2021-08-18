@@ -4,10 +4,10 @@
 			<van-tab title="Sign Up" name="SignUp">
 				<div class="inputBox">
 					<div class="box">
-						<van-field v-model="registForm.name" placeholder="name*" />
-						<van-field v-model="registForm.phone" placeholder="Phone*" />
-						<van-field v-model="registForm.password" type="password" placeholder="Password*" />
-						<van-field v-model="registForm.repassword" type="password" placeholder="Repeat Password*" />
+						<van-field v-model="registForm.name" autocomplete="off" placeholder="name*" />
+						<van-field v-model="registForm.phone" autocomplete="off" placeholder="Phone*" />
+						<van-field v-model="registForm.password" autocomplete="off" type="password" placeholder="Password*" />
+						<van-field v-model="registForm.repassword" autocomplete="off" type="password" placeholder="Repeat Password*" />
 						<van-field
 						  style="padding-right: 0"
 						  v-model="registForm.smscode"

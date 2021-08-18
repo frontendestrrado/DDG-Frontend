@@ -85,7 +85,9 @@ export default {
 
     },
     methods:{
-
+    	changeTab(){
+    		
+    	}
     }
 }
 </script>

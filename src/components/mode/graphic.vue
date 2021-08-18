@@ -32,13 +32,17 @@ export default {
         	if(this.graphicData.layout == 1){
         		return 24;
         	}else if(this.graphicData.layout == 2){
-        		return this.$store.state.isPC?12:24;
+        		return 12;
+        		// return this.$store.state.isPC?12:24;
         	}else if(this.graphicData.layout == 3){
-        		return this.$store.state.isPC?8:24;
+        		return 8;
+        		// return this.$store.state.isPC?8:24;
         	}else if(this.graphicData.layout == 4){
-        		return this.$store.state.isPC?6:12;
+        		return 6;
+        		// return this.$store.state.isPC?6:12;
         	}else if(this.graphicData.layout == 5){
-        		return this.$store.state.isPC?5:12;
+        		return 5;
+        		// return this.$store.state.isPC?5:12;
         	}
         }
     },

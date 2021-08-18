@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from '../http';
 
 Vue.use(Vuex)
 
@@ -32,6 +33,24 @@ export default new Vuex.Store({
                 console.log('refreshToken');
                 sessionStorage.setItem('token',res.access_token);
                 this.commit('setToken',res.access_token);
+                window.location.reload();
+            }).catch(error=>{
+                console.log('no storeToken');
+                sessionStorage.token = '';
+            });
+        },
+        // 删除token
+        delToken(){
+            axios({
+                method: 'DELETE',
+                url:'/api/v1/authorizations/current',
+                headers: {
+                    "Authorization": sessionStorage.token_type+sessionStorage.token,
+                }
+            }).then(res => {
+                console.log('delToken');
+                sessionStorage.token = '';
+                this.commit('setToken','');
                 window.location.reload();
             }).catch(error=>{
                 console.log('no storeToken');

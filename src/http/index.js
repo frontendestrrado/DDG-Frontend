@@ -1,7 +1,7 @@
 import  axios from 'axios'
 import {Toast } from 'vant';
 
-// import store from '../store';
+import store from '../store';
 
 let servie = axios.create({
     baseURL: process.env.BASE_URL, // url = base url + request url
@@ -41,24 +41,19 @@ servie.interceptors.response.use(
     },
     error => {
         console.log(error);
+        console.log(error.response);
         if(error.response.data.errors){
             return Promise.reject(error);
         }else if(error.response.data.message){
-            if(route.indexOf('/authorizations')!=-1){
+            if(error.response.status == 401){
+                console.log('token 失效')
+                store.commit('refreshToken');
+            }else if(route.indexOf('/authorizations')!=-1){
                 Toast.fail({
                     message:error.response.data.message,
                     duration:1800,
                     position:'top',
                 });
-            // }else if(error.response.data.status_code==401&&localStorage.token){
-            //     store.commit('refreshToken');
-            // }else if(error.response.data.status_code==500){
-            //     localStorage.clear();
-            //     store.commit('resetUser');
-            //     store.commit('resetCartList');
-            //     setTimeout(function(){
-            //         store.state.isLoginShow = true;
-            //     },1000);
             }else{
                 Toast.fail({
                     message:error.response.data.message,

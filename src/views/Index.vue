@@ -1,6 +1,5 @@
 <template>
-	<div class="hello">
-		<!-- <Common></Common> -->
+	<div class="main_content" :style="{maxWidth: pageWidth+'px'}">
 		<Common :pageData='pageContent'></Common>
 	</div>
 </template>
@@ -15,6 +14,7 @@
 		data () {
 			return {
 				pageContent: [],
+				pageWidth: '1200',
 			}
 		},
 		mounted(){
@@ -29,7 +29,6 @@
 					console.log(res);
 					if(res.status == 200){
 						this.pageContent = res.data.modules;
-						console.log(this.pageContent)
 					}else{
 						this.$router.push('/');
 					}
