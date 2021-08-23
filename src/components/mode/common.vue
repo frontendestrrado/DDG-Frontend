@@ -1,13 +1,14 @@
 <template>
 	<div class="main_container">
+		<!-- Banner1 title2 richText3 movie4 singleimage5 imagetext6 showcaseImage7 text8 -->
 		<div v-for="(item,index) in pageData" :key="index">
 			<Banner v-if="item.type === 1" :bannerData='item'></Banner>
-			<RichText v-if="item.type === 2 && item.content" :richTextData='item'></RichText>
-			<TilText v-if="item.type === 3" :titleData='item'></TilText>
-			<Movie v-if="item.type === 5" :movieData='item'></Movie>
+			<TilText v-if="item.type === 2" :titleData='item'></TilText>
+			<RichText v-if="item.type === 3 && item.content" :richTextData='item'></RichText>
+			<Movie v-if="item.type === 4" :movieData='item'></Movie>
+			<MultiImg v-if="item.type === 5 || item.type === 7" :imgData='item'></MultiImg>
 			<Graphic v-if="item.type === 6" :graphicData='item'></Graphic>
-			<!-- <MultiImg v-if="item.type === 6" :imgData='item'></MultiImg> -->
-			<!-- <TextMode v-if="item.type === 7" :textData='item'></TextMode> -->
+			<TextMode v-if="item.type === 8" :textData='item'></TextMode>
 		</div>
 	</div>
 </template>
@@ -19,7 +20,7 @@
 	import Movie from '@/components/mode/movie'
 	import MultiImg from '@/components/mode/MultiImg'
 	import Graphic from '@/components/mode/graphic'
-	// import TextMode from '@/components/mode/textMode'
+	import TextMode from '@/components/mode/textMode'
 	export default {
 		components: {
 			Banner,
@@ -28,7 +29,7 @@
 			Movie,
 			MultiImg,
 			Graphic,
-			// TextMode,
+			TextMode,
 		},
 		props:{
 			pageData:{
