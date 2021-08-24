@@ -68,6 +68,7 @@
     overflow: hidden;
 }
 
+
 /* 富文本模块 */
 .index-rich{width: 94%;display: block;margin: 0 auto;text-align: left;}
 .index-rich img{max-width: 100%;}
@@ -83,7 +84,7 @@
     background: #f3f3f3;
 }
 .product-item{
-	width: 100%;
+    width: 100%;
 }
 .fui-goods-item {
     box-sizing: border-box;
@@ -97,11 +98,11 @@
 }
 
 .goodsImg {
-	height: 120px;
-	width: 120px;
+    height: 120px;
+    width: 120px;
     background-size: 100%;
     background-repeat: no-repeat;
-	background-position: center center;
+    background-position: center center;
     background-size: cover;
     overflow: hidden;
     position: relative;
@@ -126,9 +127,9 @@
     -webkit-box-flex: 1;
     flex: 1;
     background: #fff;
-	padding-left: 10px;
-	
-	display: -webkit-box;
+    padding-left: 10px;
+    
+    display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -419,25 +420,25 @@
 
 /* 商品详情 */
 .index-product{
-	/* width: 100%; */
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: flex-start;
-	box-sizing: border-box;
+    /* width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    box-sizing: border-box;
     overflow: auto;
 }
 .index-product:after {
-	content: "";
-	width: 32.08%;
-	flex:auto;
+    content: "";
+    width: 32.08%;
+    flex:auto;
 }
 .tab-detail{width: 100%;}
 .tab-detail-1{
-	width: 100%;
+    width: 100%;
 }
 .tab-detail-2{
-	width: 48.59%;
+    width: 48.59%;
 }
 .tab-detail-3{
     width: 32.08%;
@@ -448,38 +449,38 @@
     margin-right: 0;
 }
 .product-item {
-	width: 100%;
-	margin-bottom: 5px;
-	height: auto;
-	background-color: #fff;
+    width: 100%;
+    margin-bottom: 5px;
+    height: auto;
+    background-color: #fff;
 }
 .productImg{
     width: 100%;
-	height: auto;
+    height: auto;
     display: block;
     position: relative;
 }
 .product-proImg {
-	width: 100%;
-	height: auto;
-	display: block;
-	margin: 0 auto;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .product-info {
-	padding: 0 8px;
-	text-align: left;
-	font-size: 15px;
-	line-height: 25px;
+    padding: 0 8px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 25px;
 }
 .index_price{
     display: flex;justify-content: space-between;
 }
 .oldPrice{
-	padding-left: 5px;
-	font-size: 13px;
-	color: #bcbcbc;
-	text-decoration: line-through;
+    padding-left: 5px;
+    font-size: 13px;
+    color: #bcbcbc;
+    text-decoration: line-through;
 }
 
 /* 视频模块 */
@@ -490,24 +491,24 @@
 .index-proImg{
     width: 100%;
     padding: 0 3%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: flex-start;
-	box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    box-sizing: border-box;
     overflow: auto;
 }
 .index-proImg:after {
-	content: "";
-	width: 32.08%;
-	flex:auto;
+    content: "";
+    width: 32.08%;
+    flex:auto;
 }
 .showcase-detail{width: 100%;}
 .showcase-detail-1{
-	width: 48.59%;
+    width: 48.59%;
 }
 .showcase-detail-2{
-	width: 100%;
+    width: 100%;
 }
 .showcase-detail-3{
     width: 32.08%;
@@ -518,15 +519,15 @@
     margin-right: 0;
 }
 .showcase-detail-4{
-	width: 24%;
+    width: 24%;
 }
 .product-item {
-	width: 100%;
-	margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 10px;
     height: auto;
     /* border-radius: 10px; */
     overflow: hidden;
-	background-color: #fff;
+    background-color: #fff;
 }
 /* 单图模块 */
 .index-singleImg{
@@ -534,31 +535,31 @@
     padding: 0;
 }
 .single-item {
-	width: 100%;
-	height: auto;
-	background-color: #fff;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
 }
 /* 优惠券模块 */
 .index-coupon{
     width: 100%;
     padding: 0 1.5%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: flex-start;
-	box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    box-sizing: border-box;
     overflow: auto;
 }
 .index-coupon:after {
-	content: "";
-	width: 32.08%;
-	flex:auto;
+    content: "";
+    width: 32.08%;
+    flex:auto;
 }
 .coupon-detail-0{
-	width: 100%;
+    width: 100%;
 }
 .coupon-detail-1{
-	width: 48.59%;
+    width: 48.59%;
 }
 .coupon-detail-2{
     width: 32.08%;

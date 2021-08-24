@@ -49,13 +49,8 @@
 						]
 					},
 					{
-						"id": 1,
-						"type": 2,
-						"content": '<p>你好呀，哈哈哈哈哈</p>',
-					},
-					{
 						"id":10,
-						"type":3,
+						"type":2,
 						"title":"欢迎来到Wenno，开启你的购物之旅~123",
 						"icon":"https://www.wennoanimal.com/uploads/admin/202105/19/60a4e3a430030.png",
 						"title_size":"16",
@@ -66,12 +61,17 @@
 						"path":null
 					},
 					{
-						"id":3,"type":5,"height":200,"automatic":0,
+						"id": 1,
+						"type": 3,
+						"content": '<p>你好呀，哈哈哈哈哈</p>',
+					},
+					{
+						"id":3,"type":4,"height":200,"automatic":0,
 						"movie":"https://www.wennoanimal.com/uploads/admin/202105/19/60a4b0dceab16.mp4"
 					},
 					{
 						"id":4,
-						"type":6,
+						"type":7,
 						"height":200,
 						"showcase_type":2,
 						"bg_color":"#ffffff",
@@ -124,7 +124,7 @@
 						"layout": 4,	// 布局：1单列 2二列 3三列 4四列 5五列
 						"layout_font_in_image": 1,	// 嵌入文字 1上 2中 3下
 						"layout_images_text": 4,	// 图文布局：1上文下图 2下文上图 3左文右图 4 右文左图
-						"type": 7,
+						"type": 6,
 					},
 					{
 						"content_color": "#d9d9d9",

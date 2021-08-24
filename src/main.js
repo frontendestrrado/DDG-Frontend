@@ -20,7 +20,8 @@ Vue.prototype.$sessionStorage = sessionStorage;
 if(process.env.NODE_ENV=='development'){
 	Vue.prototype.$build = '/build';
 }else{
-	Vue.prototype.$build = 'http://www.bunchparty.com/trust/';
+	Vue.prototype.$build = 'http://www.bunchparty.com/trust';
+	// Vue.prototype.$build = 'http://184.168.127.123/trustb'; //正式服
 }
 
 import locales from './lang/vantLocal.js' 

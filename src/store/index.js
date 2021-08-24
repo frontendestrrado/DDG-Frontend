@@ -10,9 +10,9 @@ export default new Vuex.Store({
         num:10,
         language:sessionStorage["language"]?sessionStorage["language"]:'en',
         isPC:document.body.clientWidth>=768?true:false,
-        currentPage: sessionStorage["currentPage"]?sessionStorage["currentPage"]:{
+        currentPage: sessionStorage["currentPage"]?JSON.parse(sessionStorage["currentPage"]):{
             tabbar: '/Index',
-            title: 'Home',
+            title: '首页',
         },
         token:sessionStorage["token"]?sessionStorage["token"]:'',
         token_type:sessionStorage["token_type"]?sessionStorage["token_type"]:'',
@@ -80,7 +80,8 @@ export default new Vuex.Store({
         // 切换页面tab
         changePage (state,val) {
             console.log(val);
-            sessionStorage.setItem('currentPage',val);
+            sessionStorage.setItem('currentPage',JSON.stringify(val));
+            console.log(JSON.parse(sessionStorage.currentPage));
             state.currentPage=val;
         }
     },

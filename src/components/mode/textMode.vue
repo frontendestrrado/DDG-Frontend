@@ -1,14 +1,14 @@
 <template>
 	<div class="index-title">
 	    <div class="index-title-div">
-	    	<el-row class="columnboxAbout" v-if="textData.text.length>0" :gutter="$store.state.isPC?20:0">
-                <el-col :span="showClass" v-for="(item,index) in textData.text" :key="index">
+	    	<van-row class="columnboxAbout" v-if="textData.text.length>0" :gutter="$store.state.isPC?20:0">
+                <van-col :span="showClass" v-for="(item,index) in textData.text" :key="index">
                     <div class="textContent">
                         <div :style="{fontSize:textData.title_size,color:textData.title_color,fontWeight:textData.title_bold==1?'bold':'normal'}">{{item.title}}</div>
                         <div :style="{fontSize:textData.content_size,color:textData.content_color}">{{item.content}}</div>
                     </div>
-                </el-col>
-            </el-row>
+                </van-col>
+            </van-row>
 	    </div>
 	</div>
 </template>

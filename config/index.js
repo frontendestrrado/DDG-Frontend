@@ -13,7 +13,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/build': {
-            target: 'http://www.bunchparty.com/trust/', //设置你调用的接口域名和端口号 别忘了加http
+            target: 'http://www.bunchparty.com/trust', //测试服
+            // target: 'http://184.168.127.123/trustb', //正式服
             secure: true,
             changeOrigin: true,//允许跨域
             pathRewrite: {

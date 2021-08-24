@@ -9,18 +9,12 @@
 				      	fit="contain"
 				      	@click="isShowTopUl=true;changeActTab('Index');"/>
 			  	</van-col>
-			  	<van-col :span="12">
-			  		<ul class="tab fontPR">
-	  					<li class="hv" v-for="(item,index) in tabItem" @click="isShowTopUl=true;">{{item.title}}</li>
-			  		</ul>
-			  	</van-col>
-			  	<van-col :span="6">
+			  	<van-col :span="18">
 					<div class="main-right fontPM">
 						<div class="right-item hv" style="margin-left: 5px;">
 							<van-dropdown-menu active-color="#FFC80B">
 								<van-dropdown-item v-model="lang" :options="language" @change='changeLang'/>
 							</van-dropdown-menu>
-
 						</div>
 					</div>
 			  	</van-col>
@@ -52,7 +46,10 @@
 			</van-row>
 			<!-- <van-overlay :show="!isShowTopUl" /> -->
 			<ul class="menuInfo fontPB" v-if="!isShowTopUl">
-	  			<li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li>
+				<li class="hv" @click="changeActTab('/Index', 'Index');">Home About Us</li>
+
+	  			<!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
+	  			<MenuTop @on-change="changeActTab" :menu-data="tabList" calssName=""/>
 
 	  			<li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li>
 	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
@@ -64,8 +61,11 @@
 	</div>
 </template>
 <script>
-
+import MenuTop from '@/components/MenuTop'
 export default {
+	components: {
+        MenuTop
+    },
 	data () {
 		return {
 			tabList: [],
@@ -95,7 +95,7 @@ export default {
 		this.$store.commit('changeLang',lang);
 
 		let path = this.$router.history.current.path?this.$router.history.current.path:'/Index';
-		let biaoti = this.$router.history.current.name;
+		let biaoti = sessionStorage["currentPage"]?JSON.parse(sessionStorage["currentPage"]).title:this.$router.history.current.name;
 		console.log(path, biaoti);
 		this.$store.commit('changePage',{tabbar: path, title: biaoti});
 	},
@@ -113,7 +113,7 @@ export default {
 		getTabbar(){
 			this.$axios({
                 method: 'get',
-                url:'api/v1/navigations',
+                url:'/api/v1/navigations',
             }).then(res => {
 				console.log(res);
 				this.tabList = res.data;
