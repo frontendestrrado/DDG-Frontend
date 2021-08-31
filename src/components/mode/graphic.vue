@@ -1,6 +1,6 @@
 <template>
-	<div class="index-title" :style="{backgroundColor:graphicData.bg_color}">
-	    <div class="index-title-div">
+	<div class="index-graphic" :style="{backgroundColor:graphicData.bg_color}">
+	    <div class="index-graphic-div">
 	    	<van-row class="columnboxAbout" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass"  v-for="(graphic,index) in graphicData.imageText" :key="index">
                     <div :class="'fontPR  imgTextLayout layoutImg_'+graphicData.layout_images_text ">

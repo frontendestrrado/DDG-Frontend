@@ -1,5 +1,5 @@
 <template>
-	<div class="header">
+	<div class="header bgAsh">
 		<div class="header-main">
 			<!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
@@ -53,7 +53,7 @@
 
 	  			<li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li>
 	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
-	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/Personal', 'Personal');">Personal</li>
+	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/Personal', 'My Profile');">My Profile</li>
 	  			<li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
 	  			<li class="hv" @click="changeActTab('/Language', 'Languages');">Language</li>
 	  		</ul>
@@ -167,12 +167,12 @@ export default {
 }
 </script>
 <style scoped>
-	/deep/ .van-dropdown-menu, /deep/ .van-dropdown-menu__item, /deep/ .van-dropdown-menu__bar{background-color: #C6C6C6;box-shadow:none;}
+	/deep/ .van-dropdown-menu, /deep/ .van-dropdown-menu__item, /deep/ .van-dropdown-menu__bar{background-color: #CBCDCE;box-shadow:none;}
 	/deep/ .van-dropdown-menu__title::after{display: none;}
 	.header{
 		width: 100%;
 		height: 80px;
-		background-color: #C6C6C6;
+		background-color: #CBCDCE;
 	}
 	.header-main{
 		font-size: 16px;

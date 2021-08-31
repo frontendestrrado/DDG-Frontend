@@ -12,15 +12,14 @@
 			</div>
 		</div>
 		<div :class="'showcase-detail-'+imgData.showcase_type" v-for="(single,index) in imgData.showcase_image" :key="index" v-if="single.image&&imgData.type === 7">
-				<div class='product-item' @click="goProductDtl(single.path)">
-					<van-image
-					class="product-proImg"
-					style="width: 100%;"
-					:src="single.image"
-					fit="contain"/>
-				</div>
+			<div class='product-item' @click="goProductDtl(single.path)">
+				<van-image
+				class="product-proImg"
+				style="width: 100%;"
+				:src="single.image"
+				fit="contain"/>
+			</div>
 		</div>
-
 	</div>
 </template>
 <script>

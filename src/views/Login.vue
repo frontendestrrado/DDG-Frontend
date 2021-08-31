@@ -1,5 +1,5 @@
 <template>
-	<div class="login">
+	<div class="login from_content">
 		<van-tabs v-model="activeName">
 			<van-tab title="Sign Up" name="SignUp">
 				<div class="inputBox">
@@ -184,7 +184,7 @@
 /deep/ .van-tabs__line{background-color: transparent;}
 /deep/ .van-cell{margin-bottom: 10px;padding: 0px 16px;}
 .login{
-	width: 100%;background-color: #F3F5F7;min-height: calc(100vh - 60px);
+	margin-top: 20px;background-color: #F3F5F7;padding-bottom: 20px;
 }
 .inputBox{
 	width: 90%;
@@ -196,9 +196,21 @@
 	height: 46px;
 	line-height: 46px;
 	margin-top: 30px;
-	background: #C6C6C6;
+	background: #87898A;
 	color: #fff;
-	border-color: #C6C6C6;
+	border-color: #87898A;
 	border-radius: 46px;
+}
+@media screen and (max-width: 576px){
+  .login{margin-top: 0;}
+}
+@media screen and (max-width: 768px){
+  .login{margin-top: 0;}
+}
+@media screen and (min-width: 768px) and (max-width: 992px){
+  .login{margin-top: 20px;}
+}
+@media screen and (min-width: 992px) and (max-width: 1200px){
+  .login{margin-top: 20px;}
 }
 </style>

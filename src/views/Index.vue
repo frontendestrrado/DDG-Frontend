@@ -29,6 +29,14 @@
 					console.log(res);
 					if(res.status == 200){
 						this.pageContent = res.data.modules;
+						this.pageWidth = res.data.width;
+						this.pageContent.forEach((item,i) => {
+	                    	if(item.type == 9){
+	                    		item.data_collects.forEach((itemi,j) => {
+	                    			this.$set(this.pageContent[i].data_collects[j],'content','')
+					            })
+	                    	}
+			            })
 					}else{
 						this.$router.push('/');
 					}

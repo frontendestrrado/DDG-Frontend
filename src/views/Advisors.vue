@@ -105,7 +105,7 @@ export default {
         width: 100%;
     }
     .Advisors_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 10px;}
-    .Advisors_info .ad_icon{width: 20vw;height: 20vw;background-color: #C6C6C6;margin: 20px auto 10px;border-radius: 10px;}
+    .Advisors_info .ad_icon{width: 20vw;height: 20vw;background-color: #CBCDCE;margin: 20px auto 10px;border-radius: 10px;}
 	.inputBox{
 		width: 90%;
 		margin: 30px auto;

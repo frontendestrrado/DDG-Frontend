@@ -1,10 +1,32 @@
 <template>
-	<div class="person">
-			<van-cell-group>
-			  <van-cell title="Name" :value="userInfo.name" />
-			  <van-cell title="Phone" :value="userInfo.phone"/>
-			  <van-cell title="Email" :value="userInfo.email"/>
-			</van-cell-group>
+	<div class="person from_content">
+		<van-cell-group>
+            <van-cell title="Name" :value="userInfo.name" is-link>
+                <template #right-icon></template>
+            </van-cell>
+            <van-cell title="Home Address" :value="userInfo.name" is-link>
+                <template #right-icon><van-icon name="edit"/></template>
+            </van-cell>
+            <van-cell title="Phone" :value="userInfo.phone" is-link>
+                <template #right-icon><van-icon name="edit"/></template>
+            </van-cell>
+            <van-cell title="Email Address" :value="userInfo.email" is-link>
+                <template #right-icon><van-icon name="edit"/></template>
+            </van-cell>
+            <van-cell title="Date of Birth" :value="userInfo.birthday" />
+            <van-cell title="DCS Code" :value="userInfo.code" />
+            <van-cell title="NRIC or Passport #" :value="userInfo.post" />
+
+            <van-cell title="Bank Name" :value="userInfo.birthday" is-link>
+                <template #right-icon><van-icon name="edit"/></template>
+            </van-cell>
+            <van-cell title="Bank Account" :value="userInfo.birthday" is-link>
+                <template #right-icon><van-icon name="edit"/></template>
+            </van-cell>
+            <van-cell title="Account Name" :value="userInfo.birthday" is-link>
+                <template #right-icon><van-icon name="edit"/></template>
+            </van-cell>
+		</van-cell-group>
 	</div>
 </template>
 
@@ -47,7 +69,7 @@ export default {
 </style>
 <style scoped>
 	/deep/ .van-cell .van-cell__title{text-align: left;}
-    .person{width: 100%;min-height: calc(100vh - 60px);background: #F3F5F7;}
+    .person{background: #F3F5F7;}
     .person_info{padding: 20px 30px;background-color: #FFC80B;}
     .person_title{font-weight: 500;text-align: left;}
 </style>

@@ -9,6 +9,7 @@
 			<MultiImg v-if="item.type === 5 || item.type === 7" :imgData='item'></MultiImg>
 			<Graphic v-if="item.type === 6" :graphicData='item'></Graphic>
 			<TextMode v-if="item.type === 8" :textData='item'></TextMode>
+			<InputMode v-if="item.type === 9" :formData.sync='item'></InputMode>
 		</div>
 	</div>
 </template>
@@ -18,9 +19,10 @@
 	import RichText from '@/components/mode/richText'
 	import TilText from '@/components/mode/titleText'
 	import Movie from '@/components/mode/movie'
-	import MultiImg from '@/components/mode/MultiImg'
+	import MultiImg from '@/components/mode/multiImg'
 	import Graphic from '@/components/mode/graphic'
 	import TextMode from '@/components/mode/textMode'
+	import InputMode from '@/components/mode/inputMode'
 	export default {
 		components: {
 			Banner,
@@ -30,6 +32,7 @@
 			MultiImg,
 			Graphic,
 			TextMode,
+			InputMode,
 		},
 		props:{
 			pageData:{

@@ -36,22 +36,27 @@
 					console.log(res);
 					if(res.status == 200){
 	                    this.pageContent = res.data.modules;
+	                    this.pageWidth = res.data.width;
+	                    this.pageContent.forEach((item,i) => {
+	                    	if(item.type == 9){
+	                    		item.data_collects.forEach((itemi,j) => {
+	                    			this.$set(this.pageContent[i].data_collects[j],'content','')
+					            })
+	                    	}
+			            })
 	                }else{
+	                	this.pageContent = [];
+	                	this.pageWidth = '1200';
 						// this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
 						// this.$router.push('/ErrorPage');
 	                }
 				}).catch(error=>{
 
 				});
-			}
-
+			},
 		},
 	}
 </script>
 
 <style scoped>
-h1, h2 {font-weight: normal;}
-ul {list-style-type: none;	padding: 0;}
-li {display: inline-block;	margin: 0 10px;}
-a {color: #42b983;}
 </style>

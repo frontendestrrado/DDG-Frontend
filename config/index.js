@@ -13,7 +13,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/build': {
-            target: 'http://www.bunchparty.com/trust', //测试服
+            target: 'https://www.bunchparty.com/trust', //测试服
             // target: 'http://184.168.127.123/trustb', //正式服
             secure: true,
             changeOrigin: true,//允许跨域

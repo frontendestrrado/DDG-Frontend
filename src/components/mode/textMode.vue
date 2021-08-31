@@ -1,6 +1,6 @@
 <template>
-	<div class="index-title">
-	    <div class="index-title-div">
+	<div class="index-text">
+	    <div class="index-text-div">
 	    	<van-row class="columnboxAbout" v-if="textData.text.length>0" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass" v-for="(item,index) in textData.text" :key="index">
                     <div class="textContent">
