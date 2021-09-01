@@ -3,16 +3,16 @@
 	    <div class="index-graphic-div">
 	    	<van-row class="columnboxAbout" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass"  v-for="(graphic,index) in graphicData.imageText" :key="index">
-                    <div :class="'fontPR  imgTextLayout layoutImg_'+graphicData.layout_images_text ">
+                    <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout">
 						<div class="imgTextBox">
 							<van-image
-							style="width: 100%;height:auto;"
+							style="width: 60%;height:auto;margin: 0 auto;"
 							:src="graphic.image"
 							fit="contain"
 							/>
 							<span :class="'bottomText layout_'+graphicData.layout_font_in_image" :style="{fontSize:graphicData.font_in_image_size,color:graphicData.font_in_image_color,textAlign:graphicData.align}">{{graphic.font_in_image}}</span>
 						</div>
-						<p :style="{fontSize:graphicData.font_size,color:graphicData.color,textAlign:graphicData.align}">{{graphic.text}}</p>
+                        <pre :style="{fontSize:graphicData.font_size,color:graphicData.color,textAlign:graphicData.align}">{{graphic.text}}</pre>
                     </div>
                 </van-col>
             </van-row>
@@ -51,6 +51,7 @@ export default {
 <style scoped>
 /* 图文模块 */
 /deep/ .van-col-5{width:20%;}
+.index-graphic-div{padding-top: 20px;}
 .columnboxAbout {width:100%;}
 .textContent >div{overflow: hidden;}
 .imgTextBox{position: relative;display: inline-flex;}
@@ -58,9 +59,11 @@ export default {
 .layout_1{top:0;left: 0;}
 .layout_2{top: 50%;left: 0;transform: translateY(-50%);}
 .layout_3{bottom: 0;left: 0;}
-.imgTextLayout{display: flex;}
+.imgTextLayout{display: flex;margin-bottom: 20px;}
+.layoutImgOne_1{align-items: center;}
 .layoutImg_1{flex-flow: column-reverse;}
 .layoutImg_2{flex-flow: column;}
 .layoutImg_3{flex-flow: row-reverse;}
 .layoutImg_4{flex-flow: row;}
+pre{white-space: break-spaces;margin: 0;font-family: 'PoppinsRegular';}
 </style>

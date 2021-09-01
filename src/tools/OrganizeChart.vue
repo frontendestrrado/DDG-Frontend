@@ -1,7 +1,7 @@
 <template>
-	<div class="Advisors">
-		<div class="Advisors_info">
-			<div class="Advisors_title">Business / 商业</div>
+	<div class="OrganizeChart">
+		<div class="OrganizeChart_info">
+			<div class="OrganizeChart_title">Business / 商业</div>
 			<div>
 				<van-row>
 				  <van-col span="8" @click="changeTab()">
@@ -56,7 +56,7 @@
 				  </van-col>
 				</van-row>
 			</div>
-			<div class="Advisors_title">Tool Box / 工具箱</div>
+			<div class="OrganizeChart_title">Tool Box / 工具箱</div>
 			<div>
 				<van-row>
 				  <van-col span="8" @click="changeTab()">
@@ -151,11 +151,11 @@ export default {
 	/deep/ .van-cell{
 		margin-bottom: 10px;padding: 0px 16px;
 	}
-    .Advisors{
+    .OrganizeChart{
         width: 100%;
     }
-    .Advisors_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 20px;}
-    .Advisors_info .ad_icon{width: 20vw;height: 20vw;/*background-color: #CBCDCE;*/margin: 20px auto 10px;border-radius: 10px;}
+    .OrganizeChart_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 20px;}
+    .OrganizeChart_info .ad_icon{width: 20vw;height: 20vw;/*background-color: #CBCDCE;*/margin: 20px auto 10px;border-radius: 10px;}
 	.inputBox{
 		width: 90%;
 		margin: 30px auto;

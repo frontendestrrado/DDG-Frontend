@@ -194,8 +194,8 @@ export default {
                 return '';
             }else{
                 var date = new Date(value);
-                var Y = date.getFullYear()+'/';
-                var M = (date.getMonth()+1)+ '/';
+                var Y = date.getFullYear()+'-';
+                var M = (date.getMonth()+1)+ '-';
                 var D = date.getDate();
                 return Y+M+D;
             }

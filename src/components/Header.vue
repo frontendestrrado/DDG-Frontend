@@ -49,12 +49,12 @@
 				<li class="hv" @click="changeActTab('/Index', 'Index');">Home About Us</li>
 
 	  			<!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
-	  			<MenuTop @on-change="changeActTab" :menu-data="tabList" calssName=""/>
+	  			<MenuTop @on-change="changeActTab" :menu-data="tabList" cl-name.sync="menu"/>
 
-	  			<li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li>
+	  			<!-- <li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li> -->
 	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
 	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/Personal', 'My Profile');">My Profile</li>
-	  			<li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li>
+	  			<!-- <li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li> -->
 	  			<li class="hv" @click="changeActTab('/Language', 'Languages');">Language</li>
 	  		</ul>
 		</div>
@@ -122,8 +122,17 @@ export default {
 				console.log(JSON.stringify(error));
 			})
 		},
+		isNumber(val) {
+			var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+			var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+	    	if(regPos.test(val) || regNeg.test(val)) {
+	        	return true;
+	        } else {
+	        	return false;
+	        }
+	    },
 		changeActTab(name,title){
-			console.log(name);
+			console.log(name,title);
 			this.isShowTopUl=true;
 			if(name == ''){
 				let len = this.$router.history.current.matched.length;
@@ -134,8 +143,19 @@ export default {
 				this.$store.commit('changePage',{tabbar: path, title: biaoti});
 				this.$router.push(path);
 			}else{
-				this.$store.commit('changePage',{tabbar: name, title: title});
-				this.$router.push(name);
+				if(this.isNumber(name)){
+					if(title.indexOf('login')!=-1 || title.indexOf('Login')!=-1 || title.indexOf('登錄')!=-1 || title.indexOf('登录')!=-1){
+						sessionStorage.setItem('page_id',name);
+						this.$store.commit('changePage',{tabbar: 'Login', title: 'Sign Up / Sign In'});
+						this.$router.push('/Login');
+					}else{
+						this.$store.commit('changePage',{tabbar: '/Page/'+name, title: title});
+						this.$router.push('/Page/'+name);
+					}
+				}else{
+					this.$store.commit('changePage',{tabbar: name, title: title});
+					this.$router.push(name);
+				}
 			}
 		},
 		changeLang(val){

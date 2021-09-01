@@ -8,6 +8,7 @@ import store from './store';
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import '@vant/touch-emulator';
 
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n);

@@ -11,6 +11,9 @@ import Advisors from '@/views/Advisors'
 import Page from '@/views/Page'
 import ErrorPage from '@/views/ErrorPage'
 
+import OrganizeChart from '@/tools/OrganizeChart'
+
+
 Vue.use(Router)
 
 const router = new Router({
@@ -48,6 +51,10 @@ const router = new Router({
       path: '/Page/:page_id',
       name: '自定义页面',
       component: Page,
+    },{
+      path: '/OrganizeChart',
+      name: '组织图',
+      component: OrganizeChart,
     }]
   },
   {
