@@ -15,7 +15,7 @@
                                 :type="item.type==2?'password':item.type==3?'digit':'text'"
                                 :label="item.title"
                                 :placeholder="item.title"
-                                :rules="[{ validator:item.type==3?'':validatorEmail, required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
+                                :rules="[{ validator:item.type==4?validatorEmail:'', required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
                               />
                         </template>
                         <!-- <template solt="label" :style="{color: item.title_color,fontSize:item.title_size+'px',fontWeight:item.title_bold==1?'bold':'normal'}">{{item.title}}</template> -->
@@ -79,12 +79,15 @@
                 <van-datetime-picker
                     v-model="currentContent"
                     :type="pickerTpye"
+                    :min-hour="0"
+                    :min-date="minDate"
+                    :max-date="maxDate"
                     @cancel="onHiddenPicker"
                     @confirm="onConfirmPicker"
                 />
             </van-popup>
 
-            <input type="file" name="avatar" id="uppic" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage" ref="imgInput" style="opacity: 0;width: 0;height: 0;">
+            <input type="file" name="avatar" id="uppic" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage" ref="imgInput" style="opacity: 0;width: 0;height: 0;padding: 0;display: inherit;">
 
             <!-- <van-uploader v-model="fileList" :after-read="afterRead" :name="checkUploadIndex" :max-count="1" :max-size="1000 * 1024" @oversize="onOversize" :multiple="false" :deletable="false" :preview-full-image="false" :show-upload="false"></van-uploader> -->
 	    </div>
@@ -107,6 +110,8 @@ export default {
             fileList:[],
             checkUploadIndex: '',
             uploadImg: 'https://www.bunchparty.com/trust/uploads/collects/202108/31//1630379513_1630379513_fs6mjWgy8o.png',//测试图
+            minDate:new Date(1950, 0, 1),
+            maxDate:new Date(),
         }
     },
 	computed:{

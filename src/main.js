@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import axios from './http';
 import store from './store';
+// import echarts from 'echarts';
+import  * as echarts from "echarts"; //5.0 以上的引入方式
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
@@ -16,8 +18,10 @@ Vue.use(VueI18n);
 Vue.config.productionTip = false
 Vue.use(Vant);
 
+Vue.prototype.$echarts = echarts;
 Vue.prototype.$axios = axios;
 Vue.prototype.$sessionStorage = sessionStorage;
+
 if(process.env.NODE_ENV=='development'){
 	Vue.prototype.$build = '/build';
 }else{

@@ -4,8 +4,8 @@
 	    	<van-row class="columnboxAbout" v-if="textData.text.length>0" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass" v-for="(item,index) in textData.text" :key="index">
                     <div class="textContent">
-                        <div :style="{fontSize:textData.title_size,color:textData.title_color,fontWeight:textData.title_bold==1?'bold':'normal'}">{{item.title}}</div>
-                        <div :style="{fontSize:textData.content_size,color:textData.content_color}">{{item.content}}</div>
+                        <div :style="{fontSize:textData.title_size+'px',color:textData.title_color,fontWeight:textData.title_bold==1?'bold':'normal'}">{{item.title}}</div>
+                        <div :style="{fontSize:textData.content_size+'px',color:textData.content_color}">{{item.content}}</div>
                     </div>
                 </van-col>
             </van-row>

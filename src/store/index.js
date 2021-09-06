@@ -79,9 +79,8 @@ export default new Vuex.Store({
         },
         // 切换页面tab
         changePage (state,val) {
-            console.log(val);
             sessionStorage.setItem('currentPage',JSON.stringify(val));
-            console.log(JSON.parse(sessionStorage.currentPage));
+            // console.log(JSON.parse(sessionStorage.currentPage));
             state.currentPage=val;
         }
     },

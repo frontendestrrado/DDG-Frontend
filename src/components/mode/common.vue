@@ -2,7 +2,7 @@
 	<div class="main_container">
 		<!-- Banner1 title2 richText3 movie4 singleimage5 imagetext6 showcaseImage7 text8 -->
 		<div v-for="(item,index) in pageData" :key="index">
-			<Banner v-if="item.type === 1" :bannerData='item'></Banner>
+			<Banner v-if="item.type === 1" :bannerData='item' @on-goto="goPage"></Banner>
 			<TilText v-if="item.type === 2" :titleData='item'></TilText>
 			<RichText v-if="item.type === 3 && item.content" :richTextData='item'></RichText>
 			<Movie v-if="item.type === 4" :movieData='item'></Movie>
@@ -158,6 +158,9 @@
 		mounted(){
 		},
 		methods:{
+			goPage(path){
+				this.$router.push(path);
+			},
 			goProductDtl(path,type){
 				console.log('common:',path,type);
 			},

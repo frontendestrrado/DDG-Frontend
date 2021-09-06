@@ -3,16 +3,16 @@
 	    <div class="index-graphic-div">
 	    	<van-row class="columnboxAbout" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass"  v-for="(graphic,index) in graphicData.imageText" :key="index">
-                    <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout">
-						<div class="imgTextBox">
+                    <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout" @click="goView(graphic.text)">
+						<div :class="graphicData.layout == 1?'imgTextBox1':'imgTextBox'">
 							<van-image
 							style="width: 60%;height:auto;margin: 0 auto;"
 							:src="graphic.image"
 							fit="contain"
 							/>
-							<span :class="'bottomText layout_'+graphicData.layout_font_in_image" :style="{fontSize:graphicData.font_in_image_size,color:graphicData.font_in_image_color,textAlign:graphicData.align}">{{graphic.font_in_image}}</span>
+							<span :class="'bottomText layout_'+graphicData.layout_font_in_image" :style="{fontSize:graphicData.font_in_image_size+'px',color:graphicData.font_in_image_color,textAlign:graphicData.align}">{{graphic.font_in_image}}</span>
 						</div>
-                        <pre :style="{fontSize:graphicData.font_size,color:graphicData.color,textAlign:graphicData.align}">{{graphic.text}}</pre>
+                        <pre :style="{fontSize:graphicData.font_size+'px',color:graphicData.color,textAlign:graphicData.align}">{{graphic.text}}</pre>
                     </div>
                 </van-col>
             </van-row>
@@ -46,6 +46,48 @@ export default {
         	}
         }
     },
+    methods:{
+        goView(text){
+            // this.$emit('on-goto',path);
+            let biaoti = sessionStorage["currentPage"]?JSON.parse(sessionStorage["currentPage"]).title:this.$router.history.current.name;
+            // if(biaoti == 'Advisors'){
+                if(text.indexOf('Organizational Chart')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/OrganizeChart', title: 'Organizational Chart'});
+                    this.$router.push('/OrganizeChart');
+                }else if(text.indexOf('Performance')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/Performance', title: 'Performance'});
+                    this.$router.push('/Performance');
+                }else if(text.indexOf('Personal Growth')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/PersonalGrowth', title: 'PersonalGrowth'});
+                    this.$router.push('/PersonalGrowth');
+                }else if(text.indexOf('Training Plan')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/TrainingPlan', title: 'TrainingPlan'});
+                    this.$router.push('/TrainingPlan');
+                }else if(text.indexOf('Tool Box')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/ToolBox', title: 'ToolBox'});
+                    this.$router.push('/ToolBox');
+                }else if(text.indexOf('My Profile')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/Personal', title: 'Personal'});
+                    this.$router.push('/Personal');
+                }else if(text.indexOf('Learning to Use')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/LearnUse', title: 'LearnUse'});
+                    this.$router.push('/LearnUse');
+                }else if(text.indexOf('Teaching Tools')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/TeachTools', title: 'TeachTools'});
+                    this.$router.push('/TeachTools');
+                }else if(text.indexOf('Forms')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/FormsPage', title: 'FormsPage'});
+                    this.$router.push('/FormsPage');
+                }else if(text.indexOf('Files')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/FilesPage', title: 'FilesPage'});
+                    this.$router.push('/FilesPage');
+                }else if(text.indexOf('Cases')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/Cases', title: 'Cases'});
+                    this.$router.push('/Cases');
+                }
+            // }
+        },
+    }
 }
 </script>
 <style scoped>
@@ -54,7 +96,10 @@ export default {
 .index-graphic-div{padding-top: 20px;}
 .columnboxAbout {width:100%;}
 .textContent >div{overflow: hidden;}
-.imgTextBox{position: relative;display: inline-flex;}
+.imgTextBox{position: relative;display: inline-flex;flex: none;}
+.imgTextBox1{
+    position: relative;display: inline-flex;/*width: 16.66667%;max-width: 16.66667%;*//*margin-right:20px;*/flex: none;
+}
 .bottomText{position: absolute;width: 100%;line-height: 2;}
 .layout_1{top:0;left: 0;}
 .layout_2{top: 50%;left: 0;transform: translateY(-50%);}
@@ -65,5 +110,5 @@ export default {
 .layoutImg_2{flex-flow: column;}
 .layoutImg_3{flex-flow: row-reverse;}
 .layoutImg_4{flex-flow: row;}
-pre{white-space: break-spaces;margin: 0;font-family: 'PoppinsRegular';}
+pre{white-space: break-spaces;margin: 0;font-family: 'Avenir,Helvetica,Arial,sans-serif';}
 </style>

@@ -1,7 +1,7 @@
 <!-- 多图模块 -->
 <template>
 	<div class="index-proImg" :style="{backgroundColor:imgData.bg_color}">
-		<div class="showcase-detail-1" v-for="(single,index) in imgData.single_image" :key="index" v-if="single.image&&imgData.type === 5">
+		<div class="showcase-detail" v-for="(single,index) in imgData.single_image" :key="index" v-if="single.image&&imgData.type === 5">
 			<div class='product-item' @click="goProductDtl(single.path)">
 				<van-image
 				class="product-proImg"

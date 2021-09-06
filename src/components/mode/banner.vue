@@ -46,12 +46,11 @@
 			},
 			getImgH(){
 				var w=document.documentElement.clientWidth || document.body.clientWidth;
-				// $('.lunbo').find('.el-carousel__indicator > .el-carousel__button').css('background-color',this.bannerData.button_color);
 				this.bannerHeight = w/750 * 400;
-				console.log(this.bannerHeight);
+				// console.log(this.bannerHeight);
 			},
 			goBanner(path){
-				console.log(path);
+				this.$emit('on-goto',path);
 			},
 		}
 	}
@@ -60,9 +59,7 @@
 /* banner图模块 */
 /deep/ .el-carousel__container{height: 100%;}
 /deep/ .el-carousel__arrow{width: 50px;height: 50px;font-size: 25px;}
-.bannerContent{
-	width: 100%;height: 100%;position: relative;
-}
+.bannerContent{width: 100%;height: 100%;position: relative;}
 /deep/ .button_shape_1 .el-carousel__button{width: 15px;height: 2px;}
 /deep/ .button_shape_2 .el-carousel__button{width: 8px;height: 8px;border-radius: 0%;}
 /deep/ .button_shape_3 .el-carousel__button{width: 10px;height: 10px;border-radius: 50%;}

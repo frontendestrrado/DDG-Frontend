@@ -98,6 +98,11 @@ export default {
 		let biaoti = sessionStorage["currentPage"]?JSON.parse(sessionStorage["currentPage"]).title:this.$router.history.current.name;
 		console.log(path, biaoti);
 		this.$store.commit('changePage',{tabbar: path, title: biaoti});
+
+		let len = this.$router.history.current.matched.length;
+		if(this.$router.history.current.matched[len-1].path == '/Index' || this.$router.history.current.matched[len-1].path == ''){
+			sessionStorage.removeItem('historyTitle');
+		}
 	},
 	watch: {
  		isShowTopUl(){
@@ -135,18 +140,12 @@ export default {
 			console.log(name,title);
 			this.isShowTopUl=true;
 			if(name == ''){
-				let len = this.$router.history.current.matched.length;
-				console.log(this.$router.history.current.matched[len-2])
-				let path = this.$router.history.current.matched[len-2].path?this.$router.history.current.matched[len-2].path:'/Index';
-				let biaoti = this.$router.history.current.matched[len-2].name;
-				console.log(path, biaoti);
-				this.$store.commit('changePage',{tabbar: path, title: biaoti});
-				this.$router.push(path);
+				this.$router.go(-1);
 			}else{
 				if(this.isNumber(name)){
 					if(title.indexOf('login')!=-1 || title.indexOf('Login')!=-1 || title.indexOf('登錄')!=-1 || title.indexOf('登录')!=-1){
 						sessionStorage.setItem('page_id',name);
-						this.$store.commit('changePage',{tabbar: 'Login', title: 'Sign Up / Sign In'});
+						this.$store.commit('changePage',{tabbar: '/Login', title: 'Sign Up / Sign In'});
 						this.$router.push('/Login');
 					}else{
 						this.$store.commit('changePage',{tabbar: '/Page/'+name, title: title});

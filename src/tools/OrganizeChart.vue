@@ -1,126 +1,61 @@
 <template>
 	<div class="OrganizeChart">
 		<div class="OrganizeChart_info">
-			<div class="OrganizeChart_title">Business / 商业</div>
-			<div>
-				<van-row>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_11.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Organizational Chart<br/>组织图</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_12.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Performance<br/>业绩</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_13.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Personal Growth<br/>个人成长</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_14.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Training Plan<br/>培训计划</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_15.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Tool Box<br/>工具箱</div>
-				  </van-col>
-				</van-row>
-			</div>
-			<div class="OrganizeChart_title">Tool Box / 工具箱</div>
-			<div>
-				<van-row>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_26.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>My Profile<br/>关于我</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_22.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Learning to Use<br/>学习使用</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_23.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Teaching Tools<br/>教导工具</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_24.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Forms<br/>表格</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_25.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Files<br/>文件</div>
-				  </van-col>
-				  <van-col span="8" @click="changeTab()">
-					<div class="ad_icon fcc">
-						<van-image
-							style="width: 100%;height:auto;margin: 0 auto;"
-							:src="require('@/assets/img/icon_26.png')"
-							fit="contain"
-							/>
-					</div>
-				  	<div>Cases<br/>个案</div>
-				  </van-col>
-				</van-row>
-			</div>
+
+			<van-cell center @click="$store.commit('changePage',{tabbar: '/OrganizeList/0', title: 'Organizational Chart'});$router.push('/OrganizeList/0')">
+			  <template #title>
+			    <span class="custom-title">ME</span>
+			  </template>
+			  <template #default>
+			    <div class="fcb"><span>My Level:</span><span>Group</span></div>
+			    <div class="fcb"><span>Month Sales:</span><span>$999</span></div>
+			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
+			  </template>
+			  <template #right-icon><van-icon name="search" style="opacity: 0;" /></template>
+			</van-cell>
+
+			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
+			  <template #title>
+			    <span class="custom-title">Direct Recruit 1st Level</span>
+			  </template>
+			  <template #default>
+			    <div class="fcb"><span>Enroll:</span><span>10</span></div>
+			    <div class="fcb"><span>Active Enroll:</span><span>3</span></div>
+			    <div class="fcb"><span>Month Sales:</span><span>$999</span></div>
+			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
+			  </template>
+			</van-cell>
+			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/2', title: 'Organizational Chart'});$router.push('/OrganizeList/2')">
+			  <template #title>
+			    <span class="custom-title">Unit</span>
+			  </template>
+			  <template #default>
+			    <div class="fcb"><span>Count:</span><span>1</span></div>
+			    <div class="fcb"><span>Month Sales:</span><span>$999</span></div>
+			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
+			  </template>
+			</van-cell>
+			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/3', title: 'Organizational Chart'});$router.push('/OrganizeList/3')">
+			  <template #title>
+			    <span class="custom-title">Team</span>
+			  </template>
+			  <template #default>
+			    <div class="fcb"><span>Count:</span><span>2</span></div>
+			    <div class="fcb"><span>Month Sales:</span><span>$999</span></div>
+			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
+			  </template>
+			</van-cell>
+			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/4', title: 'Organizational Chart'});$router.push('/OrganizeList/4')">
+			  <template #title>
+			    <span class="custom-title">Group</span>
+			  </template>
+			  <template #default>
+			    <div class="fcb"><span>Count:</span><span>3</span></div>
+			    <div class="fcb"><span>Month Sales:</span><span>$999</span></div>
+			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
+			  </template>
+			</van-cell>
+
 		</div>
 	</div>
 </template>
@@ -148,9 +83,8 @@ export default {
 
 </style>
 <style scoped>
-	/deep/ .van-cell{
-		margin-bottom: 10px;padding: 0px 16px;
-	}
+	/deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
+	/deep/ .van-cell__value{color: #323233;}
     .OrganizeChart{
         width: 100%;
     }

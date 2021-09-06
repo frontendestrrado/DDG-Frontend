@@ -18,7 +18,7 @@
 			}
 		},
 		watch: {
-	        "$route"(val,oldval){
+			"$route"(val,oldval){
 				if(val.params.page_id!=oldval.params.page_id){
 					this.getPageContent();
 				}

@@ -1,6 +1,6 @@
 <template>
 	<div class="index-title" v-if='titleData.title' :style="{backgroundColor:titleData.bg_color}">
-	    <div class="index-title-div" :style="{fontSize:titleData.title_size,color:titleData.title_color,justifyContent:titleData.align}">
+	    <div class="index-title-div" :style="{fontSize:titleData.title_size+'px',color:titleData.title_color,justifyContent:titleData.align}">
 	    	<van-image
 	    	v-if="titleData.icon"
 	    	class="index-title-icon"

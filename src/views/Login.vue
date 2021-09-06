@@ -45,7 +45,7 @@
 		components: {
 			Common,
 		},
-		name: 'customPages',
+		name: 'Login',
 		data () {
 			return {
 				pageContent: [],
