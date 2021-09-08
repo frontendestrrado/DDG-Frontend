@@ -2,7 +2,7 @@
 	<div class="OrganizeChart">
 		<div class="OrganizeChart_info">
 
-			<van-cell center @click="$store.commit('changePage',{tabbar: '/OrganizeList/0', title: 'Organizational Chart'});$router.push('/OrganizeList/0')">
+			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/0', title: 'Organizational Chart'});$router.push('/OrganizeList/0')">
 			  <template #title>
 			    <span class="custom-title">ME</span>
 			  </template>
@@ -11,7 +11,6 @@
 			    <div class="fcb"><span>Month Sales:</span><span>$999</span></div>
 			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
 			  </template>
-			  <template #right-icon><van-icon name="search" style="opacity: 0;" /></template>
 			</van-cell>
 
 			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
