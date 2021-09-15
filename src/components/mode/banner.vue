@@ -4,7 +4,7 @@
 			<van-swipe-item v-for="(item,index) in bannerData.banners" :key="index">
 				<div class="bannerContent" @click="goBanner(item.path)">
 					<van-image
-					style="width: 100%;height:auto;"
+					:style="'width: 100%;height:' + bannerData.height+'px'"
 					:src="item.image?item.image:require('@/assets/img/test.png')"
 					fit="contain"
 					/>
