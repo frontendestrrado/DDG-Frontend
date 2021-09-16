@@ -52,7 +52,7 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 *:first-child+html .clearfix{zoom:1}
 .el-input>.el-input__inner,input{height:40px;font-size:16px;line-height:16px;padding:12px 15px;vertical-align:middle}
 .dpn{display:none!important}
-.scroll::-webkit-scrollbar,body::-webkit-scrollbar{width:4px}
+.scroll::-webkit-scrollbar,body::-webkit-scrollbar{width:20px}
 .scroll::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{border-radius:5px;-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.2);background:rgba(0,0,0,0.2)}
 .scroll::-webkit-scrollbar-track,body::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 5px rgba(0,0,0,0.2);border-radius:0;background:rgba(0,0,0,0.1)}
 /deep/ .van-row{display: flex;align-items: center;}
