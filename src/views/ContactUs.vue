@@ -6,11 +6,11 @@
 					<div class="contactUs_title">Contact Us</div>
 					<div class="fcs">
 						<van-icon name="envelop-o" color="#000" size="26" />
-						<span>email@qq.com</span>
+						<span>mailadmin@ddgint.com</span>
 					</div>
 					<div class="fcs">
 						<van-icon name="phone-o" color="#000" size="26" />
-						<span>8888-8888-8888</span>
+						<span>+60165535691</span>
 					</div>
 				</div>
             </van-col>
@@ -18,9 +18,9 @@
 		        <div class="inputBox">
 		       		<div class="box">
 						<van-field v-model="name" placeholder="name*" />
-						<van-field v-model="phone" type="tel" placeholder="phone" />
+						<!-- <van-field v-model="phone" type="tel" placeholder="phone" /> -->
 						<van-field v-model="email" placeholder="email*" />
-						<van-field v-model="message" rows="4" type="textarea" placeholder="message*" />
+						<van-field v-model="content" rows="4" type="textarea" placeholder="message*" />
 		       		</div>
 		  			<van-button style="margin-top: 30px;" class="submitBtn" type="default" @click="submitMsg();">Submit</van-button>
 		        </div>
@@ -35,9 +35,9 @@ export default {
     data () {
       	return {
       		name:'',
-      		phone:'',
+      		// phone:'',
       		email:'',
-      		message:'',
+      		content:'',
       	}
     },
     mounted(){
@@ -45,38 +45,39 @@ export default {
     },
     methods:{
     	submitMsg(){
-    		
-    	},
-    	login(){
-    		if(this.username&&this.password){
+    		if(this.name&&this.email&&this.content){
 				this.$axios({
 	                method: 'post',
-	                url: '/api/v1/authorizations',
+	                url: '/api/v1/contract',
 	                data:{
-	                	username:this.username,
-	                	password:this.password,
+	                	name:this.name,
+	                	email:this.email,
+	                	content:this.content,
 	                },
 	            }).then(res => {
 	            	console.log(res);
-	            	if(res.data.status==200){
-						sessionStorage.setItem('token',res.data.success.token);
-	                	this.$toast({
-		            		type:'success',
-		            		message:res.data.message,
-						});          	
-		            	const vm=this;
-		            	setTimeout(function(){
-		            		vm.$router.push('/');
-		            	},1000);
-	            	}else{
-	            		this.$toast.allowMultiple();
-	            		for (var item in res.data.error) {
-	            			this.$toast({
-			            		type:'fail',
-			            		message:res.data.error[item],
-			            	});
-	            		}
-	            	}
+	            	this.$toast({
+						type:'success',
+						message:'提交成功',
+					})
+					// if(res.data.status==200){
+					// 	this.$toast({
+					// 		type:'success',
+					// 		message:res.data.message,
+					// 	})
+					// 	// const vm=this;
+					// 	// setTimeout(function(){
+					// 	// 	vm.$router.push('/');
+					// 	// },1000);
+					// }else{
+					// 	this.$toast.allowMultiple();
+					// 	for (var item in res.data.error) {
+					// 		this.$toast({
+					//     		type:'fail',
+					//     		message:res.data.error[item],
+					//     	});
+					// 	}
+					// }
 	            }).catch(err => {
                     this.$toast({
 	            		type:'fail',
@@ -84,7 +85,7 @@ export default {
             		});
 	            });
 			}else{
-				this.$toast('请输入用户名和密码');
+				this.$toast('请填写完整信息');
 			}
     	},
     }
