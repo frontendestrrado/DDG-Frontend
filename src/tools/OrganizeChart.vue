@@ -66,11 +66,25 @@ export default {
       	}
     },
     mounted(){
-
+    	this.getChildren();
     },
     methods:{
-    	changeTab(){
-    		
+    	//获取组织图
+    	getChildren(){
+    		this.$axios({
+                method: 'get',
+                url: '/api/v1/children',
+                headers: {
+                    "Authorization": sessionStorage.token_type+sessionStorage.token,
+                }
+            }).then(res => {
+            	console.log(res);
+            }).catch(err => {
+                this.$toast({
+            		type:'fail',
+            		message:'error',
+        		});
+            });
     	}
     }
 }

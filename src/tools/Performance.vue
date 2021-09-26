@@ -18,12 +18,44 @@ export default {
       	}
     },
     mounted(){
-
+    	this.getOrderList();
+    	this.getAchievementList();
     },
     methods:{
-    	changeTab(){
-    		
-    	}
+    	// 订单列表
+    	getOrderList(){
+    		this.$axios({
+                method: 'get',
+                url: '/api/v1/orders?search=&order=date_desc',
+                headers: {
+                    "Authorization": sessionStorage.token_type+sessionStorage.token,
+                }
+            }).then(res => {
+            	console.log(res);
+            }).catch(err => {
+                this.$toast({
+            		type:'fail',
+            		message:'error',
+        		});
+            });
+    	},
+    	// 业绩列表
+    	getAchievementList(){
+    		this.$axios({
+                method: 'get',
+                url: '/api/v1/achievements?search=20210917111033796872&order=created_at_asc',
+                headers: {
+                    "Authorization": sessionStorage.token_type+sessionStorage.token,
+                }
+            }).then(res => {
+            	console.log(res);
+            }).catch(err => {
+                this.$toast({
+            		type:'fail',
+            		message:'error',
+        		});
+            });
+    	},
     }
 }
 </script>
