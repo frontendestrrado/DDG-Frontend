@@ -30,10 +30,11 @@
 				      	@click="isShowTopUl=true;$router.push('/Index');"/> -->
 				</van-col>
 			  	<van-col :span="16" class="tc">
+						<!-- :src="require('@/assets/img/logo.png')" -->
 			  		<van-image
-						v-if="$store.state.currentPage.tabbar == '/Index'"
+							v-if="$store.state.currentPage.tabbar == '/Index'"
 			  			class="logo hv"
-				      	:src="require('@/assets/img/logo.png')"
+				      	:src="logo"
 				      	fit="contain"
 				      	@click="changeActTab('/Index', 'Home');"/>
 				    <div v-else>{{$store.state.currentPage.title}}</div>
@@ -72,8 +73,8 @@ export default {
 			isShowSale:0,
 			isShowTopUl:true,
 			lang:this.$i18n.locale,
-	        language:[	
-	        	{
+			language:[	
+				{
 					text: 'English',
 					value: 'en',
 				},
@@ -86,9 +87,11 @@ export default {
 					value: 'zh-TW',
 				},
 			],
+			logo: ''
 		}
 	},
 	mounted(){
+		this.getLogo();
 		this.getTabbar();
 		this.getUserInfo();
 		let lang = this.$i18n.locale;
@@ -182,6 +185,17 @@ export default {
 		getUserInfo(){
 			
 		},
+		getLogo() {
+			this.$axios({
+				method: 'get',
+				url: '/api/v1/webset',
+			}).then(res => {
+				console.log(res,'Logo');
+				this.logo = res.logo
+			}).catch(err => {
+				console.log(err,'獲取logo異常');
+			})
+		}
 	},
 }
 </script>

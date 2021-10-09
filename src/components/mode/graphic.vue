@@ -84,6 +84,15 @@ export default {
                 }else if(text.indexOf('Cases')!= -1){
                     this.$store.commit('changePage',{tabbar: '/Cases', title: 'Cases'});
                     this.$router.push('/Cases');
+                }else if(text.indexOf('Member List')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/Members', title: 'Members'});
+                    this.$router.push('/Members');
+                }else if(text.indexOf('Investment Tools')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/InvestmentTools', title: 'InvestmentTools'});
+                    this.$router.push('/InvestmentTools');
+                }else if(text.indexOf('Info I collected')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/InfoIcollected', title: 'InfoIcollected'});
+                    this.$router.push('/InfoIcollected');
                 }
             // }
         },

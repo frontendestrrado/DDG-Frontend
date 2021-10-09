@@ -35,21 +35,21 @@
 				}).then(res => {
 					console.log(res);
 					if(res.status == 200){
-	                    this.pageContent = res.data.modules;
-	                    this.pageWidth = res.data.width;
-	                    this.pageContent.forEach((item,i) => {
-	                    	if(item.type == 9){
-	                    		item.data_collects.forEach((itemi,j) => {
-	                    			this.$set(this.pageContent[i].data_collects[j],'content','')
-					            })
-	                    	}
-			            })
-	                }else{
-	                	this.pageContent = [];
-	                	this.pageWidth = '1200';
-						// this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
-						// this.$router.push('/ErrorPage');
-	                }
+						this.pageContent = res.data.modules;
+						this.pageWidth = res.data.width;
+						this.pageContent.forEach((item,i) => {
+							if(item.type == 9){
+								item.data_collects.forEach((itemi,j) => {
+									this.$set(this.pageContent[i].data_collects[j],'content','')
+								})
+							}
+						})
+					}else{
+						this.pageContent = [];
+						this.pageWidth = '1200';
+							// this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
+							// this.$router.push('/ErrorPage');
+					}
 				}).catch(error=>{
 
 				});

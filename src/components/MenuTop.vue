@@ -46,6 +46,7 @@
 	    methods:{
 	        changeItem(route,title){
 	        	this.$emit('on-change',route,title);
+						console.log(111,route,title);
 	        },
 	        changeActTab(route, name){
 	        	this.$emit('on-change',route,name);

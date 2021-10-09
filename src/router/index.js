@@ -20,6 +20,9 @@ import Performance from '@/tools/Performance'
 import PersonalGrowth from '@/tools/PersonalGrowth'
 import TrainingPlan from '@/tools/TrainingPlan'
 import ToolBox from '@/tools/ToolBox'
+import Members from '@/tools/Members'
+import InvestmentTools from '@/tools/InvestmentTools'
+import InfoIcollected from '@/tools/InfoIcollected'
 import LearnUse from '@/tools/LearnUse'
 import TeachTools from '@/tools/TeachTools'
 import FormsPage from '@/tools/FormsPage'
@@ -95,6 +98,18 @@ const router = new Router({
       path: '/ToolBox',
       name: '工具箱',
       component: ToolBox,
+    },{
+      path: '/Members',
+      name: '成員列表',
+      component: Members,
+    },{
+      path: '/InvestmentTools',
+      name: '招商工具',
+      component: InvestmentTools,
+    },{
+      path: '/InfoIcollected',
+      name: '我收集的資料',
+      component: InfoIcollected,
     },{
       path: '/LearnUse',
       name: '学习使用',

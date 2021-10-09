@@ -2,6 +2,7 @@
 	<div class="person from_content">
 		<van-cell-group>
             <!-- <van-field center label="Name" :readonly="true" v-model="userInfo.name"></van-field> -->
+            <van-uploader v-model="fileList" multiple :max-count="1" :after-read="afterRead" />
             <van-field
             ref="name"
             center
@@ -101,7 +102,8 @@ export default {
       		userInfo:'',
             saveContent:false,
             actUserBtn:-1,
-            timer:null
+            timer:null,
+            fileList: [],
       	}
     },
     mounted(){
@@ -118,6 +120,7 @@ export default {
             }).then(res => {
             	console.log(res);
             	this.userInfo = res;
+                this.fileList = [{ url: this.$build +'/uploads/'+res.avatar}]
             }).catch(err => {
                 this.$toast({
             		type:'fail',
@@ -143,7 +146,7 @@ export default {
             this.hideEditBtn(-1);
             var data = {};
             data[index] = this.userInfo[index];
-            console.log(data);
+            console.log(data,'保存用户信息');
             this.$axios({
                 method: 'PATCH',
                 url: '/api/v1/user',
@@ -161,6 +164,30 @@ export default {
                 });
             });
         },
+        // 頭像上傳
+        afterRead(file) {
+            console.log(file,'頭像');
+            let formData = new FormData();
+            formData.append('image', file.file) // 要提交给后台的文件
+            formData.append('type', 'avatar');
+            console.log(formData);
+            this.$axios({
+                method: 'POST',
+                url: '/api/v1/images',
+                headers: {
+                    "Authorization": sessionStorage.token_type+sessionStorage.token,
+                },
+                data: formData
+            }).then(res => {
+                console.log(res,'頭像上傳');
+            }).catch(err => {
+                console.log(err,'頭像上傳異常');
+                this.$toast({
+                    type:'fail',
+                    message:'error'
+                })
+            })
+        }
     }
 }
 </script>
