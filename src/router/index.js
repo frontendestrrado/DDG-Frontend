@@ -21,6 +21,7 @@ import PersonalGrowth from '@/tools/PersonalGrowth'
 import TrainingPlan from '@/tools/TrainingPlan'
 import ToolBox from '@/tools/ToolBox'
 import Members from '@/tools/Members'
+import MemberDetail from '@/tools/MemberDetail'
 import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
 import LearnUse from '@/tools/LearnUse'
@@ -102,6 +103,10 @@ const router = new Router({
       path: '/Members',
       name: '成員列表',
       component: Members,
+    },{
+      path: '/MemberDetail',
+      name: '成員詳情',
+      component: MemberDetail,
     },{
       path: '/InvestmentTools',
       name: '招商工具',

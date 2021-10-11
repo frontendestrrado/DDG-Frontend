@@ -41,8 +41,8 @@
 
 			  	</van-col>
 			  	<van-col :span="4">
-					<van-icon v-if="isShowTopUl" name="wap-nav" color="#FFC80B" size="30" @click="isShowTopUl=false;" />
-					<van-icon v-else name="cross" color="#FFC80B" size="30" @click="isShowTopUl=true;" />
+					<van-icon v-if="isShowTopUl" name="wap-nav" color="#3E3E3E" size="30" @click="isShowTopUl=false;" />
+					<van-icon v-else name="cross" color="#3E3E3E" size="30" @click="isShowTopUl=true;" />
 			  	</van-col>
 			</van-row>
 			<!-- <van-overlay :show="!isShowTopUl" /> -->

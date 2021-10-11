@@ -120,7 +120,7 @@ export default {
             }).then(res => {
             	console.log(res);
             	this.userInfo = res;
-                this.fileList = [{ url: this.$build +'/uploads/'+res.avatar}]
+                this.fileList = [{ url: res.avatar}]
             }).catch(err => {
                 this.$toast({
             		type:'fail',
@@ -142,10 +142,14 @@ export default {
 
         },
         // 保存用户信息
-        patchEdit(index){
+        patchEdit(index,id){
             this.hideEditBtn(-1);
             var data = {};
-            data[index] = this.userInfo[index];
+            if (id) {
+                data[index] = id
+            } else {
+                data[index] = this.userInfo[index];
+            }
             console.log(data,'保存用户信息');
             this.$axios({
                 method: 'PATCH',
@@ -180,6 +184,10 @@ export default {
                 data: formData
             }).then(res => {
                 console.log(res,'頭像上傳');
+                if (res.id) {
+                    this.$toast.success('頭像上傳成功')
+                }
+                this.patchEdit('avatar_image_id',res.id)
             }).catch(err => {
                 console.log(err,'頭像上傳異常');
                 this.$toast({
