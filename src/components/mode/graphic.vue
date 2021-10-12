@@ -6,13 +6,17 @@
                     <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout" @click="goView(graphic.text)">
 						<div :class="graphicData.layout == 1?'imgTextBox1':'imgTextBox'">
 							<van-image
-							style="width: 60%;height:auto;margin: 0 auto;"
+							:style="graphicData.layout == 3?'width:60%':'width:90%'"
+                            class="image"
 							:src="graphic.image"
 							fit="contain"
 							/>
 							<span :class="'bottomText layout_'+graphicData.layout_font_in_image" :style="{fontSize:graphicData.font_in_image_size+'px',color:graphicData.font_in_image_color,textAlign:graphicData.align}">{{graphic.font_in_image}}</span>
 						</div>
-                        <pre :style="{fontSize:graphicData.font_size+'px',color:graphicData.color,textAlign:graphicData.align}">{{graphic.text}}</pre>
+                        <pre class="textPre" :style="{fontSize:graphicData.font_size+'px',color:graphicData.color,textAlign:graphicData.align}"><!--
+                            --><div class="textTitle" v-if="graphicData.layout == 1">{{graphic.text | textTitleHandle}}</div><!--
+                            -->{{graphic.text | textHandle(graphicData.layout)}}
+                        </pre>
                     </div>
                 </van-col>
             </van-row>
@@ -96,6 +100,21 @@ export default {
                 }
             // }
         },
+    },
+    filters: {
+        textTitleHandle: function (text) {
+            let arr = text.split('\n\n')
+            return arr[0]
+        },
+        textHandle: function (text,val) {
+            if (val == 1) {
+                let arr = text.split('\n\n')
+                arr.shift()
+                return arr.join()
+            } else {
+                return text
+            }
+        }
     }
 }
 </script>
@@ -107,7 +126,11 @@ export default {
 .textContent >div{overflow: hidden;}
 .imgTextBox{position: relative;display: inline-flex;flex: none;}
 .imgTextBox1{
-    position: relative;display: inline-flex;/*width: 16.66667%;max-width: 16.66667%;*//*margin-right:20px;*/flex: none;
+    position: relative;display: inline-flex;
+    width: 50%;
+    max-width: 50%;
+    margin-right:20px;
+    flex: none;
 }
 .bottomText{position: absolute;width: 100%;line-height: 2;}
 .layout_1{top:0;left: 0;}
@@ -120,4 +143,30 @@ export default {
 .layoutImg_3{flex-flow: row-reverse;}
 .layoutImg_4{flex-flow: row;}
 pre{white-space: break-spaces;margin: 0;font-family: 'Avenir,Helvetica,Arial,sans-serif';}
+.image {
+    width:90%;
+    height:auto;
+    max-height:400px;
+    margin: 0 auto;
+}
+.textTitle {
+    font-size: 26px;
+    font-family: FandolSong;
+    margin-bottom: 10px;
+}
+/* 手機 */
+@media screen and (max-width: 768px) {
+    .imgTextLayout{
+        display: block;
+        margin-bottom: 20px;
+    }
+    .imgTextBox1 {
+        width: 70%;
+        max-width: 70%;
+        margin-right:0;
+    }
+    .textPre {
+        padding: 0 10px;
+    }
+}
 </style>
