@@ -178,7 +178,6 @@ export default {
             })
         }
         this.phoneList = phoneData;
-        console.log(this.phoneList)
     },
     methods:{
         onSubmit(values){

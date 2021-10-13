@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '../http';
+import router from '../router'
 
 Vue.use(Vuex)
 
@@ -37,6 +38,8 @@ export default new Vuex.Store({
             }).catch(error=>{
                 console.log('no storeToken');
                 sessionStorage.token = '';
+                this.commit('changePage',{tabbar: '/Login', title: 'Sign Up / Sign In'});
+                router.push('/Login');
             });
         },
         // 删除token

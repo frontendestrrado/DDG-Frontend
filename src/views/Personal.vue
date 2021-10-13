@@ -3,15 +3,16 @@
 		<van-cell-group>
             <!-- <van-field center label="Name" :readonly="true" v-model="userInfo.name"></van-field> -->
             <van-uploader v-model="fileList" multiple :max-count="1" :after-read="afterRead" />
-            <van-field
-            ref="name"
-            center
-            label="Name"
-            :readonly="actUserBtn=='name'?false:true"
-            v-model="userInfo.name">
+            <!-- <van-field
+                ref="name"
+                center
+                label="Name"
+                :readonly="actUserBtn=='name'?false:true"
+                v-model="userInfo.name">
                 <van-icon slot="right-icon" v-if="actUserBtn=='name'" name="success" size="30px" @click="patchEdit('name')" />
                 <van-icon slot="right-icon" v-else name="edit" size="30px" @click="showEditBtn('name')"/>
-            </van-field>
+            </van-field> -->
+            <van-field center label="name" :readonly="true" v-model="userInfo.name"></van-field>
             <van-field
             ref="address"
             center

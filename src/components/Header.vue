@@ -21,7 +21,7 @@
 			</van-row> -->
 			<van-row class="fcb" style="height: 100%;">
 				<van-col :span="4">
-					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#FFC80B" size="30" @click="changeActTab('','');"/>
+					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#333" size="30" @click="changeActTab('','');"/>
 					<van-image
 						v-if="$store.state.currentPage.tabbar == '/Index'"
 			  			class="logo hv"
@@ -51,7 +51,6 @@
 	  			<!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
 	  			<MenuTop @on-change="changeActTab" :menu-data="tabList" cl-name.sync="menu"/>
 
-	  			<!-- <li class="hv" @click="changeActTab('/Advisors', 'Advisors');">Advisors</li> -->
 	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
 	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/Personal', 'My Profile');">My Profile</li>
 	  			<!-- <li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li> -->
