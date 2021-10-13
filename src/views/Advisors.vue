@@ -141,12 +141,7 @@ export default {
     }
 }
 </script>
-<style>
-	.van-field .van-icon{
-		font-size: 20px;
-	}
 
-</style>
 <style scoped>
 	/deep/ .van-cell{
 		margin-bottom: 10px;padding: 0px 16px;

@@ -206,12 +206,6 @@
 		}
 	}
 </script>
-<style>
-.van-field .van-icon{
-	font-size: 20px;
-}
-
-</style>
 <style scoped>
 /deep/ .van-tab {background-color: rgba(198,198,198,1);color: #fff;}
 /deep/ .van-tab--active {background-color: #FFC80B;color: #fff;}
