@@ -20,10 +20,14 @@ import Performance from '@/tools/Performance'
 import PersonalGrowth from '@/tools/PersonalGrowth'
 import TrainingPlan from '@/tools/TrainingPlan'
 import ToolBox from '@/tools/ToolBox'
+import InvestmentTool from '@/tools/InvestmentTool'
+
+import InviteCustomers from '@/tools/InviteCustomers'
 import Members from '@/tools/Members'
 import MemberDetail from '@/tools/MemberDetail'
 import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
+
 import LearnUse from '@/tools/LearnUse'
 import TeachTools from '@/tools/TeachTools'
 import FormsPage from '@/tools/FormsPage'
@@ -99,6 +103,14 @@ const router = new Router({
       path: '/ToolBox',
       name: '工具箱',
       component: ToolBox,
+    },{
+      path: '/InvestmentTool',
+      name: '招商工具',
+      component: InvestmentTool,
+    },{
+      path: '/InviteCustomers',
+      name: '邀请客户',
+      component: InviteCustomers,
     },{
       path: '/Members',
       name: '成員列表',

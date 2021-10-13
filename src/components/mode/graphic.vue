@@ -88,6 +88,9 @@ export default {
                 }else if(text.indexOf('Cases')!= -1){
                     this.$store.commit('changePage',{tabbar: '/Cases', title: 'Cases'});
                     this.$router.push('/Cases');
+                }else if(text.indexOf('Investment Tools')!= -1){
+                    this.$store.commit('changePage',{tabbar: '/InvestmentTool', title: 'Investment Tools'});
+                    this.$router.push('/InvestmentTool');
                 }else if(text.indexOf('Member List')!= -1){
                     this.$store.commit('changePage',{tabbar: '/Members', title: 'Members'});
                     this.$router.push('/Members');

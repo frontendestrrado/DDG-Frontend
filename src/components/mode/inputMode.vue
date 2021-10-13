@@ -2,11 +2,11 @@
 	<div class="index-input">
 	    <div class="index-input-div">
 	    	<van-row class="columnboxAbout" v-if="formData.data_collects.length>0" :gutter="$store.state.isPC?20:0">
-                <van-form validate-first @failed="onFailed" @submit="onSubmit">
+                <van-form validate-first @failed="onFailed" @submit="verifyCode">
 
                     <van-col :span="showClass" v-for="(item,index) in formData.data_collects" :key="index">
-                    <!-- type  1文本 2密码 3数字 4邮箱 5日期 6时间 7文本框 8图片 9按钮 -->
-                        <template v-if="item.type==1 || item.type==2 || item.type==3 || item.type==4">
+                    <!-- type  1文本 2密码 3手机号 4邮箱 5日期 6时间 7文本框 8图片 9按钮 -->
+                        <template v-if="item.type==1 || item.type==2 || item.type==4">
                             <van-field
                                 v-model="item.content"
                                 :name="item.title"
@@ -17,6 +17,29 @@
                                 :placeholder="item.title"
                                 :rules="[{ validator:item.type==4?validatorEmail:'', required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
                               />
+                        </template>
+                        <template v-if="item.type==3">
+                            <van-field
+                                v-model="phoneList[index].phone"
+                                :name="item.title"
+                                center
+                                :required="item.is_require == 1 ? true:false"
+                                type="digit"
+                                :label="item.title"
+                                :placeholder="item.title"
+                                :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
+                              />
+                            <van-field
+                                v-model="phoneList[index].verify_code"
+                                center
+                                :required="true"
+                                label="验证码"
+                                placeholder="请输入短信验证码"
+                                :rules="[{required: true, message: '请输入验证码'}]"
+                                >
+                                <!-- class="SMSconfirm" class="SMSconfirm" -->
+                                <van-button :class="'SMSconfirm codeBtn_'+phoneList[index].isSms" slot="button" native-type="button" :disabled='phoneList[index].isSms' @click="sendCode(index);">发送验证码</van-button>
+                            </van-field>
                         </template>
                         <!-- <template solt="label" :style="{color: item.title_color,fontSize:item.title_size+'px',fontWeight:item.title_bold==1?'bold':'normal'}">{{item.title}}</template> -->
                         <!-- solt="input" -->
@@ -112,7 +135,17 @@ export default {
             uploadImg: 'https://www.bunchparty.com/trust/uploads/collects/202108/31//1630379513_1630379513_fs6mjWgy8o.png',//测试图
             minDate:new Date(1950, 0, 1),
             maxDate:new Date(),
+            phoneList: [],
         }
+    },
+    watch: {
+        cartList: function() {
+            this.$nextTick(function(){
+                if(this.cartList.length>0){
+                    this.getFight();
+                }
+            })
+        },
     },
 	computed:{
         showClass(){
@@ -127,17 +160,38 @@ export default {
             }else if(this.formData.layout == 5){
                 return this.$store.state.isPC?5:12;
             }
+        },
+    },
+    mounted(){
+        let phoneData = [];
+        if(this.formData.data_collects.length>0){
+            this.formData.data_collects.forEach((item,i) => {
+                let data = {};
+                if(item.type == 3){
+                    data = {
+                        phone: '',
+                        verify_code: '',
+                        isSms: false,
+                    };
+                }
+                phoneData.push(data);
+            })
         }
+        this.phoneList = phoneData;
+        console.log(this.phoneList)
     },
     methods:{
         onSubmit(values){
             let content = [];
             for(var key in values){
-                var contentVal = {
-                    title: key,
-                    value: values[key],
+                if(key==''||key=="undefined"||key==null||key==undefined){
+                }else{
+                    var contentVal = {
+                        title: key,
+                        value: values[key],
+                    }
+                    content.push(contentVal);
                 }
-                content.push(contentVal);
             }
             this.$axios({
                 method: 'POST',
@@ -263,7 +317,94 @@ export default {
         },
         onOversize(file){
             Toast('文件大小不能超过 1M');
-        }
+        },
+        //获取验证码
+        sendCode(index){
+            // let nowIndex;
+            // if(this.phoneList.length>0){
+            //     this.phoneList.forEach((item,i) => {
+            //         if(item.index == index){
+            //             nowIndex = i;
+            //         }
+            //     })
+            // }
+            if(!this.phoneList[index].isSms){
+                if(this.phoneList[index].phone){
+                    var data = [{"phone":this.phoneList[index].phone}]
+                    this.$axios({
+                        method: 'POST',
+                        url: '/api/v1/sin_up/sms/verify_code',
+                        data:{
+                            phone: JSON.stringify(data),
+                        },
+                    }).then(res => {
+                        console.log(res);
+                        if(res.state_code==200){
+                            this.$toast({
+                                type:'success',
+                                message:res.message,
+                            });
+                            this.phoneList[index].isSms=true;
+                            const vm=this;
+                            setTimeout(function(){
+                                vm.phoneList[index].isSms=false;
+                            },60000);
+                        }else{
+                            this.$toast({
+                                type:'fail',
+                                message:res.message,
+                            });
+                        }
+                    }).catch(err => {
+                        this.$toast({
+                            type:'fail',
+                            message:'获取验证码失败',
+                        });
+                    });
+                }else{
+                    this.$toast('请先输入手机号');
+                }
+            }
+        },
+        // 验证验证码
+        verifyCode(values){
+            let data = [];
+            this.phoneList.forEach((item,i) => {
+                if(item.phone){
+                    var phoneInfo = {
+                        phone: item.phone,
+                        verify_code: item.verify_code,
+                    };
+                    data.push(phoneInfo);
+                }
+            })
+            this.$axios({
+                method: 'GET',
+                url: '/api/v1/sin_up/sms/verify_code?data='+JSON.stringify(data),
+            }).then(res => {
+                console.log(res);
+                if(res.state_code==200){
+                    // this.$toast({
+                    //     type:'success',
+                    //     message:res.message,
+                    // });
+                    const vm=this;
+                    setTimeout(function(){
+                        vm.onSubmit(values);
+                    },600);
+                }else{
+                    this.$toast({
+                        type:'fail',
+                        message:res.message,
+                    });
+                }
+            }).catch(err => {
+                this.$toast({
+                    type:'fail',
+                    message:'验证码错误',
+                });
+            });
+        },
     },
 }
 </script>
@@ -272,4 +413,12 @@ export default {
 /deep/ .el-col-5{width:20%;}
 .columnboxAbout {width:100%;}
 .textContent >div{overflow: hidden;}
+.SMSconfirm{
+    color: #fff;
+    border: none;
+    outline: none;
+    background-color: #2f75f4;
+    font-size: 16px;
+    border-radius: 13px;
+}
 </style>

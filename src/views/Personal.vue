@@ -199,13 +199,10 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 	.van-field .van-icon{
 		font-size: 20px;
 	}
-
-</style>
-<style scoped>
 	/deep/ .van-cell .van-cell__title{text-align: left;}
     /deep/ .van-cell.van-field{border-bottom: 1px solid #CBCDCE;}
     .person{background: #F3F5F7;}

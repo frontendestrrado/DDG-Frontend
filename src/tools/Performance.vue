@@ -59,12 +59,7 @@ export default {
     }
 }
 </script>
-<style>
-	.van-field .van-icon{
-		font-size: 20px;
-	}
 
-</style>
 <style scoped>
 	/deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
 	/deep/ .van-cell__value{color: #323233;}

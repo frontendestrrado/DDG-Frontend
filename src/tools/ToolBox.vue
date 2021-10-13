@@ -1,9 +1,9 @@
 <template>
 	<div class="ToolBox">
 		<div class="ToolBox_info">
-
-			工具箱
-
+            <van-cell is-link center @click="" title="公司完整资料"></van-cell>
+            <van-cell is-link center @click="" title="相关信托产品的各种讲解"></van-cell>
+            <van-cell is-link center @click="" title="标准问答资料"></van-cell>
 		</div>
 	</div>
 </template>
@@ -24,14 +24,9 @@ export default {
     }
 }
 </script>
-<style>
-	.van-field .van-icon{
-		font-size: 20px;
-	}
 
-</style>
 <style scoped>
-	/deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
+	/deep/ .van-cell__title{text-align: left;}
 	/deep/ .van-cell__value{color: #323233;}
     .ToolBox{
         width: 100%;

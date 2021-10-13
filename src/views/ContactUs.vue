@@ -91,12 +91,7 @@ export default {
     }
 }
 </script>
-<style>
-	.van-field .van-icon{
-		font-size: 20px;
-	}
 
-</style>
 <style scoped>
 	/deep/ .van-row{display: -webkit-box;}
 	/deep/ .van-cell{
