@@ -1,5 +1,5 @@
 <template>
-	<div class="index-graphic" :style="{backgroundColor:graphicData.bg_color}">
+	<div class="index-graphic" :style="{backgroundColor:graphicData.bg_color,marginBottom:graphicData.layout == 1?'120px':'0'}">
 	    <div class="index-graphic-div">
 	    	<van-row class="columnboxAbout" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass"  v-for="(graphic,index) in graphicData.imageText" :key="index">
@@ -13,10 +13,10 @@
 							/>
 							<span :class="'bottomText layout_'+graphicData.layout_font_in_image" :style="{fontSize:graphicData.font_in_image_size+'px',color:graphicData.font_in_image_color,textAlign:graphicData.align}">{{graphic.font_in_image}}</span>
 						</div>
-                        <pre class="textPre" :style="{fontSize:graphicData.font_size+'px',color:graphicData.color,textAlign:graphicData.align}"><!--
+                        <pre class="textPre" :style="{fontSize:graphicData.font_size+'px',color:graphicData.color,textAlign:graphicData.align,paddingLeft:'10px',lineHeight:graphicData.layout==1?'25px':'20px'}"><!--
                             --><div class="textTitle" v-if="graphicData.layout == 1">{{graphic.text | textTitleHandle}}</div><!--
-                            -->{{graphic.text | textHandle(graphicData.layout)}}
-                        </pre>
+                            -->{{graphic.text | textHandle(graphicData.layout)}}<!--
+                        --></pre>
                     </div>
                 </van-col>
             </van-row>
@@ -110,7 +110,7 @@ export default {
             if (val == 1) {
                 let arr = text.split('\n\n')
                 arr.shift()
-                return arr.join()
+                return arr.join('\n\n')
             } else {
                 return text
             }
@@ -150,9 +150,10 @@ pre{white-space: break-spaces;margin: 0;font-family: 'Avenir,Helvetica,Arial,san
     margin: 0 auto;
 }
 .textTitle {
-    font-size: 26px;
+    font-size: 40px;
     font-family: FandolSong;
     margin-bottom: 10px;
+    line-height: 40px;
 }
 /* 手機 */
 @media screen and (max-width: 768px) {
@@ -167,6 +168,10 @@ pre{white-space: break-spaces;margin: 0;font-family: 'Avenir,Helvetica,Arial,san
     }
     .textPre {
         padding: 0 10px;
+    }
+    .textTitle {
+        font-size: 28px;
+        line-height: 30px;
     }
 }
 </style>

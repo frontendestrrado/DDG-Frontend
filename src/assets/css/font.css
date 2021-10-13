@@ -1,83 +1,89 @@
-@font-face {
-    font-family: 'Poppins'; /* 重命名字体名 */
+/* @font-face {
+    font-family: 'Poppins'; 
     src: url('../../../static/fonts/Poppins.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'PoppinsBold'; /* 重命名字体名 */
+    font-family: 'PoppinsBold';
     src: url('../../../static/fonts/Poppins-Bold.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'PoppinsLight'; /* 重命名字体名 */
+    font-family: 'PoppinsLight';
     src: url('../../../static/fonts/Poppins-Light.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'PoppinsMedium'; /* 重命名字体名 */
+    font-family: 'PoppinsMedium';
     src: url('../../../static/fonts/Poppins-Medium.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'PoppinsRegular'; /* 重命名字体名 */
+    font-family: 'PoppinsRegular';
     src: url('../../../static/fonts/Poppins-Regular.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'NotoSansBold'; /* 重命名字体名 */
+    font-family: 'NotoSansBold';
     src: url('../../../static/fonts/NotoSans-Bold.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'OreganoRegular'; /* 重命名字体名 */
+    font-family: 'OreganoRegular';
     src: url('../../../static/fonts/Oregano-Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'GilroyExtraBold'; /* 重命名字体名 */
+    font-family: 'GilroyExtraBold';
     src: url('../../../static/fonts/Gilroy-ExtraBold.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'RobotoBold'; /* 重命名字体名 */
+    font-family: 'RobotoBold';
     src: url('../../../static/fonts/Roboto-Bold.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'MontserratBold'; /* 重命名字体名 */
+    font-family: 'MontserratBold'; 
     src: url('../../../static/fonts/Montserrat-Bold.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'MontserratRegular'; /* 重命名字体名 */
+    font-family: 'MontserratRegular';
     src: url('../../../static/fonts/Montserrat-Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }@font-face {
-    font-family: 'MontserratLight'; /* 重命名字体名 */
+    font-family: 'MontserratLight';
     src: url('../../../static/fonts/Montserrat-Light.ttf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'PoppinsSemiBold'; /* 重命名字体名 */
+    font-family: 'PoppinsSemiBold';
     src: url('../../../static/fonts/Poppins-SemiBold.otf');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'AbrilDisplayBold'; /* 重命名字体名 */
+    font-family: 'AbrilDisplayBold';
     src: url('../../../static/fonts/Abril_Display_Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+} */
+@font-face {
+    font-family: 'FandolSong';
+    src: url('../../assets/fonts/FandolSong.otf');
     font-weight: normal;
     font-style: normal;
 }

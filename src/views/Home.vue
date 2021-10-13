@@ -7,7 +7,7 @@
 			<router-view/>
 		</main>
 		<div class="ContactUs">
-			<div style="font-size:26px;">Contact Us</div>
+			<div class="ContactUsTitle">Contact Us</div>
 			<div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
 			<div>Tel : +6016-5535691</div>
 			<div>Email : herman@ddgint.com</div>
@@ -80,15 +80,25 @@ a {
 	color: #42b983;
 }
 main{background-color: #fff;min-height: calc(100vh - 80px);}
-@media screen and (max-width: 768px){
-	main{min-height: calc(100vh - 60px);}
-}
 .ContactUs {
 	color: #eff0f4;
 	background: #333;
-	padding: 50px;
+	padding: 10px;
+}
+.ContactUsTitle {
+	font-size:26px;
 }
 .ContactUs div {
 	margin-bottom: 10px;
+}
+@media screen and (max-width: 768px){
+	main{min-height: calc(100vh - 60px);}
+	.ContactUs {
+		font-size: 12px;
+		line-height: 12px;
+	}
+	.ContactUsTitle {
+		font-size: 20px;
+	}
 }
 </style>

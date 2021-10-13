@@ -11,6 +11,7 @@ import  * as echarts from "echarts"; //5.0 以上的引入方式
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import '@vant/touch-emulator';
+import './assets/css/font.css';
 
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n);
