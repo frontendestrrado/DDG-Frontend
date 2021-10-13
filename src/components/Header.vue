@@ -1,5 +1,6 @@
 <template>
 	<div class="header bgAsh">
+		<div class="header-line"></div>
 		<div class="header-main">
 			<!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
@@ -40,8 +41,8 @@
 
 				</van-col>
 				<van-col :span="4">
-				<van-icon v-if="isShowTopUl" name="wap-nav" color="#333" size="30" @click="isShowTopUl=false;" />
-				<van-icon v-else name="cross" color="#333" size="30" @click="isShowTopUl=true;" />
+					<van-icon v-if="isShowTopUl" name="wap-nav" color="#333" size="30" @click="isShowTopUl=false;" />
+					<van-icon v-else name="cross" color="#333" size="30" @click="isShowTopUl=true;" />
 				</van-col>
 			</van-row>
 			<!-- <van-overlay :show="!isShowTopUl" /> -->
@@ -204,7 +205,11 @@ export default {
 	.header{
 		width: 100%;
 		height: 80px;
-		background-color: #CBCDCE;
+		background-color: #dee5f2;
+	}
+	.header-line {
+		background:#1F2E4D;
+		height:20px;
 	}
 	.header-main{
 		font-size: 16px;
@@ -276,6 +281,9 @@ export default {
     	.header{
 				height: 60px;
 			}
+			.header-line {
+				height:10px;
+			}
 			.header-main{
 				width: 100%;
 				height: 60px;
@@ -316,6 +324,9 @@ export default {
     @media screen and (min-width: 768px) and (max-width: 992px){
     	.header{
 				height: 80px;
+			}
+			.header-line {
+				height:12px;
 			}
     	.header-main{
 				width: 95%;margin:auto;
@@ -372,7 +383,7 @@ export default {
     /*大屏幕*/
     @media screen and (min-width: 1200px){
     	.header{
-				height: 80px;
+				height: 90px;
 			}
     	.header-main{
     		width:90%;
