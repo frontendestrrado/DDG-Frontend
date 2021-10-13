@@ -26,7 +26,8 @@
 					<li v-if="$sessionStorage.token" class="hv" slot="title">{{ value.title }}</li>
 				</template>
 				<template v-else>
-					<li class="hv" slot="title">{{ value.title }}</li>
+					<li v-if="$sessionStorage.token && value.title == 'Advisors’ login'" class="hv" slot="title"></li>
+					<li v-else class="hv" slot="title">{{ value.title }}</li>
 				</template>
 			</div>
 		</template>

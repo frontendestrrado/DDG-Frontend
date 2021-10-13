@@ -122,7 +122,7 @@ export default {
 /* 图文模块 */
 /deep/ .van-col-5{width:20%;}
 .index-graphic-div{padding-top: 20px;}
-.columnboxAbout {width:100%;}
+.columnboxAbout {width:100%;display:flex;flex-wrap:wrap;}
 .textContent >div{overflow: hidden;}
 .imgTextBox{position: relative;display: inline-flex;flex: none;}
 .imgTextBox1{

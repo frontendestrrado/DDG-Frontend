@@ -18,7 +18,7 @@
                                 :rules="[{ validator:item.type==4?validatorEmail:'', required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
                               />
                         </template>
-                        <template v-if="item.type==3">
+                        <template v-if="item.type==3 && phoneList[index]">
                             <van-field
                                 v-model="phoneList[index].phone"
                                 :name="item.title"

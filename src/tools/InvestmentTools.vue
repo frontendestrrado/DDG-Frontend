@@ -5,7 +5,7 @@
 
             <!-- 招商列表 -->
             <template v-for="(item,index) in cusList">
-                <van-cell :title="item.contact" :value="item.is_open==0?'未查看':'已查看'" label='留言' :label="item.message?'留言：'+item.message:'留言：无'" />
+                <van-cell :title="item.contact" :value="item.is_open==0?'未查看':'已查看'" :label="item.is_open==1?(item.message?'留言：'+item.message:'留言：无'):''" />
             </template>
 
         </div>
