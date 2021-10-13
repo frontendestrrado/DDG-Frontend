@@ -26,3 +26,10 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.modeVideo {
+	width:80%;
+	margin:auto;
+}
+</style>

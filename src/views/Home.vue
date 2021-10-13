@@ -1,11 +1,19 @@
 <template>
 	<div class="main">
 		<header style="height: auto;">
-			<Top></Top>		
+			<Top></Top>	
 		</header>
 		<main>
 			<router-view/>
 		</main>
+		<div class="ContactUs">
+			<div style="font-size:26px;">Contact Us</div>
+			<div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
+			<div>Tel : +6016-5535691</div>
+			<div>Email : herman@ddgint.com</div>
+			<div>Website : http://www.ddgint.com/#/Index </div>
+			<div>Business Hour: 9.00m – 5.00pm (Mon – Fri) </div>
+		</div>	
 	</div>
 </template>
 
@@ -74,5 +82,13 @@ a {
 main{background-color: #fff;min-height: calc(100vh - 80px);}
 @media screen and (max-width: 768px){
 	main{min-height: calc(100vh - 60px);}
+}
+.ContactUs {
+	color: #eff0f4;
+	background: #333;
+	padding: 50px;
+}
+.ContactUs div {
+	margin-bottom: 10px;
 }
 </style>

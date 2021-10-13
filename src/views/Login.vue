@@ -75,7 +75,7 @@
 					method: 'get',
 					url:'/api/v1/customPages?id='+this.$sessionStorage.page_id,
 				}).then(res => {
-					console.log(res);
+					console.log(res,'Sign Up');
 					if(res.status == 200){
 	                    this.pageContent = res.data.modules;
 	                    this.pageWidth = res.data.width;

@@ -22,27 +22,27 @@
 			<van-row class="fcb" style="height: 100%;">
 				<van-col :span="4">
 					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#FFC80B" size="30" @click="changeActTab('','');"/>
-					<!-- <van-image
-						v-if="$store.state.currentPage.tabbar != '/Index'"
-			  			class="logo hv"
-				      	:src="require('@/assets/img/logo.png')"
-				      	fit="contain"
-				      	@click="isShowTopUl=true;$router.push('/Index');"/> -->
-				</van-col>
-			  	<van-col :span="16" class="tc">
-			  		<van-image
+					<van-image
 						v-if="$store.state.currentPage.tabbar == '/Index'"
 			  			class="logo hv"
-				      	:src="require('@/assets/img/logo.png')"
+				      	:src="logo"
 				      	fit="contain"
-				      	@click="changeActTab('/Index', 'Home');"/>
-				    <div v-else>{{$store.state.currentPage.title}}</div>
+				      	@click="isShowTopUl=true;$router.push('/Index');"/>
+				</van-col>
+				<van-col :span="16" class="tc">
+					<!-- <van-image
+						v-if="$store.state.currentPage.tabbar == '/Index'"
+						class="logo hv"
+							:src="logo"
+							fit="contain"
+							@click="changeActTab('/Index', 'Home');"/> -->
+					<div v-if="$store.state.currentPage.tabbar != '/Index'">{{$store.state.currentPage.title}}</div>
 
-			  	</van-col>
-			  	<van-col :span="4">
-					<van-icon v-if="isShowTopUl" name="wap-nav" color="#FFC80B" size="30" @click="isShowTopUl=false;" />
-					<van-icon v-else name="cross" color="#FFC80B" size="30" @click="isShowTopUl=true;" />
-			  	</van-col>
+				</van-col>
+				<van-col :span="4">
+				<van-icon v-if="isShowTopUl" name="wap-nav" color="#333" size="30" @click="isShowTopUl=false;" />
+				<van-icon v-else name="cross" color="#333" size="30" @click="isShowTopUl=true;" />
+				</van-col>
 			</van-row>
 			<!-- <van-overlay :show="!isShowTopUl" /> -->
 			<ul class="menuInfo fontPB" v-if="!isShowTopUl">
@@ -72,8 +72,8 @@ export default {
 			isShowSale:0,
 			isShowTopUl:true,
 			lang:this.$i18n.locale,
-	        language:[	
-	        	{
+			language:[	
+				{
 					text: 'English',
 					value: 'en',
 				},
@@ -86,9 +86,11 @@ export default {
 					value: 'zh-TW',
 				},
 			],
+			logo: ''
 		}
 	},
 	mounted(){
+		this.getLogo();
 		this.getTabbar();
 		this.getUserInfo();
 		let lang = this.$i18n.locale;
@@ -182,6 +184,17 @@ export default {
 		getUserInfo(){
 			
 		},
+		getLogo() {
+			this.$axios({
+				method: 'get',
+				url: '/api/v1/webset',
+			}).then(res => {
+				console.log(res,'Logo');
+				this.logo = res.logo
+			}).catch(err => {
+				console.log(err,'獲取logo異常');
+			})
+		}
 	},
 }
 </script>
@@ -245,7 +258,7 @@ export default {
 	/*下拉选项*/
 	.menuInfo{
 		position:fixed;height:auto;top:80px;right:0;width:auto;padding: 0 20px;
-		z-index:10;text-align:center;line-height:40px;background-color:#FFC80B;
+		z-index:10;text-align:center;line-height:40px;background-color:#dee5f2;
 		font-size:24px;color:#7B5C55;overflow-y: auto;min-height: 100%;
 	}
 	.active{
@@ -261,110 +274,110 @@ export default {
     /*手机*/
     @media screen and (max-width: 768px){
     	.header{
-			height: 60px;
-		}
-		.header-main{
-			width: 100%;
-			height: 60px;
-		}
-		.mobileMenu{
-			display:inline-flex;height:30px;line-height: 30px;margin-top: 25px;margin-left: 20px;
-		}
-		.logo{
-			width: 45px;
-		}
-		.main-right{
-			width: 100%;
-			height: 24px;
-			line-height: 24px;
-			color: #7B5D56;
-			font-size: 16px;
-			display: flex;
-			justify-content: space-around;
-		}
-		/*下拉选项*/
-		.menuInfo{
-			position:fixed;height:auto;width:100%;top:60px;left:0;width:100%;padding: 0;
-			z-index:10;text-align:center;line-height:40px;background-color:#FFC80B;
-			font-size:20px;color:#7B5C55;
-		}
-		.active{
-			border-bottom:none;
-		}
-		.right-item{
-			position:relative;
-		}
-		.right-item span{
-			position:absolute;bottom:-20px;left:0%;
-			text-indent:0px;font-size:14px;
-		}
+				height: 60px;
+			}
+			.header-main{
+				width: 100%;
+				height: 60px;
+			}
+			.mobileMenu{
+				display:inline-flex;height:30px;line-height: 30px;margin-top: 25px;margin-left: 20px;
+			}
+			.logo{
+				width: 45px;
+			}
+			.main-right{
+				width: 100%;
+				height: 24px;
+				line-height: 24px;
+				color: #7B5D56;
+				font-size: 16px;
+				display: flex;
+				justify-content: space-around;
+			}
+			/*下拉选项*/
+			.menuInfo{
+				position:fixed;height:auto;width:100%;top:60px;left:0;width:100%;padding: 0;
+				z-index:10;text-align:center;line-height:40px;background-color:#dee5f2;
+				font-size:20px;color:#7B5C55;
+			}
+			.active{
+				border-bottom:none;
+			}
+			.right-item{
+				position:relative;
+			}
+			.right-item span{
+				position:absolute;bottom:-20px;left:0%;
+				text-indent:0px;font-size:14px;
+			}
     }
     /*平板*/
     @media screen and (min-width: 768px) and (max-width: 992px){
     	.header{
-			height: 80px;
-		}
+				height: 80px;
+			}
     	.header-main{
-			width: 95%;margin:auto;
-			height: 80px;
-		}
-		.header-main{
-			font-size: 16px;
-		}
-		.mobileMenu{
-			display:inline-flex;height:30px;line-height: 30px;margin-top: 35px;margin-left: 20px;
-		}
-		.logo{
-			width: 86px;
-		}
-		.tab{
-			width: 100%;
-			height: 26px;
-			line-height: 26px;
-			display: flex;
-			justify-content: space-around;
-			margin-top: 37px;
-			color:#7B5C55;
-		}
-		.tap>li{
-			height: 26px;
-			text-align: center;
-			color: #4B4B4B;
-		}
-		.active{
-			border-bottom: 2px solid #4B4B4B;
-		}
-		.main-right{
-			width: 100%;
-			height: 24px;
-			line-height: 24px;
-			color: #7B5D56;
-			font-size: 16px;
-			margin-top: 38px;
-			display: flex;
-			justify-content: space-around;
-		}
+				width: 95%;margin:auto;
+				height: 80px;
+			}
+			.header-main{
+				font-size: 16px;
+			}
+			.mobileMenu{
+				display:inline-flex;height:30px;line-height: 30px;margin-top: 35px;margin-left: 20px;
+			}
+			.logo{
+				width: 86px;
+			}
+			.tab{
+				width: 100%;
+				height: 26px;
+				line-height: 26px;
+				display: flex;
+				justify-content: space-around;
+				margin-top: 37px;
+				color:#7B5C55;
+			}
+			.tap>li{
+				height: 26px;
+				text-align: center;
+				color: #4B4B4B;
+			}
+			.active{
+				border-bottom: 2px solid #4B4B4B;
+			}
+			.main-right{
+				width: 100%;
+				height: 24px;
+				line-height: 24px;
+				color: #7B5D56;
+				font-size: 16px;
+				margin-top: 38px;
+				display: flex;
+				justify-content: space-around;
+			}
     }
     /*中等屏幕*/
     @media screen and (min-width: 992px) and (max-width: 1200px){
     	.header{
-			height: 80px;
-		}
+				height: 80px;
+			}
     	.header-main{
-			width: 90%;
-			height: 80px;
-			margin: auto;
-		}
+				width: 90%;
+				height: 80px;
+				margin: auto;
+			}
     }
     /*大屏幕*/
     @media screen and (min-width: 1200px){
     	.header{
-			height: 80px;
-		}
+				height: 80px;
+			}
     	.header-main{
     		width:90%;
-			max-width: 1200px;height: 80px;
-			margin: auto;
-		}
+				max-width: 1200px;height: 80px;
+				margin: auto;
+			}
     }
 </style>
