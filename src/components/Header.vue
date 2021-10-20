@@ -55,6 +55,8 @@
 	  			<li class="hv" @click="changeActTab('/ContactUs', 'Contact Us');">Contact Us</li>
 	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/Personal', 'My Profile');">My Profile</li>
 	  			<!-- <li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li> -->
+
+	  			<li class="hv" v-if="$sessionStorage.token" @click="changeActTab('/NotificationCenter', 'Notification Center');">Notification Center</li>
 	  			<li class="hv" @click="changeActTab('/Language', 'Languages');">Language</li>
 	  		</ul>
 		</div>

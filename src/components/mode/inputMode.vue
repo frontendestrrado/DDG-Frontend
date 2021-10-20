@@ -368,8 +368,10 @@ export default {
         // 验证验证码
         verifyCode(values){
             let data = [];
+            let num = 0;
             this.phoneList.forEach((item,i) => {
                 if(item.phone){
+                    num++;
                     var phoneInfo = {
                         phone: item.phone,
                         verify_code: item.verify_code,
@@ -377,32 +379,40 @@ export default {
                     data.push(phoneInfo);
                 }
             })
-            this.$axios({
-                method: 'GET',
-                url: '/api/v1/sin_up/sms/verify_code?data='+JSON.stringify(data),
-            }).then(res => {
-                console.log(res);
-                if(res.state_code==200){
-                    // this.$toast({
-                    //     type:'success',
-                    //     message:res.message,
-                    // });
-                    const vm=this;
-                    setTimeout(function(){
-                        vm.onSubmit(values);
-                    },600);
-                }else{
-                    this.$toast({
-                        type:'fail',
-                        message:res.message,
+            if(num == 0){
+                setTimeout(function(){
+                    vm.onSubmit(values);
+                },600);
+            }else{
+                if(num==data.length){
+                    this.$axios({
+                        method: 'GET',
+                        url: '/api/v1/sin_up/sms/verify_code?data='+JSON.stringify(data),
+                    }).then(res => {
+                        console.log(res);
+                        if(res.state_code==200){
+                            // this.$toast({
+                            //     type:'success',
+                            //     message:res.message,
+                            // });
+                            const vm=this;
+                            setTimeout(function(){
+                                vm.onSubmit(values);
+                            },600);
+                        }else{
+                            this.$toast({
+                                type:'fail',
+                                message:res.message,
+                            });
+                        }
+                    }).catch(err => {
+                        this.$toast({
+                            type:'fail',
+                            message:'验证码错误',
+                        });
                     });
                 }
-            }).catch(err => {
-                this.$toast({
-                    type:'fail',
-                    message:'验证码错误',
-                });
-            });
+            }
         },
     },
 }

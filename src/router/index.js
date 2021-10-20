@@ -6,6 +6,7 @@ import Home from '@/views/Home'
 import Index from '@/views/Index'
 import Login from '@/views/Login'
 import Personal from '@/views/Personal'
+import NotificationCenter from '@/views/NotificationCenter'
 import ContactUs from '@/views/ContactUs'
 import Language from '@/views/Language'
 
@@ -54,6 +55,10 @@ const router = new Router({
       path: '/Personal',
       name: '个人信息',
       component: Personal,
+    },{
+      path: '/NotificationCenter',
+      name: '通知中心',
+      component: NotificationCenter,
     },{
       path: '/ContactUs',
       name: '联系我们',
