@@ -420,4 +420,8 @@ export default {
     font-size: 16px;
     border-radius: 13px;
 }
+.index-input-div {
+    width: 90%;
+    margin: auto;
+}
 </style>
