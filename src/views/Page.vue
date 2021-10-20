@@ -116,8 +116,8 @@
 					}else{
 						this.pageContent = [];
 						this.pageWidth = '1200';
-							// this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
-							// this.$router.push('/ErrorPage');
+						// this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
+						// this.$router.push('/ErrorPage');
 					}
 				}).catch(error=>{
 

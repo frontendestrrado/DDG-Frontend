@@ -6,8 +6,8 @@
 			<TilText v-if="item.type === 2" :titleData='item'></TilText>
 			<RichText v-if="item.type === 3 && item.content" :richTextData='item'></RichText>
 			<Movie v-if="item.type === 4" :movieData='item'></Movie>
-			<MultiImg v-if="item.type === 5 || item.type === 7" :imgData='item'></MultiImg>
-			<Graphic v-if="item.type === 6" :graphicData='item'></Graphic>
+			<MultiImg v-if="item.type === 5 || item.type === 7" :imgData='item' @on-goto="goPage"></MultiImg>
+			<Graphic v-if="item.type === 6" :graphicData='item' @on-goto="goPage"></Graphic>
 			<TextMode v-if="item.type === 8" :textData='item'></TextMode>
 			<InputMode v-if="item.type === 9" :formData.sync='item'></InputMode>
 		</div>
@@ -158,8 +158,19 @@
 		mounted(){
 		},
 		methods:{
-			goPage(path){
-				this.$router.push(path);
+			goPage(path,text){
+				if(!!path){
+					if(path.indexOf('/')==0){
+						if(text){
+							this.$store.commit('changePage',{tabbar: path, title: text});
+						}else{
+							this.$store.commit('changePage',{tabbar: path, title: path.substr(1)});
+						}
+						this.$router.push(path);
+					}else{
+						window.open(path);
+					}
+				}
 			},
 			goProductDtl(path,type){
 				console.log('common:',path,type);

@@ -3,7 +3,7 @@
 	    <div class="index-graphic-div">
 	    	<van-row class="columnboxAbout" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass"  v-for="(graphic,index) in graphicData.imageText" :key="index">
-                    <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout" @click="goView(graphic.text)">
+                    <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout" @click="goView(graphic.path,graphic.text)">
 						<div :class="graphicData.layout == 1?'imgTextBox1':'imgTextBox'">
 							<van-image
 							:style="graphicData.layout == 3?'width:60%':'width:90%'"
@@ -51,54 +51,8 @@ export default {
         }
     },
     methods:{
-        goView(text){
-            // this.$emit('on-goto',path);
-            let biaoti = sessionStorage["currentPage"]?JSON.parse(sessionStorage["currentPage"]).title:this.$router.history.current.name;
-            // if(biaoti == 'Advisors'){
-                if(text.indexOf('Organizational Chart')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/OrganizeChart', title: 'Organizational Chart'});
-                    this.$router.push('/OrganizeChart');
-                }else if(text.indexOf('Performance')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/Performance', title: 'Performance'});
-                    this.$router.push('/Performance');
-                }else if(text.indexOf('Personal Growth')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/PersonalGrowth', title: 'PersonalGrowth'});
-                    this.$router.push('/PersonalGrowth');
-                }else if(text.indexOf('Training Plan')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/TrainingPlan', title: 'TrainingPlan'});
-                    this.$router.push('/TrainingPlan');
-                }else if(text.indexOf('Tool Box')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/ToolBox', title: 'ToolBox'});
-                    this.$router.push('/ToolBox');
-                }else if(text.indexOf('My Profile')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/Personal', title: 'Personal'});
-                    this.$router.push('/Personal');
-                }else if(text.indexOf('Learning to Use')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/LearnUse', title: 'LearnUse'});
-                    this.$router.push('/LearnUse');
-                }else if(text.indexOf('Teaching Tools')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/TeachTools', title: 'TeachTools'});
-                    this.$router.push('/TeachTools');
-                }else if(text.indexOf('Forms')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/FormsPage', title: 'FormsPage'});
-                    this.$router.push('/FormsPage');
-                }else if(text.indexOf('Files')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/FilesPage', title: 'FilesPage'});
-                    this.$router.push('/FilesPage');
-                }else if(text.indexOf('Cases')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/Cases', title: 'Cases'});
-                    this.$router.push('/Cases');
-                }else if(text.indexOf('Member List')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/Members', title: 'Members'});
-                    this.$router.push('/Members');
-                }else if(text.indexOf('Investment Tools')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/InvestmentTools', title: 'InvestmentTools'});
-                    this.$router.push('/InvestmentTools');
-                }else if(text.indexOf('Info I collected')!= -1){
-                    this.$store.commit('changePage',{tabbar: '/InfoIcollected', title: 'InfoIcollected'});
-                    this.$router.push('/InfoIcollected');
-                }
-            // }
+        goView(path,text){
+            this.$emit('on-goto',path,text);
         },
     },
     filters: {

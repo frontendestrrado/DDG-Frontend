@@ -31,8 +31,8 @@ export default {
 		},
 	},
 	methods:{
-		goProductDtl(path,type){
-			console.log(path,type);
+		goProductDtl(path){
+			this.$emit('on-goto',path);
 		},
 	}
 }
