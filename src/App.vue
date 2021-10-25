@@ -84,6 +84,7 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 .fr{float:right}
 .dpn{display: none!important;}
 .tr{text-align:right}
+.tl{text-align: left;}
 .tc{text-align:center}
 .ti10{text-indent:10px}
 .clearfix:after{visibility:hidden;display:block;font-size:0;content:".";clear:both;height:0}

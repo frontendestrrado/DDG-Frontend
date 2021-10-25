@@ -13,6 +13,9 @@ import 'vant/lib/index.css';
 import '@vant/touch-emulator';
 import './assets/css/font.css';
 
+import vueEsign from 'vue-esign'
+Vue.use(vueEsign)
+
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n);
 

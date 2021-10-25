@@ -205,7 +205,7 @@ export default {
 	/deep/ .van-dropdown-menu__title::after{display: none;}
 	.header{
 		width: 100%;
-		height: 80px;
+		/*height: 80px;*/height: 90px;
 		background-color: #dee5f2;
 	}
 	.header-line {
@@ -280,7 +280,7 @@ export default {
     /*手机*/
     @media screen and (max-width: 768px){
     	.header{
-				height: 60px;
+				/*height: 60px;*/height: 70px;
 			}
 			.header-line {
 				height:10px;
@@ -324,7 +324,7 @@ export default {
     /*平板*/
     @media screen and (min-width: 768px) and (max-width: 992px){
     	.header{
-				height: 80px;
+				/*height: 80px;*/height: 90px;
 			}
 			.header-line {
 				height:12px;
@@ -373,7 +373,7 @@ export default {
     /*中等屏幕*/
     @media screen and (min-width: 992px) and (max-width: 1200px){
     	.header{
-				height: 80px;
+				/*height: 80px;*/height: 90px;
 			}
     	.header-main{
 				width: 90%;
@@ -384,7 +384,7 @@ export default {
     /*大屏幕*/
     @media screen and (min-width: 1200px){
     	.header{
-				height: 90px;
+				/*height: 90px;*/height: 100px;
 			}
     	.header-main{
     		width:90%;

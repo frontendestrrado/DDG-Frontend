@@ -1,7 +1,7 @@
 <template>
-	<div class="index-input">
-	    <div class="index-input-div">
-	    	<van-row class="columnboxAbout" v-if="formData.data_collects.length>0" :gutter="$store.state.isPC?20:0">
+    <div class="index-input">
+        <div class="index-input-div">
+            <van-row class="columnboxAbout" v-if="formData.data_collects.length>0" :gutter="$store.state.isPC?20:0">
                 <van-form validate-first @failed="onFailed" @submit="verifyCode">
 
                     <van-col :span="showClass" v-for="(item,index) in formData.data_collects" :key="index">
@@ -113,17 +113,17 @@
             <input type="file" name="avatar" id="uppic" accept="image/gif,image/jpeg,image/jpg,image/png" @change="changeImage" ref="imgInput" style="opacity: 0;width: 0;height: 0;padding: 0;display: inherit;">
 
             <!-- <van-uploader v-model="fileList" :after-read="afterRead" :name="checkUploadIndex" :max-count="1" :max-size="1000 * 1024" @oversize="onOversize" :multiple="false" :deletable="false" :preview-full-image="false" :show-upload="false"></van-uploader> -->
-	    </div>
-	</div>
+        </div>
+    </div>
 </template>
 <script>
 export default {
-	name:'inputMode',
-	props:{
-		formData:{
-			type:Object,
-		},
-	},
+    name:'inputMode',
+    props:{
+        formData:{
+            type:Object,
+        },
+    },
     data () {
         return {
             isShowPicker: false,
@@ -147,7 +147,7 @@ export default {
             })
         },
     },
-	computed:{
+    computed:{
         showClass(){
             if(this.formData.layout == 1){
                 return 24;
