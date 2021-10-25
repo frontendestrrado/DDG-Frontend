@@ -1,11 +1,11 @@
 <template>
     <div class="index-input">
         <div class="index-input-div">
-            <van-row class="columnboxAbout" v-if="formData.data_collects.length>0" :gutter="$store.state.isPC?20:0">
-                <van-form validate-first @failed="onFailed" @submit="verifyCode">
+            <van-row class="columnboxAbout" v-if="formDataInfo.data_collects.length>0" :gutter="$store.state.isPC?20:0">
+                <van-form validate-first @failed="onFailed" @submit="onSubmit">
 
-                    <van-col :span="showClass" v-for="(item,index) in formData.data_collects" :key="index">
-                    <!-- type  1文本 2密码 3手机号 4邮箱 5日期 6时间 7文本框 8图片 9按钮 -->
+                    <van-col :span="showClass" v-for="(item,index) in formDataInfo.data_collects" :key="index">
+                    <!-- type  1文本 2密码 3手机号 4邮箱 5日期 6时间 7文本框 8图片 9描述 10单选 11多选 12电子签名 13输入框 14按钮 -->
                         <template v-if="item.type==1 || item.type==2 || item.type==4">
                             <van-field
                                 v-model="item.content"
@@ -57,6 +57,7 @@
                                 @click="onShowPicker(index,item.type)"
                               />
                         </template>
+                        <!-- 7文本框 -->
                         <template v-if="item.type==7">
                             <van-field
                                 v-model="item.content"
@@ -69,6 +70,7 @@
                                 :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
                               />
                         </template>
+                        <!-- 8图片 -->
                         <template v-if="item.type==8">
                             <van-field readonly :name="item.title" :label="item.title" :required="item.is_require == 1 ? true:false" :rules="[{ required: item.is_require == 1 ? true:false, message: '请上传'+item.title+'图片' }]" v-model="item.content" @click="uploadClickImg(index)">
                                 <template #input>
@@ -88,7 +90,75 @@
                                 </template>
                             </van-field>
                         </template>
+                        <!-- 9文字描述 -->
                         <template v-if="item.type==9">
+                            <div style="text-align: left;font-weight: bold;margin:10px 0;">{{item.content}}</div>
+                        </template>
+                        <!-- 10單選框 -->
+                        <template v-if="item.type==10">
+                            <van-field label-width="auto" :name="item.title" :label="item.title" :required="item.is_require == 1 ? true:false">
+                                <template #input>
+                                    <van-radio-group v-model="item.content" direction="horizontal">
+                                        <van-radio v-for="(radio,index) in item.value" :key="'radio_'+index" :name="radio.title" style="margin-bottom:10px;margin-left:10px;text-align: left;">{{radio.title}}</van-radio>
+                                    </van-radio-group>
+                                </template>
+                            </van-field>
+                        </template>
+                        <!-- 11多選框 -->
+                        <template v-if="item.type==11">
+                            <van-field label-width="auto" :name="item.title" :label="item.title" :required="item.is_require == 1 ? true:false">
+                                <template #input>
+                                    <van-checkbox-group v-model="item.content" direction="horizontal">
+                                        <van-checkbox v-for="(checkbox,index) in item.value" :key="'checkbox_'+index" :name="checkbox.title" style="margin-bottom:10px;margin-left:10px;text-align: left;">{{checkbox.title}}</van-checkbox>
+                                    </van-checkbox-group>
+                                </template>
+                            </van-field>
+                        </template>
+
+                        <template v-if="item.type==12">
+                            <!-- <van-field v-model="vueEsignImg" center :name="item.title" :label="item.title" :required="item.is_require == 1 ? true:false">
+                                <template #input>
+                                    <van-image
+                                        class="e-signature"
+                                        v-if="vueEsignImg"
+                                        :src="vueEsignImg"
+                                    />
+                                    <div v-else class="e-signature" @click="signatureShow=true">
+                                        點擊簽名
+                                    </div>
+                                    <van-button @click="vueEsignImg = ''" type="info" size="small" style="margin-left:10px;">清除</van-button>
+                                </template>
+                            </van-field> -->
+                            <div class="tl">{{item.title}}</div>
+                            <vue-esign :ref="'esign_'+index" :width="800" :height="300" :isCrop="isCrop" :lineWidth="lineWidth" :lineColor="lineColor" :bgColor.sync="bgColor" style="border: 1px solid #666;"/>
+                            <div class="tr">
+                                <div class="esignBtn" @click="handleReset(index);">清空画板</div>
+                                <div class="esignBtn" @click="handleGenerate(index);">生成图片</div>
+                            </div>
+                        </template>
+
+                        <template v-if="item.type==13">
+                            <div class="tl">{{item.title}}
+                                <van-button class="esignBtn" native-type="button" @click="addInput(index);">添加</van-button>
+                            </div>
+                            <van-cell class="cell-input" v-for="(input,n) in item.content" :key="'input_'+n">
+                                <van-field
+                                    v-for="(inputItem,i) in input"
+                                    :key="'inputItem_'+i"
+                                    v-model="inputItem.value"
+                                    :name="inputItem.title"
+                                    :required="item.is_require == 1 ? true:false"
+                                    center
+                                    :label="inputItem.title"
+                                    :placeholder="inputItem.title"
+                                    :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+inputItem.title }]"
+                                >
+                                    <van-button v-if="n!=0&&i==0" class="esignDelBtn" slot="button" native-type="button" @click="delInput(index);">删除</van-button>
+                                </van-field>
+                            </van-cell>
+                        </template>
+
+                        <template v-if="item.type==14">
                             <div style="margin: 16px;">
                                 <van-button round block type="info" native-type="submit">{{item.title}}</van-button>
                             </div>
@@ -97,6 +167,23 @@
                     </van-col>
                 </van-form>
             </van-row>
+
+            <!-- 簽名彈框 -->
+            <van-dialog 
+                v-model="signatureShow"
+                title="簽名"
+                show-cancel-button
+                width="80%"
+                @confirm="signatureConfirm"
+                @cancel="signatureCancel"
+                @close="signatureClose"
+            >
+                <div style="width:100%;height:400px">
+                    <vue-esign
+                        ref="esign"
+                    />
+                </div>
+            </van-dialog>
 
             <van-popup v-model="isShowPicker" position="bottom">
                 <van-datetime-picker
@@ -126,6 +213,7 @@ export default {
     },
     data () {
         return {
+            formDataInfo: this.formData,
             isShowPicker: false,
             currentContent: '',
             pickerTpye: '',
@@ -136,36 +224,36 @@ export default {
             minDate:new Date(1950, 0, 1),
             maxDate:new Date(),
             phoneList: [],
+
+            signatureShow: false, // 簽名彈框
+            vueEsignImg: '', // 簽名圖片base64
+
+            lineWidth: 6,   //签名框
+            lineColor: '#000000',
+            bgColor: '#fff',
+            isCrop: false
+
         }
-    },
-    watch: {
-        cartList: function() {
-            this.$nextTick(function(){
-                if(this.cartList.length>0){
-                    this.getFight();
-                }
-            })
-        },
     },
     computed:{
         showClass(){
-            if(this.formData.layout == 1){
+            if(this.formDataInfo.layout == 1){
                 return 24;
-            }else if(this.formData.layout == 2){
+            }else if(this.formDataInfo.layout == 2){
                 return this.$store.state.isPC?12:24;
-            }else if(this.formData.layout == 3){
+            }else if(this.formDataInfo.layout == 3){
                 return this.$store.state.isPC?8:24;
-            }else if(this.formData.layout == 4){
+            }else if(this.formDataInfo.layout == 4){
                 return this.$store.state.isPC?6:12;
-            }else if(this.formData.layout == 5){
+            }else if(this.formDataInfo.layout == 5){
                 return this.$store.state.isPC?5:12;
             }
         },
     },
     mounted(){
         let phoneData = [];
-        if(this.formData.data_collects.length>0){
-            this.formData.data_collects.forEach((item,i) => {
+        if(this.formDataInfo.data_collects.length>0){
+            this.formDataInfo.data_collects.forEach((item,i) => {
                 let data = {};
                 if(item.type == 3){
                     data = {
@@ -173,6 +261,15 @@ export default {
                         verify_code: '',
                         isSms: false,
                     };
+                }else if(item.type == 11){
+                    item.content = [];
+                }else if(item.type == 13){
+                    let inputList = [];
+                    for(let key in item.value){
+                        let inputitem = {title:item.value[key].title,value:''};
+                        inputList.push(inputitem)
+                    }
+                    item.content = [inputList];
                 }
                 phoneData.push(data);
             })
@@ -182,22 +279,42 @@ export default {
     methods:{
         onSubmit(values){
             let content = [];
-            for(var key in values){
-                if(key==''||key=="undefined"||key==null||key==undefined){
+            // for(var key in values){
+            //     if(key==''||key=="undefined"||key==null||key==undefined){
+            //     }else{
+            //         var contentVal = {
+            //             title: key,
+            //             value: values[key],
+            //         }
+            //         content.push(contentVal);
+            //     }
+            // }            
+            this.formDataInfo.data_collects.forEach((item,i) => {
+                if(item.type == 14){
+                    
+                }else if(item.type == 3){
+                    let data = {};
+                    data = {
+                        title: item.title,
+                        value: this.phoneList[i].phone,
+                    };
+                    content.push(data);
                 }else{
-                    var contentVal = {
-                        title: key,
-                        value: values[key],
-                    }
-                    content.push(contentVal);
+                    let data = {};
+                    data = {
+                        title: item.title,
+                        value: item.content,
+                    };
+                    content.push(data);
                 }
-            }
+            })
+            // console.log(content);
             this.$axios({
                 method: 'POST',
                 url:'/api/v1/collect',
                 data:{
                     page_id:this.$route.params.page_id,
-                    module_id:this.formData.page_module_relation_id,
+                    module_id:this.formDataInfo.page_module_relation_id,
                     content: JSON.stringify(content),
                 },
             }).then(res => {
@@ -241,9 +358,9 @@ export default {
         },
         onConfirmPicker(){
             if(this.pickerTpye == 'date'){
-                this.formData.data_collects[this.checkIndex].content = this.formatDateYMD(this.currentContent);
+                this.formDataInfo.data_collects[this.checkIndex].content = this.formatDateYMD(this.currentContent);
             }else if(this.pickerTpye == 'time'){
-                this.formData.data_collects[this.checkIndex].content = this.currentContent;
+                this.formDataInfo.data_collects[this.checkIndex].content = this.currentContent;
             }
             this.isShowPicker = false;
         },
@@ -293,29 +410,57 @@ export default {
         },
         afterRead(file,detail) {
             // 此时可以自行将文件上传至服务器
-            console.log(file);
-            console.log(detail);
-            this.formData.data_collects[detail.name].content = this.uploadImg;
-            console.log(this.formData.data_collects[detail.name].content);
-            // let formData=new FormData();
-            // formData.append('type','collect');
-            // formData.append('image',file.file);
-            // this.$axios({
-            //     method: 'POST',
-            //     url: '/api/v1/upload/images',
-            //     data:formData,
-            // }).then(res => {
-            //     console.log(res);
-            //     this.uploadImg=res.path;
-            // }).catch(err => {
-            //     this.$toast({
-            //         type:'fail',
-            //         message:'上传图片失败',
-            //     });
-            // });
+            // console.log(file,detail);
+            this.formDataInfo.data_collects[detail.name].content = this.uploadImg;
         },
         onOversize(file){
             Toast('文件大小不能超过 1M');
+        },
+        handleReset (index) {
+            this.$refs['esign_'+index][0].reset() //清空画布
+        },
+        handleGenerate (index) {
+            var self = this;
+            this.$refs['esign_'+index][0].generate().then(res => {
+                // let resultImg = res // 得到了签字生成的base64图片
+                // console.log(res);
+                self.$axios({
+                    method: 'POST',
+                    url: '/api/v1/upload/autograph',
+                    data:{
+                        image: res,
+                        path:'',
+                    },
+                }).then(res => {
+                    console.log(res);
+                    self.formDataInfo.data_collects[index].content = res.path;
+                }).catch(err => {
+                    self.$toast({
+                        type:'fail',
+                        message:'上传图片失败',
+                    });
+                });
+            }).catch(err => { //  没有签名，点击生成图片时调用
+                self.$toast({
+                    type:'fail',
+                    message:err + ' 未签名！',
+                });
+                alert(err) // 画布没有签字时会执行这里 'Not Signned'
+            })
+        },
+        // 添加输入框
+        addInput(index){
+            const content = this.formDataInfo.data_collects[index].content;
+            let newContent = [];
+            content[0].forEach(item=>{
+                var it = {
+                    title: item.title,
+                    value: ''
+                };
+                newContent.push(it);
+            })
+            let len = this.formDataInfo.data_collects[index].content.length;
+            this.$set(this.formDataInfo.data_collects[index].content,len,newContent)
         },
         //获取验证码
         sendCode(index){
@@ -414,6 +559,20 @@ export default {
                 }
             }
         },
+        signatureConfirm() {
+            this.$refs.esign.generate().then(res => {
+                console.log(res);
+                this.vueEsignImg = res
+            }).catch(err => {
+                console.log(err);
+            })
+        },
+        signatureCancel() {
+            this.$refs.esign.reset()
+        },
+        signatureClose() {
+            this.$refs.esign.reset()
+        }
     },
 }
 </script>
@@ -430,8 +589,14 @@ export default {
     font-size: 16px;
     border-radius: 13px;
 }
+.esignBtn{color: #fff;border: none;outline: none;background-color: #2f75f4;font-size: 16px;border-radius: 13px;height: 35px;line-height: 35px;margin: 10px 0 10px 10px;display: inline-block;width: auto;padding: 0 10px;}
+.esignDelBtn{color: #fff;border: none;outline: none;background-color: #dd4b39;font-size: 16px;border-radius: 13px;height: 35px;line-height: 35px;margin: 10px 0 10px 10px;}
 .index-input-div {
     width: 90%;
     margin: auto;
+}
+/deep/ .van-cell.cell-input{margin-bottom: 20px; }
+/deep/ .van-radio__icon, /deep/ .van-radio__icon .van-icon, /deep/ .van-checkbox__icon, /deep/ .van-checkbox__icon .van-icon{
+    font-size: 18px;height: 20px;line-height: 20px;
 }
 </style>
