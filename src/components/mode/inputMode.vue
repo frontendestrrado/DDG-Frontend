@@ -92,7 +92,7 @@
                         </template>
                         <!-- 9文字描述 -->
                         <template v-if="item.type==9">
-                            <div style="text-align: left;font-weight: bold;margin:10px 0;">{{item.content}}</div>
+                            <div style="text-align: left;font-weight: bold;margin:10px 0;">{{item.title}}</div>
                         </template>
                         <!-- 10單選框 -->
                         <template v-if="item.type==10">
@@ -130,7 +130,7 @@
                                 </template>
                             </van-field> -->
                             <div class="tl">{{item.title}}</div>
-                            <vue-esign :ref="'esign_'+index" :width="800" :height="300" :isCrop="isCrop" :lineWidth="lineWidth" :lineColor="lineColor" :bgColor.sync="bgColor" style="border: 1px solid #666;"/>
+                            <vue-esign :ref="'esign_'+index" :width="1200" :height="300" :isCrop="isCrop" :lineWidth="lineWidth" :lineColor="lineColor" :bgColor.sync="bgColor" style="border: 1px solid #666;"/>
                             <div class="tr">
                                 <div class="esignBtn" @click="handleReset(index);">清空画板</div>
                                 <div class="esignBtn" @click="handleGenerate(index);">生成图片</div>
@@ -138,7 +138,8 @@
                         </template>
 
                         <template v-if="item.type==13">
-                            <div class="tl">{{item.title}}
+                            <div class="tl">
+                                <span style="font-weight: bold;">{{item.title}}</span>
                                 <van-button class="esignBtn" native-type="button" @click="addInput(index);">添加</van-button>
                             </div>
                             <van-cell class="cell-input" v-for="(input,n) in item.content" :key="'input_'+n">
@@ -153,7 +154,7 @@
                                     :placeholder="inputItem.title"
                                     :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+inputItem.title }]"
                                 >
-                                    <van-button v-if="n!=0&&i==0" class="esignDelBtn" slot="button" native-type="button" @click="delInput(index);">删除</van-button>
+                                    <van-button v-if="n!=0&&i==0" class="esignDelBtn" slot="button" native-type="button" @click="delInput(index,n);">删除</van-button>
                                 </van-field>
                             </van-cell>
                         </template>
@@ -278,6 +279,7 @@ export default {
     },
     methods:{
         onSubmit(values){
+            console.log(values,222);
             let content = [];
             // for(var key in values){
             //     if(key==''||key=="undefined"||key==null||key==undefined){
@@ -462,6 +464,11 @@ export default {
             let len = this.formDataInfo.data_collects[index].content.length;
             this.$set(this.formDataInfo.data_collects[index].content,len,newContent)
         },
+        // 删除输入框
+        delInput(index,n) {
+            let content = this.formDataInfo.data_collects[index].content;
+            content.splice(n,1)
+        },
         //获取验证码
         sendCode(index){
             // let nowIndex;
@@ -525,6 +532,7 @@ export default {
                 }
             })
             if(num == 0){
+                const vm=this;
                 setTimeout(function(){
                     vm.onSubmit(values);
                 },600);
