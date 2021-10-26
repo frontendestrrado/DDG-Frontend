@@ -2,7 +2,7 @@
     <div class="index-input">
         <div class="index-input-div">
             <van-row class="columnboxAbout" v-if="formDataInfo.data_collects.length>0" :gutter="$store.state.isPC?20:0">
-                <van-form validate-first @failed="onFailed" @submit="onSubmit">
+                <van-form validate-first @failed="onFailed" @submit="verifyCode">
 
                     <van-col :span="showClass" v-for="(item,index) in formDataInfo.data_collects" :key="index">
                     <!-- type  1文本 2密码 3手机号 4邮箱 5日期 6时间 7文本框 8图片 9描述 10单选 11多选 12电子签名 13输入框 14按钮 -->
