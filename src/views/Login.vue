@@ -265,7 +265,8 @@
 							this.$toast({
 								type:'success',
 								message:'登录成功',
-							});          	
+							});
+							this.getUser();
 							const vm=this;
 							setTimeout(function(){
 								vm.$store.commit('changePage',{tabbar: '/Index', title: 'Home'});
@@ -284,6 +285,23 @@
 				}else{
 					this.$toast('请输入用户名和密码');
 				}
+			},
+			// 获取用户信息
+			getUser(){
+				this.$axios({
+	                method: 'get',
+	                url: '/api/v1/user',
+	                headers: {
+	                    "Authorization": sessionStorage.token_type+sessionStorage.token,
+	                }
+	            }).then(res => {
+	            	sessionStorage.setItem('user_id',res.id);
+	            }).catch(err => {
+	                this.$toast({
+	            		type:'fail',
+	            		message:'error',
+	        		});
+	            });
 			},
 			// 获取验证码
 			sendCode(){
@@ -392,44 +410,44 @@
 					return;
 				}
 				console.log(this.registForm);
-				// this.$axios({
-				// 	method: 'post',
-				// 	url: '/api/v1/users',
-				// 	data:{
-				// 		name:this.registForm.name,
-				// 		password:this.registForm.password,
-				// 		phone:this.registForm.phone,
-				// 		passport:this.registForm.passport,
-				// 		address:this.registForm.address,
-				// 		birthday:this.registForm.birthday,
-				// 		sponsor:this.registForm.sponsor,
-				// 		bank:this.registForm.bank,
-				// 		bankAccountNo:this.registForm.bankAccountNo,
-				// 		bankAccountName:this.registForm.bankAccountName,
-				// 		password_confirmation:this.registForm.password_confirmation,
-				// 	},
-				// }).then(res => {
-				// 	console.log(res);
-				// 	if(res.id){
-				// 		this.$toast({
-				// 			type:'success',
-				// 			message:'注册成功，请前去登录',
-				// 		});          	
-				// 		const vm=this;
-				// 		setTimeout(function(){
-				// 			// vm.$router.push('/');
-				// 			vm.activeName = 'SignIn';
-				// 		},1000);
-				// 	}
-				// }).catch(err => {
-				// 	this.$toast.allowMultiple();
-				// 	for (var item in err.errors) {
-				// 		this.$toast({
-				// 			type:'fail',
-				// 			message:err.errors[item],
-				// 		});
-				// 	}
-				// });
+				this.$axios({
+					method: 'post',
+					url: '/api/v1/users',
+					data:{
+						name:this.registForm.name,
+						password:this.registForm.password,
+						phone:this.registForm.phone,
+						passport:this.registForm.passport,
+						address:this.registForm.address,
+						birthday:this.registForm.birthday,
+						sponsor:this.registForm.sponsor,
+						bank:this.registForm.bank,
+						bankAccountNo:this.registForm.bankAccountNo,
+						bankAccountName:this.registForm.bankAccountName,
+						password_confirmation:this.registForm.password_confirmation,
+					},
+				}).then(res => {
+					console.log(res);
+					if(res.id){
+						this.$toast({
+							type:'success',
+							message:'注册成功，请前去登录',
+						});          	
+						const vm=this;
+						setTimeout(function(){
+							// vm.$router.push('/');
+							vm.activeName = 'SignIn';
+						},1000);
+					}
+				}).catch(err => {
+					this.$toast.allowMultiple();
+					for (var item in err.errors) {
+						this.$toast({
+							type:'fail',
+							message:err.errors[item],
+						});
+					}
+				});
 			},
 		}
 	}

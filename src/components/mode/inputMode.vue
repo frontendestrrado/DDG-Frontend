@@ -343,6 +343,7 @@ export default {
                     page_id:this.$route.params.page_id,
                     module_id:this.formDataInfo.page_module_relation_id,
                     content: JSON.stringify(content),
+                    user_id: sessionStorage.user_id
                 },
             }).then(res => {
                 console.log(res);

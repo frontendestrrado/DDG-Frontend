@@ -1,11 +1,12 @@
 <template>
-	<div class="index-graphic" :style="{backgroundColor:graphicData.bg_color,marginBottom:graphicData.layout == 1?'120px':'0'}">
+	<div class="index-graphic" :style="{backgroundColor:graphicData.bg_color,marginBottom:graphicData.layout == 1?'10px':'0'}">
 	    <div class="index-graphic-div">
 	    	<van-row class="columnboxAbout" :gutter="$store.state.isPC?20:0">
                 <van-col :span="showClass"  v-for="(graphic,index) in graphicData.imageText" :key="index">
                     <div :class="'imgTextLayout layoutImg_'+graphicData.layout_images_text + ' layoutImgOne_'+graphicData.layout" @click="goView(graphic.path,graphic.text)">
 						<div :class="graphicData.layout == 1?'imgTextBox1':'imgTextBox'">
 							<van-image
+                            v-show="graphic.image"
 							:style="graphicData.layout == 3?'width:60%':'width:90%'"
                             class="image"
 							:src="graphic.image"
@@ -75,7 +76,7 @@ export default {
 <style scoped>
 /* 图文模块 */
 /deep/ .van-col-5{width:20%;}
-.index-graphic-div{padding-top: 20px;}
+/*.index-graphic-div{padding-top: 20px;}*/
 .columnboxAbout {width:100%;display:flex;flex-wrap:wrap;}
 .textContent >div{overflow: hidden;}
 .imgTextBox{position: relative;display: inline-flex;flex: none;}
@@ -90,7 +91,7 @@ export default {
 .layout_1{top:0;left: 0;}
 .layout_2{top: 50%;left: 0;transform: translateY(-50%);}
 .layout_3{bottom: 0;left: 0;}
-.imgTextLayout{display: flex;margin-bottom: 20px;}
+.imgTextLayout{display: flex;/*margin-bottom: 20px;*/}
 .layoutImgOne_1{align-items: center;}
 .layoutImg_1{flex-flow: column-reverse;}
 .layoutImg_2{flex-flow: column;}
@@ -102,18 +103,19 @@ pre{white-space: break-spaces;margin: 0;font-family: 'Avenir,Helvetica,Arial,san
     height:auto;
     max-height:400px;
     margin: 0 auto;
+    padding-top: 20px;
 }
 .textTitle {
-    font-size: 40px;
+    /*font-size: 40px;*/
     font-family: FandolSong;
     margin-bottom: 10px;
     line-height: 40px;
 }
+.textPre{padding-bottom: 20px;}
 /* 手機 */
 @media screen and (max-width: 768px) {
     .imgTextLayout{
         display: block;
-        margin-bottom: 20px;
     }
     .imgTextBox1 {
         width: 70%;
@@ -121,10 +123,10 @@ pre{white-space: break-spaces;margin: 0;font-family: 'Avenir,Helvetica,Arial,san
         margin-right:0;
     }
     .textPre {
-        padding: 0 10px;
+        padding: 0 10px;padding-bottom: 10px;
     }
     .textTitle {
-        font-size: 28px;
+        /*font-size: 28px;*/
         line-height: 30px;
     }
 }
