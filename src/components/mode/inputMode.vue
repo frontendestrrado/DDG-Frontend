@@ -28,7 +28,24 @@
                                 :label="item.title"
                                 :placeholder="item.title"
                                 :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
-                              />
+                            >
+                            </van-field>
+                            <van-field
+                                readonly
+                                clickable
+                                label="區號"
+                                :value="areaCode[index]"
+                                placeholder="選擇區號"
+                                @click="showPicker = true"
+                            />
+                            <van-popup v-model="showPicker" round position="bottom">
+                                <van-picker
+                                    show-toolbar
+                                    :columns="columns"
+                                    @cancel="showPicker = false"
+                                    @confirm="value => onConfirm(value,index)"
+                                />
+                            </van-popup>
                             <van-field
                                 v-model="phoneList[index].verify_code"
                                 center
@@ -232,8 +249,11 @@ export default {
             lineWidth: 6,   //签名框
             lineColor: '#000000',
             bgColor: '#fff',
-            isCrop: false
+            isCrop: false,
 
+            areaCode: [],
+            showPicker: false,
+            columns: ['+86', '+852', '+886', '+60'],
         }
     },
     computed:{
@@ -278,6 +298,11 @@ export default {
         this.phoneList = phoneData;
     },
     methods:{
+        onConfirm(value,index) {
+            console.log(value,index,4444444);
+            this.areaCode[index] = value;
+            this.showPicker = false;
+        },
         onSubmit(values){
             console.log(values,222);
             let content = [];
@@ -481,7 +506,7 @@ export default {
             // }
             if(!this.phoneList[index].isSms){
                 if(this.phoneList[index].phone){
-                    var data = [{"phone":this.phoneList[index].phone}]
+                    var data = [{"phone":this.areaCode[index] + this.phoneList[index].phone}]
                     this.$axios({
                         method: 'POST',
                         url: '/api/v1/sin_up/sms/verify_code',

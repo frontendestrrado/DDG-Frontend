@@ -1,7 +1,7 @@
 <template>
-	<div class="OrganizeChart">
+	<div class="OrganizeChart from_content">
 		<div class="OrganizeChart_info">
-			<van-cell center>
+			<!-- <van-cell center>
 				<template #title>
 					<span class="custom-title">Name: Trust</span>
 				</template>
@@ -14,14 +14,14 @@
 			<div class="fca">
 				<van-button style="width: 45%;" square type="info" @click="changChart(1)">Month</van-button>
 				<van-button style="width: 45%;" square type="info" @click="changChart(2)">Year</van-button>
-			</div>
+			</div> -->
 
 			<van-cell center>
 				<template #title>
 					<span class="custom-title">Trust</span>
 				</template>
 				<template #default>
-					<div class="fcb"><span>Account:</span><span>12345678</span></div>
+					<div class="fcb"><span>Amount:</span><span>12345678</span></div>
 					<div class="fcb"><span>Date:</span><span>2021-08-01 14:30:00</span></div>
 					<div class="fcb"><span>Sales ID:</span><span>$999</span></div>
 				</template>
@@ -31,7 +31,7 @@
 					<span class="custom-title">Trust</span>
 				</template>
 				<template #default>
-					<div class="fcb"><span>Account:</span><span>12345678</span></div>
+					<div class="fcb"><span>Amount:</span><span>12345678</span></div>
 					<div class="fcb"><span>Date:</span><span>2021-08-01 14:30:00</span></div>
 					<div class="fcb"><span>Sales ID:</span><span>$999</span></div>
 				</template>
@@ -41,7 +41,7 @@
 					<span class="custom-title">Trust</span>
 				</template>
 				<template #default>
-					<div class="fcb"><span>Account:</span><span>12345678</span></div>
+					<div class="fcb"><span>Amount:</span><span>12345678</span></div>
 					<div class="fcb"><span>Date:</span><span>2021-08-01 14:30:00</span></div>
 					<div class="fcb"><span>Sales ID:</span><span>$999</span></div>
 				</template>
@@ -51,7 +51,7 @@
 					<span class="custom-title">Trust</span>
 				</template>
 				<template #default>
-					<div class="fcb"><span>Account:</span><span>12345678</span></div>
+					<div class="fcb"><span>Amount:</span><span>12345678</span></div>
 					<div class="fcb"><span>Date:</span><span>2021-08-01 14:30:00</span></div>
 					<div class="fcb"><span>Sales ID:</span><span>$999</span></div>
 				</template>
@@ -125,8 +125,8 @@
 			//         data: [5, 20, 36, 10, 10, 20]
 			//     }]
 			// });
-			this.monthChart=this.$echarts.init(document.getElementById("chart"));
-			this.monthChart.setOption(this.options);
+			// this.monthChart=this.$echarts.init(document.getElementById("chart"));
+			// this.monthChart.setOption(this.options);
 	    },
 		methods:{
 			changChart(type){
@@ -226,7 +226,7 @@
 /deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
 /deep/ .van-cell__value{color: #323233;}
 .OrganizeChart{
-	width: 100%;
+	/* width: 100%; */
 }
 .OrganizeChart_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 20px;}
 .OrganizeChart_info .ad_icon{width: 20vw;height: 20vw;/*background-color: #CBCDCE;*/margin: 20px auto 10px;border-radius: 10px;}

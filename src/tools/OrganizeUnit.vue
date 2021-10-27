@@ -1,6 +1,6 @@
 <template>
-	<div class="OrganizeChart from_content">
-		<div class="OrganizeChart_info">
+	<div class="OrganizeUnit from_content">
+		<div class="OrganizeUnit_info">
 			<template v-if='type == 0'>
 				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')" value="1" title="Personal Enrollment">
 				</van-cell>
@@ -12,9 +12,9 @@
 				</van-cell>
 			</template>
 			<template v-else>
-				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Organizational Chart'});$router.push('/OrganizeReport/1')">
+				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
 					<template #title>
-						<span class="custom-title">Advisor Name</span>
+						<span class="custom-title">Unit Leader: Name</span>
 					</template>
 					<template #default>
 						<div class="fcb"><span>Status:</span><span class="item_status">Active</span></div>
@@ -22,9 +22,9 @@
 						<div class="fcb"><span>Year Sales:</span><span>$999</span></div>
 					</template>
 				</van-cell>
-				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Organizational Chart'});$router.push('/OrganizeReport/1')">
+				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
 					<template #title>
-						<span class="custom-title">Advisor Name</span>
+						<span class="custom-title">Unit Leader: Name</span>
 					</template>
 					<template #default>
 						<div class="fcb"><span>Status:</span><span class="item_status">Active</span></div>
@@ -32,9 +32,9 @@
 						<div class="fcb"><span>Year Sales:</span><span>$999</span></div>
 					</template>
 				</van-cell>
-				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Organizational Chart'});$router.push('/OrganizeReport/1')">
+				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
 					<template #title>
-						<span class="custom-title">Advisor Name</span>
+						<span class="custom-title">Unit Leader: Name</span>
 					</template>
 					<template #default>
 						<div class="fcb"><span>Status:</span><span class="item_status">Active</span></div>
@@ -42,9 +42,9 @@
 						<div class="fcb"><span>Year Sales:</span><span>$999</span></div>
 					</template>
 				</van-cell>
-				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Organizational Chart'});$router.push('/OrganizeReport/1')">
+				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
 					<template #title>
-						<span class="custom-title">Advisor Name</span>
+						<span class="custom-title">Unit Leader: Name</span>
 					</template>
 					<template #default>
 						<div class="fcb"><span>Status:</span><span class="item_status">Active</span></div>
@@ -52,9 +52,9 @@
 						<div class="fcb"><span>Year Sales:</span><span>$999</span></div>
 					</template>
 				</van-cell>
-				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Organizational Chart'});$router.push('/OrganizeReport/1')">
+				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')">
 					<template #title>
-						<span class="custom-title">Advisor Name</span>
+						<span class="custom-title">Unit Leader: Name</span>
 					</template>
 					<template #default>
 						<div class="fcb"><span>Status:</span><span class="item_status">Active</span></div>
@@ -101,7 +101,7 @@
 <style scoped>
 /deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
 /deep/ .van-cell__value{color: #323233;}
-.OrganizeChart{
+.OrganizeUnit{
 	/* width: 100%; */
 }
 .item_status{color: #43bf77;}

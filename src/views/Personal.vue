@@ -71,6 +71,7 @@
                 <van-icon slot="right-icon" v-if="actUserBtn=='accountName'" name="success" size="30px" @click="patchEdit('accountName')" />
                 <van-icon slot="right-icon" v-else name="edit" size="30px" @click="showEditBtn('accountName')"/>
             </van-field>
+            <van-field center label="Created Date" :readonly="true" v-model="userInfo.created_at"></van-field>
             <!-- <van-cell title="Home Address" :value="userInfo.name" is-link>
                 <template #right-icon><van-icon name="edit" size="30px"/></template>
             </van-cell>

@@ -26,7 +26,8 @@
 			    <div class="fcb"><span>Year Sales:</span><span>$999</span></div>
 			  </template>
 			</van-cell>
-			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/2', title: 'Organizational Chart'});$router.push('/OrganizeList/2')">
+			<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeUnit/1', title: 'Organizational Chart'});$router.push('/OrganizeUnit/1')">
+			<!-- <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/2', title: 'Organizational Chart'});$router.push('/OrganizeList/2')"> -->
 			  <template #title>
 			    <span class="custom-title">Unit</span>
 			  </template>

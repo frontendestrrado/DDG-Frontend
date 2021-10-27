@@ -38,6 +38,22 @@
                             placeholder="Mobile Number"
                             :rules="[{ required: true, message: '请输入Mobile Number' }]"
                           />
+												<van-field
+														readonly
+														clickable
+														label="區號"
+														:value="areaCode"
+														placeholder="選擇區號"
+														@click="showPicker = true"
+												/>
+												<van-popup v-model="showPicker" round position="bottom">
+														<van-picker
+																show-toolbar
+																:columns="columns"
+																@cancel="showPicker = false"
+																@confirm="onConfirm"
+														/>
+												</van-popup>
                         <van-field
                             v-model="phoneList.verify_code"
                             center
@@ -194,12 +210,20 @@
 					verify_code: '',
 					isSms: false,
 				},
+
+				areaCode: '',
+				showPicker: false,
+				columns: ['+86', '+852', '+886', '+60'],
 			}
 		},
 		mounted(){
 			this.getPageContent();
 		},
 		methods:{
+			onConfirm(value) {
+				this.areaCode = value;
+				this.showPicker = false;
+			},
 			getPageContent(){
 				this.$axios({
 					method: 'get',
@@ -265,7 +289,7 @@
 			sendCode(){
 				if(!this.phoneList.isSms){
 	                if(this.registForm.phone){
-	                    var data = [{"phone":this.registForm.phone}]
+	                    var data = [{"phone":this.areaCode + this.registForm.phone}]
 	                    this.$axios({
 	                        method: 'POST',
 	                        url: '/api/v1/sin_up/sms/verify_code',

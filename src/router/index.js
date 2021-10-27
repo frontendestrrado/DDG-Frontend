@@ -18,6 +18,7 @@ import ErrorPage from '@/views/ErrorPage'
 import OrganizeChart from '@/tools/OrganizeChart'
 import OrganizeList from '@/tools/OrganizeList'
 import OrganizeReport from '@/tools/OrganizeReport'
+import OrganizeUnit from '@/tools/OrganizeUnit'
 import Performance from '@/tools/Performance'
 import PersonalGrowth from '@/tools/PersonalGrowth'
 import TrainingPlan from '@/tools/TrainingPlan'
@@ -92,6 +93,10 @@ const router = new Router({
       path: '/OrganizeReport/:id',
       name: '组织图详情',
       component: OrganizeReport,
+    },{
+      path: '/OrganizeUnit/:id',
+      name: '组织图團隊',
+      component: OrganizeUnit,
     },{
       path: '/Performance',
       name: '业绩',
