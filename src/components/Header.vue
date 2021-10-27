@@ -263,7 +263,7 @@ export default {
 	}
 	/*下拉选项*/
 	.menuInfo{
-		position:fixed;height:auto;top:80px;right:0;width:auto;padding: 0 20px;
+		position:fixed;height:auto;/*top:80px;*/top:90px;right:0;bottom:0;width:auto;padding: 0 20px;
 		z-index:10;text-align:center;line-height:40px;background-color:#dee5f2;
 		font-size:24px;color:#7B5C55;overflow-y: auto;min-height: 100%;
 	}
@@ -306,7 +306,7 @@ export default {
 			}
 			/*下拉选项*/
 			.menuInfo{
-				position:fixed;height:auto;width:100%;top:60px;left:0;width:100%;padding: 0;
+				position:fixed;height:auto;width:100%;/*top:60px;*/top:70px;left:0;bottom:0;width:100%;padding: 0;
 				z-index:10;text-align:center;line-height:40px;background-color:#dee5f2;
 				font-size:20px;color:#7B5C55;
 			}
