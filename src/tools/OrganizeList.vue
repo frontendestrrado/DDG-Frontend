@@ -1,5 +1,5 @@
 <template>
-	<div class="OrganizeChart">
+	<div class="OrganizeChart from_content">
 		<div class="OrganizeChart_info">
 			<template v-if='type == 0'>
 				<van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/1', title: 'Organizational Chart'});$router.push('/OrganizeList/1')" value="1" title="Personal Enrollment">
@@ -102,7 +102,7 @@
 /deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
 /deep/ .van-cell__value{color: #323233;}
 .OrganizeChart{
-	width: 100%;
+	/* width: 100%; */
 }
 .item_status{color: #43bf77;}
 </style>
