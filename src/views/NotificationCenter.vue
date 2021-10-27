@@ -3,7 +3,8 @@
 		<div class="notices_info">
 			<van-cell center v-for="(item,index) in noticesList" :key="index">
 				<div>{{item.type}}</div>
-				<div class="itemContent van-multi-ellipsis--l2">{{item.content}}</div>
+				<!-- van-multi-ellipsis--l2 -->
+				<div class="itemContent">{{item.content}}</div>
 			</van-cell>
 		</div>
 	</div>
