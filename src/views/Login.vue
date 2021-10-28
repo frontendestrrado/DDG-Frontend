@@ -42,6 +42,9 @@
 														readonly
 														clickable
 														label="區號"
+														center
+                            :required="true"
+														:rules="[{required: true, message: '请選擇區號'}]"
 														:value="areaCode"
 														placeholder="選擇區號"
 														@click="showPicker = true"
