@@ -20,6 +20,8 @@ import OrganizeList from '@/tools/OrganizeList'
 import OrganizeReport from '@/tools/OrganizeReport'
 import OrganizeUnit from '@/tools/OrganizeUnit'
 import Performance from '@/tools/Performance'
+import PerformanceList from '@/tools/PerformanceList'
+import PerformanceDetail from '@/tools/PerformanceDetail'
 import PersonalGrowth from '@/tools/PersonalGrowth'
 import TrainingPlan from '@/tools/TrainingPlan'
 import ToolBox from '@/tools/ToolBox'
@@ -101,6 +103,14 @@ const router = new Router({
       path: '/Performance',
       name: '业绩',
       component: Performance,
+    },{
+      path: '/PerformanceList',
+      name: '业绩列表',
+      component: PerformanceList,
+    },{
+      path: '/PerformanceDetail/:id',
+      name: '业绩详情',
+      component: PerformanceDetail,
     },{
       path: '/Cases',
       name: '个案',
