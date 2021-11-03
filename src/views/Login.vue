@@ -216,7 +216,7 @@
 
 				areaCode: '',
 				showPicker: false,
-				columns: ['+86', '+852', '+886', '+60'],
+				columns: ['86', '852', '886', '60'],
 			}
 		},
 		mounted(){
@@ -377,9 +377,10 @@
 	        },
 	        // 验证验证码
 	        verifyCode(values){
+						console.log(this.areaCode,333);
 	            let data = [];
 	            var phoneInfo = {
-                    phone: this.registForm.phone,
+                    phone: this.areaCode + this.registForm.phone,
                     verify_code: this.phoneList.verify_code,
                 };
                 data.push(phoneInfo);
