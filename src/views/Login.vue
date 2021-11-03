@@ -420,7 +420,7 @@
 					data:{
 						name:this.registForm.name,
 						password:this.registForm.password,
-						phone:this.registForm.phone,
+						phone:this.areaCode + this.registForm.phone,
 						passport:this.registForm.passport,
 						address:this.registForm.address,
 						birthday:this.registForm.birthday,
