@@ -28,17 +28,7 @@
                             placeholder="NRIC Name or Passport # / Company Re.Number"
                             :rules="[{ required: true, message: '请输入NRIC Name or Passport # / Company Re.Number' }]"
                           />
-						<van-field
-                            v-model="registForm.phone"
-                            name="Mobile Number"
-                            center
-                            :required="true"
-                            type="text"
-                            label="Mobile Number"
-                            placeholder="Mobile Number"
-                            :rules="[{ required: true, message: '请输入Mobile Number' }]"
-                          />
-												<van-field
+													<van-field
 														readonly
 														clickable
 														label="區號"
@@ -49,6 +39,16 @@
 														placeholder="選擇區號"
 														@click="showPicker = true"
 												/>
+						<van-field
+                            v-model="registForm.phone"
+                            name="Mobile Number"
+                            center
+                            :required="true"
+                            type="text"
+                            label="Mobile Number"
+                            placeholder="Mobile Number"
+                            :rules="[{ required: true, message: '请输入Mobile Number' }]"
+                          />
 												<van-popup v-model="showPicker" round position="bottom">
 														<van-picker
 																show-toolbar

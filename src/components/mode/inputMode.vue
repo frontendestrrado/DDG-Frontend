@@ -20,17 +20,6 @@
                         </template>
                         <template v-if="item.type==3 && phoneList[index]">
                             <van-field
-                                v-model="phoneList[index].phone"
-                                :name="item.title"
-                                center
-                                :required="item.is_require == 1 ? true:false"
-                                type="digit"
-                                :label="item.title"
-                                :placeholder="item.title"
-                                :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
-                            >
-                            </van-field>
-                            <van-field
                                 readonly
                                 clickable
                                 label="區號"
@@ -41,6 +30,17 @@
                                 placeholder="選擇區號"
                                 @click="showPicker = true"
                             />
+                            <van-field
+                                v-model="phoneList[index].phone"
+                                :name="item.title"
+                                center
+                                :required="item.is_require == 1 ? true:false"
+                                type="digit"
+                                :label="item.title"
+                                :placeholder="item.title"
+                                :rules="[{ required: item.is_require == 1 ? true:false, message: '请输入'+item.title }]"
+                            >
+                            </van-field>
                             <van-popup v-model="showPicker" round position="bottom">
                                 <van-picker
                                     show-toolbar
