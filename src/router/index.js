@@ -25,6 +25,7 @@ import PerformanceDetail from '@/tools/PerformanceDetail'
 import PersonalGrowth from '@/tools/PersonalGrowth'
 import TrainingPlan from '@/tools/TrainingPlan'
 import ToolBox from '@/tools/ToolBox'
+import FormList from '@/tools/FormList'
 
 import InviteCustomers from '@/tools/InviteCustomers'
 import Members from '@/tools/Members'
@@ -163,7 +164,11 @@ const router = new Router({
       path: '/FilesPage',
       name: '文件',
       component: FilesPage,
-    },]
+    },{
+      path: '/FormList',
+      name: 'FormList',
+      component: FormList,
+    }]
   },
   {
     path: '/ErrorPage',
