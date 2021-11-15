@@ -10,9 +10,10 @@
 			<div class="ContactUsTitle">Contact Us</div>
 			<div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
 			<div>Tel : +6016-5535691</div>
-			<div>Email : herman@ddgint.com</div>
-			<div>Website : http://www.ddgint.com/#/Index </div>
-			<div>Business Hour: 9.00m – 5.00pm (Mon – Fri) </div>
+			<div>Email : info@ddgint.com</div>
+			<div>Website : www.ddgint.com </div>
+			<div>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang.</div>
+			<div>Business Hour: 9.00am – 5.00pm (Monday – Friday) </div>
 		</div>	
 	</div>
 </template>

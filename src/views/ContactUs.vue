@@ -2,7 +2,7 @@
 	<div class="contactUs main_content">
 		<van-row>
             <van-col :span="$store.state.isPC?8:24">
-            	<div class="contactUs_info">
+            	<div class="contactUs_info" style="text-align:left;">
 					<div class="contactUs_title">Contact Us</div>
 					<div class="fcs">
 						<span>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</span>
@@ -14,17 +14,17 @@
 						<span>Email		: info@ddgint.com</span>
 					</div>
 					<div class="fcs">
-						<span>Website	: www.ggdint.com</span>
+						<span>Website	: www.ddgint.com</span>
 					</div>
 					<div class="fcs">
-						<span>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang</span>
+						<span>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang.</span>
 					</div>
 					<div class="fcs">
-						<span>Business Hour: 9.00m – 5.00pm (Monday – Friday) </span>
+						<span>Business Hour: 9.00am – 5.00pm (Monday – Friday)  </span>
 					</div>
-					<div class="fcs">
+					<!-- <div class="fcs">
 						<span>Please create Google map, thanks</span>
-					</div>
+					</div> -->
 					<!-- <div class="fcs">
 						<van-icon name="envelop-o" color="#000" size="26" />
 						<span>mailadmin@ddgint.com</span>
@@ -119,9 +119,9 @@ export default {
 		margin-bottom: 10px;padding: 0px 16px;
 	}
     .contactUs{width: 100%;/*min-height: calc(100vh - 60px);*/margin-top: 20px;background: #F3F5F7;}
-    .contactUs_info{height:calc(100% - 40px);padding: 20px 30px;background-color: #FFC80B;}
+    .contactUs_info{height:calc(100% - 40px);padding: 20px 30px;background-color: #CFC3B5;}
     .contactUs_title{font-weight: 500;text-align: left;}
-    .contactUs_info .fcs{margin-left: 10%;margin-top: 10px;}
+    .contactUs_info .fcs{margin-left: 10%;margin-top: 15px;}
     .contactUs_info span{margin-left: 10px;}
 	.inputBox{
 		width: 90%;

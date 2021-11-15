@@ -101,9 +101,9 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
   width: 100%;
   height: 46px;
   line-height: 46px;
-  background: #FFC80B;
+  background: #1989FA;
   color: #fff;
-  border-color: #FFC80B;
+  border-color: #1989FA;
   border-radius: 8px;
 }
 .main_content {
