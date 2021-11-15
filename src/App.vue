@@ -98,13 +98,13 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 /deep/ .van-row{display: flex;align-items: center;}
 /deep/ .van-cell .van-cell__title{text-align: left;}
 .submitBtn{
-  width: 100%;
-  height: 46px;
-  line-height: 46px;
-  background: #1989FA;
-  color: #fff;
-  border-color: #1989FA;
-  border-radius: 8px;
+  width: 100% !important;
+  height: 46px !important;
+  line-height: 46px !important;
+  background-color: #1989FA !important;
+  color: #fff !important;
+  border-color: #1989FA !important;
+  border-radius: 8px !important;
 }
 .main_content {
   /*width: 100%;*/
