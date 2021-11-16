@@ -1,5 +1,5 @@
 <template>
-	<div class="Cases">
+	<div class="Cases bodybox">
 
 		<div class="cases_item">
 			<div>

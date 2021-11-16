@@ -21,7 +21,7 @@
 			  	</van-col>
 			</van-row> -->
 			<van-row class="fcb" style="height: 100%;">
-				<van-col :span="4">
+				<van-col :span="5" style="text-align:left;padding-left:3%;">
 					<van-icon name="arrow-left" v-if="$store.state.currentPage.tabbar != '/Index'" color="#333" size="30" @click="changeActTab('','');"/>
 					<van-image
 						v-if="$store.state.currentPage.tabbar == '/Index'"
@@ -30,7 +30,7 @@
 				      	fit="contain"
 				      	@click="isShowTopUl=true;$router.push('/Index');"/>
 				</van-col>
-				<van-col :span="16" class="tc">
+				<van-col :span="14" class="tc">
 					<!-- <van-image
 						v-if="$store.state.currentPage.tabbar == '/Index'"
 						class="logo hv"
@@ -40,7 +40,8 @@
 					<div v-if="$store.state.currentPage.tabbar != '/Index'">{{$store.state.currentPage.title}}</div>
 
 				</van-col>
-				<van-col :span="4">
+				<van-col :span="5" style="display:flex;align-items: center;justify-content: end;padding-right:3%;">
+					<div class="SignUpIn" @click="toLogin" v-if="$store.state.currentPage.tabbar == '/Index'">Sign Up / Sign In</div>
 					<van-icon v-if="isShowTopUl" name="wap-nav" color="#333" size="30" @click="isShowTopUl=false;" />
 					<van-icon v-else name="cross" color="#333" size="30" @click="isShowTopUl=true;" />
 				</van-col>
@@ -161,6 +162,10 @@ export default {
 				}
 			}
 		},
+		toLogin() {
+			this.$store.commit('changePage',{tabbar: '/Login', title: 'Sign Up / Sign In'});
+			this.$router.push('/Login');
+		},
 		changeLang(val){
 			console.log(val);
 			this.$i18n.locale = val;
@@ -206,7 +211,7 @@ export default {
 	.header{
 		width: 100%;
 		/*height: 80px;*/height: 90px;
-		background-color: #dee5f2;
+		background-color: #fff;
 	}
 	.header-line {
 		background:#1F2E4D;
@@ -277,6 +282,12 @@ export default {
 		position:absolute;bottom:-20px;left:0%;
 		text-indent:0px;font-size:14px;
 	}
+	.SignUpIn {
+		margin-right:10%;
+		font-size:100%;
+		color: #897359;
+		cursor: pointer;
+	}
     /*手机*/
     @media screen and (max-width: 768px){
     	.header{
@@ -319,6 +330,9 @@ export default {
 			.right-item span{
 				position:absolute;bottom:-20px;left:0%;
 				text-indent:0px;font-size:14px;
+			}
+			.SignUpIn {
+				display: none;
 			}
     }
     /*平板*/
@@ -368,6 +382,9 @@ export default {
 				margin-top: 38px;
 				display: flex;
 				justify-content: space-around;
+			}
+			.SignUpIn {
+				display: none;
 			}
     }
     /*中等屏幕*/

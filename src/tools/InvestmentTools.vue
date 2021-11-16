@@ -1,5 +1,5 @@
 <template>
-    <div class="ToolBox">
+    <div class="ToolBox bodybox">
         <div class="ToolBox_info">
             <van-button type="primary" size="large" @click="$store.commit('changePage',{tabbar: '/InviteCustomers', title: 'InviteCustomers'});$router.push('/InviteCustomers');">招商邀请</van-button>
 

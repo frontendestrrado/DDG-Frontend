@@ -135,4 +135,13 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 .van-field .van-icon{
   font-size: 20px;
 }
+.bodybox {
+  max-width: 1200px;
+  margin: auto;
+}
+.bodyboxPg {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 2%;
+}
 </style>

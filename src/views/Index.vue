@@ -1,7 +1,7 @@
 <template>
 	<div class="main_content" :style="{maxWidth: pageWidth+'px'}">
 		<Common :pageData='pageContent'></Common>
-		<div style="height:50px"></div>
+		<!-- <div style="height:50px"></div> -->
 	</div>
 </template>
 

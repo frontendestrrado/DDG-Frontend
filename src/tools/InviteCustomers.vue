@@ -1,5 +1,5 @@
 <template>
-	<div class="ToolBox">
+	<div class="ToolBox bodybox">
 		<div class="ToolBox_info">
             
             <!-- 邀请信息 -->

@@ -1,5 +1,5 @@
 <template>
-	<div class="Performance">
+	<div class="Performance bodybox">
 		<div class="Performance_info">
 
 			<van-cell center :value="'$'+data.totalYearAchievement" title="Yearly"></van-cell>

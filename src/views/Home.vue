@@ -82,8 +82,8 @@ a {
 }
 main{background-color: #fff;min-height: calc(100vh - 80px);}
 .ContactUs {
-	color: #eff0f4;
-	background: #333;
+	color: #333333;
+	background: #CFC3B5;
 	padding: 10px;
 }
 .ContactUsTitle {

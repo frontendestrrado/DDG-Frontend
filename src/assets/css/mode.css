@@ -83,9 +83,9 @@
     overflow: hidden;
     background: #f3f3f3;
 }
-.product-item{
+/* .product-item{
     width: 100%;
-}
+} */
 .fui-goods-item {
     box-sizing: border-box;
     position: relative;
@@ -448,12 +448,12 @@
     width: 32.08%;
     margin-right: 0;
 }
-.product-item {
+/* .product-item {
     width: 100%;
     margin-bottom: 5px;
     height: auto;
     background-color: #fff;
-}
+} */
 .productImg{
     width: 100%;
     height: auto;
@@ -490,7 +490,7 @@
 /* 橱窗模块 */
 .index-proImg{
     width: 100%;
-    padding: 0 3%;
+    /* padding: 0 3%; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -523,7 +523,7 @@
 }
 .product-item {
     width: 100%;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     height: auto;
     /* border-radius: 10px; */
     overflow: hidden;

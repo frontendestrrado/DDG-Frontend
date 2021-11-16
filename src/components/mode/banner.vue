@@ -3,10 +3,10 @@
 		<van-swipe :height="bannerHeight+'px'" :autoplay="bannerData.cutover_time*1000" :class="'button_shape_'+bannerData.button_shape">
 			<van-swipe-item v-for="(item,index) in bannerData.banners" :key="index">
 				<div class="bannerContent" @click="goBanner(item.path)">
+					<!-- fit="contain" -->
 					<van-image
 					:style="'width: 100%;height:' + bannerData.height+'px'"
 					:src="item.image?item.image:require('@/assets/img/test.png')"
-					fit="contain"
 					/>
 				</div>
 			</van-swipe-item>
