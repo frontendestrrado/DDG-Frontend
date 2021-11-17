@@ -458,7 +458,7 @@
 </script>
 <style scoped>
 /deep/ .van-tab {background-color: rgba(198,198,198,1);color: #fff;}
-/deep/ .van-tab--active {background-color: #FFC80B;color: #fff;}
+/deep/ .van-tab--active {background-color: #D9C998;color: #fff;}
 /deep/ .van-tabs__line{background-color: transparent;}
 /deep/ .van-cell{margin-bottom: 10px;padding: 0px 16px;}
 .login{

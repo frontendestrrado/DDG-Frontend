@@ -1,5 +1,5 @@
 <template>
-	<div class="InfoIcollected">
+	<div class="InfoIcollected bodybox">
 		<div class="InfoIcollected_info">
 			<!-- 我收集的資料 -->
             <van-cell-group inset v-for="(item,index) in collectList" :key="index">
@@ -90,7 +90,7 @@ export default {
     /deep/ .van-cell-group{margin-bottom: 15px;}
 	/deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
 	/deep/ .van-cell__value{color: #323233;}
-    .InfoIcollected{width: 100%;min-height: 100vh;background-color: #f2f2f7;}
+    .InfoIcollected{width: 100%;min-height: 100vh;background-color: #fff;}
     .InfoIcollected_info{padding-top: 15px;}
     .ToolBox_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 20px;}
 </style>

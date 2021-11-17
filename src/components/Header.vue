@@ -89,7 +89,7 @@ export default {
 					value: 'zh-TW',
 				},
 			],
-			logo: ''
+			logo: '',
 		}
 	},
 	mounted(){
@@ -112,7 +112,7 @@ export default {
 	watch: {
  		isShowTopUl(){
 			if(!this.isShowTopUl){
-				document.body.style.overflow='hidden';
+				// document.body.style.overflow='hidden';
 			}else{
 				document.body.style.overflow='';
 			}
@@ -219,6 +219,7 @@ export default {
 	}
 	.header-main{
 		font-size: 16px;
+		position: relative;
 	}
 	.mobileMenu{
 		display:inline-flex;height:30px;line-height: 30px;margin-top: 35px;margin-left: 20px;
@@ -268,9 +269,22 @@ export default {
 	}
 	/*下拉选项*/
 	.menuInfo{
-		position:fixed;height:auto;/*top:80px;*/top:90px;right:0;bottom:0;width:auto;padding: 0 20px;
-		z-index:10;text-align:center;line-height:40px;background-color:#dee5f2;
-		font-size:24px;color:#7B5C55;overflow-y: auto;min-height: 100%;
+		position:absolute;
+		height:100vh;
+		/*top:80px;*/
+		top:80px;
+		right:0;
+		bottom:0;
+		width:auto;
+		padding: 0 20px;
+		z-index:10;
+		text-align:center;
+		line-height:40px;
+		background-color:#dee5f2;
+		font-size:24px;
+		color:#333333;
+		/* overflow-y: auto; */
+		min-height: 100%;
 	}
 	.active{
 		border-bottom:none;

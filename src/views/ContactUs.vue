@@ -147,7 +147,7 @@ export default {
 .contactUs_info {
   height: calc(100% - 40px);
   padding: 20px 30px;
-  background-color: #cfc3b5;
+  background-color: #CFC3B5;
 }
 .contactUs_title {
   font-weight: 500;
