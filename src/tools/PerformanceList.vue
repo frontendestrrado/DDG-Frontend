@@ -1,5 +1,5 @@
 <template>
-	<div class="Performance">
+	<div class="Performance bodybox">
 		<div class="Performance_info">
 
             <van-list
@@ -73,7 +73,7 @@ export default {
 	/deep/ .van-cell__title{width: 30%;flex:none;text-align: left;}
 	/deep/ .van-cell__value{color: #323233;}
     .Performance{
-        width: 100%;min-height: calc(100vh - 60px);background: #f4f4f4;
+        width: 100%;min-height: calc(100vh - 60px);background: #fff;
     }
     .Performance_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 20px;}
     .Performance_info{padding-top: 10px;}
