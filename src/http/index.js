@@ -48,6 +48,11 @@ servie.interceptors.response.use(
             if(error.response.status == 401){
                 console.log('token 失效')
                 store.commit('refreshToken');
+                Toast.fail({
+                    message:error.response.data.message,
+                    duration:1800,
+                    position:'top',
+                });
             }else if(route.indexOf('/authorizations')!=-1){
                 Toast.fail({
                     message:error.response.data.message,

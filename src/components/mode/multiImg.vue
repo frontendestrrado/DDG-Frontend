@@ -12,7 +12,7 @@
 				<van-image
 				class="product-proImg mpShow"
 				style="width: 100%;height:auto;"
-				:src="single.phone_image"
+				:src="single.phone_image ? single.phone_image : single.image"
 				fit="contain"
 				/>
 			</div>
