@@ -78,7 +78,7 @@
           </template>
           <template #default>
             <div class="fcb">
-              <span>Status:</span><span class="item_status">Active</span>
+              <span>Status:</span><span class="item_status">{{item.status=='1'?'Active':'Inactive'}}</span>
             </div>
             <div class="fcb"><span>Month Sales:</span><span>${{item.total_month_achievement}}</span></div>
             <div class="fcb"><span>Year Sales:</span><span>${{item.total_year_achievement}}</span></div>

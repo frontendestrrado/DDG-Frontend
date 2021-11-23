@@ -7,7 +7,7 @@
           <span class="custom-title">ME</span>
         </template>
         <template #default>
-          <div class="fcb"><span>Status:</span><span>Active</span></div>
+          <div class="fcb"><span>Status:</span><span>{{me.status=='1'?'Active':'inactive'}}</span></div>
           <div class="fcb"><span>My Level:</span><span>{{me.level}}</span></div>
           <div class="fcb"><span>Month Sales:</span><span>${{me.monthSales}}</span></div>
           <div class="fcb"><span>Year Sales:</span><span>${{me.yearSales}}</span></div>
@@ -26,7 +26,7 @@
         "
       >
         <template #title>
-          <span class="custom-title">Direct Recruit 1st Level</span>
+          <span class="custom-title">My Direct Recruit 1st Level</span>
         </template>
         <template #default>
           <div class="fcb"><span>Enroll:</span><span>{{level.enroll}}</span></div>
@@ -48,7 +48,7 @@
       >
         <!-- <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/2', title: 'Organizational Chart'});$router.push('/OrganizeList/2')"> -->
         <template #title>
-          <span class="custom-title">Unit</span>
+          <span class="custom-title">My Unit</span>
         </template>
         <template #default>
           <div class="fcb"><span>Count:</span><span>{{unit.count}}</span></div>
@@ -68,7 +68,7 @@
         "
       >
         <template #title>
-          <span class="custom-title">Team</span>
+          <span class="custom-title">My Team</span>
         </template>
         <template #default>
           <div class="fcb"><span>Count:</span><span>{{team.count}}</span></div>
@@ -88,7 +88,7 @@
         "
       >
         <template #title>
-          <span class="custom-title">Group</span>
+          <span class="custom-title">My Group</span>
         </template>
         <template #default>
           <div class="fcb"><span>Count:</span><span>{{group.count}}</span></div>

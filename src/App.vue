@@ -112,7 +112,9 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
   margin: 0 auto;
 }
 .from_content{
-  width: 55%;margin: 0 auto;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 @media screen and (max-width: 576px){
   .main_content {max-width: 540px;}
@@ -126,11 +128,11 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 }
 @media screen and (min-width: 768px) and (max-width: 992px){
   .main_content {max-width: 960px;}
-  .from_content{width: 70%;}
+  .from_content{width: 100%;}
 }
 @media screen and (min-width: 992px) and (max-width: 1200px){
   .main_content {max-width: 1170px;}
-  .from_content{width: 60%;}
+  .from_content{width: 100%;}
 }
 .van-field .van-icon{
   font-size: 20px;
