@@ -101,6 +101,14 @@ const router = new Router({
       name: '组织图團隊',
       component: OrganizeUnit,
     },{
+      path: '/OrganizeTeam',
+      name: 'MyTeam',
+      component: () => import('../tools/OrganizeTeam'),
+    },{
+      path: '/OrganizeGroup',
+      name: 'MyGroup',
+      component: () => import('../tools/OrganizeGroup'),
+    },{
       path: '/Performance',
       name: '业绩',
       component: Performance,

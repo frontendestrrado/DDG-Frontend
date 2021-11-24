@@ -1,65 +1,7 @@
 <template>
   <div class="OrganizeChart from_content">
     <div class="OrganizeChart_info">
-      <template v-if="type == 0">
-        <van-cell
-          is-link
-          center
-          @click="
-            $store.commit('changePage', {
-              tabbar: '/OrganizeList/1',
-              title: 'Organizational Chart',
-            });
-            $router.push('/OrganizeList/1');
-          "
-          value="1"
-          title="Personal Enrollment"
-        >
-        </van-cell>
-        <van-cell
-          is-link
-          center
-          @click="
-            $store.commit('changePage', {
-              tabbar: '/OrganizeList/2',
-              title: 'Organizational Chart',
-            });
-            $router.push('/OrganizeList/2');
-          "
-          value="0"
-          title="Unit"
-        >
-        </van-cell>
-        <van-cell
-          is-link
-          center
-          @click="
-            $store.commit('changePage', {
-              tabbar: '/OrganizeList/3',
-              title: 'Organizational Chart',
-            });
-            $router.push('/OrganizeList/3');
-          "
-          value="0"
-          title="Team"
-        >
-        </van-cell>
-        <van-cell
-          is-link
-          center
-          @click="
-            $store.commit('changePage', {
-              tabbar: '/OrganizeList/4',
-              title: 'Organizational Chart',
-            });
-            $router.push('/OrganizeList/4');
-          "
-          value="0"
-          title="Group"
-        >
-        </van-cell>
-      </template>
-      <template v-else>
+      <template>
         <van-cell
           is-link
           center
@@ -70,7 +12,7 @@
               tabbar: '/OrganizeReport/1',
               title: 'Organizational Chart',
             });
-            $router.push('/OrganizeReport/1');
+            $router.push('/OrganizeReport/1?id='+item.id);
           "
         >
           <template #title>

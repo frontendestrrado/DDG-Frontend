@@ -61,10 +61,10 @@
         center
         @click="
           $store.commit('changePage', {
-            tabbar: '/OrganizeList/3',
+            tabbar: '/OrganizeTeam',
             title: 'Organizational Chart',
           });
-          $router.push('/OrganizeList/3');
+          $router.push('/OrganizeTeam');
         "
       >
         <template #title>
@@ -81,10 +81,10 @@
         center
         @click="
           $store.commit('changePage', {
-            tabbar: '/OrganizeList/4',
+            tabbar: '/OrganizeGroup',
             title: 'Organizational Chart',
           });
-          $router.push('/OrganizeList/4');
+          $router.push('/OrganizeGroup');
         "
       >
         <template #title>

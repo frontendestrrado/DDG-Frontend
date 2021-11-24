@@ -20,6 +20,7 @@ servie.interceptors.request.use(config => {
     }
     route = config.url;
     config.headers['Accept-Language']=lang;
+    config.headers['Authorization']=sessionStorage.token_type + sessionStorage.token;
 
     return config;
 },error => {
