@@ -157,6 +157,10 @@ const router = new Router({
       name: '我收集的資料',
       component: InfoIcollected,
     },{
+      path: '/InfoDetail',
+      name: 'InfoDetail',
+      component: () => import('@/tools/InfoDetail'),
+    },{
       path: '/LearnUse',
       name: '学习使用',
       component: LearnUse,

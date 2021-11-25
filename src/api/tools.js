@@ -24,3 +24,11 @@ export const getOrdersById = (query,id) => {
     params: query
   })
 }
+// 获取会员收集的资料
+export const getUserData = (query,id) => {
+  return request({
+    url: '/api/v1/user/data',
+    method: 'get',
+    params: query
+  })
+}

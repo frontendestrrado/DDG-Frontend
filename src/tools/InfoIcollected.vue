@@ -2,7 +2,15 @@
   <div class="InfoIcollected bodybox">
     <div class="InfoIcollected_info">
       <!-- 我收集的資料 -->
-      <van-cell-group inset v-for="(item, index) in collectList" :key="index">
+      <van-cell 
+        is-link center 
+        v-for="(item,inx) in collectList"
+        :key="inx"
+        @click="$store.commit('changePage',{tabbar: 'InfoDetail', title: 'InfoDetail'});$router.push({path: '/InfoDetail',})"
+      >
+        {{ item.content[0].title }}
+      </van-cell>
+      <!-- <van-cell-group inset v-for="(item, index) in collectList" :key="index">
         <template v-for="(val, index) in item.content">
           <van-cell
             center
@@ -30,14 +38,14 @@
               <p v-html="valueInfo(val.value)"></p>
             </template>
           </van-cell>
-          <!-- <van-cell center :title="val.title" :value="val.value + typeof val.value"></van-cell> -->
         </template>
-      </van-cell-group>
+      </van-cell-group> -->
     </div>
   </div>
 </template>
 
 <script>
+import { getUserData } from '@/api/tools'
 export default {
   data() {
     return {
@@ -60,22 +68,31 @@ export default {
   },
   methods: {
     getCollectList() {
-      this.$axios({
-        method: "get",
-        url: "/api/v1/user/data",
-        headers: {
-          Authorization: sessionStorage.token_type + sessionStorage.token,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          // let data = [];
-          res.forEach((item) => {
-            item.content = JSON.parse(item.content);
-          });
-          this.collectList = res;
+      getUserData().then(res => {
+        console.log(res);
+        res.forEach(item => {
+          item.content = JSON.parse(item.content)
         })
-        .catch((error) => {});
+        this.collectList = res;
+      }).catch(err => {
+        console.log(err.response);
+      })
+      // this.$axios({
+      //   method: "get",
+      //   url: "/api/v1/user/data",
+      //   headers: {
+      //     Authorization: sessionStorage.token_type + sessionStorage.token,
+      //   },
+      // })
+      //   .then((res) => {
+      //     console.log(res);
+      //     // let data = [];
+      //     res.forEach((item) => {
+      //       item.content = JSON.parse(item.content);
+      //     });
+      //     this.collectList = res;
+      //   })
+      //   .catch((error) => {});
     },
   },
 };

@@ -435,6 +435,11 @@ export default {
     },
     onFailed(values, errorInfo) {
       console.log("failed", errorInfo);
+      console.log(values,33333);
+      this.$toast({
+        type: "fail",
+        message: values.errors[0].message,
+      });
       for (var key in values) {
         console.log(key, values[key]);
       }

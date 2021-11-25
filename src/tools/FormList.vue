@@ -18,6 +18,15 @@
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Renewal Form'});$router.push('/Page/19')">
       Renewal Form
     </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Advisor Application Form'});$router.push('/Page/35')">
+      Advisor Application Form
+    </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Letter of Wishes'});$router.push('/Page/36')">
+      Letter of Wishes
+    </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'PDPA Bilingual'});$router.push('/Page/37')">
+      PDPA Bilingual
+    </van-cell>
   </div>
 </template>
 

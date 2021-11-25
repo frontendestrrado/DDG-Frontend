@@ -828,7 +828,8 @@ export default {
   margin: 10px 0 10px 10px;
 }
 .index-input-div {
-  width: 90%;
+  width: 100%;
+  padding: 0 16px;
   margin: auto;
 }
 /deep/ .van-cell.cell-input {
