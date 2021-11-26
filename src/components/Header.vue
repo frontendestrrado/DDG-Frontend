@@ -375,7 +375,7 @@ export default {
   z-index: 10;
   text-align: center;
   line-height: 40px;
-  background-color: #dee5f2;
+  background-color: #CFC3B5;
   font-size: 24px;
   color: #333333;
   /* overflow-y: auto; */
@@ -446,7 +446,7 @@ export default {
     z-index: 10;
     text-align: center;
     line-height: 40px;
-    background-color: #dee5f2;
+    background-color: #CFC3B5;
     font-size: 20px;
     color: #7b5c55;
   }

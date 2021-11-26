@@ -31,6 +31,7 @@ if(process.env.NODE_ENV=='development'){
 }else{
 	Vue.prototype.$build = 'https://www.bunchparty.com/trust';
 	// Vue.prototype.$build = 'http://184.168.127.123/trustb'; //正式服
+	// Vue.prototype.$build = 'https://ddgint.com/trustb'; //正式服
 }
 
 import locales from './lang/vantLocal.js' 

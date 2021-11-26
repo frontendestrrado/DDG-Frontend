@@ -44,6 +44,16 @@ servie.interceptors.response.use(
     console.log(error);
     console.log(error.response);
     if (error.response.data.errors) {
+      console.log(error.response.data.errors,5555555555);
+      for (let key in error.response.data.errors) {
+        console.log(error.response.data.errors[key]);
+        Toast.fail({
+          message: error.response.data.errors[key][0],
+          duration: 1800,
+          position: 'top',
+        });
+        break;
+      }
       return Promise.reject(error);
     } else if (error.response.data.message) {
       if (error.response.status == 401) {
