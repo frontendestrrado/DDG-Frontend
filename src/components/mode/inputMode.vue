@@ -484,6 +484,7 @@ export default {
               type: "success",
               message: '提交成功',
             });
+            this.$router.go(-1)
           } else {
             this.$toast({
               type: "fail",

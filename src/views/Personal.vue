@@ -206,7 +206,7 @@ export default {
 		font-size: 20px;
 	}
 	/deep/ .van-cell .van-cell__title{text-align: left;}
-    /deep/ .van-cell.van-field{border-bottom: 1px solid #CBCDCE;}
+    /* /deep/ .van-cell.van-field{border-bottom: 1px solid #CBCDCE;} */
     .person{background: #F3F5F7;}
     .person_info{padding: 20px 30px;background-color: #FFC80B;}
     .person_title{font-weight: 500;text-align: left;}

@@ -32,3 +32,11 @@ export const getUserData = (query,id) => {
     params: query
   })
 }
+// 获取会员收集的资料
+export const getOrders = query => {
+  return request({
+    url: '/api/v1/orders',
+    method: 'get',
+    params: query
+  })
+}

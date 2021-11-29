@@ -1,10 +1,19 @@
 <template>
   <div class="FormList bodybox">
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Customer Application Form'});$router.push('/Page/14')">
-      Customer Application Form
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Advisor Application Form'});$router.push('/Page/35')">
+      Advisor Application Form
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'KYC Form'});$router.push('/Page/15')">
       KYC Form
+    </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Customer Application Form'});$router.push('/Page/14')">
+      Customer Application Form
+    </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Letter of Wishes'});$router.push('/Page/36')">
+      Letter of Wishes
+    </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'PDPA Bilingual'});$router.push('/Page/37')">
+      PDPA
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Notice of Change Beneficiary Form'});$router.push('/Page/16')">
       Notice of Change Beneficiary Form
@@ -17,15 +26,6 @@
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Renewal Form'});$router.push('/Page/19')">
       Renewal Form
-    </van-cell>
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Advisor Application Form'});$router.push('/Page/35')">
-      Advisor Application Form
-    </van-cell>
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Letter of Wishes'});$router.push('/Page/36')">
-      Letter of Wishes
-    </van-cell>
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'PDPA Bilingual'});$router.push('/Page/37')">
-      PDPA Bilingual
     </van-cell>
   </div>
 </template>

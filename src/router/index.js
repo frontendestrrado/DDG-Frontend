@@ -161,6 +161,14 @@ const router = new Router({
       name: 'InfoDetail',
       component: () => import('@/tools/InfoDetail'),
     },{
+      path: '/OrderList',
+      name: 'OrderList',
+      component: () => import('@/tools/OrderList'),
+    },{
+      path: '/OrderDetail',
+      name: 'OrderDetail',
+      component: () => import('@/tools/OrderDetail'),
+    },{
       path: '/LearnUse',
       name: '学习使用',
       component: LearnUse,

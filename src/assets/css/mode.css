@@ -70,7 +70,7 @@
 
 
 /* 富文本模块 */
-.index-rich{width: 94%;display: block;margin: 0 auto;text-align: left;}
+.index-rich{width: 100%;display: block;margin: 0 auto;text-align: left;padding: 10px 16px;}
 .index-rich img{max-width: 100%;}
 /* 标题模块 */
 .index-title{width: 100%;display: block;}

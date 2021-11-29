@@ -6,40 +6,11 @@
         is-link center 
         v-for="(item,inx) in collectList"
         :key="inx"
-        @click="$store.commit('changePage',{tabbar: 'InfoDetail', title: 'InfoDetail'});$router.push({path: '/InfoDetail',})"
+        @click="$store.commit('changePage',{tabbar: 'InfoDetail', title: 'InfoDetail'});$router.push({path: '/InfoDetail',query: item})"
       >
         {{ item.content[0].title }}
       </van-cell>
-      <!-- <van-cell-group inset v-for="(item, index) in collectList" :key="index">
-        <template v-for="(val, index) in item.content">
-          <van-cell
-            center
-            v-if="typeof val.value == 'object'"
-            :title="val.title"
-            :value="val.value"
-          >
-            <template #default>
-              <template v-for="(child, i) in val.value">
-                <template v-if="typeof child == 'object'">
-                  <div class="">
-                    <span v-for="(childval, j) in child">
-                      {{ childval.title }}:{{ childval.value }}
-                    </span>
-                  </div>
-                </template>
-                <template v-else>
-                  <span>{{ child }} </span>
-                </template>
-              </template>
-            </template>
-          </van-cell>
-          <van-cell center v-else :title="val.title">
-            <template #default>
-              <p v-html="valueInfo(val.value)"></p>
-            </template>
-          </van-cell>
-        </template>
-      </van-cell-group> -->
+      
     </div>
   </div>
 </template>
@@ -77,22 +48,6 @@ export default {
       }).catch(err => {
         console.log(err.response);
       })
-      // this.$axios({
-      //   method: "get",
-      //   url: "/api/v1/user/data",
-      //   headers: {
-      //     Authorization: sessionStorage.token_type + sessionStorage.token,
-      //   },
-      // })
-      //   .then((res) => {
-      //     console.log(res);
-      //     // let data = [];
-      //     res.forEach((item) => {
-      //       item.content = JSON.parse(item.content);
-      //     });
-      //     this.collectList = res;
-      //   })
-      //   .catch((error) => {});
     },
   },
 };
