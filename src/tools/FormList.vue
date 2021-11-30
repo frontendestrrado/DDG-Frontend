@@ -15,18 +15,20 @@
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'PDPA Bilingual'});$router.push('/Page/37')">
       PDPA
     </van-cell>
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Notice of Change Beneficiary Form'});$router.push('/Page/16')">
-      Notice of Change Beneficiary Form
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Renewal Form'});$router.push('/Page/19')">
+      Renewal Form
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Third Party Fund Declaration Form'});$router.push('/Page/17')">
       Third Party Fund Declaration Form
     </van-cell>
+    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Notice of Change Beneficiary Form'});$router.push('/Page/16')">
+      Notice of Change Beneficiary Form
+    </van-cell>
+    
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Notice of Update of Bank Accounts Form'});$router.push('/Page/18')">
       Notice of Update of Bank Accounts Form
     </van-cell>
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Renewal Form'});$router.push('/Page/19')">
-      Renewal Form
-    </van-cell>
+    
   </div>
 </template>
 

@@ -24,6 +24,14 @@ export const getOrdersById = (query,id) => {
     params: query
   })
 }
+// 获取订单反馈
+export const patchOrders = (query,data) => {
+  return request({
+    url: '/api/v1/orders/' + query,
+    method: 'patch',
+    data: data
+  })
+}
 // 获取会员收集的资料
 export const getUserData = (query,id) => {
   return request({

@@ -85,6 +85,7 @@ main{background-color: #fff;min-height: calc(100vh - 80px);}
 	color: #333333;
 	background: #CFC3B5;
 	padding: 10px;
+  margin-top: 20px;
 }
 .ContactUsTitle {
 	font-size:26px;
