@@ -7,13 +7,15 @@
 			<router-view/>
 		</main>
 		<div class="ContactUs">
-			<div class="ContactUsTitle">Contact Us</div>
-			<div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
-			<div>Tel : +6016-5535691</div>
-			<div>Email : info@ddgint.com</div>
-			<div>Website : www.ddgint.com </div>
-			<div>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang.</div>
-			<div>Business Hour: 9.00am – 5.00pm (Monday – Friday) </div>
+      <div class="bodybox">
+        <div class="ContactUsTitle">Contact Us</div>
+        <div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
+        <div>Tel : +6016-5535691</div>
+        <div>Email : info@ddgint.com</div>
+        <div>Website : www.ddgint.com </div>
+        <div>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang.</div>
+        <div>Business Hour: 9.00am – 5.00pm (Monday – Friday) </div>
+      </div>
 		</div>	
 	</div>
 </template>
@@ -82,13 +84,16 @@ a {
 }
 main{background-color: #fff;min-height: calc(100vh - 80px);}
 .ContactUs {
-	color: #333333;
+	color: #444;
 	background: #CFC3B5;
 	padding: 10px;
   margin-top: 20px;
+  text-align: left;
 }
 .ContactUsTitle {
-	font-size:26px;
+	font-size:28px;
+  color: #222;
+  font-family: FandolSong;
 }
 .ContactUs div {
 	margin-bottom: 10px;
@@ -101,6 +106,7 @@ main{background-color: #fff;min-height: calc(100vh - 80px);}
 	}
 	.ContactUsTitle {
 		font-size: 20px;
+    font-family: FandolSong;
 	}
 }
 </style>

@@ -27,13 +27,13 @@
                     : 'text'
                 "
                 :label="item.title"
-                :placeholder="item.title"
+                :placeholder="'Please enter the' + item.title"
                 :rules="[
                   {
                     validator: item.type == 4 ? validatorEmail : '',
                     required: item.is_require == 1 ? true : false,
                     message:
-                      item.type == 4 ? '郵箱格式錯誤' : '请输入' + item.title,
+                      item.type == 4 ? 'Email format error' : 'Please enter the' + item.title,
                   },
                 ]"
               />
@@ -42,12 +42,12 @@
               <van-field
                 readonly
                 clickable
-                label="區號"
+                label="Area code"
                 center
                 :required="true"
-                :rules="[{ required: true, message: '请選擇區號' }]"
+                :rules="[{ required: true }]"
                 :value="areaCode[index]"
-                placeholder="選擇區號"
+                placeholder="Please select the area code"
                 @click="showPicker = true"
               />
               <van-field
@@ -78,9 +78,9 @@
                 v-model="phoneList[index].verify_code"
                 center
                 :required="true"
-                label="验证码"
-                placeholder="请输入短信验证码"
-                :rules="[{ required: true, message: '请输入验证码' }]"
+                label="Verification code"
+                placeholder="Please enter the verification code"
+                :rules="[{ required: true }]"
               >
                 <!-- class="SMSconfirm" class="SMSconfirm" -->
                 <van-button
@@ -89,7 +89,7 @@
                   native-type="button"
                   :disabled="phoneList[index].isSms"
                   @click="sendCode(index)"
-                  >发送验证码</van-button
+                  >Send code</van-button
                 >
               </van-field>
             </template>
@@ -169,7 +169,6 @@
             <!-- 10單選框 -->
             <template v-if="item.type == 10">
               <van-field
-                label-width="auto"
                 :name="item.title"
                 :label="item.title"
                 :required="item.is_require == 1 ? true : false"
@@ -197,7 +196,6 @@
             <!-- 11多選框 -->
             <template v-if="item.type == 11">
               <van-field
-                label-width="auto"
                 :name="item.title"
                 :label="item.title"
                 :required="item.is_require == 1 ? true : false"
@@ -249,9 +247,9 @@
                 style="border: 1px solid #666"
               />
               <div class="tr">
-                <div class="esignBtn" @click="handleReset(index)">清空画板</div>
+                <div class="esignBtn" @click="handleReset(index)">clear</div>
                 <div class="esignBtn" @click="handleGenerate(index)">
-                  生成图片
+                  confirm
                 </div>
               </div>
             </template>
@@ -263,7 +261,7 @@
                   class="esignBtn"
                   native-type="button"
                   @click="addInput(index)"
-                  >添加</van-button
+                  >Add</van-button
                 >
               </div>
               <van-cell
@@ -789,6 +787,9 @@ export default {
 /deep/ .el-col-5 {
   width: 20%;
 }
+/deep/ .van-field__label {
+  width: 13.2rem;
+}
 .columnboxAbout {
   width: 100%;
 }
@@ -801,7 +802,8 @@ export default {
   outline: none;
   background-color: #2f75f4;
   font-size: 16px;
-  border-radius: 13px;
+  border-radius: 10px;
+  height: 40px;
 }
 .esignBtn {
   color: #fff;
@@ -843,5 +845,23 @@ export default {
   font-size: 18px;
   height: 20px;
   line-height: 20px;
+}
+/*手机*/
+@media screen and (max-width: 768px) {
+  /deep/ .van-field__label {
+    width: 6.5rem;
+  }
+}
+/*平板*/
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+}
+/*中等屏幕*/
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+
+}
+/*大屏幕*/
+@media screen and (min-width: 1200px) {
+
 }
 </style>

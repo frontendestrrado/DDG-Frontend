@@ -38,12 +38,12 @@
             <van-field
               readonly
               clickable
-              label="區號"
+              label="Area code"
               center
               :required="true"
-              :rules="[{ required: true, message: '请選擇區號' }]"
+              :rules="[{ required: true, message: 'Area code' }]"
               :value="areaCode"
-              placeholder="選擇區號"
+              placeholder="Area code"
               @click="showPicker = true"
             />
             <van-field
@@ -68,9 +68,9 @@
               v-model="phoneList.verify_code"
               center
               :required="true"
-              label="验证码"
-              placeholder="请输入短信验证码"
-              :rules="[{ required: true, message: '请输入验证码' }]"
+              label="Verification code"
+              placeholder="Verification code"
+              :rules="[{ required: true, message: 'Verification code' }]"
             >
               <van-button
                 class="SMSconfirm"
@@ -78,7 +78,7 @@
                 native-type="button"
                 :disabled="phoneList.isSms"
                 @click="sendCode()"
-                >发送验证码</van-button
+                >Send code</van-button
               >
             </van-field>
             <van-field
@@ -120,7 +120,7 @@
               :required="true"
               type="text"
               label="Introducer ID"
-              placeholder="Introducer ID"
+              placeholder="DDG/surname/0001"
               :rules="[{ required: true, message: '请输入Introducer ID' }]"
             />
             <van-field
@@ -155,23 +155,23 @@
             />
             <van-field
               v-model="registForm.password"
-              name="密码"
+              name="password"
               center
               :required="true"
               type="password"
-              label="密码"
-              placeholder="密码"
-              :rules="[{ required: true, message: '请输入密码' }]"
+              label="password"
+              placeholder="Password* (Must be 6 Digit Numberic)"
+              :rules="[{ required: true }]"
             />
             <van-field
               v-model="registForm.password_confirmation"
-              name="确认密码"
+              name="Confirm password"
               center
               :required="true"
               type="password"
-              label="确认密码"
-              placeholder="确认密码"
-              :rules="[{ required: true, message: '请再次输入密码' }]"
+              label="Confirm password"
+              placeholder="Confirm password"
+              :rules="[{ required: true, message: 'Confirm password' }]"
             />
             <van-button class="loginBtn" type="default" native-type="submit"
               >Sign Up</van-button
@@ -209,7 +209,7 @@
             <van-field
               v-model="loginForm.password"
               type="password"
-              placeholder="Password*"
+              placeholder="Password* (Must be 6 Digit Numberic)"
             />
           </div>
           <van-button class="loginBtn" type="default" @click="login()"
@@ -264,7 +264,7 @@ export default {
       areaCode2: "",
       showPicker: false,
 			showPicker2: false,
-      columns: ["86", "852", "886", "60"],
+      columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
     };
   },
   mounted() {
@@ -313,7 +313,7 @@ export default {
           method: "post",
           url: "/api/v1/authorizations",
           data: {
-            username: this.areaCode2 + this.loginForm.username,
+            username: this.areaCode2.split(' ')[0] + this.loginForm.username,
             password: this.loginForm.password,
           },
         })
@@ -372,7 +372,7 @@ export default {
     sendCode() {
       if (!this.phoneList.isSms) {
         if (this.registForm.phone) {
-          var data = [{ phone: this.areaCode + this.registForm.phone }];
+          var data = [{ phone: this.areaCode.split(' ')[0] + this.registForm.phone }];
           this.$axios({
             method: "POST",
             url: "/api/v1/sin_up/sms/verify_code",
@@ -449,7 +449,7 @@ export default {
       console.log(this.areaCode, 333);
       let data = [];
       var phoneInfo = {
-        phone: this.areaCode + this.registForm.phone,
+        phone: this.areaCode.split(' ')[0] + this.registForm.phone,
         verify_code: this.phoneList.verify_code,
       };
       data.push(phoneInfo);
@@ -491,7 +491,7 @@ export default {
         data: {
           name: this.registForm.name,
           password: this.registForm.password,
-          phone: this.areaCode + this.registForm.phone,
+          phone: this.areaCode.split(' ')[0] + this.registForm.phone,
           passport: this.registForm.passport,
           address: this.registForm.address,
           birthday: this.registForm.birthday,
@@ -534,6 +534,9 @@ export default {
   background-color: rgba(198, 198, 198, 1);
   color: #fff;
 }
+/deep/ .van-tab:first-child {
+  margin-right: 20px;
+}
 /deep/ .van-tab--active {
   background-color: #d9c998;
   color: #fff;
@@ -560,18 +563,19 @@ export default {
   height: 46px;
   line-height: 46px;
   margin-top: 30px;
-  background: #87898a;
+  background: #1F2E4D;
   color: #fff;
-  border-color: #87898a;
-  border-radius: 46px;
+  border-color: #1F2E4D;
+  border-radius: 10px;
 }
 .SMSconfirm {
+  height: 30px;
   color: #fff;
   border: none;
   outline: none;
   background-color: #2f75f4;
   font-size: 16px;
-  border-radius: 13px;
+  border-radius: 8px;
 }
 @media screen and (max-width: 576px) {
   .login {

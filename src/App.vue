@@ -147,6 +147,6 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
   padding: 0 2%;
 }
 .van-cell::after {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 </style>

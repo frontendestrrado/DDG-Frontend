@@ -40,7 +40,7 @@
             "
           />
         </van-col>
-        <van-col :span="14" class="tc">
+        <van-col :span="14" class="tc titleBig">
           <!-- <van-image
 						v-if="$store.state.currentPage.tabbar == '/Index'"
 						class="logo hv"
@@ -83,6 +83,7 @@
         <li class="hv" @click="changeActTab('/Index', 'Index')">
           Home About Us
         </li>
+        <div class="ulline"></div>
 
         <!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
         <MenuTop
@@ -94,25 +95,27 @@
         <li class="hv" @click="changeActTab('/ContactUs', 'Contact Us')">
           Contact Us
         </li>
-        <li
+        <div class="ulline"></div>
+        <!-- <li
           class="hv"
           v-if="$sessionStorage.token"
           @click="changeActTab('/Personal', 'My Profile')"
         >
           My Profile
-        </li>
+        </li> -->
         <!-- <li class="hv" v-else @click="changeActTab('/Login', 'Sign Up / Sign In');">Sign Up / Sign In</li> -->
 
-        <li
+        <!-- <li
           class="hv"
           v-if="$sessionStorage.token"
           @click="changeActTab('/NotificationCenter', 'Notification Center')"
         >
           Notification Center
-        </li>
+        </li> -->
         <li class="hv" @click="changeActTab('/Language', 'Languages')">
           Language
         </li>
+        <div class="ulline"></div>
       </ul>
     </div>
   </div>
@@ -220,7 +223,7 @@ export default {
             sessionStorage.setItem("page_id", name);
             this.$store.commit("changePage", {
               tabbar: "/Login",
-              title: "Sign Up / Sign In",
+              title: "Advisor's Sign Up / Sign In",
             });
             this.$router.push("/Login");
           } else {
@@ -239,7 +242,7 @@ export default {
     toLogin() {
       this.$store.commit("changePage", {
         tabbar: "/Login",
-        title: "Sign Up / Sign In",
+        title: "Advisor's Sign Up / Sign In",
       });
       this.$router.push("/Login");
     },
@@ -364,6 +367,7 @@ export default {
 }
 /*下拉选项*/
 .menuInfo {
+  font-family: FandolSong;
   position: absolute;
   height: 100vh;
   /*top:80px;*/
@@ -373,7 +377,7 @@ export default {
   width: auto;
   padding: 0 20px;
   z-index: 10;
-  text-align: center;
+  text-align: right;
   line-height: 40px;
   background-color: #CFC3B5;
   font-size: 24px;
@@ -399,6 +403,10 @@ export default {
   font-size: 100%;
   color: #897359;
   cursor: pointer;
+}
+.titleBig {
+  font-size: 24px;
+  font-family: FandolSong;
 }
 /*手机*/
 @media screen and (max-width: 768px) {
@@ -444,7 +452,7 @@ export default {
     width: 100%;
     padding: 0;
     z-index: 10;
-    text-align: center;
+    text-align: right;
     line-height: 40px;
     background-color: #CFC3B5;
     font-size: 20px;
@@ -465,6 +473,9 @@ export default {
   }
   .SignUpIn {
     display: none;
+  }
+  .titleBig {
+    font-size: 18px;
   }
 }
 /*平板*/
@@ -522,6 +533,9 @@ export default {
   .SignUpIn {
     display: none;
   }
+  .titleBig {
+    font-size: 24px;
+  }
 }
 /*中等屏幕*/
 @media screen and (min-width: 992px) and (max-width: 1200px) {
@@ -547,5 +561,10 @@ export default {
     height: 80px;
     margin: auto;
   }
+}
+.ulline {
+  border:1px solid #999;
+  width:50%;
+  margin-left:50%;
 }
 </style>
