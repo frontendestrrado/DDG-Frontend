@@ -55,12 +55,12 @@
           :span="5"
           style="display: flex; align-items: center; justify-content: end"
         >
+          <!-- v-if="$store.state.currentPage.tabbar == '/Index'" -->
           <div
             class="SignUpIn"
             @click="toLogin"
-            v-if="$store.state.currentPage.tabbar == '/Index'"
           >
-            Sign Up / Sign In
+            {{isToken?'Logout':'Sign Up / Sign In'}}
           </div>
           <van-icon
             v-if="isShowTopUl"
@@ -83,7 +83,7 @@
         <li class="hv" @click="changeActTab('/Index', 'Index')">
           Home About Us
         </li>
-        <div class="ulline"></div>
+        <!-- <div class="ulline"></div> -->
 
         <!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
         <MenuTop
@@ -95,7 +95,7 @@
         <li class="hv" @click="changeActTab('/ContactUs', 'Contact Us')">
           Contact Us
         </li>
-        <div class="ulline"></div>
+        <!-- <div class="ulline"></div> -->
         <!-- <li
           class="hv"
           v-if="$sessionStorage.token"
@@ -115,13 +115,17 @@
         <li class="hv" @click="changeActTab('/Language', 'Languages')">
           Language
         </li>
-        <div class="ulline"></div>
+        <li class="hv" v-if="$sessionStorage.token" @click="logout">
+          Logout
+        </li>
+        <!-- <div class="ulline"></div> -->
       </ul>
     </div>
   </div>
 </template>
 <script>
 import MenuTop from "@/components/MenuTop";
+import EventHub from '@/util/EventHub'
 export default {
   components: {
     MenuTop,
@@ -147,6 +151,7 @@ export default {
         },
       ],
       logo: "",
+      isToken: ''
     };
   },
   mounted() {
@@ -172,6 +177,10 @@ export default {
     ) {
       sessionStorage.removeItem("historyTitle");
     }
+    this.isToken = sessionStorage.token
+    EventHub.$on('isLogin',(data) => {
+      this.isToken = sessionStorage.token
+    })
   },
   watch: {
     isShowTopUl() {
@@ -240,11 +249,15 @@ export default {
       }
     },
     toLogin() {
-      this.$store.commit("changePage", {
-        tabbar: "/Login",
-        title: "Advisor's Sign Up / Sign In",
-      });
-      this.$router.push("/Login");
+      if (this.isToken) {
+        this.logout()
+      } else {
+        this.$store.commit("changePage", {
+          tabbar: "/Login",
+          title: "Advisor's Sign Up / Sign In",
+        });
+        this.$router.push("/Login");
+      }
     },
     changeLang(val) {
       console.log(val);
@@ -284,6 +297,18 @@ export default {
           console.log(err, "獲取logo異常");
         });
     },
+    // 退出登錄
+    logout() {
+      sessionStorage.token = ''
+      sessionStorage.token_type = ''
+      this.$toast({
+        type: 'success',
+        message: '退出成功'
+      })
+      this.$router.push("/Login");
+      this.isToken = sessionStorage.token
+      this.$router.go(0)
+    }
   },
 };
 </script>
@@ -452,7 +477,7 @@ export default {
     width: 100%;
     padding: 0;
     z-index: 10;
-    text-align: right;
+    text-align: center;
     line-height: 40px;
     background-color: #CFC3B5;
     font-size: 20px;

@@ -6,7 +6,7 @@
         v-if="formDataInfo.data_collects.length > 0"
         :gutter="$store.state.isPC ? 20 : 0"
       >
-        <van-form validate-first @failed="onFailed" @submit="verifyCode">
+        <van-form validate-first @failed="onFailed" @submit="verifyCode" :submit-on-enter="false">
           <van-col
             :span="showClass"
             v-for="(item, index) in formDataInfo.data_collects"
@@ -45,7 +45,7 @@
                 label="Area code"
                 center
                 :required="true"
-                :rules="[{ required: true }]"
+                :rules="[{ required: true, message: 'Please select the area code' }]"
                 :value="areaCode[index]"
                 placeholder="Please select the area code"
                 @click="showPicker = true"
@@ -61,7 +61,7 @@
                 :rules="[
                   {
                     required: item.is_require == 1 ? true : false,
-                    message: '请输入' + item.title,
+                    message: 'Please enter the' + item.title,
                   },
                 ]"
               >
@@ -80,7 +80,7 @@
                 :required="true"
                 label="Verification code"
                 placeholder="Please enter the verification code"
-                :rules="[{ required: true }]"
+                :rules="[{ required: true, message: 'Please enter the verification code' }]"
               >
                 <!-- class="SMSconfirm" class="SMSconfirm" -->
                 <van-button
@@ -122,7 +122,7 @@
                 :rules="[
                   {
                     required: item.is_require == 1 ? true : false,
-                    message: '请输入' + item.title,
+                    message: 'Please enter the' + item.title,
                   },
                 ]"
               />
@@ -281,7 +281,7 @@
                   :rules="[
                     {
                       required: item.is_require == 1 ? true : false,
-                      message: '请输入' + inputItem.title,
+                      message: 'Please enter the' + inputItem.title,
                     },
                   ]"
                 >

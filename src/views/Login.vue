@@ -7,17 +7,29 @@
 						<Common :pageData='pageContent'></Common>
 					</div> -->
 
-          <van-form validate-first @failed="onFailed" @submit="verifyCode">
+          <van-form validate-first @failed="onFailed" @submit="verifyCode" :submit-on-enter="false">
             <van-field
-              v-model="registForm.name"
-              name="Full Name / Company Name"
+              v-model="registForm.firstName"
+              name="firstName"
               center
               :required="true"
               type="text"
-              label="Full Name / Company Name"
-              placeholder="Full Name / Company Name"
+              label="First name"
+              placeholder="Please enter the first name"
               :rules="[
-                { required: true, message: '请输入Full Name / Company Name' },
+                { required: true,message: 'Please enter the first name' },
+              ]"
+            />
+            <van-field
+              v-model="registForm.thirdName"
+              name="thirdName"
+              center
+              :required="true"
+              type="text"
+              label="Surname"
+              placeholder="Please enter the Surname"
+              :rules="[
+                { required: true, message: 'Please enter the Surname'},
               ]"
             />
             <van-field
@@ -31,56 +43,11 @@
               :rules="[
                 {
                   required: true,
-                  message: '请输入NRIC Name or Passport # / Company Re.Number',
+                  message: 'Please enter the NRIC Name or Passport # / Company Re.Number',
                 },
               ]"
             />
-            <van-field
-              readonly
-              clickable
-              label="Area code"
-              center
-              :required="true"
-              :rules="[{ required: true, message: 'Area code' }]"
-              :value="areaCode"
-              placeholder="Area code"
-              @click="showPicker = true"
-            />
-            <van-field
-              v-model="registForm.phone"
-              name="Mobile Number"
-              center
-              :required="true"
-              type="text"
-              label="Mobile Number"
-              placeholder="Mobile Number"
-              :rules="[{ required: true, message: '请输入Mobile Number' }]"
-            />
-            <van-popup v-model="showPicker" round position="bottom">
-              <van-picker
-                show-toolbar
-                :columns="columns"
-                @cancel="showPicker = false"
-                @confirm="onConfirm"
-              />
-            </van-popup>
-            <van-field
-              v-model="phoneList.verify_code"
-              center
-              :required="true"
-              label="Verification code"
-              placeholder="Verification code"
-              :rules="[{ required: true, message: 'Verification code' }]"
-            >
-              <van-button
-                class="SMSconfirm"
-                slot="button"
-                native-type="button"
-                :disabled="phoneList.isSms"
-                @click="sendCode()"
-                >Send code</van-button
-              >
-            </van-field>
+            
             <van-field
               v-model="registForm.address"
               name="Residential Address"
@@ -90,7 +57,7 @@
               label="Residential Address"
               placeholder="Residential Address"
               :rules="[
-                { required: true, message: '请输入Residential Address' },
+                { required: true, message: 'Please enter the Residential Address' },
               ]"
             />
             <van-field
@@ -121,7 +88,7 @@
               type="text"
               label="Introducer ID"
               placeholder="DDG/surname/0001"
-              :rules="[{ required: true, message: '请输入Introducer ID' }]"
+              :rules="[{ required: true, message: 'Please enter the Introducer ID' }]"
             />
             <van-field
               v-model="registForm.bank"
@@ -131,7 +98,7 @@
               type="text"
               label="Bank Name"
               placeholder="Bank Name"
-              :rules="[{ required: true, message: '请输入Bank Name' }]"
+              :rules="[{ required: true, message: 'Please enter the Bank Name' }]"
             />
             <van-field
               v-model="registForm.bankAccountNo"
@@ -141,7 +108,7 @@
               type="text"
               label="Bank Account No."
               placeholder="Bank Account No."
-              :rules="[{ required: true, message: '请输入Bank Account No.' }]"
+              :rules="[{ required: true, message: 'Please enter the Bank Account No.' }]"
             />
             <van-field
               v-model="registForm.bankAccountName"
@@ -151,7 +118,7 @@
               type="text"
               label="Bank Account Name"
               placeholder="Bank Account Name"
-              :rules="[{ required: true, message: '请输入Bank Account Name' }]"
+              :rules="[{ required: true, message: 'Please enter the Bank Account Name' }]"
             />
             <van-field
               v-model="registForm.password"
@@ -159,9 +126,9 @@
               center
               :required="true"
               type="password"
-              label="password"
+              label="Password"
               placeholder="Password* (Must be 6 Digit Numberic)"
-              :rules="[{ required: true }]"
+              :rules="[{ required: true, message: 'Password* (Must be 6 Digit Numberic)' }]"
             />
             <van-field
               v-model="registForm.password_confirmation"
@@ -173,6 +140,52 @@
               placeholder="Confirm password"
               :rules="[{ required: true, message: 'Confirm password' }]"
             />
+            <van-field
+              readonly
+              clickable
+              label="Area code"
+              center
+              :required="true"
+              :rules="[{ required: true, message: 'Area code' }]"
+              :value="areaCode"
+              placeholder="Area code"
+              @click="showPicker = true"
+            />
+            <van-field
+              v-model="registForm.phone"
+              name="Mobile Number"
+              center
+              :required="true"
+              type="text"
+              label="Mobile Number"
+              placeholder="Please enter the Mobile Number"
+              :rules="[{ required: true, message: 'Please enter the Mobile Number' }]"
+            />
+            <van-popup v-model="showPicker" round position="bottom">
+              <van-picker
+                show-toolbar
+                :columns="columns"
+                @cancel="showPicker = false"
+                @confirm="onConfirm"
+              />
+            </van-popup>
+            <van-field
+              v-model="phoneList.verify_code"
+              center
+              :required="true"
+              label="Verification code"
+              placeholder="Verification code"
+              :rules="[{ required: true, message: 'Verification code' }]"
+            >
+              <van-button
+                class="SMSconfirm"
+                slot="button"
+                native-type="button"
+                :disabled="phoneList.isSms"
+                @click="sendCode()"
+                >Send code</van-button
+              >
+            </van-field>
             <van-button class="loginBtn" type="default" native-type="submit"
               >Sign Up</van-button
             >
@@ -185,12 +198,12 @@
 						<van-field
               readonly
               clickable
-              label="區號"
+              label="Area code"
               center
               :required="true"
-              :rules="[{ required: true, message: '请選擇區號' }]"
+              :rules="[{ required: true, message: 'Please enter the Area code' }]"
               :value="areaCode2"
-              placeholder="選擇區號"
+              placeholder="Please enter the Area code"
               @click="showPicker2 = true"
             />
 						<van-popup v-model="showPicker2" round position="bottom">
@@ -223,6 +236,7 @@
 
 <script>
 import Common from "@/components/mode/common.vue";
+import EventHub from '@/util/EventHub'
 export default {
   components: {
     Common,
@@ -239,7 +253,8 @@ export default {
         password: "",
       },
       registForm: {
-        name: "",
+        firstName: "",
+        thirdName: "",
         password: "",
         phone: "",
         passport: "",
@@ -336,6 +351,7 @@ export default {
                 vm.$router.push("/Page/10");
               }, 1000);
             }
+            EventHub.$emit('isLogin')
           })
           .catch((err) => {
             this.$toast.allowMultiple();
@@ -489,7 +505,8 @@ export default {
         method: "post",
         url: "/api/v1/users",
         data: {
-          name: this.registForm.name,
+          firstName: this.registForm.firstName,
+          thirdName: this.registForm.thirdName,
           password: this.registForm.password,
           phone: this.areaCode.split(' ')[0] + this.registForm.phone,
           passport: this.registForm.passport,

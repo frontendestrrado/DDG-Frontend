@@ -1,22 +1,22 @@
 <template>
   <div class="FormList bodybox">
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'KYC'});$router.push('/Page/15')">
-      KYC
+      (1/4) KYC
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Customer Application'});$router.push('/Page/14')">
-      Customer Application
+      (2/4) Customer Application
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Letter of Wishes'});$router.push('/Page/36')">
-      Letter of Wishes
+      (3/4) Letter of Wishes
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'PDPA Memo'});$router.push('/Page/37')">
-      PDPA Memo
+      (4/4) PDPA Memo
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Renewal Form (Optional)'});$router.push('/Page/19')">
       Renewal Form (Optional)
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Third Party Declaration (Optional)'});$router.push('/Page/17')">
-      Third Party Declaration (Optional)
+      Third Party Declaration (If Applicable)
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeReport/1', title: 'Change of Account Number (Optional)'});$router.push('/Page/18')">
       Change of Account Number (Optional)

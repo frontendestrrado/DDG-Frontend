@@ -39,7 +39,7 @@ export default {
   display: block;
 }
 .index-title-div {
-  width: 94%;
+  width: 100%;
   display: flex;
   align-items: center;
   margin: 0px auto;

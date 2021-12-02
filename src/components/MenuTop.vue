@@ -24,12 +24,12 @@
 			<div v-else :index="value.page_id" @click="changeItem(value.page_id?value.page_id:'',value.title)">
 				<template v-if="value.is_login == 1">
 					<li v-if="$sessionStorage.token" class="hv" slot="title">{{ value.title }}</li>
-          <div class="ulline"></div>
+          <!-- <div class="ulline"></div> -->
 				</template>
 				<template v-else>
 					<li v-if="$sessionStorage.token && value.title == 'Advisors’ login'" class="hv" slot="title"></li>
 					<li v-else class="hv" slot="title">{{ value.title }}</li>
-          <div v-if="value.title" class="ulline"></div>
+          <!-- <div v-if="value.title" class="ulline"></div> -->
 				</template>
 			</div>
 		</template>
@@ -70,5 +70,9 @@ li.hv{display: flex;align-items: center;justify-content:right;}
   border:1px solid #999;
   width:50%;
   margin-left:50%;
+}
+/*手机*/
+@media screen and (max-width: 768px) {
+  li.hv{display: flex;align-items: center;justify-content:center;}
 }
 </style>
