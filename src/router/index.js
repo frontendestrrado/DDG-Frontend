@@ -169,6 +169,10 @@ const router = new Router({
       name: 'OrderDetail',
       component: () => import('@/tools/OrderDetail'),
     },{
+      path: '/CreateOrder',
+      name: 'CreateOrder',
+      component: () => import('@/tools/CreateOrder'),
+    },{
       path: '/LearnUse',
       name: '学习使用',
       component: LearnUse,

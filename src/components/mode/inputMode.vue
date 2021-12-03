@@ -137,7 +137,7 @@
                 :rules="[
                   {
                     required: item.is_require == 1 ? true : false,
-                    message: '请上传' + item.title + '图片',
+                    message: 'Please upload' + item.title + 'The picture',
                   },
                 ]"
                 v-model="item.content"
@@ -291,7 +291,7 @@
                     slot="button"
                     native-type="button"
                     @click="delInput(index, n)"
-                    >删除</van-button
+                    >delete</van-button
                   >
                 </van-field>
               </van-cell>
@@ -361,7 +361,7 @@ export default {
     return {
       formDataInfo: this.formData,
       isShowPicker: false,
-      currentContent: "",
+      currentContent: new Date(),
       pickerTpye: "",
       checkIndex: "",
       fileList: [],
@@ -382,7 +382,7 @@ export default {
 
       areaCode: [],
       showPicker: false,
-      columns: ["86", "852", "886", "60"],
+      columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
     };
   },
   computed: {
@@ -451,7 +451,7 @@ export default {
           let data = {};
           data = {
             title: item.title,
-            value: this.phoneList[i].phone,
+            value: this.areaCode[i].split(' ')[0] + this.phoneList[i].phone,
           };
           content.push(data);
         } else {
@@ -480,7 +480,7 @@ export default {
             console.log(this.pageContent);
             this.$toast({
               type: "success",
-              message: '提交成功',
+              message: 'Submitted successfully',
             });
             this.$router.go(-1)
           } else {
@@ -583,7 +583,7 @@ export default {
           .catch((err) => {
             self.$toast({
               type: "fail",
-              message: "上传图片失败",
+              message: "Uploading picture failed",
             });
           });
       };
@@ -594,7 +594,7 @@ export default {
       this.formDataInfo.data_collects[detail.name].content = this.uploadImg;
     },
     onOversize(file) {
-      Toast("文件大小不能超过 1M");
+      Toast("The file size cannot exceed 1M");
     },
     handleReset(index) {
       this.$refs["esign_" + index][0].reset(); //清空画布
@@ -622,7 +622,7 @@ export default {
             .catch((err) => {
               self.$toast({
                 type: "fail",
-                message: "上传图片失败",
+                message: "Uploading picture failed",
               });
             });
         })
@@ -630,7 +630,7 @@ export default {
           //  没有签名，点击生成图片时调用
           self.$toast({
             type: "fail",
-            message: err + " 未签名！",
+            message: err + " No signature！",
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
@@ -671,7 +671,7 @@ export default {
       if (!this.phoneList[index].isSms) {
         if (this.phoneList[index].phone) {
           var data = [
-            { phone: this.areaCode[index] + this.phoneList[index].phone },
+            { phone: this.areaCode[index].split(' ')[0] + this.phoneList[index].phone },
           ];
           this.$axios({
             method: "POST",
@@ -702,11 +702,11 @@ export default {
             .catch((err) => {
               this.$toast({
                 type: "fail",
-                message: "获取验证码失败",
+                message: "Failed to obtain the verification code. Procedure",
               });
             });
         } else {
-          this.$toast("请先输入手机号");
+          this.$toast("Please enter your mobile phone number first");
         }
       }
     },
@@ -718,7 +718,7 @@ export default {
         if (item.phone) {
           num++;
           var phoneInfo = {
-            phone: this.areaCode[i] + item.phone,
+            phone: this.areaCode[i].split(' ')[0] + item.phone,
             verify_code: item.verify_code,
           };
           data.push(phoneInfo);
@@ -756,7 +756,7 @@ export default {
             .catch((err) => {
               this.$toast({
                 type: "fail",
-                message: "验证码错误",
+                message: "Verification code error",
               });
             });
         }

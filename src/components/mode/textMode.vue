@@ -11,7 +11,7 @@
           v-for="(item, index) in textData.text"
           :key="index"
         >
-          <van-cell is-link class="textContent" @click="$store.commit('changePage',{tabbar: item.title, title: item.title});$router.push({path: item.link})">
+          <van-cell is-link class="textContent" @click="$store.commit('changePage',{tabbar: item.link, title: item.title});$router.push({path: item.link})">
             <div
               :style="{
                 fontSize: textData.title_size + 'px',

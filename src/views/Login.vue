@@ -14,7 +14,7 @@
               center
               :required="true"
               type="text"
-              label="First name"
+              label="First Name"
               placeholder="Please enter the first name"
               :rules="[
                 { required: true,message: 'Please enter the first name' },
@@ -33,17 +33,29 @@
               ]"
             />
             <van-field
-              v-model="registForm.passport"
-              name="NRIC Name or Passport # / Company Re.Number"
+              v-model="registForm.bttCode"
+              name="BTT CODE"
               center
               :required="true"
               type="text"
-              label="NRIC Name or Passport # / Company Re.Number"
-              placeholder="NRIC Name or Passport # / Company Re.Number"
+              label="BTT CODE"
+              placeholder="Please enter the BTT CODE"
+              :rules="[
+                { required: true,message: 'Please enter the BTT CODE' },
+              ]"
+            />
+            <van-field
+              v-model="registForm.passport"
+              name="NRIC Name Or Passport # / Company Re.Number"
+              center
+              :required="true"
+              type="text"
+              label="NRIC or Passport Number / Company Re. Number"
+              placeholder="NRIC or Passport Number / Company Re. Number"
               :rules="[
                 {
                   required: true,
-                  message: 'Please enter the NRIC Name or Passport # / Company Re.Number',
+                  message: 'Please enter the NRIC or Passport Number / Company Re. Number',
                 },
               ]"
             />
@@ -62,11 +74,11 @@
             />
             <van-field
               v-model="registForm.birthday"
-              name="Date of Birth"
+              name="Date Of Birth"
               center
               :required="true"
               type="text"
-              label="Date of Birth"
+              label="Date Of Birth"
               placeholder="YYYY-MM-DD"
               @click="onShowPicker()"
             />
@@ -255,6 +267,7 @@ export default {
       registForm: {
         firstName: "",
         thirdName: "",
+        bttCode: '',
         password: "",
         phone: "",
         passport: "",
@@ -339,7 +352,7 @@ export default {
               this.$store.commit("setTokenType", res.token_type);
               this.$toast({
                 type: "success",
-                message: "登录成功",
+                message: "Login successful",
               });
               this.getUser();
               const vm = this;
@@ -359,9 +372,9 @@ export default {
           });
       } else {
 				if (!this.areaCode2) {
-					this.$toast('请选择区号')
+					this.$toast('Please select the area code')
 				} else {
-					this.$toast("请输入用户名和密码");
+					this.$toast("Please enter your user name and password");
 				}
       }
     },
@@ -418,11 +431,11 @@ export default {
             .catch((err) => {
               this.$toast({
                 type: "fail",
-                message: "获取验证码失败",
+                message: "Failed to obtain the verification code. Procedure",
               });
             });
         } else {
-          this.$toast("请先输入手机号");
+          this.$toast("Please enter your mobile phone number first");
         }
       }
     },
@@ -491,13 +504,13 @@ export default {
         .catch((err) => {
           this.$toast({
             type: "fail",
-            message: "验证码错误",
+            message: "Verification code error",
           });
         });
     },
     register() {
       if (this.registForm.password != this.registForm.password_confirmation) {
-        this.$toast("两次密码不一致");
+        this.$toast("The passwords are inconsistent");
         return;
       }
       console.log(this.registForm);
@@ -507,6 +520,7 @@ export default {
         data: {
           firstName: this.registForm.firstName,
           thirdName: this.registForm.thirdName,
+          bttCode: this.registForm.bttCode,
           password: this.registForm.password,
           phone: this.areaCode.split(' ')[0] + this.registForm.phone,
           passport: this.registForm.passport,
@@ -524,7 +538,7 @@ export default {
           if (res.id) {
             this.$toast({
               type: "success",
-              message: "注册成功，请前去登录",
+              message: "Registration successful, please go to log in",
             });
             const vm = this;
             setTimeout(function () {
