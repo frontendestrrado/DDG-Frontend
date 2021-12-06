@@ -171,7 +171,27 @@ const router = new Router({
     },{
       path: '/CreateOrder',
       name: 'CreateOrder',
-      component: () => import('@/tools/CreateOrder'),
+      component: () => import('@/tools/order/CreateOrder'),
+    },{
+      path: '/KYC',
+      name: 'KYC',
+      component: () => import('@/tools/order/KYC'),
+    },{
+      path: '/CustomerApplication',
+      name: 'CustomerApplication',
+      component: () => import('@/tools/order/CustomerApplication'),
+    },{
+      path: '/LetterOfWishes',
+      name: 'LetterOfWishes',
+      component: () => import('@/tools/order/LetterOfWishes'),
+    },{
+      path: '/PDPAMemo',
+      name: 'PDPAMemo',
+      component: () => import('@/tools/order/PDPAMemo'),
+    },{
+      path: '/ThirdPartyDeclaration',
+      name: 'ThirdPartyDeclaration',
+      component: () => import('@/tools/order/ThirdPartyDeclaration'),
     },{
       path: '/LearnUse',
       name: '学习使用',

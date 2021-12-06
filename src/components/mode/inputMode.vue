@@ -6,7 +6,12 @@
         v-if="formDataInfo.data_collects.length > 0"
         :gutter="$store.state.isPC ? 20 : 0"
       >
-        <van-form validate-first @failed="onFailed" @submit="verifyCode" :submit-on-enter="false">
+        <van-form
+          validate-first
+          @failed="onFailed"
+          @submit="verifyCode"
+          :submit-on-enter="false"
+        >
           <van-col
             :span="showClass"
             v-for="(item, index) in formDataInfo.data_collects"
@@ -33,7 +38,9 @@
                     validator: item.type == 4 ? validatorEmail : '',
                     required: item.is_require == 1 ? true : false,
                     message:
-                      item.type == 4 ? 'Email format error' : 'Please enter the' + item.title,
+                      item.type == 4
+                        ? 'Email format error'
+                        : 'Please enter the' + item.title,
                   },
                 ]"
               />
@@ -45,7 +52,9 @@
                 label="Area code"
                 center
                 :required="true"
-                :rules="[{ required: true, message: 'Please select the area code' }]"
+                :rules="[
+                  { required: true, message: 'Please select the area code' },
+                ]"
                 :value="areaCode[index]"
                 placeholder="Please select the area code"
                 @click="showPicker = true"
@@ -80,7 +89,12 @@
                 :required="true"
                 label="Verification code"
                 placeholder="Please enter the verification code"
-                :rules="[{ required: true, message: 'Please enter the verification code' }]"
+                :rules="[
+                  {
+                    required: true,
+                    message: 'Please enter the verification code',
+                  },
+                ]"
               >
                 <!-- class="SMSconfirm" class="SMSconfirm" -->
                 <van-button
@@ -451,7 +465,7 @@ export default {
           let data = {};
           data = {
             title: item.title,
-            value: this.areaCode[i].split(' ')[0] + this.phoneList[i].phone,
+            value: this.areaCode[i].split(" ")[0] + this.phoneList[i].phone,
           };
           content.push(data);
         } else {
@@ -480,9 +494,9 @@ export default {
             console.log(this.pageContent);
             this.$toast({
               type: "success",
-              message: 'Submitted successfully',
+              message: "Submitted successfully",
             });
-            this.$router.go(-1)
+            this.$router.go(-1);
           } else {
             this.$toast({
               type: "fail",
@@ -671,7 +685,11 @@ export default {
       if (!this.phoneList[index].isSms) {
         if (this.phoneList[index].phone) {
           var data = [
-            { phone: this.areaCode[index].split(' ')[0] + this.phoneList[index].phone },
+            {
+              phone:
+                this.areaCode[index].split(" ")[0] +
+                this.phoneList[index].phone,
+            },
           ];
           this.$axios({
             method: "POST",
@@ -718,7 +736,7 @@ export default {
         if (item.phone) {
           num++;
           var phoneInfo = {
-            phone: this.areaCode[i].split(' ')[0] + item.phone,
+            phone: this.areaCode[i].split(" ")[0] + item.phone,
             verify_code: item.verify_code,
           };
           data.push(phoneInfo);
@@ -854,14 +872,11 @@ export default {
 }
 /*平板*/
 @media screen and (min-width: 768px) and (max-width: 992px) {
-
 }
 /*中等屏幕*/
 @media screen and (min-width: 992px) and (max-width: 1200px) {
-
 }
 /*大屏幕*/
 @media screen and (min-width: 1200px) {
-
 }
 </style>

@@ -14,10 +14,10 @@
               center
               :required="true"
               type="text"
-              label="First Name"
-              placeholder="Please enter the first name"
+              label="First Name (as per NRIC)"
+              placeholder="Please enter the First Name (as per NRIC)"
               :rules="[
-                { required: true,message: 'Please enter the first name' },
+                { required: true,message: 'Please enter the First Name (as per NRIC)' },
               ]"
             />
             <van-field

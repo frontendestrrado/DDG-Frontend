@@ -1,16 +1,16 @@
 <template>
   <div class="FormList bodybox">
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/Page/15', title: 'KYC'});$router.push('/Page/15')">
-      (1/4) KYC
+      Step (1/4) KYC
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/Page/14', title: 'Customer Application'});$router.push('/Page/14')">
-      (2/4) Customer Application
+      Step (2/4) Customer Application
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/Page/36', title: 'Letter of Wishes'});$router.push('/Page/36')">
-      (3/4) Letter of Wishes
+      Step (3/4) Letter Of Wishes
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/Page/37', title: 'PDPA Memo'});$router.push('/Page/37')">
-      (4/4) PDPA Memo
+      Step (4/4) PDPA Memo
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/Page/19', title: 'Renewal Form (Optional)'});$router.push('/Page/19')">
       Renewal Form (Optional)
