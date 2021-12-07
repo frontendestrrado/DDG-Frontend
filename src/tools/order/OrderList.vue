@@ -16,7 +16,7 @@
           tabbar: '/OrderDetail',
           title: 'OrderDetail',
         });
-        $router.push({path: '/OrderDetail', query: {data: item}});
+        $router.push({path: '/OrderDetail', query: {data: item}});$sessionStorage.setItem('orderId',JSON.stringify(item.id))
       "
     >
       {{item.agency}}

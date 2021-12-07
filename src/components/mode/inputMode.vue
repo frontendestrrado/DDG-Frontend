@@ -237,18 +237,18 @@
 
             <template v-if="item.type == 12">
               <!-- <van-field v-model="vueEsignImg" center :name="item.title" :label="item.title" :required="item.is_require == 1 ? true:false">
-                                <template #input>
-                                    <van-image
-                                        class="e-signature"
-                                        v-if="vueEsignImg"
-                                        :src="vueEsignImg"
-                                    />
-                                    <div v-else class="e-signature" @click="signatureShow=true">
-                                        點擊簽名
-                                    </div>
-                                    <van-button @click="vueEsignImg = ''" type="info" size="small" style="margin-left:10px;">清除</van-button>
-                                </template>
-                            </van-field> -->
+                <template #input>
+                  <van-image
+                      class="e-signature"
+                      v-if="vueEsignImg"
+                      :src="vueEsignImg"
+                  />
+                  <div v-else class="e-signature" @click="signatureShow=true">
+                      點擊簽名
+                  </div>
+                  <van-button @click="vueEsignImg = ''" type="info" size="small" style="margin-left:10px;">清除</van-button>
+                </template>
+              </van-field> -->
               <div class="tl">{{ item.title }}</div>
               <vue-esign
                 :ref="'esign_' + index"

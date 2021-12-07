@@ -163,11 +163,11 @@ const router = new Router({
     },{
       path: '/OrderList',
       name: 'OrderList',
-      component: () => import('@/tools/OrderList'),
+      component: () => import('@/tools/order/OrderList'),
     },{
       path: '/OrderDetail',
       name: 'OrderDetail',
-      component: () => import('@/tools/OrderDetail'),
+      component: () => import('@/tools/order/OrderDetail'),
     },{
       path: '/CreateOrder',
       name: 'CreateOrder',
