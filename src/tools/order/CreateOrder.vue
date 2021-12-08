@@ -3,7 +3,7 @@
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/CustomerApplication', title: 'Customer Application'});$router.push('/CustomerApplication')">
       Step (1/4) Customer Application
     </van-cell>
-    <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/KYC', title: 'KYC'});$router.push('/KYC')">
+    <!-- <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/KYC', title: 'KYC'});$router.push('/KYC')">
       Step (2/4) KYC
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/LetterOfWishes', title: 'Letter Of Wishes'});$router.push('/LetterOfWishes')">
@@ -14,7 +14,7 @@
     </van-cell>
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/ThirdPartyDeclaration', title: 'Third Party Declaration (Optional)'});$router.push('/ThirdPartyDeclaration')">
       Third Party Declaration (If Applicable)
-    </van-cell>
+    </van-cell> -->
   </div>
 </template>
 

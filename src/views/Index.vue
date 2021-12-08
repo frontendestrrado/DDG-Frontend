@@ -1,68 +1,72 @@
 <template>
-	<div class="main_content" :style="{maxWidth: pageWidth+'px'}">
-		<Common :pageData='pageContent'></Common>
-		<!-- <div style="height:50px"></div> -->
-	</div>
+  <div class="main_content" :style="{ maxWidth: pageWidth + 'px' }">
+    <Common :pageData="pageContent"></Common>
+    <!-- <div style="height:50px"></div> -->
+  </div>
 </template>
 
 <script>
-	import Common from '@/components/mode/common.vue'
-	export default {
-		components: {
-			Common,
-		},
-		name: 'Home',
-		data () {
-			return {
-				pageContent: [],
-				pageWidth: '1200',
-			}
-		},
-		mounted(){
-			this.getHomePage();
-		},
-		methods: {
-			getHomePage(){
-				this.$axios({
-					method: 'get',
-					url:'/api/v1/pages?type=1',
-				}).then(res => {
-					console.log(res);
-					if(res.status == 200){
-						this.pageContent = res.data.modules;
-						this.pageWidth = res.data.width;
-						this.pageContent.forEach((item,i) => {
-	                    	if(item.type == 9){
-	                    		item.data_collects.forEach((itemi,j) => {
-	                    			this.$set(this.pageContent[i].data_collects[j],'content','')
-					            })
-	                    	}
-			            })
-					}else{
-						this.$router.push('/');
-					}
-				}).catch(error=>{
-
-				});
-			}
-
-		},
-	}
+import Common from "@/components/mode/common.vue";
+export default {
+  components: {
+    Common,
+  },
+  name: "Home",
+  data() {
+    return {
+      pageContent: [],
+      pageWidth: "1200",
+    };
+  },
+  mounted() {
+    this.getHomePage();
+  },
+  methods: {
+    getHomePage() {
+      this.$axios({
+        method: "get",
+        url: "/api/v1/pages?type=1",
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.pageContent = res.data.modules;
+            this.pageWidth = res.data.width;
+            this.pageContent.forEach((item, i) => {
+              if (item.type == 9) {
+                item.data_collects.forEach((itemi, j) => {
+                  this.$set(
+                    this.pageContent[i].data_collects[j],
+                    "content",
+                    ""
+                  );
+                });
+              }
+            });
+          } else {
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {});
+    },
+  },
+};
 </script>
 
 <style scoped>
-h1, h2 {
-	font-weight: normal;
+h1,
+h2 {
+  font-weight: normal;
 }
 ul {
-	list-style-type: none;
-	padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 li {
-	display: inline-block;
-	margin: 0 10px;
+  display: inline-block;
+  margin: 0 10px;
 }
 a {
-	color: #42b983;
+  color: #42b983;
 }
 </style>

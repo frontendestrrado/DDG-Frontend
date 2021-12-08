@@ -16,10 +16,10 @@
           tabbar: '/OrderDetail',
           title: 'OrderDetail',
         });
-        $router.push({path: '/OrderDetail', query: {data: item}});$sessionStorage.setItem('orderId',JSON.stringify(item.id))
+        $router.push({path: '/OrderDetail', query: {id: item.id}});$sessionStorage.setItem('orderId',JSON.stringify(item.id))
       "
     >
-      {{item.agency}}
+      {{item.no}}
     </van-cell>
   </div>
 </template>

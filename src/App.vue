@@ -149,4 +149,19 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 .van-cell::after {
   /* border-bottom: 1px solid #ccc; */
 }
+/* 签名画板按钮 */
+.esignBtn {
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #2f75f4;
+  font-size: 16px;
+  border-radius: 13px;
+  height: 35px;
+  line-height: 35px;
+  margin: 10px 0 10px 10px;
+  display: inline-block;
+  width: auto;
+  padding: 0 10px;
+}
 </style>

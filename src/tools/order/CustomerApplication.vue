@@ -37,6 +37,9 @@
         label="DATE OF BIRTH"
         placeholder="Please enter the DATE OF BIRTH"
         @click="onShowPicker('born_date')"
+        :rules="[
+          { required: true, message: 'Please enter the DATE OF BIRTH' },
+        ]"
       />
       <van-field
         v-model="formData.occupation"
@@ -410,6 +413,9 @@
         label="DATE"
         placeholder="Please enter the DATE"
         @click="onShowPicker('signature_date')"
+        :rules="[
+          { required: true, message: 'Please enter the DATE' },
+        ]"
       />
 
       <!-- 提交 -->
@@ -588,10 +594,14 @@ export default {
 };
 </script>
 
-<style scoped >
+<style scoped>
 .CustomerApplication {
   padding: 0 16px;
   text-align: left;
+}
+.minTitle {
+  font-weight: bold;
+  line-height: 24px;
 }
 /deep/ .van-field__label {
   width: 13.2rem;

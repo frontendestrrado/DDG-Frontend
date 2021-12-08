@@ -821,7 +821,7 @@ export default {
   background-color: #2f75f4;
   font-size: 16px;
   border-radius: 10px;
-  height: 40px;
+  height: 35px;
 }
 .esignBtn {
   color: #fff;

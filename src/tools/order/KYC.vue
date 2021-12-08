@@ -41,6 +41,7 @@
         name="source_of_funds"
         label="SOURCE OF FUNDS"
         :required="true"
+        :rules="[{required: true,message:'Please enter the SOURCE OF FUNDS'}]"
       >
         <template #input>
           <van-radio-group
@@ -115,6 +116,7 @@
         name="other_income"
         label="OTHER SOURCE OF INCOME"
         :required="true"
+        :rules="[{required: true,message:'Please enter the OTHER SOURCE OF INCOME'}]"
       >
         <template #input>
           <van-radio-group
@@ -130,6 +132,7 @@
         name="other_income_details"
         label="IF YES, KINDLY PROVIDE DETAILS"
         :required="true"
+        :rules="[{required: true,message:'Please enter the IF YES, KINDLY PROVIDE DETAILS'}]"
       >
         <template #input>
           <van-radio-group
@@ -163,6 +166,7 @@
         name="have_trust"
         label="ARE YOU HOLDING OTHER TRUST ACCOUNT?"
         :required="true"
+        :rules="[{required: true,message:'Please enter the ARE YOU HOLDING OTHER TRUST ACCOUNT?'}]"
       >
         <template #input>
           <van-radio-group v-model="formData.have_trust" direction="horizontal">
@@ -175,6 +179,7 @@
         name="have_pep"
         label="ARE YOU, YOUR PARTNER OR IMMEDIATE FAMILY MEMBER IS IN THE POLITICALLY EXPOSED PERSON (PEP) LIST?"
         :required="true"
+        :rules="[{required: true,message:'Please enter the ARE YOU, YOUR PARTNER OR IMMEDIATE FAMILY MEMBER IS IN THE POLITICALLY EXPOSED PERSON (PEP) LIST?'}]"
       >
         <template #input>
           <van-radio-group v-model="formData.have_pep" direction="horizontal">
@@ -187,6 +192,7 @@
         name="income_legitimate"
         label="ARE YOU SURE YOUR SOURCE OF INCOME IS LEGITIMATE?"
         :required="true"
+        :rules="[{required: true,message:'Please enter the ARE YOU SURE YOUR SOURCE OF INCOME IS LEGITIMATE?'}]"
       >
         <template #input>
           <van-radio-group
@@ -217,6 +223,7 @@
         name="have_high_risk"
         label="ARE YOU HAVING ANY “HIGH RISK BUSINESS”?"
         :required="true"
+        :rules="[{required: true,message:'Please enter the ARE YOU HAVING ANY “HIGH RISK BUSINESS”?'}]"
       >
         <template #input>
           <van-radio-group
@@ -232,23 +239,24 @@
         name="have_high_risk_details"
         label="IF YES, KINDLY PROVIDE DETAILS:"
         :required="true"
+        :rules="[{required: true,message:'Please enter the IF YES, KINDLY PROVIDE DETAILS'}]"
       >
         <template #input>
-          <van-checkbox-group
+          <van-radio-group
             v-model="formData.have_high_risk_details"
             direction="horizontal"
           >
-            <van-checkbox :name="0" shape="square"
-              >BUSINESS RELATED TO ONLINE GAMING</van-checkbox
+            <van-radio :name="0"
+              >BUSINESS RELATED TO ONLINE GAMING</van-radio
             >
-            <van-checkbox :name="1" shape="square"
-              >FOREX / CRYPTOCURRENCY</van-checkbox
+            <van-radio :name="1"
+              >FOREX / CRYPTOCURRENCY</van-radio
             >
-            <van-checkbox :name="2" shape="square"
-              >BUSINESS RELATED TO COLLECTION AGENCIES</van-checkbox
+            <van-radio :name="2"
+              >BUSINESS RELATED TO COLLECTION AGENCIES</van-radio
             >
-            <van-checkbox :name="3" shape="square">OTHERS</van-checkbox>
-          </van-checkbox-group>
+            <van-radio :name="3">OTHERS</van-radio>
+          </van-radio-group>
         </template>
       </van-field>
       <div class="minTitle">
@@ -307,6 +315,9 @@
         label="DATE"
         placeholder="Please enter the DATE"
         @click="onShowPicker('trustor_signature_date')"
+        :rules="[
+          { required: true, message: 'Please enter the DATE' },
+        ]"
       />
       <div class="tl">WITNESS SIGNATURE</div>
       <vue-esign
@@ -347,6 +358,9 @@
         label="DATE"
         placeholder="Please enter the DATE"
         @click="onShowPicker('witness_date')"
+        :rules="[
+          { required: true, message: 'Please enter the DATE' },
+        ]"
       />
       <van-field
         readonly
@@ -383,8 +397,8 @@
           @confirm="(value) => onConfirm(value)"
         />
       </van-popup>
-      <!-- <van-field
-        v-model="phoneList[index].verify_code"
+      <van-field
+        v-model="verify_code"
         center
         :required="true"
         label="Verification code"
@@ -397,14 +411,18 @@
         ]"
       >
         <van-button
-          :class="'SMSconfirm codeBtn_' + phoneList[index].isSms"
+          class="SMSconfirm"
           slot="button"
           native-type="button"
-          :disabled="phoneList[index].isSms"
-          @click="sendCode(index)"
+          :disabled="isSms"
+          @click="sendCode()"
           >Send code</van-button
         >
-      </van-field> -->
+      </van-field>
+      <!-- 提交 -->
+      <van-button round block type="info" native-type="submit">
+        提交
+      </van-button>
     </van-form>
     <!-- 日期彈框 -->
     <van-popup v-model="isShowPicker" position="bottom">
@@ -420,7 +438,8 @@
 </template>
 
 <script>
-import { uploadAutograph } from "@/api/util";
+import { uploadAutograph, smsVerify_code, verdict_code } from "@/api/util";
+import { kyc_form } from "@/api/order";
 export default {
   data() {
     return {
@@ -452,14 +471,66 @@ export default {
       },
       isShowPicker: false, // 日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
+      whichDate: '', // 區分是哪個日期觸發彈框
       showCodePicker: false, // 區號彈框
       columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
-      areaCode: '', // 區號
-      phone: '',
+      areaCode: "", // 區號
+      phone: "",
+      verify_code: "",
+      isSms: false,
     };
   },
+  mounted() {
+    console.log(this.$route.query,222222);
+  },
   methods: {
-    submit(form) {},
+    submit(form) {
+      console.log(form, "form");
+      if (!this.formData.trustor_signature) {
+        this.$toast.fail('Please sign your name')
+        return
+      } else if (!this.formData.witness_signature) {
+        this.$toast.fail('Please sign your name')
+        return
+      }
+      // 验证验证码
+      let data = [];
+      data.push({
+        phone: this.areaCode.split(" ")[0] + this.phone,
+        verify_code: this.verify_code,
+      });
+      verdict_code(JSON.stringify(data))
+        .then((res) => {
+          console.log(res, "验证回调");
+          if (res.state_code == 200) {
+            // 验证成功 提交表单
+            let data = JSON.parse(JSON.stringify(this.formData))
+            data.witness_phone = this.areaCode.split(' ')[0] + this.phone
+            kyc_form(this.$route.query.orderId, data).then(res => {
+              console.log(res);
+              this.$toast({
+                type: "success",
+                message: 'Submitted successfully',
+              });
+              this.$router.go(-1)
+            }).catch(err => {
+              console.log(err.response);
+            })
+          } else {
+            this.$toast({
+              type: "fail",
+              message: res.message,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err.response);
+          this.$toast({
+            type: "fail",
+            message: "Verification code error",
+          });
+        });
+    },
     onFailed(values, errorInfo) {
       console.log("failed", errorInfo);
       console.log("values", values);
@@ -469,6 +540,44 @@ export default {
           message: item.message,
         });
       });
+    },
+    //获取验证码
+    sendCode(index) {
+      if (this.phone) {
+        var data = [
+          {
+            phone: this.areaCode.split(" ")[0] + this.phone,
+          },
+        ];
+        smsVerify_code({ phone: JSON.stringify(data) })
+          .then((res) => {
+            console.log(res);
+            if (res.state_code == 200) {
+              this.$toast({
+                type: "success",
+                message: res.message,
+              });
+              this.isSms = true;
+              const vm = this;
+              setTimeout(function () {
+                vm.isSms = false;
+              }, 60000);
+            } else {
+              this.$toast({
+                type: "fail",
+                message: res.message,
+              });
+            }
+          })
+          .catch((err) => {
+            this.$toast({
+              type: "fail",
+              message: "Failed to obtain the verification code. Procedure",
+            });
+          });
+      } else {
+        this.$toast("Please enter your mobile phone number");
+      }
     },
     // 验证验证码
     verifyCode(values) {
@@ -596,6 +705,10 @@ export default {
   /* padding: 0 16px; */
   text-align: left;
 }
+.minTitle {
+  font-weight: bold;
+  line-height: 24px;
+}
 /deep/ .van-radio__icon,
 /deep/ .van-radio__icon .van-icon,
 /deep/ .van-checkbox__icon,
@@ -603,6 +716,9 @@ export default {
   font-size: 18px;
   height: 20px;
   line-height: 20px;
+}
+/deep/ .van-field__label {
+  width: 13.2rem;
 }
 .esignBtn {
   color: #fff;
@@ -617,5 +733,20 @@ export default {
   display: inline-block;
   width: auto;
   padding: 0 10px;
+}
+.SMSconfirm {
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #2f75f4;
+  font-size: 16px;
+  border-radius: 10px;
+  height: 35px;
+}
+/*手机*/
+@media screen and (max-width: 768px) {
+  /deep/ .van-field__label {
+    width: 6.5rem;
+  }
 }
 </style>
