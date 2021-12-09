@@ -90,7 +90,7 @@
       />
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
-        提交
+        {{ from == 'create'? 'next' : 'submit' }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -119,7 +119,11 @@ export default {
       isShowPicker: false,
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: '', // 區分是哪個日期觸發彈框
+      from: '', // 記錄哪個頁面進入的
     };
+  },
+  mounted() {
+    this.from = this.$route.query.from
   },
   methods: {
     submit(form) {
@@ -132,7 +136,12 @@ export default {
             type: "success",
             message: "Submitted successfully",
           });
-          this.$router.go(-1);
+          if (this.from == 'create') {
+            this.$store.commit('changePage',{tabbar: '/PDPAMemo', title: 'PDPA Memo'});
+            this.$router.push('/PDPAMemo?from=create&orderId=' + this.$route.query.orderId)
+          } else {
+            this.$router.go(-1);
+          }
         })
         .catch((err) => {});
     },

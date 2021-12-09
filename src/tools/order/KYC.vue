@@ -421,7 +421,7 @@
       </van-field>
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
-        提交
+        {{ from == 'create'? 'next' : 'submit' }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -478,10 +478,12 @@ export default {
       phone: "",
       verify_code: "",
       isSms: false,
+      from: '', // 記錄哪個頁面進入的
     };
   },
   mounted() {
     console.log(this.$route.query,222222);
+    this.from = this.$route.query.from
   },
   methods: {
     submit(form) {
@@ -512,7 +514,12 @@ export default {
                 type: "success",
                 message: 'Submitted successfully',
               });
-              this.$router.go(-1)
+              if (this.from == 'create') {
+                this.$store.commit('changePage',{tabbar: '/LetterOfWishes', title: 'Letter Of Wishes'});
+                this.$router.push('/LetterOfWishes?from=create&orderId=' + this.$route.query.orderId)
+              } else {
+                this.$router.go(-1)
+              }
             }).catch(err => {
               console.log(err.response);
             })

@@ -44,14 +44,16 @@
       <van-col :span="24">
         <div class="inputBox">
           <div class="box">
-            <van-field v-model="name" placeholder="name*" />
+            <van-field v-model="name" center label="name" placeholder="name" />
             <!-- <van-field v-model="phone" type="tel" placeholder="phone" /> -->
-            <van-field v-model="email" placeholder="email*" />
+            <van-field v-model="email" center label="email" placeholder="email" />
             <van-field
               v-model="content"
-              rows="4"
+              label="message"
+              center
+              rows="2"
               type="textarea"
-              placeholder="message*"
+              placeholder="message"
             />
           </div>
           <van-button

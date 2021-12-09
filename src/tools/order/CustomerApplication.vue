@@ -167,7 +167,7 @@
         name="price"
         center
         :required="true"
-        type="text"
+        type="number"
         label="TRUST CAPITAL AMOUNT (MYR)"
         placeholder="Please enter the TRUST CAPITAL AMOUNT (MYR)"
         :rules="[
@@ -193,8 +193,8 @@
         ]"
       />
       <van-field
-        v-model="formData.user_id"
-        name="user_id"
+        v-model="formData.code"
+        name="code"
         center
         :required="true"
         type="text"
@@ -420,7 +420,7 @@
 
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
-        提交
+        {{ from == 'create'? 'next' : 'submit' }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -463,7 +463,7 @@ export default {
         ],
         price: "",
         adviser_name: "",
-        user_id: "",
+        code: "",
         account_name: "",
         bank: "",
         account_no: "",
@@ -485,7 +485,11 @@ export default {
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: '', // 區分是哪個日期觸發彈框
+      from: '', // 記錄哪個頁面進入的
     };
+  },
+  mounted() {
+    this.from = this.$route.query.from
   },
   methods: {
     onFailed(values, errorInfo) {
@@ -542,7 +546,9 @@ export default {
       createOrders(data).then(res => {
         console.log(res,'訂單創建成功');
         this.$toast.success('Creating a successful')
-        this.$router.go(-1)
+        this.$store.commit('changePage',{tabbar: '/KYC', title: 'KYC'});
+        this.$router.push('/KYC?from=create&orderId=' + res.id)
+        // this.$router.go(-1)
       }).catch(err => {
         console.log(err.response);
       })
@@ -560,6 +566,7 @@ export default {
           path: "",
         }).then((res) => {
             console.log(res);
+            this.$toast.success("Signature success");
             this.formData.signature = res.path;
           })
           .catch((err) => {

@@ -228,11 +228,17 @@
             </van-popup>
             <van-field
               v-model="loginForm.username"
+              label="phone"
+              :required="true"
+              center
               type="tel"
               placeholder="Mobile Phone*"
             />
             <van-field
               v-model="loginForm.password"
+              label="password"
+              :required="true"
+              center
               type="password"
               placeholder="Password* (Must be 6 Digit Numberic)"
             />
@@ -579,6 +585,9 @@ export default {
   margin-bottom: 10px;
   padding: 0px 16px;
 }
+/deep/ .van-field__label {
+  width: 12.2rem;
+}
 .login {
   margin-top: 20px;
   background-color: #f3f5f7;
@@ -616,6 +625,9 @@ export default {
 @media screen and (max-width: 768px) {
   .login {
     margin-top: 0;
+  }
+  /deep/ .van-field__label {
+    width: 6.5rem;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 992px) {

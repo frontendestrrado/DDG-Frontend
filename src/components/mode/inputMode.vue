@@ -631,6 +631,7 @@ export default {
             })
             .then((res) => {
               console.log(res);
+              this.$toast.success("Signature success");
               self.formDataInfo.data_collects[index].content = res.path;
             })
             .catch((err) => {

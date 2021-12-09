@@ -9,6 +9,7 @@
     <van-loading v-if="loadingShow" />
     <van-cell
       is-link
+      center
       v-for="(item,inx) in orderList"
       :key="inx"
       @click="
@@ -20,6 +21,15 @@
       "
     >
       {{item.no}}
+      <template #title>
+        <span>{{item.no}}</span>
+      </template>
+      <template #default>
+        <div><span> KYC ({{item.kyc_form==0?'未填':'完成'}}) </span></div>
+        <div><span> Letter Of Wishes ({{item.letter_of_wishes_form==0?'未填':'完成'}}) </span></div>
+        <div><span> PDPA Memo ({{item.pdpa_memo_form==0?'未填':'完成'}}) </span></div>
+        <div><span> Third Party Declaration ({{item.third_party_declaration_form==0?'未填':'完成'}}) </span></div>
+      </template>
     </van-cell>
   </div>
 </template>
@@ -65,6 +75,9 @@ export default {
 <style scoped lang="scss">
 /deep/ .van-field__left-icon {
   line-height: 40px;
+}
+/deep/ .van-cell__title {
+  text-align: left;
 }
 .OrderList {
   

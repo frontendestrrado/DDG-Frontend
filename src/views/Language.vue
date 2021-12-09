@@ -1,6 +1,6 @@
 <template>
-  <div class="language">
-    <div class="language-main fcc">
+  <div class="language bodybox">
+    <!-- <div class="language-main fcc">
       <div>选择语言：</div>
       <van-dropdown-menu active-color="#FFC80B">
         <van-dropdown-item
@@ -9,7 +9,17 @@
           @change="changeLang"
         />
       </van-dropdown-menu>
-    </div>
+    </div> -->
+    <div class="title">选择语言：</div>
+    <van-radio-group v-model="lang" @change="changeLang">
+      <van-radio 
+        v-for="(item,inx) in language" 
+        :key="inx"
+        :name="item.value"
+      >
+        {{item.text}}
+      </van-radio>
+    </van-radio-group>
   </div>
 </template>
 <script>
@@ -78,6 +88,19 @@ export default {
 .language {
   background-color: #fff;
   min-height: calc(100vh - 80px);
+  text-align: left;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 16px;
+}
+.van-radio-group {
+  padding: 0 16px;
+  margin-top: 20px;
+}
+.van-radio {
+  margin-bottom: 10px;
 }
 @media screen and (max-width: 768px) {
   .language {

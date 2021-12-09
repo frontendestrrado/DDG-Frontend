@@ -7,18 +7,12 @@
       <van-cell is-link :value="orderData.pdpa_memo_form==1?'完成':'未填'" title-style="text-align:left;" title="PDPA Memo" @click="$store.commit('changePage',{tabbar: '/PDPAMemo', title: 'PDPA Memo'});$router.push({path: '/PDPAMemo', query: {orderId: orderData.id}})"></van-cell>
       <van-cell is-link :value="orderData.third_party_declaration_form==1?'完成':'未填'" title-style="text-align:left;" title="Third Party Declaration (If Applicable)" @click="$store.commit('changePage',{tabbar: '/ThirdPartyDeclaration', title: 'Third Party Declaration'});$router.push({path: '/ThirdPartyDeclaration',query: {orderId: orderData.id} })"></van-cell>
     </div>
-    <van-cell title-style="text-align:left;" title="agency" :value="orderData.agency"></van-cell>
-    <van-cell title-style="text-align:left;" title="agent" :value="orderData.agent"></van-cell>
     <van-cell title-style="text-align:left;" title="amount" :value="orderData.amount"></van-cell>
-    <van-cell title-style="text-align:left;" title="applicant" :value="orderData.applicant"></van-cell>
-    <van-cell title-style="text-align:left;" title="approval_date" :value="orderData.approval_date"></van-cell>
     <van-cell title-style="text-align:left;" title="created_at" :value="orderData.created_at"></van-cell>
-    <van-cell title-style="text-align:left;" title="date" :value="orderData.date"></van-cell>
     <van-cell title-style="text-align:left;" title="id" :value="orderData.id"></van-cell>
     <van-cell title-style="text-align:left;" title="no" :value="orderData.no"></van-cell>
     <van-cell title-style="text-align:left;" title="note" :value="orderData.note"></van-cell>
     <van-cell title-style="text-align:left;" title="updated_at" :value="orderData.updated_at"></van-cell>
-    <van-cell title-style="text-align:left;" title="user_id" :value="orderData.user_id"></van-cell>
     <div class="orderTitle">订单反馈</div>
     <van-field
       v-model="patchOrder"
