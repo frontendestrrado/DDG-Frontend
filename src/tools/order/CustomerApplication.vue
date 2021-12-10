@@ -586,13 +586,15 @@ export default {
     },
     // 添加beneficiary_info
     addBeneficiary() {
-      this.formData.beneficiary_info.push({
-        BENEFICIARY_NAME: '',
-        COMPANY_NO: '',
-        RELATIONSHIP: '',
-        CONTACT_NO: '',
-        PERCENTAGE: '',
-      })
+      if (this.formData.beneficiary_info.length < 4) {
+        this.formData.beneficiary_info.push({
+          BENEFICIARY_NAME: '',
+          COMPANY_NO: '',
+          RELATIONSHIP: '',
+          CONTACT_NO: '',
+          PERCENTAGE: '',
+        })
+      }
     },
     delBeneficiary(inx) {
       this.formData.beneficiary_info.splice(inx,1)

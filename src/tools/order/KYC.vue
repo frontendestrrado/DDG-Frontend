@@ -28,6 +28,16 @@
         :rules="[{ required: true, message: 'Please enter the NRIC NO' }]"
       />
       <van-field
+        v-model="formData.contact_no"
+        name="contact_no"
+        center
+        :required="true"
+        type="text"
+        label="CONTACT NO"
+        placeholder="Please enter the CONTACT NO"
+        :rules="[{ required: true, message: 'Please enter the CONTACT NO' }]"
+      />
+      <van-field
         v-model="formData.email"
         name="email"
         center
@@ -105,7 +115,7 @@
         name="year_income"
         center
         :required="true"
-        type="text"
+        type="number"
         label="ANNUAL INCOME (MYR)"
         placeholder="Please enter the ANNUAL INCOME (MYR)"
         :rules="[
@@ -131,8 +141,6 @@
       <van-field
         name="other_income_details"
         label="IF YES, KINDLY PROVIDE DETAILS"
-        :required="true"
-        :rules="[{required: true,message:'Please enter the IF YES, KINDLY PROVIDE DETAILS'}]"
       >
         <template #input>
           <van-radio-group
@@ -141,10 +149,19 @@
           >
             <van-radio :name="0">INHERITANCE</van-radio>
             <van-radio :name="1">GIFT</van-radio>
-            <van-radio :name="2">OTHERS </van-radio>
+            <van-radio :name="2">INVESTMENT</van-radio>
+            <van-radio :name="3">OTHERS </van-radio>
           </van-radio-group>
         </template>
       </van-field>
+      <van-field
+        v-model="formData.other_income_details_content"
+        name="other_income_details_content"
+        center
+        type="text"
+        label="OTHERS"
+        placeholder="Please enter the OTHERS"
+      />
       <div class="minTitle">DUE DILIGENCE INFORMATION</div>
       <van-field
         v-model="formData.why_set_trust"
@@ -176,6 +193,14 @@
         </template>
       </van-field>
       <van-field
+        v-model="formData.have_trust_details"
+        name="have_trust_details"
+        center
+        type="text"
+        label="IF YES, KINDLY PROVIDE DETAILS"
+        placeholder="Please enter the IF YES, KINDLY PROVIDE DETAILS"
+      />
+      <van-field
         name="have_pep"
         label="ARE YOU, YOUR PARTNER OR IMMEDIATE FAMILY MEMBER IS IN THE POLITICALLY EXPOSED PERSON (PEP) LIST?"
         :required="true"
@@ -188,6 +213,14 @@
           </van-radio-group>
         </template>
       </van-field>
+      <van-field
+        v-model="formData.have_pep_details"
+        name="have_pep_details"
+        center
+        type="text"
+        label="IF YES, KINDLY PROVIDE DETAILS"
+        placeholder="Please enter the IF YES, KINDLY PROVIDE DETAILS"
+      />
       <van-field
         name="income_legitimate"
         label="ARE YOU SURE YOUR SOURCE OF INCOME IS LEGITIMATE?"
@@ -208,16 +241,9 @@
         v-model="formData.income_legitimate_details"
         name="income_legitimate_details"
         center
-        :required="true"
         type="text"
         label="IF NO, KINDLY EXPLAIN:"
         placeholder="Please enter the IF NO, KINDLY EXPLAIN:"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the IF NO, KINDLY EXPLAIN:',
-          },
-        ]"
       />
       <van-field
         name="have_high_risk"
@@ -238,8 +264,6 @@
       <van-field
         name="have_high_risk_details"
         label="IF YES, KINDLY PROVIDE DETAILS:"
-        :required="true"
-        :rules="[{required: true,message:'Please enter the IF YES, KINDLY PROVIDE DETAILS'}]"
       >
         <template #input>
           <van-radio-group
@@ -259,6 +283,14 @@
           </van-radio-group>
         </template>
       </van-field>
+      <van-field
+        v-model="formData.have_high_risk_details_content"
+        name="have_high_risk_details_content"
+        center
+        type="text"
+        label="OTHERS"
+        placeholder="Please enter the OTHERS"
+      />
       <div class="minTitle">
         1. I, have appointed “DDG” to manage my designated asset according to my
         will and my instruction.
@@ -446,6 +478,7 @@ export default {
       formData: {
         name: "",
         nric_no: "",
+        contact_no: '',
         email: "",
         source_of_funds: "",
         company: "",
@@ -468,6 +501,10 @@ export default {
         witness_name: "",
         witness_date: "",
         witness_phone: "",
+        other_income_details_content: '',
+        have_trust_details: '',
+        have_pep_details: '',
+        have_high_risk_details_content: '',
       },
       isShowPicker: false, // 日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
