@@ -25,10 +25,10 @@
         <span>{{item.no}}</span>
       </template>
       <template #default>
-        <div><span> KYC ({{item.kyc_form==0?'未填':'完成'}}) </span></div>
-        <div><span> Letter Of Wishes ({{item.letter_of_wishes_form==0?'未填':'完成'}}) </span></div>
-        <div><span> PDPA Memo ({{item.pdpa_memo_form==0?'未填':'完成'}}) </span></div>
-        <div><span> Third Party Declaration ({{item.third_party_declaration_form==0?'未填':'完成'}}) </span></div>
+        <div><span> KYC ({{item.kyc_form==0?'Not Filled':'Filled'}}) </span></div>
+        <div><span> Letter Of Wishes ({{item.letter_of_wishes_form==0?'Not Filled':'Filled'}}) </span></div>
+        <div><span> PDPA Memo ({{item.pdpa_memo_form==0?'Not Filled':'Filled'}}) </span></div>
+        <div><span> Third Party Declaration ({{item.third_party_declaration_form==0?'Not Filled':'Filled'}}) </span></div>
       </template>
     </van-cell>
   </div>
