@@ -190,19 +190,25 @@
         name="declaration_third_party"
         label="Declaration of Third-Party Funds (Please tick √)"
         :required="true"
-        :rules="[{required: true,message:'Please enter the Declaration of Third-Party Funds (Please tick √)'}]"
+        :rules="[
+          {
+            required: true,
+            message:
+              'Please enter the Declaration of Third-Party Funds (Please tick √)',
+          },
+        ]"
       >
         <template #input>
           <van-radio-group
             v-model="formData.declaration_third_party"
             direction="horizontal"
           >
-            <van-radio :name="0"
+            <van-radio :name="1"
               >Natural love and affection or as gift to me (Settlor)</van-radio
             >
-            <van-radio :name="1">Money owed to me (Settlor)</van-radio>
-            <van-radio :name="2">Other, please specify</van-radio>
-            <van-radio :name="3"
+            <van-radio :name="2">Money owed to me (Settlor)</van-radio>
+            <van-radio :name="3">Other, please specify</van-radio>
+            <van-radio :name="4"
               >Relationship between the Settlor and Third-Party</van-radio
             >
           </van-radio-group>
@@ -227,6 +233,12 @@
           confirm
         </div>
       </div>
+      <van-image
+        v-if="formData.client_signature"
+        width="100%"
+        height="20%"
+        :src="formData.client_signature"
+      />
       <van-field
         v-model="formData.client_name"
         name="client_name"
@@ -278,6 +290,12 @@
           confirm
         </div>
       </div>
+      <van-image
+        v-if="formData.witness_signature"
+        width="100%"
+        height="20%"
+        :src="formData.witness_signature"
+      />
       <van-field
         v-model="formData.witness_name"
         name="witness_name"
@@ -329,7 +347,11 @@
 
 <script>
 import { uploadAutograph } from "@/api/util";
-import { third_party_declaration_form } from "@/api/order";
+import {
+  third_party_declaration_form,
+  getOrdersForms,
+  putOrdersForms,
+} from "@/api/order";
 export default {
   data() {
     return {
@@ -346,7 +368,7 @@ export default {
         third_party_address: "",
         third_party_phone: "",
         third_party_reference_no: "",
-        declaration_third_party: "",
+        declaration_third_party: 0,
         client_signature: "",
         client_name: "",
         client_passport: "",
@@ -359,9 +381,25 @@ export default {
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
+      isFilled: "", // 表單id
     };
   },
+  mounted() {
+    this.isFilled = this.$route.query.isFilled;
+    this.getFormData();
+  },
   methods: {
+    // 如果已填 獲取數據
+    getFormData() {
+      if (this.isFilled > 0) {
+        getOrdersForms(this.isFilled, { type: "Third Party Declaration" })
+          .then((res) => {
+            console.log(res);
+            this.formData = res;
+          })
+          .catch((err) => {});
+      }
+    },
     submit(form) {
       console.log(form);
       if (!this.formData.client_signature) {
@@ -372,15 +410,30 @@ export default {
         return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
-      third_party_declaration_form(this.$route.query.orderId, data)
-        .then((res) => {
+      if (this.isFilled > 0) {
+        // 修改
+        putOrdersForms(this.isFilled, {
+          type: "Third Party Declaration",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改Third Party Declaration成功");
           this.$toast({
             type: "success",
-            message: "Submitted successfully",
+            message: "Modify the success",
           });
           this.$router.go(-1);
-        })
-        .catch((err) => {});
+        });
+      } else {
+        third_party_declaration_form(this.$route.query.orderId, data)
+          .then((res) => {
+            this.$toast({
+              type: "success",
+              message: "Submitted successfully",
+            });
+            this.$router.go(-1);
+          })
+          .catch((err) => {});
+      }
     },
     // 展示日期弹框
     onShowPicker(val) {
@@ -416,7 +469,6 @@ export default {
       this.$refs[val]
         .generate()
         .then((res) => {
-          console.log(res); // 得到了签字生成的base64图片
           uploadAutograph({
             image: res,
             path: "",

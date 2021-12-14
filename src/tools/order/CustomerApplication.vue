@@ -560,7 +560,6 @@ export default {
     handleGenerate(index) {
       var that = this;
       this.$refs["esign"].generate().then((res) => {
-        console.log(res); // 得到了签字生成的base64图片
         uploadAutograph({
           image: res,
           path: "",

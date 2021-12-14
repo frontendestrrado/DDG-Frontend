@@ -618,8 +618,6 @@ export default {
       this.$refs["esign_" + index][0]
         .generate()
         .then((res) => {
-          // let resultImg = res // 得到了签字生成的base64图片
-          // console.log(res);
           self
             .$axios({
               method: "POST",

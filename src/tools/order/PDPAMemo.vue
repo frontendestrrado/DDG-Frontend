@@ -105,6 +105,12 @@
         <div class="esignBtn" @click="handleReset('signature')">clear</div>
         <div class="esignBtn" @click="handleGenerate('signature')">confirm</div>
       </div>
+      <van-image
+        v-if="formData.signature"
+        width="100%"
+        height="20%"
+        :src="formData.signature"
+      />
       <van-field
         v-model="formData.name"
         name="name"
@@ -178,7 +184,7 @@
 
 <script>
 import { uploadAutograph } from "@/api/util";
-import { pdpa_memo } from "@/api/order";
+import { pdpa_memo, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
   data() {
     return {
@@ -192,31 +198,60 @@ export default {
       },
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
-      whichDate: '', // 區分是哪個日期觸發彈框
-      from: '', // 記錄哪個頁面進入的
+      whichDate: "", // 區分是哪個日期觸發彈框
+      from: "", // 記錄哪個頁面進入的
+      isFilled: "", // 表單id
     };
   },
   mounted() {
-    this.from = this.$route.query.from
+    this.from = this.$route.query.from;
+    this.isFilled = this.$route.query.isFilled;
+    this.getFormData();
   },
   methods: {
+    // 如果已填 獲取數據
+    getFormData() {
+      if (this.isFilled > 0) {
+        getOrdersForms(this.isFilled, { type: "PDPA Memo" })
+          .then((res) => {
+            console.log(res);
+            this.formData = res;
+          })
+          .catch((err) => {});
+      }
+    },
     submit(form) {
       console.log(form);
       if (!this.formData.signature) {
-        this.$toast.fail('Please sign your name')
-        return
+        this.$toast.fail("Please sign your name");
+        return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
-      pdpa_memo(this.$route.query.orderId, data)
-        .then((res) => {
-          console.log(res);
+      if (this.isFilled > 0) {
+        // 修改
+        putOrdersForms(this.isFilled, {
+          type: "PDPA Memo",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改PDPA Memo成功");
           this.$toast({
             type: "success",
-            message: "Submitted successfully",
+            message: "Modify the success",
           });
-          this.$router.push('/CreateOrder');
-        })
-        .catch((err) => {});
+          this.$router.go(-1);
+        });
+      } else {
+        pdpa_memo(this.$route.query.orderId, data)
+          .then((res) => {
+            console.log(res);
+            this.$toast({
+              type: "success",
+              message: "Submitted successfully",
+            });
+            this.$router.push("/CreateOrder");
+          })
+          .catch((err) => {});
+      }
     },
     // 清空画布
     handleReset(val) {
@@ -227,7 +262,6 @@ export default {
       this.$refs[val]
         .generate()
         .then((res) => {
-          console.log(res); // 得到了签字生成的base64图片
           uploadAutograph({
             image: res,
             path: "",

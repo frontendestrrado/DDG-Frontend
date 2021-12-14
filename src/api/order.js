@@ -47,3 +47,19 @@ export const getOrderDetail = (orderId) => {
     method: 'get',
   })
 }
+// 获取订单表單數據
+export const getOrdersForms = (id,query) => {
+  return request({
+    url: '/api/v1/orders/forms/'+id,
+    method: 'get',
+    params: query
+  })
+}
+// 修改订单表單數據
+export const putOrdersForms = (id,obj) => {
+  return request({
+    url: '/api/v1/orders/forms/'+id,
+    method: 'put',
+    data: obj
+  })
+}

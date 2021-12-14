@@ -90,7 +90,7 @@
       />
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
-        {{ from == 'create'? 'next' : 'submit' }}
+        {{ from == "create" ? "next" : "submit" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -107,7 +107,11 @@
 </template>
 
 <script>
-import { letter_wishes_form } from "@/api/order";
+import {
+  letter_wishes_form,
+  getOrdersForms,
+  putOrdersForms,
+} from "@/api/order";
 export default {
   data() {
     return {
@@ -118,32 +122,65 @@ export default {
       },
       isShowPicker: false,
       currentContent: new Date(), // 日期彈框顯示當前日期
-      whichDate: '', // 區分是哪個日期觸發彈框
-      from: '', // 記錄哪個頁面進入的
+      whichDate: "", // 區分是哪個日期觸發彈框
+      from: "", // 記錄哪個頁面進入的
+      isFilled: "", // 表單id(沒填0)
     };
   },
   mounted() {
-    this.from = this.$route.query.from
+    this.from = this.$route.query.from;
+    this.isFilled = this.$route.query.isFilled;
+    this.getFormData();
   },
   methods: {
+    // 獲取表單數據
+    getFormData() {
+      if (this.isFilled > 0) {
+        getOrdersForms(this.isFilled, { type: "Letter Of Wishes" }).then(res => {
+            console.log(res, "獲取lett數據");
+            this.formData = res;
+          }
+        );
+      }
+    },
     submit(form) {
       console.log(form);
       let data = JSON.parse(JSON.stringify(this.formData));
-      letter_wishes_form(this.$route.query.orderId, data)
-        .then((res) => {
-          console.log(res);
+      if (this.isFilled > 0) {
+        // 修改
+        putOrdersForms(this.isFilled, {
+          type: "Letter Of Wishes",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改kyc成功");
           this.$toast({
             type: "success",
-            message: "Submitted successfully",
+            message: "Modify the success",
           });
-          if (this.from == 'create') {
-            this.$store.commit('changePage',{tabbar: '/PDPAMemo', title: 'PDPA Memo'});
-            this.$router.push('/PDPAMemo?from=create&orderId=' + this.$route.query.orderId)
-          } else {
-            this.$router.go(-1);
-          }
-        })
-        .catch((err) => {});
+          this.$router.go(-1);
+        });
+      } else {
+        letter_wishes_form(this.$route.query.orderId, data)
+          .then((res) => {
+            console.log(res);
+            this.$toast({
+              type: "success",
+              message: "Submitted successfully",
+            });
+            if (this.from == "create") {
+              this.$store.commit("changePage", {
+                tabbar: "/PDPAMemo",
+                title: "PDPA Memo",
+              });
+              this.$router.push(
+                "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
+              );
+            } else {
+              this.$router.go(-1);
+            }
+          })
+          .catch((err) => {});
+      }
     },
     // 展示日期弹框
     onShowPicker(val) {

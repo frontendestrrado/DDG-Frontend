@@ -58,8 +58,8 @@
             v-model="formData.source_of_funds"
             direction="horizontal"
           >
-            <van-radio :name="0">EMPLOYMENT / SELF-EMPLOYMENT</van-radio>
-            <van-radio :name="1"
+            <van-radio :name="1">EMPLOYMENT / SELF-EMPLOYMENT</van-radio>
+            <van-radio :name="2"
               >RETIRED – KINDLY FILL IN PREVIOUS EMPLOYMENT</van-radio
             >
           </van-radio-group>
@@ -133,8 +133,8 @@
             v-model="formData.other_income"
             direction="horizontal"
           >
-            <van-radio :name="0">YES</van-radio>
-            <van-radio :name="1">NO</van-radio>
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -147,10 +147,10 @@
             v-model="formData.other_income_details"
             direction="horizontal"
           >
-            <van-radio :name="0">INHERITANCE</van-radio>
-            <van-radio :name="1">GIFT</van-radio>
-            <van-radio :name="2">INVESTMENT</van-radio>
-            <van-radio :name="3">OTHERS </van-radio>
+            <van-radio :name="1">INHERITANCE</van-radio>
+            <van-radio :name="2">GIFT</van-radio>
+            <van-radio :name="3">INVESTMENT</van-radio>
+            <van-radio :name="4">OTHERS </van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -187,8 +187,8 @@
       >
         <template #input>
           <van-radio-group v-model="formData.have_trust" direction="horizontal">
-            <van-radio :name="0">YES</van-radio>
-            <van-radio :name="1">NO</van-radio>
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -208,8 +208,8 @@
       >
         <template #input>
           <van-radio-group v-model="formData.have_pep" direction="horizontal">
-            <van-radio :name="0">YES</van-radio>
-            <van-radio :name="1">NO</van-radio>
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -232,8 +232,8 @@
             v-model="formData.income_legitimate"
             direction="horizontal"
           >
-            <van-radio :name="0">YES</van-radio>
-            <van-radio :name="1">NO</van-radio>
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -256,8 +256,8 @@
             v-model="formData.have_high_risk"
             direction="horizontal"
           >
-            <van-radio :name="0">YES</van-radio>
-            <van-radio :name="1">NO</van-radio>
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -270,16 +270,16 @@
             v-model="formData.have_high_risk_details"
             direction="horizontal"
           >
-            <van-radio :name="0"
+            <van-radio :name="1"
               >BUSINESS RELATED TO ONLINE GAMING</van-radio
             >
-            <van-radio :name="1"
+            <van-radio :name="2"
               >FOREX / CRYPTOCURRENCY</van-radio
             >
-            <van-radio :name="2"
+            <van-radio :name="3"
               >BUSINESS RELATED TO COLLECTION AGENCIES</van-radio
             >
-            <van-radio :name="3">OTHERS</van-radio>
+            <van-radio :name="4">OTHERS</van-radio>
           </van-radio-group>
         </template>
       </van-field>
@@ -327,6 +327,12 @@
           confirm
         </div>
       </div>
+      <van-image
+        v-if="formData.trustor_signature"
+        width="100%"
+        height="20%"
+        :src="formData.trustor_signature"
+      />
       <van-field
         v-model="formData.trustor_name"
         name="trustor_name"
@@ -370,6 +376,12 @@
           confirm
         </div>
       </div>
+      <van-image
+        v-if="formData.witness_signature"
+        width="100%"
+        height="20%"
+        :src="formData.witness_signature"
+      />
       <van-field
         v-model="formData.witness_name"
         name="witness_name"
@@ -471,7 +483,7 @@
 
 <script>
 import { uploadAutograph, smsVerify_code, verdict_code } from "@/api/util";
-import { kyc_form } from "@/api/order";
+import { kyc_form, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
   data() {
     return {
@@ -480,20 +492,20 @@ export default {
         nric_no: "",
         contact_no: '',
         email: "",
-        source_of_funds: "",
+        source_of_funds: 0,
         company: "",
         occupation: "",
         business_running: "",
         year_income: "",
-        other_income: "",
-        other_income_details: "",
+        other_income: 0,
+        other_income_details: 0,
         why_set_trust: "",
-        have_trust: "",
-        have_pep: "",
-        income_legitimate: "",
+        have_trust: 0,
+        have_pep: 0,
+        income_legitimate: 0,
         income_legitimate_details: "",
-        have_high_risk: "",
-        have_high_risk_details: [],
+        have_high_risk: 0,
+        have_high_risk_details: 0,
         trustor_signature: "",
         trustor_name: "",
         trustor_signature_date: "",
@@ -516,13 +528,27 @@ export default {
       verify_code: "",
       isSms: false,
       from: '', // 記錄哪個頁面進入的
+      isFilled: '', // 表單id(未填0)
     };
   },
   mounted() {
     console.log(this.$route.query,222222);
     this.from = this.$route.query.from
+    this.isFilled = this.$route.query.isFilled
+    this.getFormData()
   },
   methods: {
+    // 如果已填 獲取數據
+    getFormData() {
+      if (this.isFilled > 0) {
+        getOrdersForms(this.isFilled,{type: 'KYC'}).then(res => {
+          console.log(res);
+          this.formData = res
+          this.phone = res.witness_phone.slice(-11)
+          this.areaCode = res.witness_phone.split(this.phone)[0]
+        }).catch(err => {})
+      }
+    },
     submit(form) {
       console.log(form, "form");
       if (!this.formData.trustor_signature) {
@@ -545,21 +571,33 @@ export default {
             // 验证成功 提交表单
             let data = JSON.parse(JSON.stringify(this.formData))
             data.witness_phone = this.areaCode.split(' ')[0] + this.phone
-            kyc_form(this.$route.query.orderId, data).then(res => {
-              console.log(res);
-              this.$toast({
-                type: "success",
-                message: 'Submitted successfully',
-              });
-              if (this.from == 'create') {
-                this.$store.commit('changePage',{tabbar: '/LetterOfWishes', title: 'Letter Of Wishes'});
-                this.$router.push('/LetterOfWishes?from=create&orderId=' + this.$route.query.orderId)
-              } else {
+            if (this.isFilled > 0) {
+              // 修改
+              putOrdersForms(this.isFilled,{type: 'KYC',data: JSON.stringify(data)}).then(res => {
+                console.log(res,'修改kyc成功');
+                this.$toast({
+                  type: "success",
+                  message: 'Modify the success',
+                });
                 this.$router.go(-1)
-              }
-            }).catch(err => {
-              console.log(err.response);
-            })
+              })
+            } else {
+              kyc_form(this.$route.query.orderId, data).then(res => {
+                console.log(res);
+                this.$toast({
+                  type: "success",
+                  message: 'Submitted successfully',
+                });
+                if (this.from == 'create') {
+                  this.$store.commit('changePage',{tabbar: '/LetterOfWishes', title: 'Letter Of Wishes'});
+                  this.$router.push('/LetterOfWishes?from=create&orderId=' + this.$route.query.orderId)
+                } else {
+                  this.$router.go(-1)
+                }
+              }).catch(err => {
+                console.log(err.response);
+              })
+            }
           } else {
             this.$toast({
               type: "fail",
@@ -688,15 +726,16 @@ export default {
       this.$refs[val]
         .generate()
         .then((res) => {
-          console.log(res); // 得到了签字生成的base64图片
           uploadAutograph({
             image: res,
             path: "",
           })
             .then((res) => {
-              console.log(res);
-              this.formData[val] = res.path;
-              this.$toast.success("Signature success");
+              that.formData[val] = res.path;
+              that.$toast({
+                type: 'success',
+                message: 'Signature success'
+              })
             })
             .catch((err) => {
               that.$toast({
