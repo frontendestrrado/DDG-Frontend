@@ -6,6 +6,73 @@
       :submit-on-enter="false"
       :scroll-to-error="true"
     >
+      <div class="minTitle">Compliance Questionnaire (Individual)</div>
+      <div class="minTitle">Name of settlor (as per IC):</div>
+      <div class="minTitle">Requirement:-</div>
+      <div class="contentText">1.We have a Regulatory Obligation to verify the source of your fund and wealth. Documentary evidence duly verified by Commission of Oath or other agreeable authority must be provided to us. </div>
+      <div class="contentText">2.The document checklist (Section E) is to assist you to get ready these documents and information in advance for on boarding. </div>
+      <div class="contentText">3.Should more documents are needed to satisfy the regulatory requirement, we will advise you in due course. </div>
+      <div class="contentText">Section A, B, C, D and E are required to be completely filled and signed off by the settlor in Section F.</div>
+      <div class="contentText">5.Marketing Team of DDG INTERNATIONAL BERHAD to fill in Section G and signed off.</div>
+      <div class="minTitle">Compliance Questionnaire</div>
+      <div class="minTitle">SECTION A	  INDIVIDUAL (SETTLOR, DIRECTOR, SHAREHOLDER, ULTIMATE BENEFICIARY OWNER)</div>
+      <div class="minTitle">Settlor</div>
+      <van-field
+        v-model="formData.name"
+        name="name"
+        center
+        :required="true"
+        type="text"
+        label="Full Name"
+        placeholder="Please enter the Full Name"
+        :rules="[{ required: true, message: 'Please enter the Full Name' }]"
+      />
+      <van-field
+        v-model="formData.name"
+        name="name"
+        center
+        type="text"
+        label="Other/Previous Name (if any)"
+        placeholder="Please enter the Other/Previous Name (if any"
+      />
+      <van-field
+        v-model="formData.name"
+        name="name"
+        center
+        :required="true"
+        type="text"
+        label="NEW - Malaysia NRIC No"
+        placeholder="Please enter the NEW - Malaysia NRIC No"
+        :rules="[{ required: true, message: 'Please enter the NEW - Malaysia NRIC No' }]"
+      />
+      <van-field
+        v-model="formData.name"
+        name="name"
+        center
+        type="text"
+        label="OLD - Malaysia NRIC No.(if applicable)"
+        placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)"
+      />
+      <van-field
+        v-model="formData.name"
+        name="name"
+        center
+        :required="true"
+        type="text"
+        label="Nationality(state all if multiple nationality)"
+        placeholder="Please enter the Nationality(state all if multiple nationality)"
+        :rules="[{ required: true, message: 'Please enter the Nationality(state all if multiple nationality)' }]"
+      />
+
+
+
+
+
+
+
+
+
+
       <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
       <van-field
         v-model="formData.name"
@@ -13,39 +80,9 @@
         center
         :required="true"
         type="text"
-        label="TRUSTOR NAME"
-        placeholder="Please enter the TRUSTOR NAME"
-        :rules="[{ required: true, message: 'Please enter the TRUSTOR NAME' }]"
-      />
-      <van-field
-        v-model="formData.nric_no"
-        name="nric_no"
-        center
-        :required="true"
-        type="text"
-        label="NRIC NO"
-        placeholder="Please enter the NRIC NO"
-        :rules="[{ required: true, message: 'Please enter the NRIC NO' }]"
-      />
-      <van-field
-        v-model="formData.contact_no"
-        name="contact_no"
-        center
-        :required="true"
-        type="text"
-        label="CONTACT NO"
-        placeholder="Please enter the CONTACT NO"
-        :rules="[{ required: true, message: 'Please enter the CONTACT NO' }]"
-      />
-      <van-field
-        v-model="formData.email"
-        name="email"
-        center
-        :required="true"
-        type="text"
-        label="EMAIL ADDRESS"
-        placeholder="Please enter the EMAIL ADDRESS"
-        :rules="[{ required: true, message: 'Please enter the EMAIL ADDRESS' }]"
+        label="TRUSTOR"
+        placeholder="Please enter the TRUSTOR"
+        :rules="[{ required: true, message: 'Please enter the TRUSTOR' }]"
       />
       <van-field
         name="source_of_funds"
@@ -66,63 +103,6 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.company"
-        name="company"
-        center
-        :required="true"
-        type="text"
-        label="NAME OF EMPLOYER / COMPANY"
-        placeholder="Please enter the NAME OF EMPLOYER / COMPANY"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the NAME OF EMPLOYER / COMPANY',
-          },
-        ]"
-      />
-      <van-field
-        v-model="formData.occupation"
-        name="occupation"
-        center
-        :required="true"
-        type="text"
-        label="OCCUPATION / POSITION TITLE"
-        placeholder="Please enter the OCCUPATION / POSITION TITLE"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the OCCUPATION / POSITION TITLE',
-          },
-        ]"
-      />
-      <van-field
-        v-model="formData.business_running"
-        name="business_running"
-        center
-        :required="true"
-        type="text"
-        label="PERIOD OF EMPLOYMENT/ BUSINESS RUNNING"
-        placeholder="Please enter the PERIOD OF EMPLOYMENT/ BUSINESS RUNNING"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the PERIOD OF EMPLOYMENT/ BUSINESS RUNNING',
-          },
-        ]"
-      />
-      <van-field
-        v-model="formData.year_income"
-        name="year_income"
-        center
-        :required="true"
-        type="number"
-        label="ANNUAL INCOME (MYR)"
-        placeholder="Please enter the ANNUAL INCOME (MYR)"
-        :rules="[
-          { required: true, message: 'Please enter the ANNUAL INCOME (MYR)' },
-        ]"
-      />
-      <van-field
         name="other_income"
         label="OTHER SOURCE OF INCOME"
         :required="true"
@@ -138,176 +118,6 @@
           </van-radio-group>
         </template>
       </van-field>
-      <van-field
-        name="other_income_details"
-        label="IF YES, KINDLY PROVIDE DETAILS"
-      >
-        <template #input>
-          <van-radio-group
-            v-model="formData.other_income_details"
-            direction="horizontal"
-          >
-            <van-radio :name="1">INHERITANCE</van-radio>
-            <van-radio :name="2">GIFT</van-radio>
-            <van-radio :name="3">INVESTMENT</van-radio>
-            <van-radio :name="4">OTHERS </van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        v-model="formData.other_income_details_content"
-        name="other_income_details_content"
-        center
-        type="text"
-        label="OTHERS"
-        placeholder="Please enter the OTHERS"
-      />
-      <div class="minTitle">DUE DILIGENCE INFORMATION</div>
-      <van-field
-        v-model="formData.why_set_trust"
-        name="why_set_trust"
-        center
-        :required="true"
-        type="text"
-        label="WHAT IS YOUR INTENDED PURPOSE OF SETTING UP THE TRUST ACCOUNT WITH US?"
-        placeholder="Please enter the WHAT IS YOUR INTENDED PURPOSE OF SETTING UP THE TRUST ACCOUNT WITH US?"
-        :rules="[
-          {
-            required: true,
-            message:
-              'Please enter the WHAT IS YOUR INTENDED PURPOSE OF SETTING UP THE TRUST ACCOUNT WITH US?',
-          },
-        ]"
-      />
-      <van-field
-        name="have_trust"
-        label="ARE YOU HOLDING OTHER TRUST ACCOUNT?"
-        :required="true"
-        :rules="[{required: true,message:'Please enter the ARE YOU HOLDING OTHER TRUST ACCOUNT?'}]"
-      >
-        <template #input>
-          <van-radio-group v-model="formData.have_trust" direction="horizontal">
-            <van-radio :name="1">YES</van-radio>
-            <van-radio :name="0">NO</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        v-model="formData.have_trust_details"
-        name="have_trust_details"
-        center
-        type="text"
-        label="IF YES, KINDLY PROVIDE DETAILS"
-        placeholder="Please enter the IF YES, KINDLY PROVIDE DETAILS"
-      />
-      <van-field
-        name="have_pep"
-        label="ARE YOU, YOUR PARTNER OR IMMEDIATE FAMILY MEMBER IS IN THE POLITICALLY EXPOSED PERSON (PEP) LIST?"
-        :required="true"
-        :rules="[{required: true,message:'Please enter the ARE YOU, YOUR PARTNER OR IMMEDIATE FAMILY MEMBER IS IN THE POLITICALLY EXPOSED PERSON (PEP) LIST?'}]"
-      >
-        <template #input>
-          <van-radio-group v-model="formData.have_pep" direction="horizontal">
-            <van-radio :name="1">YES</van-radio>
-            <van-radio :name="0">NO</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        v-model="formData.have_pep_details"
-        name="have_pep_details"
-        center
-        type="text"
-        label="IF YES, KINDLY PROVIDE DETAILS"
-        placeholder="Please enter the IF YES, KINDLY PROVIDE DETAILS"
-      />
-      <van-field
-        name="income_legitimate"
-        label="ARE YOU SURE YOUR SOURCE OF INCOME IS LEGITIMATE?"
-        :required="true"
-        :rules="[{required: true,message:'Please enter the ARE YOU SURE YOUR SOURCE OF INCOME IS LEGITIMATE?'}]"
-      >
-        <template #input>
-          <van-radio-group
-            v-model="formData.income_legitimate"
-            direction="horizontal"
-          >
-            <van-radio :name="1">YES</van-radio>
-            <van-radio :name="0">NO</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        v-model="formData.income_legitimate_details"
-        name="income_legitimate_details"
-        center
-        type="text"
-        label="IF NO, KINDLY EXPLAIN:"
-        placeholder="Please enter the IF NO, KINDLY EXPLAIN:"
-      />
-      <van-field
-        name="have_high_risk"
-        label="ARE YOU HAVING ANY “HIGH RISK BUSINESS”?"
-        :required="true"
-        :rules="[{required: true,message:'Please enter the ARE YOU HAVING ANY “HIGH RISK BUSINESS”?'}]"
-      >
-        <template #input>
-          <van-radio-group
-            v-model="formData.have_high_risk"
-            direction="horizontal"
-          >
-            <van-radio :name="1">YES</van-radio>
-            <van-radio :name="0">NO</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        name="have_high_risk_details"
-        label="IF YES, KINDLY PROVIDE DETAILS:"
-      >
-        <template #input>
-          <van-radio-group
-            v-model="formData.have_high_risk_details"
-            direction="horizontal"
-          >
-            <van-radio :name="1"
-              >BUSINESS RELATED TO ONLINE GAMING</van-radio
-            >
-            <van-radio :name="2"
-              >FOREX / CRYPTOCURRENCY</van-radio
-            >
-            <van-radio :name="3"
-              >BUSINESS RELATED TO COLLECTION AGENCIES</van-radio
-            >
-            <van-radio :name="4">OTHERS</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        v-model="formData.have_high_risk_details_content"
-        name="have_high_risk_details_content"
-        center
-        type="text"
-        label="OTHERS"
-        placeholder="Please enter the OTHERS"
-      />
-      <div class="minTitle">
-        1. I, have appointed “DDG” to manage my designated asset according to my
-        will and my instruction.
-      </div>
-      <div class="minTitle">
-        2. I, hereby declare that I’m fully understand the benefit of trust
-        setup for estate planning purpose.
-      </div>
-      <div class="minTitle">
-        3. I, hereby declare that all the capital or asset is derived from legal
-        sources.
-      </div>
-      <div class="minTitle">
-        4. I, hereby declare that all the information that provided is true,
-        otherwise I should bear all the legal liabilities and relevant
-        consequences.
-      </div>
       <div class="tl">TRUSTOR SIGNATURE</div>
       <vue-esign
         ref="trustor_signature"
@@ -327,22 +137,6 @@
           confirm
         </div>
       </div>
-      <van-image
-        v-if="formData.trustor_signature"
-        width="100%"
-        height="20%"
-        :src="formData.trustor_signature"
-      />
-      <van-field
-        v-model="formData.trustor_name"
-        name="trustor_name"
-        center
-        :required="true"
-        type="text"
-        label="NAME"
-        placeholder="Please enter the NAME"
-        :rules="[{ required: true, message: 'Please enter the NAME' }]"
-      />
       <van-field
         readonly
         v-model="formData.trustor_signature_date"
@@ -357,56 +151,7 @@
           { required: true, message: 'Please enter the DATE' },
         ]"
       />
-      <div class="tl">WITNESS SIGNATURE</div>
-      <vue-esign
-        ref="witness_signature"
-        :width="1200"
-        :height="300"
-        :isCrop="false"
-        :lineWidth="6"
-        lineColor="#000000"
-        bgColor.sync="#fff"
-        style="border: 1px solid #666"
-      />
-      <div class="tr">
-        <div class="esignBtn" @click="handleReset('witness_signature')">
-          clear
-        </div>
-        <div class="esignBtn" @click="handleGenerate('witness_signature')">
-          confirm
-        </div>
-      </div>
-      <van-image
-        v-if="formData.witness_signature"
-        width="100%"
-        height="20%"
-        :src="formData.witness_signature"
-      />
-      <van-field
-        v-model="formData.witness_name"
-        name="witness_name"
-        center
-        :required="true"
-        type="text"
-        label="NAME"
-        placeholder="Please enter the NAME"
-        :rules="[{ required: true, message: 'Please enter the NAME' }]"
-      />
-      <van-field
-        readonly
-        v-model="formData.witness_date"
-        name="witness_date"
-        center
-        :required="true"
-        right-icon="arrow"
-        label="DATE"
-        placeholder="Please enter the DATE"
-        @click="onShowPicker('witness_date')"
-        :rules="[
-          { required: true, message: 'Please enter the DATE' },
-        ]"
-      />
-      <van-field
+       <van-field
         readonly
         clickable
         label="Area code"
@@ -463,6 +208,12 @@
           >Send code</van-button
         >
       </van-field>
+
+
+
+
+     
+      
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
         {{ from == 'create'? 'next' : 'submit' }}
@@ -785,12 +536,16 @@ export default {
 
 <style scoped>
 .KYC {
-  /* padding: 0 16px; */
+  padding: 0 16px;
   text-align: left;
 }
 .minTitle {
   font-weight: bold;
   line-height: 24px;
+}
+.contentText {
+  line-height: 24px;
+  padding-left: 1rem;
 }
 /deep/ .van-radio__icon,
 /deep/ .van-radio__icon .van-icon,
