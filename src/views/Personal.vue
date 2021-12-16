@@ -31,7 +31,7 @@
       ></van-field>
       <van-field
         center
-        label="BTT CODE"
+        label="BTT Code"
         :readonly="true"
         v-model="userInfo.btt_code"
       ></van-field>
@@ -172,7 +172,7 @@
       <van-field
         ref="email"
         center
-        label="email"
+        label="Email"
         :readonly="actUserBtn == 'email' ? false : true"
         v-model="userInfo.email"
       >

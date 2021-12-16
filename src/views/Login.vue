@@ -358,7 +358,7 @@ export default {
               this.$store.commit("setTokenType", res.token_type);
               this.$toast({
                 type: "success",
-                message: "Login successful",
+                message: "Login \n successful",
               });
               this.getUser();
               const vm = this;
