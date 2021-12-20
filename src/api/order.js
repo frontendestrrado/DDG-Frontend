@@ -11,7 +11,7 @@ export const createOrders = obj => {
 // 提交KYC
 export const kyc_form = (orderId, obj) => {
   return request({
-    url: '/api/v1/orders/' + orderId + '/kyc_form',
+    url: '/api/v1/orders/' + orderId + '/compliance_questionnaire_form',
     method: 'POST',
     data: obj
   })

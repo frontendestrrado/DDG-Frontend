@@ -287,7 +287,7 @@ export default {
       },
       isShowPicker: false,
       currentContent: new Date(),
-      minDate: new Date(1950, 0, 1),
+      minDate: new Date(1900, 0, 1),
       maxDate: new Date(),
       phoneList: {
         verify_code: "",

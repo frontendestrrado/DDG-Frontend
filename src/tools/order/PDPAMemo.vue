@@ -175,6 +175,7 @@
         v-model="currentContent"
         type="date"
         :min-hour="0"
+        :min-date="minDate"
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
@@ -201,6 +202,7 @@ export default {
       whichDate: "", // 區分是哪個日期觸發彈框
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id
+      minDate: new Date(1900, 0, 1),
     };
   },
   mounted() {

@@ -48,6 +48,19 @@
       ></van-cell>
       <van-cell
         is-link
+        :value="orderData.pdpa_memo_form == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="Document Checklist"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/DocumentChecklist',
+            title: 'Document Checklist',
+          });
+          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form } });
+        "
+      ></van-cell>
+      <van-cell
+        is-link
         :value="
           orderData.third_party_declaration_form == 0 ? 'Not Filled' : 'Filled'
         "

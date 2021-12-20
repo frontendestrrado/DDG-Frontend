@@ -189,6 +189,10 @@ const router = new Router({
       name: 'PDPAMemo',
       component: () => import('@/tools/order/PDPAMemo'),
     },{
+      path: '/DocumentChecklist',
+      name: 'DocumentChecklist',
+      component: () => import('@/tools/order/DocumentChecklist'),
+    },{
       path: '/ThirdPartyDeclaration',
       name: 'ThirdPartyDeclaration',
       component: () => import('@/tools/order/ThirdPartyDeclaration'),

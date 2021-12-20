@@ -382,7 +382,7 @@ export default {
       checkUploadIndex: "",
       uploadImg:
         "https://www.bunchparty.com/trust/uploads/collects/202108/31//1630379513_1630379513_fs6mjWgy8o.png", //测试图
-      minDate: new Date(1950, 0, 1),
+      minDate: new Date(1900, 0, 1),
       maxDate: new Date(),
       phoneList: [],
 

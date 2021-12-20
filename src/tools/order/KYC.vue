@@ -37,8 +37,8 @@
       </div>
       <div class="minTitle">Settlor</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor.Full"
+        name="Full"
         center
         :required="true"
         type="text"
@@ -47,16 +47,16 @@
         :rules="[{ required: true, message: 'Please enter the Full Name' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor.Other"
+        name="Other"
         center
         type="text"
         label="Other/Previous Name (if any)"
         placeholder="Please enter the Other/Previous Name (if any)"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor.New"
+        name="New"
         center
         :required="true"
         type="text"
@@ -70,16 +70,16 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor.Old"
+        name="Old"
         center
         type="text"
         label="OLD - Malaysia NRIC No.(if applicable)"
         placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor.Nationality"
+        name="Nationality"
         center
         :required="true"
         type="text"
@@ -97,8 +97,8 @@
         For Non-Malaysia NRIC Holders, please provide passport details
       </div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_non_malaysia.Passport"
+        name="Passport"
         center
         :required="true"
         type="text"
@@ -109,8 +109,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_non_malaysia.Passport2"
+        name="Passport2"
         center
         :required="true"
         type="text"
@@ -121,8 +121,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_non_malaysia.Passport3"
+        name="Passport3"
         center
         :required="true"
         type="text"
@@ -136,8 +136,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_non_malaysia.Date"
+        name="Date"
         center
         :required="true"
         type="text"
@@ -146,8 +146,8 @@
         :rules="[{ required: true, message: 'Please enter the Date of Birth' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_non_malaysia.Country"
+        name="Country"
         center
         :required="true"
         type="text"
@@ -158,14 +158,14 @@
         ]"
       />
       <van-field
-        name="source_of_funds"
+        name="Gender"
         label="Gender"
         :required="true"
         :rules="[{ required: true, message: 'Please enter the Gender' }]"
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.settlor_non_malaysia.Gender"
             direction="horizontal"
           >
             <van-radio :name="1">Female</van-radio>
@@ -174,7 +174,7 @@
         </template>
       </van-field>
       <van-field
-        name="source_of_funds"
+        name="Marital"
         label="Marital Status"
         :required="true"
         :rules="[
@@ -183,7 +183,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.settlor_non_malaysia.Marital"
             direction="horizontal"
           >
             <van-radio :name="1">Single</van-radio>
@@ -195,8 +195,8 @@
       </van-field>
       <div class="minTitle">Contact Details</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Email"
+        name="Email"
         center
         :required="true"
         type="text"
@@ -205,8 +205,8 @@
         :rules="[{ required: true, message: 'Please enter the Email Address' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Mobile"
+        name="Mobile"
         center
         :required="true"
         type="text"
@@ -217,8 +217,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Home"
+        name="Home"
         center
         :required="true"
         type="text"
@@ -227,8 +227,8 @@
         :rules="[{ required: true, message: 'Please enter the Home Phone No' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Office"
+        name="Office"
         center
         :required="true"
         type="text"
@@ -239,8 +239,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Residential"
+        name="Residential"
         center
         :required="true"
         type="text"
@@ -251,8 +251,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Postcode"
+        name="Postcode"
         center
         :required="true"
         type="text"
@@ -261,8 +261,8 @@
         :rules="[{ required: true, message: 'Please enter the Postcode' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Country"
+        name="Country"
         center
         :required="true"
         type="text"
@@ -271,8 +271,8 @@
         :rules="[{ required: true, message: 'Please enter the Country' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Length"
+        name="Length"
         center
         :required="true"
         type="text"
@@ -286,8 +286,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Mailing"
+        name="Mailing"
         center
         :required="true"
         type="text"
@@ -302,8 +302,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Postcode2"
+        name="Postcode2"
         center
         :required="true"
         type="text"
@@ -312,8 +312,8 @@
         :rules="[{ required: true, message: 'Please enter the Postcode' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_contact_details.Country2"
+        name="Country2"
         center
         :required="true"
         type="text"
@@ -323,8 +323,8 @@
       />
       <div class="minTitle">Spouse</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse.Full"
+        name="Full"
         center
         :required="true"
         type="text"
@@ -333,16 +333,16 @@
         :rules="[{ required: true, message: 'Please enter the Full Name' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse.Other"
+        name="Other"
         center
         type="text"
         label="Other/Previous Name (if any)"
         placeholder="Please enter the Other/Previous Name (if any)"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse.New"
+        name="New"
         center
         :required="true"
         type="text"
@@ -356,16 +356,16 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse.Old"
+        name="Old"
         center
         type="text"
         label="OLD - Malaysia NRIC No.(if applicable)"
         placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse.Nationality"
+        name="Nationality"
         center
         :required="true"
         type="text"
@@ -383,8 +383,8 @@
         For Non-Malaysia NRIC Holders, please provide passport details
       </div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_non_malaysia.Passport"
+        name="Passport"
         center
         :required="true"
         type="text"
@@ -395,8 +395,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_non_malaysia.Passport2"
+        name="Passport2"
         center
         :required="true"
         type="text"
@@ -407,8 +407,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_non_malaysia.Passport3"
+        name="Passport3"
         center
         :required="true"
         type="text"
@@ -422,8 +422,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_non_malaysia.Date"
+        name="Date"
         center
         :required="true"
         type="text"
@@ -432,8 +432,8 @@
         :rules="[{ required: true, message: 'Please enter the Date of Birth' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_non_malaysia.Country"
+        name="Country"
         center
         :required="true"
         type="text"
@@ -444,14 +444,14 @@
         ]"
       />
       <van-field
-        name="source_of_funds"
+        name="Gender"
         label="Gender"
         :required="true"
         :rules="[{ required: true, message: 'Please enter the Gender' }]"
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.spouse_non_malaysia.Gender"
             direction="horizontal"
           >
             <van-radio :name="1">Female</van-radio>
@@ -460,7 +460,7 @@
         </template>
       </van-field>
       <van-field
-        name="source_of_funds"
+        name="Marital"
         label="Marital Status"
         :required="true"
         :rules="[
@@ -469,7 +469,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.spouse_non_malaysia.Marital"
             direction="horizontal"
           >
             <van-radio :name="1">Single</van-radio>
@@ -481,8 +481,8 @@
       </van-field>
       <div class="minTitle">Contact Details</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Email"
+        name="Email"
         center
         :required="true"
         type="text"
@@ -491,8 +491,8 @@
         :rules="[{ required: true, message: 'Please enter the Email Address' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Mobile"
+        name="Mobile"
         center
         :required="true"
         type="text"
@@ -503,8 +503,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Home"
+        name="Home"
         center
         :required="true"
         type="text"
@@ -513,8 +513,8 @@
         :rules="[{ required: true, message: 'Please enter the Home Phone No' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Office"
+        name="Office"
         center
         :required="true"
         type="text"
@@ -525,8 +525,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Residential"
+        name="Residential"
         center
         :required="true"
         type="text"
@@ -537,8 +537,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Postcode"
+        name="Postcode"
         center
         :required="true"
         type="text"
@@ -547,8 +547,8 @@
         :rules="[{ required: true, message: 'Please enter the Postcode' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Country"
+        name="Country"
         center
         :required="true"
         type="text"
@@ -557,8 +557,8 @@
         :rules="[{ required: true, message: 'Please enter the Country' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Length"
+        name="Length"
         center
         :required="true"
         type="text"
@@ -572,8 +572,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Mailing"
+        name="Mailing"
         center
         :required="true"
         type="text"
@@ -588,8 +588,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Postcode2"
+        name="Postcode2"
         center
         :required="true"
         type="text"
@@ -598,8 +598,8 @@
         :rules="[{ required: true, message: 'Please enter the Postcode' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_contact_details.Country2"
+        name="Country2"
         center
         :required="true"
         type="text"
@@ -611,7 +611,7 @@
       <div class="minTitle">SECTION B OCCUPATION</div>
       <div class="minTitle">Settlor</div>
       <van-field
-        name="source_of_funds"
+        name="Occupation"
         label="Occupation Type"
         :required="true"
         :rules="[
@@ -620,7 +620,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.settlor_occupation.Occupation"
             direction="horizontal"
           >
             <van-radio :name="1">Salaried</van-radio>
@@ -630,8 +630,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_occupation.Occupation2"
+        name="Occupation2"
         center
         :required="true"
         type="text"
@@ -640,8 +640,8 @@
         :rules="[{ required: true, message: 'Please enter the Occupation' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_occupation.Industry"
+        name="Industry"
         center
         :required="true"
         type="text"
@@ -650,8 +650,8 @@
         :rules="[{ required: true, message: 'Please enter the Industry' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_occupation.Name"
+        name="Name"
         center
         :required="true"
         type="text"
@@ -662,8 +662,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_occupation.Nature"
+        name="Nature"
         center
         :required="true"
         type="text"
@@ -677,8 +677,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.settlor_occupation.Annual"
+        name="Annual"
         center
         :required="true"
         type="text"
@@ -693,7 +693,7 @@
       />
       <div class="minTitle">Spouse</div>
       <van-field
-        name="source_of_funds"
+        name="Occupation"
         label="Occupation Type"
         :required="true"
         :rules="[
@@ -702,7 +702,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.spouse_occupation.Occupation"
             direction="horizontal"
           >
             <van-radio :name="1">Salaried</van-radio>
@@ -712,8 +712,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_occupation.Occupation2"
+        name="Occupation2"
         center
         :required="true"
         type="text"
@@ -722,8 +722,8 @@
         :rules="[{ required: true, message: 'Please enter the Occupation' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_occupation.Industry"
+        name="Industry"
         center
         :required="true"
         type="text"
@@ -732,8 +732,8 @@
         :rules="[{ required: true, message: 'Please enter the Industry' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_occupation.Name"
+        name="Name"
         center
         :required="true"
         type="text"
@@ -744,8 +744,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_occupation.Nature"
+        name="Nature"
         center
         :required="true"
         type="text"
@@ -759,8 +759,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.spouse_occupation.Annual"
+        name="Annual"
         center
         :required="true"
         type="text"
@@ -777,7 +777,7 @@
         SECTION C ENHANCED CUSTOMER DUE DILIGENCE (EDD)
       </div>
       <van-field
-        name="source_of_funds"
+        name="Are"
         label="Are you a Political Exposed Person (PEP)?"
         :required="true"
         :rules="[
@@ -789,17 +789,14 @@
         ]"
       >
         <template #input>
-          <van-radio-group
-            v-model="formData.source_of_funds"
-            direction="horizontal"
-          >
+          <van-radio-group v-model="formData.edd.Are" direction="horizontal">
             <van-radio :name="1">YES</van-radio>
             <van-radio :name="0">NO</van-radio>
           </van-radio-group>
         </template>
       </van-field>
       <van-field
-        name="source_of_funds"
+        name="Are2"
         label="Are you connected to any local and/or Foreign Political Exposed Person (PEP)?"
         :required="true"
         :rules="[
@@ -811,10 +808,7 @@
         ]"
       >
         <template #input>
-          <van-radio-group
-            v-model="formData.source_of_funds"
-            direction="horizontal"
-          >
+          <van-radio-group v-model="formData.edd.Are2" direction="horizontal">
             <van-radio :name="1">YES</van-radio>
             <van-radio :name="0">NO</van-radio>
           </van-radio-group>
@@ -824,8 +818,8 @@
         If the answer to C2 is YES, please provide the following details:
       </div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.c_two_yes.Pep"
+        name="Pep"
         center
         :required="true"
         type="text"
@@ -836,7 +830,7 @@
         ]"
       />
       <van-field
-        name="source_of_funds"
+        name="Relationship"
         label="Relationship with the PEP"
         :required="true"
         :rules="[
@@ -848,7 +842,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.c_two_yes.Relationship"
             direction="horizontal"
           >
             <van-radio :name="1">Self</van-radio>
@@ -865,23 +859,23 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.c_two_yes.Close"
+        name="Close"
         center
         type="text"
         label="Close Associate, please specify"
         placeholder="Please enter the Close Associate, please specify"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.c_two_yes.Others"
+        name="Others"
         center
         type="text"
         label="Others, please specify"
         placeholder="Please enter the Others, please specify"
       />
       <van-field
-        name="other_income"
+        name="Are"
         label="Are you an undischarged bankrupt?"
         :required="true"
         :rules="[
@@ -893,7 +887,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.c_two_yes.Are"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -902,7 +896,7 @@
         </template>
       </van-field>
       <van-field
-        name="other_income"
+        name="Do"
         label="Do you have an US Taxpayer Identification Number “TIN?"
         :required="true"
         :rules="[
@@ -915,7 +909,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.c_two_yes.Do"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -924,8 +918,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.c_two_yes.If"
+        name="If"
         center
         :required="true"
         type="text"
@@ -944,8 +938,8 @@
       </div>
       <div class="minTitle">Bank 1</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_one.Bank"
+        name="Bank"
         center
         :required="true"
         type="text"
@@ -954,8 +948,8 @@
         :rules="[{ required: true, message: 'Please enter the Bank' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_one.Account"
+        name="Account"
         center
         :required="true"
         type="text"
@@ -964,8 +958,8 @@
         :rules="[{ required: true, message: 'Please enter the Account No' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_one.Account2"
+        name="Account2"
         center
         :required="true"
         type="text"
@@ -976,8 +970,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_one.Transaction"
+        name="Transaction"
         center
         :required="true"
         type="number"
@@ -988,8 +982,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_one.Years"
+        name="Years"
         center
         :required="true"
         type="text"
@@ -1004,8 +998,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_one.Relationship"
+        name="Relationship"
         center
         :required="true"
         type="text"
@@ -1020,8 +1014,8 @@
       />
       <div class="minTitle">Bank 2</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_two.Bank"
+        name="Bank"
         center
         :required="true"
         type="text"
@@ -1030,8 +1024,8 @@
         :rules="[{ required: true, message: 'Please enter the Bank' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_two.Account"
+        name="Account"
         center
         :required="true"
         type="text"
@@ -1040,8 +1034,8 @@
         :rules="[{ required: true, message: 'Please enter the Account No' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_two.Account2"
+        name="Account2"
         center
         :required="true"
         type="text"
@@ -1052,8 +1046,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_two.Transaction"
+        name="Transaction"
         center
         :required="true"
         type="number"
@@ -1064,8 +1058,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_two.Years"
+        name="Years"
         center
         :required="true"
         type="text"
@@ -1080,8 +1074,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.bank_two.Relationship"
+        name="Relationship"
         center
         :required="true"
         type="text"
@@ -1095,7 +1089,7 @@
         ]"
       />
       <van-field
-        name="source_of_funds"
+        name="Mode"
         label="Mode of Payment(Cash not accepted)"
         :required="true"
         :rules="[
@@ -1104,7 +1098,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.bank_two.Mode"
             direction="horizontal"
           >
             <van-radio :name="1">IBG/ Instant Transfer </van-radio>
@@ -1114,14 +1108,14 @@
       </van-field>
       <div class="minTitle">SECTION E DOCUMENT CHECKLIST</div>
       <van-field
-        name="source_of_funds"
+        name="Particulars"
         label="Particulars"
         :required="true"
         :rules="[{ required: true, message: 'Please enter the Particulars' }]"
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.document_checklist.Particulars"
             direction="horizontal"
           >
             <van-radio :name="1">IC/ Passport of Settlor</van-radio>
@@ -1145,7 +1139,7 @@
         </template>
       </van-field>
       <van-field
-        name="other_income"
+        name="Are"
         label="Are you one of our existing client in any of our affiliate or our group?"
         :required="true"
         :rules="[
@@ -1158,7 +1152,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.document_checklist.Are"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -1167,8 +1161,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.document_checklist.If"
+        name="If"
         center
         type="text"
         label="If yes, Kindly indicate what the services provided"
@@ -1197,25 +1191,25 @@
         information discrepancies and inaccuracies.
       </div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.declaration.Name"
+        name="Name"
         center
         :required="true"
         type="text"
-        label="NAME"
-        placeholder="Please enter the NAME"
+        label="Name"
+        placeholder="Please enter the Name"
         :rules="[{ required: true, message: 'Please enter the NAME' }]"
       />
       <van-field
         readonly
-        v-model="formData.trustor_signature_date"
-        name="trustor_signature_date"
+        v-model="formData.declaration.Date"
+        name="Date"
         center
         :required="true"
         right-icon="arrow"
-        label="DATE"
+        label="Date"
         placeholder="Please enter the DATE"
-        @click="onShowPicker('trustor_signature_date')"
+        @click="onShowPicker('declaration', 'Date')"
         :rules="[{ required: true, message: 'Please enter the DATE' }]"
       />
       <div class="minTitle">Section G (Office Use)</div>
@@ -1227,7 +1221,7 @@
       <div class="minTitle">
         Marketing Officer and Frontline Officer for onboarding clients.
       </div>
-      <van-field
+      <!-- <van-field
         v-model="formData.name"
         name="name"
         center
@@ -1264,11 +1258,11 @@
         type="text"
         label="Comment for Compliance Officer (if any)"
         placeholder="Please enter the Comment for Compliance Officer (if any)"
-      />
-      <div class="minTitle">Distribution Agent Details</div>
+      /> -->
+      <div class="minTitle">Distribution Agent Details(Response)</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.distribution_agent_details.Distribution"
+        name="Distribution"
         center
         :required="true"
         type="text"
@@ -1283,8 +1277,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.distribution_agent_details.Marketing"
+        name="Marketing"
         center
         :required="true"
         type="text"
@@ -1298,10 +1292,29 @@
           },
         ]"
       />
+      <div class="minTitle">
+        Distribution Agent Details(Comment for Compliance Officer (if any))
+      </div>
+      <van-field
+        v-model="formData.distribution_agent_details.Distribution2"
+        name="Distribution2"
+        center
+        type="text"
+        label="Distribution Agent Name / Marketing Officer "
+        placeholder="Please enter the Distribution Agent Name / Marketing Officer "
+      />
+      <van-field
+        v-model="formData.distribution_agent_details.Marketing2"
+        name="Marketing2"
+        center
+        type="text"
+        label="Marketing Officer Name 2 (list all if there are more than one agent)"
+        placeholder="Please enter the Marketing Officer Name 2 (list all if there are more than one agent)"
+      />
       <div class="minTitle">Client Details</div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.client_details.Client"
+        name="Client"
         center
         :required="true"
         type="text"
@@ -1310,7 +1323,7 @@
         :rules="[{ required: true, message: 'Please enter the Client Name ' }]"
       />
       <van-field
-        name="other_income"
+        name="Is"
         label="Is the photocopy of the IC match the physical person (settlor)? "
         :required="true"
         :rules="[
@@ -1323,7 +1336,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.client_details.Is"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -1332,7 +1345,7 @@
         </template>
       </van-field>
       <van-field
-        name="other_income"
+        name="Is2"
         label="Is the mobile number correct for the settlor?"
         :required="true"
         :rules="[
@@ -1345,7 +1358,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.client_details.Is2"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -1354,7 +1367,7 @@
         </template>
       </van-field>
       <van-field
-        name="other_income"
+        name="Is3"
         label="Is the mobile number correct for the beneficiary?"
         :required="true"
         :rules="[
@@ -1367,7 +1380,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.client_details.Is3"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -1376,7 +1389,7 @@
         </template>
       </van-field>
       <van-field
-        name="other_income"
+        name="Is4"
         label="Is there willingness to provide information and documents?"
         :required="true"
         :rules="[
@@ -1389,7 +1402,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.client_details.Is4"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -1398,7 +1411,7 @@
         </template>
       </van-field>
       <van-field
-        name="other_income"
+        name="On"
         label="On-Boarding Mode and how many times you meet the client?"
         :required="true"
         :rules="[
@@ -1411,7 +1424,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.client_details.On"
             direction="horizontal"
           >
             <van-radio :name="1">FACE-TO-FACE</van-radio>
@@ -1420,8 +1433,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.client_details.Face"
+        name="Face"
         center
         :required="true"
         type="text"
@@ -1432,8 +1445,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.client_details.Non"
+        name="Non"
         center
         :required="true"
         type="text"
@@ -1455,24 +1468,24 @@
       >
       <div
         class="beneficiary_info"
-        v-for="(item, inx) in formData.company"
+        v-for="(item, inx) in formData.interaction"
         :key="inx"
       >
         <van-field
           readonly
-          v-model="item.trustor_signature_date"
-          name="trustor_signature_date"
+          v-model="item.Date"
+          name="Date"
           center
           :required="true"
           right-icon="arrow"
           label="Date"
           placeholder="Please enter the Date"
-          @click="onShowPicker('trustor_signature_date')"
+          @click="onShowPicker('interaction', 'Date', inx)"
           :rules="[{ required: true, message: 'Please enter the Date' }]"
         />
         <van-field
-          v-model="item.name"
-          name="name"
+          v-model="item.Time"
+          name="Time"
           center
           :required="true"
           type="text"
@@ -1481,8 +1494,8 @@
           :rules="[{ required: true, message: 'Please enter the Time' }]"
         />
         <van-field
-          v-model="item.name"
-          name="name"
+          v-model="item.Place"
+          name="Place"
           center
           :required="true"
           type="text"
@@ -1491,8 +1504,8 @@
           :rules="[{ required: true, message: 'Please enter the Place' }]"
         />
         <van-field
-          v-model="item.name"
-          name="name"
+          v-model="item.Comment"
+          name="Comment"
           center
           :required="true"
           type="text"
@@ -1510,7 +1523,7 @@
         >
       </div>
       <van-field
-        name="other_income"
+        name="Any"
         label="Any Introducer? "
         :required="true"
         :rules="[
@@ -1522,7 +1535,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.other_income"
+            v-model="formData.assessment_of_client.Any"
             direction="horizontal"
           >
             <van-radio :name="1">YES</van-radio>
@@ -1531,8 +1544,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.assessment_of_client.Please"
+        name="Please"
         center
         :required="true"
         type="text"
@@ -1547,7 +1560,7 @@
       />
       <div class="minTitle">Assessment of Client</div>
       <van-field
-        name="source_of_funds"
+        name="Risk"
         label="Risk Rating by Distribution Agent"
         :required="true"
         :rules="[
@@ -1559,7 +1572,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.assessment_of_client.Risk"
             direction="horizontal"
           >
             <van-radio :name="1">High</van-radio>
@@ -1570,8 +1583,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.assessment_of_client.Any2"
+        name="Any2"
         center
         :required="true"
         type="text"
@@ -1586,7 +1599,7 @@
         ]"
       />
       <van-field
-        name="source_of_funds"
+        name="Recommended"
         label="Recommended Decision"
         :required="true"
         :rules="[
@@ -1595,7 +1608,7 @@
       >
         <template #input>
           <van-radio-group
-            v-model="formData.source_of_funds"
+            v-model="formData.assessment_of_client.Recommended"
             direction="horizontal"
           >
             <van-radio :name="1">Accept</van-radio>
@@ -1604,8 +1617,8 @@
         </template>
       </van-field>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.assessment_of_client.Please2"
+        name="Please2"
         center
         :required="true"
         type="text"
@@ -1620,8 +1633,8 @@
         ]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.assessment_of_client.Remark"
+        name="Remark"
         center
         :required="true"
         type="text"
@@ -1637,7 +1650,7 @@
       </div>
       <div class="tl">Marketing Officer/ Frontline Officer</div>
       <vue-esign
-        ref="trustor_signature"
+        ref="trustor_signature1"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -1647,16 +1660,21 @@
         style="border: 1px solid #666"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('trustor_signature')">
+        <div class="esignBtn" @click="handleReset('trustor_signature1')">
           clear
         </div>
-        <div class="esignBtn" @click="handleGenerate('trustor_signature')">
+        <div
+          class="esignBtn"
+          @click="
+            handleGenerate('trustor_signature1', 'store_marketing_officer')
+          "
+        >
           confirm
         </div>
       </div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.store_marketing_officer.Name"
+        name="Name"
         center
         :required="true"
         type="text"
@@ -1665,8 +1683,8 @@
         :rules="[{ required: true, message: 'Please enter the Name' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.store_marketing_officer.Nric"
+        name="Nric"
         center
         :required="true"
         type="text"
@@ -1676,19 +1694,19 @@
       />
       <van-field
         readonly
-        v-model="formData.trustor_signature_date"
-        name="trustor_signature_date"
+        v-model="formData.store_marketing_officer.Date"
+        name="Date"
         center
         :required="true"
         right-icon="arrow"
         label="Date"
         placeholder="Please enter the Date"
-        @click="onShowPicker('trustor_signature_date')"
+        @click="onShowPicker('store_marketing_officer', 'Date')"
         :rules="[{ required: true, message: 'Please enter the Date' }]"
       />
       <div class="tl">Manager/ HOD of the Company</div>
       <vue-esign
-        ref="trustor_signature"
+        ref="trustor_signature2"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -1698,16 +1716,19 @@
         style="border: 1px solid #666"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('trustor_signature')">
+        <div class="esignBtn" @click="handleReset('trustor_signature2')">
           clear
         </div>
-        <div class="esignBtn" @click="handleGenerate('trustor_signature')">
+        <div
+          class="esignBtn"
+          @click="handleGenerate('trustor_signature2', 'store_manager')"
+        >
           confirm
         </div>
       </div>
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.store_manager.Name"
+        name="Name"
         center
         :required="true"
         type="text"
@@ -1716,8 +1737,8 @@
         :rules="[{ required: true, message: 'Please enter the Name' }]"
       />
       <van-field
-        v-model="formData.name"
-        name="name"
+        v-model="formData.store_manager.Nric"
+        name="Nric"
         center
         :required="true"
         type="text"
@@ -1727,101 +1748,18 @@
       />
       <van-field
         readonly
-        v-model="formData.trustor_signature_date"
-        name="trustor_signature_date"
+        v-model="formData.store_manager.Date"
+        name="Date"
         center
         :required="true"
         right-icon="arrow"
         label="Date"
         placeholder="Please enter the Date"
-        @click="onShowPicker('trustor_signature_date')"
+        @click="onShowPicker('store_manager', 'Date')"
         :rules="[{ required: true, message: 'Please enter the Date' }]"
       />
 
       <!-- <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
-      <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
-      <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
-      <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
-      <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
-      <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
-      <van-field
-        v-model="formData.name"
-        name="name"
-        center
-        :required="true"
-        type="text"
-        label="TRUSTOR"
-        placeholder="Please enter the TRUSTOR"
-        :rules="[{ required: true, message: 'Please enter the TRUSTOR' }]"
-      />
-      <van-field
-        name="source_of_funds"
-        label="SOURCE"
-        :required="true"
-        :rules="[{ required: true, message: 'Please enter the SOURCE' }]"
-      >
-        <template #input>
-          <van-radio-group
-            v-model="formData.source_of_funds"
-            direction="horizontal"
-          >
-            <van-radio :name="1">EMPLOYMENT</van-radio>
-            <van-radio :name="2">RETIRED</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <van-field
-        name="other_income"
-        label="INCOME"
-        :required="true"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the INCOME',
-          },
-        ]"
-      >
-        <template #input>
-          <van-radio-group
-            v-model="formData.other_income"
-            direction="horizontal"
-          >
-            <van-radio :name="1">YES</van-radio>
-            <van-radio :name="0">NO</van-radio>
-          </van-radio-group>
-        </template>
-      </van-field>
-      <div class="tl">TRUSTOR SIGNATURE</div>
-      <vue-esign
-        ref="trustor_signature"
-        :width="1200"
-        :height="300"
-        :isCrop="false"
-        :lineWidth="6"
-        lineColor="#000000"
-        bgColor.sync="#fff"
-        style="border: 1px solid #666"
-      />
-      <div class="tr">
-        <div class="esignBtn" @click="handleReset('trustor_signature')">
-          clear
-        </div>
-        <div class="esignBtn" @click="handleGenerate('trustor_signature')">
-          confirm
-        </div>
-      </div>
-      <van-field
-        readonly
-        v-model="formData.trustor_signature_date"
-        name="trustor_signature_date"
-        center
-        :required="true"
-        right-icon="arrow"
-        label="DATE"
-        placeholder="Please enter the DATE"
-        @click="onShowPicker('trustor_signature_date')"
-        :rules="[{ required: true, message: 'Please enter the DATE' }]"
-      />
       <van-field
         readonly
         clickable
@@ -1891,6 +1829,7 @@
         v-model="currentContent"
         type="date"
         :min-hour="0"
+        :min-date="minDate"
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
@@ -1905,46 +1844,169 @@ export default {
   data() {
     return {
       formData: {
-        name: "",
-        nric_no: "",
-        contact_no: "",
-        email: "",
-        source_of_funds: 0,
-        company: [
-          {
-            Date: "",
-            Time: "",
-            Place: "",
-            Comment: "",
-          },
-        ],
-        occupation: "",
-        business_running: "",
-        year_income: "",
-        other_income: 0,
-        other_income_details: 0,
-        why_set_trust: "",
-        have_trust: 0,
-        have_pep: 0,
-        income_legitimate: 0,
-        income_legitimate_details: "",
-        have_high_risk: 0,
-        have_high_risk_details: 0,
-        trustor_signature: "",
-        trustor_name: "",
-        trustor_signature_date: "",
-        witness_signature: "",
-        witness_name: "",
-        witness_date: "",
-        witness_phone: "",
-        other_income_details_content: "",
-        have_trust_details: "",
-        have_pep_details: "",
-        have_high_risk_details_content: "",
+        settlor: {
+          Full: '',
+          Other: '',
+          New: '',
+          Old: '',
+          Nationality: '',
+        }, 
+        settlor_non_malaysia: {
+          Passport: '',
+          Passport2: '',
+          Passport3: '',
+          Date: '',
+          Country: '',
+          Gender: '',
+          Marital: '',
+        }, 
+        settlor_contact_details: {
+          Email: '',
+          Mobile: '',
+          Home: '',
+          Office: '',
+          Residential: '',
+          Postcode: '',
+          Country: '',
+          Length: '',
+          Mailing: '',
+          Postcode2: '',
+          Country2: '',
+        },
+        spouse: {
+          Full: '',
+          Other: '',
+          New: '',
+          Old: '',
+          Nationality: '',
+        }, 
+        spouse_non_malaysia: {
+          Passport: '',
+          Passport2: '',
+          Passport3: '',
+          Date: '',
+          Country: '',
+          Gender: '',
+          Marital: '',
+        }, 
+        spouse_contact_details: {
+          Email: '',
+          Mobile: '',
+          Home: '',
+          Office: '',
+          Residential: '',
+          Postcode: '',
+          Country: '',
+          Length: '',
+          Mailing: '',
+          Postcode2: '',
+          Country2: '',
+        },
+        settlor_occupation: {
+          Occupation: '',
+          Occupation2: '',
+          Industry: '',
+          Name: '',
+          Nature: '',
+          Annual: '',
+        }, 
+        spouse_occupation: {
+          Occupation: '',
+          Occupation2: '',
+          Industry: '',
+          Name: '',
+          Nature: '',
+          Annual: '',
+        }, 
+        edd: {
+          Are: '',
+          Are2: '',
+        },
+        c_two_yes: {
+          Pep: '',
+          Relationship: '',
+          Close: '',
+          Others: '',
+          Are: '',
+          Do: '',
+          If: '',
+        }, 
+        bank_one: {
+          Bank: '',
+          Account: '',
+          Account2: '',
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+        }, 
+        bank_two: {
+          Bank: '',
+          Account: '',
+          Account2: '',
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+          Mode: '',
+        },
+        document_checklist: {
+          Particulars: '',
+          Are: '',
+          If: '',
+        }, 
+        declaration: {
+          Name: '',
+          Date: '',
+        }, 
+        onboarding_clients: {},
+        distribution_agent_details: {
+          Distribution: '',
+          Marketing: '',
+          Distribution2: '',
+          Marketing2: '',
+        }, 
+        client_details: {
+          Client: '',
+          Is: '',
+          Is2: '',
+          Is3: '',
+          Is4: '',
+          On: '',
+          Face: '',
+          Non: '',
+        }, 
+        interaction: [{
+          Date: '',
+          Time: '',
+          Place: '',
+          CommentComment: '',
+        }], // Add
+        assessment_of_client: {
+          Any: '',
+          Please: '',
+          Risk: '',
+          Any2: '',
+          Recommended: '',
+          Please2: '',
+          Remark: '',
+        }, 
+        store_marketing_officer: {
+          trustor_signature1: '',
+          Name: '',
+          Nric: '',
+          Date: '',
+        }, 
+        store_manager: {
+          trustor_signature2: '',
+          Name: '',
+          Nric: '',
+          Date: '',
+        }
       },
       isShowPicker: false, // 日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
+      whichDate2: "", // 區分是哪個日期觸發彈框
+      whichDateInx: "", // 區分是哪個日期觸發彈框
       showCodePicker: false, // 區號彈框
       columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
       areaCode: "", // 區號
@@ -1953,6 +2015,7 @@ export default {
       isSms: false,
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id(未填0)
+      minDate: new Date(1900, 0, 1),
     };
   },
   mounted() {
@@ -1968,87 +2031,93 @@ export default {
         getOrdersForms(this.isFilled, { type: "KYC" })
           .then((res) => {
             console.log(res);
-            this.formData = res;
-            this.phone = res.witness_phone.slice(-11);
-            this.areaCode = res.witness_phone.split(this.phone)[0];
+            this.formData = JSON.parse(res);
+            // this.phone = res.witness_phone.slice(-11);
+            // this.areaCode = res.witness_phone.split(this.phone)[0];
           })
           .catch((err) => {});
       }
     },
     submit(form) {
       console.log(form, "form");
-      if (!this.formData.trustor_signature) {
+      if (!this.formData.store_marketing_officer.trustor_signature1) {
         this.$toast.fail("Please sign your name");
         return;
-      } else if (!this.formData.witness_signature) {
+      } else if (!this.formData.store_manager.trustor_signature2) {
         this.$toast.fail("Please sign your name");
         return;
       }
-      // 验证验证码
-      let data = [];
-      data.push({
-        phone: this.areaCode.split(" ")[0] + this.phone,
-        verify_code: this.verify_code,
-      });
-      verdict_code(JSON.stringify(data))
-        .then((res) => {
-          console.log(res, "验证回调");
-          if (res.state_code == 200) {
-            // 验证成功 提交表单
-            let data = JSON.parse(JSON.stringify(this.formData));
-            data.witness_phone = this.areaCode.split(" ")[0] + this.phone;
-            if (this.isFilled > 0) {
-              // 修改
-              putOrdersForms(this.isFilled, {
-                type: "KYC",
-                data: JSON.stringify(data),
-              }).then((res) => {
-                console.log(res, "修改kyc成功");
-                this.$toast({
-                  type: "success",
-                  message: "Modify the success",
-                });
-                this.$router.go(-1);
-              });
-            } else {
-              kyc_form(this.$route.query.orderId, data)
-                .then((res) => {
-                  console.log(res);
-                  this.$toast({
-                    type: "success",
-                    message: "Submitted successfully",
-                  });
-                  if (this.from == "create") {
-                    this.$store.commit("changePage", {
-                      tabbar: "/LetterOfWishes",
-                      title: "Letter Of Wishes",
-                    });
-                    this.$router.push(
-                      "/LetterOfWishes?from=create&orderId=" +
-                        this.$route.query.orderId
-                    );
-                  } else {
-                    this.$router.go(-1);
-                  }
-                })
-                .catch((err) => {
-                  console.log(err.response);
-                });
-            }
-          } else {
-            this.$toast({
-              type: "fail",
-              message: res.message,
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(err.response);
+      let data = JSON.parse(JSON.stringify(this.formData));
+      // data.settlor = JSON.stringify(data.settlor)
+      for (let key in data) {
+        data[key] = JSON.stringify(data[key])
+      }
+      // data.witness_phone = this.areaCode.split(" ")[0] + this.phone;
+      if (this.isFilled > 0) {
+        // 修改
+        putOrdersForms(this.isFilled, {
+          type: "KYC",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改kyc成功");
           this.$toast({
-            type: "fail",
-            message: "Verification code error",
+            type: "success",
+            message: "Modify the success",
           });
+          this.$router.go(-1);
         });
+      } else {
+        kyc_form(this.$route.query.orderId, data)
+          .then((res) => {
+            console.log(res);
+            this.$toast({
+              type: "success",
+              message: "Submitted successfully",
+            });
+            if (this.from == "create") {
+              this.$store.commit("changePage", {
+                tabbar: "/LetterOfWishes",
+                title: "Letter Of Wishes",
+              });
+              this.$router.push(
+                "/LetterOfWishes?from=create&orderId=" +
+                  this.$route.query.orderId
+              );
+            } else {
+              this.$router.go(-1);
+            }
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      }
+      // // 验证验证码
+      // let data = [];
+      // data.push({
+      //   phone: this.areaCode.split(" ")[0] + this.phone,
+      //   verify_code: this.verify_code,
+      // });
+      // verdict_code(JSON.stringify(data))
+      //   .then((res) => {
+      //     console.log(res, "验证回调");
+      //     if (res.state_code == 200) {
+      //       // 验证成功 提交表单
+            
+      //       }
+      //     } else {
+      //       this.$toast({
+      //         type: "fail",
+      //         message: res.message,
+      //       });
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err.response);
+      //     this.$toast({
+      //       type: "fail",
+      //       message: "Verification code error",
+      //     });
+      //   });
     },
     onFailed(values, errorInfo) {
       console.log("failed", errorInfo);
@@ -2158,7 +2227,7 @@ export default {
     handleReset(val) {
       this.$refs[val].reset(); //清空画布
     },
-    handleGenerate(val) {
+    handleGenerate(val,val2) {
       var that = this;
       this.$refs[val]
         .generate()
@@ -2168,7 +2237,7 @@ export default {
             path: "",
           })
             .then((res) => {
-              that.formData[val] = res.path;
+              that.formData[val2][val] = res.path;
               that.$toast({
                 type: "success",
                 message: "Signature success",
@@ -2191,9 +2260,11 @@ export default {
         });
     },
     // 展示日期弹框
-    onShowPicker(val) {
+    onShowPicker(val,val2,inx) {
       this.isShowPicker = true;
       this.whichDate = val;
+      this.whichDate2 = val2;
+      this.whichDateInx = inx;
     },
     // 日期彈框
     onHiddenPicker() {
@@ -2201,7 +2272,11 @@ export default {
       this.isShowPicker = false;
     },
     onConfirmPicker() {
-      this.formData[this.whichDate] = this.formatDateYMD(this.currentContent);
+      if (this.whichDateInx || this.whichDateInx == 0) {
+        this.formData[this.whichDate][this.whichDateInx][this.whichDate2] = this.formatDateYMD(this.currentContent);
+      } else {
+        this.formData[this.whichDate][this.whichDate2] = this.formatDateYMD(this.currentContent);
+      }
       this.isShowPicker = false;
     },
     // 出來日期格式ymd
@@ -2218,8 +2293,8 @@ export default {
     },
     // 添加beneficiary_info
     addBeneficiary() {
-      if (this.formData.company.length < 4) {
-        this.formData.company.push({
+      if (this.formData.interaction.length < 4) {
+        this.formData.interaction.push({
           Date: "",
           Time: "",
           Place: "",
@@ -2228,7 +2303,7 @@ export default {
       }
     },
     delBeneficiary(inx) {
-      this.formData.company.splice(inx, 1);
+      this.formData.interaction.splice(inx, 1);
     },
   },
 };

@@ -67,19 +67,19 @@
             name="wap-nav"
             color="#333"
             size="30"
-            @click="isShowTopUl = false"
+            @click.stop="isShowTopUl = false"
           />
           <van-icon
             v-else
             name="cross"
             color="#333"
             size="30"
-            @click="isShowTopUl = true"
+            @click.stop="isShowTopUl = true"
           />
         </van-col>
       </van-row>
       <!-- <van-overlay :show="!isShowTopUl" /> -->
-      <ul class="menuInfo fontPB" v-if="!isShowTopUl">
+      <ul class="menuInfo fontPB" v-if="!isShowTopUl" @click.stop>
         <li class="hv" @click="changeActTab('/Index', 'Index')">
           Home About Us
         </li>
@@ -180,6 +180,9 @@ export default {
     this.isToken = sessionStorage.token
     EventHub.$on('isLogin',(data) => {
       this.isToken = sessionStorage.token
+    })
+    EventHub.$on('hiddenMenu',(data) => {
+      this.isShowTopUl = true
     })
   },
   watch: {
@@ -308,7 +311,7 @@ export default {
       this.$router.push("/Login");
       this.isToken = sessionStorage.token
       this.$router.go(0)
-    }
+    },
   },
 };
 </script>
