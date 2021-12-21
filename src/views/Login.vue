@@ -44,6 +44,11 @@
                 { required: true,message: 'Please enter the BTT CODE' },
               ]"
             />
+            <van-field name="uploader" label="文件上传">
+              <template #input>
+                <van-uploader v-model="uploader" :after-read="afterRead" :max-count="1" />
+              </template>
+            </van-field>
             <van-field
               v-model="registForm.passport"
               name="NRIC Name Or Passport # / Company Re.Number"
@@ -88,6 +93,8 @@
                 type="date"
                 :min-date="minDate"
                 :max-date="maxDate"
+                confirm-button-text="Confirm"
+                cancel-button-text="Cancel"
                 @cancel="onHiddenPicker"
                 @confirm="onConfirmPicker"
               />
@@ -177,6 +184,8 @@
               <van-picker
                 show-toolbar
                 :columns="columns"
+                confirm-button-text="Confirm"
+                cancel-button-text="Cancel"
                 @cancel="showPicker = false"
                 @confirm="onConfirm"
               />
@@ -222,6 +231,8 @@
               <van-picker
                 show-toolbar
                 :columns="columns"
+                confirm-button-text="Confirm"
+                cancel-button-text="Cancel"
                 @cancel="showPicker2 = false"
                 @confirm="onConfirm2"
               />
@@ -255,6 +266,7 @@
 <script>
 import Common from "@/components/mode/common.vue";
 import EventHub from '@/util/EventHub'
+import { uploadAutograph } from "@/api/util";
 export default {
   components: {
     Common,
@@ -299,6 +311,7 @@ export default {
       showPicker: false,
 			showPicker2: false,
       columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
+      uploader: [{ url: 'https://img01.yzcdn.cn/vant/leaf.jpg' }]
     };
   },
   mounted() {
@@ -312,6 +325,17 @@ export default {
 		onConfirm2(value) {
       this.areaCode2 = value;
       this.showPicker2 = false;
+    },
+    // 圖片上傳
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
+      uploadAutograph({
+        image: file,
+        path: "",
+      }).then(res => {
+        this.uploader[0].url = res.path
+      })
     },
     getPageContent() {
       this.$axios({

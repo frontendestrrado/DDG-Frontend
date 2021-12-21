@@ -79,6 +79,8 @@
                 <van-picker
                   show-toolbar
                   :columns="columns"
+                  confirm-button-text="Confirm"
+                  cancel-button-text="Cancel"
                   @cancel="showPicker = false"
                   @confirm="(value) => onConfirm(value, index)"
                 />
@@ -344,6 +346,8 @@
           :min-hour="0"
           :min-date="minDate"
           :max-date="maxDate"
+          confirm-button-text="Confirm"
+          cancel-button-text="Cancel"
           @cancel="onHiddenPicker"
           @confirm="onConfirmPicker"
         />

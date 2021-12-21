@@ -8,9 +8,9 @@
         is-link
         :value="orderData.kyc_form == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
-        title="KYC"
+        title="Compliance Questionnaire"
         @click="
-          $store.commit('changePage', { tabbar: '/KYC', title: 'KYC' });
+          $store.commit('changePage', { tabbar: '/KYC', title: 'Compliance Questionnaire' });
           $router.push({
             path: '/KYC',
             query: { orderId: orderData.id, isFilled: orderData.kyc_form },
@@ -21,7 +21,7 @@
         is-link
         :value="orderData.letter_of_wishes_form == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
-        title="Letter Of Wishes"
+        title="Letter of Wishes"
         @click="
           $store.commit('changePage', {
             tabbar: '/LetterOfWishes',
@@ -48,7 +48,7 @@
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.pdpa_memo_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.document_check_list_form == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Document Checklist"
         @click="
@@ -56,7 +56,7 @@
             tabbar: '/DocumentChecklist',
             title: 'Document Checklist',
           });
-          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form } });
+          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.document_check_list_form } });
         "
       ></van-cell>
       <van-cell

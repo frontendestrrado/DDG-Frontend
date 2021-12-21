@@ -429,6 +429,8 @@
         v-model="currentContent"
         type="date"
         :min-hour="0"
+        confirm-button-text="Confirm"
+        cancel-button-text="Cancel"
         :min-date="minDate"
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
@@ -548,7 +550,7 @@ export default {
       createOrders(data).then(res => {
         console.log(res,'訂單創建成功');
         this.$toast.success('Creating a successful')
-        this.$store.commit('changePage',{tabbar: '/KYC', title: 'KYC'});
+        this.$store.commit('changePage',{tabbar: '/KYC', title: 'Compliance Questionnaire'});
         this.$router.push('/KYC?from=create&orderId=' + res.id)
         // this.$router.go(-1)
       }).catch(err => {

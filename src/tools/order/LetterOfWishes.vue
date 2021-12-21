@@ -99,6 +99,8 @@
         v-model="currentContent"
         type="date"
         :min-hour="0"
+        confirm-button-text="Confirm"
+        cancel-button-text="Cancel"
         :min-date="minDate"
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"

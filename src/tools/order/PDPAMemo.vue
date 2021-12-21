@@ -175,6 +175,8 @@
         v-model="currentContent"
         type="date"
         :min-hour="0"
+        confirm-button-text="Confirm"
+        cancel-button-text="Cancel"
         :min-date="minDate"
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
@@ -250,7 +252,17 @@ export default {
               type: "success",
               message: "Submitted successfully",
             });
-            this.$router.push("/CreateOrder");
+            if (this.from == "create") {
+              this.$store.commit("changePage", {
+                tabbar: "/DocumentChecklist",
+                title: "Document Checklist",
+              });
+              this.$router.push(
+                "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId
+              );
+            } else {
+              this.$router.go(-1);
+            }
           })
           .catch((err) => {});
       }

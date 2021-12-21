@@ -1,7 +1,7 @@
 <template>
   <div class="CreateOrder bodybox">
     <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/CustomerApplication', title: 'Customer Application'});$router.push('/CustomerApplication?from=create')">
-      Step (1/4) Customer Application
+      Step (1/5) Customer Application
     </van-cell>
     <!-- <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/KYC', title: 'KYC'});$router.push('/KYC')">
       Step (2/4) KYC

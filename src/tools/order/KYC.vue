@@ -44,7 +44,7 @@
         type="text"
         label="Full Name"
         placeholder="Please enter the Full Name"
-        :rules="[{ required: true, message: 'Please enter the Full Name' }]"
+        :rules="[{ required: false, message: 'Please enter the Full Name' }]"
       />
       <van-field
         v-model="formData.settlor.Other"
@@ -64,7 +64,7 @@
         placeholder="Please enter the NEW - Malaysia NRIC No"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the NEW - Malaysia NRIC No',
           },
         ]"
@@ -87,7 +87,7 @@
         placeholder="Please enter the Nationality(state all if multiple nationality)"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Nationality(state all if multiple nationality)',
           },
@@ -105,7 +105,7 @@
         label="Passport Number"
         placeholder="Please enter the Passport Number"
         :rules="[
-          { required: true, message: 'Please enter the Passport Number' },
+          { required: false, message: 'Please enter the Passport Number' },
         ]"
       />
       <van-field
@@ -117,7 +117,7 @@
         label="Passport Expiry Date"
         placeholder="Please enter the Passport Expiry Date"
         :rules="[
-          { required: true, message: 'Please enter the Passport Expiry Date' },
+          { required: false, message: 'Please enter the Passport Expiry Date' },
         ]"
       />
       <van-field
@@ -130,7 +130,7 @@
         placeholder="Please enter the Passport Issuing Country"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Passport Issuing Country',
           },
         ]"
@@ -143,7 +143,7 @@
         type="text"
         label="Date of Birth"
         placeholder="Please enter the Date of Birth"
-        :rules="[{ required: true, message: 'Please enter the Date of Birth' }]"
+        :rules="[{ required: false, message: 'Please enter the Date of Birth' }]"
       />
       <van-field
         v-model="formData.settlor_non_malaysia.Country"
@@ -154,14 +154,14 @@
         label="Country of Birth"
         placeholder="Please enter the Country of Birth"
         :rules="[
-          { required: true, message: 'Please enter the Country of Birth' },
+          { required: false, message: 'Please enter the Country of Birth' },
         ]"
       />
       <van-field
         name="Gender"
         label="Gender"
         :required="true"
-        :rules="[{ required: true, message: 'Please enter the Gender' }]"
+        :rules="[{ required: false, message: 'Please enter the Gender' }]"
       >
         <template #input>
           <van-radio-group
@@ -178,7 +178,7 @@
         label="Marital Status"
         :required="true"
         :rules="[
-          { required: true, message: 'Please enter the Marital Status' },
+          { required: false, message: 'Please enter the Marital Status' },
         ]"
       >
         <template #input>
@@ -202,7 +202,7 @@
         type="text"
         label="Email Address"
         placeholder="Please enter the Email Address"
-        :rules="[{ required: true, message: 'Please enter the Email Address' }]"
+        :rules="[{ required: false, message: 'Please enter the Email Address' }]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Mobile"
@@ -213,7 +213,7 @@
         label="Mobile Phone No"
         placeholder="Please enter the Mobile Phone No"
         :rules="[
-          { required: true, message: 'Please enter the Mobile Phone No' },
+          { required: false, message: 'Please enter the Mobile Phone No' },
         ]"
       />
       <van-field
@@ -224,7 +224,7 @@
         type="text"
         label="Home Phone No"
         placeholder="Please enter the Home Phone No"
-        :rules="[{ required: true, message: 'Please enter the Home Phone No' }]"
+        :rules="[{ required: false, message: 'Please enter the Home Phone No' }]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Office"
@@ -235,7 +235,7 @@
         label="Office Phone No"
         placeholder="Please enter the Office Phone No"
         :rules="[
-          { required: true, message: 'Please enter the Office Phone No' },
+          { required: false, message: 'Please enter the Office Phone No' },
         ]"
       />
       <van-field
@@ -247,7 +247,7 @@
         label="Residential Address"
         placeholder="Please enter the Residential Address"
         :rules="[
-          { required: true, message: 'Please enter the Residential Address' },
+          { required: false, message: 'Please enter the Residential Address' },
         ]"
       />
       <van-field
@@ -258,7 +258,7 @@
         type="text"
         label="Postcode"
         placeholder="Please enter the Postcode"
-        :rules="[{ required: true, message: 'Please enter the Postcode' }]"
+        :rules="[{ required: false, message: 'Please enter the Postcode' }]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Country"
@@ -268,7 +268,7 @@
         type="text"
         label="Country"
         placeholder="Please enter the Country"
-        :rules="[{ required: true, message: 'Please enter the Country' }]"
+        :rules="[{ required: false, message: 'Please enter the Country' }]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Length"
@@ -280,7 +280,7 @@
         placeholder="Please enter the Length of stay (Years) "
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Length of stay (Years) ',
           },
         ]"
@@ -295,7 +295,7 @@
         placeholder="Please enter the Mailing Address(if different from the above address)"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Mailing Address(if different from the above address)',
           },
@@ -309,7 +309,7 @@
         type="text"
         label="Postcode"
         placeholder="Please enter the Postcode"
-        :rules="[{ required: true, message: 'Please enter the Postcode' }]"
+        :rules="[{ required: false, message: 'Please enter the Postcode' }]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Country2"
@@ -319,7 +319,7 @@
         type="text"
         label="Country"
         placeholder="Please enter the Country"
-        :rules="[{ required: true, message: 'Please enter the Country' }]"
+        :rules="[{ required: false, message: 'Please enter the Country' }]"
       />
       <div class="minTitle">Spouse</div>
       <van-field
@@ -330,7 +330,7 @@
         type="text"
         label="Full Name"
         placeholder="Please enter the Full Name"
-        :rules="[{ required: true, message: 'Please enter the Full Name' }]"
+        :rules="[{ required: false, message: 'Please enter the Full Name' }]"
       />
       <van-field
         v-model="formData.spouse.Other"
@@ -350,7 +350,7 @@
         placeholder="Please enter the NEW - Malaysia NRIC No"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the NEW - Malaysia NRIC No',
           },
         ]"
@@ -373,7 +373,7 @@
         placeholder="Please enter the Nationality(state all if multiple nationality)"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Nationality(state all if multiple nationality)',
           },
@@ -391,7 +391,7 @@
         label="Passport Number"
         placeholder="Please enter the Passport Number"
         :rules="[
-          { required: true, message: 'Please enter the Passport Number' },
+          { required: false, message: 'Please enter the Passport Number' },
         ]"
       />
       <van-field
@@ -403,7 +403,7 @@
         label="Passport Expiry Date"
         placeholder="Please enter the Passport Expiry Date"
         :rules="[
-          { required: true, message: 'Please enter the Passport Expiry Date' },
+          { required: false, message: 'Please enter the Passport Expiry Date' },
         ]"
       />
       <van-field
@@ -416,7 +416,7 @@
         placeholder="Please enter the Passport Issuing Country"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Passport Issuing Country',
           },
         ]"
@@ -429,7 +429,7 @@
         type="text"
         label="Date of Birth"
         placeholder="Please enter the Date of Birth"
-        :rules="[{ required: true, message: 'Please enter the Date of Birth' }]"
+        :rules="[{ required: false, message: 'Please enter the Date of Birth' }]"
       />
       <van-field
         v-model="formData.spouse_non_malaysia.Country"
@@ -440,14 +440,14 @@
         label="Country of Birth"
         placeholder="Please enter the Country of Birth"
         :rules="[
-          { required: true, message: 'Please enter the Country of Birth' },
+          { required: false, message: 'Please enter the Country of Birth' },
         ]"
       />
       <van-field
         name="Gender"
         label="Gender"
         :required="true"
-        :rules="[{ required: true, message: 'Please enter the Gender' }]"
+        :rules="[{ required: false, message: 'Please enter the Gender' }]"
       >
         <template #input>
           <van-radio-group
@@ -464,7 +464,7 @@
         label="Marital Status"
         :required="true"
         :rules="[
-          { required: true, message: 'Please enter the Marital Status' },
+          { required: false, message: 'Please enter the Marital Status' },
         ]"
       >
         <template #input>
@@ -488,7 +488,7 @@
         type="text"
         label="Email Address"
         placeholder="Please enter the Email Address"
-        :rules="[{ required: true, message: 'Please enter the Email Address' }]"
+        :rules="[{ required: false, message: 'Please enter the Email Address' }]"
       />
       <van-field
         v-model="formData.spouse_contact_details.Mobile"
@@ -499,7 +499,7 @@
         label="Mobile Phone No"
         placeholder="Please enter the Mobile Phone No"
         :rules="[
-          { required: true, message: 'Please enter the Mobile Phone No' },
+          { required: false, message: 'Please enter the Mobile Phone No' },
         ]"
       />
       <van-field
@@ -510,7 +510,7 @@
         type="text"
         label="Home Phone No"
         placeholder="Please enter the Home Phone No"
-        :rules="[{ required: true, message: 'Please enter the Home Phone No' }]"
+        :rules="[{ required: false, message: 'Please enter the Home Phone No' }]"
       />
       <van-field
         v-model="formData.spouse_contact_details.Office"
@@ -521,7 +521,7 @@
         label="Office Phone No"
         placeholder="Please enter the Office Phone No"
         :rules="[
-          { required: true, message: 'Please enter the Office Phone No' },
+          { required: false, message: 'Please enter the Office Phone No' },
         ]"
       />
       <van-field
@@ -533,7 +533,7 @@
         label="Residential Address"
         placeholder="Please enter the Residential Address"
         :rules="[
-          { required: true, message: 'Please enter the Residential Address' },
+          { required: false, message: 'Please enter the Residential Address' },
         ]"
       />
       <van-field
@@ -544,7 +544,7 @@
         type="text"
         label="Postcode"
         placeholder="Please enter the Postcode"
-        :rules="[{ required: true, message: 'Please enter the Postcode' }]"
+        :rules="[{ required: false, message: 'Please enter the Postcode' }]"
       />
       <van-field
         v-model="formData.spouse_contact_details.Country"
@@ -554,7 +554,7 @@
         type="text"
         label="Country"
         placeholder="Please enter the Country"
-        :rules="[{ required: true, message: 'Please enter the Country' }]"
+        :rules="[{ required: false, message: 'Please enter the Country' }]"
       />
       <van-field
         v-model="formData.spouse_contact_details.Length"
@@ -566,7 +566,7 @@
         placeholder="Please enter the Length of stay (Years) "
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Length of stay (Years) ',
           },
         ]"
@@ -581,7 +581,7 @@
         placeholder="Please enter the Mailing Address(if different from the above address)"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Mailing Address(if different from the above address)',
           },
@@ -595,7 +595,7 @@
         type="text"
         label="Postcode"
         placeholder="Please enter the Postcode"
-        :rules="[{ required: true, message: 'Please enter the Postcode' }]"
+        :rules="[{ required: false, message: 'Please enter the Postcode' }]"
       />
       <van-field
         v-model="formData.spouse_contact_details.Country2"
@@ -605,7 +605,7 @@
         type="text"
         label="Country"
         placeholder="Please enter the Country"
-        :rules="[{ required: true, message: 'Please enter the Country' }]"
+        :rules="[{ required: false, message: 'Please enter the Country' }]"
       />
 
       <div class="minTitle">SECTION B OCCUPATION</div>
@@ -615,7 +615,7 @@
         label="Occupation Type"
         :required="true"
         :rules="[
-          { required: true, message: 'Please enter the Occupation Type' },
+          { required: false, message: 'Please enter the Occupation Type' },
         ]"
       >
         <template #input>
@@ -637,7 +637,7 @@
         type="text"
         label="Occupation"
         placeholder="Please enter the Occupation"
-        :rules="[{ required: true, message: 'Please enter the Occupation' }]"
+        :rules="[{ required: false, message: 'Please enter the Occupation' }]"
       />
       <van-field
         v-model="formData.settlor_occupation.Industry"
@@ -647,7 +647,7 @@
         type="text"
         label="Industry"
         placeholder="Please enter the Industry"
-        :rules="[{ required: true, message: 'Please enter the Industry' }]"
+        :rules="[{ required: false, message: 'Please enter the Industry' }]"
       />
       <van-field
         v-model="formData.settlor_occupation.Name"
@@ -658,7 +658,7 @@
         label="Name of Employer"
         placeholder="Please enter the Name of Employer"
         :rules="[
-          { required: true, message: 'Please enter the Name of Employer' },
+          { required: false, message: 'Please enter the Name of Employer' },
         ]"
       />
       <van-field
@@ -671,7 +671,7 @@
         placeholder="Please enter the Nature of Business(if Self-Employed)"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Nature of Business(if Self-Employed)',
           },
         ]"
@@ -686,7 +686,7 @@
         placeholder="Please enter the Annual Salary / Income"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Annual Salary / Income',
           },
         ]"
@@ -697,7 +697,7 @@
         label="Occupation Type"
         :required="true"
         :rules="[
-          { required: true, message: 'Please enter the Occupation Type' },
+          { required: false, message: 'Please enter the Occupation Type' },
         ]"
       >
         <template #input>
@@ -719,7 +719,7 @@
         type="text"
         label="Occupation"
         placeholder="Please enter the Occupation"
-        :rules="[{ required: true, message: 'Please enter the Occupation' }]"
+        :rules="[{ required: false, message: 'Please enter the Occupation' }]"
       />
       <van-field
         v-model="formData.spouse_occupation.Industry"
@@ -729,7 +729,7 @@
         type="text"
         label="Industry"
         placeholder="Please enter the Industry"
-        :rules="[{ required: true, message: 'Please enter the Industry' }]"
+        :rules="[{ required: false, message: 'Please enter the Industry' }]"
       />
       <van-field
         v-model="formData.spouse_occupation.Name"
@@ -740,7 +740,7 @@
         label="Name of Employer"
         placeholder="Please enter the Name of Employer"
         :rules="[
-          { required: true, message: 'Please enter the Name of Employer' },
+          { required: false, message: 'Please enter the Name of Employer' },
         ]"
       />
       <van-field
@@ -753,7 +753,7 @@
         placeholder="Please enter the Nature of Business(if Self-Employed)"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Nature of Business(if Self-Employed)',
           },
         ]"
@@ -768,7 +768,7 @@
         placeholder="Please enter the Annual Salary / Income"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Annual Salary / Income',
           },
         ]"
@@ -782,7 +782,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Are you a Political Exposed Person (PEP)?',
           },
@@ -801,7 +801,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Are you connected to any local and/or ForeignPolitical Exposed Person (PEP)?',
           },
@@ -826,7 +826,7 @@
         label="PEP’s Full Name"
         placeholder="Please enter the PEP’s Full Name"
         :rules="[
-          { required: true, message: 'Please enter the PEP’s Full Name' },
+          { required: false, message: 'Please enter the PEP’s Full Name' },
         ]"
       />
       <van-field
@@ -835,7 +835,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Relationship with the PEP',
           },
         ]"
@@ -880,7 +880,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Are you an undischarged bankrupt?',
           },
         ]"
@@ -901,7 +901,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Do you have an US Taxpayer Identification Number “TIN?',
           },
@@ -927,7 +927,7 @@
         placeholder="Please enter the If YES, please indicate the TIN"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the If YES, please indicate the TIN',
           },
         ]"
@@ -945,7 +945,7 @@
         type="text"
         label="Bank"
         placeholder="Please enter the Bank"
-        :rules="[{ required: true, message: 'Please enter the Bank' }]"
+        :rules="[{ required: false, message: 'Please enter the Bank' }]"
       />
       <van-field
         v-model="formData.bank_one.Account"
@@ -955,7 +955,7 @@
         type="text"
         label="Account No"
         placeholder="Please enter the Account No"
-        :rules="[{ required: true, message: 'Please enter the Account No' }]"
+        :rules="[{ required: false, message: 'Please enter the Account No' }]"
       />
       <van-field
         v-model="formData.bank_one.Account2"
@@ -966,7 +966,7 @@
         label="Account Holder"
         placeholder="Please enter the Account Holder"
         :rules="[
-          { required: true, message: 'Please enter the Account Holder' },
+          { required: false, message: 'Please enter the Account Holder' },
         ]"
       />
       <van-field
@@ -978,7 +978,7 @@
         label="Transaction Amount"
         placeholder="Please enter the Transaction Amount"
         :rules="[
-          { required: true, message: 'Please enter the Transaction Amount' },
+          { required: false, message: 'Please enter the Transaction Amount' },
         ]"
       />
       <van-field
@@ -991,7 +991,7 @@
         placeholder="Please enter the Years (estimated) maintaining the account "
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Years (estimated) maintaining the account ',
           },
@@ -1007,7 +1007,7 @@
         placeholder="Please enter the Relationship with Settlor"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Relationship with Settlor',
           },
         ]"
@@ -1021,7 +1021,7 @@
         type="text"
         label="Bank"
         placeholder="Please enter the Bank"
-        :rules="[{ required: true, message: 'Please enter the Bank' }]"
+        :rules="[{ required: false, message: 'Please enter the Bank' }]"
       />
       <van-field
         v-model="formData.bank_two.Account"
@@ -1031,7 +1031,7 @@
         type="text"
         label="Account No"
         placeholder="Please enter the Account No"
-        :rules="[{ required: true, message: 'Please enter the Account No' }]"
+        :rules="[{ required: false, message: 'Please enter the Account No' }]"
       />
       <van-field
         v-model="formData.bank_two.Account2"
@@ -1042,7 +1042,7 @@
         label="Account Holder"
         placeholder="Please enter the Account Holder"
         :rules="[
-          { required: true, message: 'Please enter the Account Holder' },
+          { required: false, message: 'Please enter the Account Holder' },
         ]"
       />
       <van-field
@@ -1054,7 +1054,7 @@
         label="Transaction Amount"
         placeholder="Please enter the Transaction Amount"
         :rules="[
-          { required: true, message: 'Please enter the Transaction Amount' },
+          { required: false, message: 'Please enter the Transaction Amount' },
         ]"
       />
       <van-field
@@ -1067,7 +1067,7 @@
         placeholder="Please enter the Years (estimated) maintaining the account "
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Years (estimated) maintaining the account ',
           },
@@ -1083,7 +1083,7 @@
         placeholder="Please enter the Relationship with Settlor"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Relationship with Settlor',
           },
         ]"
@@ -1093,7 +1093,7 @@
         label="Mode of Payment(Cash not accepted)"
         :required="true"
         :rules="[
-          { required: true, message: 'Please enter the Mode of Payment' },
+          { required: false, message: 'Please enter the Mode of Payment' },
         ]"
       >
         <template #input>
@@ -1111,7 +1111,7 @@
         name="Particulars"
         label="Particulars"
         :required="true"
-        :rules="[{ required: true, message: 'Please enter the Particulars' }]"
+        :rules="[{ required: false, message: 'Please enter the Particulars' }]"
       >
         <template #input>
           <van-radio-group
@@ -1144,7 +1144,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Are you one of our existing client in any of our affiliate or our group?',
           },
@@ -1198,7 +1198,7 @@
         type="text"
         label="Name"
         placeholder="Please enter the Name"
-        :rules="[{ required: true, message: 'Please enter the NAME' }]"
+        :rules="[{ required: false, message: 'Please enter the NAME' }]"
       />
       <van-field
         readonly
@@ -1210,7 +1210,7 @@
         label="Date"
         placeholder="Please enter the DATE"
         @click="onShowPicker('declaration', 'Date')"
-        :rules="[{ required: true, message: 'Please enter the DATE' }]"
+        :rules="[{ required: false, message: 'Please enter the DATE' }]"
       />
       <div class="minTitle">Section G (Office Use)</div>
       <div class="minTitle">For Marketing Officer</div>
@@ -1229,7 +1229,7 @@
         type="text"
         label="No"
         placeholder="Please enter the No"
-        :rules="[{ required: true, message: 'Please enter the No' }]"
+        :rules="[{ required: false, message: 'Please enter the No' }]"
       />
       <van-field
         v-model="formData.name"
@@ -1239,7 +1239,7 @@
         type="text"
         label="Details"
         placeholder="Please enter the Details"
-        :rules="[{ required: true, message: 'Please enter the Details' }]"
+        :rules="[{ required: false, message: 'Please enter the Details' }]"
       />
       <van-field
         v-model="formData.name"
@@ -1249,7 +1249,7 @@
         type="text"
         label="Response"
         placeholder="Please enter the Response"
-        :rules="[{ required: true, message: 'Please enter the Response' }]"
+        :rules="[{ required: false, message: 'Please enter the Response' }]"
       />
       <van-field
         v-model="formData.name"
@@ -1270,7 +1270,7 @@
         placeholder="Please enter the Distribution Agent Name / Marketing Officer "
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Distribution Agent Name / Marketing Officer ',
           },
@@ -1286,7 +1286,7 @@
         placeholder="Please enter the Marketing Officer Name 2 (list all if there are more than one agent)"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Marketing Officer Name 2 (list all if there are more than one agent)',
           },
@@ -1320,7 +1320,7 @@
         type="text"
         label="Client Name "
         placeholder="Please enter the Client Name "
-        :rules="[{ required: true, message: 'Please enter the Client Name ' }]"
+        :rules="[{ required: false, message: 'Please enter the Client Name ' }]"
       />
       <van-field
         name="Is"
@@ -1328,7 +1328,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Is the photocopy of the IC match the physical person (settlor)? ',
           },
@@ -1350,7 +1350,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Is the mobile number correct for the settlor?',
           },
@@ -1372,7 +1372,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Is the mobile number correct for the beneficiary?',
           },
@@ -1394,7 +1394,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Is there willingness to provide information and documents?',
           },
@@ -1416,7 +1416,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the On-Boarding Mode and how many times you meet the client?',
           },
@@ -1441,7 +1441,7 @@
         label="FACE-TO-FACE times"
         placeholder="Please enter the FACE-TO-FACE times"
         :rules="[
-          { required: true, message: 'Please enter the FACE-TO-FACE times' },
+          { required: false, message: 'Please enter the FACE-TO-FACE times' },
         ]"
       />
       <van-field
@@ -1454,7 +1454,7 @@
         placeholder="Please enter the NON FACE-TO-FACE, times"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the NON FACE-TO-FACE, times',
           },
         ]"
@@ -1481,7 +1481,7 @@
           label="Date"
           placeholder="Please enter the Date"
           @click="onShowPicker('interaction', 'Date', inx)"
-          :rules="[{ required: true, message: 'Please enter the Date' }]"
+          :rules="[{ required: false, message: 'Please enter the Date' }]"
         />
         <van-field
           v-model="item.Time"
@@ -1491,7 +1491,7 @@
           type="text"
           label="Time"
           placeholder="Please enter the Time"
-          :rules="[{ required: true, message: 'Please enter the Time' }]"
+          :rules="[{ required: false, message: 'Please enter the Time' }]"
         />
         <van-field
           v-model="item.Place"
@@ -1501,7 +1501,7 @@
           type="text"
           label="Place"
           placeholder="Please enter the Place"
-          :rules="[{ required: true, message: 'Please enter the Place' }]"
+          :rules="[{ required: false, message: 'Please enter the Place' }]"
         />
         <van-field
           v-model="item.Comment"
@@ -1511,7 +1511,7 @@
           type="text"
           label="Comment"
           placeholder="Please enter the Comment"
-          :rules="[{ required: true, message: 'Please enter the Comment' }]"
+          :rules="[{ required: false, message: 'Please enter the Comment' }]"
         />
         <van-button
           class="esignDelBtn"
@@ -1528,7 +1528,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Any Introducer? ',
           },
         ]"
@@ -1553,7 +1553,7 @@
         placeholder="Please enter the Please state the Name of introducer"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Please state the Name of introducer',
           },
         ]"
@@ -1565,7 +1565,7 @@
         :required="true"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the Risk Rating by Distribution Agent',
           },
         ]"
@@ -1592,7 +1592,7 @@
         placeholder="Please enter the Any indication or information to suggest the client is of high risk? Please elaborate."
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Any indication or information to suggest the client is of high risk? Please elaborate.',
           },
@@ -1603,7 +1603,7 @@
         label="Recommended Decision"
         :required="true"
         :rules="[
-          { required: true, message: 'Please enter the Recommended Decision' },
+          { required: false, message: 'Please enter the Recommended Decision' },
         ]"
       >
         <template #input>
@@ -1626,7 +1626,7 @@
         placeholder="Please enter the Please elaborate your decision regardless the answer above is rejected or accepted."
         :rules="[
           {
-            required: true,
+            required: false,
             message:
               'Please enter the Please elaborate your decision regardless the answer above is rejected or accepted.',
           },
@@ -1641,7 +1641,7 @@
         label="Remark/ Comments:"
         placeholder="Please enter the Remark/ Comments:"
         :rules="[
-          { required: true, message: 'Please enter the Remark/ Comments:' },
+          { required: false, message: 'Please enter the Remark/ Comments:' },
         ]"
       />
       <div class="minTitle">
@@ -1672,6 +1672,12 @@
           confirm
         </div>
       </div>
+      <van-image
+        v-if="formData.store_marketing_officer.trustor_signature1"
+        width="100%"
+        height="20%"
+        :src="formData.store_marketing_officer.trustor_signature1"
+      />
       <van-field
         v-model="formData.store_marketing_officer.Name"
         name="Name"
@@ -1680,7 +1686,7 @@
         type="text"
         label="Name"
         placeholder="Please enter the Name"
-        :rules="[{ required: true, message: 'Please enter the Name' }]"
+        :rules="[{ required: false, message: 'Please enter the Name' }]"
       />
       <van-field
         v-model="formData.store_marketing_officer.Nric"
@@ -1690,7 +1696,7 @@
         type="text"
         label="NRIC No"
         placeholder="Please enter the NRIC No"
-        :rules="[{ required: true, message: 'Please enter the NRIC No' }]"
+        :rules="[{ required: false, message: 'Please enter the NRIC No' }]"
       />
       <van-field
         readonly
@@ -1702,7 +1708,7 @@
         label="Date"
         placeholder="Please enter the Date"
         @click="onShowPicker('store_marketing_officer', 'Date')"
-        :rules="[{ required: true, message: 'Please enter the Date' }]"
+        :rules="[{ required: false, message: 'Please enter the Date' }]"
       />
       <div class="tl">Manager/ HOD of the Company</div>
       <vue-esign
@@ -1726,6 +1732,12 @@
           confirm
         </div>
       </div>
+      <van-image
+        v-if="formData.store_manager.trustor_signature2"
+        width="100%"
+        height="20%"
+        :src="formData.store_manager.trustor_signature2"
+      />
       <van-field
         v-model="formData.store_manager.Name"
         name="Name"
@@ -1734,7 +1746,7 @@
         type="text"
         label="Name"
         placeholder="Please enter the Name"
-        :rules="[{ required: true, message: 'Please enter the Name' }]"
+        :rules="[{ required: false, message: 'Please enter the Name' }]"
       />
       <van-field
         v-model="formData.store_manager.Nric"
@@ -1744,7 +1756,7 @@
         type="text"
         label="NRIC No"
         placeholder="Please enter the NRIC No"
-        :rules="[{ required: true, message: 'Please enter the NRIC No' }]"
+        :rules="[{ required: false, message: 'Please enter the NRIC No' }]"
       />
       <van-field
         readonly
@@ -1756,7 +1768,7 @@
         label="Date"
         placeholder="Please enter the Date"
         @click="onShowPicker('store_manager', 'Date')"
-        :rules="[{ required: true, message: 'Please enter the Date' }]"
+        :rules="[{ required: false, message: 'Please enter the Date' }]"
       />
 
       <!-- <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
@@ -1766,7 +1778,7 @@
         label="Area code"
         center
         :required="true"
-        :rules="[{ required: true, message: 'Please select the area code' }]"
+        :rules="[{ required: false, message: 'Please select the area code' }]"
         :value="areaCode"
         placeholder="Please select the area code"
         @click="showCodePicker = true"
@@ -1781,7 +1793,7 @@
         placeholder="Please enter the CONTACT NO"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the CONTACT NO',
           },
         ]"
@@ -1803,7 +1815,7 @@
         placeholder="Please enter the verification code"
         :rules="[
           {
-            required: true,
+            required: false,
             message: 'Please enter the verification code',
           },
         ]"
@@ -1829,6 +1841,8 @@
         v-model="currentContent"
         type="date"
         :min-hour="0"
+        confirm-button-text="Confirm"
+        cancel-button-text="Cancel"
         :min-date="minDate"
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
@@ -2030,12 +2044,22 @@ export default {
       if (this.isFilled > 0) {
         getOrdersForms(this.isFilled, { type: "KYC" })
           .then((res) => {
-            console.log(res);
-            this.formData = JSON.parse(res);
+            delete res.id
+            delete res.order_id
+            delete res.created_at
+            delete res.updated_at
+            console.log(res,'kyc');
+            for (let key in res) {
+              res[key] = JSON.parse(res[key])
+            }
+            console.log(res,999999999);
+            this.formData = res;
             // this.phone = res.witness_phone.slice(-11);
             // this.areaCode = res.witness_phone.split(this.phone)[0];
           })
-          .catch((err) => {});
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     submit(form) {
@@ -2240,13 +2264,13 @@ export default {
               that.formData[val2][val] = res.path;
               that.$toast({
                 type: "success",
-                message: "Signature success",
+                message: "Signature \n success",
               });
             })
             .catch((err) => {
               that.$toast({
                 type: "fail",
-                message: "Uploading picture failed",
+                message: "Uploading\n picture\n failed",
               });
             });
         })

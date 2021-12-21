@@ -32,6 +32,14 @@ export const pdpa_memo = (orderId, obj) => {
     data: obj
   })
 }
+// 提交Document Checklist
+export const document_check_list_form = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/document_check_list_form',
+    method: 'POST',
+    data: obj
+  })
+}
 // 提交third_party_declaration_form
 export const third_party_declaration_form = (orderId, obj) => {
   return request({
