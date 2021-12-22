@@ -34,17 +34,17 @@
             />
             <van-field
               v-model="registForm.bttCode"
-              name="BTT CODE"
+              name="BTT Code"
               center
               :required="true"
               type="text"
-              label="BTT CODE"
-              placeholder="Please enter the BTT CODE"
+              label="BTT Code"
+              placeholder="Please enter the BTT Code"
               :rules="[
-                { required: true,message: 'Please enter the BTT CODE' },
+                { required: true,message: 'Please enter the BTT Code' },
               ]"
             />
-            <van-field name="uploader" label="文件上传">
+            <van-field name="uploader" label="BBT Code Picture">
               <template #input>
                 <van-uploader v-model="uploader" :after-read="afterRead" :max-count="1" />
               </template>
@@ -311,7 +311,7 @@ export default {
       showPicker: false,
 			showPicker2: false,
       columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
-      uploader: [{ url: 'https://img01.yzcdn.cn/vant/leaf.jpg' }]
+      uploader: []
     };
   },
   mounted() {
@@ -331,9 +331,10 @@ export default {
       // 此时可以自行将文件上传至服务器
       console.log(file);
       uploadAutograph({
-        image: file,
+        image: file.content,
         path: "",
       }).then(res => {
+        this.$toast.success('Success')
         this.uploader[0].url = res.path
       })
     },
@@ -544,6 +545,7 @@ export default {
         return;
       }
       console.log(this.registForm);
+      console.log(this.uploader,'path');
       this.$axios({
         method: "post",
         url: "/api/v1/users",
@@ -561,6 +563,7 @@ export default {
           bankAccountNo: this.registForm.bankAccountNo,
           bankAccountName: this.registForm.bankAccountName,
           password_confirmation: this.registForm.password_confirmation,
+          btt_code_image: this.uploader[0].url,
         },
       })
         .then((res) => {

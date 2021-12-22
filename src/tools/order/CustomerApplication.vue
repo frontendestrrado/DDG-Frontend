@@ -1,6 +1,11 @@
 <template>
   <div class="CustomerApplication bodybox">
-    <van-form validate-first @submit="submit" :submit-on-enter="false" :scroll-to-error="true">
+    <van-form
+      validate-first
+      @submit="submit"
+      :submit-on-enter="false"
+      :scroll-to-error="true"
+    >
       <div class="minTitle">GENERAL INFORMATION</div>
       <!-- 文本框 -->
       <van-field
@@ -9,10 +14,13 @@
         center
         :required="true"
         type="text"
-        label="INDIVIDUAL NAME"
-        placeholder="Please enter the INDIVIDUAL NAME"
+        label="COMPANY / INDIVIDUAL NAME"
+        placeholder="Please enter the COMPANY / INDIVIDUAL NAME"
         :rules="[
-          { required: true, message: 'Please enter the INDIVIDUAL NAME' },
+          {
+            required: true,
+            message: 'Please enter the COMPANY / INDIVIDUAL NAME',
+          },
         ]"
       />
       <van-field
@@ -21,10 +29,13 @@
         center
         :required="true"
         type="text"
-        label="NRIC / PASSPORT NO"
-        placeholder="Please enter the NRIC / PASSPORT NO"
+        label="ROC / NRIC / PASSPORT NO"
+        placeholder="Please enter the ROC / NRIC / PASSPORT NO"
         :rules="[
-          { required: true, message: 'Please enter the NRIC / PASSPORT NO' },
+          {
+            required: true,
+            message: 'Please enter the ROC / NRIC / PASSPORT NO',
+          },
         ]"
       />
       <van-field
@@ -34,11 +45,14 @@
         center
         :required="true"
         right-icon="arrow"
-        label="DATE OF BIRTH"
-        placeholder="Please enter the DATE OF BIRTH"
+        label="ROC DATE / DATE OF BIRTH"
+        placeholder="Please enter the ROC DATE / DATE OF BIRTH"
         @click="onShowPicker('born_date')"
         :rules="[
-          { required: true, message: 'Please enter the DATE OF BIRTH' },
+          {
+            required: true,
+            message: 'Please enter the ROC DATE / DATE OF BIRTH',
+          },
         ]"
       />
       <van-field
@@ -57,10 +71,13 @@
         center
         :required="true"
         type="text"
-        label="RESIDENTIAL ADDRESS"
-        placeholder="Please enter the RESIDENTIAL ADDRESS"
+        label="ROC REGISTERED / RESIDENTIAL ADDRESS"
+        placeholder="Please enter the ROC REGISTERED / RESIDENTIAL ADDRESS"
         :rules="[
-          { required: true, message: 'Please enter the RESIDENTIAL ADDRESS' },
+          {
+            required: true,
+            message: 'Please enter the ROC REGISTERED / RESIDENTIAL ADDRESS',
+          },
         ]"
       />
       <div class="minTitle">CONTACT DETAILS</div>
@@ -109,8 +126,14 @@
         >BENEFICIARY(IES) IN THE EVENT OF SETTLOR’S DEATH (Applicable for
         Individual Trustor Only)</span
       >
-      <van-button class="esignBtn" native-type="button" @click="addBeneficiary">Add</van-button>
-      <div class="beneficiary_info" v-for="(item,inx) in formData.beneficiary_info" :key="inx">
+      <van-button class="esignBtn" native-type="button" @click="addBeneficiary"
+        >Add</van-button
+      >
+      <div
+        class="beneficiary_info"
+        v-for="(item, inx) in formData.beneficiary_info"
+        :key="inx"
+      >
         <van-field
           v-model="item.BENEFICIARY_NAME"
           name="BENEFICIARY_NAME"
@@ -161,6 +184,177 @@
         >
       </div>
 
+      <div class="minTitle">
+        SUBSITUTED BENEFICIARY(IES)(Applicable for Individual Trustor Only)
+      </div>
+      <van-field
+        v-model="formData.beneficiary_name_trustee"
+        name="beneficiary_name_trustee"
+        center
+        :required="true"
+        type="number"
+        label="BENEFICIARY NAME / TRUSTEE"
+        placeholder="Please enter the BENEFICIARY NAME / TRUSTEE"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the BENEFICIARY NAME / TRUSTEE',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.nric_passport_no_company_no"
+        name="nric_passport_no_company_no"
+        center
+        :required="true"
+        type="number"
+        label="NRIC / PASSPORT NO COMPANY NO"
+        placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the NRIC / PASSPORT NO COMPANY NO',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.relationship"
+        name="relationship"
+        center
+        :required="true"
+        type="number"
+        label="RELATIONSHIP"
+        placeholder="Please enter the RELATIONSHIP"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the RELATIONSHIP',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.contact_no"
+        name="contact_no"
+        center
+        :required="true"
+        type="number"
+        label="CONTACT NO"
+        placeholder="Please enter the CONTACT NO"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the CONTACT NO',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.percentage_of_distribution"
+        name="percentage_of_distribution"
+        center
+        :required="true"
+        type="number"
+        label="PERCENTAGE OF DISTRIBUTION"
+        placeholder="Please enter the PERCENTAGE OF DISTRIBUTION"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the PERCENTAGE OF DISTRIBUTION',
+          },
+        ]"
+      />
+      <div class="minTitle">
+        EMERGENCY CONTACT PARTICULARS (INDIVIDUAL OVER 18 YEARS OLD)
+      </div>
+      <van-field
+        v-model="formData.emergency_contact_name"
+        name="emergency_contact_name"
+        center
+        :required="true"
+        type="number"
+        label="NAME"
+        placeholder="Please enter the NAME"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the NAME',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.emergency_contact_nric"
+        name="emergency_contact_nric"
+        center
+        :required="true"
+        type="number"
+        label="NRIC / PASSPORT NO."
+        placeholder="Please enter the NRIC / PASSPORT NO."
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the NRIC / PASSPORT NO.',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.emergency_contact_date"
+        name="emergency_contact_date"
+        center
+        :required="true"
+        type="number"
+        label="DATE OF BIRTH"
+        placeholder="Please enter the DATE OF BIRTH"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the DATE OF BIRTH',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.emergency_contact_relationshiop"
+        name="emergency_contact_relationshiop"
+        center
+        :required="true"
+        type="number"
+        label="RELATIONSHIOP WITH SETTLOR"
+        placeholder="Please enter the RELATIONSHIOP WITH SETTLOR"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the RELATIONSHIOP WITH SETTLOR',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.emergency_contact_contact"
+        name="emergency_contact_contact"
+        center
+        :required="true"
+        type="number"
+        label="CONTACT NUMBER"
+        placeholder="Please enter the CONTACT NUMBER"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the CONTACT NUMBER',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.emergency_contact_email"
+        name="emergency_contact_email"
+        center
+        :required="true"
+        type="number"
+        label="EMAIL ADDRESS"
+        placeholder="Please enter the EMAIL ADDRESS"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the EMAIL ADDRESS',
+          },
+        ]"
+      />
       <div class="minTitle">TRUST INFORMATION</div>
       <van-field
         v-model="formData.price"
@@ -204,66 +398,9 @@
           { required: true, message: 'Please enter the TRUST ADVISOR’S ID' },
         ]"
       />
-      <div class="minTitle">TRUST CAPITAL PAYMENT</div>
       <div class="minTitle">
-        Payment amounts are to be remitted in MYR only. Details of the account
-        to which payments are to be transferred (the transfer description should
-        include the name and reference of the transferring or person, the name
-        of the Settlor and the reference "AI GENERATION Trust".):
-      </div>
-      <van-field
-        v-model="formData.account_name"
-        name="account_name"
-        center
-        :required="true"
-        type="text"
-        label="Account Name"
-        placeholder="Please enter the Account Name"
-        :rules="[{ required: true, message: 'Please enter the Account Name' }]"
-      />
-      <van-field
-        v-model="formData.bank"
-        name="bank"
-        center
-        :required="true"
-        type="text"
-        label="Bank"
-        placeholder="Please enter the Bank"
-        :rules="[{ required: true, message: 'Please enter the Bank' }]"
-      />
-      <van-field
-        v-model="formData.account_no"
-        name="account_no"
-        center
-        :required="true"
-        type="text"
-        label="Account No"
-        placeholder="Please enter the Account No"
-        :rules="[{ required: true, message: 'Please enter the Account No' }]"
-      />
-      <van-field
-        v-model="formData.swift_code"
-        name="swift_code"
-        center
-        :required="true"
-        type="text"
-        label="Swift Code"
-        placeholder="Please enter the Swift Code"
-        :rules="[{ required: true, message: 'Please enter the Swift Code' }]"
-      />
-      <van-field
-        v-model="formData.ref"
-        name="ref"
-        center
-        :required="true"
-        type="text"
-        label="Ref"
-        placeholder="Please enter the Ref"
-        :rules="[{ required: true, message: 'Please enter the Ref' }]"
-      />
-      <div class="minTitle">
-        DETAILS OF THE BANK THAT WILL EFFECT THE TRANSFER (To insert ‘Not
-        Applicable’ if Cheque is received)
+        BANK DETAILS – SOURCE OF FUND (CASH is Not Acceptable) To insert ‘Not
+        Applicable’ if Cheque is received
       </div>
       <van-field
         v-model="formData.details_bank_name"
@@ -298,12 +435,12 @@
         ]"
       />
       <div class="minTitle">
-        PAYMENTS TO SETTLOR/ AUTHORIZED PERSON Details of the bank account to
-        which payments to the Trustor /Authorized person are to be transferred:
+        PAYMENTS TO SETTLOR / AUTHORIZED PERSON Details of the bank account to
+        which payments to the Settlor / Authorized person are to be transferred:
       </div>
       <van-field
-        v-model="formData.dividend_bank_name"
-        name="dividend_bank_name"
+        v-model="formData.account_name"
+        name="account_name"
         center
         :required="true"
         type="text"
@@ -312,8 +449,8 @@
         :rules="[{ required: true, message: 'Please enter the NAME OF BANK' }]"
       />
       <van-field
-        v-model="formData.dividend_account_no"
-        name="dividend_account_no"
+        v-model="formData.bank"
+        name="bank"
         center
         :required="true"
         type="text"
@@ -322,8 +459,8 @@
         :rules="[{ required: true, message: 'Please enter the ACCOUNT NO' }]"
       />
       <van-field
-        v-model="formData.dividend_bank_location"
-        name="dividend_bank_location"
+        v-model="formData.account_no"
+        name="account_no"
         center
         :required="true"
         type="text"
@@ -332,14 +469,73 @@
         :rules="[{ required: true, message: 'Please enter the BANK LOCATION' }]"
       />
       <van-field
-        v-model="formData.dividend_account_owner"
-        name="dividend_account_owner"
+        v-model="formData.swift_code"
+        name="swift_code"
         center
         :required="true"
         type="text"
         label="ACCOUNT OWNER"
         placeholder="Please enter the ACCOUNT OWNER"
         :rules="[{ required: true, message: 'Please enter the ACCOUNT OWNER' }]"
+      />
+      <!-- <van-field
+        v-model="formData.ref"
+        name="ref"
+        center
+        :required="true"
+        type="text"
+        label="Ref"
+        placeholder="Please enter the Ref"
+        :rules="[{ required: true, message: 'Please enter the Ref' }]"
+      /> -->
+
+      <div class="minTitle">SUBSCRIPTION PAYMENT</div>
+      <div class="minTitle">
+        Subscription amounts are to be remitted in MYR only. Details of the
+        account to which subscription payments are to be transferred (the
+        transfer description should include the name and reference of the
+        transferring entity or person, the name of the Issuer and the reference
+        "AI GENERATION Trust Subscription".):
+      </div>
+      <van-field
+        v-model="formData.dividend_bank_name"
+        name="dividend_bank_name"
+        center
+        :required="true"
+        type="text"
+        label="Account Name"
+        placeholder="Please enter the Account Name"
+        :rules="[{ required: true, message: 'Please enter the Account Name' }]"
+      />
+      <van-field
+        v-model="formData.dividend_account_no"
+        name="dividend_account_no"
+        center
+        :required="true"
+        type="text"
+        label="Bank"
+        placeholder="Please enter the Bank"
+        :rules="[{ required: true, message: 'Please enter the Bank' }]"
+      />
+      <van-field
+        v-model="formData.dividend_bank_location"
+        name="dividend_bank_location"
+        center
+        :required="true"
+        type="text"
+        label="Account No"
+        placeholder="Please enter the Account No"
+        :rules="[{ required: true, message: 'Please enter the Account No' }]"
+      />
+      <van-field
+        v-model="formData.dividend_account_owner"
+        name="dividend_account_owner"
+        center
+        :required="true"
+        type="text"
+        label="Swift Code"
+        placeholder="Please enter the Swift Code"
+        :rules="[{ required: true, message: 'Please enter the Swift Code' }]"
       />
       <div class="minTitle">APPLICATION DECLARATION</div>
       <div class="minTitle">
@@ -413,14 +609,32 @@
         label="DATE"
         placeholder="Please enter the DATE"
         @click="onShowPicker('signature_date')"
-        :rules="[
-          { required: true, message: 'Please enter the DATE' },
-        ]"
+        :rules="[{ required: true, message: 'Please enter the DATE' }]"
       />
+      <div class="minTitle">IMPORTANT NOTICE</div>
+      <div class="minTitle">
+        i. All payments are strictly to be made in favor of “AITB CLIENT
+        ACCOUNT”
+      </div>
+      <div class="minTitle">
+        ii. NO CASH PAYMENT is accepted for any payment. Anyone who attempts to
+        bank in cash for transaction will be rejected, and the Management
+        reserve the rights not to Accept & Approved the application
+      </div>
+      <div class="minTitle">
+        iii. No individual or company is authorized to collect payment of any
+        nature on our behalf
+      </div>
+      <div class="minTitle">
+        v. Should you be requested to make payment of any nature to any third
+        party purportedly representing us, We shall not be responsible or in
+        anyway be held liable for such payment made to unauthorized party or
+        parties
+      </div>
 
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
-        {{ from == 'create'? 'next' : 'submit' }}
+        {{ from == "create" ? "next" : "submit" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -440,8 +654,8 @@
 </template>
 
 <script>
-import { uploadAutograph } from '@/api/util'
-import { createOrders } from '@/api/order'
+import { uploadAutograph } from "@/api/util";
+import { createOrders } from "@/api/order";
 export default {
   data() {
     return {
@@ -457,12 +671,12 @@ export default {
         email: "",
         beneficiary_info: [
           {
-            BENEFICIARY_NAME: '',
-            COMPANY_NO: '',
-            RELATIONSHIP: '',
-            CONTACT_NO: '',
-            PERCENTAGE: '',
-          }
+            BENEFICIARY_NAME: "",
+            COMPANY_NO: "",
+            RELATIONSHIP: "",
+            CONTACT_NO: "",
+            PERCENTAGE: "",
+          },
         ],
         price: "",
         adviser_name: "",
@@ -471,7 +685,7 @@ export default {
         bank: "",
         account_no: "",
         swift_code: "",
-        ref: "",
+        // ref: "",
         details_bank_name: "",
         details_account_no: "",
         details_account_owner: "",
@@ -484,16 +698,27 @@ export default {
         signature: "",
         client_name: "",
         signature_date: "",
+        beneficiary_name_trustee: "",
+        nric_passport_no_company_no: "",
+        relationship: "",
+        contact_no: "",
+        percentage_of_distribution: "",
+        emergency_contact_name: "",
+        emergency_contact_nric: "",
+        emergency_contact_date: "",
+        emergency_contact_relationshiop: "",
+        emergency_contact_contact: "",
+        emergency_contact_email: "",
       },
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
-      whichDate: '', // 區分是哪個日期觸發彈框
-      from: '', // 記錄哪個頁面進入的
+      whichDate: "", // 區分是哪個日期觸發彈框
+      from: "", // 記錄哪個頁面進入的
       minDate: new Date(1900, 0, 1),
     };
   },
   mounted() {
-    this.from = this.$route.query.from
+    this.from = this.$route.query.from;
   },
   methods: {
     onFailed(values, errorInfo) {
@@ -509,7 +734,7 @@ export default {
     // 展示日期弹框
     onShowPicker(val) {
       this.isShowPicker = true;
-      this.whichDate = val
+      this.whichDate = val;
     },
     onHiddenPicker() {
       this.currentContent = new Data();
@@ -536,26 +761,31 @@ export default {
       console.log(form);
       console.log(this.formData);
       if (!this.formData.signature) {
-        this.$toast.fail('Please sign your name')
-        return
+        this.$toast.fail("Please sign your name");
+        return;
       } else if (!this.formData.born_date) {
-        this.$toast.fail('Please enter the born_date')
-        return
-      } else if(!this.formData.signature_date) {
-        this.$toast.fail('Please enter the signature_date')
-        return
+        this.$toast.fail("Please enter the born_date");
+        return;
+      } else if (!this.formData.signature_date) {
+        this.$toast.fail("Please enter the signature_date");
+        return;
       }
-      let data = JSON.parse(JSON.stringify(this.formData))
-      data.beneficiary_info = JSON.stringify(this.formData.beneficiary_info)
-      createOrders(data).then(res => {
-        console.log(res,'訂單創建成功');
-        this.$toast.success('Creating a successful')
-        this.$store.commit('changePage',{tabbar: '/KYC', title: 'Compliance Questionnaire'});
-        this.$router.push('/KYC?from=create&orderId=' + res.id)
-        // this.$router.go(-1)
-      }).catch(err => {
-        console.log(err.response);
-      })
+      let data = JSON.parse(JSON.stringify(this.formData));
+      data.beneficiary_info = JSON.stringify(this.formData.beneficiary_info);
+      createOrders(data)
+        .then((res) => {
+          console.log(res, "訂單創建成功");
+          this.$toast.success("Creating a successful");
+          this.$store.commit("changePage", {
+            tabbar: "/KYC",
+            title: "Compliance Questionnaire",
+          });
+          this.$router.push("/KYC?from=create&orderId=" + res.id);
+          // this.$router.go(-1)
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
     },
     // 清空画布
     handleReset(index) {
@@ -563,45 +793,49 @@ export default {
     },
     handleGenerate(index) {
       var that = this;
-      this.$refs["esign"].generate().then((res) => {
-        uploadAutograph({
-          image: res,
-          path: "",
-        }).then((res) => {
-            console.log(res);
-            this.$toast.success("Signature success");
-            this.formData.signature = res.path;
+      this.$refs["esign"]
+        .generate()
+        .then((res) => {
+          uploadAutograph({
+            image: res,
+            path: "",
           })
-          .catch((err) => {
-            that.$toast({
-              type: "fail",
-              message: "Uploading picture failed",
+            .then((res) => {
+              console.log(res);
+              this.$toast.success("Signature success");
+              this.formData.signature = res.path;
+            })
+            .catch((err) => {
+              that.$toast({
+                type: "fail",
+                message: "Uploading picture failed",
+              });
             });
+        })
+        .catch((err) => {
+          //  没有签名，点击生成图片时调用
+          that.$toast({
+            type: "fail",
+            message: err + " No signature！",
           });
-      }).catch((err) => {
-        //  没有签名，点击生成图片时调用
-        that.$toast({
-          type: "fail",
-          message: err + " No signature！",
+          alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
-        alert(err); // 画布没有签字时会执行这里 'Not Signned'
-      });
     },
     // 添加beneficiary_info
     addBeneficiary() {
       if (this.formData.beneficiary_info.length < 4) {
         this.formData.beneficiary_info.push({
-          BENEFICIARY_NAME: '',
-          COMPANY_NO: '',
-          RELATIONSHIP: '',
-          CONTACT_NO: '',
-          PERCENTAGE: '',
-        })
+          BENEFICIARY_NAME: "",
+          COMPANY_NO: "",
+          RELATIONSHIP: "",
+          CONTACT_NO: "",
+          PERCENTAGE: "",
+        });
       }
     },
     delBeneficiary(inx) {
-      this.formData.beneficiary_info.splice(inx,1)
-    }
+      this.formData.beneficiary_info.splice(inx, 1);
+    },
   },
 };
 </script>
