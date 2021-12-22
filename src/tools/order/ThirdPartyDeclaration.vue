@@ -11,23 +11,23 @@
       </div>
       <div class="minTitle">THIRD-PARTY FUNDS DECLARATION FORM</div>
       <div class="minTitle">
-        To be completed by the Trustor if the Trust Capital Funds for this
-        application is to be funded by anyone other than the Trustor.
+        To be completed by the Settlor if the Trust Capital Funds for this application is to be funded by
+        anyone other than the Settlor
       </div>
-      <div class="minTitle">Trustor Details</div>
+      <div class="minTitle">Name of Settlor:</div>
       <van-field
         v-model="formData.trustor_name"
         name="trustor_name"
         center
         :required="true"
         type="text"
-        label="Name of the Individual, Company or Organisation"
-        placeholder="Please enter the Name of the Individual, Company or Organisation"
+        label="Name of the Contributor(Individual)"
+        placeholder="Please enter the Name of the Contributor(Individual)"
         :rules="[
           {
             required: true,
             message:
-              'Please enter the Name of the Individual, Company or Organisation',
+              'Please enter the Name of the Contributor(Individual)',
           },
         ]"
       />
@@ -211,6 +211,7 @@
             <van-radio :name="4"
               >Relationship between the Settlor and Third-Party</van-radio
             >
+            <van-radio :name="5">All photocopied documents must be verified (i.e. signed, dated, name stated) by the Marketing/ Distributing agent</van-radio>
           </van-radio-group>
         </template>
       </van-field>

@@ -192,7 +192,7 @@
         name="beneficiary_name_trustee"
         center
         :required="true"
-        type="number"
+        type="text"
         label="BENEFICIARY NAME / TRUSTEE"
         placeholder="Please enter the BENEFICIARY NAME / TRUSTEE"
         :rules="[
@@ -207,7 +207,7 @@
         name="nric_passport_no_company_no"
         center
         :required="true"
-        type="number"
+        type="text"
         label="NRIC / PASSPORT NO COMPANY NO"
         placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO"
         :rules="[
@@ -222,7 +222,7 @@
         name="relationship"
         center
         :required="true"
-        type="number"
+        type="text"
         label="RELATIONSHIP"
         placeholder="Please enter the RELATIONSHIP"
         :rules="[
@@ -237,7 +237,7 @@
         name="contact_no"
         center
         :required="true"
-        type="number"
+        type="text"
         label="CONTACT NO"
         placeholder="Please enter the CONTACT NO"
         :rules="[
@@ -252,7 +252,7 @@
         name="percentage_of_distribution"
         center
         :required="true"
-        type="number"
+        type="text"
         label="PERCENTAGE OF DISTRIBUTION"
         placeholder="Please enter the PERCENTAGE OF DISTRIBUTION"
         :rules="[
@@ -270,7 +270,7 @@
         name="emergency_contact_name"
         center
         :required="true"
-        type="number"
+        type="text"
         label="NAME"
         placeholder="Please enter the NAME"
         :rules="[
@@ -285,7 +285,7 @@
         name="emergency_contact_nric"
         center
         :required="true"
-        type="number"
+        type="text"
         label="NRIC / PASSPORT NO."
         placeholder="Please enter the NRIC / PASSPORT NO."
         :rules="[
@@ -296,13 +296,15 @@
         ]"
       />
       <van-field
+        readonly
         v-model="formData.emergency_contact_date"
         name="emergency_contact_date"
         center
         :required="true"
-        type="number"
+        right-icon="arrow"
         label="DATE OF BIRTH"
         placeholder="Please enter the DATE OF BIRTH"
+        @click="onShowPicker('emergency_contact_date')"
         :rules="[
           {
             required: true,
@@ -315,7 +317,7 @@
         name="emergency_contact_relationshiop"
         center
         :required="true"
-        type="number"
+        type="text"
         label="RELATIONSHIOP WITH SETTLOR"
         placeholder="Please enter the RELATIONSHIOP WITH SETTLOR"
         :rules="[
@@ -330,7 +332,7 @@
         name="emergency_contact_contact"
         center
         :required="true"
-        type="number"
+        type="text"
         label="CONTACT NUMBER"
         placeholder="Please enter the CONTACT NUMBER"
         :rules="[
@@ -345,7 +347,7 @@
         name="emergency_contact_email"
         center
         :required="true"
-        type="number"
+        type="text"
         label="EMAIL ADDRESS"
         placeholder="Please enter the EMAIL ADDRESS"
         :rules="[
@@ -634,7 +636,7 @@
 
       <!-- 提交 -->
       <van-button round block type="info" native-type="submit">
-        {{ from == "create" ? "next" : "submit" }}
+        {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -689,10 +691,10 @@ export default {
         details_bank_name: "",
         details_account_no: "",
         details_account_owner: "",
-        dividend_bank_name: "",
-        dividend_account_no: "",
-        dividend_bank_location: "",
-        dividend_account_owner: "",
+        dividend_bank_name: "AITB CLIENT ACCOUNT",
+        dividend_account_no: "MAYBANK BERHAD",
+        dividend_bank_location: "5140 5775 4281",
+        dividend_account_owner: "MBBEMYKL",
         witness_name: "",
         witness_passport_no: "",
         signature: "",

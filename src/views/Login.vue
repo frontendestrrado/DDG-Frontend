@@ -44,7 +44,7 @@
                 { required: true,message: 'Please enter the BTT Code' },
               ]"
             />
-            <van-field name="uploader" label="BBT Code Picture">
+            <van-field name="uploader" label="BTT Code Picture" :required="true">
               <template #input>
                 <van-uploader v-model="uploader" :after-read="afterRead" :max-count="1" />
               </template>

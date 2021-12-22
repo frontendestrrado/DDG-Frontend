@@ -166,7 +166,7 @@
         ]"
       />
       <van-button round block type="info" native-type="submit">
-        submit
+        {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->

@@ -306,7 +306,7 @@ export default {
       sessionStorage.token_type = ''
       this.$toast({
         type: 'success',
-        message: '退出成功'
+        message: 'Exit \n Successful'
       })
       this.$router.push("/Login");
       this.isToken = sessionStorage.token
