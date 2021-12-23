@@ -550,7 +550,7 @@
       </div>
       <div class="minTitle">
         3. I confirm that I have read and fully understand the Terms and
-        Conditions of AI GENERATION Trust and note that these may beupdated from
+        Conditions of AI GENERATION Trust and note that these may be updated from
         time to time.
       </div>
       <div class="minTitle">WITNESS DETAIL</div>
@@ -576,7 +576,7 @@
           { required: true, message: 'Please enter the NRIC / PASSPORT NO.' },
         ]"
       />
-      <div class="tl">TRUSTOR SIGNATUR</div>
+      <div class="tl">TRUSTOR SIGNATURE</div>
       <vue-esign
         ref="esign"
         :width="1200"
@@ -588,8 +588,8 @@
         style="border: 1px solid #666"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset()">clear</div>
-        <div class="esignBtn" @click="handleGenerate()">confirm</div>
+        <div class="esignBtn" @click="handleReset()">Clear</div>
+        <div class="esignBtn" @click="handleGenerate()">Confirm</div>
       </div>
       <van-field
         v-model="formData.client_name"

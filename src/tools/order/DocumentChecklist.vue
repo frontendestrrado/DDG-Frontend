@@ -206,8 +206,8 @@
         style="border: 1px solid #666"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">clear</div>
-        <div class="esignBtn" @click="handleGenerate('signature')">confirm</div>
+        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
+        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
       </div>
       <van-image
         v-if="formData.signature"

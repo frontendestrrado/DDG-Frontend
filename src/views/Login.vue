@@ -29,7 +29,7 @@
               label="Surname"
               placeholder="Please enter the Surname"
               :rules="[
-                { required: true, message: 'Please enter the Surname'},
+                { required: true, message: ' Please enter the Surname'},
               ]"
             />
             <van-field
@@ -83,7 +83,7 @@
               center
               :required="true"
               type="text"
-              label="Date Of Birth"
+              label="Date of Birth"
               placeholder="YYYY-MM-DD"
               @click="onShowPicker()"
             />
@@ -155,19 +155,19 @@
               center
               :required="true"
               type="password"
-              label="Confirm password"
-              placeholder="Confirm password"
+              label="Confirm Password"
+              placeholder="Confirm Password"
               :rules="[{ required: true, message: 'Confirm password' }]"
             />
             <van-field
               readonly
               clickable
-              label="Area code"
+              label="Area Code"
               center
               :required="true"
               :rules="[{ required: true, message: 'Area code' }]"
               :value="areaCode"
-              placeholder="Area code"
+              placeholder="Area Code"
               @click="showPicker = true"
             />
             <van-field
@@ -194,8 +194,8 @@
               v-model="phoneList.verify_code"
               center
               :required="true"
-              label="Verification code"
-              placeholder="Verification code"
+              label="Verification Code"
+              placeholder="Verification Code"
               :rules="[{ required: true, message: 'Verification code' }]"
             >
               <van-button
@@ -204,7 +204,7 @@
                 native-type="button"
                 :disabled="phoneList.isSms"
                 @click="sendCode()"
-                >Send code</van-button
+                >Send Code</van-button
               >
             </van-field>
             <van-button class="loginBtn" type="default" native-type="submit"
@@ -518,7 +518,7 @@ export default {
         url: "/api/v1/sin_up/sms/verify_code?data=" + JSON.stringify(data),
       })
         .then((res) => {
-          console.log(res);
+          console.log(res,'返回的值');
           if (res.state_code == 200) {
             const vm = this;
             setTimeout(function () {
@@ -589,6 +589,7 @@ export default {
             });
           }
         });
+     
     },
   },
 };
@@ -615,6 +616,11 @@ export default {
 /deep/ .van-field__label {
   width: 12.2rem;
 }
+/* /deep/  .van-toast__text {
+  word-wrap: break-word;
+  word-break: normal;
+  font-size: 24px;
+} */
 .login {
   margin-top: 20px;
   background-color: #f3f5f7;
@@ -644,6 +650,7 @@ export default {
   font-size: 16px;
   border-radius: 8px;
 }
+
 @media screen and (max-width: 576px) {
   .login {
     margin-top: 0;

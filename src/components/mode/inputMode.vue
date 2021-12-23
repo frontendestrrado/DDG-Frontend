@@ -32,7 +32,7 @@
                     : 'text'
                 "
                 :label="item.title"
-                :placeholder="'Please enter the' + item.title"
+                :placeholder="'Please enter the ' + item.title"
                 :rules="[
                   {
                     validator: item.type == 4 ? validatorEmail : '',
@@ -53,7 +53,7 @@
                 center
                 :required="true"
                 :rules="[
-                  { required: true, message: 'Please select the area code' },
+                  { required: true, message: 'Please selgect the area code' },
                 ]"
                 :value="areaCode[index]"
                 placeholder="Please select the area code"
@@ -70,7 +70,7 @@
                 :rules="[
                   {
                     required: item.is_require == 1 ? true : false,
-                    message: 'Please enter the' + item.title,
+                    message: 'Please enter the ' + item.title,
                   },
                 ]"
               >

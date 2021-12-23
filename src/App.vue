@@ -116,6 +116,7 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
   margin: 0 auto;
   max-width: 1200px;
 }
+
 @media screen and (max-width: 576px){
   .main_content {max-width: 540px;}
   .from_content{width: 100%;}
@@ -136,6 +137,11 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 }
 .van-field .van-icon{
   font-size: 20px;
+}
+.van-toast .van-toast__text {
+  word-wrap: break-word;
+  word-break: normal;
+  
 }
 .bodybox {
   max-width: 1200px;

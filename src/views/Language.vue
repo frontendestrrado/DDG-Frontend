@@ -10,7 +10,7 @@
         />
       </van-dropdown-menu>
     </div> -->
-    <div class="title">选择语言：</div>
+    <div class="title">Select language</div>
     <van-radio-group v-model="lang" @change="changeLang">
       <van-radio 
         v-for="(item,inx) in language" 
