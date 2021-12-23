@@ -15,6 +15,7 @@
         anyone other than the Settlor
       </div>
       <div class="minTitle">Name of Settlor:</div>
+      <div class="minTitle">Third-Party Details (Individual)</div>
       <van-field
         v-model="formData.trustor_name"
         name="trustor_name"
@@ -38,13 +39,29 @@
         center
         :required="true"
         right-icon="arrow"
-        label="Date of Birth / Date of Registration"
-        placeholder="Please enter the Date of Birth / Date of Registration"
+        label="Date of Birth"
+        placeholder="Please enter the Date of Birth"
         @click="onShowPicker('trustor_date')"
         :rules="[
           {
             required: true,
-            message: 'Please enter the Date of Birth / Date of Registration',
+            message: 'Please enter the Date of Birth',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.nationality"
+        name="nationality"
+        center
+        :required="true"
+        type="text"
+        label="Nationality "
+        placeholder="Please enter the Nationality "
+        :rules="[
+          {
+            required: true,
+            message:
+              'Please enter the Nationality ',
           },
         ]"
       />
@@ -54,13 +71,13 @@
         center
         :required="true"
         type="text"
-        label="NRIC/Passport/Company/ Organization Registration No"
-        placeholder="Please enter the NRIC/Passport/Company/ Organization Registration No"
+        label="NRIC/Passport No"
+        placeholder="Please enter the NRIC/Passport No"
         :rules="[
           {
             required: true,
             message:
-              'Please enter the NRIC/Passport/Company/ Organization Registration No',
+              'Please enter the NRIC/Passport No',
           },
         ]"
       />
@@ -70,13 +87,13 @@
         center
         :required="true"
         type="text"
-        label="Address of the Individual, Company or Organisation"
-        placeholder="Please enter the Address of the Individual, Company or Organisation"
+        label="Proof of current Address of the Individual"
+        placeholder="Please enter the Proof of current Address of the Individual"
         :rules="[
           {
             required: true,
             message:
-              'Please enter the Address of the Individual, Company or Organisation',
+              'Please enter the Proof of current Address of the Individual',
           },
         ]"
       />
@@ -90,7 +107,7 @@
         placeholder="Please enter the Contact No"
         :rules="[{ required: true, message: 'Please enter the Contact No' }]"
       />
-      <van-field
+      <!-- <van-field
         v-model="formData.trustor_reference_no"
         name="trustor_reference_no"
         center
@@ -99,21 +116,101 @@
         label="Reference No"
         placeholder="Please enter the Reference No"
         :rules="[{ required: true, message: 'Please enter the Reference No' }]"
+      /> -->
+      <van-field
+        v-model="formData.occupation"
+        name="occupation"
+        center
+        :required="true"
+        type="text"
+        label="Occupation"
+        placeholder="Please enter the Occupation"
+        :rules="[{ required: true, message: 'Please enter the Occupation' }]"
       />
-      <div class="minTitle">Third-Party Details</div>
+      <van-field
+        v-model="formData.industry"
+        name="industry"
+        center
+        :required="true"
+        type="text"
+        label="Industry"
+        placeholder="Please enter the Industry"
+        :rules="[{ required: true, message: 'Please enter the Industry' }]"
+      />
+      <van-field
+        v-model="formData.name_of_employer"
+        name="name_of_employer"
+        center
+        :required="true"
+        type="text"
+        label="Name of Employer"
+        placeholder="Please enter the Name of Employer"
+        :rules="[{ required: true, message: 'Please enter the Name of Employer' }]"
+      />
+      <van-field
+        v-model="formData.nature_of_business"
+        name="nature_of_business"
+        center
+        type="text"
+        label="Nature of Business(if Self-Employed)"
+        placeholder="Please enter the Nature of Business(if Self-Employed)"
+      />
+      <van-field
+        v-model="formData.relationship_with_settlor"
+        name="relationship_with_settlor"
+        center
+        :required="true"
+        type="text"
+        label="Relationship with Settlor"
+        placeholder="Please enter the Relationship with Settlor"
+        :rules="[{ required: true, message: 'Please enter the Relationship with Settlor' }]"
+      />
+      <van-field
+        v-model="formData.annual_salary_income"
+        name="annual_salary_income"
+        center
+        :required="true"
+        type="text"
+        label="Annual Salary/ Income"
+        placeholder="Please enter the Annual Salary/ Income"
+        :rules="[{ required: true, message: 'Please enter the Annual Salary/ Income' }]"
+      />
+      <div class="minTitle">If Payslip (Item 12) is not available, then please provide:EPF statement/ Unit trust statement/ S&P agreement/ etc </div>
+      <van-field
+        v-model="formData.source_of_wealth"
+        name="source_of_wealth"
+        center
+        :required="true"
+        type="text"
+        label="Source of Wealth"
+        placeholder="Please enter the Source of Wealth"
+        :rules="[{ required: true, message: 'Please enter the Source of Wealth' }]"
+      />
+      <div class="minTitle">Please provide: Bank statement with Name of Bank, Name of Account Holder, Account Number.</div>
+      <van-field
+        v-model="formData.source_of_fund"
+        name="source_of_fund"
+        center
+        :required="true"
+        type="text"
+        label="Source of Fund(Origin of fund)"
+        placeholder="Please enter the Source of Fund(Origin of fund)"
+        :rules="[{ required: true, message: 'Please enter the Source of Fund(Origin of fund)' }]"
+      />
+      <div class="minTitle">Third-Party Details (Legal Entity)</div>
       <van-field
         v-model="formData.third_party_name"
         name="third_party_name"
         center
         :required="true"
         type="text"
-        label="Name of the Individual, Company or Organisation"
-        placeholder="Please enter the Name of the Individual, Company or Organisation"
+        label="Name of Contributor(Company/Organisation)"
+        placeholder="Please enter the Name of Contributor(Company/Organisation)"
         :rules="[
           {
             required: true,
             message:
-              'Please enter the Name of the Individual, Company or Organisation',
+              'Please enter the Name of Contributor(Company/Organisation)',
           },
         ]"
       />
@@ -124,13 +221,13 @@
         center
         :required="true"
         right-icon="arrow"
-        label="Date of Birth / Date of Registration"
-        placeholder="Please enter the Date of Birth / Date of Registration"
+        label="Date of Registration"
+        placeholder="Please enter the Date of Registration"
         @click="onShowPicker('third_party_date')"
         :rules="[
           {
             required: true,
-            message: 'Please enter the Date of Birth / Date of Registration',
+            message: 'Please enter the Date of Registration',
           },
         ]"
       />
@@ -140,29 +237,13 @@
         center
         :required="true"
         type="text"
-        label="NRIC/Passport/Company/ Organisation Registration No"
-        placeholder="Please enter the NRIC/Passport/Company/ Organisation Registration No"
+        label="Company/ Organisation Registration No."
+        placeholder="Please enter the Company/ Organisation Registration No."
         :rules="[
           {
             required: true,
             message:
-              'Please enter the NRIC/Passport/Company/ Organisation Registration No',
-          },
-        ]"
-      />
-      <van-field
-        v-model="formData.third_party_address"
-        name="third_party_address"
-        center
-        :required="true"
-        type="text"
-        label="Address of the individual, company or Organisation"
-        placeholder="Please enter the Address of the individual, company or Organisation"
-        :rules="[
-          {
-            required: true,
-            message:
-              'Please enter the Address of the individual, company or Organisation',
+              'Please enter the Company/ Organisation Registration No.',
           },
         ]"
       />
@@ -172,20 +253,119 @@
         center
         :required="true"
         type="text"
-        label="Contact No"
-        placeholder="Please enter the Contact No"
-        :rules="[{ required: true, message: 'Please enter the Contact No' }]"
+        label="Company Contact No"
+        placeholder="Please enter the Company Contact No"
+        :rules="[{ required: true, message: 'Please enter the Company Contact No' }]"
       />
+      <van-field
+        v-model="formData.third_party_address"
+        name="third_party_address"
+        center
+        :required="true"
+        type="text"
+        label="Proof of current Address of the Company/ Organisation"
+        placeholder="Please enter the Proof of current Address of the Company/ Organisation"
+        :rules="[
+          {
+            required: true,
+            message:
+              'Please enter the Proof of current Address of the Company/ Organisation',
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.name_of_director"
+        name="name_of_director"
+        center
+        :required="true"
+        type="text"
+        label="Name of Director(s)"
+        placeholder="Please enter the Name of Director(s)"
+        :rules="[{ required: true, message: 'Please enter the Name of Director(s)' }]"
+      />
+      <van-field
+        v-model="formData.name_of_shareholder"
+        name="name_of_shareholder"
+        center
+        :required="true"
+        type="text"
+        label="Name of Shareholder(s)"
+        placeholder="Please enter the Name of Shareholder(s)"
+        :rules="[{ required: true, message: 'Please enter the Name of Shareholder(s)' }]"
+      />
+      <van-field
+        v-model="formData.nature_of_business2"
+        name="nature_of_business2"
+        center
+        :required="true"
+        type="text"
+        label="Nature of Business"
+        placeholder="Please enter the Nature of Business"
+        :rules="[{ required: true, message: 'Please enter the Nature of Business' }]"
+      />
+      <van-field
+        v-model="formData.profit_loss_statement"
+        name="profit_loss_statement"
+        center
+        :required="true"
+        type="text"
+        label="Profit & Loss Statement"
+        placeholder="Please enter the Profit & Loss Statement"
+        :rules="[{ required: true, message: 'Please enter the Profit & Loss Statement' }]"
+      />
+      <van-field
+        v-model="formData.source_of_fund2"
+        name="source_of_fund2"
+        center
+        :required="true"
+        type="text"
+        label="Source of Fund"
+        placeholder="Please enter the Source of Fund"
+        :rules="[{ required: true, message: 'Please enter the Source of Fund' }]"
+      />
+      
       <van-field
         v-model="formData.third_party_reference_no"
         name="third_party_reference_no"
         center
         :required="true"
         type="text"
-        label="Relationship"
-        placeholder="Please enter the Relationship"
-        :rules="[{ required: true, message: 'Please enter the Relationship' }]"
+        label="Relationship with Settlor"
+        placeholder="Please enter the Relationship with Settlor"
+        :rules="[{ required: true, message: 'Please enter the Relationship with Settlor' }]"
       />
+      <div class="minTitle">Contributor’s Contact Person </div>
+      <van-field
+        v-model="formData.contributor_name"
+        name="contributor_name"
+        center
+        :required="true"
+        type="text"
+        label="Name"
+        placeholder="Please enter the Name"
+        :rules="[{ required: true, message: 'Please enter the Name' }]"
+      />
+      <van-field
+        v-model="formData.contributor_contact"
+        name="contributor_contact"
+        center
+        :required="true"
+        type="text"
+        label="Contact No"
+        placeholder="Please enter the Contact No"
+        :rules="[{ required: true, message: 'Please enter the Contact No' }]"
+      />
+      <van-field
+        v-model="formData.contributor_email"
+        name="contributor_email"
+        center
+        :required="true"
+        type="text"
+        label="Email"
+        placeholder="Please enter the Email"
+        :rules="[{ required: true, message: 'Please enter the Email' }]"
+      />
+      <div class="minTitle">Note: [1] Bank statement with Name of Bank, Name of Account Holder, Account Number</div>
       <van-field
         name="declaration_third_party"
         label="Declaration of Third-Party Funds (Please tick √)"
@@ -215,6 +395,22 @@
           </van-radio-group>
         </template>
       </van-field>
+      <van-field
+        v-model="formData.others_please_specify"
+        name="others_please_specify"
+        center
+        type="text"
+        label="Others, please specify"
+        placeholder="Please enter the Others, please specify"
+      />
+      <van-field
+        v-model="formData.relationship_between"
+        name="relationship_between"
+        center
+        type="text"
+        label="Relationship between the Settlor and Third-Party"
+        placeholder="Please enter the Relationship between the Settlor and Third-Party"
+      />
       <div class="tl">Signature of Settlor</div>
       <vue-esign
         ref="client_signature"
@@ -365,7 +561,7 @@ export default {
         trustor_passport: "",
         trustor_address: "",
         trustor_phone: "",
-        trustor_reference_no: "",
+        // trustor_reference_no: "",
         third_party_name: "",
         third_party_date: "",
         third_party_passport: "",
@@ -381,6 +577,25 @@ export default {
         witness_name: "",
         witness_passport: "",
         witness_date: "",
+        nationality: '',
+        occupation: '',
+        industry: '',
+        name_of_employer: '',
+        nature_of_business: '',
+        relationship_with_settlor: '',
+        annual_salary_income: '',
+        source_of_wealth: '',
+        source_of_fund: '',
+        name_of_director: '',
+        name_of_shareholder: '',
+        nature_of_business2: '',
+        profit_loss_statement: '',
+        source_of_fund2: '',
+        contributor_name: '',
+        contributor_contact: '',
+        contributor_email: '',
+        others_please_specify: '',
+        relationship_between: '',
       },
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
