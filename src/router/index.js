@@ -23,7 +23,6 @@ import Performance from '@/tools/Performance'
 import PerformanceList from '@/tools/PerformanceList'
 import PerformanceDetail from '@/tools/PerformanceDetail'
 import PersonalGrowth from '@/tools/PersonalGrowth'
-import TrainingPlan from '@/tools/TrainingPlan'
 import ToolBox from '@/tools/ToolBox'
 import FormList from '@/tools/FormList'
 
@@ -128,10 +127,6 @@ const router = new Router({
       path: '/PersonalGrowth',
       name: '个人成长',
       component: PersonalGrowth,
-    },{
-      path: '/TrainingPlan',
-      name: '培训计划',
-      component: TrainingPlan,
     },{
       path: '/ToolBox',
       name: '工具箱',

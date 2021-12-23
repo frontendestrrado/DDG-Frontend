@@ -10,6 +10,7 @@
 			<Graphic v-if="item.type === 6" :graphicData='item' @on-goto="goPage"></Graphic>
 			<TextMode v-if="item.type === 8" :textData='item'></TextMode>
 			<InputMode v-if="item.type === 9" :formData.sync='item'></InputMode>
+			<File v-if="item.type === 10" :fileData='item'></File>
 		</div>
 	</div>
 </template>
@@ -23,6 +24,7 @@
 	import Graphic from '@/components/mode/graphic'
 	import TextMode from '@/components/mode/textMode'
 	import InputMode from '@/components/mode/inputMode'
+	import File from '@/components/mode/file'
 	export default {
 		components: {
 			Banner,
@@ -33,6 +35,7 @@
 			Graphic,
 			TextMode,
 			InputMode,
+      File
 		},
 		props:{
 			pageData:{
