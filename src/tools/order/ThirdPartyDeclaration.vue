@@ -424,10 +424,10 @@
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('client_signature')">
-          clear
+          Clear
         </div>
         <div class="esignBtn" @click="handleGenerate('client_signature')">
-          confirm
+          Confirm
         </div>
       </div>
       <van-image
@@ -481,10 +481,10 @@
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('witness_signature')">
-          clear
+          Clear
         </div>
         <div class="esignBtn" @click="handleGenerate('witness_signature')">
-          confirm
+          Confirm
         </div>
       </div>
       <van-image
@@ -526,7 +526,7 @@
         :rules="[{ required: true, message: 'Please enter the Date' }]"
       />
       <van-button round block type="info" native-type="submit">
-        提交
+        Submit
       </van-button>
     </van-form>
     <!-- 日期彈框 -->

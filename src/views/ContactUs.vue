@@ -96,7 +96,7 @@ export default {
             console.log(res);
             this.$toast({
               type: "success",
-              message: "提交成功",
+              message: "Submitted successfully",
             });
             // if(res.data.status==200){
             // 	this.$toast({
@@ -124,7 +124,7 @@ export default {
             });
           });
       } else {
-        this.$toast("请填写完整信息");
+        this.$toast("Please complete the information");
       }
     },
   },

@@ -1661,7 +1661,7 @@
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('trustor_signature1')">
-          clear
+          Clear
         </div>
         <div
           class="esignBtn"
@@ -1669,7 +1669,7 @@
             handleGenerate('trustor_signature1', 'store_marketing_officer')
           "
         >
-          confirm
+          Confirm
         </div>
       </div>
       <van-image
@@ -1723,13 +1723,13 @@
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('trustor_signature2')">
-          clear
+          Clear
         </div>
         <div
           class="esignBtn"
           @click="handleGenerate('trustor_signature2', 'store_manager')"
         >
-          confirm
+          Confirm
         </div>
       </div>
       <van-image
