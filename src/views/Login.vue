@@ -544,6 +544,10 @@ export default {
         this.$toast("The passwords are inconsistent");
         return;
       }
+      if (this.uploader.length < 1) {
+        this.$toast("Please upload BTT Code Picture");
+        return;
+      }
       console.log(this.registForm);
       console.log(this.uploader,'path');
       this.$axios({

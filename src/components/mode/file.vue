@@ -7,9 +7,7 @@
       </van-col>
       <van-col span="12" style="text-align:right">
         <van-button @click="see" class="btn" type="info" size="small" color="#CFC3B5">See</van-button>
-        <!-- <a :href="fileData.link" :download="fileData.title"> -->
-          <!-- <van-button @click="download" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button> -->
-        <!-- </a> -->
+        <van-button @click="download" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button>
       </van-col>
     </van-row>
   </div>
@@ -32,7 +30,8 @@ export default {
     },
     // 下載文件
     download() {
-      
+      let url = this.fileData.link.split('uploads')
+      window.open(url[0] + 'file/download?path=uploads' + url[1], '_self')
     }
   },
 };
