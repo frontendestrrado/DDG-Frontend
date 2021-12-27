@@ -174,7 +174,7 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/PDPAMemo",
-                title: "PDPA Memo",
+                title: "3/4 PDPA Memo",
               });
               this.$router.push(
                 "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId

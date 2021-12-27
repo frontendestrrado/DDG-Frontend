@@ -2101,7 +2101,7 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/LetterOfWishes",
-                title: "Letter Of Wishes",
+                title: "2/4 Letter Of Wishes",
               });
               this.$router.push(
                 "/LetterOfWishes?from=create&orderId=" +

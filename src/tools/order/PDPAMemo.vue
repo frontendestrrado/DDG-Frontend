@@ -255,7 +255,7 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/DocumentChecklist",
-                title: "Document Checklist",
+                title: "4/4 Document Checklist",
               });
               this.$router.push(
                 "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId

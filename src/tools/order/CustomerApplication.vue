@@ -95,21 +95,21 @@
         v-model="formData.office_no"
         name="office_no"
         center
-        :required="true"
+        
         type="text"
         label="OFFICE NO"
         placeholder="Please enter the OFFICE NO"
-        :rules="[{ required: true, message: 'Please enter the OFFICE NO' }]"
+       
       />
       <van-field
         v-model="formData.house_no"
         name="house_no"
         center
-        :required="true"
+        
         type="text"
         label="HOUSE NO"
         placeholder="Please enter the HOUSE NO"
-        :rules="[{ required: true, message: 'Please enter the HOUSE NO' }]"
+        
       />
       <van-field
         v-model="formData.email"
@@ -137,50 +137,62 @@
         <van-field
           v-model="item.BENEFICIARY_NAME"
           name="BENEFICIARY_NAME"
+          :required="true"
           center
           type="text"
           label="BENEFICIARY NAME / TRUSTEE"
           placeholder="Please enter the BENEFICIARY NAME / TRUSTEE"
+          :rules="[{ required: true, message: 'Please enter the BENEFICIARY NAME / TRUSTEE' }]"
         />
         <van-field
           v-model="item.COMPANY_NO"
           name="COMPANY_NO"
           center
+          :required="true"
           type="text"
           label="NRIC / PASSPORT NO COMPANY NO."
           placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO."
+          :rules="[{ required: true, message: 'Please enter the NRIC / PASSPORT NO COMPANY NO.' }]"
         />
         <van-field
           v-model="item.RELATIONSHIP"
           name="RELATIONSHIP"
           center
+          :required="true"
           type="text"
           label="RELATIONSHIP"
           placeholder="Please enter the RELATIONSHIP"
+          :rules="[{ required: true, message: 'Please enter the RELATIONSHIP' }]"
         />
         <van-field
           v-model="item.CONTACT_NO"
           name="CONTACT_NO"
           center
+          :required="true"
           type="text"
           label="CONTACT NO"
           placeholder="Please enter the CONTACT NO"
+          :rules="[{ required: true, message: 'Please enter the CONTACT NO' }]"
         />
         <van-field
           v-model="item.PERCENTAGE"
           name="PERCENTAGE"
           center
+          :required="true"
           type="text"
           label="PERCENTAGE OF DISTRIBUTION"
           placeholder="Please enter the PERCENTAGE OF DISTRIBUTION"
+          :rules="[{ required: true, message: 'Please enter the PERCENTAGE OF DISTRIBUTION' }]"
         />
         <van-button
           class="esignDelBtn"
           v-if="inx > 0"
           slot="button"
           native-type="button"
+          
           @click="delBeneficiary(inx)"
           >delete</van-button
+
         >
       </div>
 
@@ -408,32 +420,32 @@
         v-model="formData.details_bank_name"
         name="details_bank_name"
         center
-        :required="false"
+        :required="true"
         type="text"
         label="NAME OF BANK"
         placeholder="Please enter the NAME OF BANK"
-        :rules="[{ required: false, message: 'Please enter the NAME OF BANK' }]"
+        :rules="[{ required: true, message: 'Please enter the NAME OF BANK' }]"
       />
       <van-field
         v-model="formData.details_account_no"
         name="details_account_no"
         center
-        :required="false"
+        :required="true"
         type="text"
         label="ACCOUNT NO"
         placeholder="Please enter the ACCOUNT NO"
-        :rules="[{ required: false, message: 'Please enter the ACCOUNT NO' }]"
+        :rules="[{ required: true, message: 'Please enter the ACCOUNT NO' }]"
       />
       <van-field
         v-model="formData.details_account_owner"
         name="details_account_owner"
         center
-        :required="false"
+        :required="true"
         type="text"
         label="ACCOUNT OWNER"
         placeholder="Please enter the ACCOUNT OWNER"
         :rules="[
-          { required: false, message: 'Please enter the ACCOUNT OWNER' },
+          { required: true, message: 'Please enter the ACCOUNT OWNER' },
         ]"
       />
       <div class="minTitle">
@@ -780,7 +792,7 @@ export default {
           this.$toast.success("Creating a successful");
           this.$store.commit("changePage", {
             tabbar: "/KYC",
-            title: "Compliance Questionnaire",
+            title: "1/4 Compliance Questionnaire",
           });
           this.$router.push("/KYC?from=create&orderId=" + res.id);
           // this.$router.go(-1)
