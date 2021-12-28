@@ -6,6 +6,19 @@
     <div style="margin-bottom: 40px">
       <van-cell
         is-link
+        :value="orderData.customer_app_form == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="Customer Application"
+        @click="
+          $store.commit('changePage', { tabbar: '/CustomerApplication', title: 'Customer Application' });
+          $router.push({
+            path: '/CustomerApplication',
+            query: { orderId: orderData.id, isFilled: orderData.customer_app_form },
+          });
+        "
+      ></van-cell>
+      <van-cell
+        is-link
         :value="orderData.kyc_form == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Compliance Questionnaire"

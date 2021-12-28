@@ -160,7 +160,7 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
   color: #fff;
   border: none;
   outline: none;
-  background-color: #2f75f4;
+  background-color: #7C655D;
   font-size: 16px;
   border-radius: 13px;
   height: 35px;
@@ -169,5 +169,9 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
   display: inline-block;
   width: auto;
   padding: 0 10px;
+}
+/* 簽名圖片邊框 */
+.esignImgbox {
+  border: 1px solid #666666;
 }
 </style>

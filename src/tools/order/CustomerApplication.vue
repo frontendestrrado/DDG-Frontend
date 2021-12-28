@@ -203,76 +203,41 @@
         v-model="formData.beneficiary_name_trustee"
         name="beneficiary_name_trustee"
         center
-        :required="true"
         type="text"
         label="BENEFICIARY NAME / TRUSTEE"
         placeholder="Please enter the BENEFICIARY NAME / TRUSTEE"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the BENEFICIARY NAME / TRUSTEE',
-          },
-        ]"
       />
       <van-field
         v-model="formData.nric_passport_no_company_no"
         name="nric_passport_no_company_no"
         center
-        :required="true"
         type="text"
         label="NRIC / PASSPORT NO COMPANY NO"
         placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the NRIC / PASSPORT NO COMPANY NO',
-          },
-        ]"
       />
       <van-field
         v-model="formData.relationship"
         name="relationship"
         center
-        :required="true"
         type="text"
         label="RELATIONSHIP"
         placeholder="Please enter the RELATIONSHIP"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the RELATIONSHIP',
-          },
-        ]"
       />
       <van-field
         v-model="formData.contact_no"
         name="contact_no"
         center
-        :required="true"
         type="text"
         label="CONTACT NO"
         placeholder="Please enter the CONTACT NO"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the CONTACT NO',
-          },
-        ]"
       />
       <van-field
         v-model="formData.percentage_of_distribution"
         name="percentage_of_distribution"
         center
-        :required="true"
         type="text"
         label="PERCENTAGE OF DISTRIBUTION"
         placeholder="Please enter the PERCENTAGE OF DISTRIBUTION"
-        :rules="[
-          {
-            required: true,
-            message: 'Please enter the PERCENTAGE OF DISTRIBUTION',
-          },
-        ]"
       />
       <div class="minTitle">
         EMERGENCY CONTACT PARTICULARS (INDIVIDUAL OVER 18 YEARS OLD)
@@ -515,41 +480,37 @@
         v-model="formData.dividend_bank_name"
         name="dividend_bank_name"
         center
-        :required="true"
+        disabled
         type="text"
         label="Account Name"
         placeholder="Please enter the Account Name"
-        :rules="[{ required: true, message: 'Please enter the Account Name' }]"
       />
       <van-field
         v-model="formData.dividend_account_no"
         name="dividend_account_no"
         center
-        :required="true"
+        disabled
         type="text"
         label="Bank"
         placeholder="Please enter the Bank"
-        :rules="[{ required: true, message: 'Please enter the Bank' }]"
       />
       <van-field
         v-model="formData.dividend_bank_location"
         name="dividend_bank_location"
         center
-        :required="true"
+        disabled
         type="text"
         label="Account No"
         placeholder="Please enter the Account No"
-        :rules="[{ required: true, message: 'Please enter the Account No' }]"
       />
       <van-field
         v-model="formData.dividend_account_owner"
         name="dividend_account_owner"
         center
-        :required="true"
+        disabled
         type="text"
         label="Swift Code"
         placeholder="Please enter the Swift Code"
-        :rules="[{ required: true, message: 'Please enter the Swift Code' }]"
       />
       <div class="minTitle">APPLICATION DECLARATION</div>
       <div class="minTitle">
@@ -588,9 +549,10 @@
           { required: true, message: 'Please enter the NRIC / PASSPORT NO.' },
         ]"
       />
-      <div class="tl">TRUSTOR SIGNATURE</div>
+      <div class="tl">SETTLOR SIGNATURE</div>
       <vue-esign
         ref="esign"
+        v-show="!formData.signature"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -598,6 +560,13 @@
         lineColor="#000000"
         bgColor.sync="#fff"
         style="border: 1px solid #666"
+      />
+      <van-image 
+        v-show="formData.signature"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.signature"
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset()">Clear</div>
@@ -647,7 +616,7 @@
       </div>
 
       <!-- 提交 -->
-      <van-button round block type="info" native-type="submit">
+      <van-button v-if="from == 'create'" round block type="info" native-type="submit" color="#7C655D">
         {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>
@@ -669,7 +638,7 @@
 
 <script>
 import { uploadAutograph } from "@/api/util";
-import { createOrders } from "@/api/order";
+import { createOrders, getOrdersForms } from "@/api/order";
 export default {
   data() {
     return {
@@ -728,13 +697,31 @@ export default {
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
       from: "", // 記錄哪個頁面進入的
+      isFilled: "", // 表單id(未填0)
       minDate: new Date(1900, 0, 1),
     };
   },
   mounted() {
+    console.log(this.$route.query, 222222);
     this.from = this.$route.query.from;
+    this.isFilled = this.$route.query.isFilled;
+    this.getFormData();
   },
   methods: {
+    // 如果已填 獲取數據
+    getFormData() {
+      if (this.isFilled > 0) {
+        getOrdersForms(this.isFilled, { type: "Customer Application" })
+          .then((res) => {
+            console.log(res,"獲取Customer Application數據");
+            res.beneficiary_info = JSON.parse(res.beneficiary_info)
+            this.formData = res;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
     onFailed(values, errorInfo) {
       console.log("failed", errorInfo);
       console.log("values", values);
@@ -804,6 +791,7 @@ export default {
     // 清空画布
     handleReset(index) {
       this.$refs["esign"].reset(); //清空画布
+      this.formData.signature = ''
     },
     handleGenerate(index) {
       var that = this;
@@ -875,7 +863,7 @@ export default {
   color: #fff;
   border: none;
   outline: none;
-  background-color: #2f75f4;
+  background-color: #7C655D;
   font-size: 16px;
   border-radius: 13px;
   height: 35px;
@@ -904,5 +892,8 @@ export default {
   /deep/ .van-field__label {
     width: 6.5rem;
   }
+}
+.esignImgbox {
+  border: 1px solid #666666;
 }
 </style>

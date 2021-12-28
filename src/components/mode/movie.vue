@@ -12,7 +12,7 @@
 			x5-video-ignore-metadata="true"
 			x5-video-orientation="landscape"
 			preload="preload">
-			<source :src="movieData.movie" type='video/mp4' ></video>
+			<source :src="movieData.movie" type='video/mp4' >
 		</video>
 	</div>
 </template>

@@ -6,7 +6,7 @@
     <main>
       <router-view />
     </main>
-    <div class="ContactUs">
+    <!-- <div class="ContactUs">
       <div class="bodybox">
         <div class="ContactUsTitle">Contact Us</div>
         <div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
@@ -16,7 +16,8 @@
         <div>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang.</div>
         <div>Business Hour: 9.00am – 5.00pm (Monday – Friday) </div>
       </div>
-    </div>
+    </div> -->
+    <div style="height: 50px;"></div>
     <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok">
 			<div style="padding: 10px 10px;text-align: left;">
 				<div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>

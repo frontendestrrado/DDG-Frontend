@@ -46,7 +46,7 @@
             />
             <van-field name="uploader" label="BTT Code Picture" :required="true">
               <template #input>
-                <van-uploader v-model="uploader" :after-read="afterRead" :max-count="1" />
+                <van-uploader v-model="uploader" :after-read="afterRead" accept="*" :max-count="1" />
               </template>
             </van-field>
             <van-field
@@ -266,7 +266,7 @@
 <script>
 import Common from "@/components/mode/common.vue";
 import EventHub from '@/util/EventHub'
-import { uploadAutograph } from "@/api/util";
+import { uploadAutograph, upload_btt_code } from "@/api/util";
 export default {
   components: {
     Common,
@@ -329,13 +329,12 @@ export default {
     // 圖片上傳
     afterRead(file) {
       // 此时可以自行将文件上传至服务器
-      console.log(file);
-      uploadAutograph({
-        image: file.content,
-        path: "",
-      }).then(res => {
+      console.log(file,'上傳的文件');
+      let data = new FormData()
+      data.append('file', file.file)
+      upload_btt_code(data).then(res => {
         this.$toast.success('Success')
-        this.uploader[0].url = res.path
+        this.uploader[0].url = res.file
       })
     },
     getPageContent() {

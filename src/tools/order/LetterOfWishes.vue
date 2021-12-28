@@ -6,17 +6,16 @@
       :submit-on-enter="false"
       :scroll-to-error="true"
     >
+        <!-- @click="onShowPicker('date')" -->
       <van-field
         readonly
         v-model="formData.date"
         name="date"
         center
-        :required="true"
+        disabled
         right-icon="arrow"
         label="Date"
         placeholder="Please enter the Date"
-        @click="onShowPicker('date')"
-        :rules="[{ required: true, message: 'Please enter the Date' }]"
       />
       <div class="minTitle">ASIA INTERNATIONAL TRUST BERHAD</div>
       <div class="minTitle">Suite 8.01, Level 8, Menara Binjai,</div>
@@ -89,7 +88,7 @@
         ]"
       />
       <!-- 提交 -->
-      <van-button round block type="info" native-type="submit">
+      <van-button round block type="info" native-type="submit" color="#7C655D">
         {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>

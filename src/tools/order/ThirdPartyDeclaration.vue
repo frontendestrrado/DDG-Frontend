@@ -414,6 +414,7 @@
       <div class="tl">Signature of Settlor</div>
       <vue-esign
         ref="client_signature"
+        v-show="!formData.client_signature"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -421,6 +422,13 @@
         lineColor="#000000"
         bgColor.sync="#fff"
         style="border: 1px solid #666"
+      />
+      <van-image
+        v-show="formData.client_signature"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.client_signature"
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('client_signature')">
@@ -430,12 +438,6 @@
           Confirm
         </div>
       </div>
-      <van-image
-        v-if="formData.client_signature"
-        width="100%"
-        height="20%"
-        :src="formData.client_signature"
-      />
       <van-field
         v-model="formData.client_name"
         name="client_name"
@@ -471,6 +473,7 @@
       <div class="tl">Signature of Trust Advisor as Witness</div>
       <vue-esign
         ref="witness_signature"
+        v-show="!formData.witness_signature"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -478,6 +481,13 @@
         lineColor="#000000"
         bgColor.sync="#fff"
         style="border: 1px solid #666"
+      />
+      <van-image
+        v-show="formData.witness_signature"
+        class="esignImgbox"
+        width="100%"
+        height="20%"
+        :src="formData.witness_signature"
       />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('witness_signature')">
@@ -487,12 +497,6 @@
           Confirm
         </div>
       </div>
-      <van-image
-        v-if="formData.witness_signature"
-        width="100%"
-        height="20%"
-        :src="formData.witness_signature"
-      />
       <van-field
         v-model="formData.witness_name"
         name="witness_name"
@@ -525,7 +529,7 @@
         @click="onShowPicker('witness_date')"
         :rules="[{ required: true, message: 'Please enter the Date' }]"
       />
-      <van-button round block type="info" native-type="submit">
+      <van-button round block type="info" native-type="submit" color="#7C655D">
         Submit
       </van-button>
     </van-form>
@@ -683,6 +687,12 @@ export default {
     // 清空画布
     handleReset(val) {
       this.$refs[val].reset(); //清空画布
+      if (val == 'client_signature') {
+        this.formData.client_signature = ''
+      }
+      if (val == 'witness_signature') {
+        this.formData.witness_signature = ''
+      }
     },
     handleGenerate(val) {
       var that = this;

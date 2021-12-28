@@ -93,6 +93,7 @@
       <div class="tl">WITNESS SIGNATURE</div>
       <vue-esign
         ref="signature"
+        v-show="!formData.signature"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -101,16 +102,17 @@
         bgColor.sync="#fff"
         style="border: 1px solid #666"
       />
-      <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
-        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
-      </div>
       <van-image
-        v-if="formData.signature"
+        v-show="formData.signature"
+        class="esignImgbox"
         width="100%"
         height="20%"
         :src="formData.signature"
       />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
+        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
+      </div>
       <van-field
         v-model="formData.name"
         name="name"
@@ -165,7 +167,7 @@
           { required: true, message: 'Please enter the Company Rubber Stamp' },
         ]"
       />
-      <van-button round block type="info" native-type="submit">
+      <van-button round block type="info" native-type="submit" color="#7C655D">
         {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>
@@ -270,6 +272,7 @@ export default {
     // 清空画布
     handleReset(val) {
       this.$refs[val].reset(); //清空画布
+      this.formData.signature = ''
     },
     handleGenerate(val) {
       var that = this;
@@ -346,5 +349,8 @@ export default {
   /deep/ .van-field__label {
     width: 6.5rem;
   }
+}
+.esignImgbox {
+  border: 1px solid #666666;
 }
 </style>

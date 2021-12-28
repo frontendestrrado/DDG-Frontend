@@ -197,6 +197,7 @@
       <div class="tl">Signature</div>
       <vue-esign
         ref="signature"
+        v-show="!formData.signature"
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -206,16 +207,17 @@
         bgColor.sync="#fff"
         style="border: 1px solid #666"
       />
-      <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
-        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
-      </div>
       <van-image
-        v-if="formData.signature"
+        v-show="formData.signature"
+        class="esignImgbox"
         width="100%"
         height="20%"
         :src="formData.signature"
       />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
+        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
+      </div>
       <div class="minTitle">
         Agent/Representative of DDG INTERNATIONAL BERHAD (Company No. 1423557-M)
       </div>
@@ -253,7 +255,7 @@
         @click="onShowPicker('agent_date')"
         :rules="[{ required: true, message: 'Please enter the Date' }]"
       />
-      <van-button round block type="info" native-type="submit">
+      <van-button round block type="info" native-type="submit" color="#7C655D">
         submit
       </van-button>
     </van-form>
@@ -369,6 +371,7 @@ export default {
       
       // this.$refs[val].resultImg=this.formData.signature
       this.$refs[val].reset(); //清空画布
+      this.formData.signature = ''
     },
     handleGenerate(val) {
       var that = this;

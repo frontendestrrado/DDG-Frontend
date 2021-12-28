@@ -4,7 +4,7 @@
 			<!-- :span="$store.state.isPC ? 16 : 24" -->
       <van-col :span="24">
         <div class="contactUs_info" style="text-align: left">
-          <div class="contactUs_title">Contact Us</div>
+          <div class="contactUs_title">INFO</div>
           <div class="fcs">
             <span
               >DDG International Berhad. (Co. No. 202101023257 (1423557-M)</span
@@ -28,17 +28,6 @@
           <div class="fcs">
             <span>Business Hour: 9.00am – 5.00pm (Monday – Friday) </span>
           </div>
-          <!-- <div class="fcs">
-						<span>Please create Google map, thanks</span>
-					</div> -->
-          <!-- <div class="fcs">
-						<van-icon name="envelop-o" color="#000" size="26" />
-						<span>mailadmin@ddgint.com</span>
-					</div>
-					<div class="fcs">
-						<van-icon name="phone-o" color="#000" size="26" />
-						<span>+60165535691</span>
-					</div> -->
         </div>
       </van-col>
       <van-col :span="24">
@@ -131,11 +120,11 @@ export default {
 };
 </script>
 
-<style scoped>
-/deep/ .van-row {
+<style scoped lang="scss">
+::v-deep .van-row {
   display: -webkit-box;
 }
-/deep/ .van-cell {
+::v-deep .van-cell {
   margin-bottom: 10px;
   padding: 0px 16px;
 }
@@ -149,11 +138,14 @@ export default {
 .contactUs_info {
   height: calc(100% - 40px);
   padding: 20px 30px;
-  background-color: #CFC3B5;
-}
-.contactUs_title {
-  font-weight: 500;
-  text-align: left;
+  background-color: #B09A8F;
+  border-radius: 10px;
+  color: #fff;
+  .contactUs_title {
+    font-weight: 600;
+    text-align: left;
+    font-size: 26px;
+  }
 }
 .contactUs_info .fcs {
   margin-left: 10%;
@@ -168,7 +160,7 @@ export default {
 }
 /*手机*/
 @media screen and (max-width: 768px) {
-  /deep/ .van-row {
+  ::v-deep .van-row {
     display: block;
   }
   .contactUs {
@@ -177,7 +169,7 @@ export default {
 }
 /*平板*/
 @media screen and (min-width: 768px) and (max-width: 992px) {
-  /deep/ .van-row {
+  ::v-deep .van-row {
     display: -webkit-box;
   }
   .contactUs {
