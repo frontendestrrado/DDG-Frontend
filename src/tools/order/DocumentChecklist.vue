@@ -202,6 +202,7 @@
         :isCrop="false"
         :lineWidth="6"
         lineColor="#000000"
+
         bgColor.sync="#fff"
         style="border: 1px solid #666"
       />
@@ -323,6 +324,7 @@ export default {
     },
     submit(form) {
       console.log(form);
+      
       if (!this.formData.signature) {
         this.$toast.fail("Please sign your name");
         return;
@@ -364,6 +366,8 @@ export default {
     },
     // 清空画布
     handleReset(val) {
+      
+      // this.$refs[val].resultImg=this.formData.signature
       this.$refs[val].reset(); //清空画布
     },
     handleGenerate(val) {
@@ -376,8 +380,9 @@ export default {
             path: "",
           })
             .then((res) => {
-              console.log(res);
+              console.log(res,111111);
               this.formData[val] = res.path;
+              // console.log(res.path)
               this.$toast.success("Signature success");
             })
             .catch((err) => {

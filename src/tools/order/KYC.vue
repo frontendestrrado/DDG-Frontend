@@ -843,9 +843,10 @@
         <template #input>
           <van-radio-group
             v-model="formData.c_two_yes.Relationship"
-            direction="horizontal"
+            
           >
             <van-radio :name="1">Self</van-radio>
+            
             <van-radio :name="2"
               >Family Member Spouse / Child / Parent / Child’s Spouse</van-radio
             >
@@ -1116,7 +1117,7 @@
         <template #input>
           <van-radio-group
             v-model="formData.document_checklist.Particulars"
-            direction="horizontal"
+            
           >
             <van-radio :name="1">IC/ Passport of Settlor</van-radio>
             <van-radio :name="2"
@@ -1732,8 +1733,8 @@
           Confirm
         </div>
       </div>
-      <van-image
-        v-if="formData.store_manager.trustor_signature2"
+      <van-image 
+        v-if="formData.store_marketing_officer.trustor_signature1"
         width="100%"
         height="20%"
         :src="formData.store_manager.trustor_signature2"
@@ -2249,9 +2250,11 @@ export default {
     },
     // 清空画布
     handleReset(val) {
+      console.log(this.$refs[val],111)
       this.$refs[val].reset(); //清空画布
     },
     handleGenerate(val,val2) {
+     console.log(this.$refs[val].generate().PromiseState)
       var that = this;
       this.$refs[val]
         .generate()
@@ -2261,6 +2264,7 @@ export default {
             path: "",
           })
             .then((res) => {
+               console.log(res)
               that.formData[val2][val] = res.path;
               that.$toast({
                 type: "success",
@@ -2273,6 +2277,8 @@ export default {
                 message: "Uploading\n picture\n failed",
               });
             });
+            // this.$refs['trustor_signature2'].resultImg=that.formData[val2][val]
+            // console.log(this.$refs[val].resultImg)
         })
         .catch((err) => {
           //  没有签名，点击生成图片时调用
