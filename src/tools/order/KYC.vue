@@ -936,6 +936,11 @@
           </van-checkbox-group>
         </template>
       </van-field>
+      <van-field name="Documents" label="Documents" :required="true">
+        <template #input>
+          <van-uploader v-model="Documents" :after-read="afterRead" accept="*" :max-count="1" />
+        </template>
+      </van-field>
       <van-field
         name="Are"
         label="Are you one of our existing client in any of our affiliate or our group?"
@@ -1576,7 +1581,7 @@
 </template>
 
 <script>
-import { uploadAutograph, smsVerify_code, verdict_code } from "@/api/util";
+import { uploadAutograph, smsVerify_code, verdict_code,upload_btt_code } from "@/api/util";
 import { kyc_form, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
   data() {
@@ -1690,6 +1695,7 @@ export default {
           Particulars: [],
           Are: '',
           If: '',
+          Documents: '', // 上传的文件url
         }, 
         declaration: {
           Name: '',
@@ -1754,6 +1760,7 @@ export default {
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id(未填0)
       minDate: new Date(1900, 0, 1),
+      Documents: [], // 上传的文件
     };
   },
   mounted() {
@@ -1777,6 +1784,9 @@ export default {
               res[key] = JSON.parse(res[key])
             }
             console.log(res,999999999);
+            if (res.document_checklist.Documents) {
+              this.Documents.push({url: res.document_checklist.Documents})
+            }
             this.formData = res;
             // this.phone = res.witness_phone.slice(-11);
             // this.areaCode = res.witness_phone.split(this.phone)[0];
@@ -1797,6 +1807,7 @@ export default {
       //   return;
       // }
       let data = JSON.parse(JSON.stringify(this.formData));
+      data.document_checklist.Documents = this.Documents[0].url
       // data.settlor = JSON.stringify(data.settlor)
       for (let key in data) {
         data[key] = JSON.stringify(data[key])
@@ -2064,6 +2075,17 @@ export default {
     },
     delBeneficiary(inx) {
       this.formData.interaction.splice(inx, 1);
+    },
+    // 文件上傳
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file,'上傳的文件');
+      let data = new FormData()
+      data.append('file', file.file)
+      upload_btt_code(data).then(res => {
+        this.$toast.success('Success')
+        this.Documents[0].url = res.file
+      })
     },
   },
 };
