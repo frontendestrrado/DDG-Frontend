@@ -19,7 +19,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the COMPANY / INDIVIDUAL NAME',
           },
         ]"
       />
@@ -34,7 +33,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the ROC / NRIC / PASSPORT NO',
           },
         ]"
       />
@@ -51,7 +49,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the ROC DATE / DATE OF BIRTH',
           },
         ]"
       />
@@ -63,7 +60,7 @@
         type="text"
         label="OCCUPATION"
         placeholder="Please enter the OCCUPATION"
-        :rules="[{ required: true, message: 'Please enter the OCCUPATION' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.address"
@@ -76,7 +73,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the ROC REGISTERED / RESIDENTIAL ADDRESS',
           },
         ]"
       />
@@ -89,7 +85,7 @@
         type="text"
         label="MOBILE NO"
         placeholder="Please enter the MOBILE NO"
-        :rules="[{ required: true, message: 'Please enter the MOBILE NO' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.office_no"
@@ -119,7 +115,7 @@
         type="text"
         label="EMAIL ADDRESS"
         placeholder="Please enter the EMAIL ADDRESS"
-        :rules="[{ required: true, message: 'Please enter the EMAIL ADDRESS' }]"
+        :rules="[{ required: true }]"
       />
 
       <span style="font-weight: bold"
@@ -142,7 +138,7 @@
           type="text"
           label="BENEFICIARY NAME / TRUSTEE"
           placeholder="Please enter the BENEFICIARY NAME / TRUSTEE"
-          :rules="[{ required: true, message: 'Please enter the BENEFICIARY NAME / TRUSTEE' }]"
+          :rules="[{ required: true }]"
         />
         <van-field
           v-model="item.COMPANY_NO"
@@ -152,7 +148,7 @@
           type="text"
           label="NRIC / PASSPORT NO COMPANY NO."
           placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO."
-          :rules="[{ required: true, message: 'Please enter the NRIC / PASSPORT NO COMPANY NO.' }]"
+          :rules="[{ required: true }]"
         />
         <van-field
           v-model="item.RELATIONSHIP"
@@ -162,7 +158,7 @@
           type="text"
           label="RELATIONSHIP"
           placeholder="Please enter the RELATIONSHIP"
-          :rules="[{ required: true, message: 'Please enter the RELATIONSHIP' }]"
+          :rules="[{ required: true }]"
         />
         <van-field
           v-model="item.CONTACT_NO"
@@ -172,7 +168,7 @@
           type="text"
           label="CONTACT NO"
           placeholder="Please enter the CONTACT NO"
-          :rules="[{ required: true, message: 'Please enter the CONTACT NO' }]"
+          :rules="[{ required: true }]"
         />
         <van-field
           v-model="item.PERCENTAGE"
@@ -182,7 +178,7 @@
           type="text"
           label="PERCENTAGE OF DISTRIBUTION"
           placeholder="Please enter the PERCENTAGE OF DISTRIBUTION"
-          :rules="[{ required: true, message: 'Please enter the PERCENTAGE OF DISTRIBUTION' }]"
+          :rules="[{ required: true }]"
         />
         <van-button
           class="esignDelBtn"
@@ -253,7 +249,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the NAME',
           },
         ]"
       />
@@ -268,7 +263,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the NRIC / PASSPORT NO.',
           },
         ]"
       />
@@ -285,7 +279,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the DATE OF BIRTH',
           },
         ]"
       />
@@ -300,7 +293,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the RELATIONSHIOP WITH SETTLOR',
           },
         ]"
       />
@@ -315,7 +307,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the CONTACT NUMBER',
           },
         ]"
       />
@@ -330,7 +321,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the EMAIL ADDRESS',
           },
         ]"
       />
@@ -346,7 +336,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the TRUST CAPITAL AMOUNT (MYR)',
           },
         ]"
       />
@@ -361,7 +350,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the AUTHORIZED TRUST ADVISOR NAME',
           },
         ]"
       />
@@ -374,7 +362,7 @@
         label="TRUST ADVISOR’S ID"
         placeholder="Please enter the TRUST ADVISOR’S ID"
         :rules="[
-          { required: true, message: 'Please enter the TRUST ADVISOR’S ID' },
+          { required: true },
         ]"
       />
       <div class="minTitle">
@@ -389,7 +377,7 @@
         type="text"
         label="NAME OF BANK"
         placeholder="Please enter the NAME OF BANK"
-        :rules="[{ required: true, message: 'Please enter the NAME OF BANK' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.details_account_no"
@@ -399,7 +387,7 @@
         type="text"
         label="ACCOUNT NO"
         placeholder="Please enter the ACCOUNT NO"
-        :rules="[{ required: true, message: 'Please enter the ACCOUNT NO' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.details_account_owner"
@@ -410,7 +398,7 @@
         label="ACCOUNT OWNER"
         placeholder="Please enter the ACCOUNT OWNER"
         :rules="[
-          { required: true, message: 'Please enter the ACCOUNT OWNER' },
+          { required: true },
         ]"
       />
       <div class="minTitle">
@@ -425,7 +413,7 @@
         type="text"
         label="NAME OF BANK"
         placeholder="Please enter the NAME OF BANK"
-        :rules="[{ required: true, message: 'Please enter the NAME OF BANK' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.bank"
@@ -435,7 +423,7 @@
         type="text"
         label="ACCOUNT NO"
         placeholder="Please enter the ACCOUNT NO"
-        :rules="[{ required: true, message: 'Please enter the ACCOUNT NO' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.account_no"
@@ -445,7 +433,7 @@
         type="text"
         label="BANK LOCATION"
         placeholder="Please enter the BANK LOCATION"
-        :rules="[{ required: true, message: 'Please enter the BANK LOCATION' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.swift_code"
@@ -455,7 +443,7 @@
         type="text"
         label="ACCOUNT OWNER"
         placeholder="Please enter the ACCOUNT OWNER"
-        :rules="[{ required: true, message: 'Please enter the ACCOUNT OWNER' }]"
+        :rules="[{ required: true }]"
       />
       <!-- <van-field
         v-model="formData.ref"
@@ -535,7 +523,7 @@
         type="text"
         label="NAME"
         placeholder="Please enter the NAME"
-        :rules="[{ required: true, message: 'Please enter the NAME' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.witness_passport_no"
@@ -546,7 +534,7 @@
         label="NRIC / PASSPORT NO."
         placeholder="Please enter the NRIC / PASSPORT NO."
         :rules="[
-          { required: true, message: 'Please enter the NRIC / PASSPORT NO.' },
+          { required: true },
         ]"
       />
       <div class="tl">SETTLOR SIGNATURE</div>
@@ -580,7 +568,7 @@
         type="text"
         label="NAME"
         placeholder="Please enter the NAME"
-        :rules="[{ required: true, message: 'Please enter the NAME' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         readonly
@@ -592,7 +580,7 @@
         label="DATE"
         placeholder="Please enter the DATE"
         @click="onShowPicker('signature_date')"
-        :rules="[{ required: true, message: 'Please enter the DATE' }]"
+        :rules="[{ required: true }]"
       />
       <div class="minTitle">IMPORTANT NOTICE</div>
       <div class="minTitle">

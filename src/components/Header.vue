@@ -81,7 +81,7 @@
       <!-- <van-overlay :show="!isShowTopUl" /> -->
       <ul class="menuInfo fontPB" v-if="!isShowTopUl" @click.stop>
         <li class="hv" @click="changeActTab('/Index', 'Index')">
-          Home About Us
+          Home
         </li>
         <!-- <div class="ulline"></div> -->
 

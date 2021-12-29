@@ -73,7 +73,7 @@
         type="text"
         label="Settlor Name"
         placeholder="Please enter the Settlor Name"
-        :rules="[{ required: true, message: 'Please enter the Settlor Name' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.passport_no"
@@ -84,7 +84,7 @@
         label="NRIC/Passport No"
         placeholder="Please enter the NRIC/Passport No"
         :rules="[
-          { required: true, message: 'Please enter the NRIC/Passport No' },
+          { required: true },
         ]"
       />
       <!-- 提交 -->

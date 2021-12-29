@@ -121,7 +121,7 @@
         type="text"
         label="Name"
         placeholder="Please enter the Name"
-        :rules="[{ required: true, message: 'Please enter the Name' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.nric"
@@ -131,7 +131,7 @@
         type="text"
         label="NRIC"
         placeholder="Please enter the NRIC"
-        :rules="[{ required: true, message: 'Please enter the NRIC' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.designation"
@@ -141,7 +141,7 @@
         type="text"
         label="Designation"
         placeholder="Please enter the Designation"
-        :rules="[{ required: true, message: 'Please enter the Designation' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         readonly
@@ -153,7 +153,7 @@
         label="Date"
         placeholder="Please enter the Date"
         @click="onShowPicker('date')"
-        :rules="[{ required: true, message: 'Please enter the Date' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.company_rubber_stamp"
@@ -164,7 +164,7 @@
         label="Company Rubber Stamp"
         placeholder="Please enter the Company Rubber Stamp"
         :rules="[
-          { required: true, message: 'Please enter the Company Rubber Stamp' },
+          { required: true },
         ]"
       />
       <van-button round block type="info" native-type="submit" color="#7C655D">

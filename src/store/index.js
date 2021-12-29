@@ -89,6 +89,23 @@ export default new Vuex.Store({
     },
     // 切换页面tab
     changePage(state, val) {
+      switch(val.title) {
+        case 'Aspirations':
+          val.title = ''
+          break;
+        case 'Products':
+          val.title = ''
+          break;
+        case 'Our Services':
+          val.title = ''
+          break;
+        case 'The AI “爱” Generation Trust':
+          val.title = ''
+          break;
+        case 'DDG Leadership':
+          val.title = ''
+          break;
+      }
       sessionStorage.setItem('currentPage', JSON.stringify(val));
       // console.log(JSON.parse(sessionStorage.currentPage));
       state.currentPage = val;

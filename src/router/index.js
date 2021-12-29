@@ -193,7 +193,7 @@ const router = new Router({
       component: () => import('@/tools/order/ThirdPartyDeclaration'),
     },{
       path: '/LearnUse',
-      name: '学习使用',
+      name: '培训计划',
       component: LearnUse,
     },{
       path: '/TeachTools',

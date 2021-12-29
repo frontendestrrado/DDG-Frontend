@@ -18,7 +18,7 @@
         type="text"
         label="Name"
         placeholder="Please enter the Name"
-        :rules="[{ required: true, message: 'Please enter the Name' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.nric"
@@ -29,7 +29,7 @@
         label="NRIC/Passport No"
         placeholder="Please enter the NRIC/Passport No"
         :rules="[
-          { required: true, message: 'Please enter the NRIC/Passport No' },
+          { required: true },
         ]"
       />
       <div class="minTitle">Documents Completion Status</div>
@@ -44,7 +44,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the Completed Cash Trust application form',
           },
         ]"
       />
@@ -59,8 +58,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Completed and signed Compliance Questionnaire as provided by AITB: a) AITB-AMLA 2(A)',
           },
         ]"
       />
@@ -75,8 +72,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Settlor’s Photocopy of IC (Verified by the Agent/Representative)',
           },
         ]"
       />
@@ -91,7 +86,6 @@
         :rules="[
           {
             required: true,
-            message: 'Please enter the Signed Letter of Wishes (Un-dated)',
           },
         ]"
       />
@@ -106,8 +100,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Proof of current address (preferably through the supply of utility bill) (Verified by the Agent / Representative)',
           },
         ]"
       />
@@ -122,8 +114,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Source of Wealth & Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return',
           },
         ]"
       />
@@ -138,8 +128,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Signed dual language personal data protection act (PDPA) document',
           },
         ]"
       />
@@ -154,8 +142,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Evidence of Bank Transfer by Cheque/ TT [Note: No Cash (i.e. no cash, no ATM deposit, no deposit at bank counter)]',
           },
         ]"
       />
@@ -170,8 +156,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Trust deed: a) Signed on execution page; b) Complete schedule 1 & 2; c) 1 original copy; and d) Un-dated',
           },
         ]"
       />
@@ -186,8 +170,6 @@
         :rules="[
           {
             required: true,
-            message:
-              'Please enter the Third Party Fund Declaration Form (if applicable)',
           },
         ]"
       />
@@ -229,7 +211,7 @@
         type="text"
         label="Name"
         placeholder="Please enter the Name"
-        :rules="[{ required: true, message: 'Please enter the Name' }]"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.agent_nric"
@@ -240,7 +222,7 @@
         label="NRIC/Passport No"
         placeholder="Please enter the NRIC/Passport No"
         :rules="[
-          { required: true, message: 'Please enter the NRIC/Passport No' },
+          { required: true },
         ]"
       />
       <van-field
@@ -253,7 +235,7 @@
         label="Date"
         placeholder="Please enter the Date"
         @click="onShowPicker('agent_date')"
-        :rules="[{ required: true, message: 'Please enter the Date' }]"
+        :rules="[{ required: true }]"
       />
       <van-button round block type="info" native-type="submit" color="#7C655D">
         submit
