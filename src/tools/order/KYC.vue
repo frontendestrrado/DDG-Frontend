@@ -230,17 +230,25 @@
         v-model="formData.settlor_contact_details.Postcode"
         name="Postcode"
         center
+        :required="true"
         type="text"
         label="Postcode"
         placeholder="Please enter the Postcode"
+        :rules="[
+          { required: true },
+        ]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Country"
         name="Country"
         center
+        :required="true"
         type="text"
         label="Country"
         placeholder="Please enter the Country"
+        :rules="[
+          { required: true },
+        ]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Length"
@@ -260,15 +268,9 @@
         v-model="formData.settlor_contact_details.Mailing"
         name="Mailing"
         center
-        :required="true"
         type="text"
         label="Mailing Address(if different from the above address)"
         placeholder="Please enter the Mailing Address(if different from the above address)"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       />
       <van-field
         v-model="formData.settlor_contact_details.Postcode2"
@@ -1022,44 +1024,6 @@
       <div class="minTitle">
         Marketing Officer and Frontline Officer for onboarding clients.
       </div>
-      <!-- <van-field
-        v-model="formData.name"
-        name="name"
-        center
-        :required="true"
-        type="text"
-        label="No"
-        placeholder="Please enter the No"
-        :rules="[{ required: true, message: 'Please enter the No' }]"
-      />
-      <van-field
-        v-model="formData.name"
-        name="name"
-        center
-        :required="true"
-        type="text"
-        label="Details"
-        placeholder="Please enter the Details"
-        :rules="[{ required: true, message: 'Please enter the Details' }]"
-      />
-      <van-field
-        v-model="formData.name"
-        name="name"
-        center
-        :required="true"
-        type="text"
-        label="Response"
-        placeholder="Please enter the Response"
-        :rules="[{ required: true, message: 'Please enter the Response' }]"
-      />
-      <van-field
-        v-model="formData.name"
-        name="name"
-        center
-        type="text"
-        label="Comment for Compliance Officer (if any)"
-        placeholder="Please enter the Comment for Compliance Officer (if any)"
-      /> -->
       <div class="minTitle">Distribution Agent Details(Response)</div>
       <van-field
         v-model="formData.distribution_agent_details.Distribution"
@@ -1068,6 +1032,8 @@
         type="text"
         label="Distribution Agent Name / Marketing Officer "
         placeholder="Please enter the Distribution Agent Name / Marketing Officer "
+        :required="true"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.distribution_agent_details.Marketing"
@@ -1581,7 +1547,7 @@
 </template>
 
 <script>
-import { uploadAutograph, smsVerify_code, verdict_code,upload_btt_code } from "@/api/util";
+import { uploadAutograph, smsVerify_code, verdict_code,uploadFile } from "@/api/util";
 import { kyc_form, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
   data() {
@@ -2082,7 +2048,7 @@ export default {
       console.log(file,'上傳的文件');
       let data = new FormData()
       data.append('file', file.file)
-      upload_btt_code(data).then(res => {
+      uploadFile(data).then(res => {
         this.$toast.success('Success')
         this.Documents[0].url = res.file
       })

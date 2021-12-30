@@ -11,168 +11,291 @@
       </div>
       <div class="minTitle">Settlor’s Information</div>
       <van-field
-        v-model="formData.name"
         name="name"
-        center
-        :required="true"
-        type="text"
         label="Name"
-        placeholder="Please enter the Name"
-        :rules="[{ required: true }]"
-      />
-      <van-field
-        v-model="formData.nric"
-        name="nric"
-        center
         :required="true"
-        type="text"
-        label="NRIC/Passport No"
-        placeholder="Please enter the NRIC/Passport No"
+        center
         :rules="[
-          { required: true },
+          {
+            required: true,
+          },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.name"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <van-field
+        name="nric"
+        label="NRIC/Passport No"
+        :required="true"
+        center
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.nric"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <div class="minTitle">Documents Completion Status</div>
       <van-field
-        v-model="formData.application_form"
         name="application_form"
-        center
-        :required="true"
-        type="text"
         label="Completed Cash Trust application form"
-        placeholder="Please enter the Completed Cash Trust application form"
+        :required="true"
+        center
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.application_form"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.compliance_qestionnaire"
         name="compliance_qestionnaire"
-        center
-        :required="true"
-        type="text"
         label="Completed and signed Compliance Questionnaire as provided by AITB: a) AITB-AMLA 2(A)"
-        placeholder="Please enter the Completed and signed Compliance Questionnaire as provided by AITB: a) AITB-AMLA 2(A)"
+        center
+        :required="true"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.compliance_qestionnaire"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.settlor_photocopy"
         name="settlor_photocopy"
-        center
-        :required="true"
-        type="text"
         label="Settlor’s Photocopy of IC (Verified by the Agent/Representative)"
-        placeholder="Please enter the Settlor’s Photocopy of IC (Verified by the Agent/Representative)"
+        center
+        :required="true"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.settlor_photocopy"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <van-field name="Documents" label="Documents">
+        <template #input>
+          <van-uploader v-model="settlor_photo_file" :after-read="afterRead" accept="*" :max-count="1" />
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.letter_of_wishes"
         name="letter_of_wishes"
-        center
-        :required="true"
-        type="text"
         label="Signed Letter of Wishes (Un-dated)"
-        placeholder="Please enter the Signed Letter of Wishes (Un-dated)"
+        center
+        :required="true"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.letter_of_wishes"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.current_address"
         name="current_address"
-        center
-        :required="true"
-        type="text"
         label="Proof of current address (preferably through the supply of utility bill) (Verified by the Agent / Representative)"
-        placeholder="Please enter the Proof of current address (preferably through the supply of utility bill) (Verified by the Agent / Representative)"
+        center
+        :required="true"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.current_address"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <van-field name="Documents" label="Documents">
+        <template #input>
+          <van-uploader v-model="proof_of_current_file" :after-read="afterRead2" accept="*" :max-count="1" />
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.source_of_wealth"
         name="source_of_wealth"
+        label="Source of Wealth (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
         center
         :required="true"
-        type="text"
-        label="Source of Wealth & Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
-        placeholder="Please enter the Source of Wealth & Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.source_of_wealth"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <van-field name="Documents" label="Documents">
+        <template #input>
+          <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3" accept="*" :max-count="1" />
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.pdpa"
+        name="source_of_fund"
+        label="Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
+        center
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.source_of_fund"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <van-field name="Documents" label="Documents">
+        <template #input>
+          <van-uploader v-model="source_of_fund_file" :after-read="afterRead4" accept="*" :max-count="1" />
+        </template>
+      </van-field>
+      <van-field
         name="pdpa"
+        label="Signed dual language personal data protection act (PDPA) document"
         center
         :required="true"
-        type="text"
-        label="Signed dual language personal data protection act (PDPA) document "
-        placeholder="Please enter the Signed dual language personal data protection act (PDPA) document"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.pdpa"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.bank"
         name="bank"
-        center
-        :required="true"
-        type="text"
         label="Evidence of Bank Transfer by Cheque/ TT [Note: No Cash (i.e. no cash, no ATM deposit, no deposit at bank counter)]"
-        placeholder="Please enter the Evidence of Bank Transfer by Cheque/ TT [Note: No Cash (i.e. no cash, no ATM deposit, no deposit at bank counter)]"
+        center
+        :required="true"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.bank"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <van-field name="Documents" label="Documents">
+        <template #input>
+          <van-uploader v-model="evidence_of_bank_file" :after-read="afterRead5" accept="*" :max-count="1" />
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.trust_deed"
         name="trust_deed"
+        label="Trust deed: a) Signed on execution page; b) Complete schedule 1 & 2; c) 1 original copy; and d) Un-dated"
         center
         :required="true"
-        type="text"
-        label="Trust deed: a) Signed on execution page; b) Complete schedule 1 & 2; c) 1 original copy; and d) Un-dated "
-        placeholder="Please enter the Trust deed: a) Signed on execution page; b) Complete schedule 1 & 2; c) 1 original copy; and d) Un-dated"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.trust_deed"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <van-field
-        v-model="formData.third_party_declaration"
         name="third_party_declaration"
+        label="Third Party Fund Declaration Form (if applicable)"
         center
         :required="true"
-        type="text"
-        label="Third Party Fund Declaration Form (if applicable)"
-        placeholder="Please enter the Third Party Fund Declaration Form (if applicable)"
         :rules="[
           {
             required: true,
           },
         ]"
-      />
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.third_party_declaration"
+            direction="horizontal"
+          >
+            <van-checkbox name="1"></van-checkbox>
+          </van-checkbox-group>
+        </template>
+      </van-field>
       <div class="minTitle">
         Note: Verification means to sign, state name and date
       </div>
@@ -258,28 +381,35 @@
 </template>
 
 <script>
-import { uploadAutograph } from "@/api/util";
+import { uploadAutograph, uploadFile } from "@/api/util";
 import { getOrdersForms, putOrdersForms, document_check_list_form } from "@/api/order";
 export default {
   data() {
     return {
       formData: {
-        name: '',
-        nric: '',
-        application_form: '',
-        compliance_qestionnaire: '',
-        settlor_photocopy: '',
-        letter_of_wishes: '',
-        current_address: '',
-        source_of_wealth: '',
-        pdpa: '',
-        bank: '',
-        trust_deed: '',
-        third_party_declaration: '',
+        name: [],
+        nric: [],
+        application_form: [],
+        compliance_qestionnaire: [],
+        settlor_photocopy: [],
+        letter_of_wishes: [],
+        current_address: [],
+        source_of_wealth: [],
+        pdpa: [],
+        bank: [],
+        trust_deed: [],
+        third_party_declaration: [],
         signature: '',
         agent_name: '',
         agent_nric: '',
         agent_date: '',
+        // 12.30新
+        source_of_fund: [],
+        settlor_photo_file: '', 
+        proof_of_current_file: '', 
+        source_of_wealth_file: '', 
+        source_of_fund_file: '', 
+        evidence_of_bank_file: '',
       },
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
@@ -287,6 +417,11 @@ export default {
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id
       minDate: new Date(1900, 0, 1),
+      settlor_photo_file: [], 
+      proof_of_current_file: [], 
+      source_of_wealth_file: [], 
+      source_of_fund_file: [], 
+      evidence_of_bank_file: [],
     };
   },
   mounted() {
@@ -302,6 +437,11 @@ export default {
           .then((res) => {
             console.log(res);
             this.formData = res;
+            this.settlor_photo_file.push({url: res.settlor_photo_file})
+            this.proof_of_current_file.push({url: res.proof_of_current_file})
+            this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+            this.source_of_fund_file.push({url: res.source_of_fund_file})
+            this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
           })
           .catch((err) => {});
       }
@@ -411,6 +551,48 @@ export default {
         return Y + M + D;
       }
     },
+    // 文件上傳
+    afterRead(file) {
+      console.log(file,'上傳的文件');
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        this.formData.settlor_photo_file = res.file
+      })
+    },
+    afterRead2(file) {
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        this.formData.proof_of_current_file = res.file
+      })
+    },
+    afterRead3(file) {
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        this.formData.source_of_wealth_file = res.file
+      })
+    },
+    afterRead4(file) {
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        this.formData.source_of_fund_file = res.file
+      })
+    },
+    afterRead5(file) {
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        this.formData.evidence_of_bank_file = res.file
+      })
+    },
   },
 };
 </script>
@@ -431,5 +613,13 @@ export default {
   /deep/ .van-field__label {
     width: 6.5rem;
   }
+}
+/deep/ .van-radio__icon,
+/deep/ .van-radio__icon .van-icon,
+/deep/ .van-checkbox__icon,
+/deep/ .van-checkbox__icon .van-icon {
+  font-size: 18px;
+  height: 20px;
+  line-height: 20px;
 }
 </style>

@@ -90,7 +90,7 @@
         acceptance of the notice of Personal Data Protection Act 2010 in both
         English Language and Bahasa Malaysia.
       </div>
-      <div class="tl">WITNESS SIGNATURE</div>
+      <div class="tl">SIGNATURE</div>
       <vue-esign
         ref="signature"
         v-show="!formData.signature"

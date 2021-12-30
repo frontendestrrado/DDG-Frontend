@@ -604,7 +604,7 @@
       </div>
 
       <!-- 提交 -->
-      <van-button v-if="from == 'create'" round block type="info" native-type="submit" color="#7C655D">
+      <van-button round block type="info" native-type="submit" color="#7C655D">
         {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>
@@ -626,7 +626,7 @@
 
 <script>
 import { uploadAutograph } from "@/api/util";
-import { createOrders, getOrdersForms } from "@/api/order";
+import { createOrders, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
   data() {
     return {
@@ -761,20 +761,35 @@ export default {
       }
       let data = JSON.parse(JSON.stringify(this.formData));
       data.beneficiary_info = JSON.stringify(this.formData.beneficiary_info);
-      createOrders(data)
-        .then((res) => {
-          console.log(res, "訂單創建成功");
-          this.$toast.success("Creating a successful");
-          this.$store.commit("changePage", {
-            tabbar: "/KYC",
-            title: "1/4 Compliance Questionnaire",
+      if (this.isFilled > 0) {
+        // 修改
+        putOrdersForms(this.isFilled, {
+          type: "Customer Application",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改cusApp成功");
+          this.$toast({
+            type: "success",
+            message: "Modify the success",
           });
-          this.$router.push("/KYC?from=create&orderId=" + res.id);
-          // this.$router.go(-1)
-        })
-        .catch((err) => {
-          console.log(err.response);
+          this.$router.go(-1);
         });
+      } else {
+        createOrders(data)
+          .then((res) => {
+            console.log(res, "訂單創建成功");
+            this.$toast.success("Creating a successful");
+            this.$store.commit("changePage", {
+              tabbar: "/KYC",
+              title: "1/4 Compliance Questionnaire",
+            });
+            this.$router.push("/KYC?from=create&orderId=" + res.id);
+            // this.$router.go(-1)
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      }
     },
     // 清空画布
     handleReset(index) {

@@ -24,9 +24,9 @@ export const verdict_code = query => {
   })
 }
 // 上傳btt code(任意文件)
-export const upload_btt_code = obj => {
+export const uploadFile = obj => {
   return request({
-    url: '/api/v1/users/btt_code',
+    url: '/api/v1/file',
     method: 'POST',
     data: obj
   })

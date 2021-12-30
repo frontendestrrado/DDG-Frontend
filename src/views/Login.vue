@@ -266,7 +266,7 @@
 <script>
 import Common from "@/components/mode/common.vue";
 import EventHub from '@/util/EventHub'
-import { uploadAutograph, upload_btt_code } from "@/api/util";
+import { uploadAutograph, uploadFile } from "@/api/util";
 export default {
   components: {
     Common,
@@ -332,7 +332,7 @@ export default {
       console.log(file,'上傳的文件');
       let data = new FormData()
       data.append('file', file.file)
-      upload_btt_code(data).then(res => {
+      uploadFile(data).then(res => {
         this.$toast.success('Success')
         this.uploader[0].url = res.file
       })
