@@ -360,7 +360,7 @@
         @click="onShowPicker('agent_date')"
         :rules="[{ required: true }]"
       />
-      <van-button round block type="info" native-type="submit" color="#7C655D">
+      <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         submit
       </van-button>
     </van-form>
@@ -422,11 +422,13 @@ export default {
       source_of_wealth_file: [], 
       source_of_fund_file: [], 
       evidence_of_bank_file: [],
+      isDone: false, // 訂單是否已確認
     };
   },
   mounted() {
     this.from = this.$route.query.from;
     this.isFilled = this.$route.query.isFilled;
+    this.isDone = this.$route.query.status == 1 ? true : false;
     this.getFormData();
   },
   methods: {
@@ -454,6 +456,9 @@ export default {
         return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
+      if (this.from == "create") {
+        data.is_done = 1
+      }
       if (this.isFilled > 0) {
         // 修改
         putOrdersForms(this.isFilled, {

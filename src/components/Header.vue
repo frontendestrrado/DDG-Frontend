@@ -1,6 +1,5 @@
 <template>
   <div class="header bgAsh">
-    <div class="header-line"></div>
     <div class="header-main">
       <!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
@@ -331,10 +330,6 @@ export default {
   height: 90px;
   background-color: #fff;
 }
-.header-line {
-  background: #1f2e4d;
-  height: 20px;
-}
 .header-main {
   font-size: 16px;
   position: relative;
@@ -442,9 +437,6 @@ export default {
     /*height: 60px;*/
     height: 70px;
   }
-  .header-line {
-    height: 10px;
-  }
   .header-main {
     width: 97%;
     height: 60px;
@@ -511,9 +503,6 @@ export default {
   .header {
     /*height: 80px;*/
     height: 90px;
-  }
-  .header-line {
-    height: 12px;
   }
   .header-main {
     width: 97%;

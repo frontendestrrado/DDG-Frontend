@@ -511,7 +511,7 @@
         @click="onShowPicker('witness_date')"
         :rules="[{ required: true }]"
       />
-      <van-button round block type="info" native-type="submit" color="#7C655D">
+      <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         Submit
       </van-button>
     </van-form>
@@ -588,10 +588,12 @@ export default {
       whichDate: "", // 區分是哪個日期觸發彈框
       isFilled: "", // 表單id
       minDate: new Date(1900, 0, 1),
+      isDone: false, // 訂單是否已確認
     };
   },
   mounted() {
     this.isFilled = this.$route.query.isFilled;
+    this.isDone = this.$route.query.status == 1 ? true : false;
     this.getFormData();
   },
   methods: {

@@ -167,7 +167,7 @@
           { required: true },
         ]"
       />
-      <van-button round block type="info" native-type="submit" color="#7C655D">
+      <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         {{ from == "create" ? "Next / Save" : "Submit" }}
       </van-button>
     </van-form>
@@ -207,11 +207,13 @@ export default {
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id
       minDate: new Date(1900, 0, 1),
+      isDone: false, // 訂單是否已確認
     };
   },
   mounted() {
     this.from = this.$route.query.from;
     this.isFilled = this.$route.query.isFilled;
+    this.isDone = this.$route.query.status == 1 ? true : false;
     this.getFormData();
   },
   methods: {

@@ -13,7 +13,7 @@
           $store.commit('changePage', { tabbar: '/CustomerApplication', title: 'Customer Application' });
           $router.push({
             path: '/CustomerApplication',
-            query: { orderId: orderData.id, isFilled: orderData.customer_app_form },
+            query: { orderId: orderData.id, isFilled: orderData.customer_app_form, status: orderData.status },
           });
         "
       ></van-cell>
@@ -26,7 +26,7 @@
           $store.commit('changePage', { tabbar: '/KYC', title: 'Compliance Questionnaire' });
           $router.push({
             path: '/KYC',
-            query: { orderId: orderData.id, isFilled: orderData.kyc_form },
+            query: { orderId: orderData.id, isFilled: orderData.kyc_form, status: orderData.status },
           });
         "
       ></van-cell>
@@ -42,7 +42,7 @@
           });
           $router.push({
             path: '/LetterOfWishes',
-            query: { orderId: orderData.id, isFilled: orderData.letter_of_wishes_form },
+            query: { orderId: orderData.id, isFilled: orderData.letter_of_wishes_form, status: orderData.status },
           });
         "
       ></van-cell>
@@ -56,7 +56,7 @@
             tabbar: '/PDPAMemo',
             title: 'PDPA Memo',
           });
-          $router.push({ path: '/PDPAMemo', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form } });
+          $router.push({ path: '/PDPAMemo', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form, status: orderData.status } });
         "
       ></van-cell>
       <van-cell
@@ -69,7 +69,7 @@
             tabbar: '/DocumentChecklist',
             title: 'Document Checklist',
           });
-          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.document_check_list_form } });
+          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.document_check_list_form, status: orderData.status } });
         "
       ></van-cell>
       <van-cell
@@ -86,10 +86,14 @@
           });
           $router.push({
             path: '/ThirdPartyDeclaration',
-            query: { orderId: orderData.id,isFilled: orderData.third_party_declaration_form },
+            query: { orderId: orderData.id,isFilled: orderData.third_party_declaration_form, status: orderData.status },
           });
         "
       ></van-cell>
+      <van-button v-if="orderData.status == 0" round block type="info" color="#7C655D" @click="submitAll">
+        Submit all forms
+      </van-button>
+      <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before submitting</div>
     </div>
     <van-cell
       title-style="text-align:left;"
@@ -130,7 +134,7 @@
       autosize
       placeholder="The order feedback"
     />
-    <van-button class="loginBtn" type="info" @click="submit"
+    <van-button class="loginBtn" type="info" @click="submit" color="#7C655D"
       >Submit Feedback</van-button
     >
   </div>
@@ -138,7 +142,7 @@
 
 <script>
 import { patchOrders } from "@/api/tools";
-import { getOrderDetail } from "@/api/order";
+import { getOrderDetail, confirmOrder } from "@/api/order";
 export default {
   data() {
     return {
@@ -178,12 +182,20 @@ export default {
         .then((res) => {
           console.log(res, "订单反馈");
           this.patchOrder = res.note;
-          this.$toast("提交反馈成功");
+          this.$toast("Feedback submitted successfully");
         })
         .catch((err) => {
           console.log(err.response);
         });
     },
+    // 確認訂單
+    submitAll() {
+      confirmOrder(this.$route.query.id).then(res => {
+        console.log(res, '確認訂單');
+        this.$toast("All submitted successfully");
+        this.getOrderDetail()
+      })
+    }
   },
 };
 </script>

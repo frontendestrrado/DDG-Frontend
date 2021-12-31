@@ -71,3 +71,10 @@ export const putOrdersForms = (id,obj) => {
     data: obj
   })
 }
+// 確認訂單
+export const confirmOrder = (order) => {
+  return request({
+    url: '/api/v1/orders/' + order + '/done',
+    method: 'post',
+  })
+}

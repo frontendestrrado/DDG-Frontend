@@ -25,11 +25,31 @@
         <span>{{item.no}}</span>
       </template>
       <template #default>
-        <div><span> Customer Application ({{item.customer_app_form==0?'Not Filled':'Filled'}}) </span></div>
-        <div><span> Compliance Questionaire ({{item.kyc_form==0?'Not Filled':'Filled'}}) </span></div>
-        <div><span> Letter Of Wishes ({{item.letter_of_wishes_form==0?'Not Filled':'Filled'}}) </span></div>
-        <div><span> PDPA Memo ({{item.pdpa_memo_form==0?'Not Filled':'Filled'}}) </span></div>
-        <div><span> Third Party Declaration ({{item.third_party_declaration_form==0?'Not Filled':'Filled'}}) </span></div>
+        <div>
+          <span> Customer Application </span> 
+          <span class="NotFilledCol" v-if="item.customer_app_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> Compliance Questionaire </span>
+          <span class="NotFilledCol" v-if="item.kyc_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> Letter Of Wishes  </span>
+          <span class="NotFilledCol" v-if="item.letter_of_wishes_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> PDPA Memo </span>
+          <span class="NotFilledCol" v-if="item.pdpa_memo_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> Third Party Declaration </span>
+          <span class="NotFilledCol" v-if="item.third_party_declaration_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
       </template>
     </van-cell>
   </div>
@@ -81,6 +101,11 @@ export default {
   text-align: left;
 }
 .OrderList {
-  
+  .NotFilledCol {
+    color: red;
+  }
+  .FilledCol {
+    color: #03BF03;
+  }
 }
 </style>
