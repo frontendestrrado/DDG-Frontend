@@ -752,15 +752,9 @@
         v-model="formData.c_two_yes.If"
         name="If"
         center
-        :required="true"
         type="text"
         label="If YES, please indicate the TIN"
         placeholder="Please enter the If YES, please indicate the TIN"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       />
       <div class="minTitle">
         SECTION D SOURCE OF FUND – The bank from which the fund is forwarded to
@@ -938,11 +932,11 @@
           </van-checkbox-group>
         </template>
       </van-field>
-      <van-field name="Documents" label="Documents" :required="true">
+      <!-- <van-field name="Documents" label="Documents" :required="true">
         <template #input>
           <van-uploader v-model="Documents" :after-read="afterRead" accept="*" :max-count="1" />
         </template>
-      </van-field>
+      </van-field> -->
       <van-field
         name="Are"
         label="Are you one of our existing client in any of our affiliate or our group?"
@@ -1527,7 +1521,7 @@
 
       <!-- 提交 -->
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
-        {{ from == "create" ? "Next / Save" : "Submit" }}
+        {{ from == "create" ? "Next / Save" : "Next / Save" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -1661,7 +1655,7 @@ export default {
           Particulars: [],
           Are: '',
           If: '',
-          Documents: '', // 上传的文件url
+          // Documents: '', // 上传的文件url
         }, 
         declaration: {
           Name: '',
@@ -1726,7 +1720,7 @@ export default {
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id(未填0)
       minDate: new Date(1900, 0, 1),
-      Documents: [], // 上传的文件
+      // Documents: [], // 上传的文件
       isDone: false, // 訂單是否已確認
     };
   },
@@ -1752,9 +1746,9 @@ export default {
               res[key] = JSON.parse(res[key])
             }
             console.log(res,999999999);
-            if (res.document_checklist.Documents) {
-              this.Documents.push({url: res.document_checklist.Documents})
-            }
+            // if (res.document_checklist.Documents) {
+            //   this.Documents.push({url: res.document_checklist.Documents})
+            // }
             this.formData = res;
             // this.phone = res.witness_phone.slice(-11);
             // this.areaCode = res.witness_phone.split(this.phone)[0];
@@ -1775,7 +1769,7 @@ export default {
       //   return;
       // }
       let data = JSON.parse(JSON.stringify(this.formData));
-      data.document_checklist.Documents = this.Documents[0].url
+      // data.document_checklist.Documents = this.Documents[0].url
       // data.settlor = JSON.stringify(data.settlor)
       for (let key in data) {
         data[key] = JSON.stringify(data[key])
@@ -1805,7 +1799,7 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/LetterOfWishes",
-                title: "2/4 Letter Of Wishes",
+                title: "3/5 Letter Of Wishes",
               });
               this.$router.push(
                 "/LetterOfWishes?from=create&orderId=" +
@@ -2052,7 +2046,7 @@ export default {
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
-        this.Documents[0].url = res.file
+        // this.Documents[0].url = res.file
       })
     },
   },

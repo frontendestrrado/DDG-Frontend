@@ -168,7 +168,7 @@
         ]"
       />
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
-        {{ from == "create" ? "Next / Save" : "Submit" }}
+        {{ from == "create" ? "Next / Save" : "Next / Save" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -259,7 +259,7 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/DocumentChecklist",
-                title: "4/4 Document Checklist",
+                title: "5/5 Document Checklist",
               });
               this.$router.push(
                 "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId

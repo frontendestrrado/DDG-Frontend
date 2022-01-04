@@ -13,102 +13,47 @@
       <van-field
         name="name"
         label="Name"
-        :required="true"
         center
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.name"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.name"></van-checkbox>
         </template>
       </van-field>
       <van-field
         name="nric"
         label="NRIC/Passport No"
-        :required="true"
         center
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.nric"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.nric"></van-checkbox>
         </template>
       </van-field>
       <div class="minTitle">Documents Completion Status</div>
       <van-field
         name="application_form"
         label="Completed Cash Trust application form"
-        :required="true"
         center
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.application_form"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.application_form"></van-checkbox>
         </template>
       </van-field>
       <van-field
         name="compliance_qestionnaire"
         label="Completed and signed Compliance Questionnaire as provided by AITB: a) AITB-AMLA 2(A)"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.compliance_qestionnaire"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.compliance_qestionnaire"></van-checkbox>
         </template>
       </van-field>
       <van-field
         name="settlor_photocopy"
         label="Settlor’s Photocopy of IC (Verified by the Agent/Representative)"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.settlor_photocopy"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.settlor_photocopy"></van-checkbox>
         </template>
       </van-field>
       <van-field name="Documents" label="Documents">
@@ -120,40 +65,18 @@
         name="letter_of_wishes"
         label="Signed Letter of Wishes (Un-dated)"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.letter_of_wishes"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.letter_of_wishes"></van-checkbox>
         </template>
       </van-field>
       <van-field
         name="current_address"
         label="Proof of current address (preferably through the supply of utility bill) (Verified by the Agent / Representative)"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.current_address"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.current_address"></van-checkbox>
         </template>
       </van-field>
       <van-field name="Documents" label="Documents">
@@ -165,20 +88,9 @@
         name="source_of_wealth"
         label="Source of Wealth (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.source_of_wealth"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.source_of_wealth"></van-checkbox>
         </template>
       </van-field>
       <van-field name="Documents" label="Documents">
@@ -190,20 +102,9 @@
         name="source_of_fund"
         label="Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.source_of_fund"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.source_of_fund"></van-checkbox>
         </template>
       </van-field>
       <van-field name="Documents" label="Documents">
@@ -215,40 +116,18 @@
         name="pdpa"
         label="Signed dual language personal data protection act (PDPA) document"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.pdpa"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.pdpa"></van-checkbox>
         </template>
       </van-field>
       <van-field
         name="bank"
         label="Evidence of Bank Transfer by Cheque/ TT [Note: No Cash (i.e. no cash, no ATM deposit, no deposit at bank counter)]"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.bank"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.bank"></van-checkbox>
         </template>
       </van-field>
       <van-field name="Documents" label="Documents">
@@ -260,40 +139,18 @@
         name="trust_deed"
         label="Trust deed: a) Signed on execution page; b) Complete schedule 1 & 2; c) 1 original copy; and d) Un-dated"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.trust_deed"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.trust_deed"></van-checkbox>
         </template>
       </van-field>
       <van-field
         name="third_party_declaration"
         label="Third Party Fund Declaration Form (if applicable)"
         center
-        :required="true"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
       >
         <template #input>
-          <van-checkbox-group
-            v-model="formData.third_party_declaration"
-            direction="horizontal"
-          >
-            <van-checkbox name="1"></van-checkbox>
-          </van-checkbox-group>
+          <van-checkbox v-model="formData.third_party_declaration"></van-checkbox>
         </template>
       </van-field>
       <div class="minTitle">
@@ -387,24 +244,24 @@ export default {
   data() {
     return {
       formData: {
-        name: [],
-        nric: [],
-        application_form: [],
-        compliance_qestionnaire: [],
-        settlor_photocopy: [],
-        letter_of_wishes: [],
-        current_address: [],
-        source_of_wealth: [],
-        pdpa: [],
-        bank: [],
-        trust_deed: [],
-        third_party_declaration: [],
+        name: false,
+        nric: false,
+        application_form: false,
+        compliance_qestionnaire: false,
+        settlor_photocopy: false,
+        letter_of_wishes: false,
+        current_address: false,
+        source_of_wealth: false,
+        pdpa: false,
+        bank: false,
+        trust_deed: false,
+        third_party_declaration: false,
         signature: '',
         agent_name: '',
         agent_nric: '',
         agent_date: '',
         // 12.30新
-        source_of_fund: [],
+        source_of_fund: false,
         settlor_photo_file: '', 
         proof_of_current_file: '', 
         source_of_wealth_file: '', 
@@ -426,6 +283,7 @@ export default {
     };
   },
   mounted() {
+    console.log(Number(false) ,222222222);
     this.from = this.$route.query.from;
     this.isFilled = this.$route.query.isFilled;
     this.isDone = this.$route.query.status == 1 ? true : false;
@@ -456,6 +314,19 @@ export default {
         return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
+      data.name = Number(data.name)
+      data.nric = Number(data.nric)
+      data.application_form = Number(data.application_form)
+      data.compliance_qestionnaire = Number(data.compliance_qestionnaire)
+      data.settlor_photocopy = Number(data.settlor_photocopy)
+      data.letter_of_wishes = Number(data.letter_of_wishes)
+      data.current_address = Number(data.current_address)
+      data.source_of_wealth = Number(data.source_of_wealth)
+      data.pdpa = Number(data.pdpa)
+      data.bank = Number(data.bank)
+      data.trust_deed = Number(data.trust_deed)
+      data.third_party_declaration = Number(data.third_party_declaration)
+      data.source_of_fund = Number(data.source_of_fund)
       if (this.from == "create") {
         data.is_done = 1
       }

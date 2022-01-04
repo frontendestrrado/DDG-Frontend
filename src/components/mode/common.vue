@@ -165,7 +165,11 @@
 				if(!!path){
 					if(path.indexOf('/')==0){
 						if(text){
-							this.$store.commit('changePage',{tabbar: path, title: text});
+              if (path == '/CustomerApplication') {
+                this.$store.commit('changePage',{tabbar: path, title: '1/5 Customer Application'});
+              } else {
+                this.$store.commit('changePage',{tabbar: path, title: text});
+              }
 						}else{
 							this.$store.commit('changePage',{tabbar: path, title: path.substr(1)});
 						}

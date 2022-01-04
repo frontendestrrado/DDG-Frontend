@@ -6,43 +6,48 @@
         <div class="contactUs_info" style="text-align: left">
           <div class="contactUs_title">INFO</div>
           <div class="fcs">
-            <span
-              >DDG International Berhad. (Co. No. 202101023257 (1423557-M)</span
-            >
+            <span>DDG International Berhad. <br>(Co. No. 202101023257 (1423557-M) </span>
           </div>
           <div class="fcs">
+            <van-icon name="phone" />
             <span>Tel : +6016-5535691</span>
           </div>
           <div class="fcs">
+            <van-icon name="envelop-o" />
             <span>Email : info@ddgint.com</span>
           </div>
           <div class="fcs">
+            <van-icon name="gem-o" />
             <span>Website : www.ddgint.com</span>
           </div>
           <div class="fcs">
+            <van-icon name="location-o" />
             <span
               >No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000
               Butterworth, Pulau Pinang.</span
             >
           </div>
           <div class="fcs">
+            <van-icon name="underway-o" />
             <span>Business Hour: 9.00am – 5.00pm (Monday – Friday) </span>
           </div>
         </div>
       </van-col>
       <van-col :span="24">
         <div class="inputBox">
+          <div class="minTitle">
+            DROP US A MESSAGE.
+          </div>
           <div class="box">
-            <van-field v-model="name" center label="name" placeholder="name" />
+            <van-field v-model="name" center label="YOUR NAME" />
             <!-- <van-field v-model="phone" type="tel" placeholder="phone" /> -->
-            <van-field v-model="email" center label="email" placeholder="email" />
+            <van-field v-model="email" center label="YOUR EMAIL"/>
             <van-field
               v-model="content"
-              label="message"
+              label="MESSAGE"
               center
               rows="2"
               type="textarea"
-              placeholder="message"
             />
           </div>
           <van-button
@@ -50,11 +55,25 @@
             class="submitBtn"
             type="default"
             @click="submitMsg()"
-            >Submit</van-button
+            >SEND</van-button
           >
         </div>
       </van-col>
     </van-row>
+    <GmapMap
+      :center="{lat:10, lng:10}"
+      :zoom="7"
+      map-type-id="terrain"
+      style="width: 100%; height: 600px;"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="true"
+      />
+    </GmapMap>
   </div>
 </template>
 
@@ -66,9 +85,12 @@ export default {
       // phone:'',
       email: "",
       content: "",
+      markers: []
     };
   },
-  mounted() {},
+  mounted() {
+    // 地圖
+  },
   methods: {
     submitMsg() {
       if (this.name && this.email && this.content) {
@@ -87,24 +109,6 @@ export default {
               type: "success",
               message: "Submitted successfully",
             });
-            // if(res.data.status==200){
-            // 	this.$toast({
-            // 		type:'success',
-            // 		message:res.data.message,
-            // 	})
-            // 	// const vm=this;
-            // 	// setTimeout(function(){
-            // 	// 	vm.$router.push('/');
-            // 	// },1000);
-            // }else{
-            // 	this.$toast.allowMultiple();
-            // 	for (var item in res.data.error) {
-            // 		this.$toast({
-            //     		type:'fail',
-            //     		message:res.data.error[item],
-            //     	});
-            // 	}
-            // }
           })
           .catch((err) => {
             this.$toast({
@@ -145,18 +149,31 @@ export default {
     font-weight: 600;
     text-align: left;
     font-size: 26px;
+    font-family: SimSun;
+  }
+  .van-icon {
+    font-size: 28px;
+    margin-right: 20px;
   }
 }
 .contactUs_info .fcs {
-  margin-left: 10%;
-  margin-top: 15px;
+  // margin-left: 10%;
+  margin-top: 20px;
 }
 .contactUs_info span {
-  margin-left: 10px;
+  // margin-left: 10px;
 }
 .inputBox {
   width: 90%;
   margin: 30px auto;
+  .minTitle {
+    font-weight: 600;
+    text-align: left;
+    font-size: 26px;
+    color: #7B655D;
+    margin-bottom: 20px;
+    font-family: SimSun;
+  }
 }
 /*手机*/
 @media screen and (max-width: 768px) {

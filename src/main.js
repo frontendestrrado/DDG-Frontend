@@ -16,6 +16,28 @@ import './assets/css/font.css';
 import vueEsign from 'vue-esign'
 Vue.use(vueEsign)
 
+// google地圖
+// import 'vue-googlemaps/dist/vue-googlemaps.css'
+// import VueGoogleMaps from 'vue-googlemaps'
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     //填入申请的apiKey账号
+//     apiKey: 'AIzaSyAb-8NBGGTK8YuH3CkhkV8eGRDcEJdyGt8',
+//     libraries: ['places'],
+//     useBetaRenderer: false,
+//   },
+// })
+import * as VueGoogleMaps from 'vue2-google-maps'
+Vue.use(VueGoogleMaps, {
+  load: {
+    //填入申请的apiKey账号
+    key: 'AIzaSyDNC2MO9tl5mMc9H_DcWVisMHC2hI0IR1M', // 家政key
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+    useBetaRenderer: false,
+  },
+  installComponents: true
+})
+
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n);
 

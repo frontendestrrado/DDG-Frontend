@@ -10,7 +10,7 @@
         title-style="text-align:left;"
         title="Customer Application"
         @click="
-          $store.commit('changePage', { tabbar: '/CustomerApplication', title: 'Customer Application' });
+          $store.commit('changePage', { tabbar: '/CustomerApplication', title: '1/5 Customer Application' });
           $router.push({
             path: '/CustomerApplication',
             query: { orderId: orderData.id, isFilled: orderData.customer_app_form, status: orderData.status },
@@ -23,7 +23,7 @@
         title-style="text-align:left;"
         title="Compliance Questionnaire"
         @click="
-          $store.commit('changePage', { tabbar: '/KYC', title: 'Compliance Questionnaire' });
+          $store.commit('changePage', { tabbar: '/KYC', title: '2/5 Compliance Questionnaire' });
           $router.push({
             path: '/KYC',
             query: { orderId: orderData.id, isFilled: orderData.kyc_form, status: orderData.status },
@@ -38,7 +38,7 @@
         @click="
           $store.commit('changePage', {
             tabbar: '/LetterOfWishes',
-            title: 'Letter Of Wishes',
+            title: '3/5 Letter Of Wishes',
           });
           $router.push({
             path: '/LetterOfWishes',
@@ -54,7 +54,7 @@
         @click="
           $store.commit('changePage', {
             tabbar: '/PDPAMemo',
-            title: 'PDPA Memo',
+            title: '4/5 PDPA Memo',
           });
           $router.push({ path: '/PDPAMemo', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form, status: orderData.status } });
         "
@@ -67,7 +67,7 @@
         @click="
           $store.commit('changePage', {
             tabbar: '/DocumentChecklist',
-            title: 'Document Checklist',
+            title: '5/5 Document Checklist',
           });
           $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.document_check_list_form, status: orderData.status } });
         "

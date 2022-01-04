@@ -605,7 +605,7 @@
 
       <!-- 提交 -->
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
-        {{ from == "create" ? "Next / Save" : "Submit" }}
+        {{ from == "create" ? "Next / Save" : "Next / Save" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -783,7 +783,7 @@ export default {
             this.$toast.success("Creating a successful");
             this.$store.commit("changePage", {
               tabbar: "/KYC",
-              title: "1/4 Compliance Questionnaire",
+              title: "2/5 Compliance Questionnaire",
             });
             this.$router.push("/KYC?from=create&orderId=" + res.id);
             // this.$router.go(-1)

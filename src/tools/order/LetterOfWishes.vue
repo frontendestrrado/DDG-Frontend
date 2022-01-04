@@ -89,7 +89,7 @@
       />
       <!-- 提交 -->
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
-        {{ from == "create" ? "Next / Save" : "Submit" }}
+        {{ from == "create" ? "Next / Save" : "Next / Save" }}
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -175,7 +175,7 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/PDPAMemo",
-                title: "3/4 PDPA Memo",
+                title: "4/5 PDPA Memo",
               });
               this.$router.push(
                 "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
