@@ -13,6 +13,8 @@ import 'vant/lib/index.css';
 import '@vant/touch-emulator';
 import './assets/css/font.css';
 
+import './rem.js'
+
 import vueEsign from 'vue-esign'
 Vue.use(vueEsign)
 

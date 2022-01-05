@@ -1,7 +1,34 @@
 <template>
-  <div class="main_content" :style="{ maxWidth: pageWidth + 'px' }">
-    <Common :pageData="pageContent"></Common>
-    <!-- <div style="height:50px"></div> -->
+  <div class="Home">
+    <!-- <Common :pageData="pageContent"></Common> -->
+    <div class="homeOne">
+      <span class="title">Welcome to <br> DDG International <br> Berhad</span>
+      <van-button @click="toContactUs" type="default" color="7C655D" class="contactUs">Contact Us</van-button>
+    </div>
+    <div class="homeTwo">
+      <span class="minTitle">Safeguard Your Wealth <br> Protect Your Family</span><br>
+      <span class="content">Here at DDG, we can help preserve your wealth while offering you greater <br> flexibility over the management and distribution of your assets.</span>
+    </div>
+    <div class="homeThree">
+      <div class="minTitle">About Us</div>
+      <div class="mintit">DDG International: <br> Venture into Potential</div>
+      <div class="content">DDG International Berhad (DDG), is a joint collaboration between Asia International Trust Berhad, a well-established Trustee in the ASEAN region and Chiong & Partners, one of Malaysia’s leading trust advocates and award-winning legal firm. </div>
+      <div class="content">Established on 5th of July 2021, DDG is headquartered in Butterworth, Penang and has footprint across Malaysia, Singapore and China. At DDG, we pride ourselves on delivering results to our clients – with over RM300M private trusts have been set, both offshore and onshore, for the past 4 years. With innovative ideas and cutting-edge solutions, DDG helps make financial progress towards a foreseeable financial future for clients with varied and bespoke portfolios. </div>
+      <div class="content">Founded and led by Herman Tan, a Penang-born entrepreneur, he brings more than 20 years of financial services experience, with more than half of that within business roles throughout ASEAN region. With Herman’s financial leadership support – backed by a pool of legal advisors and corporate consultants, DDG maintains its impeccable standing to provide innovative, comprehensive, and professional estate planning and trust management solutions to its clients.</div>
+      <div class="mintit">DDG Academy: <br> Your Career. Our Passion</div>
+      <div class="content">At DDG, we strongly believe that education should be part of the service we offer to clients and therefore DDG Academy is founded, and it is made up of a group of legal advisors and trust experts and educators that work together to “improve the career” of all our DDG advisors and young people. A common mission is shared – that is to nurture successful trust specialists who are knowledgeable, confident and can think and act independently.</div>
+      <div class="content">At the heart of DDG Academy is the belief that the work that we do must transform the career chances of our advisors. DDG believes that the best way to transform career chances is to actively shape the minds, attitudes and habits of young people through the DDG education framework that enables them to become the leaders of tomorrow.</div>
+    </div>
+    <div class="homeFour">
+      <div class="minTitle">Why Choose Us</div>
+      <div class="icons">
+        <div>One-stop solution on estate, and trust advisory </div>
+        <div>Customized solutions for your family</div>
+        <div>Advice from qualified legal advisors</div>
+        <div>Support from well-trained professional team</div>
+        <div>Backed by seamless trust application</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -49,11 +76,18 @@ export default {
         })
         .catch((error) => {});
     },
+    toContactUs() {
+      this.$store.commit('changePage', {
+        tabbar: '/ContactUs',
+        title: 'Contact Us',
+      });
+      this.$router.push('/ContactUs');
+    }
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 h1,
 h2 {
   font-weight: normal;
@@ -68,5 +102,152 @@ li {
 }
 a {
   color: #42b983;
+}
+.homeOne {
+  background: url(../assets/img/Home/Home1.png);
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 50rem;
+  text-align: right;
+  position: relative;
+  .title {
+    font-size: 4rem;
+    color: #7C655D;
+    font-family: FandolSong;
+    font-weight: bold;
+    position: absolute;
+    top: 30%;
+    right: 5%;
+  }
+  .contactUs {
+    font-size: 1.2rem;
+    background-color: #7C655D;
+    position: absolute;
+    top: 60%;
+    right: 7%;
+    border-radius: 15px;
+    height: 3rem;
+    width: 9rem;
+  }
+}
+.homeTwo {
+  background-color: #BC9D84;
+  // height: 15rem;
+  text-align: left;
+  padding: 3rem 3rem;
+  color: #fff;
+  .minTitle {
+    font-size: 3rem;
+    font-family: FandolSong;
+    margin-bottom: 2rem;
+  }
+  .content {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 2rem;
+  }
+}
+.homeThree {
+  background: url(../assets/img/Home//Home3.jpg);
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-height: 109rem;
+  text-align: left;
+  position: relative;
+  padding: 5rem 5rem;
+  color: #7C655D;
+  .minTitle {
+    font-size: 5rem;
+    font-family: FandolSong;
+    margin-top: 10rem;
+  }
+  .mintit {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    line-height: 2rem;
+  }
+  .content {
+    margin-top: 2rem;
+    width: 50rem;
+    line-height: 1.5rem;
+  }
+}
+.homeFour {
+  background: url(../assets/img/Home//Home4.jpg);
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 24rem;
+  position: relative;
+  color: #fff;
+  .minTitle {
+    font-size: 3rem;
+    font-family: FandolSong;
+    padding-top: 3rem;
+  }
+  .icons {
+    position: absolute;
+    top: 70%;
+    left: 19%;
+    display: flex;
+    justify-content: space-between;
+    width: 55rem;
+    div {
+      width: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .homeOne {
+    .contactUs {
+      height: 3rem;
+      width: 9rem;
+    }
+  }
+}
+/*中等屏幕*/
+@media screen and (max-width: 992px){
+  .homeOne {
+    .contactUs {
+      height: 5rem;
+      width: 14rem;
+    }
+  }
+}
+/*平板*/
+@media screen and (max-width: 768px){
+  .homeOne {
+    .contactUs {
+      height: 6rem;
+      width: 14rem;
+      font-size: 2rem;
+    }
+  }
+  .homeThree {
+    .content {
+      line-height: 2.5rem;
+    }
+  }
+}
+/*手机*/
+@media screen and (max-width: 576px){
+	.homeOne {
+    .contactUs {
+      height: 8rem;
+      width: 22rem;
+    }
+  }
+  .homeThree {
+    .mintit {
+      line-height: 4rem;
+    }
+    .content {
+      line-height: 3rem;
+    }
+  }
 }
 </style>
