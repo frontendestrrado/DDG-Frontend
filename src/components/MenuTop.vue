@@ -19,7 +19,7 @@
 						<van-icon name="arrow-down" v-else/>
 					</li>
 					<MenuTop :class="calssName == value.page_id ? '':'dpn'" :menu-data="value.sub_navigation_bar" :cl-name.sync="calssName" @on-change="changeActTab"/>
-				</template>				
+				</template>
 			</div>
 			<div v-else :index="value.page_id" @click="changeItem(value.page_id?value.page_id:'',value.title, value.link)">
 				<template v-if="value.is_login == 1">
