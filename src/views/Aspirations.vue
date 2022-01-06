@@ -74,10 +74,10 @@ export default {
 <style scoped lang="scss">
 .Aspirations {
   color: #7C655D;
-  .title {
-    font-size: 3rem;
-    font-family: 'Times New Roman';
-  }
+    .title {
+      font-size: 3rem;
+      font-family: 'Times New Roman';
+    }
   .AspirationsOne {
     background: url(../assets/img/Aspirations/Aspirations1.jpg) no-repeat scroll;
     min-height: 50rem;

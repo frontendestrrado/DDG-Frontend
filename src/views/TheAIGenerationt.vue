@@ -5,14 +5,14 @@
         <h1>The AI  <span>“爱”</span></h1>
         <h1>Generation Trust</h1>
         <div class="content">
-            <p>
+            <p class="title">
               Al(means fovo in Mandarin) is at the root of our pbiiasopm
               -this AI Genemtion trust,
               under the purview of Asia indemationnl Trust Berhad nd diatributed excluniwely by DDG,
               offers imdeccsble protection for yout assets due to the
               indopendeint trustoo's mardate owur the trust asbets and distribution
             </p>
-            <p style="margin-top:2rem">
+            <p style="margin-top:2rem" class="title">
               A famlly's suoooss in sunthining tto wealth from one cenerstion to onother is ihentfnble.
               end if reotiees careful ianning sne inmalermentation
             </p>
@@ -25,8 +25,8 @@
       
     </div>
     <div class="GenerationThree">
-        <span class="enquiries">For more enquiries</span>
-        <van-button @click="toContactUs" type="default" color="7C655D" class="contactUs">Contact Us</van-button>
+        <span>For more enquiries</span>
+        <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
   </div>
 </template>
@@ -64,11 +64,12 @@ h1 {
   color: #7C655D;
   margin-bottom:4rem;
 }
-a {
-  color: #42b983;
-}
 .Generation{
      color: #7C655D;
+    .title {
+      font-size: 3rem;
+      font-family: 'Times New Roman';
+    }
      position: relative;
     .GenerationOne{
         background: url(../assets/img/Generation/AI1.jpg);
@@ -86,7 +87,6 @@ a {
            }
         }
         .content{
-           font-size: 2rem;
            width: 36rem;
            text-align: left;
           //  line-height: 2rem;
@@ -114,31 +114,24 @@ a {
         position: relative;
     }
     .GenerationThree{
-        background: url(../assets/img/Generation/AI4.jpg);
-        background-attachment: scroll;
-        background-repeat: no-repeat;
-        background-size: 100%;
         height: 10rem;
         text-align: right;
         position: relative;
-        .enquiries{
-            font-size: 2rem;
-            color: #fff;
-            position: absolute;
-            top: 33%;
-            left: 30%;
-        }
+        height: 10rem;
+        background-color: #7C655D;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: bold;
         .contactUs {
             background-color: #fff;
-            position: absolute;
-            top: 25%;
-            left: 52%;
+            color: #7B655D;
+            padding: 0.5rem;
             border-radius: 1rem;
-            height: 3rem;
-            width: 11rem;
-            span{
-              color: #7C655D;
-            }
+            margin-left: 2rem;
+            cursor: pointer;
         }
     }
 }
