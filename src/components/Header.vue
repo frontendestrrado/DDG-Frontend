@@ -238,16 +238,19 @@ export default {
             });
             this.$router.push("/Login");
           } else {
-            this.$store.commit("changePage", {
-              tabbar: link,
-              title: title,
-            });
-            this.$router.push(link);
-            // this.$store.commit("changePage", {
-            //   tabbar: "/Page/" + name,
-            //   title: title,
-            // });
-            // this.$router.push("/Page/" + name);
+            if (name == 10) {
+              this.$store.commit("changePage", {
+                tabbar: "/Page/" + name,
+                title: title,
+              });
+              this.$router.push("/Page/" + name);
+            } else {
+              this.$store.commit("changePage", {
+                tabbar: link,
+                title: title,
+              });
+              this.$router.push(link);
+            }
           }
         } else {
           this.$store.commit("changePage", { tabbar: name, title: title });

@@ -2,15 +2,15 @@
   <div class="Home">
     <!-- <Common :pageData="pageContent"></Common> -->
     <div class="homeOne">
-      <span class="title">Welcome to <br> DDG International <br> Berhad</span>
-      <van-button @click="toContactUs" type="default" color="7C655D" class="contactUs">Contact Us</van-button>
+      <span class="title titleFont">Welcome to <br> DDG International <br> Berhad</span>
+      <van-button @click="toContactUs" type="default" color="7C655D" class="contactUs titleFont">Contact Us</van-button>
     </div>
     <div class="homeTwo">
-      <span class="minTitle">Safeguard Your Wealth <br> Protect Your Family</span><br>
+      <span class="minTitle titleFont">Safeguard Your Wealth <br> Protect Your Family</span><br>
       <span class="content">Here at DDG, we can help preserve your wealth while offering you greater <br> flexibility over the management and distribution of your assets.</span>
     </div>
     <div class="homeThree">
-      <div class="minTitle">About Us</div>
+      <div class="minTitle titleFont">About Us</div>
       <div class="mintit">DDG International: <br> Venture into Potential</div>
       <div class="content">DDG International Berhad (DDG), is a joint collaboration between Asia International Trust Berhad, a well-established Trustee in the ASEAN region and Chiong & Partners, one of Malaysia’s leading trust advocates and award-winning legal firm. </div>
       <div class="content">Established on 5th of July 2021, DDG is headquartered in Butterworth, Penang and has footprint across Malaysia, Singapore and China. At DDG, we pride ourselves on delivering results to our clients – with over RM300M private trusts have been set, both offshore and onshore, for the past 4 years. With innovative ideas and cutting-edge solutions, DDG helps make financial progress towards a foreseeable financial future for clients with varied and bespoke portfolios. </div>
@@ -20,7 +20,7 @@
       <div class="content">At the heart of DDG Academy is the belief that the work that we do must transform the career chances of our advisors. DDG believes that the best way to transform career chances is to actively shape the minds, attitudes and habits of young people through the DDG education framework that enables them to become the leaders of tomorrow.</div>
     </div>
     <div class="homeFour">
-      <div class="minTitle">Why Choose Us</div>
+      <div class="minTitle titleFont">Why Choose Us</div>
       <div class="icons">
         <div>One-stop solution on estate, and trust advisory </div>
         <div>Customized solutions for your family</div>
@@ -114,7 +114,6 @@ a {
   .title {
     font-size: 4rem;
     color: #7C655D;
-    font-family: FandolSong;
     font-weight: bold;
     position: absolute;
     top: 30%;
@@ -139,7 +138,6 @@ a {
   color: #fff;
   .minTitle {
     font-size: 3rem;
-    font-family: FandolSong;
     margin-bottom: 2rem;
   }
   .content {
@@ -161,7 +159,6 @@ a {
   color: #7C655D;
   .minTitle {
     font-size: 5rem;
-    font-family: FandolSong;
     margin-top: 10rem;
   }
   .mintit {
@@ -176,7 +173,7 @@ a {
   }
 }
 .homeFour {
-  background: url(../assets/img/Home//Home4.jpg);
+  background: url(../assets/img/Home/Home4.jpg);
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -185,7 +182,6 @@ a {
   color: #fff;
   .minTitle {
     font-size: 3rem;
-    font-family: FandolSong;
     padding-top: 3rem;
   }
   .icons {

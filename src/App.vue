@@ -174,4 +174,20 @@ select::-ms-expand { display: none; }/*清除IE的默认选择框样式，隐藏
 .esignImgbox {
   border: 1px solid #666666;
 }
+/* 標題字體 */
+.titleFont {
+  font-family: 'Times New Roman';
+}
+/* 正文字體 */
+.textFont {
+  font-family: calibri;
+}
+/* 標題顏色 */
+.titleColor {
+  color: #7b655D;
+}
+/* 背景顏色 */
+.bgColor {
+  background-color: #bd9e85;
+}
 </style>
