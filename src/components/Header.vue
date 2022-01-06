@@ -218,8 +218,8 @@ export default {
         return false;
       }
     },
-    changeActTab(name, title) {
-      console.log(name, title);
+    changeActTab(name, title, link) {
+      console.log(name, title, link, 3333333);
       this.isShowTopUl = true;
       if (name == "") {
         this.$router.go(-1);
@@ -239,10 +239,15 @@ export default {
             this.$router.push("/Login");
           } else {
             this.$store.commit("changePage", {
-              tabbar: "/Page/" + name,
+              tabbar: link,
               title: title,
             });
-            this.$router.push("/Page/" + name);
+            this.$router.push(link);
+            // this.$store.commit("changePage", {
+            //   tabbar: "/Page/" + name,
+            //   title: title,
+            // });
+            // this.$router.push("/Page/" + name);
           }
         } else {
           this.$store.commit("changePage", { tabbar: name, title: title });
@@ -392,7 +397,7 @@ export default {
 .menuInfo {
   font-family: FandolSong;
   position: absolute;
-  height: 100vh;
+  height: 50vh;
   /*top:80px;*/
   top: 80px;
   right: 0;
@@ -402,9 +407,9 @@ export default {
   z-index: 10;
   text-align: right;
   line-height: 40px;
-  background-color: #CFC3B5;
+  background-color: #7b655d;
   font-size: 24px;
-  color: #333333;
+  color: #fff;
   /* overflow-y: auto; */
   min-height: 100%;
 }
@@ -474,9 +479,9 @@ export default {
     z-index: 10;
     text-align: center;
     line-height: 40px;
-    background-color: #CFC3B5;
+    background-color: #7b655d;
     font-size: 20px;
-    color: #7b5c55;
+    color: #fff;
   }
   .active {
     border-bottom: none;

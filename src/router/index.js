@@ -52,6 +52,26 @@ const router = new Router({
       name: '首页',
       component: Index
     },{
+      path: '/Aspirations',
+      name: 'Aspirations',
+      component: () => import('../views/Aspirations'),
+    },{
+      path: '/Products',
+      name: 'Products',
+      component: () => import('../views/Products'),
+    },{
+      path: '/OurServices',
+      name: 'OurServices',
+      component: () => import('../views/OurServices'),
+    },{
+      path: '/TheAIGenerationt',
+      name: 'TheAIGenerationt',
+      component: () => import('../views/TheAIGenerationt'),
+    },{
+      path: '/DDGLeadership',
+      name: 'DDGLeadership',
+      component: () => import('../views/DDGLeadership'),
+    },{
       path: '/Login',
       name: '登录',
       component: Login,

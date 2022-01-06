@@ -2103,7 +2103,7 @@ export default {
 /*手机*/
 @media screen and (max-width: 768px) {
   /deep/ .van-field__label {
-    width: 6.5rem;
+    width: 30rem;
   }
 }
 .beneficiary_info {

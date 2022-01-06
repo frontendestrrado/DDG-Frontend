@@ -21,7 +21,7 @@
 					<MenuTop :class="calssName == value.page_id ? '':'dpn'" :menu-data="value.sub_navigation_bar" :cl-name.sync="calssName" @on-change="changeActTab"/>
 				</template>				
 			</div>
-			<div v-else :index="value.page_id" @click="changeItem(value.page_id?value.page_id:'',value.title)">
+			<div v-else :index="value.page_id" @click="changeItem(value.page_id?value.page_id:'',value.title, value.link)">
 				<template v-if="value.is_login == 1">
 					<li v-if="$sessionStorage.token" class="hv" slot="title">{{ value.title }}</li>
           <!-- <div class="ulline"></div> -->
@@ -47,8 +47,8 @@
 	    mounted(){
 	    },
 	    methods:{
-	        changeItem(route,title){
-	        	this.$emit('on-change',route,title);
+	        changeItem(route,title,link){
+	        	this.$emit('on-change',route,title,link);
 						console.log(111,route,title);
 	        },
 	        changeActTab(route, name){

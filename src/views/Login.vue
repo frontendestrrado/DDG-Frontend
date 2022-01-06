@@ -664,7 +664,7 @@ export default {
     margin-top: 0;
   }
   /deep/ .van-field__label {
-    width: 6.5rem;
+    width: 30rem;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 992px) {
