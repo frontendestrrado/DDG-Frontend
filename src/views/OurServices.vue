@@ -94,7 +94,7 @@ h1 {
 }
 .ourServices{
     font-size: 2rem;
-   font-family: 'Times New Roman';
+    font-family: 'Times New Roman';
     .ourServicesOneContent{
         padding:3rem 10rem;
         color: #7C655D;
