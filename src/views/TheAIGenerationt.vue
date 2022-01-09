@@ -166,9 +166,11 @@ h1 {
            right: 0;
            top:20rem;
            .text1{
+             line-height: 1.5rem;
            }
            .text2{
              margin-top:2rem ;
+             line-height: 1.5rem;
            }
         }
         .text3{
@@ -196,7 +198,8 @@ h1 {
         }
         .GenerationTwoText2{
           font-size: 0.5rem;
-          width: 41rem;
+          line-height: 1.5rem;
+          width: 30rem;
           text-align: left;
           position: absolute;
           left: 28%;
@@ -204,7 +207,8 @@ h1 {
         }
         .GenerationTwoText3{
           font-size: 0.5rem;
-          width: 30rem;
+          line-height: 1.5rem;
+          width: 25rem;
           text-align: left;
           position: absolute;
           bottom: 25%;
