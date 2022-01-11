@@ -201,12 +201,12 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100%;
-        height: 30rem;
+        height: 35rem;
         text-align: right;
         position: relative;
          .content3{
            position: absolute;
-           top:24.5%;
+           top:21.5%;
            right: 33.5%;
            text-align: right;
            .text3{
@@ -239,12 +239,12 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100%;
-        height: 30rem;
+        height: 35rem;
         text-align: right;
         position: relative;
         .content5{
            position: absolute;
-           top:24%;
+           top:21%;
            right: 33.5%;
            text-align: right;
            .text5{
