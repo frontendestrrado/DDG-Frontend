@@ -1,8 +1,8 @@
 <template>
   <div class="contactUs main_content">
-    <van-row style="display:flex;flex-direction: column;">
+    <van-row>
 			<!-- :span="$store.state.isPC ? 16 : 24" -->
-      <van-col :span="24">
+      <van-col :span="8">
         <div class="contactUs_info" style="text-align: left">
           <div class="contactUs_title">INFO</div>
           <div class="fcs">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </van-col>
-      <van-col :span="24">
+      <van-col :span="16">
         <div class="inputBox">
           <div class="minTitle">
             DROP US A MESSAGE.
@@ -127,6 +127,10 @@ export default {
 <style scoped lang="scss">
 ::v-deep .van-row {
   display: -webkit-box;
+  display: flex;
+  .van-col{
+
+  }
 }
 ::v-deep .van-cell {
   margin-bottom: 10px;

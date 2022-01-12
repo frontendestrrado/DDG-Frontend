@@ -88,25 +88,32 @@ export default {
       }
     .content{
       position: absolute;
-      right: 11.8%;
+      right: 12%;
       top:25%;
       font-size:1rem;
       color: #7B655D;
       display: flex;
       flex-direction: column;
-      width: 30%;
+      width: 28%;
+      height: 56%;
+      // background-color: #fff;
       .text3{
         font-size:0.5rem;
         line-height: 1rem;
+        position: absolute;
+        top:6%;
       }
       .text4{
         font-size:0.5rem;
         line-height: 1rem;
-        margin:4rem 0;
+         position: absolute;
+         top:35%;
       }
       .text5{
         font-size:0.5rem;
         line-height: 1rem;
+         position: absolute;
+         top:70%;
       }
     }
   }

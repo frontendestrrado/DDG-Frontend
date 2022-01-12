@@ -12,7 +12,7 @@ export default new Vuex.Store({
     language: sessionStorage["language"] ? sessionStorage["language"] : 'en',
     isPC: document.body.clientWidth >= 768 ? true : false,
     currentPage: sessionStorage["currentPage"] ? JSON.parse(sessionStorage["currentPage"]) : {
-      tabbar: '/Index',
+      tabbar: '/Home',
       title: '首页',
     },
     token: sessionStorage["token"] ? sessionStorage["token"] : '',
@@ -99,7 +99,7 @@ export default new Vuex.Store({
         case 'Our Services':
           val.title = ''
           break;
-        case 'The AI “爱” Generation Trust':
+        case 'AI Generation Trust':
           val.title = ''
           break;
         case 'DDG Leadership':

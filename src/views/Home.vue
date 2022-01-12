@@ -19,7 +19,7 @@
     </div> -->
     <div style="height: 50px;"></div>
     <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok">
-			<div style="padding: 10px 10px;text-align: left;">
+			<div style="padding:10px;">
 				<div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>
 				<div>While the DDG International Berhad (DDG) strives to make the information on this website as well as its downloadable promotional materials including, without limitation, journal advertisements, sales visual aids, prints, direct mail as timely and accurate as possible, DDG makes no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this site and its promotional materials, and expressly disclaims liability for errors and omissions in the contents of this site and the promotional materials carried by DDG Advisors (with valid DDG ID). No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose or freedom from computer virus, is given with respect to the contents of this website or its links to other Internet resources.
 				</div>
@@ -94,7 +94,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1,
 h2 {
   font-weight: normal;
@@ -114,12 +114,12 @@ main {
   background-color: #fff;
   min-height: calc(100vh - 80px);
 }
-.ContactUs {
+.btn {
   color: #444;
   background: #cfc3b5;
   padding: 10px;
   margin-top: 20px;
-  text-align: left;
+  // text-align: left;
 }
 .ContactUsTitle {
   font-size: 28px;
@@ -128,6 +128,26 @@ main {
 }
 .ContactUs div {
   margin-bottom: 10px;
+}
+/deep/ .van-dialog {
+    font-size: 16px;
+    width: 70%;
+    padding: 10px;
+    .van-dialog__footer{
+       width: 12rem;
+       position: relative;
+       left: 50%;
+       transform:translateX(-50%) ;
+      .van-dialog__confirm{
+        font-size: 1.5rem;
+        color:#fff;
+        background-color: #7C655D;
+        border-radius: 10px;
+        height: 3rem;
+        width: 12rem;
+      }
+
+    }
 }
 @media screen and (max-width: 768px) {
   main {

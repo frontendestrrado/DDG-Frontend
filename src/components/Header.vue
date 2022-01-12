@@ -23,19 +23,19 @@
         <van-col :span="5" style="text-align: left">
           <van-icon
             name="arrow-left"
-            v-if="$store.state.currentPage.tabbar != '/Index'"
+            v-if="$store.state.currentPage.tabbar != '/Home'"
             color="#333"
             size="30"
             @click="changeActTab('', '')"
           />
           <van-image
-            v-if="$store.state.currentPage.tabbar == '/Index'"
+            v-if="$store.state.currentPage.tabbar == '/Home'"
             class="logo hv"
             :src="logo"
             fit="contain"
             @click="
               isShowTopUl = true;
-              $router.push('/Index');
+              $router.push('/Home');
             "
           />
         </van-col>
@@ -46,7 +46,7 @@
 							:src="logo"
 							fit="contain"
 							@click="changeActTab('/Index', 'Home');"/> -->
-          <div v-if="$store.state.currentPage.tabbar != '/Index'">
+          <div v-if="$store.state.currentPage.tabbar != '/Home'">
             {{ $store.state.currentPage.title }}
           </div>
         </van-col>
@@ -79,7 +79,7 @@
       </van-row>
       <!-- <van-overlay :show="!isShowTopUl" /> -->
       <ul class="menuInfo fontPB" v-if="!isShowTopUl" @click.stop>
-        <li class="hv" @click="changeActTab('/Index', 'Index')">
+        <li class="hv" @click="changeActTab('/Home', 'Home')">
           Home
         </li>
         <!-- <div class="ulline"></div> -->
@@ -162,7 +162,7 @@ export default {
 
     let path = this.$router.history.current.path
       ? this.$router.history.current.path
-      : "/Index";
+      : "/Home";
     let biaoti = sessionStorage["currentPage"]
       ? JSON.parse(sessionStorage["currentPage"]).title
       : this.$router.history.current.name;
@@ -171,7 +171,7 @@ export default {
 
     let len = this.$router.history.current.matched.length;
     if (
-      this.$router.history.current.matched[len - 1].path == "/Index" ||
+      this.$router.history.current.matched[len - 1].path == "/Home" ||
       this.$router.history.current.matched[len - 1].path == ""
     ) {
       sessionStorage.removeItem("historyTitle");
@@ -201,7 +201,7 @@ export default {
         url: "/api/v1/navigations",
       })
         .then((res) => {
-          console.log(res);
+          console.log(">>>>>>>>",res);
           this.tabList = res.data;
         })
         .catch((error) => {

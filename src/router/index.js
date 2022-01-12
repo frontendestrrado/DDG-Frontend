@@ -46,9 +46,9 @@ const router = new Router({
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: '/Index',
+    redirect: '/Home',
     children: [{
-      path: '/Index',
+      path: '/Home',
       name: '首页',
       component: Index
     },{

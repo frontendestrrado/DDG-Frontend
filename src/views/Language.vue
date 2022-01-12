@@ -52,8 +52,8 @@ export default {
       this.$i18n.locale = val;
       this.$Local(val);
       this.$store.commit("changeLang", val);
-      this.$store.commit("changePage", { tabbar: "/Index", title: "Home" });
-      this.$router.push("/Index");
+      this.$store.commit("changePage", { tabbar: "/Home", title: "Home" });
+      this.$router.push("/Home");
     },
     choonseLang(lang) {
       this.$axios({

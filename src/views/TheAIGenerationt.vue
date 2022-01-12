@@ -6,15 +6,19 @@
         <h1>Generation Trust</h1>
         <div class="content">
             <p class="text1">
-              Al(means fovo in Mandarin) is at the root of our pbiiasopm
-              -this AI Genemtion trust,
-              under the purview of Asia indemationnl Trust Berhad nd diatributed excluniwely by DDG,
-              offers imdeccsble protection for yout assets due to the
-              indopendeint trustoo's mardate owur the trust asbets and distribution
+              Al (means love in Mandarin) is at the root of our philosophy
+              - this AI Generation Trust,
+              end if reotiees careful ianning sne inmalermentation
+              under the purview of Asia Intemational Trust Berhad
+              and distributed exclusively by DDG,
+              offers impeccable protection for your assets due to the
+              independent trustee's mandate over the trust assets and distributions.
             </p>
             <p class="text2">
-              A famlly's suoooss in sunthining tto wealth from one cenerstion to onother is ihentfnble.
-              end if reotiees careful ianning sne inmalermentation
+              
+              A famil's success in sustaining its wealth from
+              one generation to another is inevitable,
+              and it requires careful planning and implementation.
             </p>
         </div> 
         <p class="text3">Overview</p>
@@ -22,17 +26,31 @@
     <div class="GenerationTwo">
         <p class="GenerationTwoText">Why Trust</p>
         <p class="GenerationTwoText2">
-            'Trunts'-Trunts.atyps of wis-ubatitute. 
-            Drafted and acminsturd proparly, tey avcid probets and tie you hhu powur ta decide how
-            and whn (and, of couru,to whoen! your esnme wil bo distrtutod durieg your lifetimo and aftor you nro gono.
-            There are mary different types of trustn ouutabie depending on your antate-pianning or specin ned gous.
-            Tia het type of trust ho you can be dhscussed dieine consultation Al trust come win thorouoe insiructions for
-            the Settiors thow to property iite aseets to the trunt!. and the Truntees thon to pruperly atinunister the trst!.
-            inciuing my Social Securty Administratian requinemants for specint noods tnust animintstration.
+            “Trusts" - Trusts are a type of wll-ubstitute.
+            Drafted and administered properly, they avoid probate
+            and give you the power to decide how
+            and when (and, of course, to whom) your estate will be distributed
+            during your lifetime and after you are gone.
+            There are many dfferent types of trusts available depending on
+            your estate-planning or special needs goals.
+            The best type of trust for you can be discussed during consultation.
+            All trusts come with thorough instructions for
+            the Settlors (how to properly title assets to the trust)
+            and the Trustees (how to properly administer the trust),
+            including any Social Security Administration requirements for
+            special needs trust administration.
+            While the primary focus of DDG International Berhad is to provide
+            comprehensive estate-planning and wealth management solutions
+            incorporating estate planning solutions for special needs
+            family members may be the most comprehensive part of the
+            company's practice.
         </p>
         <p class="GenerationTwoText3">
-            While the prmary focus of DDO intanuationsd Bertud is to provide aumpratanshw asabo-plannins and weath manasemad tclutiom and trusto for individuals and familion.
-            incoeporating ostato pionning solutiong for mpociat neods family mumbore mey te the moet compeutwenaive part of the cotmpany" pruction.
+             While the primary focus of DDG International Berhad is to provide
+            comprehensive estate-planning and wealth management solutions
+            incorporating estate planning solutions for special needs
+            family members may be the most comprehensive part of the
+            company's practice.
         </p>
     </div>
     <div class="GenerationFour">
@@ -197,21 +215,21 @@ h1 {
           left: 6%;
         }
         .GenerationTwoText2{
-          font-size: 0.5rem;
+          font-size: 1rem;
           line-height: 1.5rem;
           width: 30rem;
           text-align: left;
           position: absolute;
           left: 28%;
-          top:18%;
+          top:15%;
         }
         .GenerationTwoText3{
-          font-size: 0.5rem;
+          font-size: 1rem;
           line-height: 1.5rem;
           width: 25rem;
           text-align: left;
           position: absolute;
-          bottom: 25%;
+          bottom: 26%;
           left: 13%;
         }
     }
@@ -225,7 +243,7 @@ h1 {
         color: #fff;
         padding-top:2rem ;
         .GenerationFourText{
-          font-size: 3rem;
+          font-size: 2rem;
           margin-left: 8rem;
           text-align: left;
           span{
@@ -233,7 +251,7 @@ h1 {
           }
         }
         .GenerationFourText2{
-          font-size: 3rem;
+          font-size: 2rem;
           margin-left: 8rem;
           text-align: left;
         }
