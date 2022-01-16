@@ -2,7 +2,7 @@
   <div class="contactUs main_content">
     <van-row>
 			<!-- :span="$store.state.isPC ? 16 : 24" -->
-      <van-col :span="8">
+      <van-col :span="24">
         <div class="contactUs_info" style="text-align: left">
           <div class="contactUs_title">INFO</div>
           <div class="fcs">
@@ -10,15 +10,15 @@
           </div>
           <div class="fcs">
             <van-icon name="phone" />
-            <span>Tel : +6016-5535691</span>
+            <span>+6016-5535691</span>
           </div>
           <div class="fcs">
             <van-icon name="envelop-o" />
-            <span>Email : info@ddgint.com</span>
+            <span>info@ddgint.com</span>
           </div>
           <div class="fcs">
             <van-icon name="gem-o" />
-            <span>Website : www.ddgint.com</span>
+            <span>www.ddgint.com</span>
           </div>
           <div class="fcs">
             <van-icon name="location-o" />
@@ -29,11 +29,11 @@
           </div>
           <div class="fcs">
             <van-icon name="underway-o" />
-            <span>Business Hour: 9.00am – 5.00pm (Monday – Friday) </span>
+            <span> 9.00am – 5.00pm (Monday – Friday) </span>
           </div>
         </div>
       </van-col>
-      <van-col :span="16">
+      <van-col :span="24">
         <div class="inputBox">
           <div class="minTitle">
             DROP US A MESSAGE.
@@ -60,7 +60,7 @@
         </div>
       </van-col>
     </van-row>
-    <GmapMap
+    <!-- <GmapMap
       :center="{lat:10, lng:10}"
       :zoom="7"
       map-type-id="terrain"
@@ -73,7 +73,13 @@
         :clickable="true"
         :draggable="true"
       />
-    </GmapMap>
+    </GmapMap> -->
+      <div class="mapImg">
+         <img src="../assets/img/ditu.png" >
+      </div>
+      <div class="mapImg">
+          <img src="../assets/img/ditutwo.png" >
+      </div>
   </div>
 </template>
 
@@ -142,6 +148,15 @@ export default {
 	/*min-height: calc(100vh - 60px);*/
   /* margin-top: 20px; */
   background: #f3f5f7;
+  .mapImg{
+    height: 20%;
+    width: 100%;
+    padding: 5rem;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 .contactUs_info {
   height: calc(100% - 40px);
@@ -153,7 +168,7 @@ export default {
     font-weight: 600;
     text-align: left;
     font-size: 26px;
-    font-family: SimSun;
+    font-family: "Calibri";
   }
   .van-icon {
     font-size: 28px;
@@ -176,8 +191,18 @@ export default {
     font-size: 26px;
     color: #7B655D;
     margin-bottom: 20px;
-    font-family: SimSun;
+    font-family: "Calibri";
   }
+}
+@media screen and (max-width: 1025px){
+  ::v-deep .van-row {
+  display: -webkit-box;
+  display: flex;
+  flex-direction: column;
+  .van-col{
+
+  }
+}
 }
 /*手机*/
 @media screen and (max-width: 768px) {

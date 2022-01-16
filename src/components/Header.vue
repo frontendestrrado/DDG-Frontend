@@ -132,7 +132,6 @@ export default {
   data() {
     return {
       tabList: [],
-      isShowSale: 0,
       isShowTopUl: true,
       lang: this.$i18n.locale,
       language: [
@@ -220,9 +219,15 @@ export default {
     },
     changeActTab(name, title, link) {
       console.log(name, title, link, 3333333);
+      console.log(">>>>>",this.tabList)
       this.isShowTopUl = true;
       if (name == "") {
-        this.$router.go(-1);
+        // this.$router.go(-1);
+        this.$store.commit("changePage", {
+              tabbar: "/Login",
+              title: "Advisor's Sign Up / Sign In",
+            });
+        this.$router.push("/Login");
       } else {
         if (this.isNumber(name)) {
           if (
@@ -438,6 +443,7 @@ export default {
 .titleBig {
   font-size: 24px;
   font-family: FandolSong;
+  color: #897359;
 }
 /*手机*/
 @media screen and (max-width: 768px) {

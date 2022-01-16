@@ -124,7 +124,7 @@ main {
 .ContactUsTitle {
   font-size: 28px;
   color: #222;
-  font-family: FandolSong;
+  font-family: "Calibri";
 }
 .ContactUs div {
   margin-bottom: 10px;
@@ -154,12 +154,34 @@ main {
     min-height: calc(100vh - 60px);
   }
   .ContactUs {
-    font-size: 12px;
+    font-size: 2rem;
     line-height: 12px;
   }
   .ContactUsTitle {
     font-size: 20px;
-    font-family: FandolSong;
+    font-family:"Calibri";
   }
+}
+@media screen and (max-width: 1025px){
+  /deep/ .van-dialog {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    .van-dialog__footer{
+       width: 12rem;
+       position: relative;
+       left: 50%;
+       transform:translateX(-50%) ;
+      .van-dialog__confirm{
+        font-size: 1.5rem;
+        color:#fff;
+        background-color: #7C655D;
+        border-radius: 10px;
+        height: 3rem;
+        width: 12rem;
+      }
+
+    }
+}
 }
 </style>

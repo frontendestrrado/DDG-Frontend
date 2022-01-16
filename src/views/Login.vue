@@ -606,7 +606,7 @@ export default {
   margin-right: 20px;
 }
 /deep/ .van-tab--active {
-  background-color: #d9c998;
+  background-color:#af998f;
   color: #fff;
 }
 /deep/ .van-tabs__line {
@@ -639,9 +639,9 @@ export default {
   height: 46px;
   line-height: 46px;
   margin-top: 30px;
-  background: #1F2E4D;
+  background: #7b655d;
   color: #fff;
-  border-color: #1F2E4D;
+  border-color: #7b655d;
   border-radius: 10px;
 }
 .SMSconfirm {
@@ -649,7 +649,7 @@ export default {
   color: #fff;
   border: none;
   outline: none;
-  background-color: #2f75f4;
+  background-color: #bd9e85;
   font-size: 16px;
   border-radius: 8px;
 }

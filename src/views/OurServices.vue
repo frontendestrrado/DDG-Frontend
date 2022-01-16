@@ -20,26 +20,26 @@
             <p>.</p>
         </div>
         <div class="text2">
-          <p>Estate Pianning:</p>
+          <p>Estate Planning:</p>
           <p class="lineFeed"></p>
-          <p>1.Give more control over assets during Iife</p>
+          <p>1. Give more control over assets during life</p>
           <p class="lineFeed"></p>
-          <p>2.Provide care when disabied</p>
+          <p>2. Provide care when disabled</p>
           <p class="lineFeed"></p>
-          <p>3.Allow for tho trensfor of woaith to whom and whon wanted at the lowest possible cost</p>
+          <p>3. Allow for the transfer of wealth to whom and when wanted, at the lowest possible cost</p>
         </div>
         <div class="text2 text3">
-          <p>Common estate planning issues addressed in the weaith management process include: </p>  
+          <p>Common estate planning issues addressed in the wealth management process include: </p>  
           <p class="lineFeed"></p>
-          <p>Transfer of wealth</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Transfer of wealth</p> 
           <p class="lineFeed"></p>
-          <p>Minimization of transfer taxes</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Minimization of transfer taxes</p> 
           <p class="lineFeed"></p> 
-          <p>Asset protection</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Asset protection</p> 
           <p class="lineFeed"></p>
-          <p>Charitable contribution</p>  
+          <p> <img src="../assets/img/png/复选-选中.png" >Charitable contribution</p>  
           <p class="lineFeed"></p>
-          <p>Confdentiality without disciosure at court</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Confidentiality without disclosure at court</p> 
         </div>
     </div>
     <div class="ourServicesTwo">
@@ -94,7 +94,7 @@ h1 {
 }
 .ourServices{
     font-size: 2rem;
-    font-family: 'Times New Roman';
+    font-family: 'Calibri';
     .ourServicesOneContent{
         padding:3rem 10rem;
         color: #7C655D;
@@ -108,6 +108,12 @@ h1 {
           font-size: 1rem;
           text-align: left;
           padding-left: 5rem;
+          img{
+            width: 2rem;
+            height: 2rem;
+            margin-top:1rem;
+            margin-right:2rem ;
+          }
         }
         .text3{
           margin-top: 2rem;
@@ -149,5 +155,71 @@ h1 {
             cursor: pointer;
         }
     }
+}
+@media screen and (max-width: 1025px){
+  .ourServices{
+    font-size: 3rem;
+    font-family: 'Calibri';
+    .ourServicesOneContent{
+        padding:3rem 10rem;
+        color: #7C655D;
+        // line-height: 2rem;
+        text-align: left;
+        .text{
+            font-size: 2rem;
+            text-align: center;
+        }
+        .text2{
+          font-size: 2rem;
+          text-align: left;
+          padding-left: 5rem;
+          img{
+            width: 2rem;
+            height: 1.8rem;
+            margin-top:1rem;
+            margin-right:2rem ;
+          }
+        }
+        .text3{
+          margin-top: 2rem;
+        }
+    }
+    .ourServicesOne{
+        background: url(../assets/img/OurServices/OurServices1.jpg);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 50rem;
+        text-align: right;
+        position: relative;
+    }
+    .ourServicesTwo{
+        background: url(../assets/img/OurServices/OurServices2.jpg);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 30rem;
+        text-align: right;
+        position: relative;
+    }
+    .ourServicesThree{
+        height: 10rem;
+        background-color: #7C655D;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: bold;
+        .contactUs {
+            background-color: #fff;
+            color: #7B655D;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            margin-left: 2rem;
+            cursor: pointer;
+        }
+    }
+}
 }
 </style>
