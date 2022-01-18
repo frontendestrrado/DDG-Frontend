@@ -222,12 +222,15 @@ export default {
       console.log(">>>>>",this.tabList)
       this.isShowTopUl = true;
       if (name == "") {
-        // this.$router.go(-1);
-        this.$store.commit("changePage", {
+        if(link=='/Login'){
+          this.$store.commit("changePage", {
               tabbar: "/Login",
               title: "Advisor's Sign Up / Sign In",
             });
-        this.$router.push("/Login");
+          this.$router.push("/Login");
+        }else{
+          this.$router.go(-1);
+        }
       } else {
         if (this.isNumber(name)) {
           if (
@@ -452,9 +455,9 @@ export default {
     height: 70px;
   }
   .header-main {
-    width: 97%;
+    width: 100%;
     height: 60px;
-		margin: auto;
+		/* margin: auto; */
   }
   .mobileMenu {
     display: inline-flex;
@@ -519,8 +522,8 @@ export default {
     height: 90px;
   }
   .header-main {
-    width: 97%;
-    margin: auto;
+    width: 100%;
+    /* margin: auto; */
     height: 80px;
 		/* font-size: 40px; */
   }
@@ -575,9 +578,9 @@ export default {
     height: 90px;
   }
   .header-main {
-    width: 97%;
+    width: 100%;
     height: 80px;
-    margin: auto;
+    /* margin: auto; */
   }
 }
 /*大屏幕*/
@@ -587,7 +590,7 @@ export default {
     height: 100px;
   }
   .header-main {
-    width: 97%;
+    width: 100%;
     max-width: 1200px;
     height: 80px;
     margin: auto;

@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="scss">  
 .Products {
   .title {
     font-size: 3rem;
@@ -152,18 +152,19 @@ export default {
 @media screen and (max-width: 1025px){
   .Products {
   .title {
-    font-size: 3rem;
+    font-size: 0rem;
   }
    font-family: 'Times New Roman';
   .ProductsOne {
-    background: url(../assets/img/png/page4.png) no-repeat scroll;
-    height: 80rem;
-    background-size: 100% 110%;
+    background: url(../assets/img/png/Aprodocut.png) no-repeat scroll;
+    // background: none;
+    height: 90rem;
+    background-size: 100% 100%;
     text-align: left;
     position: relative;
     color: #fff;
     .text1{
-        font-size:4rem;
+        font-size:0rem;
         position: absolute;
         left:12%;
         top:9%;
@@ -172,7 +173,7 @@ export default {
         }
       }
     .text2{
-        font-size:4rem;
+        font-size:0rem;
         position: absolute;
         left:15%;
         top:14%;  
@@ -184,40 +185,40 @@ export default {
       position: absolute;
       right: 8%;
       top:30%;
-      font-size:1rem;
+      font-size:0rem;
       color: #7B655D;
       display: flex;
       flex-direction: column;
       width: 50%;
-      height: 56%;
+      height: 60%;
       // background-color: #fff;
       .text3{
-        font-size: 0.8rem;
-        
+        font-size: 0rem;
         position: absolute;
-        top:6%;
+        top:10%;
+        padding-right: 0rem;
         h1{
-          font-size: 1.2rem;
+          font-size: 0rem;
           margin-bottom: 0.5rem;
         }
       }
       .text4{
-         font-size: 0.8rem;
-        
+         font-size: 0rem;
          position: absolute;
-         top:39%;
+         top:36%;
+         padding-right: 0rem;
           h1{
-          font-size: 1.2rem;
+          font-size:0rem;
           margin-bottom: 0.5rem;
         }
       }
       .text5{
-        font-size: 0.8rem;
+        font-size: 0rem;
         position: absolute;
-     
-        top:78%;
+        top:70%;
+        padding-right: 2rem;
          h1{
-          font-size: 1.2rem;
+          font-size: 0rem;
           margin-bottom: 0.5rem;
         }
       }
@@ -242,5 +243,18 @@ export default {
         }
     }
 } 
+}
+/*中等屏幕*/
+@media screen and (max-width: 992px){
+ 
+}
+/*平板*/
+@media screen and (max-width: 768px){
+ 
+
+}
+/*手机*/
+@media screen and (max-width: 576px){
+	 
 }
 </style>

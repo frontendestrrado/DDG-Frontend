@@ -1,6 +1,7 @@
 <template>
   <div class="dDGLeadership">
       <h1>Our Leadership</h1>
+     <div class="dDGLeadershipOneCopy"></div> 
     <div class="dDGLeadershipOne">
       <div class="content">
            <h1>Herman Tan</h1>
@@ -8,7 +9,7 @@
            <p class="lineFeed"></p>
           <div class="text1">
             <p>Herman founded DDG in 2021, and brings more than 20 years of financial services experience, </p>
-            <p>wwith more than half of that within senior agency manager roles throughout Southeast Asia. </p>
+            <p>with more than half of that within senior agency manager roles throughout Southeast Asia. </p>
             <p>As Malaysia’s Top 40 Industry Leaders and Financial Services Professional, </p>
             <p>Herman served in various leadership across operations management, </p>
             <p>agency development and customer solutions, with a track record for driving large-scale change management, </p>
@@ -17,10 +18,11 @@
             <p class="lineFeed"></p>
             <p class="lineFeed"></p>
             <p>Herman holds IARFC’s Registered Financial Consultant for 15 years, </p>
-            <p>he is alsocurrently an EMBA and DBA candidate.</p>
+            <p>he is also currently an EMBA and DBA candidate.</p>
           </div>
       </div>
     </div>
+    <div class="dDGLeadershipTwoCopy"></div> 
     <div class="dDGLeadershipTwo">
        <div class="content2">
            <h1>Nicole Sew</h1>
@@ -40,6 +42,7 @@
           </div>
        </div>
     </div>
+    <div class="dDGLeadershipFourCopy"></div> 
     <div class="dDGLeadershipFour">
         <div class="content3">
             <h1>Dato’Lawrence Chiong</h1>
@@ -61,6 +64,7 @@
             </div>
         </div>
     </div>
+    <div class="dDGLeadershipFiveCopy"></div> 
     <div class="dDGLeadershipFive">
          <div class="content4">
             <h1>Bernard Siow</h1>
@@ -76,11 +80,12 @@
               <p>including driving complex transformation training programs, global leadership, talent management and  </p>
               <p>operational support for DDG China regions. </p>
               <p>Prior to joining DDG, Bernard delivered his motivational leadership and consulting experience to many renowned</p>
-              <p>large corporations include Neways International, Asia Life Insurance,Hong Leong Assurance, Prudential Life, Oxy Fresh, E-Excel, </p>
+              <p>large corporations include Neways International, Asia Life Insurance, Hong Leong Assurance, Prudential Life, Oxy Fresh, E-Excel, </p>
               <p>N-Stream, Uptrend2u, XKL China, BSC Worldwide and Easy Pha-max - through a range of bespoke coaching programs.</p>
             </div>
          </div>
     </div>
+    <div class="dDGLeadershipSixCopy"></div> 
     <div class="dDGLeadershipSix">
         <div class="content5">
             <h1>Dr Fred Wu</h1>
@@ -279,7 +284,7 @@ h2{
 }
 h2{
   font-weight: normal;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #7C655D;
 }
 .lineFeed{
@@ -290,56 +295,86 @@ h2{
    font-family: 'Calibri';
    color: #7C655D;
    font-size: 1rem;
-  .dDGLeadershipOne{
-    h1{
-     font-weight: normal;
-      margin-right: 4rem;
-   }
-   h2{
-      margin-right: 2rem;
-   }
-        background: url(../assets/img/png/page52.png);
+   background: url(../assets/img/png/蒙版61@3x.png);
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: 100% 500%;
+    opacity: 0.8;
+  .dDGLeadershipOneCopy{
+      background: url(../assets/img/png/HermanTan@3x.png);
         background-attachment: scroll;
         background-repeat: no-repeat;
-        background-size: 100%;
-        height: 49rem;
-        position: relative;
+        background-size: 35% ;
+        height: 31rem;
+        background-position-x: 50%;
+   }
+  .dDGLeadershipOne{
+          h1{
+          font-weight: normal;
+        }
+        background: url(../assets/img/png/蒙版61@3x.png);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-size: 100% 500%;
+        // height: 49rem;
+        // background: none;
+        // position: relative;
+        height: auto;
         .content{
-           position: absolute;
-           top:20%;
-           right: 33.5%;
-           text-align: right;
+           position: static;
+          //  top:20%;
+          //  right: 33.5%;
+           text-align: left;
+           padding:0 10%;
+           padding-bottom: 3%;
            .text1{
-             font-size: 1.5rem;
-             font-weight: bold;
-             padding-left: 4rem;
+             font-size: 2.4rem;
+             line-height: 2.5rem;
            }
         }
 
     }
-    .dDGLeadershipTwo{
-        background: url(../assets/img/png/page51.png);
+    .dDGLeadershipTwoCopy{
+       background: url(../assets/img/png/Layer1@3x.png);
         background-attachment: scroll;
         background-repeat: no-repeat;
-        background-size: 100%;
-        height: 49rem;
+        background-size: 35%;
+        height: 31rem;
+        background-position-x: 50%;
+    }
+    .dDGLeadershipTwo{
+        background: url(../assets/img/png/page51_copy.png);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-size: 100% 500%;
+        height: auto;
         text-align: left;
-        position: relative;
+        // position: relative;
          .content2{
-           position: absolute;
+           position: static;
            top:24%;
            left: 32.5%;
            text-align: left;
+           padding:0 10%;
+           padding-bottom: 3%;
            .text2{
-             font-size: 1.5rem;
-             font-weight: bold;
-             padding-right: 4rem;
+             font-size: 2.4rem;
+             line-height: 2.5rem;
+            //  font-weight: bold;
            }
           }
            h1{
             font-weight: normal;
           }
 
+    }
+    .dDGLeadershipFourCopy{
+        background: url(../assets/img/png/Dato3x.png);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+         background-size: 35%;
+        height: 31rem;
+        background-position-x: 50%;
     }
     .dDGLeadershipFour{
        h1{
@@ -349,47 +384,66 @@ h2{
         h2{
             margin-right: 2rem;
         }
-        background: url(../assets/img/png/page7.png);
+        background: url(../assets/img/png/page7_copy.png);
         background-attachment: scroll;
         background-repeat: no-repeat;
-        background-size: 100%;
-        height: 55rem;
+        background-size: 100% 500%;
+        height: auto;
         text-align: right;
         position: relative;
          .content3{
-           position: absolute;
+           position: static;
            top:18%;
            right: 33.5%;
-           text-align: right;
+           text-align: left;
+           padding:0 10%;
+           padding-bottom: 3%;
            .text3{
-            font-size: 1.5rem;
-             font-weight: bold;
-             padding-left: 4rem;
+            font-size: 2.4rem;
+            line-height: 2.5rem;
+            //  font-weight: bold;
            }
           }
+    }
+    .dDGLeadershipFiveCopy{
+        background: url(../assets/img/png/Bernad.png);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+         background-size: 35%;
+        height: 31rem;
+        background-position-x: 50%;
     }
     .dDGLeadershipFive{
        h1{
           font-weight: normal;
         }
-        background: url(../assets/img/png/page53.png);
+         background: url(../assets/img/png/page53copy.png);
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size:  100% ;
-        height: 49rem;
+        height: auto;
         text-align: left;
-        position: relative;
+        // position: relative;
          .content4{
-           position: absolute;
+           position: static;
            top:23%;
            left: 32.5%;
            text-align: left;
+           padding:0 10%;
+           padding-bottom: 3%;
            .text4{
-             font-size: 1.5rem;
-             font-weight: bold;
-             padding-right: 4rem;
+             font-size: 2.4rem;
+             line-height: 2.5rem;
            }
           }
+    }
+    .dDGLeadershipSixCopy{
+      background: url(../assets/img/png/DrFred.png);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+         background-size: 35%;
+        height: 31rem;
+        background-position-x: 50%;
     }
     .dDGLeadershipSix{
        h1{
@@ -399,22 +453,25 @@ h2{
         h2{
             margin-right: 2rem;
         }
-        background: url(../assets/img/png/page6.png);
-        background-attachment: scroll;
-        background-repeat: no-repeat;
-        background-size: 100% ;
-        height: 49rem;
+        // background: url(../assets/img/png/page6_copy.png);
+       
+        // background-attachment: scroll;
+        // background-repeat: no-repeat;
+        // background-size: 100% ;
+        background: none;
+        height: auto;
         text-align: right;
         position: relative;
         .content5{
-           position: absolute;
+           position: static;
            top:20%;
            right: 33.5%;
-           text-align: right;
+           text-align: left;
+           padding:0 10%;
+           padding-bottom: 3%;
            .text5{
-            font-size: 1.5rem;
-             font-weight: bold;
-             padding-left: 4rem;
+            font-size: 2.4rem;
+            line-height: 2.5rem;
            }
           }
     }
@@ -437,5 +494,17 @@ h2{
         }
     }
 }
+}
+/*中等屏幕*/
+@media screen and (max-width: 992px){
+ 
+}
+/*平板*/
+@media screen and (max-width: 768px){
+ 
+}
+/*手机*/
+@media screen and (max-width: 576px){
+	
 }
 </style>

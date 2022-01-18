@@ -1,6 +1,7 @@
 <template>
   <div class="Aspirations">
     <div class="title">Aspirations</div>
+    <div class="AspirationsCopy"></div>
     <div class="AspirationsOne">
       <div class="content">
         <div class="minTitle">OUR</div>
@@ -205,24 +206,28 @@ export default {
       font-size: 3rem;
       font-family: 'Times New Roman';
     }
+   .AspirationsCopy{
+     background: url(../assets/img/png/page5.png) no-repeat scroll;
+     min-height: 45rem;
+     background-size: 100%;
+     background-position-x: -10rem;
+   } 
   .AspirationsOne {
-    background: url(../assets/img/png/page5.png) no-repeat scroll;
-    min-height: 80rem;
-    background-size: 100%;
+    background: none;
+    // min-height: 90rem;
     text-align: left;
     .content {
-      padding: 10%;
+      padding:2% 10%;
       width: 100%;
       color: #B09A8F;
-      position:absolute;
-      top:26%;
+      // position:absolute;
+      // top:26%;
       .minTitle {
         font-size: 8rem;
         font-family: 'Calibri';
-        margin-bottom: 1.5rem;
+        margin-bottom: 4rem;
         font-weight: bold;
         color: #7C655D;
-        padding-top: 1rem;
         // position: absolute;
       }
       .mintit {
@@ -232,7 +237,7 @@ export default {
         margin-left: 7rem;
       }
       .text {
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-bottom: 3rem;
         margin-left: 7rem;
         line-height: 2.5rem;
@@ -241,8 +246,8 @@ export default {
   }
   .AspirationsTwo {
     background: url(../assets/img/png/page1.png) no-repeat scroll;
-    height: 80rem;
-    background-size: 100%;
+    height: 120rem;
+    background-size: 100% 95%;
     text-align: left;
     position: relative;
     .title {
@@ -260,13 +265,14 @@ export default {
     }
     .content {
       position: absolute;
-      top: 37%;
+      top: 28%;
       left:60%;
-      height: 43rem;
+      height: 57rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding-right: 10rem;
+      padding-right: 3rem;
+      font-size: 2rem;
       .mintit1 {
         color: #B9A089;
       }
@@ -342,5 +348,17 @@ export default {
     }
   }
 } 
+}
+/*中等屏幕*/
+@media screen and (max-width: 992px){
+ 
+}
+/*平板*/
+@media screen and (max-width: 768px){
+ 
+}
+/*手机*/
+@media screen and (max-width: 576px){
+	
 }
 </style>

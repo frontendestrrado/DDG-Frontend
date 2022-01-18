@@ -71,7 +71,7 @@
        </div>
        <div class="GenerationFourText5">
           <p>AI <span>“爱”</span></p>
-          <p>Generation Trus</p>
+          <p>Generation Trust</p>
           <p>Structure</p>
        </div>
        <div class="GenerationFourText6">
@@ -104,7 +104,7 @@
             <p class="colTwo">fixed term of two(2) years</p>
          </div>
          <div class="row">
-            <p class="col">Projodted Dividend</p>
+            <p class="col">Projected Dividend</p>
             <p class="colTwo">8.5% per annum</p>
          </div>
          <div class="row">
@@ -390,11 +390,11 @@ h1 {
              line-height: 3rem;
              position: static;
             .text1{
-              font-size: 3rem;
+              font-size: 2.5rem;
               line-height: 3rem;
             }
             .text2{
-              font-size: 3rem;
+              font-size: 2.5rem;
               margin-top:2rem ;
               line-height: 3rem;
             }
@@ -445,7 +445,7 @@ h1 {
           justify-content: center;
         }
         .GenerationTwoText2{
-          font-size: 2rem;
+          font-size: 2.3rem;
           // line-height: 1.5rem;
           width: 50rem;
           text-align: left;
@@ -454,12 +454,12 @@ h1 {
           top:18%;
         }
         .GenerationTwoText3{
-          font-size: 2rem;
+          font-size: 2.3rem;
           // line-height: 1.5rem;
           width: 40rem;
           text-align: left;
           position: absolute;
-          bottom: 26%;
+          bottom: 10%;
           left: 13%;
         }
         .line{

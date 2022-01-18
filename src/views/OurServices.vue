@@ -166,11 +166,11 @@ h1 {
         // line-height: 2rem;
         text-align: left;
         .text{
-            font-size: 2rem;
+            font-size: 3rem;
             text-align: center;
         }
         .text2{
-          font-size: 2rem;
+          font-size: 3rem;
           text-align: left;
           padding-left: 5rem;
           img{
