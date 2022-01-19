@@ -314,7 +314,7 @@ a {
     margin-top: 10rem;
   }
   .mintit {
-    font-size: 2rem;
+    font-size: 3.4rem;
     margin-top: 2rem;
     line-height: 2rem;
   }
@@ -322,10 +322,10 @@ a {
     margin-top:5rem ;
   }
   .content {
-    font-size: 1.5rem;
+    font-size: 3rem;
     margin-top: 2rem;
     width: 70rem;
-    line-height: 2rem;
+    line-height: 3rem;
   }
 }
 .homeFour {

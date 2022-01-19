@@ -307,6 +307,7 @@ h2{
         background-size: 35% ;
         height: 31rem;
         background-position-x: 50%;
+        margin-top: 20rem;
    }
   .dDGLeadershipOne{
           h1{
@@ -341,6 +342,7 @@ h2{
         background-size: 35%;
         height: 31rem;
         background-position-x: 50%;
+        margin-top: 20rem;
     }
     .dDGLeadershipTwo{
         background: url(../assets/img/png/page51_copy.png);
@@ -375,6 +377,7 @@ h2{
          background-size: 35%;
         height: 31rem;
         background-position-x: 50%;
+        margin-top: 20rem;
     }
     .dDGLeadershipFour{
        h1{
@@ -412,6 +415,7 @@ h2{
          background-size: 35%;
         height: 31rem;
         background-position-x: 50%;
+        margin-top: 20rem;
     }
     .dDGLeadershipFive{
        h1{
@@ -444,6 +448,7 @@ h2{
          background-size: 35%;
         height: 31rem;
         background-position-x: 50%;
+        margin-top: 20rem;
     }
     .dDGLeadershipSix{
        h1{

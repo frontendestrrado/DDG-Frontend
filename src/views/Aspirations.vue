@@ -237,19 +237,20 @@ export default {
         margin-left: 7rem;
       }
       .text {
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin-bottom: 3rem;
         margin-left: 7rem;
-        line-height: 2.5rem;
+        line-height: 3rem;
       }
     }
   }
   .AspirationsTwo {
     background: url(../assets/img/png/page1.png) no-repeat scroll;
     height: 120rem;
-    background-size: 100% 95%;
+    background-size: 123% 95%;
     text-align: left;
     position: relative;
+    background-position-x: -14rem;
     .title {
       font-weight: bold;
       font-size: 8rem;
@@ -265,14 +266,14 @@ export default {
     }
     .content {
       position: absolute;
-      top: 28%;
-      left:60%;
-      height: 57rem;
+      top: 27%;
+      left:56%;
+      height: 60rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding-right: 3rem;
-      font-size: 2rem;
+      font-size: 2.3rem;
       .mintit1 {
         color: #B9A089;
       }

@@ -445,21 +445,21 @@ h1 {
           justify-content: center;
         }
         .GenerationTwoText2{
-          font-size: 2.3rem;
-          // line-height: 1.5rem;
-          width: 50rem;
+          font-size: 2.5rem;
+          line-height: 3rem;
+          width: 55rem;
           text-align: left;
           position: absolute;
           left: 35%;
           top:18%;
         }
         .GenerationTwoText3{
-          font-size: 2.3rem;
-          // line-height: 1.5rem;
-          width: 40rem;
+          font-size: 2.5rem;
+          line-height: 3rem;
+          width: 50rem;
           text-align: left;
           position: absolute;
-          bottom: 10%;
+          bottom: 8%;
           left: 13%;
         }
         .line{

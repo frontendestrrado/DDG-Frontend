@@ -20,7 +20,7 @@
 			  	</van-col>
 			</van-row> -->
       <van-row class="fcb" style="height: 100%">
-        <van-col :span="5" style="text-align: left">
+        <van-col :span="5" style="text-align: left;margin-left:20px">
           <van-icon
             name="arrow-left"
             v-if="$store.state.currentPage.tabbar != '/Home'"
@@ -52,7 +52,7 @@
         </van-col>
         <van-col
           :span="5"
-          style="display: flex; align-items: center; justify-content: end"
+          style="display: flex; align-items: center; justify-content: end;margin-right:20px"
         >
           <!-- v-if="$store.state.currentPage.tabbar == '/Index'" -->
           <div
@@ -457,7 +457,7 @@ export default {
   .header-main {
     width: 100%;
     height: 60px;
-		/* margin: auto; */
+		margin: 0 auto;
   }
   .mobileMenu {
     display: inline-flex;
@@ -523,7 +523,7 @@ export default {
   }
   .header-main {
     width: 100%;
-    /* margin: auto; */
+    margin: 0 auto;
     height: 80px;
 		/* font-size: 40px; */
   }
@@ -580,7 +580,7 @@ export default {
   .header-main {
     width: 100%;
     height: 80px;
-    /* margin: auto; */
+    margin: 0 auto;
   }
 }
 /*大屏幕*/
@@ -593,7 +593,7 @@ export default {
     width: 100%;
     max-width: 1200px;
     height: 80px;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 .ulline {
