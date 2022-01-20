@@ -316,13 +316,13 @@ a {
   .mintit {
     font-size: 3.4rem;
     margin-top: 2rem;
-    line-height: 2rem;
+    line-height: 4rem;
   }
   .line{
     margin-top:5rem ;
   }
   .content {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-top: 2rem;
     width: 70rem;
     line-height: 3rem;

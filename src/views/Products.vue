@@ -1,14 +1,23 @@
 <template>
   <div class="Products">
     <div class="title titleFont titleColor">Products</div>
+    <div class="ProductsOneCopy">
+
+    </div>
     <div class="ProductsOne">
       <p class="text1">Create an <span>Estate Plan</span></p> 
       <p class="text2">for Your <span>Loved Ones</span></p>
       <div class="content">
+        <div class="textThreeCopy">
+
+        </div>
         <div class="text3">
           <h1>Cash Trust</h1>
           <p>Cash Trust is a trust established by you when you place a sum of cash in a trust
               that can be made available to your named beneficiaries in the event of an emergency.</p>
+        </div>
+        <div class="textFourCopy">
+
         </div>
         <div class="text4">
           <h1>Family Trust</h1>
@@ -18,6 +27,9 @@
               It is common for the settlor to leave a letter of wishes for the trustees to guide them 
               as to the settlor’s wishes in the exercise of their discretion.
               Letters of wishes are not legally binding documents.</p>
+        </div>
+        <div class="textfiveCopy">
+
         </div>
         <div class="text5">
           <h1>Insurance Trust</h1>
@@ -64,7 +76,7 @@ export default {
    font-family: 'Times New Roman';
   .ProductsOne {
     background: url(../assets/img/Products/Products1.jpg) no-repeat scroll;
-    height: 50rem;
+    height: 53rem;
     background-size: 100% 110%;
     text-align: left;
     position: relative;
@@ -131,7 +143,7 @@ export default {
     }
   }
   .ProductsThree{
-        height: 10rem;
+        height: 13rem;
         background-color: #7C655D;
         color: #fff;
         display: flex;
@@ -152,80 +164,117 @@ export default {
 @media screen and (max-width: 1025px){
   .Products {
   .title {
-    font-size: 0rem;
+    font-size: 3.5rem;
+    margin-bottom: 4rem;
   }
    font-family: 'Times New Roman';
+   .ProductsOneCopy{
+      background: url(../assets/img/png/蒙版58@3x.png) no-repeat scroll;
+      background-color: #7B655D;
+      height: 43rem;
+      background-size: 70%;
+      width: 40%;
+      border-radius: 1rem;
+      
+      // background-position-x: 1rem;
+   }
   .ProductsOne {
-    background: url(../assets/img/png/Aprodocut.png) no-repeat scroll;
-    // background: none;
-    height: 90rem;
+    // background: url(../assets/img/png/Aprodocut.png) no-repeat scroll;
+    background: none;
+    height: 180rem;
     background-size: 100% 100%;
     text-align: left;
     position: relative;
-    color: #fff;
+    color: #7B655D;
     .text1{
-        font-size:0rem;
+        font-size:5rem;
         position: absolute;
-        left:12%;
-        top:9%;
+        left:45%;
+        top:-17%;
         span{
           color: #7B655D;
         }
       }
     .text2{
-        font-size:0rem;
+        font-size:5rem;
         position: absolute;
-        left:15%;
-        top:14%;  
+        left:46%;
+        top:-10%;  
         span{
           color: #7B655D;
         }
       }
     .content{
       position: absolute;
-      right: 8%;
-      top:30%;
-      font-size:0rem;
+      right: 0;
+      top:0%;
+      font-size:3rem;
       color: #7B655D;
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      height: 60%;
+      // display: block;
+      // flex-direction: column;
+      width: auto;
+      height: auto;
       // background-color: #fff;
+      .textThreeCopy{
+        background: url(../assets/img/png/Layer2@3x.png) no-repeat scroll;
+        height: 23rem;
+        background-size: 20%;
+        background-position-x: 50%;
+        background-position-y: 50%;
+      }
       .text3{
-        font-size: 0rem;
-        position: absolute;
+        font-size: 3rem;
+        position: static;
         top:10%;
-        padding-right: 0rem;
+        padding: 10rem 5rem;
+        padding-top: 0rem;
         h1{
-          font-size: 0rem;
-          margin-bottom: 0.5rem;
+          font-size: 3rem;
+          // margin-bottom: 0.5rem;
         }
+      }
+      .textFourCopy{
+         background: url(../assets/img/png/Layer3@3x.png) no-repeat scroll;
+        height: 23rem;
+       
+        background-size: 20%;
+        background-position-x: 50%;
+        background-position-y: 50%;
       }
       .text4{
-         font-size: 0rem;
-         position: absolute;
+         font-size: 3rem;
+         position: static;
          top:36%;
-         padding-right: 0rem;
+         padding: 10rem 5rem;
+         padding-top: 0rem;
           h1{
-          font-size:0rem;
-          margin-bottom: 0.5rem;
+          font-size:3rem;
+          // margin-bottom: 0.5rem;
         }
       }
+      .textfiveCopy{
+        background: url(../assets/img/png/Layer4@3x.png) no-repeat scroll;
+        height: 23rem;
+        
+        background-size: 20%;
+        background-position-x: 50%;
+        background-position-y: 50%;
+      }
       .text5{
-        font-size: 0rem;
-        position: absolute;
+        font-size: 3rem;
+        position: static;
         top:70%;
-        padding-right: 2rem;
+        padding: 10rem 5rem;
+        padding-top: 0rem;
          h1{
-          font-size: 0rem;
-          margin-bottom: 0.5rem;
+          font-size: 3rem;
+          // margin-bottom: 0.5rem;
         }
       }
     }
   }
   .ProductsThree{
-        height: 10rem;
+        height: 13rem;
         background-color: #7C655D;
         color: #fff;
         display: flex;

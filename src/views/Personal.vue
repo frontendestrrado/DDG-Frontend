@@ -31,6 +31,12 @@
       ></van-field>
       <van-field
         center
+        label="Rank"
+        :readonly="true"
+        v-model="userInfo.grade"
+      ></van-field>
+      <van-field
+        center
         label="BTT Code"
         :readonly="true"
         v-model="userInfo.btt_code"
@@ -228,7 +234,7 @@ export default {
         },
       })
         .then((res) => {
-          console.log(res);
+          console.log(">>>>.",res);
           this.userInfo = res;
           this.fileList = [{ url: res.avatar }];
         })
