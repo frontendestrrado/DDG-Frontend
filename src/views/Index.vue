@@ -226,12 +226,12 @@ a {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
+        font-size:3rem;
         font-weight: bold;
         .contactUs {
             background-color: #fff;
             color: #7B655D;
-            padding: 0.5rem;
+            padding: 1.3rem;
             border-radius: 1rem;
             margin-left: 2rem;
             cursor: pointer;
@@ -368,12 +368,12 @@ a {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: bold;
         .contactUs {
             background-color: #fff;
             color: #7B655D;
-            padding: 0.5rem;
+            padding: 1.3rem;
             border-radius: 1rem;
             margin-left: 2rem;
             cursor: pointer;

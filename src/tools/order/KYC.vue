@@ -118,11 +118,13 @@
         placeholder="Please enter the Passport Issuing Country"
       />
       <van-field
+        readonly
         v-model="formData.settlor_non_malaysia.Date"
         name="Date"
         center
         :required="true"
-        type="text"
+        @click="onShowPicker('settlor_non_malaysia','Date')"
+        right-icon="arrow"
         label="Date of Birth"
         placeholder="Please enter the Date of Birth"
         :rules="[{ required: true }]"
@@ -357,12 +359,15 @@
         placeholder="Please enter the Passport Issuing Country"
       />
       <van-field
+        readonly
         v-model="formData.spouse_non_malaysia.Date"
         name="Date"
         center
+        right-icon="arrow"
         type="text"
         label="Date of Birth"
         placeholder="Please enter the Date of Birth"
+        @click="onShowPicker('spouse_non_malaysia','Date')"
       />
       <van-field
         v-model="formData.spouse_non_malaysia.Country"
@@ -986,6 +991,37 @@
         INTERNATIONAL TRUST BERHAD (AITB) immediately if any part of the
         information changes which may and/or have significantly resulting in
         information discrepancies and inaccuracies.
+      </div>
+       <vue-esign
+        ref="signature"
+        :width="1200"
+        :height="300"
+        :isCrop="false"
+        :lineWidth="6"
+        v-show="!formData.declaration.signature"
+        lineColor="#000000"
+        bgColor.sync="#fff"
+        style="border: 1px solid #666"
+      />
+      <van-image
+        v-show="formData.declaration.signature"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.declaration.signature"
+      />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('signature')">
+          Clear
+        </div>
+        <div
+          class="esignBtn"
+          @click="
+            handleGenerate('signature', 'declaration')
+          "
+        >
+          Confirm
+        </div>
       </div>
       <van-field
         v-model="formData.declaration.Name"
@@ -1657,10 +1693,10 @@ export default {
           If: '',
           // Documents: '', // 上传的文件url
         }, 
-        declaration: {
-          Name: '',
-          Date: '',
-        }, 
+        // declaration: {
+        //   Name: '',
+        //   Date: '',
+        // }, 
         onboarding_clients: {},
         distribution_agent_details: {
           Distribution: '',
@@ -1703,6 +1739,12 @@ export default {
           trustor_signature2: '',
           Name: '',
           Nric: '',
+          Date: '',
+        },
+        declaration: {
+          signature: '',
+          Name: '',
+          // Nric: '',
           Date: '',
         }
       },
@@ -1769,6 +1811,7 @@ export default {
       //   return;
       // }
       let data = JSON.parse(JSON.stringify(this.formData));
+      console.log(">>>>>>>...",data)
       // data.document_checklist.Documents = this.Documents[0].url
       // data.settlor = JSON.stringify(data.settlor)
       for (let key in data) {
@@ -1954,6 +1997,9 @@ export default {
       }
       if (val == 'trustor_signature2') {
         this.formData.store_manager.trustor_signature2 = ''
+      }
+      if (val == 'signature') {
+        this.formData.declaration.signature = ''
       }
     },
     handleGenerate(val,val2) {

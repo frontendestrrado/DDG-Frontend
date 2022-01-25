@@ -14,19 +14,23 @@
         name="name"
         label="Name"
         center
+        v-model="formData.name"
+        :rules="[{ required: true }]"
       >
-        <template #input>
+        <!-- <template #input>
           <van-checkbox v-model="formData.name"></van-checkbox>
-        </template>
+        </template> -->
       </van-field>
       <van-field
         name="nric"
         label="NRIC/Passport No"
         center
+        v-model="formData.nric"
+        :rules="[{ required: true }]"
       >
-        <template #input>
+        <!-- <template #input>
           <van-checkbox v-model="formData.nric"></van-checkbox>
-        </template>
+        </template> -->
       </van-field>
       <div class="minTitle">Documents Completion Status</div>
       <van-field
@@ -244,8 +248,8 @@ export default {
   data() {
     return {
       formData: {
-        name: false,
-        nric: false,
+        name: '',
+        nric: '',
         application_form: false,
         compliance_qestionnaire: false,
         settlor_photocopy: false,
@@ -295,8 +299,19 @@ export default {
       if (this.isFilled > 0) {
         getOrdersForms(this.isFilled, { type: "Document Checklist" })
           .then((res) => {
-            console.log(res);
-            this.formData = res;
+            console.log(">>..>>",res);
+            this.formData=res
+            this.formData.application_form=Number(this.formData.application_form) 
+            this.formData.compliance_qestionnaire=Number(this.formData.compliance_qestionnaire)
+            this.formData.settlor_photocopy=Number(this.formData.settlor_photocopy)
+            this.formData.letter_of_wishes=Number(this.formData.letter_of_wishes)
+            this.formData.current_address=Number(this.formData.current_address)
+            this.formData.source_of_fund=Number(this.formData.source_of_fund)
+            this.formData.source_of_wealth=Number(this.formData.source_of_wealth)
+            this.formData.pdpa=Number(this.formData.pdpa)
+            this.formData.third_party_declaration=Number(this.formData.third_party_declaration)
+            this.formData.trust_deed=Number(this.formData.trust_deed)
+            this.formData.bank=Number(this.formData.bank)
             this.settlor_photo_file.push({url: res.settlor_photo_file})
             this.proof_of_current_file.push({url: res.proof_of_current_file})
             this.source_of_wealth_file.push({url: res.source_of_wealth_file})
@@ -305,6 +320,7 @@ export default {
           })
           .catch((err) => {});
       }
+     
     },
     submit(form) {
       console.log(form);

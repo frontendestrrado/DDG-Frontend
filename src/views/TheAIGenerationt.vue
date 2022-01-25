@@ -153,7 +153,7 @@ export default {
 <style scoped lang="scss">
 h1 {
   font-weight: normal;
-  font-size: 3rem;
+  font-size: 4rem;
   color: #7C655D;
   margin-bottom:4rem;
 }
@@ -342,12 +342,12 @@ h1 {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
-        font-weight: bold;
+        font-size: 3rem;
+        font-weight: bold;  
         .contactUs {
             background-color: #fff;
             color: #7B655D;
-            padding: 0.5rem;
+            padding: 1.3rem;
             border-radius: 1rem;
             margin-left: 2rem;
             cursor: pointer;

@@ -17,6 +17,7 @@
       <div class="minTitle">Name of Settlor:</div>
       <div class="minTitle">Third-Party Details (Individual)</div>
       <van-field
+        class="trustorName"
         v-model="formData.trustor_name"
         name="trustor_name"
         center
@@ -145,6 +146,7 @@
         type="text"
         label="Nature of Business(if Self-Employed)"
         placeholder="Please enter the Nature of Business(if Self-Employed)"
+        :rules="[{ required: true }]"
       />
       <van-field
         v-model="formData.relationship_with_settlor"
@@ -363,36 +365,55 @@
         <template #input>
           <van-radio-group
             v-model="formData.declaration_third_party"
-            direction="horizontal"
+            @change="declarationThirdParty"
           >
             <van-radio :name="1"
               >Natural love and affection or as gift to me (Settlor)</van-radio
             >
             <van-radio :name="2">Money owed to me (Settlor)</van-radio>
             <van-radio :name="3">Other, please specify</van-radio>
+            <van-field
+              v-model="formData.others_please_specify"
+              name="others_please_specify"
+              center
+              type="text"
+              label=""
+              placeholder="Please enter the Others, please specify"
+              :rules="[{ required:isothers_please_specify }]"
+            />
             <van-radio :name="4"
-              >Relationship between the Settlor and Third-Party</van-radio
-            >
+              >Relationship between the Settlor and Third-Party</van-radio>
+            <van-field
+              v-model="formData.relationship_between"
+              name="relationship_between"
+              center
+              type="text"
+              label=""
+              placeholder="Please enter the Relationship between the Settlor and Third-Party"
+              :rules="[{ required: isrelationship_between }]"
+            />
             <van-radio :name="5">All photocopied documents must be verified (i.e. signed, dated, name stated) by the Marketing/ Distributing agent</van-radio>
           </van-radio-group>
         </template>
       </van-field>
-      <van-field
+      <!-- <van-field
         v-model="formData.others_please_specify"
         name="others_please_specify"
         center
         type="text"
         label="Others, please specify"
         placeholder="Please enter the Others, please specify"
-      />
-      <van-field
+         
+      /> -->
+      <!-- <van-field
         v-model="formData.relationship_between"
         name="relationship_between"
         center
         type="text"
         label="Relationship between the Settlor and Third-Party"
         placeholder="Please enter the Relationship between the Settlor and Third-Party"
-      />
+        
+      /> -->
       <div class="tl">Signature of Settlor</div>
       <vue-esign
         ref="client_signature"
@@ -511,7 +532,7 @@
         @click="onShowPicker('witness_date')"
         :rules="[{ required: true }]"
       />
-      <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
+      <van-button  round block type="info" native-type="submit" color="#7C655D">
         Submit
       </van-button>
     </van-form>
@@ -589,6 +610,8 @@ export default {
       isFilled: "", // 表單id
       minDate: new Date(1900, 0, 1),
       isDone: false, // 訂單是否已確認
+      isothers_please_specify:false,
+      isrelationship_between:false
     };
   },
   mounted() {
@@ -597,6 +620,18 @@ export default {
     this.getFormData();
   },
   methods: {
+    declarationThirdParty(val){
+       if(val===3){
+         this.isothers_please_specify=true
+         this. isrelationship_between=false
+       }else if(val===4){
+         this. isrelationship_between=true
+         this.isothers_please_specify=false
+       }else{
+         this.isothers_please_specify=false
+         this. isrelationship_between=false
+       }
+    },
     // 如果已填 獲取數據
     getFormData() {
       if (this.isFilled > 0) {
@@ -722,6 +757,9 @@ export default {
 }
 /deep/ .van-field__label {
   width: 13.2rem;
+}
+/deep/ .van-radio__icon{
+  height: 1.5em;
 }
 /*手机*/
 @media screen and (max-width: 768px) {

@@ -71,7 +71,7 @@ export default {
 <style scoped lang="scss">  
 .Products {
   .title {
-    font-size: 3rem;
+    font-size: 4rem;
   }
    font-family: 'Times New Roman';
   .ProductsOne {
@@ -149,12 +149,12 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: bold;
         .contactUs {
             background-color: #fff;
             color: #7B655D;
-            padding: 0.5rem;
+            padding: 1.3rem;
             border-radius: 1rem;
             margin-left: 2rem;
             cursor: pointer;
@@ -164,17 +164,18 @@ export default {
 @media screen and (max-width: 1025px){
   .Products {
   .title {
-    font-size: 3.5rem;
-    margin-bottom: 4rem;
+    font-size: 4rem;
+    margin-bottom: 10rem;
   }
    font-family: 'Times New Roman';
    .ProductsOneCopy{
       background: url(../assets/img/png/蒙版58@3x.png) no-repeat scroll;
-      background-color: #7B655D;
+      background-color: #967f76;
       height: 43rem;
-      background-size: 70%;
-      width: 40%;
-      border-radius: 1rem;
+      background-size: 60%;
+      width: 55%;
+      margin-bottom: 15rem;
+      // border-radius: 1rem;
       
       // background-position-x: 1rem;
    }
@@ -185,12 +186,12 @@ export default {
     background-size: 100% 100%;
     text-align: left;
     position: relative;
-    color: #7B655D;
+    color: #fff;
     .text1{
         font-size:5rem;
         position: absolute;
-        left:45%;
-        top:-17%;
+        left:32%;
+        top:-26%;
         span{
           color: #7B655D;
         }
@@ -198,8 +199,8 @@ export default {
     .text2{
         font-size:5rem;
         position: absolute;
-        left:46%;
-        top:-10%;  
+        left:35%;
+        top:-19%;  
         span{
           color: #7B655D;
         }
@@ -280,12 +281,12 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: bold;
         .contactUs {
             background-color: #fff;
             color: #7B655D;
-            padding: 0.5rem;
+            padding: 1.3rem;
             border-radius: 1rem;
             margin-left: 2rem;
             cursor: pointer;

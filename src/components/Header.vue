@@ -47,7 +47,7 @@
 							fit="contain"
 							@click="changeActTab('/Index', 'Home');"/> -->
           <div v-if="$store.state.currentPage.tabbar != '/Home'">
-            {{ $store.state.currentPage.title }}
+            {{$store.state.currentPage.title}}
           </div>
         </van-col>
         <van-col
@@ -131,6 +131,7 @@ export default {
   },
   data() {
     return {
+      title:'',
       tabList: [],
       isShowTopUl: true,
       lang: this.$i18n.locale,
@@ -152,7 +153,9 @@ export default {
       isToken: ''
     };
   },
+ 
   mounted() {
+
     this.getLogo();
     this.getTabbar();
     this.getUserInfo();
@@ -444,7 +447,7 @@ export default {
   cursor: pointer;
 }
 .titleBig {
-  font-size: 24px;
+  font-size: 2.5rem;
   font-family: FandolSong;
   color: #897359;
 }
@@ -512,7 +515,7 @@ export default {
     display: none;
   }
   .titleBig {
-    font-size: 18px;
+    font-size: 3rem;
   }
 }
 /*平板*/
@@ -568,7 +571,7 @@ export default {
     display: none;
   }
   .titleBig {
-    font-size: 24px;
+    font-size: 3rem;
   }
 }
 /*中等屏幕*/

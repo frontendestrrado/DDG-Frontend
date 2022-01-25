@@ -105,6 +105,9 @@ export default new Vuex.Store({
         case 'DDG Leadership':
           val.title = ''
           break;
+        case 'OrderDetail':
+          val.title = 'Order Detail'
+          break;  
       }
       sessionStorage.setItem('currentPage', JSON.stringify(val));
       // console.log(JSON.parse(sessionStorage.currentPage));

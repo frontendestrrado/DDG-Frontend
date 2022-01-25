@@ -15,7 +15,7 @@
         disabled
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter the Date"
+        placeholder="[Leave Blank]"
       />
       <div class="minTitle">ASIA INTERNATIONAL TRUST BERHAD</div>
       <div class="minTitle">Suite 8.01, Level 8, Menara Binjai,</div>
@@ -65,6 +65,37 @@
         bind or affect the powers vested in the Trustee.
       </div>
       <div class="minTitle">Yours faithfully</div>
+      <vue-esign
+        ref="signature"
+        :width="1200"
+        :height="300"
+        :isCrop="false"
+        :lineWidth="6"
+        v-show="!formData.signature"
+        lineColor="#000000"
+        bgColor.sync="#fff"
+        style="border: 1px solid #666"
+      />
+      <van-image
+        v-show="formData.signature"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.signature"
+      />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('signature')">
+          Clear
+        </div>
+        <div
+          class="esignBtn"
+          @click="
+            handleGenerate('signature')
+          "
+        >
+          Confirm
+        </div>
+      </div>
       <van-field
         v-model="formData.client_name"
         name="client_name"
@@ -114,6 +145,7 @@ import {
   getOrdersForms,
   putOrdersForms,
 } from "@/api/order";
+import { uploadAutograph} from "@/api/util";
 export default {
   data() {
     return {
@@ -121,6 +153,7 @@ export default {
         date: "",
         client_name: "",
         passport_no: "",
+        signature:''
       },
       isShowPicker: false,
       currentContent: new Date(), // 日期彈框顯示當前日期
@@ -138,6 +171,50 @@ export default {
     this.getFormData();
   },
   methods: {
+    // 清空画布
+    handleReset(val) {
+      console.log(this.$refs[val],111)
+      this.$refs[val].reset(); //清空画布
+      if (val == 'signature') {
+        this.formData.signature = ''
+      }
+    },
+    handleGenerate(val) {
+     console.log(this.$refs[val].generate().PromiseState)
+      var that = this;
+      this.$refs[val]
+        .generate()
+        .then((res) => {
+          uploadAutograph({
+            image: res,
+            path: "",
+          })
+            .then((res) => {
+               console.log(res)
+              that.formData[val] = res.path;
+              that.$toast({
+                type: "success",
+                message: "Signature \n success",
+              });
+            })
+            .catch((err) => {
+              that.$toast({
+                type: "fail",
+                message: "Uploading\n picture\n failed",
+              });
+            });
+            // this.$refs['trustor_signature2'].resultImg=that.formData[val2][val]
+            // console.log(this.$refs[val].resultImg)
+        })
+        .catch((err) => {
+          //  没有签名，点击生成图片时调用
+          that.$toast({
+            type: "fail",
+            message: err + " No signature！",
+          });
+          alert(err); // 画布没有签字时会执行这里 'Not Signned'
+        });
+    },
     // 獲取表單數據
     getFormData() {
       if (this.isFilled > 0) {
@@ -151,6 +228,10 @@ export default {
     submit(form) {
       console.log(form);
       let data = JSON.parse(JSON.stringify(this.formData));
+      if (!this.formData.signature) {
+        this.$toast.fail("Please sign your name");
+        return;
+      } 
       if (this.isFilled > 0) {
         // 修改
         putOrdersForms(this.isFilled, {
@@ -223,6 +304,23 @@ export default {
 .minTitle {
   font-weight: bold;
   line-height: 24px;
+}
+.esignImgbox {
+  border: 1px solid #666666;
+}
+.esignBtn {
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #7C655D;
+  font-size: 16px;
+  border-radius: 13px;
+  height: 35px;
+  line-height: 35px;
+  margin: 10px 0 10px 10px;
+  display: inline-block;
+  width: auto;
+  padding: 0 10px;
 }
 /deep/ .van-field__label {
   width: 13.2rem;

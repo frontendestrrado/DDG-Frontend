@@ -77,7 +77,7 @@ export default {
 .Aspirations {
   color: #7C655D;
     .title {
-      font-size: 3rem;
+      font-size: 4rem;
       font-family: 'Times New Roman';
     }
   .AspirationsOne {
@@ -187,12 +187,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     .contactUs {
       background-color: #fff;
       color: #7B655D;
-      padding: 0.5rem;
+      padding: 1.3rem;
       border-radius: 1rem;
       margin-left: 2rem;
       cursor: pointer;
@@ -203,7 +203,7 @@ export default {
   .Aspirations {
   color: #7C655D;
     .title {
-      font-size: 3rem;
+      font-size: 4rem;
       font-family: 'Times New Roman';
     }
    .AspirationsCopy{
@@ -337,12 +337,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     .contactUs {
       background-color: #fff;
       color: #7B655D;
-      padding: 0.5rem;
+      padding: 1.3rem;
       border-radius: 1rem;
       margin-left: 2rem;
       cursor: pointer;

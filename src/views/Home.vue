@@ -168,7 +168,7 @@ main {
     width: 100%;
     padding: 10px;
     .van-dialog__footer{
-       width: 12rem;
+       width: 15rem;
        position: relative;
        left: 50%;
        transform:translateX(-50%) ;
@@ -177,8 +177,8 @@ main {
         color:#fff;
         background-color: #7C655D;
         border-radius: 10px;
-        height: 3rem;
-        width: 12rem;
+        height: 6rem;
+        width: 15rem;
       }
 
     }
