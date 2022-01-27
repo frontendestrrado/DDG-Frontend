@@ -8,8 +8,6 @@
       class="index-title-div"
       :style="{
         fontSize: titleData.title_size + 'px',
-        color: titleData.title_color,
-        justifyContent: titleData.align,
       }"
     >
       <van-image
@@ -42,8 +40,11 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 0px auto;
-  padding: 10px 0;
+  justify-content: center;
+  /* margin: 0px auto; */
+  /* padding: 10px 0; */
+  background-color: #7C655D;
+  color: #fff;
 }
 .index-title-icon {
   width: 15px;

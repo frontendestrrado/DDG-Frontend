@@ -330,8 +330,8 @@ export default {
         return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
-      data.name = Number(data.name)
-      data.nric = Number(data.nric)
+      data.name = (data.name)+''
+      data.nric = (data.nric)+''
       data.application_form = Number(data.application_form)
       data.compliance_qestionnaire = Number(data.compliance_qestionnaire)
       data.settlor_photocopy = Number(data.settlor_photocopy)
@@ -343,6 +343,8 @@ export default {
       data.trust_deed = Number(data.trust_deed)
       data.third_party_declaration = Number(data.third_party_declaration)
       data.source_of_fund = Number(data.source_of_fund)
+
+      console.log(data)
       if (this.from == "create") {
         data.is_done = 1
       }
