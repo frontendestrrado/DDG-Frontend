@@ -1,7 +1,8 @@
 <template>
 	<div class="main_container">
 		<!-- Banner1 title2 richText3 movie4 singleimage5 imagetext6 showcaseImage7 text8 -->
-		<div v-for="(item,index) in pageData" :key="index">
+		<div class="mian_container_page">
+		  <div v-for="(item,index) in pageData" :key="index" >
 			<Banner v-if="item.type === 1" :bannerData='item' @on-goto="goPage"></Banner>
 			<TilText v-if="item.type === 2" :titleData='item'></TilText>
 			<RichText v-if="item.type === 3 && item.content" :richTextData='item'></RichText>
@@ -11,7 +12,12 @@
 			<TextMode v-if="item.type === 8" :textData='item'></TextMode>
 			<InputMode v-if="item.type === 9" :formData.sync='item'></InputMode>
 			<File v-if="item.type === 10" :fileData='item'></File>
+		  </div>
 		</div>
+		<div class="ProductsThree">
+			<span>For more enquiries</span>
+			<span class="contactUs" @click="toContactUs()">Contact Us</span>
+        </div>
 	</div>
 </template>
 <script>
@@ -161,6 +167,13 @@
 		mounted(){
 		},
 		methods:{
+			 toContactUs() {
+			this.$store.commit('changePage', {
+				tabbar: '/ContactUs',
+				title: 'Contact Us',
+			});
+			this.$router.push('/ContactUs');
+			},
 			goPage(path,text){
 				if(!!path){
 					if(path.indexOf('/')==0){
@@ -185,6 +198,31 @@
 		}
 	}
 </script>
-<style scoped>
-
+<style lang="scss" scoped>
+.ProductsThree{
+	    margin-top: 5rem;
+        height: 13rem;
+        background-color: #7C655D;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-weight: bold;
+        .contactUs {
+            background-color: #fff;
+            color: #7B655D;
+            padding: 1.3rem;
+            border-radius: 1rem;
+            margin-left: 2rem;
+            cursor: pointer;
+        }
+    }
+@media screen and (min-width: 1200px){
+  .mian_container_page{
+    width: 80%;
+	margin: 0 auto;
+	box-shadow: rgba(0, 0, 0, 0.3) 0 0.5rem 1rem;
+  }
+}
 </style>
