@@ -1,6 +1,6 @@
 <template>
   <div class="header bgAsh">
-    <div class="header-main">
+    <div class="header-main" >
       <!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
 			  		<van-image
@@ -86,6 +86,7 @@
 
         <!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
         <MenuTop
+          
           @on-change="changeActTab"
           :menu-data="tabList"
           cl-name.sync="menu"
@@ -131,6 +132,7 @@ export default {
   },
   data() {
     return {
+     
       title:'',
       tabList: [],
       isShowTopUl: true,
@@ -221,6 +223,7 @@ export default {
       }
     },
     changeActTab(name, title, link) {
+      
       console.log(name, title, link, 3333333);
       console.log(">>>>>",this.tabList)
       this.isShowTopUl = true;

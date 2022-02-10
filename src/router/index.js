@@ -31,7 +31,7 @@ import Members from '@/tools/Members'
 import MemberDetail from '@/tools/MemberDetail'
 import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
-
+import OrderSignature from '@/tools/order/OrderSignature'
 import LearnUse from '@/tools/LearnUse'
 import TeachTools from '@/tools/TeachTools'
 import FormsPage from '@/tools/FormsPage'
@@ -75,6 +75,10 @@ const router = new Router({
       path: '/Login',
       name: '登录',
       component: Login,
+    },{
+      path: '/OrderSignature',
+      name: 'OrderSignature',
+      component: OrderSignature,
     },{
       path: '/Personal',
       name: '个人信息',

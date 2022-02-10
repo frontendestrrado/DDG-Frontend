@@ -222,7 +222,7 @@
         :rules="[{ required: true }]"
       />
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
-        submit
+        save
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
