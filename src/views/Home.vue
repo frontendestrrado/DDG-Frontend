@@ -1,6 +1,6 @@
 <template>
   <div class="main" @click="autoMenu">
-    <header style="height: auto;" v-if="true">
+    <header style="height: auto;" >
       <Top></Top>
     </header>
     <main>

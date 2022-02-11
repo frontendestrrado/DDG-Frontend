@@ -50,9 +50,10 @@
             {{$store.state.currentPage.title}}
           </div>
         </van-col>
+        <!-- style="display: flex; align-items: center; justify-content: end;" -->
         <van-col
           :span="5"
-          style="display: flex; align-items: center; justify-content: end;margin-right:20px"
+          style="display: flex; align-items: center; justify-content: end;"
         >
           <!-- v-if="$store.state.currentPage.tabbar == '/Index'" -->
           <div

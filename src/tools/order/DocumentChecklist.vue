@@ -323,7 +323,7 @@ export default {
      
     },
     submit(form) {
-      console.log(form);
+      console.log(form,11111);
       
       if (!this.formData.signature) {
         this.$toast.fail("Please sign your name");
@@ -344,10 +344,11 @@ export default {
       data.third_party_declaration = Number(data.third_party_declaration)
       data.source_of_fund = Number(data.source_of_fund)
 
-      console.log(data)
-      if (this.from == "create") {
-        data.is_done = 1
-      }
+      // console.log(data,11111)
+      // if (this.from == "create") {
+      //   data.is_done = 1
+      // }
+      // console.log( data.is_done,11111)
       if (this.isFilled > 0) {
         // 修改
         putOrdersForms(this.isFilled, {
