@@ -261,12 +261,18 @@ Router.prototype.replace = function replace (to) {
 //     // console.log('from:'+from.path, from.name);
 //     // console.log('to:'+to.path, to.name);
 //     // console.log('********************************************')
+//     if(to.path=='/OrderSignature'){
+//       this.$store.commit('changeIsmenutop',false)
+//     }else{
+//       this.$store.commit('changeIsmenutop',true)
+//     }
 //     next();
 //     // if (sessionStorage.token ||to.matched.some(record => record.meta.through)) {
 //     //     next()
 //     // } else {
 //     //     return next({ path: '/' })
 //     // }
+   
 // });
 
 export default router;

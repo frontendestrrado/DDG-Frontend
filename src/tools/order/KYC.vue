@@ -1802,7 +1802,15 @@ export default {
     },
     submit(form) {
       console.log(form, "form");
-      if (!this.formData.store_marketing_officer.trustor_signature1) {
+      if (!this.formData.store_marketing_officer.trustor_signature1&&!this.$store.state.isOverseaSignature) {
+        this.$toast.fail("Please sign your name");
+        return;
+      } 
+      if (!this.formData.store_manager.trustor_signature2&&!this.$store.state.isOverseaSignature) {
+        this.$toast.fail("Please sign your name");
+        return;
+      } 
+      if (!this.formData.declaration.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       } 

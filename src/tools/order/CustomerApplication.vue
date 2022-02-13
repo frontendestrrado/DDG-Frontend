@@ -6,6 +6,9 @@
       :submit-on-enter="false"
       :scroll-to-error="true"
     >
+       <van-button  round block type="info" color="#7C655D" @click="OverseaSignature">
+        Oversea Signature
+      </van-button>
       <div class="minTitle">GENERAL INFORMATION</div>
       <!-- 文本框 -->
       <van-field
@@ -630,6 +633,7 @@ import { createOrders, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
   data() {
     return {
+      isOverseaSignature:false,
       formData: {
         name: "",
         passport_no: "",
@@ -698,6 +702,15 @@ export default {
     this.getFormData();
   },
   methods: {
+    OverseaSignature(){
+      this.isOverseaSignature=true
+       this.$store.commit('changeIsOverseaSignature',true)
+      //  this.$toast({
+      //   type: "success",
+      //   message: " Oversea Signature setting success",
+      // });
+       alert("Oversea Signature setting success")
+    },
     // 如果已填 獲取數據
     getFormData() {
       if (this.isFilled > 0) {

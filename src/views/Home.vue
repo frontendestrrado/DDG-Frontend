@@ -18,7 +18,7 @@
       </div>
     </div> -->
     <div style="height: 50px;"></div>
-    <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok">
+    <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok" v-if="$store.state.isMenuTop">
 			<div style="padding:10px;">
 				<div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>
 				<div>While the DDG International Berhad (DDG) strives to make the information on this website as well as its downloadable promotional materials including, without limitation, journal advertisements, sales visual aids, prints, direct mail as timely and accurate as possible, DDG makes no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this site and its promotional materials, and expressly disclaims liability for errors and omissions in the contents of this site and the promotional materials carried by DDG Advisors (with valid DDG ID). No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose or freedom from computer virus, is given with respect to the contents of this website or its links to other Internet resources.

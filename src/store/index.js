@@ -7,6 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isMenuTop:true,
+    isOverseaSignature:false,
     count: 0,
     num: 10,
     language: sessionStorage["language"] ? sessionStorage["language"] : 'en',
@@ -112,6 +114,12 @@ export default new Vuex.Store({
       sessionStorage.setItem('currentPage', JSON.stringify(val));
       // console.log(JSON.parse(sessionStorage.currentPage));
       state.currentPage = val;
+    },
+    changeIsmenutop(state,val){
+      state.isMenuTop = val;
+    },
+    changeIsOverseaSignature(state,val){
+      state.isOverseaSignature = val;
     }
   },
   actions: {  //调用mutations里的方法

@@ -74,7 +74,12 @@ const i18n = new VueI18n({
 });
 Vue.prototype.$Local = locales;
 
-router.beforeEach((to, from, next) => {    
+router.beforeEach((to, from, next) => {  
+	if(to.path=='/OrderSignature'){
+	  store.commit('changeIsmenutop',false)
+	}else{
+ 	  store.commit('changeIsmenutop',true)
+	} 
 	// chrome
 	document.body.scrollTop = 0
 	// firefox
@@ -83,6 +88,7 @@ router.beforeEach((to, from, next) => {
 	window.pageYOffset = 0
 	next()
 })
+
 
 /* eslint-disable no-new */
 new Vue({

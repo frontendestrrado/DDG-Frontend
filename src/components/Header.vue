@@ -1,6 +1,6 @@
 <template>
   <div class="header bgAsh">
-    <div class="header-main" >
+    <div class="header-main" v-if="$store.state.isMenuTop">
       <!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
 			  		<van-image
@@ -133,7 +133,6 @@ export default {
   },
   data() {
     return {
-     
       title:'',
       tabList: [],
       isShowTopUl: true,
@@ -164,7 +163,6 @@ export default {
     this.getUserInfo();
     let lang = this.$i18n.locale;
     this.$store.commit("changeLang", lang);
-
     let path = this.$router.history.current.path
       ? this.$router.history.current.path
       : "/Home";
