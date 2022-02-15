@@ -224,9 +224,6 @@
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         save
       </van-button>
-      <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;">
-        share
-      </van-button>
     </van-form>
     <!-- 日期彈框 -->
     <van-popup v-model="isShowPicker" position="bottom">
@@ -328,7 +325,7 @@ export default {
     submit(form) {
       console.log(form,11111);
       
-      if (!this.formData.signature) {
+      if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       }

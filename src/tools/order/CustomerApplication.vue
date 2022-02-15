@@ -6,9 +6,9 @@
       :submit-on-enter="false"
       :scroll-to-error="true"
     >
-       <van-button  round block type="info" color="#7C655D" @click="OverseaSignature">
-        Oversea Signature
-      </van-button>
+       <!-- <van-button  round block type="info" color="#7C655D" @click="OverseaSignature">
+        Overseas Signature
+      </van-button> -->
       <div class="minTitle">GENERAL INFORMATION</div>
       <!-- 文本框 -->
       <van-field
@@ -764,7 +764,7 @@ export default {
     submit(form) {
       console.log(form);
       console.log(this.formData);
-      if (!this.formData.signature) {
+      if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       } else if (!this.formData.born_date) {

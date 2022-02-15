@@ -230,7 +230,7 @@ export default {
     },
     submit(form) {
       console.log(form);
-      if (!this.formData.signature) {
+      if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       }

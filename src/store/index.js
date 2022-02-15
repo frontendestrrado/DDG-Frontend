@@ -91,6 +91,12 @@ export default new Vuex.Store({
     },
     // 切换页面tab
     changePage(state, val) {
+      // if(val.title=''){
+      //   val.title=state.currentPage.title
+      // }
+      // if(val.tabbar=''){
+      //   val.tabbar=state.currentPage.tabbar
+      // }
       switch(val.title) {
         case 'Aspirations':
           val.title = ''
@@ -111,8 +117,9 @@ export default new Vuex.Store({
           val.title = 'Order Detail'
           break;  
       }
+      
       sessionStorage.setItem('currentPage', JSON.stringify(val));
-      // console.log(JSON.parse(sessionStorage.currentPage));
+      console.log(JSON.parse(sessionStorage.currentPage));
       state.currentPage = val;
     },
     changeIsmenutop(state,val){

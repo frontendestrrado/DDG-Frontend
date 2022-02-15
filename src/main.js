@@ -75,7 +75,7 @@ const i18n = new VueI18n({
 Vue.prototype.$Local = locales;
 
 router.beforeEach((to, from, next) => {  
-	if(to.path=='/OrderSignature'){
+	if(to.path=='/OrderSignatureCustomers'){
 	  store.commit('changeIsmenutop',false)
 	}else{
  	  store.commit('changeIsmenutop',true)

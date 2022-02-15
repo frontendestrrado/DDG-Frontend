@@ -32,6 +32,7 @@ import MemberDetail from '@/tools/MemberDetail'
 import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
 import OrderSignature from '@/tools/order/OrderSignature'
+import OrderSignatureCustomers from '@/tools/order/OrderSignatureCustomers'
 import LearnUse from '@/tools/LearnUse'
 import TeachTools from '@/tools/TeachTools'
 import FormsPage from '@/tools/FormsPage'
@@ -75,6 +76,10 @@ const router = new Router({
       path: '/Login',
       name: '登录',
       component: Login,
+    },{
+      path: '/OrderSignatureCustomers',
+      name: 'OrderSignatureCustomers',
+      component: OrderSignatureCustomers,
     },{
       path: '/OrderSignature',
       name: 'OrderSignature',
@@ -199,6 +204,10 @@ const router = new Router({
       path: '/CustomerApplication',
       name: 'CustomerApplication',
       component: () => import('@/tools/order/CustomerApplication'),
+    },{
+      path: '/Choose',
+      name: 'Choose',
+      component: () => import('@/tools/order/Choose'),
     },{
       path: '/LetterOfWishes',
       name: 'LetterOfWishes',
