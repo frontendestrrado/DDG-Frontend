@@ -35,7 +35,7 @@ export default {
     mounted(){
         this.orderDataInfo.orderId=this.$route.query.orderId
         this.orderDataInfo.isFilled=this.$route.query.isFilled
-        this.orderDataInfo.status=this.$$route.query.status
+        // this.orderDataInfo.status=this.$$route.query.status
     },
     methods:{
     getOrderDetail() {

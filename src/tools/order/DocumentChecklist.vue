@@ -387,7 +387,10 @@ export default {
                 tabbar: "/CreateOrder",
                 title: "CreateOrder",
               });
-              this.$router.push("/CreateOrder");
+              if(!this.$store.state.isOverseaSignature){
+                this.$router.push("/CreateOrder");
+              }
+              
             } else {
               this.$router.go(-1);
             }

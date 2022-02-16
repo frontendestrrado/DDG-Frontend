@@ -273,9 +273,12 @@ export default {
                 tabbar: "/DocumentChecklist",
                 title: "5/5 Document Checklist",
               });
-              this.$router.push(
-                "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId
-              );
+              if(!this.$store.state.isOverseaSignature){
+                  this.$router.push(
+                 "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId
+                );
+              }
+              
             } else {
               this.$router.go(-1);
             }

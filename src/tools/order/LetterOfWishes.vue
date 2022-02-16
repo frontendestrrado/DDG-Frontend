@@ -270,9 +270,12 @@ export default {
                 tabbar: "/PDPAMemo",
                 title: "4/5 PDPA Memo",
               });
-              this.$router.push(
-                "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
-              );
+              if(!this.$store.state.isOverseaSignature){
+                this.$router.push(
+                  "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
+                );
+              }
+              
             } else {
               this.$router.go(-1);
             }
