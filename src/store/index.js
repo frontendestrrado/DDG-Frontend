@@ -7,6 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isShare:false,
+    CustomerApplicationId:null,
     isMenuTop:true,
     isOverseaSignature:false,
     count: 0,
@@ -127,6 +129,13 @@ export default new Vuex.Store({
     },
     changeIsOverseaSignature(state,val){
       state.isOverseaSignature = val;
+    },
+    changeCustomerApplicationId(state,val){
+      state.CustomerApplicationId=val
+      console.log(val,"hhhhh")
+    },
+    changeisShare(state,val){
+      state.isShare=val
     }
   },
   actions: {  //调用mutations里的方法

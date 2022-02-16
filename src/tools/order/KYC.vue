@@ -1580,6 +1580,7 @@
 import { uploadAutograph, smsVerify_code, verdict_code,uploadFile } from "@/api/util";
 import { kyc_form, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
+  props:['orderDataInfo'],
   data() {
     return {
       formData: {
@@ -1768,9 +1769,17 @@ export default {
   },
   mounted() {
     console.log(this.$route.query, 222222);
-    this.from = this.$route.query.from;
-    this.isFilled = this.$route.query.isFilled;
-    this.isDone = this.$route.query.status == 1 ? true : false;
+    if(this.$store.state.isOverseaSignature){
+      this.from = "create"
+      this.isFilled=0
+    }else{
+      this.from = this.$route.query.from;
+      this.isFilled = this.$route.query.isFilled;
+      this.isDone = this.$route.query.status == 1 ? true : false;
+    }
+    if(this.$store.state.isShre){
+      this.isFilled=this.orderDataInfo.isFilled
+    }
     this.getFormData();
   },
   methods: {
@@ -1840,7 +1849,8 @@ export default {
           this.$router.go(-1);
         });
       } else {
-        kyc_form(this.$route.query.orderId, data)
+        console.log(this.$store.state.CustomerApplicationId)
+        kyc_form(this.$store.state.CustomerApplicationId, data)
           .then((res) => {
             console.log(res);
             this.$toast({
@@ -1852,10 +1862,12 @@ export default {
                 tabbar: "/LetterOfWishes",
                 title: "3/5 Letter Of Wishes",
               });
-              this.$router.push(
-                "/LetterOfWishes?from=create&orderId=" +
+              if(!this.$store.state.isOverseaSignature){
+                  this.$router.push(
+                  "/LetterOfWishes?from=create&orderId=" +
                   this.$route.query.orderId
-              );
+                );
+              }
             } else {
               this.$router.go(-1);
             }

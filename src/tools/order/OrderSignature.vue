@@ -1,9 +1,14 @@
 <template>
     <div>
+      <div class="title">1/5 Customer Application</div>
       <CustomerApplication></CustomerApplication>
+      <div class="title">2/5 Compliance Questionnaire</div>
       <KYC></KYC>
+      <div class="title">3/5 Letter Of Wishes</div>
       <LetterOfWishes></LetterOfWishes>
+      <div class="title">4/5 PDPA Memo</div>
       <PDPAMemo></PDPAMemo>
+      <div class="title">5/5 Document Checklist</div>
       <DocumentChecklist></DocumentChecklist>
       <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="onSelect()">
         share
@@ -17,10 +22,12 @@ import KYC from "@/tools/order/KYC";
 import LetterOfWishes from "@/tools/order/LetterOfWishes";
 import PDPAMemo from "@/tools/order/PDPAMemo";
 import DocumentChecklist from "@/tools/order/DocumentChecklist";
+import { getOrderDetail} from "@/api/order"
 export default {
     data(){
       return{
-        link:''
+        link:'',
+        orderData:{}
       }
     },
     components:{
@@ -29,11 +36,24 @@ export default {
     mounted(){
       let url=window.location.href
       this.link=url.split("#")
-      this.link[1]='/OrderSignatureCustomers'
-      console.log(this.link.join('#'),22222)
+      this.link[1]='/OrderSignatureCustomers'  
+      
     },
     methods:{
+        getOrderDetail() {
+          getOrderDetail(this.$store.state.CustomerApplicationId)
+            .then((res) => {
+              console.log(res);
+              this.orderData = res;
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        },
         onSelect() {
+          this.$store.commit('changeisShare',true)
+          this.getOrderDetail()
+          console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&isFilled='+this.orderData.customer_app_form+'&status='+this.orderData.status,22222)
           const self = this
             // this.$store.commit('changeIsmenutop',false)
             var nativeShare = new NativeShare({
@@ -54,7 +74,7 @@ export default {
              // 设置分享文案
             nativeShare.setShareData({
               icon: '../../../src/assets/img/logo.png',
-              link: this.link.join('#'),
+              link: this.link.join('#')+'?orderId='+this.orderData.id+'&isFilled='+this.orderData.customer_app_form+'&status='+this.orderData.status,
               title: 'DDG',
               // desc:self.title,
               from: '@fa-ge',
@@ -79,5 +99,8 @@ export default {
 
 </script>
 <style scoped>
-
+.title{
+  margin: 5rem 0;
+  font-size: 2rem;
+}
 </style>

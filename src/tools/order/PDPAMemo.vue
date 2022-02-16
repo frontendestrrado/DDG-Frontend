@@ -191,6 +191,7 @@
 import { uploadAutograph } from "@/api/util";
 import { pdpa_memo, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
+  props:['orderDataInfo'],
   data() {
     return {
       formData: {
@@ -211,9 +212,20 @@ export default {
     };
   },
   mounted() {
-    this.from = this.$route.query.from;
-    this.isFilled = this.$route.query.isFilled;
-    this.isDone = this.$route.query.status == 1 ? true : false;
+    // this.from = this.$route.query.from;
+    // this.isFilled = this.$route.query.isFilled;
+    // this.isDone = this.$route.query.status == 1 ? true : false;
+    if(this.$store.state.isOverseaSignature){
+      this.from = "create"
+      this.isFilled=0
+    }else{
+      this.from = this.$route.query.from;
+      this.isFilled = this.$route.query.isFilled;
+      this.isDone = this.$route.query.status == 1 ? true : false;
+    }
+    if(this.$store.state.isShre){
+      this.isFilled=this.orderDataInfo.isFilled
+    }
     this.getFormData();
   },
   methods: {
@@ -249,7 +261,7 @@ export default {
           this.$router.go(-1);
         });
       } else {
-        pdpa_memo(this.$route.query.orderId, data)
+        pdpa_memo(this.$store.state.CustomerApplicationId, data)
           .then((res) => {
             console.log(res);
             this.$toast({

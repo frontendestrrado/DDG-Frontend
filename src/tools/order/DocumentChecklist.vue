@@ -245,6 +245,7 @@
 import { uploadAutograph, uploadFile } from "@/api/util";
 import { getOrdersForms, putOrdersForms, document_check_list_form } from "@/api/order";
 export default {
+  props:['orderDataInfo'],
   data() {
     return {
       formData: {
@@ -288,9 +289,20 @@ export default {
   },
   mounted() {
     console.log(Number(false) ,222222222);
-    this.from = this.$route.query.from;
-    this.isFilled = this.$route.query.isFilled;
-    this.isDone = this.$route.query.status == 1 ? true : false;
+    // this.from = this.$route.query.from;
+    // this.isFilled = this.$route.query.isFilled;
+    // this.isDone = this.$route.query.status == 1 ? true : false;
+    if(this.$store.state.isOverseaSignature){
+      this.from = "create"
+      this.isFilled=0
+    }else{
+      this.from = this.$route.query.from;
+      this.isFilled = this.$route.query.isFilled;
+      this.isDone = this.$route.query.status == 1 ? true : false;
+    }
+    if(this.$store.state.isShre){
+      this.isFilled=this.orderDataInfo.isFilled
+    }
     this.getFormData();
   },
   methods: {
@@ -363,7 +375,7 @@ export default {
           this.$router.go(-1);
         });
       } else {
-        document_check_list_form(this.$route.query.orderId, data)
+        document_check_list_form(this.$store.state.CustomerApplicationId, data)
           .then((res) => {
             console.log(res);
             this.$toast({
