@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isShare:false,
+    shareOrderData:{},
+    // isShare:false,
     CustomerApplicationId:null,
     isMenuTop:true,
     isOverseaSignature:false,
@@ -134,8 +135,15 @@ export default new Vuex.Store({
       state.CustomerApplicationId=val
       console.log(val,"hhhhh")
     },
-    changeisShare(state,val){
-      state.isShare=val
+    // changeisShare(state,val){
+    //   state.isShare=val
+    //   console.log(val)
+    //   sessionStorage.setItem('isShare', val);
+    //   console.log(sessionStorage.isShare,963699)
+    // },
+    changeShareOrderData(state,val){
+      state.shareOrderData=val
+      console.log(state.shareOrderData,99999999999)
     }
   },
   actions: {  //调用mutations里的方法

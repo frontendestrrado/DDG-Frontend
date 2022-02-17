@@ -223,8 +223,8 @@ export default {
       this.isFilled = this.$route.query.isFilled;
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
-    if(this.$store.state.isShre){
-      this.isFilled=this.orderDataInfo.isFilled
+    if(this.$route.query.isShare){
+     this.isFilled=this.$route.query.pdpa_memo_form
     }
     this.getFormData();
   },
@@ -258,7 +258,9 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          this.$router.go(-1);
+          if(!this.$route.query.isShare){
+            this.$router.go(-1);
+          }
         });
       } else {
         pdpa_memo(this.$store.state.CustomerApplicationId, data)
@@ -273,7 +275,7 @@ export default {
                 tabbar: "/DocumentChecklist",
                 title: "5/5 Document Checklist",
               });
-              if(!this.$store.state.isOverseaSignature){
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
                   this.$router.push(
                  "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId
                 );

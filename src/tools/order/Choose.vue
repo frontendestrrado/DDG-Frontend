@@ -15,8 +15,10 @@ export default {
        this.$store.commit('changeIsOverseaSignature',true)
        this.$router.push('/OrderSignature')
        this.$store.commit('changePage',{tabbar: '/OrderSignature', title: 'OrderSignature'});
+      //  this.$store.commit('changeisShare',true)
       },
       LocalSignature(){
+          //  this.$store.commit('changeisShare',false)
           this.$store.commit('changeIsOverseaSignature',false)
           this.$router.push('/CustomerApplication')
           this.$store.commit('changePage',{tabbar: '/CustomerApplication', title: '1/5 Customer Application'});

@@ -235,6 +235,10 @@ export default {
           this.$router.push("/Login");
         }else{
           this.$router.go(-1);
+           this.$store.commit("changePage", {
+              tabbar: "",
+              title: "",
+            });
         }
       } else {
         if (this.isNumber(name)) {

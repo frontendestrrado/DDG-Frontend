@@ -222,7 +222,8 @@
         :rules="[{ required: true }]"
       />
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
-        save
+        <span v-if="!this.$route.query.isShare">save</span>
+        <span v-else>submit</span>
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
@@ -300,8 +301,8 @@ export default {
       this.isFilled = this.$route.query.isFilled;
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
-    if(this.$store.state.isShre){
-      this.isFilled=this.orderDataInfo.isFilled
+    if(this.$route.query.isShare){
+      this.isFilled=this.$route.query.documentCheckListForm
     }
     this.getFormData();
   },
@@ -372,7 +373,9 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          this.$router.go(-1);
+          if(!this.$route.query.isShare){
+            this.$router.go(-1);
+          }
         });
       } else {
         document_check_list_form(this.$store.state.CustomerApplicationId, data)
@@ -387,7 +390,7 @@ export default {
                 tabbar: "/CreateOrder",
                 title: "CreateOrder",
               });
-              if(!this.$store.state.isOverseaSignature){
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
                 this.$router.push("/CreateOrder");
               }
               
@@ -397,6 +400,7 @@ export default {
           })
           .catch((err) => {});
       }
+      this.$emit('getOrderDetail')
     },
     // 清空画布
     handleReset(val) {

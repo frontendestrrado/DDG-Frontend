@@ -1777,8 +1777,8 @@ export default {
       this.isFilled = this.$route.query.isFilled;
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
-    if(this.$store.state.isShre){
-      this.isFilled=this.orderDataInfo.isFilled
+    if(this.$route.query.isShare){
+       this.isFilled=this.$route.query.kyc_form
     }
     this.getFormData();
   },
@@ -1846,7 +1846,10 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          this.$router.go(-1);
+          if(!this.$route.query.isShare){
+            this.$router.go(-1);
+          }
+          
         });
       } else {
         console.log(this.$store.state.CustomerApplicationId)
@@ -1862,7 +1865,7 @@ export default {
                 tabbar: "/LetterOfWishes",
                 title: "3/5 Letter Of Wishes",
               });
-              if(!this.$store.state.isOverseaSignature){
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
                   this.$router.push(
                   "/LetterOfWishes?from=create&orderId=" +
                   this.$route.query.orderId

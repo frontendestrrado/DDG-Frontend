@@ -9,7 +9,7 @@
       <div class="title">4/5 PDPA Memo</div>
       <PDPAMemo></PDPAMemo>
       <div class="title">5/5 Document Checklist</div>
-      <DocumentChecklist></DocumentChecklist>
+      <DocumentChecklist @getOrderDetail="getOrderDetail"></DocumentChecklist>
       <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="onSelect()">
         share
       </van-button>
@@ -34,14 +34,15 @@ export default {
         CustomerApplication,KYC,LetterOfWishes,PDPAMemo,DocumentChecklist
     },
     mounted(){
+      
       let url=window.location.href
       this.link=url.split("#")
       this.link[1]='/OrderSignatureCustomers'  
       
     },
     methods:{
-        getOrderDetail() {
-          getOrderDetail(this.$store.state.CustomerApplicationId)
+      async  getOrderDetail() {
+         await  getOrderDetail(this.$store.state.CustomerApplicationId)
             .then((res) => {
               console.log(res);
               this.orderData = res;
@@ -49,11 +50,15 @@ export default {
             .catch((err) => {
               console.log(err);
             });
+            this.$store.commit("changeShareOrderData",this.orderData)
         },
         onSelect() {
-          this.$store.commit('changeisShare',true)
-          this.getOrderDetail()
-          console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&isFilled='+this.orderData.customer_app_form+'&status='+this.orderData.status,22222)
+          // this.$store.commit('changeisShare',true)
+          // this.$nextTick(()=>{
+          //   this.getOrderDetail()
+          // })
+          
+          console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',22222)
           const self = this
             // this.$store.commit('changeIsmenutop',false)
             var nativeShare = new NativeShare({
@@ -74,7 +79,7 @@ export default {
              // 设置分享文案
             nativeShare.setShareData({
               icon: '../../../src/assets/img/logo.png',
-              link: this.link.join('#')+'?orderId='+this.orderData.id+'&isFilled='+this.orderData.customer_app_form+'&status='+this.orderData.status,
+              link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',
               title: 'DDG',
               // desc:self.title,
               from: '@fa-ge',

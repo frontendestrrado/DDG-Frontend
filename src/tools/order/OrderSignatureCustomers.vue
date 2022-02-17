@@ -27,14 +27,14 @@ export default {
         return{
             orderDataInfo:{
                orderId:null,
-               isFilled:null,
-               status:null
+              //  isFilled:null,
+              //  status:null
             }
         }
     },
     mounted(){
         this.orderDataInfo.orderId=this.$route.query.orderId
-        this.orderDataInfo.isFilled=this.$route.query.isFilled
+        // this.orderDataInfo.isFilled=this.$route.query.isFilled
         // this.orderDataInfo.status=this.$$route.query.status
     },
     methods:{

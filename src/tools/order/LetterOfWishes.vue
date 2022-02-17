@@ -177,8 +177,8 @@ export default {
       this.isFilled = this.$route.query.isFilled;
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
-    if(this.$store.state.isShre){
-      this.isFilled=this.orderDataInfo.isFilled
+    if(this.$route.query.isShare){
+       this.isFilled=this.$route.query.letter_of_wishes_form
     }
     this.getFormData();
   },
@@ -255,7 +255,9 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          this.$router.go(-1);
+          if(!this.$route.query.isShare){
+            this.$router.go(-1);
+          }
         });
       } else {
         letter_wishes_form(this.$store.state.CustomerApplicationId, data)
@@ -270,7 +272,7 @@ export default {
                 tabbar: "/PDPAMemo",
                 title: "4/5 PDPA Memo",
               });
-              if(!this.$store.state.isOverseaSignature){
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
                 this.$router.push(
                   "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
                 );

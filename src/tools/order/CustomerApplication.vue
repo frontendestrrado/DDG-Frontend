@@ -707,9 +707,10 @@ export default {
       this.isFilled = this.$route.query.isFilled;
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
-    if(this.$store.state.isShre){
-      this.isFilled=this.orderDataInfo.isFilled
+    if(this.$route.query.isShare){
+      this.isFilled=this.$route.query.customer_app_form
     }
+    
     this.getFormData();
   },
   methods: {
@@ -797,7 +798,9 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          this.$router.go(-1);
+          if(!this.$route.query.isShare){
+            this.$router.go(-1);
+          }
         });
       } else {
         createOrders(data)
@@ -808,7 +811,8 @@ export default {
               tabbar: "/KYC",
               title: "2/5 Compliance Questionnaire",
             });
-            if(!this.$store.state.isOverseaSignature){
+            if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
+              console.log('98974645555555555443333333311111111123')
               this.$router.push("/KYC?from=create&orderId=" + res.id);
             }else{
               console.log(res.id,"hhhhhhh99999")
