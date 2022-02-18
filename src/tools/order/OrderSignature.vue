@@ -13,7 +13,15 @@
       <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="onSelect()">
         share
       </van-button>
+      <van-share-sheet
+        v-model='showPicker'
+        :options="options"
+        title="立即分享给好友"
+        description="描述信息"
+        @select="share"
+        />
     </div>
+
 </template>
 <script>
 import NativeShare from 'nativeshare'
@@ -23,11 +31,19 @@ import LetterOfWishes from "@/tools/order/LetterOfWishes";
 import PDPAMemo from "@/tools/order/PDPAMemo";
 import DocumentChecklist from "@/tools/order/DocumentChecklist";
 import { getOrderDetail} from "@/api/order"
+
 export default {
     data(){
       return{
         link:'',
-        orderData:{}
+        showPicker:false,
+        orderData:{},
+        shareURL:'',
+        options:[
+          // { name: '微信', icon: 'wechat' },
+          // { name: '微博', icon: 'weibo' },
+          { name: '复制链接', icon: 'link', description: '描述信息' },
+        ]
       }
     },
     components:{
@@ -38,9 +54,21 @@ export default {
       let url=window.location.href
       this.link=url.split("#")
       this.link[1]='/OrderSignatureCustomers'  
-      
+      this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true'
+    
     },
     methods:{
+      share(option,index){
+        console.log(option,index)
+        if(index==0){
+          if(this.copyToClipboard(this.shareURL)){
+            this.$toast("複製成功")
+          }else{
+            this.$toast("複製失敗")
+          }
+          
+        }
+      },
       async  getOrderDetail() {
          await  getOrderDetail(this.$store.state.CustomerApplicationId)
             .then((res) => {
@@ -57,17 +85,20 @@ export default {
           // this.$nextTick(()=>{
           //   this.getOrderDetail()
           // })
-          
+          // if(this.orderData.id==undefined){
+          //   this.$toast('請提交之前的表單')
+          //   return
+          // }
           console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',22222)
           const self = this
             // this.$store.commit('changeIsmenutop',false)
             var nativeShare = new NativeShare({
-            //   wechatConfig: {
-            //     appId: self.shlist.appId,
-            //     timestamp: self.shlist.timestamp,
-            //     nonceStr: self.shlist.nonceStr,
-            //     signature: self.shlist.signature,
-            //   },
+              wechatConfig: {
+                appId: '',
+                timestamp: '',
+                nonceStr: '',
+                signature: '',
+              },
               // 让你修改的分享的文案同步到标签里，比如title文案会同步到<title>标签中
               // 这样可以让一些不支持分享的浏览器也能修改部分文案，默认都不会同步
               syncDescToTag: false,
@@ -78,10 +109,10 @@ export default {
 
              // 设置分享文案
             nativeShare.setShareData({
-              icon: '../../../src/assets/img/logo.png',
+              icon: '@/assets/img/logo.png',
               link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',
               title: 'DDG',
-              // desc:self.title,
+              desc:'Order Signature',
               from: '@fa-ge',
             })
 
@@ -94,11 +125,33 @@ export default {
               console.log('支持')
             } catch(err) {
               // 如果不支持，你可以在这里做降级处理
-              self.$toast('The browser does not support automatic sharing. Please share manually')
+              // self.$toast('The browser does not support automatic sharing. Please share manually')
+              this.showPicker=true
             }
           // this.showShare = false;
 
           },
+          //複製
+          copyToClipboard (text) {
+          if (!document.createRange || !window.getSelection || !document.execCommand) {
+            return false;
+          }
+          const node = document.createElement('span');
+          node.innerText = text;
+          document.body.appendChild(node);
+          const range = document.createRange();
+          range.selectNode(node);
+          const selection = window.getSelection();
+          selection.empty();
+          selection.addRange(range);
+          document.execCommand('copy');
+
+          selection.empty();
+          range.detach();
+          document.body.removeChild(node);
+
+          return true;
+        },     
     }
 }
 
@@ -108,4 +161,5 @@ export default {
   margin: 5rem 0;
   font-size: 2rem;
 }
+
 </style>
