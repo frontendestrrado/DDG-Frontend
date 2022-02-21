@@ -13,7 +13,6 @@
         name="date"
         center
         disabled
-        right-icon="arrow"
         label="Date"
         placeholder="[Leave Blank]"
       />

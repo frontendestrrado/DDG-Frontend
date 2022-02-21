@@ -119,6 +119,11 @@ export default new Vuex.Store({
         case 'OrderDetail':
           val.title = 'Order Detail'
           break;  
+        case 'OrderSignature' :
+           val.title='' 
+           break;
+        case 'Choose':
+          val.title='Select One'   
       }
       
       sessionStorage.setItem('currentPage', JSON.stringify(val));

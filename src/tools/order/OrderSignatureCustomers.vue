@@ -38,7 +38,7 @@ export default {
         // this.orderDataInfo.status=this.$$route.query.status
     },
     methods:{
-    getOrderDetail() {
+     getOrderDetail() {
       getOrderDetail(this.$route.query.id)
         .then((res) => {
           console.log(res);

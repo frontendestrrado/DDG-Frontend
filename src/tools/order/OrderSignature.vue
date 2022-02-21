@@ -9,16 +9,17 @@
       <div class="title">4/5 PDPA Memo</div>
       <PDPAMemo></PDPAMemo>
       <div class="title">5/5 Document Checklist</div>
-      <DocumentChecklist @getOrderDetail="getOrderDetail"></DocumentChecklist>
-      <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="onSelect()">
-        share
-      </van-button>
+      <DocumentChecklist @getOrderDetail="getOrderDetail" @onSelect='onSelect'></DocumentChecklist>
+      <!-- <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="onSelect()">
+       Copy Link for Sharing with Settlor
+      </van-button> -->
       <van-share-sheet
         v-model='showPicker'
         :options="options"
-        title="立即分享给好友"
-        description="描述信息"
+        title="Share with Settlor"
+        description="remove"
         @select="share"
+        cancel-text="Cancel"
         />
     </div>
 
@@ -42,7 +43,7 @@ export default {
         options:[
           // { name: '微信', icon: 'wechat' },
           // { name: '微博', icon: 'weibo' },
-          { name: '复制链接', icon: 'link', description: '描述信息' },
+          { name: 'Copy Link', icon: 'link', description: 'remove' },
         ]
       }
     },
@@ -54,17 +55,19 @@ export default {
       let url=window.location.href
       this.link=url.split("#")
       this.link[1]='/OrderSignatureCustomers'  
-      this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true'
+      
     
     },
     methods:{
       share(option,index){
         console.log(option,index)
+        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true'
         if(index==0){
+          console.log(this.shareURL)
           if(this.copyToClipboard(this.shareURL)){
-            this.$toast("複製成功")
+            this.$toast("Copy Successful")
           }else{
-            this.$toast("複製失敗")
+            this.$toast("Copy failed")
           }
           
         }
@@ -72,7 +75,7 @@ export default {
       async  getOrderDetail() {
          await  getOrderDetail(this.$store.state.CustomerApplicationId)
             .then((res) => {
-              console.log(res);
+              console.log(res,111111);
               this.orderData = res;
             })
             .catch((err) => {

@@ -225,7 +225,11 @@
         <span v-if="!this.$route.query.isShare">save</span>
         <span v-else>submit</span>
       </van-button>
+      
     </van-form>
+    <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="$emit('onSelect')" v-if="$store.state.isOverseaSignature">
+       Copy Link for Sharing with Settlor
+    </van-button>
     <!-- 日期彈框 -->
     <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
