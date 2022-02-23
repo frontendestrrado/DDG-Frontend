@@ -17,7 +17,7 @@
         v-model='showPicker'
         :options="options"
         title="Share with Settlor"
-        description="remove"
+        description=""
         @select="share"
         cancel-text="Cancel"
         />
@@ -43,7 +43,7 @@ export default {
         options:[
           // { name: '微信', icon: 'wechat' },
           // { name: '微博', icon: 'weibo' },
-          { name: 'Copy Link', icon: 'link', description: 'remove' },
+          { name: 'Copy Link', icon: 'link', description: '' },
         ]
       }
     },
