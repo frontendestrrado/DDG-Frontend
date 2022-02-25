@@ -48,9 +48,9 @@
           <van-row class="status middle">Pending</van-row>
         </van-col>
         <van-col>
-            <van-row class="info middle">Professional Certificate in Qualified TrustAdvisor (QTA)</van-row>
-            <van-row class="info middle">Advanced Certificate in Estate Planning</van-row>
-            <van-row class="info middle">Graduate Certificate in Estate Planning, Succession And Asset Protection</van-row>
+            <van-row class="info middle"><span v-if="bttCode">Professional Certificate in Qualified TrustAdvisor (QTA)</span></van-row>
+            <van-row class="info middle"><span></span></van-row>
+            <van-row class="info middle"><span></span></van-row>
         </van-col>
       </van-row>
       <van-row style="display:inline-block;" class="spin spin-rowTwo">
@@ -66,16 +66,16 @@
             <van-row class="status middle rowTwo">Pending</van-row>
           </van-col>
           <van-col>
-            <van-row class="info middle rowTwo">International Postgraduate Diploma in Estate Planning and Management</van-row>
-            <van-row class="info middle rowTwo">Special Executive Master in Estate & Trust Planning</van-row>
-            <van-row class="info middle rowTwo">Chartered Financial Analyst (CFA)</van-row>
+            <van-row class="info middle rowTwo"><span></span></van-row>
+            <van-row class="info middle rowTwo"><span></span></van-row>
+            <van-row class="info middle rowTwo"><span></span></van-row>
           </van-col>
       </van-row>
       <van-row style="display:inline-block;" class="spin spin-rowThree">
         <van-col class="step middle rowThree">Step 07</van-col>
         <van-col class="titleCol middle rowThree" style="height: 6rem;">Postgraduate Programmes</van-col>
         <van-col class="status middle rowThree">Pending</van-col>
-        <van-col class="info middle rowThree">MA in Estate & Trust Planning (Level 7)</van-col>
+        <van-col class="info middle rowThree"><span></span></van-col>
       </van-row>
     
     </div>
@@ -96,9 +96,9 @@
 
         </van-row>
         <van-row style="display:inline-block;">
-          <van-col class="info middle">Professional Certificate in Qualified TrustAdvisor (QTA)</van-col>
-          <van-col class="info middle">Advanced Certificate in Estate Planning</van-col>
-          <van-col class="info middle">Graduate Certificate in Estate Planning, Succession And Asset Protection</van-col>
+          <van-col class="info middle" v-if="bttCode">Professional Certificate in Qualified TrustAdvisor (QTA)</van-col>
+          <van-col class="info middle"><span></span></van-col>
+          <van-col class="info middle"><span></span></van-col>
           
         </van-row>
       </div>
@@ -117,9 +117,9 @@
           <van-col class="middle status rowTwo">Pending</van-col>
         </van-row>
         <van-row style="display:inline-block;">
-          <van-col class="info middle rowTwo">International Postgraduate Diploma in Estate Planning and Management</van-col>
-          <van-col class="info middle rowTwo">Special Executive Master in Estate & Trust Planning</van-col>
-          <van-col class="info middle rowTwo">Chartered Financial Analyst (CFA)</van-col>
+          <van-col class="info middle rowTwo"><span></span></van-col>
+          <van-col class="info middle rowTwo"><span></span></van-col>
+          <van-col class="info middle rowTwo"><span></span></van-col>
         </van-row>
       </div>
       <div style="width:20.5%;margin: 0 auto;">
@@ -133,7 +133,7 @@
           <van-col class="middle status rowThree">Pending</van-col>
         </van-row>
         <van-row style="display:inline-block;">
-          <van-col class="info middle rowThree">MA in Estate & Trust Planning (Level 7)</van-col>
+          <van-col class="info middle rowThree"><span></span></van-col>
         </van-row>
       </div>
 
