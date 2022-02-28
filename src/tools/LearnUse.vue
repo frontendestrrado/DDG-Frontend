@@ -48,7 +48,7 @@
           <van-row class="status middle">Pending</van-row>
         </van-col>
         <van-col>
-            <van-row class="info middle"><span v-if="bttCode">Professional Certificate in Qualified TrustAdvisor (QTA)</span></van-row>
+            <van-row class="info middle"><span v-if="bttCode">Professional Certificate in Qualified Trust Advisor (QTA)</span></van-row>
             <van-row class="info middle"><span></span></van-row>
             <van-row class="info middle"><span></span></van-row>
         </van-col>
@@ -96,7 +96,7 @@
 
         </van-row>
         <van-row style="display:inline-block;">
-          <van-col class="info middle" v-if="bttCode">Professional Certificate in Qualified TrustAdvisor (QTA)</van-col>
+          <van-col class="info middle" v-if="bttCode">Professional Certificate in Qualified Trust Advisor (QTA)</van-col>
           <van-col class="info middle"><span></span></van-col>
           <van-col class="info middle"><span></span></van-col>
           
@@ -156,7 +156,7 @@ export default {
         step:['Step 01','Step 02','Step 03','Step 04','Step 05','Step 06','Step 07'],
         pend:['Pending','Pending','Pending','Pending','Pending','Pending','Pending'],
         info:[
-          'Professional Certificate in Qualified TrustAdvisor (QTA)',
+          'Professional Certificate in Qualified Trust Advisor (QTA)',
           'Advanced Certificate in Estate Planning',
           'Graduate Certificate in Estate Planning, Succession And Asset Protection',
           'International Postgraduate Diploma in Estate Planning and Management',

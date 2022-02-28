@@ -1,13 +1,13 @@
 <template>
     <div class="ToolBox bodybox">
         <div class="ToolBox_info">
-            <van-button type="primary" size="large" @click="$store.commit('changePage',{tabbar: '/InviteCustomers', title: 'InviteCustomers'});$router.push('/InviteCustomers');">招商邀请</van-button>
+            <!-- <van-button type="primary" size="large" @click="$store.commit('changePage',{tabbar: '/InviteCustomers', title: 'InviteCustomers'});$router.push('/InviteCustomers');">招商邀请</van-button> -->
 
             <!-- 招商列表 -->
-            <template v-for="(item,index) in cusList">
+            <!-- <template v-for="(item,index) in cusList">
                 <van-cell :title="item.contact" :value="item.is_open==0?'未查看':'已查看'" :label="item.is_open==1?(item.message?'留言：'+item.message:'留言：无'):''" />
-            </template>
-
+            </template> -->
+           <span style="font-size:48px;font-weight:bload;"> Coming Soon</span>
         </div>
     </div>
 </template>

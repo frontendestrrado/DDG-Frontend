@@ -123,7 +123,9 @@ export default new Vuex.Store({
            val.title='' 
            break;
         case 'Choose':
-          val.title='Select One'   
+          val.title='Select One'  
+        case 'DGG Education Framework':   
+          val.title='DDG Education Framework'
       }
       
       sessionStorage.setItem('currentPage', JSON.stringify(val));
