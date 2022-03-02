@@ -263,7 +263,13 @@ export default {
           }
         });
       } else {
-        pdpa_memo(this.$store.state.CustomerApplicationId, data)
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        pdpa_memo(id, data)
           .then((res) => {
             console.log(res);
             this.$toast({

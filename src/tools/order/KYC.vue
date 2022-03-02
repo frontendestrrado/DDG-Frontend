@@ -1853,7 +1853,13 @@ export default {
         });
       } else {
         console.log(this.$store.state.CustomerApplicationId)
-        kyc_form(this.$store.state.CustomerApplicationId, data)
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        kyc_form(id, data)
           .then((res) => {
             console.log(res);
             this.$toast({

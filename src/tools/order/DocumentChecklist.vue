@@ -382,7 +382,13 @@ export default {
           }
         });
       } else {
-        document_check_list_form(this.$store.state.CustomerApplicationId, data)
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        document_check_list_form(id, data)
           .then((res) => {
             console.log(res);
             this.$toast({
@@ -392,10 +398,10 @@ export default {
             if (this.from == "create") {
               this.$store.commit("changePage", {
                 tabbar: "/CreateOrder",
-                title: "CreateOrder",
+                title: "Choose",
               });
               if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
-                this.$router.push("/CreateOrder");
+                this.$router.push("/Choose");
               }
               
             } else {

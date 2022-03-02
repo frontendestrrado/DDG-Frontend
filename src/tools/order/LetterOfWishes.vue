@@ -259,7 +259,13 @@ export default {
           }
         });
       } else {
-        letter_wishes_form(this.$store.state.CustomerApplicationId, data)
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        letter_wishes_form(id, data)
           .then((res) => {
             console.log(res);
             this.$toast({
