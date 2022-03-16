@@ -123,7 +123,7 @@
         center
         right-icon="arrow"
         label="Date of Birth"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
       />
       <van-field
         v-model="formData.settlor_non_malaysia.Country"
@@ -361,7 +361,7 @@
         right-icon="arrow"
         type="text"
         label="Date of Birth"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
       />
       <van-field
         v-model="formData.spouse_non_malaysia.Country"
@@ -1034,7 +1034,7 @@
         right-icon="arrow"
         label="Date"
         :required="true"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE'}]"
       />
       <div class="minTitle">Section G (Office Use)</div>
@@ -1239,7 +1239,7 @@
           center
           right-icon="arrow"
           label="Date"
-          placeholder="Please enter YYYY-MM-DD"
+          placeholder="Please enter DD-MM-YYYY"
         />
         <van-field
           v-model="item.Time"
@@ -1424,7 +1424,7 @@
         right-icon="arrow"
         label="Date"
         :required="true"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
         :rules="[{ required: true,pattern, message: 'Please enter the DATE'}]"
       />
       <div class="tl">Manager/ HOD of the Company</div>
@@ -1479,7 +1479,7 @@
         center
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
       />
 
       <!-- <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
@@ -1569,7 +1569,7 @@ export default {
   props:['orderDataInfo'],
   data() {
     return {
-      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
+      pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       formData: {
         settlor: {
           Full: '',

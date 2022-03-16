@@ -46,7 +46,7 @@
         :required="true"
         right-icon="arrow"
         label="ROC DATE / DATE OF BIRTH"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the ROC DATE / DATE OF BIRTH' }]"
       />
       <van-field
@@ -270,7 +270,7 @@
         :required="true"
         right-icon="arrow"
         label="DATE OF BIRTH"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]"
       />
       <van-field
@@ -568,7 +568,7 @@
         :required="true"
         right-icon="arrow"
         label="DATE"
-        placeholder="Please enter YYYY-MM-DD"
+        placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE' }]"
       />
       <div class="minTitle">IMPORTANT NOTICE</div>
@@ -678,7 +678,7 @@ export default {
       isFilled: "", // 表單id(未填0)
       minDate: new Date(1900, 0, 1),
       isDone: false, // 訂單是否已確認
-      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
+      pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
     };
   },
   mounted() {
