@@ -210,28 +210,26 @@
         ]"
       />
       <van-field
-        readonly
         v-model="formData.agent_date"
         name="agent_date"
         center
         :required="true"
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter the Date"
-        @click="onShowPicker('agent_date')"
-        :rules="[{ required: true }]"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
       />
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         <span v-if="!this.$route.query.isShare">save</span>
         <span v-else>submit</span>
       </van-button>
-      
+
     </van-form>
     <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="$emit('onSelect')" v-if="$store.state.isOverseaSignature">
        Copy Link for Sharing with Settlor
     </van-button>
     <!-- 日期彈框 -->
-    <van-popup v-model="isShowPicker" position="bottom">
+<!--    <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
         v-model="currentContent"
         type="date"
@@ -242,7 +240,7 @@
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
-    </van-popup>
+    </van-popup>-->
   </div>
 </template>
 
@@ -272,24 +270,25 @@ export default {
         agent_date: '',
         // 12.30新
         source_of_fund: false,
-        settlor_photo_file: '', 
-        proof_of_current_file: '', 
-        source_of_wealth_file: '', 
-        source_of_fund_file: '', 
+        settlor_photo_file: '',
+        proof_of_current_file: '',
+        source_of_wealth_file: '',
+        source_of_fund_file: '',
         evidence_of_bank_file: '',
       },
-      isShowPicker: false, // 控制日期彈框
+      // isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id
       minDate: new Date(1900, 0, 1),
-      settlor_photo_file: [], 
-      proof_of_current_file: [], 
-      source_of_wealth_file: [], 
-      source_of_fund_file: [], 
+      settlor_photo_file: [],
+      proof_of_current_file: [],
+      source_of_wealth_file: [],
+      source_of_fund_file: [],
       evidence_of_bank_file: [],
       isDone: false, // 訂單是否已確認
+      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
     };
   },
   mounted() {
@@ -318,7 +317,7 @@ export default {
           .then((res) => {
             console.log(">>..>>",res);
             this.formData=res
-            this.formData.application_form=Number(this.formData.application_form) 
+            this.formData.application_form=Number(this.formData.application_form)
             this.formData.compliance_qestionnaire=Number(this.formData.compliance_qestionnaire)
             this.formData.settlor_photocopy=Number(this.formData.settlor_photocopy)
             this.formData.letter_of_wishes=Number(this.formData.letter_of_wishes)
@@ -337,11 +336,11 @@ export default {
           })
           .catch((err) => {});
       }
-     
+
     },
     submit(form) {
       console.log(form,11111);
-      
+
       if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
@@ -403,7 +402,7 @@ export default {
               if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
                 this.$router.push("/Choose");
               }
-              
+
             } else {
               this.$router.go(-1);
             }
@@ -414,7 +413,7 @@ export default {
     },
     // 清空画布
     handleReset(val) {
-      
+
       // this.$refs[val].resultImg=this.formData.signature
       this.$refs[val].reset(); //清空画布
       this.formData.signature = ''
@@ -451,20 +450,20 @@ export default {
         });
     },
     // 展示日期弹框
-    onShowPicker(val) {
+/*    onShowPicker(val) {
       this.isShowPicker = true;
       this.whichDate = val;
-    },
-    onHiddenPicker() {
+    },*/
+ /*   onHiddenPicker() {
       this.currentContent = new Data();
       this.isShowPicker = false;
-    },
-    onConfirmPicker() {
+    },*/
+/*    onConfirmPicker() {
       this.formData[this.whichDate] = this.formatDateYMD(this.currentContent);
       this.isShowPicker = false;
-    },
+    },*/
     // 出來日期格式ymd
-    formatDateYMD(value) {
+ /*   formatDateYMD(value) {
       if (!value) {
         return "";
       } else {
@@ -474,7 +473,7 @@ export default {
         var D = date.getDate();
         return Y + M + D;
       }
-    },
+    },*/
     // 文件上傳
     afterRead(file) {
       console.log(file,'上傳的文件');

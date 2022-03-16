@@ -132,11 +132,11 @@ export default {
       	}
     },
     mounted(){
-
+      console.log(333)
     },
     methods:{
     	changeTab(){
-    		
+
     	}
     }
 }

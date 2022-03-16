@@ -255,7 +255,7 @@ const router = new Router({
 })
 
 //push
-const VueRouterPush = Router.prototype.push 
+const VueRouterPush = Router.prototype.push
 Router.prototype.push = function push (to) {
   return VueRouterPush.call(this, to).catch(err => err)
 }
@@ -281,7 +281,7 @@ Router.prototype.replace = function replace (to) {
 //     // } else {
 //     //     return next({ path: '/' })
 //     // }
-   
-// });
 
+// });
+router.mode = 'history'
 export default router;

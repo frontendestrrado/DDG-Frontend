@@ -47,6 +47,7 @@
 	    mounted(){
 	    },
 	    methods:{
+		      //跳轉路由
 	        changeItem(route,title,link){
 	        	this.$emit('on-change',route,title,link);
 						console.log(111,route,title);

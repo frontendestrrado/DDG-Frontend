@@ -40,20 +40,14 @@
         ]"
       />
       <van-field
-        readonly
         v-model="formData.born_date"
         name="born_date"
         center
         :required="true"
         right-icon="arrow"
         label="ROC DATE / DATE OF BIRTH"
-        placeholder="Please enter the ROC DATE / DATE OF BIRTH"
-        @click="onShowPicker('born_date')"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the ROC DATE / DATE OF BIRTH' }]"
       />
       <van-field
         v-model="formData.occupation"
@@ -94,21 +88,21 @@
         v-model="formData.office_no"
         name="office_no"
         center
-        
+
         type="text"
         label="OFFICE NO"
         placeholder="Please enter the OFFICE NO"
-       
+
       />
       <van-field
         v-model="formData.house_no"
         name="house_no"
         center
-        
+
         type="text"
         label="HOUSE NO"
         placeholder="Please enter the HOUSE NO"
-        
+
       />
       <van-field
         v-model="formData.email"
@@ -188,7 +182,7 @@
           v-if="inx > 0"
           slot="button"
           native-type="button"
-          
+
           @click="delBeneficiary(inx)"
           >delete</van-button
 
@@ -270,20 +264,14 @@
         ]"
       />
       <van-field
-        readonly
         v-model="formData.emergency_contact_date"
         name="emergency_contact_date"
         center
         :required="true"
         right-icon="arrow"
         label="DATE OF BIRTH"
-        placeholder="Please enter the DATE OF BIRTH"
-        @click="onShowPicker('emergency_contact_date')"
-        :rules="[
-          {
-            required: true,
-          },
-        ]"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]"
       />
       <van-field
         v-model="formData.emergency_contact_relationshiop"
@@ -552,7 +540,7 @@
         bgColor.sync="#fff"
         style="border: 1px solid #666"
       />
-      <van-image 
+      <van-image
         v-show="formData.signature"
         width="100%"
         height="20%"
@@ -574,16 +562,14 @@
         :rules="[{ required: true }]"
       />
       <van-field
-        readonly
         v-model="formData.signature_date"
         name="signature_date"
         center
         :required="true"
         right-icon="arrow"
         label="DATE"
-        placeholder="Please enter the DATE"
-        @click="onShowPicker('signature_date')"
-        :rules="[{ required: true }]"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the DATE' }]"
       />
       <div class="minTitle">IMPORTANT NOTICE</div>
       <div class="minTitle">
@@ -612,7 +598,7 @@
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
-    <van-popup v-model="isShowPicker" position="bottom">
+<!--    <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
         v-model="currentContent"
         type="date"
@@ -623,7 +609,7 @@
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
-    </van-popup>
+    </van-popup>-->
   </div>
 </template>
 
@@ -692,6 +678,7 @@ export default {
       isFilled: "", // 表單id(未填0)
       minDate: new Date(1900, 0, 1),
       isDone: false, // 訂單是否已確認
+      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
     };
   },
   mounted() {
@@ -710,7 +697,7 @@ export default {
     if(this.$route.query.isShare){
       this.isFilled=this.$route.query.customer_app_form
     }
-    
+
     this.getFormData();
   },
   methods: {
@@ -747,7 +734,7 @@ export default {
       });
     },
     // 展示日期弹框
-    onShowPicker(val) {
+/*    onShowPicker(val) {
       this.isShowPicker = true;
       this.whichDate = val;
     },
@@ -758,9 +745,9 @@ export default {
     onConfirmPicker() {
       this.formData[this.whichDate] = this.formatDateYMD(this.currentContent);
       this.isShowPicker = false;
-    },
+    },*/
     // 出來日期格式ymd
-    formatDateYMD(value) {
+ /*   formatDateYMD(value) {
       if (!value) {
         return "";
       } else {
@@ -770,7 +757,7 @@ export default {
         var D = date.getDate();
         return Y + M + D;
       }
-    },
+    },*/
     // 提交表單
     submit(form) {
       console.log(form);

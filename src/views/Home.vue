@@ -66,7 +66,7 @@ export default {
         }
       }
     }
-    // console.log('********************************************')  
+    // console.log('********************************************')
     next();
   },
   mounted () {
@@ -87,7 +87,6 @@ export default {
       sessionStorage.setItem('isNotice',true)
     },
     autoMenu() {
-      console.log(123);
       EventHub.$emit('hiddenMenu')
     }
   },

@@ -165,6 +165,7 @@
 			}
 		},
 		mounted(){
+      console.log(this.pageData)
 		},
 		methods:{
 			 toContactUs() {

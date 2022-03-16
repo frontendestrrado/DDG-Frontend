@@ -64,7 +64,7 @@
                 },
               ]"
             />
-            
+
             <van-field
               v-model="registForm.address"
               name="Residential Address"
@@ -78,6 +78,28 @@
               ]"
             />
             <van-field
+              readonly
+              clickable
+              label="Area"
+              center
+              :required="true"
+              :rules="[{ required: true, message: 'Area' }]"
+              :value="Area"
+              placeholder="Area"
+              @click="showPicker = true"
+            />
+            <van-popup v-model="showPicker" round position="bottom">
+              <van-picker
+                show-toolbar
+                :columns="areaList"
+                confirm-button-text="Confirm"
+                cancel-button-text="Cancel"
+                @cancel="showPicker = false"
+                @confirm="onConfirmArea"
+                default-index="0"
+              />
+            </van-popup>
+            <van-field
               v-model="registForm.birthday"
               name="Date Of Birth"
               center
@@ -85,20 +107,8 @@
               type="text"
               label="Date of Birth"
               placeholder="YYYY-MM-DD"
-              @click="onShowPicker()"
+              :rules="[{ pattern, message: 'Please enter the correct date of birth' }]"
             />
-            <van-popup v-model="isShowPicker" position="bottom">
-              <van-datetime-picker
-                v-model="currentContent"
-                type="date"
-                :min-date="minDate"
-                :max-date="maxDate"
-                confirm-button-text="Confirm"
-                cancel-button-text="Cancel"
-                @cancel="onHiddenPicker"
-                @confirm="onConfirmPicker"
-              />
-            </van-popup>
             <van-field
               v-model="registForm.sponsor"
               name="Introducer ID"
@@ -168,8 +178,18 @@
               :rules="[{ required: true, message: 'Area code' }]"
               :value="areaCode"
               placeholder="Area Code"
-              @click="showPicker = true"
+              @click="showPickerAreaCode = true"
             />
+            <van-popup v-model="showPickerAreaCode" round position="bottom">
+              <van-picker
+                show-toolbar
+                :columns="columns"
+                confirm-button-text="Confirm"
+                cancel-button-text="Cancel"
+                @cancel="showPickerAreaCode = false"
+                @confirm="onConfirm"
+              />
+            </van-popup>
             <van-field
               v-model="registForm.phone"
               name="Mobile Number"
@@ -179,17 +199,17 @@
               label="Mobile Number"
               placeholder="Please enter the Mobile Number"
               :rules="[{ required: true, message: 'Please enter the Mobile Number' }]"
-            />
-            <van-popup v-model="showPicker" round position="bottom">
-              <van-picker
-                show-toolbar
-                :columns="columns"
-                confirm-button-text="Confirm"
-                cancel-button-text="Cancel"
-                @cancel="showPicker = false"
-                @confirm="onConfirm"
-              />
-            </van-popup>
+            >
+              <van-button
+                class="SMSconfirm"
+                slot="button"
+                native-type="button"
+                :disabled="phoneList.isSms"
+                @click="sendCode()"
+              >Send Code</van-button
+              >
+            </van-field>
+
             <van-field
               v-model="phoneList.verify_code"
               center
@@ -198,14 +218,7 @@
               placeholder="Verification Code"
               :rules="[{ required: true, message: 'Verification code' }]"
             >
-              <van-button
-                class="SMSconfirm"
-                slot="button"
-                native-type="button"
-                :disabled="phoneList.isSms"
-                @click="sendCode()"
-                >Send Code</van-button
-              >
+
             </van-field>
             <van-button class="loginBtn" type="default" native-type="submit"
               >Sign Up</van-button
@@ -310,17 +323,67 @@ export default {
       areaCode2: "",
       showPicker: false,
 			showPicker2: false,
+      Area: '', //地區
+      areaList: [
+        {
+          text: 'Northern Region',
+          children: [
+            {text: 'Kedah'},
+            {text: 'Pulau Pinang (Penang)'},
+            {text: 'Perak and Perlis'},
+          ]
+        },
+        {
+          text: 'Central Region',
+          children: [
+            {text: 'Wilayah Persekutuan (Kuala Lumpur)'},
+            {text: 'Wilayah Persekutuan (Putrajaya)'},
+            {text: 'Selangor'},
+            {text: 'Negeri Sembilan'},
+          ]
+        },
+        {
+          text: 'Southern Region',
+          children: [
+            {text: 'Melaka (Malacca)'},
+            {text: 'Johor'},
+          ]
+        },
+        {
+          text: 'East Coast Region',
+          children: [
+            {text: 'Pahang'},
+            {text: 'Terengganu'},
+            {text: 'Kelantan'},
+          ]
+        },
+        {
+          text: 'Eastern Malaysia',
+          children: [
+            {text: 'Sabah'},
+            {text: 'Sarawak'},
+            {text: 'Wilayah Persekutuan (Labuan)'},
+          ]
+        },
+      ], //地區列表
       columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
-      uploader: []
+      uploader: [],
+      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
+      showPickerAreaCode: false,//地區碼選項卡是否彈出
     };
   },
   mounted() {
     this.getPageContent();
   },
   methods: {
+    onConfirmArea(e) {
+      this.Area = e
+      this.showPicker = false;
+    },
     onConfirm(value) {
       this.areaCode = value;
       this.showPicker = false;
+      this.showPickerAreaCode = false
     },
 		onConfirm2(value) {
       this.areaCode2 = value;
@@ -343,7 +406,6 @@ export default {
         url: "/api/v1/customPages?id=" + this.$sessionStorage.page_id,
       })
         .then((res) => {
-          console.log(res, "Sign Up");
           if (res.status == 200) {
             this.pageContent = res.data.modules;
             this.pageWidth = res.data.width;
@@ -470,13 +532,13 @@ export default {
       }
     },
     // 展示时间或日期弹框
-    onShowPicker() {
+  /*  onShowPicker() {
       this.isShowPicker = true;
     },
     onHiddenPicker() {
       this.currentContent = "";
       this.isShowPicker = false;
-    },
+    },*/
     onConfirmPicker() {
       this.registForm.birthday = this.formatDateYMD(this.currentContent);
       this.isShowPicker = false;
@@ -538,6 +600,9 @@ export default {
           });
         });
     },
+    /**
+     * 註冊
+     */
     register() {
       if (this.registForm.password != this.registForm.password_confirmation) {
         this.$toast("The passwords are inconsistent");
@@ -558,6 +623,7 @@ export default {
           bttCode: this.registForm.bttCode,
           password: this.registForm.password,
           phone: this.areaCode.split(' ')[0] + this.registForm.phone,
+          area: this.Area,
           passport: this.registForm.passport,
           address: this.registForm.address,
           birthday: this.registForm.birthday,
@@ -584,6 +650,7 @@ export default {
           }
         })
         .catch((err) => {
+          console.log(err)
           this.$toast.allowMultiple();
           for (var item in err.errors) {
             this.$toast({
@@ -592,7 +659,7 @@ export default {
             });
           }
         });
-     
+
     },
   },
 };

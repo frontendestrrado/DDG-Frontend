@@ -118,16 +118,12 @@
         placeholder="Please enter the Passport Issuing Country"
       />
       <van-field
-        readonly
         v-model="formData.settlor_non_malaysia.Date"
         name="Date"
         center
-        :required="true"
-        @click="onShowPicker('settlor_non_malaysia','Date')"
         right-icon="arrow"
         label="Date of Birth"
-        placeholder="Please enter the Date of Birth"
-        :rules="[{ required: true }]"
+        placeholder="Please enter YYYY-MM-DD"
       />
       <van-field
         v-model="formData.settlor_non_malaysia.Country"
@@ -359,15 +355,13 @@
         placeholder="Please enter the Passport Issuing Country"
       />
       <van-field
-        readonly
         v-model="formData.spouse_non_malaysia.Date"
         name="Date"
         center
         right-icon="arrow"
         type="text"
         label="Date of Birth"
-        placeholder="Please enter the Date of Birth"
-        @click="onShowPicker('spouse_non_malaysia','Date')"
+        placeholder="Please enter YYYY-MM-DD"
       />
       <van-field
         v-model="formData.spouse_non_malaysia.Country"
@@ -681,10 +675,10 @@
         <template #input>
           <van-radio-group
             v-model="formData.c_two_yes.Relationship"
-            
+
           >
             <van-radio :name="1">Self</van-radio>
-            
+
             <van-radio :name="2"
               >Family Member Spouse / Child / Parent / Child’s Spouse</van-radio
             >
@@ -915,7 +909,7 @@
         <template #input>
           <van-checkbox-group
             v-model="formData.document_checklist.Particulars"
-            
+
           >
             <van-checkbox :name="1">IC/ Passport of Settlor</van-checkbox>
             <van-checkbox :name="2"
@@ -1034,16 +1028,14 @@
         :rules="[{ required: true }]"
       />
       <van-field
-        readonly
         v-model="formData.declaration.Date"
         name="Date"
         center
-        :required="true"
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter the DATE"
-        @click="onShowPicker('declaration', 'Date')"
-        :rules="[{ required: true }]"
+        :required="true"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the DATE'}]"
       />
       <div class="minTitle">Section G (Office Use)</div>
       <div class="minTitle">For Marketing Officer</div>
@@ -1242,14 +1234,12 @@
         :key="inx"
       >
         <van-field
-          readonly
           v-model="item.Date"
           name="Date"
           center
           right-icon="arrow"
           label="Date"
-          placeholder="Please enter the Date"
-          @click="onShowPicker('interaction', 'Date', inx)"
+          placeholder="Please enter YYYY-MM-DD"
         />
         <van-field
           v-model="item.Time"
@@ -1428,16 +1418,14 @@
         :rules="[{ required: true }]"
       />
       <van-field
-        readonly
         v-model="formData.store_marketing_officer.Date"
         name="Date"
         center
-        :required="true"
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter the Date"
-        @click="onShowPicker('store_marketing_officer', 'Date')"
-        :rules="[{ required: true }]"
+        :required="true"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ required: true,pattern, message: 'Please enter the DATE'}]"
       />
       <div class="tl">Manager/ HOD of the Company</div>
       <vue-esign
@@ -1451,7 +1439,7 @@
         bgColor.sync="#fff"
         style="border: 1px solid #666"
       />
-      <van-image 
+      <van-image
         v-show="formData.store_manager.trustor_signature2"
         width="100%"
         height="20%"
@@ -1486,14 +1474,12 @@
         placeholder="Please enter the NRIC No"
       />
       <van-field
-        readonly
         v-model="formData.store_manager.Date"
         name="Date"
         center
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter the Date"
-        @click="onShowPicker('store_manager', 'Date')"
+        placeholder="Please enter YYYY-MM-DD"
       />
 
       <!-- <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
@@ -1561,7 +1547,7 @@
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
-    <van-popup v-model="isShowPicker" position="bottom">
+<!--    <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
         v-model="currentContent"
         type="date"
@@ -1572,7 +1558,7 @@
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
-    </van-popup>
+    </van-popup>-->
   </div>
 </template>
 
@@ -1583,6 +1569,7 @@ export default {
   props:['orderDataInfo'],
   data() {
     return {
+      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
       formData: {
         settlor: {
           Full: '',
@@ -1590,7 +1577,7 @@ export default {
           New: '',
           Old: '',
           Nationality: '',
-        }, 
+        },
         settlor_non_malaysia: {
           Passport: '',
           Passport2: '',
@@ -1599,7 +1586,7 @@ export default {
           Country: '',
           Gender: '',
           Marital: '',
-        }, 
+        },
         settlor_contact_details: {
           Email: '',
           Mobile: '',
@@ -1619,7 +1606,7 @@ export default {
           New: '',
           Old: '',
           Nationality: '',
-        }, 
+        },
         spouse_non_malaysia: {
           Passport: '',
           Passport2: '',
@@ -1628,7 +1615,7 @@ export default {
           Country: '',
           Gender: '',
           Marital: '',
-        }, 
+        },
         spouse_contact_details: {
           Email: '',
           Mobile: '',
@@ -1649,7 +1636,7 @@ export default {
           Name: '',
           Nature: '',
           Annual: '',
-        }, 
+        },
         spouse_occupation: {
           Occupation: '',
           Occupation2: '',
@@ -1657,7 +1644,7 @@ export default {
           Name: '',
           Nature: '',
           Annual: '',
-        }, 
+        },
         edd: {
           Are: '',
           Are2: '',
@@ -1670,7 +1657,7 @@ export default {
           Are: '',
           Do: '',
           If: '',
-        }, 
+        },
         bank_one: {
           Bank: '',
           Account: '',
@@ -1678,7 +1665,7 @@ export default {
           Transaction: '',
           Years: '',
           Relationship: '',
-        }, 
+        },
         bank_two: {
           Bank: '',
           Account: '',
@@ -1693,18 +1680,18 @@ export default {
           Are: '',
           If: '',
           // Documents: '', // 上传的文件url
-        }, 
+        },
         // declaration: {
         //   Name: '',
         //   Date: '',
-        // }, 
+        // },
         onboarding_clients: {},
         distribution_agent_details: {
           Distribution: '',
           Marketing: '',
           Distribution2: '',
           Marketing2: '',
-        }, 
+        },
         client_details: {
           Client: '',
           Is: '',
@@ -1714,7 +1701,7 @@ export default {
           On: '',
           Face: '',
           Non: '',
-        }, 
+        },
         interaction: [{
           Date: '',
           Time: '',
@@ -1729,13 +1716,13 @@ export default {
           Recommended: '',
           Please2: '',
           Remark: '',
-        }, 
+        },
         store_marketing_officer: {
           trustor_signature1: '',
           Name: '',
           Nric: '',
           Date: '',
-        }, 
+        },
         store_manager: {
           trustor_signature2: '',
           Name: '',
@@ -1814,15 +1801,15 @@ export default {
       if (!this.formData.store_marketing_officer.trustor_signature1&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
-      } 
+      }
       if (!this.formData.store_manager.trustor_signature2&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
-      } 
+      }
       if (!this.formData.declaration.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
-      } 
+      }
       // else if (!this.formData.store_manager.trustor_signature2) {
       //   this.$toast.fail("Please sign your name");
       //   return;
@@ -1849,7 +1836,7 @@ export default {
           if(!this.$route.query.isShare){
             this.$router.go(-1);
           }
-          
+
         });
       } else {
         console.log(this.$store.state.CustomerApplicationId)
@@ -1896,7 +1883,7 @@ export default {
       //     console.log(res, "验证回调");
       //     if (res.state_code == 200) {
       //       // 验证成功 提交表单
-            
+
       //       }
       //     } else {
       //       this.$toast({
@@ -2068,27 +2055,27 @@ export default {
         });
     },
     // 展示日期弹框
-    onShowPicker(val,val2,inx) {
+/*    onShowPicker(val,val2,inx) {
       this.isShowPicker = true;
       this.whichDate = val;
       this.whichDate2 = val2;
       this.whichDateInx = inx;
-    },
+    },*/
     // 日期彈框
-    onHiddenPicker() {
+  /*  onHiddenPicker() {
       this.currentContent = new Data();
       this.isShowPicker = false;
-    },
-    onConfirmPicker() {
+    },*/
+   /* onConfirmPicker() {
       if (this.whichDateInx || this.whichDateInx == 0) {
         this.formData[this.whichDate][this.whichDateInx][this.whichDate2] = this.formatDateYMD(this.currentContent);
       } else {
         this.formData[this.whichDate][this.whichDate2] = this.formatDateYMD(this.currentContent);
       }
       this.isShowPicker = false;
-    },
+    },*/
     // 出來日期格式ymd
-    formatDateYMD(value) {
+  /*  formatDateYMD(value) {
       if (!value) {
         return "";
       } else {
@@ -2098,7 +2085,7 @@ export default {
         var D = date.getDate();
         return Y + M + D;
       }
-    },
+    },*/
     // 添加beneficiary_info
     addBeneficiary() {
       if (this.formData.interaction.length < 4) {

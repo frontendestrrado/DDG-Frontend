@@ -144,16 +144,14 @@
         :rules="[{ required: true }]"
       />
       <van-field
-        readonly
         v-model="formData.date"
         name="date"
         center
         :required="true"
         right-icon="arrow"
         label="Date"
-        placeholder="Please enter the Date"
-        @click="onShowPicker('date')"
-        :rules="[{ required: true }]"
+        placeholder="Please enter YYYY-MM-DD"
+        :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
       />
       <van-field
         v-model="formData.company_rubber_stamp"
@@ -172,7 +170,7 @@
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
-    <van-popup v-model="isShowPicker" position="bottom">
+<!--    <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
         v-model="currentContent"
         type="date"
@@ -183,7 +181,7 @@
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
-    </van-popup>
+    </van-popup>-->
   </div>
 </template>
 
@@ -209,6 +207,7 @@ export default {
       isFilled: "", // 表單id
       minDate: new Date(1900, 0, 1),
       isDone: false, // 訂單是否已確認
+      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
     };
   },
   mounted() {
@@ -286,7 +285,7 @@ export default {
                  "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId
                 );
               }
-              
+
             } else {
               this.$router.go(-1);
             }
@@ -330,20 +329,20 @@ export default {
         });
     },
     // 展示日期弹框
-    onShowPicker(val) {
+/*    onShowPicker(val) {
       this.isShowPicker = true;
       this.whichDate = val;
-    },
-    onHiddenPicker() {
+    },*/
+  /*  onHiddenPicker() {
       this.currentContent = new Data();
       this.isShowPicker = false;
     },
     onConfirmPicker() {
       this.formData[this.whichDate] = this.formatDateYMD(this.currentContent);
       this.isShowPicker = false;
-    },
+    },*/
     // 出來日期格式ymd
-    formatDateYMD(value) {
+/*    formatDateYMD(value) {
       if (!value) {
         return "";
       } else {
@@ -353,7 +352,7 @@ export default {
         var D = date.getDate();
         return Y + M + D;
       }
-    },
+    },*/
   },
 };
 </script>

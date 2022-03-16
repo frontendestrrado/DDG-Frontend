@@ -58,28 +58,37 @@ if(process.env.NODE_ENV=='development'){
 	// Vue.prototype.$build = 'https://ddgint.com/trustb'; //正式服
 }
 
-import locales from './lang/vantLocal.js' 
-let cn = require( '@/lang/zh-CN'); // 中文简体; 
-let en = require( '@/lang/en'); // 英文; 
-let tw = require( '@/lang/zh-TW'); // 中文繁体; 
+import locales from './lang/vantLocal.js'
+let cn = require( '@/lang/zh-CN'); // 中文简体;
+let en = require( '@/lang/en'); // 英文;
+let tw = require( '@/lang/zh-TW'); // 中文繁体;
 
 const i18n = new VueI18n({
-	locale:sessionStorage.getItem('language')||'en', 
+	locale:sessionStorage.getItem('language')||'en',
 	messages:{
 		'zh-CN':{...cn},
 		'en':{...en},
 		'zh-TW':{...tw},
-	}, 
-	silentTranslationWarn: false, // 是否关闭翻译报错; 
+	},
+	silentTranslationWarn: false, // 是否关闭翻译报错;
 });
+
+//引入element ui
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+
+
+
 Vue.prototype.$Local = locales;
 
-router.beforeEach((to, from, next) => {  
+router.beforeEach((to, from, next) => {
 	if(to.path=='/OrderSignatureCustomers'){
 	  store.commit('changeIsmenutop',false)
 	}else{
  	  store.commit('changeIsmenutop',true)
-	} 
+	}
 	// chrome
 	document.body.scrollTop = 0
 	// firefox
