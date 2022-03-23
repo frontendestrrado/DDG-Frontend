@@ -18,7 +18,7 @@
       </div>
     </div> -->
     <div style="height: 50px;"></div>
-    <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok" v-if="$store.state.isMenuTop">
+<!--    <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok" v-if="$store.state.isMenuTop" lockScroll=true>
 			<div style="padding:10px;">
 				<div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>
 				<div>While the DDG International Berhad (DDG) strives to make the information on this website as well as its downloadable promotional materials including, without limitation, journal advertisements, sales visual aids, prints, direct mail as timely and accurate as possible, DDG makes no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this site and its promotional materials, and expressly disclaims liability for errors and omissions in the contents of this site and the promotional materials carried by DDG Advisors (with valid DDG ID). No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose or freedom from computer virus, is given with respect to the contents of this website or its links to other Internet resources.
@@ -29,7 +29,19 @@
 				<div style="text-align:center">The DDG Management</div>
 				<div style="text-align:center">16 December 2021</div>
 			</div>
-    </van-dialog>
+    </van-dialog>-->
+    <b-modal ref="my-modal" title="Disclaimer of Liability and Endorsement" hide-footer centered>
+<!--      <div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>-->
+      <p class="first-p">While the DDG International Berhad (DDG) strives to make the information on this website as well as its downloadable promotional materials including, without limitation, journal advertisements, sales visual aids, prints, direct mail as timely and accurate as possible, DDG makes no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this site and its promotional materials, and expressly disclaims liability for errors and omissions in the contents of this site and the promotional materials carried by DDG Advisors (with valid DDG ID). No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose or freedom from computer virus, is given with respect to the contents of this website or its links to other Internet resources.
+      </p>
+      <br>
+      <p class="first-p">Reference in this site to any specific commercial product, process, or service, or the use of any trade, firm or corporation name is for the information and convenience of the public, and does not constitute endorsement, recommendation, or favouring by DDG International Berhad. </p>
+      <br>
+      <p style="text-align:center">The DDG Management</p>
+      <p style="text-align:center">16 December 2021</p>
+      <b-button class="mt-5"  block @click="hideModal" variant="success">Close Me</b-button>
+<!--      <b-button class="mt-3" block @click="hideModal">Close Me</b-button>-->
+    </b-modal>
   </div>
 </template>
 
@@ -44,7 +56,7 @@ export default {
   data () {
     return {
       pageContent: [],
-      show: false
+      // show: false
     }
   },
   beforeRouteUpdate (to, from, next) {
@@ -70,10 +82,13 @@ export default {
     next();
   },
   mounted () {
+    //判斷模態框是否出現過
 		if (sessionStorage.isNotice) {
-			this.show = false
+			// this.show = false
+      this.hideModal()
 		} else {
-			this.show = true
+			// this.show = true
+      this.showModal()
 		}
     var that = this;
     window.addEventListener('resize', () => {
@@ -83,7 +98,16 @@ export default {
     })
   },
   methods: {
-    closeDialog () {
+   /* closeDialog () {
+      sessionStorage.setItem('isNotice',true)
+    },*/
+    //顯示模態框
+    showModal() {
+      this.$refs['my-modal'].show()
+    },
+    //隱藏模態框
+    hideModal() {
+      this.$refs['my-modal'].hide()
       sessionStorage.setItem('isNotice',true)
     },
     autoMenu() {
@@ -94,6 +118,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.first-p {
+  text-indent: 30px;
+  @media screen and (max-width: 768px) {
+    text-indent: 20px;
+  }
+}
 h1,
 h2 {
   font-weight: normal;
@@ -114,8 +144,8 @@ main {
   min-height: calc(100vh - 80px);
 }
 .btn {
-  color: #444;
-  background: #cfc3b5;
+  //color: #444;
+  //background: #cfc3b5;
   padding: 10px;
   margin-top: 20px;
   // text-align: left;

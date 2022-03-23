@@ -78,3 +78,10 @@ export const confirmOrder = (order) => {
     method: 'post',
   })
 }
+// 刪除未提交訂單
+export function deleteOrder (orderId) {
+  return request({
+    url: '/api/v1/orders/' + orderId,
+    method: 'delete',
+  })
+}

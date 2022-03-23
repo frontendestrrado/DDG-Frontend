@@ -69,6 +69,28 @@
           @click="showEditBtn('address')"
         />
       </van-field>
+<!--      等待接口-->
+<!--      <van-field
+        readonly
+        clickable
+        label="Area"
+        center
+        :rules="[{ required: true, message: 'Area' }]"
+        :value="Area"
+        placeholder="Area"
+        @click="showPicker = true"
+      />
+      <van-popup v-model="showPicker" round position="bottom">
+        <van-picker
+          show-toolbar
+          :columns="areaList"
+          confirm-button-text="Confirm"
+          cancel-button-text="Cancel"
+          @cancel="showPicker = false"
+          @confirm="onConfirmArea"
+          default-index="0"
+        />
+      </van-popup>-->
       <van-field
         center
         label="Date of Birth"
@@ -197,9 +219,9 @@
           @click="showEditBtn('email')"
         />
       </van-field>
-      
-      
-      
+
+
+
       <van-field
         center
         label="Created Date"
@@ -219,6 +241,50 @@ export default {
       actUserBtn: -1,
       timer: null,
       fileList: [],
+      Area: '',
+      areaList: [
+        {
+          text: 'Northern Region',
+          children: [
+            {text: 'Kedah'},
+            {text: 'Pulau Pinang (Penang)'},
+            {text: 'Perak and Perlis'},
+          ]
+        },
+        {
+          text: 'Central Region',
+          children: [
+            {text: 'Wilayah Persekutuan (Kuala Lumpur)'},
+            {text: 'Wilayah Persekutuan (Putrajaya)'},
+            {text: 'Selangor'},
+            {text: 'Negeri Sembilan'},
+          ]
+        },
+        {
+          text: 'Southern Region',
+          children: [
+            {text: 'Melaka (Malacca)'},
+            {text: 'Johor'},
+          ]
+        },
+        {
+          text: 'East Coast Region',
+          children: [
+            {text: 'Pahang'},
+            {text: 'Terengganu'},
+            {text: 'Kelantan'},
+          ]
+        },
+        {
+          text: 'Eastern Malaysia',
+          children: [
+            {text: 'Sabah'},
+            {text: 'Sarawak'},
+            {text: 'Wilayah Persekutuan (Labuan)'},
+          ]
+        },
+      ], //地區列表
+      showPicker: false,//地區選擇框
     };
   },
   mounted() {
@@ -234,7 +300,7 @@ export default {
         },
       })
         .then((res) => {
-          console.log(">>>>.",res);
+          console.log("333",res);
           this.userInfo = res;
           this.fileList = [{ url: res.avatar }];
         })
@@ -244,6 +310,10 @@ export default {
             message: "error",
           });
         });
+    },
+    onConfirmArea(e) {
+      this.Area = e
+      this.showPicker = false;
     },
     showEditBtn(index) {
       this.actUserBtn = index;

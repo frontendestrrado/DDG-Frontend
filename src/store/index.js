@@ -118,20 +118,20 @@ export default new Vuex.Store({
           break;
         case 'OrderDetail':
           val.title = 'Order Detail'
-          break;  
+          break;
         case 'OrderSignature' :
-           val.title='' 
+           val.title=''
            break;
         case 'Choose':
-          val.title='Select One'  
+          val.title='Select One'
           break;
-        case 'DGG Education Framework':   
+        case 'DGG Education Framework':
           val.title='DDG Education Framework'
           break;
       }
-      
+
       sessionStorage.setItem('currentPage', JSON.stringify(val));
-      console.log(JSON.parse(sessionStorage.currentPage));
+      // console.log(JSON.parse(sessionStorage.currentPage));
       state.currentPage = val;
     },
     changeIsmenutop(state,val){

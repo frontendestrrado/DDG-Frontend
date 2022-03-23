@@ -4,8 +4,16 @@
   <main>
     <b-container>
 <!--      <div>Coming Soon</div>-->
-      <b-table striped hover :items="tableList" :fields="fields" head-variant="light" @row-clicked="GoDetail" selectable></b-table>
+      <b-table striped hover :items="tableList" :fields="fields" head-variant="light" @row-clicked="GoDetail" selectable :per-page="perPage"   id="my-table" :current-page="currentPage" ></b-table>
+      <b-pagination
+        :per-page="perPage"
+        aria-controls="my-table"
+        :total-rows="rows"
+        v-model="currentPage"
+        class="pagination-table"
+      ></b-pagination>
     </b-container>
+
   </main>
     <Footer class="footer"></Footer>
 </div>
@@ -33,6 +41,13 @@ name: "Announcement",
         }
       ],
       tableList: [],
+      perPage: 20,
+      currentPage: 1,
+    }
+  },
+  computed: {
+    rows() {
+      return this.tableList.length
     }
   },
   mounted() {
@@ -71,6 +86,10 @@ main {
       border-radius: 15px;
       overflow: hidden;
     }
+    .pagination-table {
+      justify-content: center;
+      margin-top: 50px;
+    }
   }
   >>>.title-class {
     text-align: start !important;
@@ -83,5 +102,6 @@ main {
   .footer {
     position: fixed;
     bottom: 0;
+    z-index: 999;
   }
 </style>

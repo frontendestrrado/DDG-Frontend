@@ -1,13 +1,18 @@
 <template>
+<!--  my order頁面-->
   <div class="OrderList bodybox">
-    <van-search 
-      v-model="searchVal" 
-      placeholder="请输入订单号搜索" 
-      @search="onSearch" 
+    <van-search
+      v-model="searchVal"
+      placeholder="请输入订单号搜索"
+      @search="onSearch"
       @clear="clearSearch"
     />
     <van-loading v-if="loadingShow" />
-    <van-cell
+
+
+
+    <!--前端john的-->
+<!--    <van-cell
       is-link
       center
       v-for="(item,inx) in orderList"
@@ -20,13 +25,22 @@
         $router.push({path: '/OrderDetail', query: {id: item.id}});$sessionStorage.setItem('orderId',JSON.stringify(item.id))
       "
     >
+
       {{item.no}}
       <template #title>
+        <div>
+          <van-tag type="success">{{item.settlor_name}}</van-tag>
+        </div>
         <span>{{item.no}}</span>
+        <div>
+          <van-tag type="danger" v-if="item.status===0">not submitted</van-tag>
+          <van-tag type="success" plain v-if="item.status===1">submitted</van-tag>
+          <van-tag type="success" v-if="item.status===2">ratify</van-tag>
+        </div>
       </template>
       <template #default>
         <div>
-          <span> Customer Application </span> 
+          <span> Customer Application </span>
           <span class="NotFilledCol" v-if="item.customer_app_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
@@ -51,18 +65,65 @@
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
       </template>
-    </van-cell>
+
+    </van-cell>-->
+
+    <van-row  v-for="(item,inx) in orderList" :key="inx"  type="flex" justify="space-between" align="center">
+      <van-col span="8" align="start">
+        <div>
+          <van-tag type="success" size="large">{{item.settlor_name}}</van-tag>
+        </div>
+        <span>{{item.no}}</span>
+        <div>
+          <van-tag type="danger" v-if="item.status===0" size="large">not submitted</van-tag>
+          <van-tag type="success" plain v-if="item.status===1" size="large">submitted</van-tag>
+          <van-tag type="success" v-if="item.status===2" size="large">ratify</van-tag>
+        </div>
+      </van-col>
+      <van-col span="8" align="end" class="order-status">
+        <div>
+          <span> Customer Application </span>
+          <span class="NotFilledCol" v-if="item.customer_app_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> Compliance Questionaire </span>
+          <span class="NotFilledCol" v-if="item.kyc_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> Letter Of Wishes  </span>
+          <span class="NotFilledCol" v-if="item.letter_of_wishes_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> PDPA Memo </span>
+          <span class="NotFilledCol" v-if="item.pdpa_memo_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div>
+          <span> Third Party Declaration </span>
+          <span class="NotFilledCol" v-if="item.third_party_declaration_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+      </van-col>
+      <van-col span="8" align="end">
+        <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
+        <van-button type="primary" @click="toFill(item)" size="small">To fill</van-button>
+      </van-col>
+    </van-row>
   </div>
 </template>
 
 <script>
 import { getOrders } from "@/api/tools";
+import {deleteOrder} from '@/api/order'
 export default {
   data() {
     return {
       orderList: [],
       searchVal: '',
-      loadingShow: true
+      loadingShow: true,
     };
   },
   mounted() {
@@ -75,7 +136,7 @@ export default {
         order: "date_desc",
       })
         .then((res) => {
-          console.log(res, "訂單列表");
+          console.log( res.data)
           this.orderList = res.data;
           this.loadingShow = false
         })
@@ -88,12 +149,41 @@ export default {
     },
     clearSearch() {
       this.getOrders()
+    },
+    //繼續填寫訂單
+    toFill(item) {
+      this.$store.commit('changePage', {
+        tabbar: '/OrderDetail',
+        title: 'OrderDetail',
+      });
+      sessionStorage.setItem('orderId',JSON.stringify(item.id))
+      this.$router.push({path: '/OrderDetail', query: {id: item.id}});
+    },
+    //刪除未提交訂單
+    del(id) {
+      deleteOrder(id).then(res => {
+        this.getOrders()
+        this.$toast({
+          type: "success",
+          message: res.message,
+        });
+      })
     }
   },
 };
 </script>
 
 <style scoped lang="scss">
+.van-row {
+  margin: 50px 0;
+}
+.order-status {
+  >div {
+    >span:first-of-type {
+      color: #969799;
+    }
+  }
+}
 /deep/ .van-field__left-icon {
   line-height: 40px;
 }

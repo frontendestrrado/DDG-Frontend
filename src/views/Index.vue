@@ -2,7 +2,7 @@
   <div class="Home">
     <!-- <Common :pageData="pageContent"></Common> -->
     <div class="homeOne">
-      <span class="title titleFont">Welcome to <br> DDG International <br> Berhad</span>
+      <span class="title titleFont">Welcome to<br> DDG International <br> Berhad</span>
       <van-button @click="toContactUs" type="default" color="7C655D" class="contactUs titleFont">Contact Us</van-button>
     </div>
     <div class="homeTwo">
@@ -96,7 +96,7 @@ export default {
       });
       this.$router.push('/ContactUs');
     },
-    // 
+    //
   // 屏幕检测变化
     checkScreen(){
       if (document.body.clientWidth <1025){
@@ -146,7 +146,7 @@ a {
     font-size: 1.2rem;
     background-color: #7C655D;
     position: absolute;
-    top: 60%;
+    top: 70%;
     right: 7%;
     border-radius: 15px;
     height: 3rem;
@@ -299,7 +299,7 @@ a {
   }
 }
 .homeThree {
-  font-family:" Calibri"; 
+  font-family:" Calibri";
   background: url(../assets/img/png/蒙版51@3x.png);
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -356,7 +356,7 @@ a {
       font-size: 2.8rem;
       text-align: left;
       height:12rem;
-      display: flex;  
+      display: flex;
       align-items: center;
     }
   }

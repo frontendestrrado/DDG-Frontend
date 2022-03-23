@@ -97,6 +97,11 @@
     </div>
     <van-cell
       title-style="text-align:left;"
+      title="Settlor Name"
+      :value="orderData.settlor_name"
+    ></van-cell>
+    <van-cell
+      title-style="text-align:left;"
       title="amount"
       :value="orderData.amount"
     ></van-cell>
@@ -107,22 +112,12 @@
     ></van-cell>
     <van-cell
       title-style="text-align:left;"
-      title="id"
-      :value="orderData.id"
-    ></van-cell>
-    <van-cell
-      title-style="text-align:left;"
-      title="no"
+      title="Order Number"
       :value="orderData.no"
     ></van-cell>
     <van-cell
       title-style="text-align:left;"
-      title="note"
-      :value="orderData.note"
-    ></van-cell>
-    <van-cell
-      title-style="text-align:left;"
-      title="updated_at"
+      title="Submitted_at"
       :value="orderData.updated_at"
     ></van-cell>
     <div class="orderTitle">The Order Feedback</div>

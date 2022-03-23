@@ -148,8 +148,7 @@
         name="date"
         center
         :required="true"
-        right-icon="arrow"
-        label="Date"
+        label="Date: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
       />

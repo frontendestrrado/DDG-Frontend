@@ -44,10 +44,9 @@
         name="born_date"
         center
         :required="true"
-        right-icon="arrow"
-        label="ROC DATE / DATE OF BIRTH"
+        label="DATE OF BIRTH: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
-        :rules="[{ pattern, message: 'Please enter the ROC DATE / DATE OF BIRTH' }]"
+        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]"
       />
       <van-field
         v-model="formData.occupation"
@@ -268,8 +267,7 @@
         name="emergency_contact_date"
         center
         :required="true"
-        right-icon="arrow"
-        label="DATE OF BIRTH"
+        label="DATE OF BIRTH: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]"
       />
@@ -566,8 +564,7 @@
         name="signature_date"
         center
         :required="true"
-        right-icon="arrow"
-        label="DATE"
+        label="DATE: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE' }]"
       />

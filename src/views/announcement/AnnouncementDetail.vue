@@ -22,7 +22,7 @@
         <b-col>DDG Admin</b-col>
       </b-row>
       <b-row class="text-left">
-        <b-col>{{content.created_at}}</b-col>
+        <b-col>{{content.updated_at}}</b-col>
       </b-row>
     </b-container>
     <Footer class="footer"></Footer>

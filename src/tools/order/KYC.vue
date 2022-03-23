@@ -106,7 +106,7 @@
         name="Passport2"
         center
         type="text"
-        label="Passport Expiry Date"
+        label="Passport Expiry Date: DD-MM-YYYY"
         placeholder="Please enter the Passport Expiry Date"
       />
       <van-field
@@ -121,8 +121,7 @@
         v-model="formData.settlor_non_malaysia.Date"
         name="Date"
         center
-        right-icon="arrow"
-        label="Date of Birth"
+        label="Date of Birth: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
       />
       <van-field
@@ -343,7 +342,7 @@
         name="Passport2"
         center
         type="text"
-        label="Passport Expiry Date"
+        label="Passport Expiry Date: DD-MM-YYYY"
         placeholder="Please enter the Passport Expiry Date"
       />
       <van-field
@@ -358,9 +357,8 @@
         v-model="formData.spouse_non_malaysia.Date"
         name="Date"
         center
-        right-icon="arrow"
         type="text"
-        label="Date of Birth"
+        label="Date of Birth: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
       />
       <van-field
@@ -1031,8 +1029,7 @@
         v-model="formData.declaration.Date"
         name="Date"
         center
-        right-icon="arrow"
-        label="Date"
+        label="Date: DD-MM-YYYY"
         :required="true"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE'}]"
@@ -1237,8 +1234,7 @@
           v-model="item.Date"
           name="Date"
           center
-          right-icon="arrow"
-          label="Date"
+          label="Date: DD-MM-YYYY"
           placeholder="Please enter DD-MM-YYYY"
         />
         <van-field
@@ -1421,8 +1417,7 @@
         v-model="formData.store_marketing_officer.Date"
         name="Date"
         center
-        right-icon="arrow"
-        label="Date"
+        label="Date: DD-MM-YYYY"
         :required="true"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ required: true,pattern, message: 'Please enter the DATE'}]"
@@ -1477,8 +1472,7 @@
         v-model="formData.store_manager.Date"
         name="Date"
         center
-        right-icon="arrow"
-        label="Date"
+        label="Date: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
       />
 

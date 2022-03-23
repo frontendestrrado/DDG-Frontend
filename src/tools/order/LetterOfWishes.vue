@@ -123,7 +123,7 @@
       </van-button>
     </van-form>
     <!-- 日期彈框 -->
-    <van-popup v-model="isShowPicker" position="bottom">
+<!--    <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
         v-model="currentContent"
         type="date"
@@ -134,7 +134,7 @@
         @cancel="onHiddenPicker"
         @confirm="onConfirmPicker"
       />
-    </van-popup>
+    </van-popup>-->
   </div>
 </template>
 
@@ -242,7 +242,7 @@ export default {
       if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
-      } 
+      }
       if (this.isFilled > 0) {
         // 修改
         putOrdersForms(this.isFilled, {
@@ -282,7 +282,7 @@ export default {
                   "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
                 );
               }
-              
+
             } else {
               this.$router.go(-1);
             }

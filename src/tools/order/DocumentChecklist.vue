@@ -14,6 +14,7 @@
         name="name"
         label="Name"
         center
+        required="true"
         v-model="formData.name"
         :rules="[{ required: true }]"
       >
@@ -25,6 +26,7 @@
         name="nric"
         label="NRIC/Passport No"
         center
+        required="true"
         v-model="formData.nric"
         :rules="[{ required: true }]"
       >
@@ -214,7 +216,7 @@
         name="agent_date"
         center
         :required="true"
-        label="Date"
+        label="Date: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
       />

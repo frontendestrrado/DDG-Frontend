@@ -8,6 +8,7 @@ import store from './store';
 // import echarts from 'echarts';
 import  * as echarts from "echarts"; //5.0 以上的引入方式
 
+
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import '@vant/touch-emulator';
@@ -15,6 +16,16 @@ import './assets/css/font.css';
 
 import './rem.js'
 
+//導入bootstrapVue
+import {BootstrapVue,BootstrapVueIcons} from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
+
+
+//電子簽名
 import vueEsign from 'vue-esign'
 Vue.use(vueEsign)
 

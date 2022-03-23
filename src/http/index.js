@@ -29,7 +29,6 @@ servie.interceptors.request.use(config => {
 servie.interceptors.response.use(
   response => {
     // console.log(response);
-    console.log(response.status);
     if (response.status == 200 || response.status == 201 || response.status == 203 || response.status == 204) {
       return response.data;
     } else {

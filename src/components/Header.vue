@@ -87,7 +87,7 @@
 
         <!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
         <MenuTop
-          
+
           @on-change="changeActTab"
           :menu-data="tabList"
           cl-name.sync="menu"
@@ -155,7 +155,7 @@ export default {
       isToken: ''
     };
   },
- 
+
   mounted() {
 
     this.getLogo();
@@ -169,7 +169,7 @@ export default {
     let biaoti = sessionStorage["currentPage"]
       ? JSON.parse(sessionStorage["currentPage"]).title
       : this.$router.history.current.name;
-    console.log(path, biaoti);
+    // console.log(path, biaoti);
     this.$store.commit("changePage", { tabbar: path, title: biaoti });
 
     let len = this.$router.history.current.matched.length;
@@ -204,7 +204,7 @@ export default {
         url: "/api/v1/navigations",
       })
         .then((res) => {
-          console.log(">>>>>>>>",res);
+          // console.log(">>>>>>>>",res);
           this.tabList = res.data;
         })
         .catch((error) => {
@@ -222,7 +222,7 @@ export default {
       }
     },
     changeActTab(name, title, link) {
-      
+
       console.log(name, title, link, 3333333);
       console.log(">>>>>",this.tabList)
       this.isShowTopUl = true;
@@ -317,7 +317,7 @@ export default {
         url: "/api/v1/webset",
       })
         .then((res) => {
-          console.log(res, "Logo");
+          // console.log(res, "Logo");
           this.logo = res.logo;
         })
         .catch((err) => {
