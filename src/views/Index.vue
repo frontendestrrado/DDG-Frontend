@@ -228,6 +228,9 @@ a {
         justify-content: center;
         font-size:3rem;
         font-weight: bold;
+        @media screen and (max-width: 768px){
+          margin-top: -1px;
+        }
         .contactUs {
             background-color: #fff;
             color: #7B655D;

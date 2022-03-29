@@ -61,6 +61,7 @@
 
 <script>
 	import Common from '@/components/mode/common.vue'
+  import {getAnnouncementList} from '@/api/announcement.js'
 	export default {
 		components: {
 			Common,
@@ -71,6 +72,7 @@
 				pageContent: [],
 				pageWidth: '1200',
 				isShow: false,
+        pageName: '',
 				cusData: {
 					firstname: '',
 					lastname: '',
@@ -97,22 +99,33 @@
 			this.getPageContent();
 		},
 		methods: {
+      /**
+       * 如果是advisors頁面如果有未讀消息，會有彈出框提示
+       */
+      showMessage () {
+        if(this.pageName === 'Advisors') {
+          getAnnouncementList().then(res => {
+            console.log(res,111111111)
+          })
+        }
+      },
 			getPageContent(){
 				this.$axios({
 					method: 'get',
 					url:'/api/v1/customPages?id='+this.$route.params.page_id,
 				}).then(res => {
-					console.log(res);
-					if(res.status == 200){
+					if(res.status === 200){
 						this.pageContent = res.data.modules;
 						this.pageWidth = res.data.width;
+						this.pageName = res.data.name
 						this.pageContent.forEach((item,i) => {
-							if(item.type == 9){
+							if(item.type === 9){
 								item.data_collects.forEach((itemi,j) => {
 									this.$set(this.pageContent[i].data_collects[j],'content','')
 								})
 							}
 						})
+            this.showMessage()
 					}else{
 						this.pageContent = [];
 						this.pageWidth = '1200';

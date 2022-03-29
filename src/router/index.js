@@ -244,7 +244,7 @@ const router = new Router({
       },]
     },
     {
-      path: '/Training Center',
+      path: '/TrainingCenter',
       name: 'TrainingCenter',
       beforeEnter: (to,from,next) => {
         if(sessionStorage.getItem('token')) {
@@ -254,6 +254,18 @@ const router = new Router({
         }
       },
       component: () => import('@/views/training-center/index.vue'),
+    },
+    {
+      path: '/VideoDetail',
+      name: 'VideoDetail',
+      beforeEnter: (to,from,next) => {
+        if(sessionStorage.getItem('token')) {
+          next()
+        }else{
+          next(false)
+        }
+      },
+      component: () => import('@/views/training-center/VideoDetail.vue'),
     },
     {
       path: '/Announcement',
@@ -310,6 +322,7 @@ const VueRouterReplace = Router.prototype.replace
 Router.prototype.replace = function replace (to) {
   return VueRouterReplace.call(this, to).catch(err => err)
 }
+
 // router.beforeEach((to, from, next) => {
 //     // console.log('********************************************')
 //     // console.log('from:'+from.path, from.name);

@@ -6,32 +6,10 @@
     <main>
       <router-view />
     </main>
-    <!-- <div class="ContactUs">
-      <div class="bodybox">
-        <div class="ContactUsTitle">Contact Us</div>
-        <div>DDG International Berhad. (Co. No. 202101023257 (1423557-M)</div>
-        <div>Tel : +6016-5535691</div>
-        <div>Email : info@ddgint.com</div>
-        <div>Website : www.ddgint.com </div>
-        <div>No. 11-1, 2 & 3, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau Pinang.</div>
-        <div>Business Hour: 9.00am – 5.00pm (Monday – Friday) </div>
-      </div>
-    </div> -->
-    <div style="height: 50px;"></div>
-<!--    <van-dialog v-model="show" title="" @confirm="closeDialog" confirm-button-text="ok" v-if="$store.state.isMenuTop" lockScroll=true>
-			<div style="padding:10px;">
-				<div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>
-				<div>While the DDG International Berhad (DDG) strives to make the information on this website as well as its downloadable promotional materials including, without limitation, journal advertisements, sales visual aids, prints, direct mail as timely and accurate as possible, DDG makes no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this site and its promotional materials, and expressly disclaims liability for errors and omissions in the contents of this site and the promotional materials carried by DDG Advisors (with valid DDG ID). No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose or freedom from computer virus, is given with respect to the contents of this website or its links to other Internet resources.
-				</div>
-				<br>
-				<div>Reference in this site to any specific commercial product, process, or service, or the use of any trade, firm or corporation name is for the information and convenience of the public, and does not constitute endorsement, recommendation, or favouring by DDG International Berhad. </div>
-				<br>
-				<div style="text-align:center">The DDG Management</div>
-				<div style="text-align:center">16 December 2021</div>
-			</div>
-    </van-dialog>-->
     <b-modal ref="my-modal" title="Disclaimer of Liability and Endorsement" hide-footer centered>
-<!--      <div style="font-weight: bold;text-align: center;">Disclaimer of Liability and Endorsement</div>-->
+      <template #modal-header="{ close }">
+        <h5 class="dialog-title">Disclaimer of Liability and Endorsement</h5>
+      </template>
       <p class="first-p">While the DDG International Berhad (DDG) strives to make the information on this website as well as its downloadable promotional materials including, without limitation, journal advertisements, sales visual aids, prints, direct mail as timely and accurate as possible, DDG makes no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this site and its promotional materials, and expressly disclaims liability for errors and omissions in the contents of this site and the promotional materials carried by DDG Advisors (with valid DDG ID). No warranty of any kind, implied, expressed, or statutory, including but not limited to the warranties of non-infringement of third party rights, title, merchantability, fitness for a particular purpose or freedom from computer virus, is given with respect to the contents of this website or its links to other Internet resources.
       </p>
       <br>
@@ -39,8 +17,7 @@
       <br>
       <p style="text-align:center">The DDG Management</p>
       <p style="text-align:center">16 December 2021</p>
-      <b-button class="mt-5"  block @click="hideModal" variant="success">Close Me</b-button>
-<!--      <b-button class="mt-3" block @click="hideModal">Close Me</b-button>-->
+      <b-button class="mt-5"  block @click="hideModal" variant="success">Agree</b-button>
     </b-modal>
   </div>
 </template>
@@ -118,6 +95,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dialog-title {
+  margin: auto;
+}
 .first-p {
   text-indent: 30px;
   @media screen and (max-width: 768px) {

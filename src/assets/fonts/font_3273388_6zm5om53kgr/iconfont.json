@@ -1,0 +1,37 @@
+{
+  "id": "3273388",
+  "name": "信託",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6262758",
+      "name": "圆点",
+      "font_class": "yuandian",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "2036621",
+      "name": "五角星空",
+      "font_class": "wujiaoxingkong",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "68268",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "8288891",
+      "name": "眼睛",
+      "font_class": "yanjing",
+      "unicode": "e857",
+      "unicode_decimal": 59479
+    }
+  ]
+}

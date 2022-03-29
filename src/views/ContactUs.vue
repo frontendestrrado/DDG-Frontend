@@ -75,10 +75,10 @@
       />
     </GmapMap> -->
       <div class="mapImg">
-         <img src="../assets/img/ditu.png" >
+         <img src="../assets/img/ditu.png" @click="goMap()" class="map-img">
       </div>
       <div class="mapImg">
-          <img src="../assets/img/ditutwo.png" >
+          <img src="../assets/img/ditutwo.png" class="map-img" @click="goMap()">
       </div>
   </div>
 </template>
@@ -98,6 +98,9 @@ export default {
     // 地圖
   },
   methods: {
+    goMap () {
+      window.location.href="https://goo.gl/maps/YNF27odCy6TSc1CUA";
+    },
     submitMsg() {
       if (this.name && this.email && this.content) {
         this.$axios({
@@ -131,6 +134,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.map-img {
+  cursor: pointer;
+}
 ::v-deep .van-row {
   display: -webkit-box;
   display: flex;
@@ -143,7 +149,7 @@ export default {
   padding: 0px 16px;
 }
 .contactUs {
-  width: 100%; 
+  width: 100%;
 	max-width: 1200px;
 	/*min-height: calc(100vh - 60px);*/
   /* margin-top: 20px; */

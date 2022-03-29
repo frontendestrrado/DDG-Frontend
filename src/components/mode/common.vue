@@ -165,7 +165,7 @@
 			}
 		},
 		mounted(){
-      console.log(this.pageData)
+
 		},
 		methods:{
 			 toContactUs() {
@@ -175,13 +175,14 @@
 			});
 			this.$router.push('/ContactUs');
 			},
+
 			goPage(path,text){
 				if(!!path){
 					if(path.indexOf('/')==0){
 						if(text){
               if (path == '/Choose') {
                 // this.$store.commit('changePage',{tabbar: path, title: '1/5 Customer Application'});
-				this.$store.commit('changePage',{tabbar: path, title: 'Choose'});
+				        this.$store.commit('changePage',{tabbar: path, title: 'Choose'});
               } else {
                 this.$store.commit('changePage',{tabbar: path, title: text});
               }

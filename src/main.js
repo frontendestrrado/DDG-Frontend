@@ -23,7 +23,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
+//引入阿里字體圖標
+import './assets/fonts/font_3273388_6zm5om53kgr/iconfont.css'
+import './assets/fonts/font_3273388_6zm5om53kgr/iconfont'
 
+//引入視頻播放插件
+import Video from 'video.js'
+import 'video.js/dist/video-js.css'
+Vue.prototype.$video = Video
 
 //電子簽名
 import vueEsign from 'vue-esign'

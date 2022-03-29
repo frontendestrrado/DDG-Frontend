@@ -75,9 +75,9 @@
         </div>
         <span>{{item.no}}</span>
         <div>
-          <van-tag type="danger" v-if="item.status===0" size="large">not submitted</van-tag>
-          <van-tag type="success" plain v-if="item.status===1" size="large">submitted</van-tag>
-          <van-tag type="success" v-if="item.status===2" size="large">ratify</van-tag>
+          <van-tag type="danger" v-if="item.status===0" size="large">Not Yet Submit</van-tag>
+          <van-tag type="success" plain v-if="item.status===1" size="large">Waiting For Approval</van-tag>
+          <van-tag type="success" v-if="item.status===2" size="large">Approved</van-tag>
         </div>
       </van-col>
       <van-col span="8" align="end" class="order-status">
@@ -109,7 +109,7 @@
       </van-col>
       <van-col span="8" align="end">
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
-        <van-button type="primary" @click="toFill(item)" size="small">To fill</van-button>
+        <van-button type="primary" :disabled="item.status!==3" @click="toFill(item)" size="small">To fill</van-button>
       </van-col>
     </van-row>
   </div>

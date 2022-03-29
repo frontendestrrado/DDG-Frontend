@@ -4,7 +4,21 @@
   <main>
     <b-container>
 <!--      <div>Coming Soon</div>-->
-      <b-table striped hover :items="tableList" :fields="fields" head-variant="light" @row-clicked="GoDetail" selectable :per-page="perPage"   id="my-table" :current-page="currentPage" ></b-table>
+      <b-table  hover
+                :items="tableList"
+                :fields="fields"
+                head-variant="light"
+                @row-clicked="GoDetail"
+                selectable
+                :per-page="perPage"
+                id="my-table"
+                :current-page="currentPage"
+                :tbody-tr-class="rowClass"
+      >
+        <template #cell(title)="data">
+          {{data.item.title}}<i class="iconfont icon-yuandian" v-show="data.item.is_viewed === 0"></i>
+        </template>
+      </b-table>
       <b-pagination
         :per-page="perPage"
         aria-controls="my-table"
@@ -54,9 +68,18 @@ name: "Announcement",
     this.getAnnouncementList()
   },
   methods: {
+    rowClass (item,type) {
+      if (!item || type !== 'row') return
+      if (item.is_viewed === 0) {
+        return 'table-secondary'
+      }else {
+        return
+      }
+    },
     getAnnouncementList() {
       getAnnouncementList().then(res => {
         this.tableList = res
+        // console.log(this.tableList)
       })
     },
     GoDetail(item) {
@@ -81,6 +104,9 @@ main {
     margin-bottom: 100px;
   }
   .container {
+    .icon-yuandian {
+      color: red;
+    }
     >>>table {
       box-shadow:4px 4px 12px 4px rgba(20%,20%,40%,0.5);
       border-radius: 15px;
@@ -100,7 +126,6 @@ main {
   }
 }
   .footer {
-    position: fixed;
     bottom: 0;
     z-index: 999;
   }
