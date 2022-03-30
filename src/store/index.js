@@ -22,11 +22,20 @@ export default new Vuex.Store({
     },
     token: sessionStorage["token"] ? sessionStorage["token"] : '',
     token_type: sessionStorage["token_type"] ? sessionStorage["token_type"] : '',
+    unreadStatus: true,//未讀消息彈框狀態
   },
   getters: {
 
   },
   mutations: {
+    /**
+     * 改變未讀消息彈框狀態
+     * @param state
+     * @param payload
+     */
+    changeUnreadStatus (state, payload) {
+      state.unreadStatus = payload
+    },
     // 刷新token
     refreshToken(state) {
       if (sessionStorage.token) {

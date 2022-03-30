@@ -61,7 +61,7 @@
 
 <script>
 	import Common from '@/components/mode/common.vue'
-  import {getAnnouncementList} from '@/api/announcement.js'
+  import {getUnread} from '@/api/advisors.js'
 	export default {
 		components: {
 			Common,
@@ -103,9 +103,17 @@
        * 如果是advisors頁面如果有未讀消息，會有彈出框提示
        */
       showMessage () {
-        if(this.pageName === 'Advisors') {
-          getAnnouncementList().then(res => {
-            console.log(res,111111111)
+        if(this.pageName === 'Advisors' && this.$store.state.unreadStatus) {
+          getUnread().then(res => {
+            if(res > 0) {
+              this.$store.commit('changeUnreadStatus',false)
+              this.$bvToast.toast(`You have ${res} unread bulletins`, {
+                title: `MESSAGE`,
+                toaster: 'b-toaster-top-center',
+                variant: 'info',
+                solid: true
+              })
+            }
           })
         }
       },

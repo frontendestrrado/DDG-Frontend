@@ -13,7 +13,7 @@
           <b-col>
             <i class="iconfont icon-yanjing mr-2"><span>{{videoDetail.is_like}}</span></i>
             <span class="division"></span>
-            <i class="iconfont icon-wujiaoxingkong mr-2" @click.once="collect"><span>{{videoDetail.like_count}}</span></i>
+            <i class="iconfont icon-wujiaoxingkong mr-2"  @click="collect(videoDetail.id)"><span>{{videoDetail.like_count}}</span></i>
             <span class="division"></span>
             <span>{{videoDetail.created_at}}</span>
           </b-col>
@@ -70,11 +70,11 @@ export default {
       videoDetail: {},//視頻信息
       status: false,//視頻播放狀態
       videoPause: false,//暫停標籤是否顯示
+      timer:1000,
     }
   },
   created() {
     this.getVideoDetail(this.$route.query.id)
-
   },
   watch: {
     /**
@@ -88,8 +88,12 @@ export default {
     /**
      * 收藏視頻
      */
-    collect () {
+    collect (id) {
+      this.throttle(2000)()
+      // console.log(id)
+   /*   collect(id).then(res => {
 
+      })*/
     },
     /**
      * 獲取視頻

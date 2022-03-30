@@ -75,10 +75,10 @@
       />
     </GmapMap> -->
       <div class="mapImg">
-         <img src="../assets/img/ditu.png" @click="goMap()" class="map-img">
+         <img src="../assets/img/ditu.png" @click="goMap('first')" class="map-img">
       </div>
       <div class="mapImg">
-          <img src="../assets/img/ditutwo.png" class="map-img" @click="goMap()">
+          <img src="../assets/img/ditutwo.png" class="map-img" @click="goMap('second')">
       </div>
   </div>
 </template>
@@ -98,8 +98,8 @@ export default {
     // 地圖
   },
   methods: {
-    goMap () {
-      window.location.href="https://goo.gl/maps/YNF27odCy6TSc1CUA";
+    goMap (val) {
+      val === 'first' ? window.location.href="https://goo.gl/maps/YNF27odCy6TSc1CUA" : window.location.href="https://goo.gl/maps/XpmoFWSpWFeEhBh27"
     },
     submitMsg() {
       if (this.name && this.email && this.content) {

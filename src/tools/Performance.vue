@@ -1,6 +1,6 @@
 <template>
 	<div class="Performance bodybox">
-		<div class="Performance_info">
+<!--		<div class="Performance_info">
 
 			<van-cell center :value="'$'+data.totalYearAchievement" title="Yearly"></van-cell>
 			<van-cell center :value="'$'+data.totalMonthAchievement" title="Monthly"></van-cell>
@@ -10,7 +10,9 @@
             <div style="margin: 16px;">
                 <van-button round block type="info" @click="$store.commit('changePage',{tabbar: '/PerformanceList', title: '业绩列表'});$router.push('/PerformanceList')">业绩列表</van-button>
             </div>
-		</div>
+		</div>-->
+    <h1>coming soon</h1>
+
 	</div>
 </template>
 
