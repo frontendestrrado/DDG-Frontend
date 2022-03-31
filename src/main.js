@@ -36,9 +36,6 @@ Vue.prototype.$video = Video
 import vueEsign from 'vue-esign'
 Vue.use(vueEsign)
 
-//引入防抖節流函數
-import '@/utils/throttling-instruct.js'
-
 // google地圖
 // import 'vue-googlemaps/dist/vue-googlemaps.css'
 // import VueGoogleMaps from 'vue-googlemaps'
