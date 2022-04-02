@@ -9,15 +9,15 @@
         <b-row class="mb-5 text-left">
           <b-col class="top-video-title">[AIGT] {{videoDetail.title}}</b-col>
         </b-row>
-        <b-row class="mb-5 text-left">
+<!--        <b-row class="mb-5 text-left">
           <b-col>
-            <i class="iconfont icon-yanjing mr-2"><span>{{videoDetail.is_like}}</span></i>
+            <i class="iconfont icon-yanjing mr-2"></i><span>{{videoDetail.is_like}}</span>
             <span class="division"></span>
-            <i class="iconfont icon-wujiaoxingkong mr-2"  @click="collect(videoDetail.id)"><span>{{videoDetail.like_count}}</span></i>
+            <i class="iconfont icon-wujiaoxingkong mr-2"  @click="collect(videoDetail.id)" :style="{'color': videoDetail.is_like===0 ? '' : 'red'}"></i><span>{{videoDetail.like_count}}</span>
             <span class="division"></span>
             <span>{{videoDetail.created_at}}</span>
           </b-col>
-        </b-row>
+        </b-row>-->
         <b-row class="mb-5">
           <b-col @mouseenter="videoShowPause()" @mouseleave="videoHidePause()" class="my-video">
             <video :src="videoDetail.video" controls class="my-video" ref="videoPlayer" >
@@ -89,11 +89,9 @@ export default {
      * 收藏視頻
      */
     collect (id) {
-      this.throttle(2000)()
-      // console.log(id)
-   /*   collect(id).then(res => {
-
-      })*/
+     collect(id).then(res => {
+      this.getVideoDetail(this.$route.query.id)
+     })
     },
     /**
      * 獲取視頻

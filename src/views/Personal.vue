@@ -70,13 +70,15 @@
         />
       </van-field>
 <!--      等待接口-->
-<!--      <van-field
+      <van-field
+        is-link
+        arrow-direction="down"
         readonly
         clickable
         label="Area"
         center
         :rules="[{ required: true, message: 'Area' }]"
-        :value="Area"
+        :value="userInfo.area"
         placeholder="Area"
         @click="showPicker = true"
       />
@@ -90,7 +92,7 @@
           @confirm="onConfirmArea"
           default-index="0"
         />
-      </van-popup>-->
+      </van-popup>
       <van-field
         center
         label="Date of Birth"
@@ -233,6 +235,8 @@
 </template>
 
 <script>
+import {updateMyProfile} from "../api/my-profile";
+
 export default {
   data() {
     return {
@@ -300,7 +304,7 @@ export default {
         },
       })
         .then((res) => {
-          console.log("333",res);
+          console.log("111",res);
           this.userInfo = res;
           this.fileList = [{ url: res.avatar }];
         })
@@ -312,8 +316,12 @@ export default {
         });
     },
     onConfirmArea(e) {
-      this.Area = e
       this.showPicker = false;
+      if(this.userInfo.area === e) return false
+      updateMyProfile({area: e.join(',')}).then(res => {
+        this.userInfo = res
+      })
+
     },
     showEditBtn(index) {
       this.actUserBtn = index;

@@ -109,7 +109,7 @@
       </van-col>
       <van-col span="8" align="end">
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
-        <van-button type="primary" :disabled="item.status!==3" @click="toFill(item)" size="small">To fill</van-button>
+        <van-button type="primary" :disabled="item.status===3" @click="toFill(item)" size="small">To fill</van-button>
       </van-col>
     </van-row>
   </div>

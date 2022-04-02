@@ -6,7 +6,7 @@
         {{fileData.title}}
       </van-col>
       <van-col span="12" style="text-align:right">
-        <van-button @click="see" class="btn" type="info" size="small" color="#CFC3B5">See</van-button>
+        <van-button @click="see" class="btn" type="info" size="small" color="#CFC3B5">View</van-button>
         <van-button @click="download" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button>
       </van-col>
     </van-row>

@@ -11,7 +11,7 @@
                 <van-button round block type="info" @click="$store.commit('changePage',{tabbar: '/PerformanceList', title: '业绩列表'});$router.push('/PerformanceList')">业绩列表</van-button>
             </div>
 		</div>-->
-    <h1>coming soon</h1>
+    <h1>Coming Soon</h1>
 
 	</div>
 </template>
@@ -61,4 +61,8 @@ export default {
 		width: 90%;
 		margin: 30px auto;
 	}
+  h1 {
+    font-size: 50px;
+  }
+
 </style>

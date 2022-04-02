@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <div>Coming Soon</div>
+    <h1>Coming Soon</h1>
   </div>
 
 </template>
@@ -17,5 +17,7 @@ name: "FormList",
 </script>
 
 <style scoped>
-
+h1 {
+  font-size: 50px;
+}
 </style>

@@ -13,7 +13,7 @@
           </div>
         </b-col>
       </b-row>
-      <b-row class="text-left top-button mb-3">
+<!--      <b-row class="text-left top-button mb-3">
         <b-col>
           <b-button-group size="sm">
             <b-button variant="success" @click="changeVideoList('newest')"><b-icon icon="check" v-show="topButtonStatus==='newest'"></b-icon>Newest</b-button>
@@ -21,7 +21,7 @@
             <b-button  @click="changeVideoList('most_favorite')"><b-icon icon="check" v-show="topButtonStatus==='most_favorite'"></b-icon>Most Favorite</b-button>
           </b-button-group>
         </b-col>
-      </b-row>
+      </b-row>-->
       <b-row class="mt-5">
         <b-col v-for="(item,index) in videoList" :key="item.id" cols="6" md="2" class="mb-5">
           <b-card

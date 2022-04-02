@@ -29,7 +29,7 @@ servie.interceptors.request.use(config => {
 servie.interceptors.response.use(
   response => {
     // console.log(response);
-    if (response.status == 200 || response.status == 201 || response.status == 203 || response.status == 204) {
+    if (response.status >= 200 && response.status <= 400) {
       return response.data;
     } else {
       Toast.fail({

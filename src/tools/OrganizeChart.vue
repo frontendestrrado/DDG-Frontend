@@ -14,17 +14,14 @@
         </template>
       </van-cell>
 
-      <van-cell
-        is-link
-        center
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/OrganizeList/1',
-            title: 'Organizational Chart',
-          });
-          $router.push('/OrganizeList/1');
-        "
-      >
+      <van-cell center>
+<!--        @click="
+        $store.commit('changePage', {
+        tabbar: '/OrganizeList/1',
+        title: 'Organizational Chart',
+        });
+        $router.push('/OrganizeList/1');
+        "-->
         <template #title>
           <span class="custom-title">My Direct Recruit 1st Level</span>
         </template>
@@ -35,18 +32,16 @@
           <div class="fcb"><span>Year Sales:</span><span>${{level.yearSales}}</span></div>
         </template>
       </van-cell>
-      <van-cell
-        is-link
-        center
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/OrganizeUnit/1',
-            title: 'Organizational Chart',
-          });
-          $router.push('/OrganizeUnit/1');
-        "
-      >
-        <!-- <van-cell is-link center @click="$store.commit('changePage',{tabbar: '/OrganizeList/2', title: 'Organizational Chart'});$router.push('/OrganizeList/2')"> -->
+      <van-cell center>
+<!--        @click="
+        $store.commit('changePage', {
+        tabbar: '/OrganizeUnit/1',
+        title: 'Organizational Chart',
+        });
+        $router.push('/OrganizeUnit/1');
+        "-->
+
+
         <template #title>
           <span class="custom-title">My Unit</span>
         </template>
@@ -57,16 +52,16 @@
         </template>
       </van-cell>
       <van-cell
-        is-link
         center
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/OrganizeTeam',
-            title: 'Organizational Chart',
-          });
-          $router.push('/OrganizeTeam');
-        "
+
       >
+<!--        @click="
+        $store.commit('changePage', {
+        tabbar: '/OrganizeTeam',
+        title: 'Organizational Chart',
+        });
+        $router.push('/OrganizeTeam');
+        "-->
         <template #title>
           <span class="custom-title">My Team</span>
         </template>
@@ -77,16 +72,16 @@
         </template>
       </van-cell>
       <van-cell
-        is-link
         center
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/OrganizeGroup',
-            title: 'Organizational Chart',
-          });
-          $router.push('/OrganizeGroup');
-        "
+
       >
+<!--        @click="
+        $store.commit('changePage', {
+        tabbar: '/OrganizeGroup',
+        title: 'Organizational Chart',
+        });
+        $router.push('/OrganizeGroup');
+        "-->
         <template #title>
           <span class="custom-title">My Group</span>
         </template>

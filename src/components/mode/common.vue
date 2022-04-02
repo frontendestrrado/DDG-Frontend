@@ -3,21 +3,22 @@
 		<!-- Banner1 title2 richText3 movie4 singleimage5 imagetext6 showcaseImage7 text8 -->
 		<div class="mian_container_page">
 		  <div v-for="(item,index) in pageData" :key="index" >
-			<Banner v-if="item.type === 1" :bannerData='item' @on-goto="goPage"></Banner>
-			<TilText v-if="item.type === 2" :titleData='item'></TilText>
-			<RichText v-if="item.type === 3 && item.content" :richTextData='item'></RichText>
-			<Movie v-if="item.type === 4" :movieData='item'></Movie>
-			<MultiImg v-if="item.type === 5 || item.type === 7" :imgData='item' @on-goto="goPage"></MultiImg>
-			<Graphic v-if="item.type === 6" :graphicData='item' @on-goto="goPage"></Graphic>
-			<TextMode v-if="item.type === 8" :textData='item'></TextMode>
-			<InputMode v-if="item.type === 9" :formData.sync='item'></InputMode>
-			<File v-if="item.type === 10" :fileData='item'></File>
+        <Banner v-if="item.type === 1" :bannerData='item' @on-goto="goPage"></Banner>
+        <TilText v-if="item.type === 2" :titleData='item'></TilText>
+        <RichText v-if="item.type === 3 && item.content" :richTextData='item'></RichText>
+        <Movie v-if="item.type === 4" :movieData='item'></Movie>
+        <MultiImg v-if="item.type === 5 || item.type === 7" :imgData='item' @on-goto="goPage"></MultiImg>
+        <Graphic v-if="item.type === 6" :graphicData='item' @on-goto="goPage"></Graphic>
+        <TextMode v-if="item.type === 8" :textData='item'></TextMode>
+        <InputMode v-if="item.type === 9" :formData.sync='item'></InputMode>
+        <File v-if="item.type === 10" :fileData='item'></File>
 		  </div>
 		</div>
-		<div class="ProductsThree">
+
+		<div class="ProductsThree" v-show="pageData[0].page_id !== 20"><!--    Tool Box隱藏底部-->
 			<span>For more enquiries</span>
 			<span class="contactUs" @click="toContactUs()">Contact Us</span>
-        </div>
+    </div>
 	</div>
 </template>
 <script>
@@ -41,7 +42,7 @@
 			Graphic,
 			TextMode,
 			InputMode,
-      File
+      File,
 		},
 		props:{
 			pageData:{
@@ -204,7 +205,7 @@
 <style lang="scss" scoped>
 .ProductsThree{
 	    margin-top: 5rem;
-        height: 13rem;
+        height: 10rem;
         background-color: #7C655D;
         color: #fff;
         display: flex;

@@ -77,9 +77,11 @@
       <div class="mapImg">
          <img src="../assets/img/ditu.png" @click="goMap('first')" class="map-img">
       </div>
+      <div class="imgTitle">Address 1</div>
       <div class="mapImg">
           <img src="../assets/img/ditutwo.png" class="map-img" @click="goMap('second')">
       </div>
+    <div class="imgTitle">Address 2</div>
   </div>
 </template>
 
@@ -134,8 +136,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.imgTitle {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: " Calibri";
+  color: #79635a;
+  margin-top: 2rem;
+  padding-bottom: 5rem;
+}
 .map-img {
   cursor: pointer;
+
 }
 ::v-deep .van-row {
   display: -webkit-box;
@@ -157,7 +168,7 @@ export default {
   .mapImg{
     height: 20%;
     width: 100%;
-    padding: 5rem;
+    padding: 0 4rem;
     img{
       width: 100%;
       height: 100%;
