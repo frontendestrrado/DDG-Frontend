@@ -229,7 +229,7 @@ a {
         font-size:3rem;
         font-weight: bold;
         @media screen and (max-width: 768px){
-          margin-top: -1px;
+          margin-top: -2px;
         }
         .contactUs {
             background-color: #fff;
