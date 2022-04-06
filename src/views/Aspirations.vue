@@ -211,7 +211,7 @@ export default {
      min-height: 45rem;
      background-size: 100%;
      background-position-x: -10rem;
-   } 
+   }
   .AspirationsOne {
     background: none;
     // min-height: 90rem;
@@ -294,7 +294,7 @@ export default {
   .AspirationsThree {
     background: url(../assets/img/png/2page.png) no-repeat scroll;
     height: 120rem;
-    background-size: 100% 103%; 
+    background-size: 100% 103%;
   }
   .Interval{
     width: 100%;
@@ -348,18 +348,18 @@ export default {
       cursor: pointer;
     }
   }
-} 
+}
 }
 /*中等屏幕*/
 @media screen and (max-width: 992px){
- 
+
 }
 /*平板*/
 @media screen and (max-width: 768px){
- 
+
 }
 /*手机*/
 @media screen and (max-width: 576px){
-	
+
 }
 </style>

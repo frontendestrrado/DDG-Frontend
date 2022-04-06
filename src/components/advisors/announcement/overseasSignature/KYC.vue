@@ -1,0 +1,2203 @@
+<template>
+  <div class="KYC bodybox">
+    <van-form
+      validate-first
+      @submit="submit"
+      :submit-on-enter="false"
+      :scroll-to-error="true"
+      label-width="auto"
+    >
+      <div class="minTitle">Compliance Questionnaire(Individual)</div>
+      <div class="minTitle">Name of settlor (as per IC):</div>
+      <div class="minTitle">Requirement:-</div>
+      <div class="contentText">
+        1. We have a Regulatory Obligation to verify the source of your fund and
+        wealth. Documentary evidence duly verified by Commission of Oath or
+        other agreeable authority must be provided to us.
+      </div>
+      <div class="contentText">
+        2. The document checklist (Section E) is to assist you to get ready
+        these documents and information in advance for on boarding.
+      </div>
+      <div class="contentText">
+        3. Should more documents be needed to satisfy the regulatory
+        requirement, we will advise you in due course.
+      </div>
+      <div class="contentText">
+        4. Section A, B, C, D and E are required to be completely filled and
+        signed off by the settlor in Section F.
+      </div>
+      <div class="contentText">
+        5. Marketing Team of DDG INTERNATIONAL BERHAD to fill in Section G and
+        signed off.
+      </div>
+      <div class="minTitle">Compliance Questionnaire</div>
+      <div class="minTitle">
+        SECTION A INDIVIDUAL (SETTLOR, DIRECTOR, SHAREHOLDER, ULTIMATE
+        BENEFICIARY OWNER)
+      </div>
+      <div class="minTitle">Settlor</div>
+      <van-field
+        v-model="formData.settlor.Full"
+        name="Full"
+        center
+        :required="true"
+        type="text"
+        label="Full Name"
+        placeholder="Please enter the Full Name"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.settlor.Other"
+        name="Other"
+        center
+        type="text"
+        label="Other/Previous Name (if any)"
+        placeholder="Please enter the Other/Previous Name (if any)"
+      />
+      <van-field
+        v-model="formData.settlor.New"
+        name="New"
+        center
+        :required="true"
+        type="text"
+        label="NEW - Malaysia NRIC No"
+        placeholder="Please enter the NEW - Malaysia NRIC No"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor.Old"
+        name="Old"
+        center
+        type="text"
+        label="OLD - Malaysia NRIC No.(if applicable)"
+        placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)"
+      />
+      <van-field
+        v-model="formData.settlor.Nationality"
+        name="Nationality"
+        center
+        :required="true"
+        type="text"
+        label="Nationality(state all if multiple nationality)"
+        placeholder="Please enter the Nationality(state all if multiple nationality)"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <div class="minTitle">
+        For Non-Malaysia NRIC Holders, please provide passport details
+      </div>
+      <van-field
+        v-model="formData.settlor_non_malaysia.Passport"
+        name="Passport"
+        center
+        type="text"
+        label="Passport Number"
+        placeholder="Please enter the Passport Number"
+      />
+      <van-field
+        v-model="formData.settlor_non_malaysia.Passport2"
+        name="Passport2"
+        center
+        type="text"
+        label="Passport Expiry Date"
+        placeholder="Please enter the Passport Expiry Date"
+      />
+      <van-field
+        v-model="formData.settlor_non_malaysia.Passport3"
+        name="Passport3"
+        center
+        type="text"
+        label="Passport Issuing Country"
+        placeholder="Please enter the Passport Issuing Country"
+      />
+      <van-field
+        v-model="formData.settlor_non_malaysia.Date"
+        name="Date"
+        center
+        :required="true"
+        right-icon="arrow"
+        label="Date of Birth"
+        placeholder="YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the correct date' }]"
+      />
+      <van-field
+        v-model="formData.settlor_non_malaysia.Country"
+        name="Country"
+        center
+        :required="true"
+        type="text"
+        label="Country of Birth"
+        placeholder="Please enter the Country of Birth"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        name="Gender"
+        label="Gender"
+        :required="true"
+        :rules="[{ required: true }]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.settlor_non_malaysia.Gender"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Female</van-radio>
+            <van-radio :name="2">Male</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Marital"
+        label="Marital Status"
+        :required="true"
+        :rules="[
+          { required: true },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.settlor_non_malaysia.Marital"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Single</van-radio>
+            <van-radio :name="2">Married</van-radio>
+            <van-radio :name="3">Divorced</van-radio>
+            <van-radio :name="4">Widow/ Widower</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <div class="minTitle">Contact Details</div>
+      <van-field
+        v-model="formData.settlor_contact_details.Email"
+        name="Email"
+        center
+        :required="true"
+        type="text"
+        label="Email Address"
+        placeholder="Please enter the Email Address"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Mobile"
+        name="Mobile"
+        center
+        :required="true"
+        type="text"
+        label="Mobile Phone No"
+        placeholder="Please enter the Mobile Phone No"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Home"
+        name="Home"
+        center
+        type="text"
+        label="Home Phone No"
+        placeholder="Please enter the Home Phone No"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Office"
+        name="Office"
+        center
+        type="text"
+        label="Office Phone No"
+        placeholder="Please enter the Office Phone No"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Residential"
+        name="Residential"
+        center
+        :required="true"
+        type="text"
+        label="Residential Address"
+        placeholder="Please enter the Residential Address"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Postcode"
+        name="Postcode"
+        center
+        :required="true"
+        type="text"
+        label="Postcode"
+        placeholder="Please enter the Postcode"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Country"
+        name="Country"
+        center
+        :required="true"
+        type="text"
+        label="Country"
+        placeholder="Please enter the Country"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Length"
+        name="Length"
+        center
+        :required="true"
+        type="text"
+        label="Length of stay (Years) "
+        placeholder="Please enter the Length of stay (Years) "
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Mailing"
+        name="Mailing"
+        center
+        type="text"
+        label="Mailing Address(if different from the above address)"
+        placeholder="Please enter the Mailing Address(if different from the above address)"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Postcode2"
+        name="Postcode2"
+        center
+        type="text"
+        label="Postcode"
+        placeholder="Please enter the Postcode"
+      />
+      <van-field
+        v-model="formData.settlor_contact_details.Country2"
+        name="Country2"
+        center
+        type="text"
+        label="Country"
+        placeholder="Please enter the Country"
+      />
+      <div class="minTitle">Spouse</div>
+      <van-field
+        v-model="formData.spouse.Full"
+        name="Full"
+        center
+        type="text"
+        label="Full Name"
+        placeholder="Please enter the Full Name"
+      />
+      <van-field
+        v-model="formData.spouse.Other"
+        name="Other"
+        center
+        type="text"
+        label="Other/Previous Name (if any)"
+        placeholder="Please enter the Other/Previous Name (if any)"
+      />
+      <van-field
+        v-model="formData.spouse.New"
+        name="New"
+        center
+        type="text"
+        label="NEW - Malaysia NRIC No"
+        placeholder="Please enter the NEW - Malaysia NRIC No"
+      />
+      <van-field
+        v-model="formData.spouse.Old"
+        name="Old"
+        center
+        type="text"
+        label="OLD - Malaysia NRIC No.(if applicable)"
+        placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)"
+      />
+      <van-field
+        v-model="formData.spouse.Nationality"
+        name="Nationality"
+        center
+        type="text"
+        label="Nationality(state all if multiple nationality)"
+        placeholder="Please enter the Nationality(state all if multiple nationality)"
+      />
+      <div class="minTitle">
+        For Non-Malaysia NRIC Holders, please provide passport details
+      </div>
+      <van-field
+        v-model="formData.spouse_non_malaysia.Passport"
+        name="Passport"
+        center
+        type="text"
+        label="Passport Number"
+        placeholder="Please enter the Passport Number"
+      />
+      <van-field
+        v-model="formData.spouse_non_malaysia.Passport2"
+        name="Passport2"
+        center
+        type="text"
+        label="Passport Expiry Date"
+        placeholder="Please enter the Passport Expiry Date"
+      />
+      <van-field
+        v-model="formData.spouse_non_malaysia.Passport3"
+        name="Passport3"
+        center
+        type="text"
+        label="Passport Issuing Country"
+        placeholder="Please enter the Passport Issuing Country"
+      />
+      <van-field
+        v-model="formData.spouse_non_malaysia.Date"
+        name="Date"
+        center
+        right-icon="arrow"
+        type="text"
+        label="Date of Birth"
+        placeholder="YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the correct date' }]"
+      />
+      <van-field
+        v-model="formData.spouse_non_malaysia.Country"
+        name="Country"
+        center
+        type="text"
+        label="Country of Birth"
+        placeholder="Please enter the Country of Birth"
+      />
+      <van-field
+        name="Gender"
+        label="Gender"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.spouse_non_malaysia.Gender"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Female</van-radio>
+            <van-radio :name="2">Male</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Marital"
+        label="Marital Status"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.spouse_non_malaysia.Marital"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Single</van-radio>
+            <van-radio :name="2">Married</van-radio>
+            <van-radio :name="3">Divorced</van-radio>
+            <van-radio :name="4">Widow/ Widower</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <div class="minTitle">Contact Details</div>
+      <van-field
+        v-model="formData.spouse_contact_details.Email"
+        name="Email"
+        center
+        type="text"
+        label="Email Address"
+        placeholder="Please enter the Email Address"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Mobile"
+        name="Mobile"
+        center
+        type="text"
+        label="Mobile Phone No"
+        placeholder="Please enter the Mobile Phone No"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Home"
+        name="Home"
+        center
+        type="text"
+        label="Home Phone No"
+        placeholder="Please enter the Home Phone No"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Office"
+        name="Office"
+        center
+        type="text"
+        label="Office Phone No"
+        placeholder="Please enter the Office Phone No"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Residential"
+        name="Residential"
+        center
+        type="text"
+        label="Residential Address"
+        placeholder="Please enter the Residential Address"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Postcode"
+        name="Postcode"
+        center
+        type="text"
+        label="Postcode"
+        placeholder="Please enter the Postcode"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Country"
+        name="Country"
+        center
+        type="text"
+        label="Country"
+        placeholder="Please enter the Country"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Length"
+        name="Length"
+        center
+        type="text"
+        label="Length of stay (Years) "
+        placeholder="Please enter the Length of stay (Years) "
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Mailing"
+        name="Mailing"
+        center
+        type="text"
+        label="Mailing Address(if different from the above address)"
+        placeholder="Please enter the Mailing Address(if different from the above address)"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Postcode2"
+        name="Postcode2"
+        center
+        type="text"
+        label="Postcode"
+        placeholder="Please enter the Postcode"
+      />
+      <van-field
+        v-model="formData.spouse_contact_details.Country2"
+        name="Country2"
+        center
+        type="text"
+        label="Country"
+        placeholder="Please enter the Country"
+      />
+
+      <div class="minTitle">SECTION B OCCUPATION</div>
+      <div class="minTitle">Settlor</div>
+      <van-field
+        name="Occupation"
+        label="Occupation Type"
+        :required="true"
+        :rules="[
+          { required: true },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.settlor_occupation.Occupation"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Salaried</van-radio>
+            <van-radio :name="2">Self-Employed</van-radio>
+            <van-radio :name="3">Retiree</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.settlor_occupation.Occupation2"
+        name="Occupation2"
+        center
+        :required="true"
+        type="text"
+        label="Occupation"
+        placeholder="Please enter the Occupation"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.settlor_occupation.Industry"
+        name="Industry"
+        center
+        type="text"
+        label="Industry"
+        placeholder="Please enter the Industry"
+      />
+      <van-field
+        v-model="formData.settlor_occupation.Name"
+        name="Name"
+        center
+        :required="true"
+        type="text"
+        label="Name of Employer"
+        placeholder="Please enter the Name of Employer"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.settlor_occupation.Nature"
+        name="Nature"
+        center
+        type="text"
+        label="Nature of Business(if Self-Employed)"
+        placeholder="Please enter the Nature of Business(if Self-Employed)"
+      />
+      <van-field
+        v-model="formData.settlor_occupation.Annual"
+        name="Annual"
+        center
+        :required="true"
+        type="text"
+        label="Annual Salary / Income"
+        placeholder="Please enter the Annual Salary / Income"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <div class="minTitle">Spouse</div>
+      <van-field
+        name="Occupation"
+        label="Occupation Type"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.spouse_occupation.Occupation"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Salaried</van-radio>
+            <van-radio :name="2">Self-Employed</van-radio>
+            <van-radio :name="3">Retiree</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.spouse_occupation.Occupation2"
+        name="Occupation2"
+        center
+        type="text"
+        label="Occupation"
+        placeholder="Please enter the Occupation"
+      />
+      <van-field
+        v-model="formData.spouse_occupation.Industry"
+        name="Industry"
+        center
+        type="text"
+        label="Industry"
+        placeholder="Please enter the Industry"
+      />
+      <van-field
+        v-model="formData.spouse_occupation.Name"
+        name="Name"
+        center
+        type="text"
+        label="Name of Employer"
+        placeholder="Please enter the Name of Employer"
+      />
+      <van-field
+        v-model="formData.spouse_occupation.Nature"
+        name="Nature"
+        center
+        type="text"
+        label="Nature of Business(if Self-Employed)"
+        placeholder="Please enter the Nature of Business(if Self-Employed)"
+      />
+      <van-field
+        v-model="formData.spouse_occupation.Annual"
+        name="Annual"
+        center
+        type="text"
+        label="Annual Salary / Income"
+        placeholder="Please enter the Annual Salary / Income"
+      />
+      <div class="minTitle">
+        SECTION C ENHANCED CUSTOMER DUE DILIGENCE (EDD)
+      </div>
+      <van-field
+        name="Are"
+        label="Are you a Political Exposed Person (PEP)?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group v-model="formData.edd.Are" direction="horizontal">
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Are2"
+        label="Are you connected to any local and/or Foreign Political Exposed Person (PEP)?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group v-model="formData.edd.Are2" direction="horizontal">
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <div class="minTitle">
+        If the answer to C2 is YES, please provide the following details:
+      </div>
+      <van-field
+        v-model="formData.c_two_yes.Pep"
+        name="Pep"
+        center
+        type="text"
+        label="PEP’s Full Name"
+        placeholder="Please enter the PEP’s Full Name"
+      />
+      <van-field
+        name="Relationship"
+        label="Relationship with the PEP"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.c_two_yes.Relationship"
+            
+          >
+            <van-radio :name="1">Self</van-radio>
+            
+            <van-radio :name="2"
+              >Family Member Spouse / Child / Parent / Child’s Spouse</van-radio
+            >
+            <van-radio :name="3">Close Associate, please specify</van-radio>
+            <van-radio :name="4"
+              >Ultimate Beneficiary,Owner / Shareholder / Director / Partner /
+              Authorised Person</van-radio
+            >
+            <van-radio :name="5">Others, please specify</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.c_two_yes.Close"
+        name="Close"
+        center
+        type="text"
+        label="Close Associate, please specify"
+        placeholder="Please enter the Close Associate, please specify"
+      />
+      <van-field
+        v-model="formData.c_two_yes.Others"
+        name="Others"
+        center
+        type="text"
+        label="Others, please specify"
+        placeholder="Please enter the Others, please specify"
+      />
+      <van-field
+        name="Are"
+        label="Are you an undischarged bankrupt?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.c_two_yes.Are"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Do"
+        label="Do you have an US Taxpayer Identification Number “TIN?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.c_two_yes.Do"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.c_two_yes.If"
+        name="If"
+        center
+        type="text"
+        label="If YES, please indicate the TIN"
+        placeholder="Please enter the If YES, please indicate the TIN"
+      />
+      <div class="minTitle">
+        SECTION D SOURCE OF FUND – The bank from which the fund is forwarded to
+        the Trustee
+      </div>
+      <div class="minTitle">Bank 1</div>
+      <van-field
+        v-model="formData.bank_one.Bank"
+        name="Bank"
+        center
+        :required="true"
+        type="text"
+        label="Bank"
+        placeholder="Please enter the Bank"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.bank_one.Account"
+        name="Account"
+        center
+        :required="true"
+        type="text"
+        label="Account No"
+        placeholder="Please enter the Account No"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.bank_one.Account2"
+        name="Account2"
+        center
+        :required="true"
+        type="text"
+        label="Account Holder"
+        placeholder="Please enter the Account Holder"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.bank_one.Transaction"
+        name="Transaction"
+        center
+        :required="true"
+        type="number"
+        label="Transaction Amount"
+        placeholder="Please enter the Transaction Amount"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.bank_one.Years"
+        name="Years"
+        center
+        :required="true"
+        type="text"
+        label="Years (estimated) maintaining the account "
+        placeholder="Please enter the Years (estimated) maintaining the account "
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <van-field
+        v-model="formData.bank_one.Relationship"
+        name="Relationship"
+        center
+        :required="true"
+        type="text"
+        label="Relationship with Settlor"
+        placeholder="Please enter the Relationship with Settlor"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <div class="minTitle">Bank 2</div>
+      <van-field
+        v-model="formData.bank_two.Bank"
+        name="Bank"
+        center
+        type="text"
+        label="Bank"
+        placeholder="Please enter the Bank"
+      />
+      <van-field
+        v-model="formData.bank_two.Account"
+        name="Account"
+        center
+        type="text"
+        label="Account No"
+        placeholder="Please enter the Account No"
+      />
+      <van-field
+        v-model="formData.bank_two.Account2"
+        name="Account2"
+        center
+        type="text"
+        label="Account Holder"
+        placeholder="Please enter the Account Holder"
+      />
+      <van-field
+        v-model="formData.bank_two.Transaction"
+        name="Transaction"
+        center
+        type="number"
+        label="Transaction Amount"
+        placeholder="Please enter the Transaction Amount"
+      />
+      <van-field
+        v-model="formData.bank_two.Years"
+        name="Years"
+        center
+        type="text"
+        label="Years (estimated) maintaining the account "
+        placeholder="Please enter the Years (estimated) maintaining the account "
+      />
+      <van-field
+        v-model="formData.bank_two.Relationship"
+        name="Relationship"
+        center
+        type="text"
+        label="Relationship with Settlor"
+        placeholder="Please enter the Relationship with Settlor"
+      />
+      <van-field
+        name="Mode"
+        label="Mode of Payment(Cash not accepted)"
+        :required="true"
+        :rules="[
+          { required: true },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.bank_two.Mode"
+            direction="horizontal"
+          >
+            <van-radio :name="1">IBG/ Instant Transfer </van-radio>
+            <van-radio :name="2">Local Cheque</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <div class="minTitle">SECTION E DOCUMENT CHECKLIST</div>
+      <van-field
+        name="Particulars"
+        label="Particulars"
+        :required="true"
+        :rules="[{ required: true }]"
+        class="Particulars"
+      >
+        <template #input>
+          <van-checkbox-group
+            v-model="formData.document_checklist.Particulars"
+            
+          >
+            <van-checkbox :name="1">IC/ Passport of Settlor</van-checkbox>
+            <van-checkbox :name="2"
+              >Proof of Address (tick whichever applicable) (Prefer – Water,
+              Electricity bill Others – Telephone Bill, Tenancy Agreement, Indah
+              Water, etc )</van-checkbox
+            >
+            <van-checkbox :name="3"
+              >Proof of bank transfer/ cheque pay in slip (Cash not
+              acceptable)</van-checkbox
+            >
+            <van-checkbox :name="4"
+              >Proof of Income(Latest Pay-slip Income tax return )</van-checkbox
+            >
+            <van-checkbox :name="5"
+              >Source of fund – Bank account to fund the Cash Trust(Bank
+              statement showing Name of Bank, Branch,Account Number)</van-checkbox
+            >
+          </van-checkbox-group>
+        </template>
+      </van-field>
+      <!-- <van-field name="Documents" label="Documents" :required="true">
+        <template #input>
+          <van-uploader v-model="Documents" :after-read="afterRead" accept="*" :max-count="1" />
+        </template>
+      </van-field> -->
+      <van-field
+        name="Are"
+        label="Are you one of our existing client in any of our affiliate or our group?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.document_checklist.Are"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.document_checklist.If"
+        name="If"
+        center
+        type="text"
+        label="If yes, Kindly indicate what the services provided"
+        placeholder="Please enter the If yes, Kindly indicate what the services provided"
+      />
+      <div class="minTitle">SECTION F DECLARATION</div>
+      <div class="contentText">
+        I/we certify that the information I/we have provided is true and
+        complete to the best of my knowledge. I am aware that this
+        self-declaration statement is subject to review and verification and if
+        such information has been falsified, I may be subject to prosecution and
+        criminal sanction under written law ASIA INTERNATIONAL TRUST BERHAD
+        (AITB) reserved all rights to stop providing any form of services if
+        information provided found to be incomplete, inaccurate and/or the
+        applicant is under criminal prosecution. I/we fully aware and understand
+        that ASIA INTERNATIONAL TRUST BERHAD (AITB) is obliged to notify the
+        authority if: - 1. Identity of the individual(s)/Beneficiary is
+        difficult to obtain 2. Activity inconsistent with Individual’s profile
+        or business 3. Counterfeit/fraud/unauthorised transaction 4. Excessive
+        or unnecessary use of nominees I/we understand and consent the usage of
+        my/our personal data will be used for all intents and purposes in
+        relation to conducting CUSTOMER DUE DILIGENCE (CDD) to meet the
+        statutory obligation. I/we are fully responsible to notify ASIA
+        INTERNATIONAL TRUST BERHAD (AITB) immediately if any part of the
+        information changes which may and/or have significantly resulting in
+        information discrepancies and inaccuracies.
+      </div>
+       <vue-esign
+        ref="signature"
+        :width="1200"
+        :height="300"
+        :isCrop="false"
+        :lineWidth="6"
+        v-show="!formData.declaration.signature"
+        lineColor="#000000"
+        bgColor.sync="#fff"
+        style="border: 1px solid #666"
+      />
+      <van-image
+        v-show="formData.declaration.signature"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.declaration.signature"
+      />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('signature')">
+          Clear
+        </div>
+        <div
+          class="esignBtn"
+          @click="
+            handleGenerate('signature', 'declaration')
+          "
+        >
+          Confirm
+        </div>
+      </div>
+      <van-field
+        v-model="formData.declaration.Name"
+        name="Name"
+        center
+        :required="true"
+        type="text"
+        label="Name"
+        placeholder="Please enter the Name"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.declaration.Date"
+        name="Date"
+        center
+        :required="true"
+        right-icon="arrow"
+        label="Date"
+        placeholder="YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the correct date' }]"
+      />
+      <div class="minTitle">Section G (Office Use)</div>
+      <div class="minTitle">For Marketing Officer</div>
+      <div class="minTitle">
+        Marketing Agent is responsible to fill in this form. This form is
+        specifically designed for
+      </div>
+      <div class="minTitle">
+        Marketing Officer and Frontline Officer for onboarding clients.
+      </div>
+      <div class="minTitle">Distribution Agent Details(Response)</div>
+      <van-field
+        v-model="formData.distribution_agent_details.Distribution"
+        name="Distribution"
+        center
+        type="text"
+        label="Distribution Agent Name / Marketing Officer "
+        placeholder="Please enter the Distribution Agent Name / Marketing Officer "
+        :required="true"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.distribution_agent_details.Marketing"
+        name="Marketing"
+        center
+        type="text"
+        label="Marketing Officer Name 2 (list all if there are more than one agent)"
+        placeholder="Please enter the Marketing Officer Name 2 (list all if there are more than one agent)"
+      />
+      <div class="minTitle">
+        Distribution Agent Details(Comment for Compliance Officer (if any))
+      </div>
+      <van-field
+        v-model="formData.distribution_agent_details.Distribution2"
+        name="Distribution2"
+        center
+        type="text"
+        label="Distribution Agent Name / Marketing Officer "
+        placeholder="Please enter the Distribution Agent Name / Marketing Officer "
+      />
+      <van-field
+        v-model="formData.distribution_agent_details.Marketing2"
+        name="Marketing2"
+        center
+        type="text"
+        label="Marketing Officer Name 2 (list all if there are more than one agent)"
+        placeholder="Please enter the Marketing Officer Name 2 (list all if there are more than one agent)"
+      />
+      <div class="minTitle">Client Details</div>
+      <van-field
+        v-model="formData.client_details.Client"
+        name="Client"
+        center
+        :required="true"
+        type="text"
+        label="Client Name "
+        placeholder="Please enter the Client Name "
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        name="Is"
+        label="Is the photocopy of the IC match the physical person (settlor)? "
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.client_details.Is"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Is2"
+        label="Is the mobile number correct for the settlor?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.client_details.Is2"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Is3"
+        label="Is the mobile number correct for the beneficiary?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.client_details.Is3"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="Is4"
+        label="Is there willingness to provide information and documents?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.client_details.Is4"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        name="On"
+        label="On-Boarding Mode and how many times you meet the client?"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.client_details.On"
+            direction="horizontal"
+          >
+            <van-radio :name="1">FACE-TO-FACE</van-radio>
+            <van-radio :name="2">NON FACE-TO-FACE</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.client_details.Face"
+        name="Face"
+        center
+        :required="true"
+        type="text"
+        label="FACE-TO-FACE times"
+        placeholder="Please enter the FACE-TO-FACE times"
+        :rules="[
+          { required: true },
+        ]"
+      />
+      <van-field
+        v-model="formData.client_details.Non"
+        name="Non"
+        center
+        :required="true"
+        type="text"
+        label="NON FACE-TO-FACE, times"
+        placeholder="Please enter the NON FACE-TO-FACE, times"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      />
+      <span style="font-weight: bold"
+        >Face to face interaction/ or other way of interaction? Kindly list down
+        as many as possible</span
+      >
+      <van-button class="esignBtn" native-type="button" @click="addBeneficiary"
+        >Add</van-button
+      >
+      <div
+        class="beneficiary_info"
+        v-for="(item, inx) in formData.interaction"
+        :key="inx"
+      >
+        <van-field
+          v-model="item.Date"
+          name="Date"
+          center
+          right-icon="arrow"
+          label="Date"
+          placeholder="YYYY-MM-DD"
+          :rules="[{ pattern, message: 'Please enter the correct date' }]"
+        />
+        <van-field
+          v-model="item.Time"
+          name="Time"
+          center
+          type="text"
+          label="Time"
+          placeholder="Please enter the Time"
+        />
+        <van-field
+          v-model="item.Place"
+          name="Place"
+          center
+          type="text"
+          label="Place"
+          placeholder="Please enter the Place"
+        />
+        <van-field
+          v-model="item.Comment"
+          name="Comment"
+          center
+          type="text"
+          label="Comment"
+          placeholder="Please enter the Comment"
+        />
+        <van-button
+          class="esignDelBtn"
+          v-if="inx > 0"
+          slot="button"
+          native-type="button"
+          @click="delBeneficiary(inx)"
+          >delete</van-button
+        >
+      </div>
+      <van-field
+        name="Any"
+        label="Any Introducer? "
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.assessment_of_client.Any"
+            direction="horizontal"
+          >
+            <van-radio :name="1">YES</van-radio>
+            <van-radio :name="0">NO</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.assessment_of_client.Please"
+        name="Please"
+        center
+        type="text"
+        label="Please state the Name of introducer"
+        placeholder="Please enter the Please state the Name of introducer"
+      />
+      <div class="minTitle">Assessment of Client</div>
+      <van-field
+        name="Risk"
+        label="Risk Rating by Distribution Agent"
+        :required="true"
+        :rules="[
+          {
+            required: true,
+          },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.assessment_of_client.Risk"
+            direction="horizontal"
+          >
+            <van-radio :name="1">High</van-radio>
+            <van-radio :name="2">Above Average</van-radio>
+            <van-radio :name="3">Moderate</van-radio>
+            <van-radio :name="4">Low</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.assessment_of_client.Any2"
+        name="Any2"
+        center
+        type="text"
+        label="Any indication or information to suggest the client is of high risk? Please elaborate."
+        placeholder="Please enter the Any indication or information to suggest the client is of high risk? Please elaborate."
+      />
+      <van-field
+        name="Recommended"
+        label="Recommended Decision"
+        :required="true"
+        :rules="[
+          { required: true },
+        ]"
+      >
+        <template #input>
+          <van-radio-group
+            v-model="formData.assessment_of_client.Recommended"
+            direction="horizontal"
+          >
+            <van-radio :name="1">Accept</van-radio>
+            <van-radio :name="2">Reject</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+      <van-field
+        v-model="formData.assessment_of_client.Please2"
+        name="Please2"
+        center
+        type="text"
+        label="Please elaborate your decision regardless the answer above is rejected or accepted."
+        placeholder="Please enter the Please elaborate your decision regardless the answer above is rejected or accepted."
+      />
+      <van-field
+        v-model="formData.assessment_of_client.Remark"
+        name="Remark"
+        center
+        type="text"
+        label="Remark/ Comments:"
+        placeholder="Please enter the Remark/ Comments:"
+      />
+      <div class="minTitle">
+        We declare all the information provided is accurate and we will store
+        all the data securely
+      </div>
+      <div class="tl">Marketing Officer/ Frontline Officer</div>
+      <vue-esign
+        ref="trustor_signature1"
+        :width="1200"
+        :height="300"
+        :isCrop="false"
+        :lineWidth="6"
+        v-show="!formData.store_marketing_officer.trustor_signature1"
+        lineColor="#000000"
+        bgColor.sync="#fff"
+        style="border: 1px solid #666"
+      />
+      <van-image
+        v-show="formData.store_marketing_officer.trustor_signature1"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.store_marketing_officer.trustor_signature1"
+      />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('trustor_signature1')">
+          Clear
+        </div>
+        <div
+          class="esignBtn"
+          @click="
+            handleGenerate('trustor_signature1', 'store_marketing_officer')
+          "
+        >
+          Confirm
+        </div>
+      </div>
+      <van-field
+        v-model="formData.store_marketing_officer.Name"
+        name="Name"
+        center
+        :required="true"
+        type="text"
+        label="Name"
+        placeholder="Please enter the Name"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.store_marketing_officer.Nric"
+        name="Nric"
+        center
+        :required="true"
+        type="text"
+        label="NRIC No"
+        placeholder="Please enter the NRIC No"
+        :rules="[{ required: true }]"
+      />
+      <van-field
+        v-model="formData.store_marketing_officer.Date"
+        name="Date"
+        center
+        :required="true"
+        right-icon="arrow"
+        label="Date"
+        placeholder="YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the correct date' }]"
+      />
+      <div class="tl">Manager/ HOD of the Company</div>
+      <vue-esign
+        ref="trustor_signature2"
+        :width="1200"
+        v-show="!formData.store_manager.trustor_signature2"
+        :height="300"
+        :isCrop="false"
+        :lineWidth="6"
+        lineColor="#000000"
+        bgColor.sync="#fff"
+        style="border: 1px solid #666"
+      />
+      <van-image 
+        v-show="formData.store_manager.trustor_signature2"
+        width="100%"
+        height="20%"
+        class="esignImgbox"
+        :src="formData.store_manager.trustor_signature2"
+      />
+      <div class="tr">
+        <div class="esignBtn" @click="handleReset('trustor_signature2')">
+          Clear
+        </div>
+        <div
+          class="esignBtn"
+          @click="handleGenerate('trustor_signature2', 'store_manager')"
+        >
+          Confirm
+        </div>
+      </div>
+      <van-field
+        v-model="formData.store_manager.Name"
+        name="Name"
+        center
+        type="text"
+        label="Name"
+        placeholder="Please enter the Name"
+      />
+      <van-field
+        v-model="formData.store_manager.Nric"
+        name="Nric"
+        center
+        type="text"
+        label="NRIC No"
+        placeholder="Please enter the NRIC No"
+      />
+      <van-field
+        v-model="formData.store_manager.Date"
+        name="Date"
+        center
+        right-icon="arrow"
+        label="Date"
+        placeholder="YYYY-MM-DD"
+        :rules="[{ pattern, message: 'Please enter the correct date' }]"
+      />
+
+      <!-- <div class="minTitle">KNOW YOUR CLIENT’S FORM (KYC)</div>
+      <van-field
+        readonly
+        clickable
+        label="Area code"
+        center
+        :required="true"
+        :rules="[{ required: true, message: 'Please select the area code' }]"
+        :value="areaCode"
+        placeholder="Please select the area code"
+        @click="showCodePicker = true"
+      />
+      <van-field
+        v-model="phone"
+        name="phone"
+        center
+        :required="true"
+        type="digit"
+        label="CONTACT NO"
+        placeholder="Please enter the CONTACT NO"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the CONTACT NO',
+          },
+        ]"
+      >
+      </van-field>
+      <van-popup v-model="showCodePicker" round position="bottom">
+        <van-picker
+          show-toolbar
+          :columns="columns"
+          @cancel="showCodePicker = false"
+          @confirm="(value) => onConfirm(value)"
+        />
+      </van-popup>
+      <van-field
+        v-model="verify_code"
+        center
+        :required="true"
+        label="Verification code"
+        placeholder="Please enter the verification code"
+        :rules="[
+          {
+            required: true,
+            message: 'Please enter the verification code',
+          },
+        ]"
+      >
+        <van-button
+          class="SMSconfirm"
+          slot="button"
+          native-type="button"
+          :disabled="isSms"
+          @click="sendCode()"
+          >Send code</van-button
+        >
+      </van-field> -->
+
+      <!-- 提交 -->
+      <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
+        {{ from == "create" ? "Next / Save" : "Next / Save" }}
+      </van-button>
+    </van-form>
+    <!-- 日期彈框 -->
+<!--    <van-popup v-model="isShowPicker" position="bottom">
+      <van-datetime-picker
+        v-model="currentContent"
+        type="date"
+        :min-hour="0"
+        confirm-button-text="Confirm"
+        cancel-button-text="Cancel"
+        :min-date="minDate"
+        @cancel="onHiddenPicker"
+        @confirm="onConfirmPicker"
+      />
+    </van-popup>-->
+  </div>
+</template>
+
+<script>
+import { uploadAutograph, smsVerify_code,uploadFile } from "@/api/util";
+import { kyc_form, getOrdersForms, putOrdersForms } from "@/api/order";
+export default {
+  props:['orderDataInfo'],
+  data() {
+    return {
+      formData: {
+        settlor: {
+          Full: '',
+          Other: '',
+          New: '',
+          Old: '',
+          Nationality: '',
+        }, 
+        settlor_non_malaysia: {
+          Passport: '',
+          Passport2: '',
+          Passport3: '',
+          Date: '',
+          Country: '',
+          Gender: '',
+          Marital: '',
+        }, 
+        settlor_contact_details: {
+          Email: '',
+          Mobile: '',
+          Home: '',
+          Office: '',
+          Residential: '',
+          Postcode: '',
+          Country: '',
+          Length: '',
+          Mailing: '',
+          Postcode2: '',
+          Country2: '',
+        },
+        spouse: {
+          Full: '',
+          Other: '',
+          New: '',
+          Old: '',
+          Nationality: '',
+        }, 
+        spouse_non_malaysia: {
+          Passport: '',
+          Passport2: '',
+          Passport3: '',
+          Date: '',
+          Country: '',
+          Gender: '',
+          Marital: '',
+        }, 
+        spouse_contact_details: {
+          Email: '',
+          Mobile: '',
+          Home: '',
+          Office: '',
+          Residential: '',
+          Postcode: '',
+          Country: '',
+          Length: '',
+          Mailing: '',
+          Postcode2: '',
+          Country2: '',
+        },
+        settlor_occupation: {
+          Occupation: '',
+          Occupation2: '',
+          Industry: '',
+          Name: '',
+          Nature: '',
+          Annual: '',
+        }, 
+        spouse_occupation: {
+          Occupation: '',
+          Occupation2: '',
+          Industry: '',
+          Name: '',
+          Nature: '',
+          Annual: '',
+        }, 
+        edd: {
+          Are: '',
+          Are2: '',
+        },
+        c_two_yes: {
+          Pep: '',
+          Relationship: '',
+          Close: '',
+          Others: '',
+          Are: '',
+          Do: '',
+          If: '',
+        }, 
+        bank_one: {
+          Bank: '',
+          Account: '',
+          Account2: '',
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+        }, 
+        bank_two: {
+          Bank: '',
+          Account: '',
+          Account2: '',
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+          Mode: '',
+        },
+        document_checklist: {
+          Particulars: [],
+          Are: '',
+          If: '',
+          // Documents: '', // 上传的文件url
+        }, 
+        // declaration: {
+        //   Name: '',
+        //   Date: '',
+        // }, 
+        onboarding_clients: {},
+        distribution_agent_details: {
+          Distribution: '',
+          Marketing: '',
+          Distribution2: '',
+          Marketing2: '',
+        }, 
+        client_details: {
+          Client: '',
+          Is: '',
+          Is2: '',
+          Is3: '',
+          Is4: '',
+          On: '',
+          Face: '',
+          Non: '',
+        }, 
+        interaction: [{
+          Date: '',
+          Time: '',
+          Place: '',
+          CommentComment: '',
+        }], // Add
+        assessment_of_client: {
+          Any: '',
+          Please: '',
+          Risk: '',
+          Any2: '',
+          Recommended: '',
+          Please2: '',
+          Remark: '',
+        }, 
+        store_marketing_officer: {
+          trustor_signature1: '',
+          Name: '',
+          Nric: '',
+          Date: '',
+        }, 
+        store_manager: {
+          trustor_signature2: '',
+          Name: '',
+          Nric: '',
+          Date: '',
+        },
+        declaration: {
+          signature: '',
+          Name: '',
+          // Nric: '',
+          Date: '',
+        }
+      },
+      isShowPicker: false, // 日期彈框
+      currentContent: new Date(), // 日期彈框顯示當前日期
+      whichDate: "", // 區分是哪個日期觸發彈框
+      whichDate2: "", // 區分是哪個日期觸發彈框
+      whichDateInx: "", // 區分是哪個日期觸發彈框
+      showCodePicker: false, // 區號彈框
+      columns: ["60 Malaysia", "86 China", "852 Hong Kong", "886 Taiwan"],
+      areaCode: "", // 區號
+      phone: "",
+      verify_code: "",
+      isSms: false,
+      from: "", // 記錄哪個頁面進入的
+      isFilled: "", // 表單id(未填0)
+      minDate: new Date(1900, 0, 1),
+      // Documents: [], // 上传的文件
+      isDone: false, // 訂單是否已確認
+      pattern: /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/,// 正则验证时间
+    };
+  },
+  mounted() {
+   /* console.log(this.$route.query, 222222);
+    if(this.$store.state.isOverseaSignature){
+      this.from = "create"
+      this.isFilled=0
+    }else{
+      this.from = this.$route.query.from;
+      this.isFilled = this.$route.query.isFilled;
+      this.isDone = this.$route.query.status == 1 ? true : false;
+    }
+    if(this.$route.query.isShare){
+       this.isFilled=this.$route.query.kyc_form
+    }*/
+    this.getFormData();
+  },
+  methods: {
+    // 如果已填 獲取數據
+    getFormData() {
+      if (this.isFilled > 0) {
+        getOrdersForms(this.isFilled, { type: "KYC" })
+          .then((res) => {
+            delete res.id
+            delete res.order_id
+            delete res.created_at
+            delete res.updated_at
+            // console.log(res,'kyc');
+            for (let key in res) {
+              res[key] = JSON.parse(res[key])
+            }
+            // console.log(res,999999999);
+            // if (res.document_checklist.Documents) {
+            //   this.Documents.push({url: res.document_checklist.Documents})
+            // }
+            this.formData = res;
+            // this.phone = res.witness_phone.slice(-11);
+            // this.areaCode = res.witness_phone.split(this.phone)[0];
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    submit(form) {
+      console.log(form, "form");
+      if (!this.formData.store_marketing_officer.trustor_signature1&&!this.$store.state.isOverseaSignature) {
+        this.$toast.fail("Please sign your name");
+        return;
+      } 
+      if (!this.formData.store_manager.trustor_signature2&&!this.$store.state.isOverseaSignature) {
+        this.$toast.fail("Please sign your name");
+        return;
+      } 
+      if (!this.formData.declaration.signature&&!this.$store.state.isOverseaSignature) {
+        this.$toast.fail("Please sign your name");
+        return;
+      } 
+      // else if (!this.formData.store_manager.trustor_signature2) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      let data = JSON.parse(JSON.stringify(this.formData));
+      console.log(">>>>>>>...",data)
+      // data.document_checklist.Documents = this.Documents[0].url
+      // data.settlor = JSON.stringify(data.settlor)
+      for (let key in data) {
+        data[key] = JSON.stringify(data[key])
+      }
+      // data.witness_phone = this.areaCode.split(" ")[0] + this.phone;
+      if (this.isFilled > 0) {
+        // 修改
+        putOrdersForms(this.isFilled, {
+          type: "KYC",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改kyc成功");
+          this.$toast({
+            type: "success",
+            message: "Modify the success",
+          });
+          if(!this.$route.query.isShare){
+            this.$router.go(-1);
+          }
+          
+        });
+      } else {
+        console.log(this.$store.state.CustomerApplicationId)
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        kyc_form(id, data)
+          .then((res) => {
+            console.log(res);
+            this.$toast({
+              type: "success",
+              message: "Submitted successfully",
+            });
+            if (this.from == "create") {
+              this.$store.commit("changePage", {
+                tabbar: "/LetterOfWishes",
+                title: "3/5 Letter Of Wishes",
+              });
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
+                  this.$router.push(
+                  "/LetterOfWishes?from=create&orderId=" +
+                  this.$route.query.orderId
+                );
+              }
+            } else {
+              this.$router.go(-1);
+            }
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      }
+      // // 验证验证码
+      // let data = [];
+      // data.push({
+      //   phone: this.areaCode.split(" ")[0] + this.phone,
+      //   verify_code: this.verify_code,
+      // });
+      // verdict_code(JSON.stringify(data))
+      //   .then((res) => {
+      //     console.log(res, "验证回调");
+      //     if (res.state_code == 200) {
+      //       // 验证成功 提交表单
+            
+      //       }
+      //     } else {
+      //       this.$toast({
+      //         type: "fail",
+      //         message: res.message,
+      //       });
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err.response);
+      //     this.$toast({
+      //       type: "fail",
+      //       message: "Verification code error",
+      //     });
+      //   });
+    },
+    onFailed(values, errorInfo) {
+      console.log("failed", errorInfo);
+      console.log("values", values);
+      values.errors.forEach((item, index) => {
+        this.$toast({
+          type: "fail",
+          message: item.message,
+        });
+      });
+    },
+    //获取验证码
+    sendCode(index) {
+      if (this.phone) {
+        var data = [
+          {
+            phone: this.areaCode.split(" ")[0] + this.phone,
+          },
+        ];
+        smsVerify_code({ phone: JSON.stringify(data) })
+          .then((res) => {
+            console.log(res);
+            if (res.state_code == 200) {
+              this.$toast({
+                type: "success",
+                message: res.message,
+              });
+              this.isSms = true;
+              const vm = this;
+              setTimeout(function () {
+                vm.isSms = false;
+              }, 60000);
+            } else {
+              this.$toast({
+                type: "fail",
+                message: res.message,
+              });
+            }
+          })
+          .catch((err) => {
+            this.$toast({
+              type: "fail",
+              message: "Failed to obtain the verification code. Procedure",
+            });
+          });
+      } else {
+        this.$toast("Please enter your mobile phone number");
+      }
+    },
+    // 验证验证码
+    verifyCode(values) {
+      let data = [];
+      let num = 0;
+      this.phoneList.forEach((item, i) => {
+        if (item.phone) {
+          num++;
+          var phoneInfo = {
+            phone: this.areaCode[i].split(" ")[0] + item.phone,
+            verify_code: item.verify_code,
+          };
+          data.push(phoneInfo);
+        }
+      });
+      if (num == 0) {
+        const vm = this;
+        setTimeout(function () {
+          vm.onSubmit(values);
+        }, 600);
+      } else {
+        if (num == data.length) {
+          this.$axios({
+            method: "GET",
+            url: "/api/v1/sin_up/sms/verify_code?data=" + JSON.stringify(data),
+          })
+            .then((res) => {
+              console.log(res);
+              if (res.state_code == 200) {
+                // this.$toast({
+                //     type:'success',
+                //     message:res.message,
+                // });
+                const vm = this;
+                setTimeout(function () {
+                  vm.onSubmit(values);
+                }, 600);
+              } else {
+                this.$toast({
+                  type: "fail",
+                  message: res.message,
+                });
+              }
+            })
+            .catch((err) => {
+              this.$toast({
+                type: "fail",
+                message: "Verification code error",
+              });
+            });
+        }
+      }
+    },
+    onConfirm(value) {
+      this.areaCode = value;
+      this.showCodePicker = false;
+    },
+    // 清空画布
+    handleReset(val) {
+      console.log(this.$refs[val],111)
+      this.$refs[val].reset(); //清空画布
+      if (val == 'trustor_signature1') {
+        this.formData.store_marketing_officer.trustor_signature1 = ''
+      }
+      if (val == 'trustor_signature2') {
+        this.formData.store_manager.trustor_signature2 = ''
+      }
+      if (val == 'signature') {
+        this.formData.declaration.signature = ''
+      }
+    },
+    handleGenerate(val,val2) {
+     console.log(this.$refs[val].generate().PromiseState)
+      var that = this;
+      this.$refs[val]
+        .generate()
+        .then((res) => {
+          uploadAutograph({
+            image: res,
+            path: "",
+          })
+            .then((res) => {
+               console.log(res)
+              that.formData[val2][val] = res.path;
+              that.$toast({
+                type: "success",
+                message: "Signature \n success",
+              });
+            })
+            .catch((err) => {
+              that.$toast({
+                type: "fail",
+                message: "Uploading\n picture\n failed",
+              });
+            });
+            // this.$refs['trustor_signature2'].resultImg=that.formData[val2][val]
+            // console.log(this.$refs[val].resultImg)
+        })
+        .catch((err) => {
+          //  没有签名，点击生成图片时调用
+          that.$toast({
+            type: "fail",
+            message: err + " No signature！",
+          });
+          alert(err); // 画布没有签字时会执行这里 'Not Signned'
+        });
+    },
+    // 展示日期弹框
+    onShowPicker(val,val2,inx) {
+      this.isShowPicker = true;
+      this.whichDate = val;
+      this.whichDate2 = val2;
+      this.whichDateInx = inx;
+    },
+    // 日期彈框
+    onHiddenPicker() {
+      this.currentContent = new Data();
+      this.isShowPicker = false;
+    },
+    onConfirmPicker() {
+      if (this.whichDateInx || this.whichDateInx == 0) {
+        this.formData[this.whichDate][this.whichDateInx][this.whichDate2] = this.formatDateYMD(this.currentContent);
+      } else {
+        this.formData[this.whichDate][this.whichDate2] = this.formatDateYMD(this.currentContent);
+      }
+      this.isShowPicker = false;
+    },
+    // 出來日期格式ymd
+    formatDateYMD(value) {
+      if (!value) {
+        return "";
+      } else {
+        var date = new Date(value);
+        var Y = date.getFullYear() + "-";
+        var M = date.getMonth() + 1 + "-";
+        var D = date.getDate();
+        return Y + M + D;
+      }
+    },
+    // 添加beneficiary_info
+    addBeneficiary() {
+      if (this.formData.interaction.length < 4) {
+        this.formData.interaction.push({
+          Date: "",
+          Time: "",
+          Place: "",
+          Comment: "",
+        });
+      }
+    },
+    delBeneficiary(inx) {
+      this.formData.interaction.splice(inx, 1);
+    },
+    // 文件上傳
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file,'上傳的文件');
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        // this.Documents[0].url = res.file
+      })
+    },
+  },
+};
+</script>
+
+<style scoped>
+.Particulars {
+  padding-bottom: 100px;
+}
+.KYC {
+  padding: 0 16px;
+  text-align: left;
+}
+.minTitle {
+  font-weight: bold;
+  line-height: 24px;
+}
+.contentText {
+  line-height: 24px;
+  padding-left: 1rem;
+}
+/deep/ .van-radio__icon,
+/deep/ .van-radio__icon .van-icon,
+/deep/ .van-checkbox__icon,
+/deep/ .van-checkbox__icon .van-icon {
+  font-size: 18px;
+  height: 20px;
+  line-height: 20px;
+}
+/deep/ .van-field__label {
+  width: 13.2rem;
+}
+.esignBtn {
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #7C655D;
+  font-size: 16px;
+  border-radius: 13px;
+  height: 35px;
+  line-height: 35px;
+  margin: 10px 0 10px 10px;
+  display: inline-block;
+  width: auto;
+  padding: 0 10px;
+}
+.SMSconfirm {
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #7C655D;
+  font-size: 16px;
+  border-radius: 10px;
+  height: 35px;
+}
+/*手机*/
+@media screen and (max-width: 768px) {
+  /deep/ .van-field__label {
+    width: 30rem;
+  }
+}
+.beneficiary_info {
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.esignDelBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #dd4b39;
+  font-size: 16px;
+  border-radius: 13px;
+  height: 35px;
+  line-height: 35px;
+  margin: 10px 0 10px 10px;
+}
+.esignImgbox {
+  border: 1px solid #666666;
+}
+</style>

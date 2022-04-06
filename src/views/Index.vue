@@ -33,14 +33,17 @@
         <span>For more enquiries</span>
         <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
+    <LevitatedSphere></LevitatedSphere>
   </div>
 </template>
 
 <script>
 import Common from "@/components/mode/common.vue";
+import LevitatedSphere from '@/components/common/LevitatedSphere.vue'
 export default {
   components: {
     Common,
+    LevitatedSphere
   },
   name: "Home",
   data() {
@@ -293,16 +296,22 @@ a {
   .minTitle {
     font-size: 3rem;
     margin-bottom: 2rem;
+    @media screen and (max-width: 768px){
+      line-height: 4rem;
+      font-size: 20px;
+    }
   }
   .content {
     display: inline-block;
     margin-top: 1rem;
     font-size: 1.1rem;
     line-height: 2rem;
+    @media screen and (max-width: 768px){
+      line-height: 4rem;
+    }
   }
 }
 .homeThree {
-  font-family:" Calibri";
   background: url(../assets/img/png/蒙版51@3x.png);
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -312,6 +321,7 @@ a {
   position: relative;
   padding: 10rem;
   color: #7C655D;
+  font-family: "Times New Roman";
   .minTitle {
     font-size: 5rem;
     margin-top: 10rem;
