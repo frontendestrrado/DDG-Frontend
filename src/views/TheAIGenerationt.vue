@@ -1,10 +1,10 @@
 <template>
   <div class="Generation">
-      <h1>The AI“爱”Generation Trust</h1>
+      <h1>The AI “爱” Generation Trust</h1>
     <div class="GenerationOne">
         <div class="contentOne">
            <div class="contentOne-title">
-              <h1>The AI  <span>“爱”</span></h1>
+              <h1>The AI “爱” </h1>
               <h1>Generation Trust</h1>
            </div>
         </div>
@@ -12,19 +12,19 @@
             <div class="content">
             <p class="text1">
               AI (means love in Mandarin) is at the root of our philosophy
-              – this AI Generation Trust, 
-              under the purview of Asia International Trust Berhad 
-              and distributed exclusively by DDG, 
-              offers impeccable protection for your assets due to the 
-              independent trustee’s mandate over the trust assets and distributions. 
+              – this AI Generation Trust,
+              under the purview of Asia International Trust Berhad
+              and distributed exclusively by DDG,
+              offers impeccable protection for your assets due to the
+              independent trustee’s mandate over the trust assets and distributions.
             </p>
             <p class="text2">
-              
+
               A famil's success in sustaining its wealth from
               one generation to another is inevitable,
               and it requires careful planning and implementation.
             </p>
-        </div> 
+        </div>
         <p class="text3">Overview</p>
         <div class="line"></div>
         </div>
@@ -33,27 +33,27 @@
         <p class="GenerationTwoText">Why Trust</p>
         <div class="line"></div>
         <p class="GenerationTwoText2">
-           “Trusts” – Trusts are a type of will-substitute. 
-            Drafted and administered properly, they avoid probate 
+           “Trusts” – Trusts are a type of will-substitute.
+            Drafted and administered properly, they avoid probate
             and give you the power to decide how
-            and when (and, of course, to whom) your estate will be distributed 
-            during your lifetime and after you are gone. 
-            There are many different types of trusts available depending on 
-            your estate-planning or special needs goals. 
-            The best type of trust for you can be discussed during consultation. 
-            All trusts come with thorough instructions for 
-            the Settlors (how to properly title assets to the trust) 
+            and when (and, of course, to whom) your estate will be distributed
+            during your lifetime and after you are gone.
+            There are many different types of trusts available depending on
+            your estate-planning or special needs goals.
+            The best type of trust for you can be discussed during consultation.
+            All trusts come with thorough instructions for
+            the Settlors (how to properly title assets to the trust)
             and the Trustees (how to properly administer the trust),
-            including any Social Security Administration requirements for 
-            special needs trust administration. 
+            including any Social Security Administration requirements for
+            special needs trust administration.
         </p>
         <p class="GenerationTwoText3">
             While the primary focus of DDG International Berhad is to provide
-            comprehensive estate-planning and wealth management solutions 
-            and trusts for individuals and families, 
-            incorporating estate planning solutions for special needs 
-            family members may be the most comprehensive part of the 
-            company’s practice. 
+            comprehensive estate-planning and wealth management solutions
+            and trusts for individuals and families,
+            incorporating estate planning solutions for special needs
+            family members may be the most comprehensive part of the
+            company’s practice.
         </p>
     </div>
     <div class="GenerationFour">
@@ -164,21 +164,29 @@ h1 {
 .Generation{
     color: #7C655D;
     font-size: 1.5rem;
-    font-family: 'Calibri';
+    font-family: "Times New Roman";
     position: relative;
+    >h1 {
+      font-size: 36px;
+      font-weight: 600;
+      @media screen and (max-width: 1025px) {
+        font-size: 14px;
+      }
+
+    }
     .GenerationOne{
         background: url(../assets/img/Generation/AI1.jpg);
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100%;
-        height: 60rem;
+        height: 50rem;
         position: relative;
-        padding: 4rem;
+
         h1{
-           margin-bottom:1rem;
-           span{
-             font-size: 4rem;
-           }
+          margin-bottom:1rem;
+          margin-left: 100px;
+          font-size: 70px;
+          font-weight: 600;
         }
         .content{
            width: 36rem;
@@ -195,10 +203,10 @@ h1 {
            }
         }
         .text3{
-              font-size: 2rem;
+              font-size: 1.5rem;
               color: #fff;
               position: absolute;
-              bottom:24%;
+              bottom:8.5%;
               right: 35%;
            }
     }
@@ -206,29 +214,31 @@ h1 {
         background: url(../assets/img/Generation/AI2.jpg);
         background-attachment: scroll;
         background-repeat: no-repeat;
-        background-size: 100% 110%;
-        height: 80rem;
+        background-size: 100% 100%;
+        height: 50rem;
         text-align: right;
         position: relative;
         .GenerationTwoText{
-          font-size: 2rem;
+          font-size: 1.8rem;
           color: #fff;
           position: absolute;
-          top:18%;
-          left: 6%;
+          top:16%;
+          left: 6.5%;
         }
         .GenerationTwoText2{
-          font-size: 1.5rem;
-          // line-height: 2rem;
-          width: 32rem;
+          font-family: Calibri;
+          font-size: 1.1rem;
+           line-height: 1.2rem;
+          width: 25rem;
           text-align: left;
           position: absolute;
-          left: 28%;
-          top:20%;
+          left: 30%;
+          top:18%;
         }
         .GenerationTwoText3{
-          font-size: 1.5rem;
-          // line-height: 2rem;
+          font-family: Calibri;
+          font-size: 1rem;
+          line-height: 1.2rem;
           width: 27rem;
           text-align: left;
           position: absolute;
@@ -343,7 +353,7 @@ h1 {
         align-items: center;
         justify-content: center;
         font-size: 3rem;
-        font-weight: bold;  
+        font-weight: bold;
         .contactUs {
             background-color: #fff;
             color: #7B655D;
@@ -362,16 +372,16 @@ h1 {
         flex-direction: column;
         background:none;
         .contentOne{
-           width: 100%; 
-           height: 60rem;
+           width: 100%;
+           height: 100rem;
            background: url(../assets/img/png/组55@3x.png);
            background-attachment: scroll;
            background-repeat: no-repeat;
-           background-size: 120% 100%;
+           background-size: 100% 100%;
            position: relative;
            .contentOne-title{
              position: absolute;
-             bottom: 20%;
+             bottom: 25%;
              right: 3%;
              h1{
                font-size: 4.2rem;
@@ -381,7 +391,7 @@ h1 {
            }
         }
         .contentTwo{
-          width: 100%; 
+          width: 100%;
            height: 60rem;
            padding: 20px;
            position: relative;
@@ -459,7 +469,7 @@ h1 {
           width: 50rem;
           text-align: left;
           position: absolute;
-          bottom: 8%;
+          bottom: 6%;
           left: 13%;
         }
         .line{
@@ -571,5 +581,5 @@ h1 {
           }
         }
     }
-   }     
+   }
 </style>

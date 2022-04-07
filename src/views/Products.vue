@@ -5,7 +5,7 @@
 
     </div>
     <div class="ProductsOne">
-      <img src="@/assets/img/Products/reading-e-book.png" alt="">
+      <img src="@/assets/img/Products/reading-e-book.png" alt="" class="lassock">
       <p class="text1">Create an <span>Estate Plan</span></p>
       <p class="text2">for Your <span>Loved Ones</span></p>
       <div class="content">
@@ -69,6 +69,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.lassock {
+  width: 40%;
+  margin-top: 360px;
+  margin-left: -60px;
+  @media screen and (max-width: 1025px){
+   display: none;
+  }
+}
 .Products {
   .title {
     font-size: 4rem;
@@ -76,16 +84,21 @@ export default {
    font-family: 'Times New Roman';
   .ProductsOne {
     background: url(../assets/img/Products/Layer4.png) no-repeat scroll;
-    height: 53rem;
-    background-size: 100% 110%;
+    height: 47rem;
+    background-size: 90% 110%;
     text-align: left;
     position: relative;
     color: #7B655D;
+    margin-left: 200px;
+    @media screen and (max-width: 768px){
+      width: 100%;
+      margin-left: 0
+    }
     .text1{
         font-size:2.4rem;
         position: absolute;
-        left:18.5%;
-        top:13.8%;
+        left:3%;
+        top:10.8%;
         span{
           color: #fff;
         }
@@ -93,8 +106,8 @@ export default {
     .text2{
         font-size:2.4rem;
         position: absolute;
-        left:20%;
-        top:19%;
+        left:5%;
+        top:17%;
         span{
           color: #fff;
         }
@@ -109,6 +122,8 @@ export default {
       flex-direction: column;
       width: 28%;
       height: 56%;
+      line-height: 1rem;
+
       // background-color: #fff;
       .text3{
         font-size: 0.8rem;
@@ -144,6 +159,7 @@ export default {
   }
   .ProductsThree{
         height: 13rem;
+    margin-top: 100px;
         background-color: #7C655D;
         color: #fff;
         display: flex;
@@ -151,6 +167,9 @@ export default {
         justify-content: center;
         font-size: 3rem;
         font-weight: bold;
+        @media screen and (max-width: 768px){
+          margin-top: 0;
+        }
         .contactUs {
             background-color: #fff;
             color: #7B655D;
@@ -190,7 +209,7 @@ export default {
     .text1{
         font-size:5rem;
         position: absolute;
-        left:32%;
+        left:34%;
         top:-26%;
         span{
           color: #7B655D;
@@ -199,7 +218,7 @@ export default {
     .text2{
         font-size:5rem;
         position: absolute;
-        left:35%;
+        left:36%;
         top:-19%;
         span{
           color: #7B655D;
@@ -208,7 +227,7 @@ export default {
     .content{
       position: absolute;
       right: 0;
-      top:0%;
+      top:0;
       font-size:3rem;
       color: #7B655D;
       // display: block;
@@ -229,6 +248,7 @@ export default {
         top:10%;
         padding: 10rem 5rem;
         padding-top: 0rem;
+        line-height: 4rem;
         h1{
           font-size: 3rem;
           // margin-bottom: 0.5rem;
@@ -248,6 +268,7 @@ export default {
          top:36%;
          padding: 10rem 5rem;
          padding-top: 0rem;
+        line-height: 4rem;
           h1{
           font-size:3rem;
           // margin-bottom: 0.5rem;
@@ -267,6 +288,7 @@ export default {
         top:70%;
         padding: 10rem 5rem;
         padding-top: 0rem;
+        line-height: 4rem;
          h1{
           font-size: 3rem;
           // margin-bottom: 0.5rem;

@@ -1,7 +1,7 @@
 <template>
   <div class="dDGLeadership">
       <h1>Our Leadership</h1>
-     <div class="dDGLeadershipOneCopy"></div> 
+     <div class="dDGLeadershipOneCopy"></div>
     <div class="dDGLeadershipOne">
       <div class="content">
           <div class="SxlineFeed"></div>
@@ -9,12 +9,12 @@
           <h2>Managing Director</h2>
            <p class="lineFeed"></p>
           <div class="text1">
-            <p>Herman founded DDG in 2021, and brings more than 20 years of financial services experience, 
-            with more than half of that within senior agency manager roles throughout Southeast Asia. 
-            As Malaysia’s Top 40 Industry Leaders and Financial Services Professional, 
-            Herman served in various leadership across operations management, 
-            agency development and customer solutions, with a track record for driving large-scale change management, 
-            service delivery and bottom-line  results include 5 multimillion-dollar agencies, 
+            <p>Herman founded DDG in 2021, and brings more than 20 years of financial services experience,
+            with more than half of that within senior agency manager roles throughout Southeast Asia.
+            As Malaysia’s Top 40 Industry Leaders and Financial Services Professional,
+            Herman served in various leadership across operations management,
+            agency development and customer solutions, with a track record for driving large-scale change management,
+            service delivery and bottom-line  results include 5 multimillion-dollar agencies,
             14 MDRT, and RM300M private trust set.</p>
             <p class="lineFeed"></p>
             <p class="lineFeed"></p>
@@ -23,7 +23,7 @@
           </div>
       </div>
     </div>
-    <div class="dDGLeadershipTwoCopy"></div> 
+    <div class="dDGLeadershipTwoCopy"></div>
     <div class="dDGLeadershipTwo">
        <div class="content2">
          <div class="SxlineFeed"></div>
@@ -32,19 +32,19 @@
            <p class="lineFeed"></p>
           <div  class="text2">
             <p>With over 21 years of experience in agency development in the financial sector encompassing
-            Banking, Unit Trust, Life and General Insurance, Private Equity, Private Trust, 
+            Banking, Unit Trust, Life and General Insurance, Private Equity, Private Trust,
             Nicole is now serving as Executive Director for DDG Malaysia.
-            Prior to that, she was one of agency leaders at few renowned trustees in Malaysia, 
-            where she managed more than 300 trust advisors and private trust setup of over RM 120M. 
+            Prior to that, she was one of agency leaders at few renowned trustees in Malaysia,
+            where she managed more than 300 trust advisors and private trust setup of over RM 120M.
             She is an expert on advising clients on private trust, estate planning and asset management.</p>
             <p class="lineFeed"></p>
             <p class="lineFeed"></p>
-            <p>Nicole holds a Diploma in Business Studies majoring in Accounting 
+            <p>Nicole holds a Diploma in Business Studies majoring in Accounting
             from Tunku Abdul Rahman University College.</p>
           </div>
        </div>
     </div>
-    <div class="dDGLeadershipFourCopy"></div> 
+    <div class="dDGLeadershipFourCopy"></div>
     <div class="dDGLeadershipFour">
         <div class="content3">
           <div class="SxlineFeed"></div>
@@ -52,7 +52,7 @@
             <h2>Legal Advisor</h2>
              <p class="lineFeed"></p>
             <div  class="text3">
-              <p>Dato’ Lawrence has over 20 years of experience in corporate matters relating to multinational  and domestic clients 
+              <p>Dato’ Lawrence has over 20 years of experience in corporate matters relating to multinational  and domestic clients
               in a range of industries and sectors, with focus on matters relating to private equities, shareholders’ dispute.
               He began legal practice in 2002 and later founded CHIONG in 2009, in Johor Bahru.
               Dato’ Lawrence serves corporate clients and individuals across Asia, mostly from
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="dDGLeadershipFiveCopy"></div> 
+    <div class="dDGLeadershipFiveCopy"></div>
     <div class="dDGLeadershipFive">
          <div class="content4">
            <div class="SxlineFeed"></div>
@@ -75,21 +75,21 @@
             <h2>COO (DDG China)	</h2>
              <p class="lineFeed"></p>
             <div  class="text4">
-              <p>With over 28 years of experience - most of which were in Malaysia and China - 
-              Bernard brings tremendous expertise to his new role as COO of DDG China, 
+              <p>With over 28 years of experience - most of which were in Malaysia and China -
+              Bernard brings tremendous expertise to his new role as COO of DDG China,
               focusing at advancing the segment’s strong growth to meet DDG International’s long-term strategic priorities in the region.</p>
               <p class="lineFeed"></p>
               <p class="lineFeed"></p>
-             <p> In his recent career, his roles were focused on personal development, agency development, organizational effectiveness, 
-              including driving complex transformation training programs, global leadership, talent management and  
-              operational support for DDG China regions. 
+             <p> In his recent career, his roles were focused on personal development, agency development, organizational effectiveness,
+              including driving complex transformation training programs, global leadership, talent management and
+              operational support for DDG China regions.
               Prior to joining DDG, Bernard delivered his motivational leadership and consulting experience to many renowned
-              large corporations include Neways International, Asia Life Insurance, Hong Leong Assurance, Prudential Life, Oxy Fresh, E-Excel, 
+              large corporations include Neways International, Asia Life Insurance, Hong Leong Assurance, Prudential Life, Oxy Fresh, E-Excel,
               N-Stream, Uptrend2u, XKL China, BSC Worldwide and Easy Pha-max - through a range of bespoke coaching programs.</p>
             </div>
          </div>
     </div>
-    <div class="dDGLeadershipSixCopy"></div> 
+    <div class="dDGLeadershipSixCopy"></div>
     <div class="dDGLeadershipSix">
         <div class="content5">
           <div class="SxlineFeed"></div>
@@ -173,7 +173,7 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100%;
-        height: 39rem;
+        height: 30rem;
         position: relative;
         .content{
            position: absolute;
@@ -182,11 +182,17 @@ h2{
            text-align: right;
            padding-left: 8rem;
            .text1{
-             font-size: 1.5rem;
+             font-size: 1.1rem;
+             line-height: 1.3rem;
+             color: #b19891;
            }
            h1{
              font-size: 2.5rem;
+             font-weight: bold;
            }
+          h2 {
+            font-weight: bold;
+          }
         }
 
     }
@@ -195,7 +201,7 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100%;
-        height: 36rem;
+        height: 30rem;
         text-align: left;
         position: relative;
          .content2{
@@ -205,10 +211,16 @@ h2{
            text-align: left;
            padding-right: 8rem;
             .text2{
-             font-size: 1.5rem;
+              font-size: 1.1rem;
+              line-height: 1.3rem;
+              color: #b19891;
            }
            h1{
              font-size: 2.5rem;
+             font-weight: bold;
+           }
+           h2 {
+             font-weight: bold;
            }
           }
 
@@ -218,7 +230,7 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100%;
-        height: 39rem;
+      height: 30rem;
         text-align: right;
         position: relative;
          .content3{
@@ -228,11 +240,16 @@ h2{
            text-align: right;
            padding-left: 8rem;
            .text3{
-             font-size: 1.5rem;
-           
+             font-size: 1.1rem;
+             line-height: 1.3rem;
+             color: #b19891;
            }
            h1{
              font-size: 2.5rem;
+             font-weight: bold;
+           }
+           h2 {
+             font-weight: bold;
            }
           }
     }
@@ -241,7 +258,7 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size:  100% ;
-        height: 36rem;
+        height: 30rem;
         text-align: left;
         position: relative;
          .content4{
@@ -251,11 +268,16 @@ h2{
            text-align: left;
            padding-right: 8rem;
            .text4{
-             font-size: 1.5rem;
-          
+             font-size: 1.1rem;
+             line-height: 1.3rem;
+             color: #b19891;
            }
            h1{
              font-size: 2.5rem;
+             font-weight: bold;
+           }
+           h2 {
+             font-weight: bold;
            }
           }
     }
@@ -264,7 +286,7 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100% ;
-        height: 37rem;
+        height: 30rem;
         text-align: right;
         position: relative;
         .content5{
@@ -274,12 +296,17 @@ h2{
            text-align: right;
            padding-left: 8rem;
            .text5{
-             font-size: 1.5rem;
-           
+             font-size: 1.1rem;
+             line-height: 1.3rem;
+             color: #b19891;
            }
-           h1{
-             font-size: 2.5rem;
-           }
+          h1{
+            font-size: 2.5rem;
+            font-weight: bold;
+          }
+          h2 {
+            font-weight: bold;
+          }
           }
     }
     .dDGLeadershipThree{
@@ -360,9 +387,9 @@ h2{
              font-size: 2.4rem;
              line-height: 2.5rem;
            }
-           h1{
+           >h1{
              font-size: 4rem;
-             font-weight:bold;
+             font-weight:600 !important;
            }
            h1,h2{
              margin-left: 1rem;
@@ -372,6 +399,7 @@ h2{
               width: 0.3rem;
               background-color: #7B655D;
               position: absolute;
+
             }
         }
 
@@ -539,7 +567,7 @@ h2{
             margin-right: 2rem;
         }
         // background: url(../assets/img/png/page6_copy.png);
-       
+
         // background-attachment: scroll;
         // background-repeat: no-repeat;
         // background-size: 100% ;
@@ -596,14 +624,14 @@ h2{
 }
 /*中等屏幕*/
 @media screen and (max-width: 992px){
- 
+
 }
 /*平板*/
 @media screen and (max-width: 768px){
- 
+
 }
 /*手机*/
 @media screen and (max-width: 576px){
-	
+
 }
 </style>

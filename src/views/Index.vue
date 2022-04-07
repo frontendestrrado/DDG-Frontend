@@ -280,8 +280,8 @@ a {
     font-size: 1.2rem;
     background-color: #7C655D;
     position: absolute;
-    top: 60%;
-    right: 7%;
+    top: 68%;
+    right: 4%;
     border-radius: 15px;
     height: 3rem;
     width: 9rem;

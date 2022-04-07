@@ -43,23 +43,26 @@
     <div class="Interval"></div>
     <div class="AspirationsFour">
       <div class="title">Now Estate Planning <br> Made Easy</div>
-      <div class="contact" @click="toContactUs()">
-        <van-icon name="chat-o" size="3rem" color="#fff" />
-      </div>
+
     </div>
     <div class="AspirationsFive titleFont">
       <span>For more enquiries</span>
       <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
+    <LevitatedSphere></LevitatedSphere>
   </div>
 </template>
 
 <script>
+import LevitatedSphere from '@/components/common/LevitatedSphere.vue'
 export default {
   data() {
     return {
 
     }
+  },
+  components: {
+    LevitatedSphere
   },
   methods: {
     toContactUs() {
@@ -224,7 +227,7 @@ export default {
       // top:26%;
       .minTitle {
         font-size: 8rem;
-        font-family: 'Calibri';
+        font-family: 'Times New Roman';
         margin-bottom: 4rem;
         font-weight: bold;
         color: #7C655D;
@@ -232,7 +235,8 @@ export default {
       }
       .mintit {
         font-size: 5rem;
-        font-family: 'Calibri';
+        font-weight: bold;
+        font-family: 'Times New Roman';
         margin-bottom: 1.5rem;
         margin-left: 7rem;
       }
@@ -240,14 +244,14 @@ export default {
         font-size: 3rem;
         margin-bottom: 3rem;
         margin-left: 7rem;
-        line-height: 3rem;
+        line-height: 4rem;
       }
     }
   }
   .AspirationsTwo {
     background: url(../assets/img/png/page1.png) no-repeat scroll;
     height: 120rem;
-    background-size: 123% 95%;
+    background-size: 123% 100%;
     text-align: left;
     position: relative;
     background-position-x: -14rem;
@@ -266,28 +270,37 @@ export default {
     }
     .content {
       position: absolute;
-      top: 27%;
+      top: 26%;
       left:56%;
       height: 60rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding-right: 3rem;
-      font-size: 2.3rem;
+      font-size: 1.5rem;
+      color: black;
+      .text {
+        margin-bottom: 7px;
+      }
       .mintit1 {
         color: #B9A089;
+        font-weight: bold;
       }
       .mintit2 {
         color: #796C64;
+        font-weight: bold;
       }
       .mintit3 {
         color: #C7BA8D;
+        font-weight: bold;
       }
       .mintit4 {
         color: #AD9F94;
+        font-weight: bold;
       }
       .mintit5 {
         color: #58585A;
+        font-weight: bold;
       }
     }
   }
@@ -305,6 +318,7 @@ export default {
     height: 55rem;
     background-size: 150%;
     background-position-x: -13rem;
+    background-position-y: -10rem;
     //  background-position-Y: -13rem;
     position: relative;
     .title {
@@ -313,8 +327,8 @@ export default {
       font-size: 4rem;
       text-align: right;
       position: absolute;
-      top: 5%;
-      right: 14%;
+      top: 6%;
+      right: 5%;
     }
     .contact {
       background-color: #55B95F;

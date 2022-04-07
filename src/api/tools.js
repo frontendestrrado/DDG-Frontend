@@ -48,3 +48,10 @@ export const getOrders = query => {
     params: query
   })
 }
+//獲取Organizational Chart數據
+export function getOrganizeChart() {
+  return request({
+    url: '/api/v1/organization',
+    method: 'get',
+  })
+}
