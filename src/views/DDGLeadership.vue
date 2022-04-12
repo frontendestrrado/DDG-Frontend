@@ -116,14 +116,17 @@
         <span>For more enquiries</span>
         <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
+    <LevitatedSphere></LevitatedSphere>
   </div>
 </template>
 
 <script>
 import Common from "@/components/mode/common.vue";
+import LevitatedSphere from '@/components/common/LevitatedSphere.vue'
 export default {
   components: {
     Common,
+    LevitatedSphere
   },
   name: "dDGLeadership",
   data() {

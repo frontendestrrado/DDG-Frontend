@@ -39,15 +39,18 @@
             DROP US A MESSAGE.
           </div>
           <div class="box">
-            <van-field v-model="name" center label="YOUR NAME" />
+            <van-field v-model="name" center label="YOUR NAME" placeholder="Please enter your name"/>
             <!-- <van-field v-model="phone" type="tel" placeholder="phone" /> -->
-            <van-field v-model="email" center label="YOUR EMAIL"/>
+            <van-field v-model="email" center label="YOUR EMAIL" placeholder="xxx@gmail.com"/>
             <van-field
               v-model="content"
               label="MESSAGE"
-              center
+              autosize
               rows="2"
+              maxlength="50"
+              show-word-limit
               type="textarea"
+              placeholder="Please enter your message"
             />
           </div>
           <van-button
@@ -60,20 +63,6 @@
         </div>
       </van-col>
     </van-row>
-    <!-- <GmapMap
-      :center="{lat:10, lng:10}"
-      :zoom="7"
-      map-type-id="terrain"
-      style="width: 100%; height: 600px;"
-    >
-      <GmapMarker
-        :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
-        :clickable="true"
-        :draggable="true"
-      />
-    </GmapMap> -->
       <div class="mapImg">
          <img src="../assets/img/ditu.png" @click="goMap('first')" class="map-img">
       </div>
@@ -165,6 +154,8 @@ export default {
 	/*min-height: calc(100vh - 60px);*/
   /* margin-top: 20px; */
   background: #f3f5f7;
+  overflow: hidden;
+  border-radius: 20px;
   .mapImg{
     height: 20%;
     width: 100%;
@@ -179,8 +170,9 @@ export default {
   height: calc(100% - 40px);
   padding: 20px 30px;
   background-color: #B09A8F;
-  border-radius: 10px;
   color: #fff;
+  border-radius: 20px;
+
   .contactUs_title {
     font-weight: 600;
     text-align: left;

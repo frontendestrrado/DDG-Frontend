@@ -46,7 +46,7 @@
             />
             <van-field name="uploader" label="BTT Code Picture" :required="true">
               <template #input>
-                <van-uploader v-model="uploader" :after-read="afterRead" accept="*" :max-count="1" />
+                <van-uploader v-model="uploader" :after-read="afterRead" accept="*" :max-count="1" class="picture"/>
               </template>
             </van-field>
             <van-field
@@ -743,5 +743,8 @@ export default {
   .login {
     margin-top: 20px;
   }
+}
+.picture {
+  padding-top: 10px;
 }
 </style>

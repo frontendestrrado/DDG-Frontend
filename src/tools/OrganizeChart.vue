@@ -92,7 +92,7 @@
         </template>
       </van-cell>
     </div>-->
-    <h1> commit soon</h1>
+    <h1>coming soon</h1>
 
   </div>
 </template>
@@ -141,6 +141,9 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-size: 50px;
+}
 /deep/ .van-cell__title {
   width: 30%;
   flex: none;

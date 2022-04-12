@@ -178,7 +178,7 @@ a {
   background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: 100%;
-  min-height: 109rem;
+  min-height: 90rem;
   text-align: left;
   position: relative;
   padding: 5rem 5rem;
@@ -231,6 +231,7 @@ a {
         justify-content: center;
         font-size:3rem;
         font-weight: bold;
+        margin-top: -2px;
         @media screen and (max-width: 768px){
           margin-top: -2px;
         }

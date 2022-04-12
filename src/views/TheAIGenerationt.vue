@@ -121,12 +121,15 @@
         <span>For more enquiries</span>
         <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
+    <LevitatedSphere></LevitatedSphere>
   </div>
 </template>
 
 <script>
+import LevitatedSphere from '@/components/common/LevitatedSphere.vue'
 export default {
   components: {
+    LevitatedSphere
   },
   name: "Generation",
   data() {
@@ -203,11 +206,11 @@ h1 {
            }
         }
         .text3{
-              font-size: 1.5rem;
+              font-size: 1.8rem;
               color: #fff;
               position: absolute;
-              bottom:8.5%;
-              right: 35%;
+              bottom:9.5%;
+              right: 35.5%;
            }
     }
     .GenerationTwo{

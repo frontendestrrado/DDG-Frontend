@@ -15,7 +15,7 @@
 		  </div>
 		</div>
 
-		<div class="ProductsThree" v-show="pageData[0].page_id !== 20"><!--    Tool Box隱藏底部-->
+		<div class="ProductsThree" v-show="pageData[0].page_id !== 20" v-if="pageData[0]"><!--    Tool Box隱藏底部-->
 			<span>For more enquiries</span>
 			<span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>

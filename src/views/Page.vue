@@ -107,7 +107,7 @@
           getUnread().then(res => {
             if(res > 0) {
               this.$store.commit('changeUnreadStatus',false)
-              this.$bvToast.toast(`You have ${res} unread bulletins`, {
+              this.$bvToast.toast(`You have ${res} unread announcement`, {
                 title: `MESSAGE`,
                 toaster: 'b-toaster-top-center',
                 variant: 'info',

@@ -2,17 +2,17 @@
   <div class="ourServices">
       <h1>Our Services</h1>
     <div class="ourServicesOne">
-      
+
     </div>
     <div class="ourServicesOneContent">
         <div class="text">
-            <p>When a person is deceased.ALL of the person’ s assets will be frozen!</p> 
+            <p>When a person is deceased.ALL of the person’ s assets will be frozen!</p>
             <p class="lineFeed"></p>
             <p> DDG helps address the estate distribution to be according to a person’s wishes in</p>
             <p class="lineFeed"></p>
-            <p>case of death,being incapacitated,or comatose.</p> 
+            <p>case of death,being incapacitated,or comatose.</p>
             <p class="lineFeed"></p>
-            <p>DDG’s Advisor creates a master plan for the management of your property during life</p>  
+            <p>DDG’s Advisor creates a master plan for the management of your property during life</p>
             <p class="lineFeed"></p>
             <p>and the distribution of that property at the person’s death.</p>
             <p>.</p>
@@ -29,34 +29,37 @@
           <p>3. Allow for the transfer of wealth to whom and when wanted, at the lowest possible cost</p>
         </div>
         <div class="text2 text3">
-          <p>Common estate planning issues addressed in the wealth management process include: </p>  
+          <p>Common estate planning issues addressed in the wealth management process include: </p>
           <p class="lineFeed"></p>
-          <p> <img src="../assets/img/png/复选-选中.png" >Transfer of wealth</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Transfer of wealth</p>
           <p class="lineFeed"></p>
-          <p> <img src="../assets/img/png/复选-选中.png" >Minimization of transfer taxes</p> 
-          <p class="lineFeed"></p> 
-          <p> <img src="../assets/img/png/复选-选中.png" >Asset protection</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Minimization of transfer taxes</p>
           <p class="lineFeed"></p>
-          <p> <img src="../assets/img/png/复选-选中.png" >Charitable contribution</p>  
+          <p> <img src="../assets/img/png/复选-选中.png" >Asset protection</p>
           <p class="lineFeed"></p>
-          <p> <img src="../assets/img/png/复选-选中.png" >Confidentiality without disclosure at court</p> 
+          <p> <img src="../assets/img/png/复选-选中.png" >Charitable contribution</p>
+          <p class="lineFeed"></p>
+          <p> <img src="../assets/img/png/复选-选中.png" >Confidentiality without disclosure at court</p>
         </div>
     </div>
     <div class="ourServicesTwo">
-      
+
     </div>
     <div class="ourServicesThree">
         <span>For more enquiries</span>
         <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
+    <LevitatedSphere></LevitatedSphere>
   </div>
 </template>
 
 <script>
 import Common from "@/components/mode/common.vue";
+import LevitatedSphere from '@/components/common/LevitatedSphere.vue'
 export default {
   components: {
     Common,
+    LevitatedSphere
   },
   name: "OurServices",
   data() {
@@ -95,11 +98,15 @@ h1 {
 .ourServices{
     font-size: 2rem;
     font-family: 'Calibri';
+    >h1 {
+      font-family: "Times New Roman";
+    }
     .ourServicesOneContent{
         padding:3rem 10rem;
         color: #7C655D;
         // line-height: 2rem;
         text-align: left;
+
         .text{
             font-size: 2rem;
             text-align: center;

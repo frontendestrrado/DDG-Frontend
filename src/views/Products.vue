@@ -46,15 +46,20 @@
         <span>For more enquiries</span>
         <span class="contactUs" @click="toContactUs()">Contact Us</span>
     </div>
+    <LevitatedSphere></LevitatedSphere>
   </div>
 </template>
 
 <script>
+import LevitatedSphere from '@/components/common/LevitatedSphere.vue'
 export default {
   data() {
     return {
 
     }
+  },
+  components: {
+    LevitatedSphere
   },
   methods:{
     toContactUs() {
@@ -158,8 +163,8 @@ export default {
     }
   }
   .ProductsThree{
-        height: 13rem;
-    margin-top: 100px;
+        height: 10rem;
+        margin-top: 100px;
         background-color: #7C655D;
         color: #fff;
         display: flex;
