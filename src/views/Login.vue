@@ -33,6 +33,18 @@
               ]"
             />
             <van-field
+              v-model="registForm.email"
+              name="Email Address"
+              center
+              :required="true"
+              type="email"
+              label="Email Address"
+              placeholder="username@domain.com"
+              :rules="[
+                { required: true,message: 'Please enter the Email Address' },
+              ]"
+            />
+            <van-field
               v-model="registForm.bttCode"
               name="BTT Code"
               center
@@ -226,6 +238,8 @@
           </van-form>
         </div>
       </van-tab>
+
+
       <van-tab title="Sign In" name="SignIn">
         <div class="inputBox">
           <div class="box">
@@ -270,6 +284,9 @@
           <van-button class="loginBtn" type="default" @click="login()"
             >Sign In</van-button
           >
+          <van-button class="loginBtn" type="default" @click="forgetPassword"
+          >Forgot/Change Password</van-button
+          >
         </div>
       </van-tab>
     </van-tabs>
@@ -306,6 +323,7 @@ export default {
         birthday: "",
         sponsor: "",
         bank: "",
+        email: '',
         bankAccountNo: "",
         bankAccountName: "",
         password_confirmation: "",
@@ -376,6 +394,11 @@ export default {
     this.getPageContent();
   },
   methods: {
+    forgetPassword() {
+      sessionStorage.setItem('currentPage',JSON.stringify({tabbar: '/ChangePassword',
+        title: 'Forgot/Change Password'}))
+      this.$router.push('/ChangePassword')
+    },
     onConfirmArea(e) {
       this.Area = e
       this.showPicker = false;
@@ -493,10 +516,10 @@ export default {
     sendCode() {
       if (!this.phoneList.isSms) {
         if (this.registForm.phone) {
-          var data = [{ phone: this.areaCode.split(' ')[0] + this.registForm.phone }];
+          var data = [{ phone: this.areaCode.split(' ')[0] + this.registForm.phone ,type:'sign_up'}];
           this.$axios({
             method: "POST",
-            url: "/api/v1/sin_up/sms/verify_code",
+            url: "/api/v1/verify_code",
             data: {
               phone: JSON.stringify(data),
             },
@@ -572,11 +595,12 @@ export default {
       var phoneInfo = {
         phone: this.areaCode.split(' ')[0] + this.registForm.phone,
         verify_code: this.phoneList.verify_code,
+        type: 'sign_up'
       };
       data.push(phoneInfo);
       this.$axios({
         method: "GET",
-        url: "/api/v1/sin_up/sms/verify_code?data=" + JSON.stringify(data),
+        url: "/api/v1/verify_code?data=" + JSON.stringify(data),
       })
         .then((res) => {
           console.log(res,'返回的值');
@@ -612,14 +636,13 @@ export default {
         this.$toast("Please upload BTT Code Picture");
         return;
       }
-      console.log(this.registForm);
-      console.log(this.uploader,'path');
       this.$axios({
         method: "post",
         url: "/api/v1/users",
         data: {
           firstName: this.registForm.firstName,
           thirdName: this.registForm.thirdName,
+          email: this.registForm.email,
           bttCode: this.registForm.bttCode,
           password: this.registForm.password,
           phone: this.areaCode.split(' ')[0] + this.registForm.phone,

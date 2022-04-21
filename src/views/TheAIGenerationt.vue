@@ -1,6 +1,5 @@
 <template>
   <div class="Generation">
-      <h1>The AI “爱” Generation Trust</h1>
     <div class="GenerationOne">
         <div class="contentOne">
            <div class="contentOne-title">
@@ -209,7 +208,7 @@ h1 {
               font-size: 1.8rem;
               color: #fff;
               position: absolute;
-              bottom:9.5%;
+              bottom:7%;
               right: 35.5%;
            }
     }
@@ -225,7 +224,7 @@ h1 {
           font-size: 1.8rem;
           color: #fff;
           position: absolute;
-          top:16%;
+          top:15%;
           left: 6.5%;
         }
         .GenerationTwoText2{
@@ -257,14 +256,12 @@ h1 {
         height: 72rem;
         position: relative;
         color: #fff;
-        padding-top:2rem ;
         .GenerationFourText{
           font-size: 2rem;
           margin-left: 8rem;
           text-align: left;
-          span{
-            font-size: 4rem;
-          }
+          margin-bottom: 0;
+          padding-top: 30px;
         }
         .GenerationFourText2{
           font-size: 2rem;
@@ -275,13 +272,21 @@ h1 {
           text-align: left;
           position: absolute;
           left: 15%;
-          top:16%;
+          top:14%;
+          p {
+            margin: 0;
+            padding: 0;
+          }
         }
         .GenerationFourText4{
           text-align: left;
           position: absolute;
           left: 15%;
-          top:25%;
+          top:23%;
+          p {
+            margin: 0;
+            padding: 0;
+          }
         }
         .GenerationFourText5{
           text-align: left;
@@ -300,6 +305,9 @@ h1 {
           position:absolute;
           bottom:2.6rem;
           right: 2rem;
+          p {
+            margin-bottom: 0;
+          }
           // background-color: rgb(160, 33, 33);
           .row{
             height: 9.5%;

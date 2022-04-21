@@ -78,6 +78,15 @@ const router = new Router({
         name: '登录',
         component: Login,
       },{
+        path: '/ChangePassword',
+        name: 'ChangePassword',
+        component: () => import('../views/ChangePassword.vue'),
+      },
+        {
+          path: '/NewPassword',
+          name: 'NewPassword',
+          component: () => import('../views/NewPassword.vue'),
+        },{
         path: '/OrderSignatureCustomers',
         name: 'OrderSignatureCustomers',
         component: OrderSignatureCustomers,

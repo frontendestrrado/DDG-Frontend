@@ -289,9 +289,10 @@ h2{
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: 100% ;
-        height: 30rem;
+        height: 37rem;
         text-align: right;
         position: relative;
+        background-color: #fbfbfb;
         .content5{
            position: absolute;
            top:20%;

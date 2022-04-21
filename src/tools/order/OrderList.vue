@@ -68,7 +68,7 @@
 
     </van-cell>-->
 
-    <van-row  v-for="(item,inx) in orderList" :key="inx"  type="flex" justify="space-between" align="center">
+    <van-row  v-for="(item,inx) in orderList.data" :key="inx"  type="flex" justify="space-between" align="center">
       <van-col span="8" align="start">
         <div>
           <van-tag type="success" size="large">{{item.settlor_name}}</van-tag>
@@ -112,6 +112,13 @@
         <van-button type="primary" :disabled="item.status===3" @click="toFill(item)" size="small">To fill</van-button>
       </van-col>
     </van-row>
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page = "per_page"
+      align="center"
+      @input="changePage"
+    ></b-pagination>
   </div>
 </template>
 
@@ -124,20 +131,30 @@ export default {
       orderList: [],
       searchVal: '',
       loadingShow: true,
+      rows: 3,//頁數
+      currentPage: 1,//當前頁
+      per_page: 15//每頁條數
     };
   },
   mounted() {
     this.getOrders();
   },
+  computed: {
+  },
   methods: {
+    changePage() {
+      this.getOrders()
+    },
     getOrders() {
       getOrders({
         search: this.searchVal,
         order: "date_desc",
+        page: this.currentPage
       })
         .then((res) => {
-          console.log( res.data)
-          this.orderList = res.data;
+          this.orderList = res;
+          this.per_page = res.meta.per_page
+          this.rows = res.meta.total
           this.loadingShow = false
         })
         .catch((err) => {

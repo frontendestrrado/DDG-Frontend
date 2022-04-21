@@ -14,26 +14,18 @@
         name="name"
         label="Name"
         center
-        required="true"
+        :required="true"
         v-model="formData.name"
-        :rules="[{ required: true }]"
-      >
-        <!-- <template #input>
-          <van-checkbox v-model="formData.name"></van-checkbox>
-        </template> -->
-      </van-field>
+        :rules="[{ required: true ,message: 'Please enter the name'}]"
+      />
       <van-field
         name="nric"
         label="NRIC/Passport No"
         center
-        required="true"
+        :required="true"
         v-model="formData.nric"
-        :rules="[{ required: true }]"
-      >
-        <!-- <template #input>
-          <van-checkbox v-model="formData.nric"></van-checkbox>
-        </template> -->
-      </van-field>
+        :rules="[{ required: true,message: 'Please enter the NRIC/Passport No' }]"
+      />
       <div class="minTitle">Documents Completion Status</div>
       <van-field
         name="application_form"

@@ -10,9 +10,11 @@ import  * as echarts from "echarts"; //5.0 以上的引入方式
 
 
 import Vant from 'vant';
+import { Toast } from 'vant';
 import 'vant/lib/index.css';
 import '@vant/touch-emulator';
 import './assets/css/font.css';
+Vue.use(Toast)
 
 import './rem.js'
 

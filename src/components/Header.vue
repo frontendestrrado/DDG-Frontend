@@ -46,7 +46,7 @@
 							:src="logo"
 							fit="contain"
 							@click="changeActTab('/Index', 'Home');"/> -->
-          <div v-if="$store.state.currentPage.tabbar != '/Home'">
+          <div v-if="$store.state.currentPage.tabbar !== '/Home'">
             {{$store.state.currentPage.title}}
           </div>
         </van-col>

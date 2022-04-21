@@ -47,7 +47,7 @@ export default {
      * 打電話
      */
     goTel() {
-      window.href = "tel:6016-5535691"
+      this.$router.push('/ContactUs')
     },
     // 实现移动端拖拽
     down() {
