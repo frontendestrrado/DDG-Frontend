@@ -1,143 +1,77 @@
 <template>
   <div class="OrganizeChart from_content">
     <div class="OrganizeChart_info">
-      <!-- @click="$store.commit('changePage',{tabbar: '/OrganizeList/0', title: 'Organizational Chart'});$router.push('/OrganizeList/0')" -->
-      <van-cell center>
-        <template #title>
-          <span class="custom-title">ME</span>
-        </template>
-        <template #default>
-          <div class="fcb"><span>Status:</span><span>{{me.status=='1'?'Active':'inactive'}}</span></div>
-          <div class="fcb"><span>My Level:</span><span>{{me.level}}</span></div>
-          <div class="fcb"><span>Total Personal Sales:</span><span>${{me.total_personal_sales}}</span></div>
-          <div class="fcb"><span>Total Organziational Sales:</span><span>${{me.total_organziataional_sales}}</span></div>
-        </template>
-      </van-cell>
+      <van-cell-group title="" class="first">
+        <van-cell center>
+          <template #title>
+            <span class="custom-title">ME</span>
+          </template>
+          <template #default>
+            <div class="fcb"><span>Status:</span><span>{{me.status=='1'?'Active':'inactive'}}</span></div>
+            <div class="fcb"><span>Rank:</span><span>{{me.level}}</span></div>
+            <div class="fcb"><span>Total Personal Sales:</span><span>MYR {{me.total_personal_sales | NumFormat}}</span></div>
+            <div class="fcb"><span>Total Organizational Sales:</span><span>MYR {{me.total_organziataional_sales | NumFormat}}</span></div>
+          </template>
+        </van-cell >
+      </van-cell-group>
+      <van-cell-group title="" v-for="(item,index) in down_line" :key="index">
+        <van-cell center  v-for="i in item" :key="i.code" border>
+          <template #title>
+            <span class="custom-title">{{i.name}}</span>
+          </template>
+          <template #default>
+            <div class="fcb"><span>Rank:</span><span>{{i.grade}}</span></div>
+            <div class="fcb"><span>Personal Sales:</span><span>MYR {{i.personal_sales | NumFormat}}</span></div>
+            <div class="fcb"><span>Organizational Sales:</span><span>MYR {{i.grade_advisor_sales | NumFormat}}</span></div>
+          </template>
+        </van-cell>
+      </van-cell-group>
 
-      <van-cell center>
-<!--        @click="
-        $store.commit('changePage', {
-        tabbar: '/OrganizeList/1',
-        title: 'Organizational Chart',
-        });
-        $router.push('/OrganizeList/1');
-        "-->
-        <template #title>
-          <span class="custom-title">My Direct Recruit 1st Level</span>
-        </template>
-        <template #default>
-          <div class="fcb"><span>Enroll:</span><span>{{level.enroll}}</span></div>
-          <div class="fcb"><span>Active Enroll:</span><span>{{level.activeEnroll}}</span></div>
-          <div class="fcb"><span>Total Personal Sales:</span><span>${{level.total_personal_sales}}</span></div>
-          <div class="fcb"><span>Total Organziational Sales:</span><span>${{level.total_organziataional_sales}}</span></div>
-        </template>
-      </van-cell>
-      <van-cell center>
-<!--        @click="
-        $store.commit('changePage', {
-        tabbar: '/OrganizeUnit/1',
-        title: 'Organizational Chart',
-        });
-        $router.push('/OrganizeUnit/1');
-        "-->
-
-
-        <template #title>
-          <span class="custom-title">My Unit</span>
-        </template>
-        <template #default>
-          <div class="fcb"><span>Count:</span><span>{{unit.count}}</span></div>
-          <div class="fcb"><span>Total Personal Sales:</span><span>${{unit.total_personal_sales}}</span></div>
-          <div class="fcb"><span>Total Organziational Sales:</span><span>${{unit.total_organziataional_sales}}</span></div>
-        </template>
-      </van-cell>
-      <van-cell
-        center
-
-      >
-<!--        @click="
-        $store.commit('changePage', {
-        tabbar: '/OrganizeTeam',
-        title: 'Organizational Chart',
-        });
-        $router.push('/OrganizeTeam');
-        "-->
-        <template #title>
-          <span class="custom-title">My Team</span>
-        </template>
-        <template #default>
-          <div class="fcb"><span>Count:</span><span>{{team.count}}</span></div>
-          <div class="fcb"><span>Total Personal Sales:</span><span>${{team.total_personal_sales}}</span></div>
-          <div class="fcb"><span>Total Organziational Sales:</span><span>${{team.total_organziataional_sales}}</span></div>
-        </template>
-      </van-cell>
-      <van-cell
-        center
-
-      >
-<!--        @click="
-        $store.commit('changePage', {
-        tabbar: '/OrganizeGroup',
-        title: 'Organizational Chart',
-        });
-        $router.push('/OrganizeGroup');
-        "-->
-        <template #title>
-          <span class="custom-title">My Group</span>
-        </template>
-        <template #default>
-          <div class="fcb"><span>Count:</span><span>{{group.count}}</span></div>
-          <div class="fcb"><span>Total Personal Sales::</span><span>${{group.total_personal_sales}}</span></div>
-          <div class="fcb"><span>Total Organziational Sales:</span><span>${{group.total_organziataional_sales}}</span></div>
-        </template>
-      </van-cell>
     </div>
 <!--    <h1>Coming Soon</h1>-->
   </div>
 </template>
 
 <script>
+import  {organizeChartApi} from "../api/organize-chart";
+
 export default {
   data() {
     return {
 			me: {},
-			level: {},
-			unit: {},
-			team: {},
-			group: {},
+		  down_line: []
 		};
   },
   mounted() {
     this.getChildren();
   },
+  filters: {
+    NumFormat(value) {
+      if(!value) return '0'
+      value = value.toFixed(2)
+      let intPart = Math.trunc(value)// 获取整数部分
+      return intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') // 将整数部分逢三一断
+      }
+  },
   methods: {
     //获取组织图
     getChildren() {
-      this.$axios({
-        method: "get",
-        url: "/api/v1/organization",
-        headers: {
-          Authorization: sessionStorage.token_type + sessionStorage.token,
-        },
+      organizeChartApi().then(res => {
+        console.log(res)
+        this.me = res.me
+        this.down_line = res.first_level_advisor
       })
-        .then((res) => {
-					this.me = res.me
-					this.level = res.first_level
-					this.unit = res.unit
-					this.team = res.team
-					this.group = res.group
-        })
-        .catch((err) => {
-          // this.$toast({
-          //   type: "fail",
-          //   message: "error",
-          // });
-        });
     },
   },
 };
 </script>
-
+<style lang="scss" scoped>
+.OrganizeChart_info {
+  .first .van-cell--center:first-of-type {
+   border-bottom: 5px solid black;
+  }
+}
+</style>
 <style scoped>
 h1 {
   font-size: 50px;
@@ -173,4 +107,6 @@ h1 {
 .van-cell__title {
   width: 50%;
 }
+
 </style>
+

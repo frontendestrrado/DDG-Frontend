@@ -90,7 +90,7 @@
           });
         "
       ></van-cell>
-      <van-button v-if="orderData.status == 0" round block type="info" color="#7C655D" @click="submitAll">
+      <van-button v-if="orderData.status === 0 || orderData.status === 3" round block type="info" color="#7C655D" @click="submitAll">
         Submit all forms
       </van-button>
       <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before submitting</div>

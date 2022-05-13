@@ -149,7 +149,7 @@ const router = new Router({
       },{
         path: '/Performance',
         name: '业绩',
-        component: Performance,
+        component: () => import('@/views/performance/index'),
       },{
         path: '/PerformanceList',
         name: '业绩列表',
@@ -350,5 +350,5 @@ Router.prototype.replace = function replace (to) {
 //     // }
 
 // });
-router.mode = 'history'
+router.mode = 'hash'
 export default router;

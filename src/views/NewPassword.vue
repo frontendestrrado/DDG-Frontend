@@ -7,7 +7,7 @@
     center
     :required="true"
     type="password"
-    label="Password"
+    label="New Password"
     placeholder="Password* (Must be 6 Digit Numberic)"
     :rules="[{ required: true, message: 'Password* (Must be 6 Digit Numberic)' }]"
   />
@@ -17,9 +17,9 @@
     center
     :required="true"
     type="password"
-    label="Confirm Password"
-    placeholder="Confirm Password"
-    :rules="[{ required: true,validator, message: 'Confirm password' }]"
+    label="Confirm New Password"
+    placeholder="Confirm New Password"
+    :rules="[{ required: true,validator, message: 'Confirm New Password' }]"
   />
     <div style="margin: 16px;">
       <van-button round block type="info" native-type="submit" class="loginBtn">Submit</van-button>
@@ -54,7 +54,7 @@ export default {
       changePassword(this.form).then(res => {
         console.log(res,333)
         if(res.state_code === 200)
-        Toast.success('Password changed successfully')
+        Toast.success('Password Changed Successfully')
         const vm = this
         setTimeout(()=> {
           vm.$router.push('/Login')

@@ -49,6 +49,9 @@ name: "Announcement",
           tdClass: 'title-class',
         },
         {
+          key: 'department'
+        },
+        {
           key: 'date',
           tdClass: 'date-class',
           thClass:'date-class'
@@ -79,6 +82,7 @@ name: "Announcement",
     getAnnouncementList() {
       getAnnouncementList().then(res => {
         this.tableList = res
+        console.log(res)
         // console.log(this.tableList)
       })
     },

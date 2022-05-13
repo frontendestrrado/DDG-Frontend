@@ -90,6 +90,18 @@
               ]"
             />
             <van-field
+              v-model="registForm.post_code"
+              name="Post Code"
+              center
+              :required="true"
+              type="text"
+              label="Post Code"
+              placeholder="Post Code"
+              :rules="[
+                { required: true, message: 'Please enter the Post Code' },
+              ]"
+            />
+            <van-field
               readonly
               clickable
               label="Area"
@@ -327,6 +339,7 @@ export default {
         bankAccountNo: "",
         bankAccountName: "",
         password_confirmation: "",
+        post_code: ''
       },
       isShowPicker: false,
       currentContent: new Date(),
@@ -516,13 +529,11 @@ export default {
     sendCode() {
       if (!this.phoneList.isSms) {
         if (this.registForm.phone) {
-          var data = [{ phone: this.areaCode.split(' ')[0] + this.registForm.phone ,type:'sign_up'}];
+          var data = { phone: this.areaCode.split(' ')[0] + this.registForm.phone ,type:'sign_up'};
           this.$axios({
             method: "POST",
             url: "/api/v1/verify_code",
-            data: {
-              phone: JSON.stringify(data),
-            },
+            data,
           })
             .then((res) => {
               console.log(res);
@@ -590,17 +601,15 @@ export default {
     },
     // 验证验证码
     verifyCode(values) {
-      console.log(this.areaCode, 333);
-      let data = [];
       var phoneInfo = {
         phone: this.areaCode.split(' ')[0] + this.registForm.phone,
         verify_code: this.phoneList.verify_code,
         type: 'sign_up'
       };
-      data.push(phoneInfo);
       this.$axios({
         method: "GET",
-        url: "/api/v1/verify_code?data=" + JSON.stringify(data),
+        url: "/api/v1/verify_code",
+        params: phoneInfo
       })
         .then((res) => {
           console.log(res,'返回的值');
@@ -647,6 +656,7 @@ export default {
           password: this.registForm.password,
           phone: this.areaCode.split(' ')[0] + this.registForm.phone,
           area: this.Area.join(','),
+          post_code: this.registForm.post_code,
           passport: this.registForm.passport,
           address: this.registForm.address,
           birthday: this.registForm.birthday,

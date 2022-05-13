@@ -69,7 +69,28 @@
           @click="showEditBtn('address')"
         />
       </van-field>
-<!--      等待接口-->
+      <van-field
+        ref="post_code"
+        center
+        label="Post Code"
+        :readonly="actUserBtn == 'post_code' ? false : true"
+        v-model="userInfo.post_code"
+      >
+        <van-icon
+          slot="right-icon"
+          v-if="actUserBtn == 'post_code'"
+          name="success"
+          size="30px"
+          @click="patchEdit('post_code')"
+        />
+        <van-icon
+          slot="right-icon"
+          v-else
+          name="edit"
+          size="30px"
+          @click="showEditBtn('post_code')"
+        />
+      </van-field>
       <van-field
         is-link
         arrow-direction="down"
@@ -94,11 +115,28 @@
         />
       </van-popup>
       <van-field
+        ref="birthday"
         center
         label="Date of Birth"
-        :readonly="true"
+        :readonly="actUserBtn == 'birthday' ? false : true"
         v-model="userInfo.birthday"
-      ></van-field>
+        :rules="[{ pattern, message: 'Please enter the correct date of birth' }]"
+      >
+        <van-icon
+          slot="right-icon"
+          v-if="actUserBtn == 'birthday'"
+          name="success"
+          size="30px"
+          @click="patchEdit('birthday')"
+        />
+        <van-icon
+          slot="right-icon"
+          v-else
+          name="edit"
+          size="30px"
+          @click="showEditBtn('birthday')"
+        />
+      </van-field>
       <van-field
         center
         label="Code"
@@ -240,6 +278,7 @@ import {updateMyProfile} from "../api/my-profile";
 export default {
   data() {
     return {
+      pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       userInfo: "",
       saveContent: false,
       actUserBtn: -1,
@@ -344,7 +383,16 @@ export default {
       } else {
         data[index] = this.userInfo[index];
       }
-      console.log(data, "保存用户信息");
+      if(index==='birthday') {
+        if(!this.pattern.test(data[index])) {
+          this.$toast({
+            type: "fail",
+            message: "Please enter the correct format:DD-MM-YYYY",
+          });
+          return
+        }
+      }
+      // console.log(index,id)
       this.$axios({
         method: "PATCH",
         url: "/api/v1/user",

@@ -9,65 +9,6 @@
     />
     <van-loading v-if="loadingShow" />
 
-
-
-    <!--前端john的-->
-<!--    <van-cell
-      is-link
-      center
-      v-for="(item,inx) in orderList"
-      :key="inx"
-      @click="
-        $store.commit('changePage', {
-          tabbar: '/OrderDetail',
-          title: 'OrderDetail',
-        });
-        $router.push({path: '/OrderDetail', query: {id: item.id}});$sessionStorage.setItem('orderId',JSON.stringify(item.id))
-      "
-    >
-
-      {{item.no}}
-      <template #title>
-        <div>
-          <van-tag type="success">{{item.settlor_name}}</van-tag>
-        </div>
-        <span>{{item.no}}</span>
-        <div>
-          <van-tag type="danger" v-if="item.status===0">not submitted</van-tag>
-          <van-tag type="success" plain v-if="item.status===1">submitted</van-tag>
-          <van-tag type="success" v-if="item.status===2">ratify</van-tag>
-        </div>
-      </template>
-      <template #default>
-        <div>
-          <span> Customer Application </span>
-          <span class="NotFilledCol" v-if="item.customer_app_form==0"> (Not Filled) </span>
-          <span class="FilledCol" v-else> (Filled) </span>
-        </div>
-        <div>
-          <span> Compliance Questionaire </span>
-          <span class="NotFilledCol" v-if="item.kyc_form==0"> (Not Filled) </span>
-          <span class="FilledCol" v-else> (Filled) </span>
-        </div>
-        <div>
-          <span> Letter Of Wishes  </span>
-          <span class="NotFilledCol" v-if="item.letter_of_wishes_form==0"> (Not Filled) </span>
-          <span class="FilledCol" v-else> (Filled) </span>
-        </div>
-        <div>
-          <span> PDPA Memo </span>
-          <span class="NotFilledCol" v-if="item.pdpa_memo_form==0"> (Not Filled) </span>
-          <span class="FilledCol" v-else> (Filled) </span>
-        </div>
-        <div>
-          <span> Third Party Declaration </span>
-          <span class="NotFilledCol" v-if="item.third_party_declaration_form==0"> (Not Filled) </span>
-          <span class="FilledCol" v-else> (Filled) </span>
-        </div>
-      </template>
-
-    </van-cell>-->
-
     <van-row  v-for="(item,inx) in orderList.data" :key="inx"  type="flex" justify="space-between" align="center">
       <van-col span="8" align="start">
         <div>
@@ -78,6 +19,7 @@
           <van-tag type="danger" v-if="item.status===0" size="large">Not Yet Submit</van-tag>
           <van-tag type="success" plain v-if="item.status===1" size="large">Waiting For Approval</van-tag>
           <van-tag type="success" v-if="item.status===2" size="large">Approved</van-tag>
+          <van-tag type="danger" v-if="item.status===3" size="large">Not Approved</van-tag>
         </div>
       </van-col>
       <van-col span="8" align="end" class="order-status">
@@ -109,7 +51,7 @@
       </van-col>
       <van-col span="8" align="end">
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
-        <van-button type="primary" :disabled="item.status===3" @click="toFill(item)" size="small">To fill</van-button>
+        <van-button type="primary" :disabled="item.status===2 || item.status===1" @click="toFill(item)" size="small">To fill</van-button>
       </van-col>
     </van-row>
     <b-pagination
