@@ -10,7 +10,10 @@
 </template>
 <script>
 export default {
-    methods:{
+    created() {
+      sessionStorage.setItem('orderStatus','')
+    },
+  methods:{
       OverseaSignature(){
        this.$store.commit('changeIsOverseaSignature',true)
        this.$router.push('/OrderSignature')

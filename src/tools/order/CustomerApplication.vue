@@ -530,6 +530,7 @@
       <vue-esign
         ref="esign"
         v-show="!formData.signature"
+
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -546,8 +547,8 @@
         :src="formData.signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset()">Clear</div>
-        <div class="esignBtn" @click="handleGenerate()">Confirm</div>
+        <div class="esignBtn" @click="handleReset()" v-if="!isDone">Clear</div>
+        <div class="esignBtn" @click="handleGenerate()" v-if="!isDone">Confirm</div>
       </div>
       <van-field
         v-model="formData.client_name"
@@ -588,7 +589,6 @@
         anyway be held liable for such payment made to unauthorized party or
         parties
       </div>
-
       <!-- 提交 -->
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         {{ from == "create" ? "Next / Save" : "Next / Save" }}
@@ -683,6 +683,7 @@ export default {
     // this.from = this.$route.query.from;
     // this.isFilled = this.$route.query.isFilled;
     // this.isDone = this.$route.query.status == 1 ? true : false;
+
     if(this.$store.state.isOverseaSignature){
       this.from = "create"
       this.isFilled=0
@@ -696,6 +697,7 @@ export default {
     }
 
     this.getFormData();
+    this.isDone = !!sessionStorage.getItem('orderStatus')
   },
   methods: {
     OverseaSignature(){

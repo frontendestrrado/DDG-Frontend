@@ -54,9 +54,9 @@
           <van-checkbox v-model="formData.settlor_photocopy"></van-checkbox>
         </template>
       </van-field>
-      <van-field name="Documents" label="Documents">
+      <van-field name="Documents" label="Documents" >
         <template #input>
-          <van-uploader v-model="settlor_photo_file" :after-read="afterRead" accept="*" :max-count="1" />
+          <van-uploader v-model="settlor_photo_file" :disabled="!isDone" :after-read="afterRead" accept="*" :max-count="1" />
         </template>
       </van-field>
       <van-field
@@ -79,7 +79,7 @@
       </van-field>
       <van-field name="Documents" label="Documents">
         <template #input>
-          <van-uploader v-model="proof_of_current_file" :after-read="afterRead2" accept="*" :max-count="1" />
+          <van-uploader v-model="proof_of_current_file" :after-read="afterRead2" accept="*" :max-count="1" :disabled="!isDone"/>
         </template>
       </van-field>
       <van-field
@@ -93,7 +93,7 @@
       </van-field>
       <van-field name="Documents" label="Documents">
         <template #input>
-          <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3" accept="*" :max-count="1" />
+          <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3" accept="*" :max-count="1" :disabled="!isDone"/>
         </template>
       </van-field>
       <van-field
@@ -107,7 +107,7 @@
       </van-field>
       <van-field name="Documents" label="Documents">
         <template #input>
-          <van-uploader v-model="source_of_fund_file" :after-read="afterRead4" accept="*" :max-count="1" />
+          <van-uploader v-model="source_of_fund_file" :after-read="afterRead4" accept="*" :max-count="1" :disabled="!isDone"/>
         </template>
       </van-field>
       <van-field
@@ -130,7 +130,7 @@
       </van-field>
       <van-field name="Documents" label="Documents">
         <template #input>
-          <van-uploader v-model="evidence_of_bank_file" :after-read="afterRead5" accept="*" :max-count="1" />
+          <van-uploader v-model="evidence_of_bank_file" :after-read="afterRead5" accept="*" :max-count="1" :disabled="!isDone"/>
         </template>
       </van-field>
       <van-field
@@ -175,8 +175,8 @@
         :src="formData.signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
-        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
+        <div class="esignBtn" @click="handleReset('signature')" v-if="!isDone">Clear</div>
+        <div class="esignBtn" @click="handleGenerate('signature')" v-if="!isDone">Confirm</div>
       </div>
       <div class="minTitle">
         Agent/Representative of DDG INTERNATIONAL BERHAD (Company No. 1423557-M)
@@ -301,6 +301,7 @@ export default {
       this.isFilled=this.$route.query.documentCheckListForm
     }
     this.getFormData();
+    this.isDone = !!sessionStorage.getItem('orderStatus')
   },
   methods: {
     // 如果已填 獲取數據

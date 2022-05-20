@@ -1003,10 +1003,11 @@
         :src="formData.declaration.signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">
+        <div class="esignBtn" @click="handleReset('signature')" v-if="!isDone">
           Clear
         </div>
         <div
+          v-if="!isDone"
           class="esignBtn"
           @click="
             handleGenerate('signature', 'declaration')
@@ -1381,10 +1382,11 @@
         :src="formData.store_marketing_officer.trustor_signature1"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('trustor_signature1')">
+        <div class="esignBtn" @click="handleReset('trustor_signature1')" v-if="!isDone">
           Clear
         </div>
         <div
+          v-if="!isDone"
           class="esignBtn"
           @click="
             handleGenerate('trustor_signature1', 'store_marketing_officer')
@@ -1442,10 +1444,11 @@
         :src="formData.store_manager.trustor_signature2"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('trustor_signature2')">
+        <div class="esignBtn" @click="handleReset('trustor_signature2')" v-if="!isDone">
           Clear
         </div>
         <div
+          v-if="!isDone"
           class="esignBtn"
           @click="handleGenerate('trustor_signature2', 'store_manager')"
         >
@@ -1762,6 +1765,7 @@ export default {
        this.isFilled=this.$route.query.kyc_form
     }
     this.getFormData();
+    this.isDone = !!sessionStorage.getItem('orderStatus')
   },
   methods: {
     // 如果已填 獲取數據

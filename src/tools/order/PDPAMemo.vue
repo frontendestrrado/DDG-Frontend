@@ -110,8 +110,8 @@
         :src="formData.signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">Clear</div>
-        <div class="esignBtn" @click="handleGenerate('signature')">Confirm</div>
+        <div class="esignBtn" @click="handleReset('signature')"  v-if="!isDone">Clear</div>
+        <div class="esignBtn" @click="handleGenerate('signature')"  v-if="!isDone">Confirm</div>
       </div>
       <van-field
         v-model="formData.name"
@@ -225,6 +225,7 @@ export default {
      this.isFilled=this.$route.query.pdpa_memo_form
     }
     this.getFormData();
+    this.isDone = !!sessionStorage.getItem('orderStatus')
   },
   methods: {
     // 如果已填 獲取數據

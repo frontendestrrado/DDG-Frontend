@@ -83,10 +83,11 @@
         :src="formData.signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')">
+        <div class="esignBtn" @click="handleReset('signature')" v-if="!isDone">
           Clear
         </div>
         <div
+          v-if="!isDone"
           class="esignBtn"
           @click="
             handleGenerate('signature')
@@ -180,6 +181,7 @@ export default {
        this.isFilled=this.$route.query.letter_of_wishes_form
     }
     this.getFormData();
+    this.isDone = !!sessionStorage.getItem('orderStatus')
   },
   methods: {
     // 清空画布

@@ -474,7 +474,6 @@ export default {
           },
         })
           .then((res) => {
-            console.log(res,'登录回调');
             if (res) {
               this.$store.commit("setToken", res.access_token);
               this.$store.commit("setTokenType", res.token_type);

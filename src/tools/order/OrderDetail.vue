@@ -130,7 +130,7 @@
       placeholder="The order feedback"
     />
     <van-button class="loginBtn" type="info" @click="submit" color="#7C655D"
-      >Submit Feedback</van-button
+      :disabled="orderStatus!=null">Submit Feedback</van-button
     >
   </div>
 </template>
@@ -143,10 +143,12 @@ export default {
     return {
       orderData: {},
       patchOrder: "",
+      orderStatus: 0
     };
   },
   mounted() {
     // this.orderData = this.$route.query.data
+    this.orderStatus = sessionStorage.getItem('orderStatus')
     this.patchOrders();
     this.getOrderDetail();
   },

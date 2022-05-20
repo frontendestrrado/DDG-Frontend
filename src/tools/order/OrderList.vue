@@ -51,7 +51,7 @@
       </van-col>
       <van-col span="8" align="end">
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
-        <van-button type="primary" :disabled="item.status===2 || item.status===1" @click="toFill(item)" size="small">To fill</van-button>
+        <van-button type="primary"  @click="toFill(item)" size="small">To fill</van-button>
       </van-col>
     </van-row>
     <b-pagination
@@ -116,6 +116,7 @@ export default {
         title: 'OrderDetail',
       });
       sessionStorage.setItem('orderId',JSON.stringify(item.id))
+      sessionStorage.setItem('orderStatus',item.status)
       this.$router.push({path: '/OrderDetail', query: {id: item.id}});
     },
     //刪除未提交訂單

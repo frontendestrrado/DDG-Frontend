@@ -150,6 +150,11 @@ const router = new Router({
         path: '/Performance',
         name: '业绩',
         component: () => import('@/views/performance/index'),
+      },
+      {
+        path: '/PerformanceDetail',
+        name: '业绩詳情',
+        component: () => import('@/views/performance/performanceDetail'),
       },{
         path: '/PerformanceList',
         name: '业绩列表',

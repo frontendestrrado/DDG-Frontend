@@ -309,7 +309,7 @@
         placeholder="Please enter the Source of Fund"
         :rules="[{ required: true }]"
       />
-      
+
       <van-field
         v-model="formData.third_party_reference_no"
         name="third_party_reference_no"
@@ -403,7 +403,7 @@
         type="text"
         label="Others, please specify"
         placeholder="Please enter the Others, please specify"
-         
+
       /> -->
       <!-- <van-field
         v-model="formData.relationship_between"
@@ -412,7 +412,7 @@
         type="text"
         label="Relationship between the Settlor and Third-Party"
         placeholder="Please enter the Relationship between the Settlor and Third-Party"
-        
+
       /> -->
       <div class="tl">Signature of Settlor</div>
       <vue-esign
@@ -434,10 +434,10 @@
         :src="formData.client_signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('client_signature')">
+        <div class="esignBtn" @click="handleReset('client_signature')" v-if="!isDone">
           Clear
         </div>
-        <div class="esignBtn" @click="handleGenerate('client_signature')">
+        <div class="esignBtn" @click="handleGenerate('client_signature')" v-if="!isDone">
           Confirm
         </div>
       </div>
@@ -493,10 +493,10 @@
         :src="formData.witness_signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('witness_signature')">
+        <div class="esignBtn" @click="handleReset('witness_signature')" v-if="!isDone">
           Clear
         </div>
-        <div class="esignBtn" @click="handleGenerate('witness_signature')">
+        <div class="esignBtn" @click="handleGenerate('witness_signature')" v-if="!isDone">
           Confirm
         </div>
       </div>
@@ -532,7 +532,7 @@
         @click="onShowPicker('witness_date')"
         :rules="[{ required: true }]"
       />
-      <van-button  round block type="info" native-type="submit" color="#7C655D">
+      <van-button  round block type="info" native-type="submit" color="#7C655D" v-if="!isDone">
         Submit
       </van-button>
     </van-form>
@@ -618,6 +618,7 @@ export default {
     this.isFilled = this.$route.query.isFilled;
     this.isDone = this.$route.query.status == 1 ? true : false;
     this.getFormData();
+    this.isDone = !!sessionStorage.getItem('orderStatus')
   },
   methods: {
     declarationThirdParty(val){
