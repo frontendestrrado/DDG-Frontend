@@ -28,29 +28,24 @@
       <div class="minTitle">Dear Sir,</div>
       <div class="minTitle">LETTER OF WISHES – “AI GENERATION TRUST”</div>
       <div class="minTitle">
-        I/We refer to the Trust Deed entered into between you (as the Trustee)
-        and myself/ourselves (as the Settlor) to establish a revocable trust
-        (“Trust Deed”), known as “AI Generation Trust”. The definitions used in
-        the Trust Deed are adopted herein.
+        I/We refer to the Trust Deed entered into between you (as the Trustee) and myself/ourselves (as the 
+Settlor) to establish a revocable trust (“Trust Deed”), known as “AI Generation Trust”. The 
+definitions used in the Trust Deed are adopted herein.
       </div>
       <div class="minTitle">
-        With reference to Clause 3.2 of the Trust Deed, I/We recommend you to
-        invest the Trust Capital in reputable assets management companies
-        including but not limited to Philip Capital Management or Affin Hwang
-        Capital and/or in listed companies in Malaysia.
+        With reference to Clause 3.2 of the Trust Deed, I/We recommend you to invest the entirety of the Trust 
+Capital into regulated or unregulated investment whether it being public or private funds.
       </div>
       <div class="minTitle">
-        Further, I/We am/are fully aware of the arrangement and understand that
-        the trust cannot be terminated within the first six (6) month from the
-        date of the Trust Deed. I/We am/are also fully aware and understand that
-        termination of the Trust Deed from the seventh (7th ) month onwards
-        shall be subjected to a deduction of 25% of the Trust Capital.
+        Further, I/We am/are fully aware of the arrangement and understand that the trust cannot be terminated 
+within the first six (6) month from the date of the Trust Deed. I/We am/are also fully aware and 
+understand that termination of the Trust Deed from between the seventh (7th) month onwards shall be 
+subjected to a deduction of 25% of the Trust Capital.
       </div>
       <div class="minTitle">
-        With reference to Clause 5 and Schedule 3 of the Trust Deed, the Trust
-        Capital and/or projected dividend and/or accumulated income shall be
-        distributed between 15th day to 20th day of the Anniversary Month, and
-        in the following descending order of priority: -
+        With reference to Clause 5 and Schedule 3 of the Trust Deed, the Trust Capital and/or projected 
+dividend and/or accumulated income shall be distributed between 15th day to 20th day of the 
+Anniversary Month, and in the following descending order of priority: -
       </div>
       <div class="minTitle">
         1) to me/us as the Settlor during my/our lifetime and thereafter;
@@ -58,10 +53,10 @@
       <div class="minTitle">
         2) to my/our named Beneficiary and if none; and
       </div>
-      <div class="minTitle">3) to my/our heir or successor.</div>
+      <div class="minTitle">3) to my/our heir or successor/shareholders.</div>
       <div class="minTitle">
-        Please note that this letter is merely my/our wishes and it does not
-        bind or affect the powers vested in the Trustee.
+        Please note that this letter is merely my/our wishes and it does not bind or affect the powers vested in 
+the Trustee.
       </div>
       <div class="minTitle">Yours faithfully</div>
       <vue-esign
@@ -152,9 +147,9 @@ export default {
     return {
       formData: {
         date: "",
-        client_name: "",
-        passport_no: "",
-        signature:''
+        client_name: this.$store.state.campanyIndividualName1,
+        passport_no: this.$store.state.passport_no,
+        signature: this.$store.state.signature,
       },
       isShowPicker: false,
       currentContent: new Date(), // 日期彈框顯示當前日期
@@ -181,7 +176,8 @@ export default {
        this.isFilled=this.$route.query.letter_of_wishes_form
     }
     this.getFormData();
-    this.isDone = !!sessionStorage.getItem('orderStatus')
+    console.log(this.$route.query.campanyIndividualName,333)
+    this.isDone = sessionStorage.getItem('orderStatus') === '2'
   },
   methods: {
     // 清空画布
@@ -280,8 +276,8 @@ export default {
                 title: "4/5 PDPA Memo",
               });
               if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
-                this.$router.push(
-                  "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId
+                this.$router.push({path:
+                  "/PDPAMemo?from=create&orderId=" + this.$route.query.orderId, query: { campanyIndividualName: this.$route.query.campanyIndividualName }}
                 );
               }
 

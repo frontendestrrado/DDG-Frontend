@@ -89,8 +89,12 @@ export default {
     },
   },
   methods: {
+   
     goView(path, text) {
-      this.$emit("on-goto", path, text);
+              console.log("---1111----",path)
+               console.log("---2222----",text)
+
+      this.$emit("on-goto", path === "/Choose" ? "/SelectProduct":path, text === "Create Order" ? "SelectProduct" :text);
     },
   },
   filters: {

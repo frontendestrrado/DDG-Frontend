@@ -26,6 +26,7 @@
             v-if="$store.state.currentPage.tabbar != '/Home'"
             color="#333"
             size="30"
+            v-show="$store.state.currentPage.tabbar!=='/Login'"
             @click="changeActTab('', '')"
           />
           <van-image
@@ -39,8 +40,8 @@
             "
           />
         </van-col>
-        <van-col :span="14" class="tc titleBig">
-          <!-- <van-image
+        <van-col :span="24" class="tc titleBig">
+<!--           <van-image
 						v-if="$store.state.currentPage.tabbar == '/Index'"
 						class="logo hv"
 							:src="logo"
@@ -51,34 +52,92 @@
           </div>
         </van-col>
         <!-- style="display: flex; align-items: center; justify-content: end;" -->
-        <van-col
-          :span="5"
-          style="display: flex; align-items: center; justify-content: end;"
-        >
+        <van-col :span="5" style="display: flex; align-items: center; justify-content: end;">
           <!-- v-if="$store.state.currentPage.tabbar == '/Index'" -->
+          <span  v-on:click="isHidden === false ? isHidden= true:isHidden=false" v-if="$sessionStorage.token && this.$route.path ==='/Page/10'" class="pos-rel"><van-image
+							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
+							:src="require('@/assets/img/bell.png')"
+							fit="contain"
+							/>
+              <div class="notfctn-btn">{{notificationsCount}} </div>
+              </span>
+               <div class="notifcation-box" v-if="!isHidden">
+<div  class="notfctn-viewall" >
+  <span class="p-3" v-on:click="announcementsShow" :style="{color: '#897359' }" :id="'annButId'">Announcements</span> <span :style="{color: '#2c3e50' }" :id="'notButId'" class="p-3" v-on:click="notificationsShow">Notifications</span>
+
+</div>
+
+<div :id="'annId'" :style="{display: 'block'}">
+<van-cell  center v-for="(item,index) in tableList.slice(0, 3)" :key="index" :style="{background: item.is_viewed == 0? '#cbcbcb' : '#fff' }">
+        <div class="notfctn-row p-0">
+          <div class="notifctn-left"  id="foo" v-on:click="select($event, item),isHidden = isHidden">
+          <div class="attachmnt-text">[Announcement]</div>
+           {{item.title}} <span class="dot-right" v-if="item.is_viewed == 0">*</span>
+          </div>
+           <div class="notifctn-right">
+             <span v-if="item.is_attached == true"><van-image
+							style="width: 15px;height:auto;margin: 0 auto; margin-right:6px;"
+							:src="require('@/assets/img/attached.png')"
+							fit="contain"
+							/></span>
+             <span class="time-text">2h</span>
+          </div>     
+        </div>
+</van-cell>
+        <div class="notfctn-viewall" v-on:click="select1(),isHidden = isHidden">
+          View All Notifications
+        </div>
+</div>
+ <div :id="'notId'" :style="{display: 'none'}">
+         <van-cell  center v-for="(item,index) in tableList1.slice(0, 3)" :key="index" :style="{background: item.is_read == 0? '#cbcbcb' : '#fff' }">
+        <div class="notfctn-row p-0" >
+          <div class="notifctn-left"  id="foo" v-on:click="selectA($event, item),isHidden = isHidden">
+          <div class="attachmnt-text">[Notifications]</div>
+           {{item.title}} <span class="dot-right" v-if="item.is_read == 0">*</span>
+          </div>
+           <div class="notifctn-right">
+             <!-- <span v-if="item.is_attached == true"><van-image
+							style="width: 15px;height:auto;margin: 0 auto; margin-right:6px;"
+							:src="require('@/assets/img/attached.png')"
+							fit="contain"
+							/></span> -->
+             <span class="time-text">2h</span>
+          </div>     
+        </div>
+</van-cell>
+        <div class="notfctn-viewall" v-on:click="select1B(),isHidden = isHidden">
+          View All Notifications
+        </div>
+        </div>
+  </div>
           <div
             class="SignUpIn"
             @click="toLogin"
+            v-show="$store.state.currentPage.tabbar!=='/Login'"
           >
             {{isToken?'Logout':'Sign Up / Sign In'}}
           </div>
-          <van-icon
-            v-if="isShowTopUl"
-            name="wap-nav"
-            color="#333"
-            size="30"
-            @click.stop="isShowTopUl = false"
-          />
-          <van-icon
-            v-else
-            name="cross"
-            color="#333"
-            size="30"
-            @click.stop="isShowTopUl = true"
-          />
+          <!-- <div >
+            <van-icon
+              v-if="isShowTopUl"
+              name="wap-nav"
+              color="#333"
+              size="30"
+              @click.stop="isShowTopUl = false"
+            />
+            <van-icon
+              v-else
+              name="cross"
+              color="#333"
+              size="30"
+              @click.stop="isShowTopUl = true"
+            />
+          </div> -->
         </van-col>
       </van-row>
+      
       <!-- <van-overlay :show="!isShowTopUl" /> -->
+  
       <ul class="menuInfo fontPB" v-if="!isShowTopUl" @click.stop>
         <li class="hv" @click="changeActTab('/Home', 'Home')">
           Home
@@ -87,7 +146,6 @@
 
         <!-- <li class="hv" v-if="tabList.length>0" v-for="(item,index) in tabList" @click="changeActTab(item.page_id?'/Page/'+item.page_id:'', item.title);">{{item.title}}</li> -->
         <MenuTop
-
           @on-change="changeActTab"
           :menu-data="tabList"
           cl-name.sync="menu"
@@ -122,19 +180,33 @@
         <!-- <div class="ulline"></div> -->
       </ul>
     </div>
+     
   </div>
+
 </template>
 <script>
 import MenuTop from "@/components/MenuTop";
-import EventHub from '@/util/EventHub'
+import EventHub from '@/util/EventHub';
+  import {getUnread} from '@/api/advisors.js'
+   import {getAnnouncementList} from '@/api/announcement.js'
+   import {getNotificationsList} from '@/api/announcement.js'
+  
 export default {
   components: {
     MenuTop,
   },
   data() {
     return {
+      notCount:0,
+      noticesList:[],
+      isHidden: true,
+      	notificationsCount:	sessionStorage.getItem("notifications_Count"),
+        targetId:'',
+         pageName: '',
       title:'',
       tabList: [],
+       tableList: [],
+         tableList1: [],
       isShowTopUl: true,
       lang: this.$i18n.locale,
       language: [
@@ -154,10 +226,18 @@ export default {
       logo: "",
       isToken: ''
     };
+    
   },
 
   mounted() {
+ if(this.$route.path ==='/Page/10'){
 
+ 
+   this.getAnnouncementList()
+      this.getNotificationsList()
+ 
+   this.showMessage();
+  }  
     this.getLogo();
     this.getTabbar();
     this.getUserInfo();
@@ -186,6 +266,7 @@ export default {
     EventHub.$on('hiddenMenu',(data) => {
       this.isShowTopUl = true
     })
+   
   },
   watch: {
     isShowTopUl() {
@@ -197,7 +278,45 @@ export default {
     },
   },
   methods: {
+  //  getPageContent(){
+
+	// 			this.$axios({
+	// 				method: 'get',
+	// 				url:'/api/v1/customPages?id='+this.$route.params.page_id,
+	// 			}).then(res => {
+  //             console.log("++++++++++111111")
+	// 				if(res.status === 200){
+  //               console.log("++++++++++2222222")
+	// 					// this.pageContent = res.data.modules;
+	// 					// this.pageWidth = res.data.width;
+	// 					this.pageName = res.data.name
+	// 				  this.showMessage()
+	// 				}else{
+	// 				//	this.pageContent = [];
+	// 				//	this.pageWidth = '1200';
+	// 					// this.$store.commit('changePage',{tabbar: '/ErrorPage', title: 'ErrorPage'});
+	// 					// this.$router.push('/ErrorPage');
+	// 				}
+	// 			}).catch(error=>{
+
+	// 			});
+	// 		},
     // 获取头部导航条
+
+    //announcementsShow/notificationsShow/annId/notId
+        announcementsShow() {
+          document.getElementById('annId').style.display='block'
+          document.getElementById('notId').style.display='none'
+          
+      document.getElementById('notButId').style.color = '#2c3e50'
+      document.getElementById('annButId').style.color = '#897359'
+        },
+            notificationsShow() {
+              document.getElementById('notId').style.display='block'
+              document.getElementById('annId').style.display='none'
+              document.getElementById('notButId').style.color = '#897359'
+      document.getElementById('annButId').style.color = '#2c3e50'
+            },
     getTabbar() {
       this.$axios({
         method: "get",
@@ -211,6 +330,60 @@ export default {
           console.log(JSON.stringify(error));
         });
     },
+    getAnnouncementList() {
+      getAnnouncementList().then(res => {
+        this.tableList = res
+        console.log("---Announcement-111---",res)
+        // console.log(this.tableList)
+      })
+    },
+      getNotificationsList() {
+      getNotificationsList().then(res => {
+        this.tableList1 = res
+      
+        console.log("---getNotificationsList-111---",res)
+
+          var qaz =[]
+        for (let i = 0; i < res.length; i++) {
+         // alert(res[i].is_read)
+if(res[i].is_read ===0){
+qaz.push(res[i].is_read)
+}
+        }
+          console.log("---getNotificationsList-111--qaz-",qaz.length)
+        // console.log(this.tableList)
+      })
+    },
+     showMessage () {
+      	getNotificationsList().then(res => {
+					console.log("---getNotificationsList-111-55555--", res)
+					var qaz = []
+				for (let i = 0; i < res.length; i++) {
+						
+						if (res[i].is_read == 0) {
+							//alert(res[i].is_read)
+
+							qaz.push(res[i].is_read)
+						}
+					}
+				console.log("---getNotificationsList-111--44444444444444-", qaz.length)
+				this.notCount=qaz.length
+           getUnread().then(res => {
+       
+            if(res > 0) {
+                   console.log("_______________11___2_____",res)
+              	this.notificationsCount = res+qaz.length;
+                	sessionStorage.setItem("notifications_Count", res+qaz.length)
+           
+            }
+          })
+				})
+       console.log("++++++++++333333")
+       
+           console.log("++++++++++444444")
+       
+        
+      },
     isNumber(val) {
       var regPos = /^\d+(\.\d+)?$/; //非负浮点数
       var regNeg =
@@ -222,9 +395,6 @@ export default {
       }
     },
     changeActTab(name, title, link) {
-
-      console.log(name, title, link, 3333333);
-      console.log(">>>>>",this.tabList)
       this.isShowTopUl = true;
       if (name == "") {
         if(link=='/Login'){
@@ -234,11 +404,45 @@ export default {
             });
           this.$router.push("/Login");
         }else{
+          let that = this
           this.$router.go(-1);
-           this.$store.commit("changePage", {
-              tabbar: "",
-              title: "",
-            });
+          setTimeout(() => {
+            if(this.$route.path!=null && this.$route.path!=='/Page/10') {
+              let arr = this.$route.path.split('/')
+              console.log(arr)
+              if(arr[1] === 'Performance') {
+                this.$store.commit("changePage", {
+                  tabbar: "",
+                  title: 'My Performance',
+                });
+              }else if(arr[1] ==='OrganizeChartDetail'){
+                this.$store.commit("changePage", {
+                  tabbar: "",
+                  title: 'Organizational Sales',
+                });
+              }else if(arr[1] ==='OrganizeChartDetail2'){
+                this.$store.commit("changePage", {
+                  tabbar: "",
+                  title: 'Personal Sales',
+                });
+              }else if(arr[1] ==='OrganizeChart'){
+                this.$store.commit("changePage", {
+                  tabbar: "",
+                  title: 'Organizational Sales',
+                });
+              }else{
+                this.$store.commit("changePage", {
+                  tabbar: "",
+                  title: arr[1],
+                });
+              }
+            }else {
+              this.$store.commit("changePage", {
+                tabbar: "",
+                title: '',
+              });
+            }
+          },100)
         }
       } else {
         if (this.isNumber(name)) {
@@ -324,6 +528,48 @@ export default {
           console.log(err, "獲取logo異常");
         });
     },
+    notificationsDetails(item) {
+      console.log("sss",item)
+      this.$router.push({
+        path: './AnnouncementDetail',
+        query: {id: item.id}
+      })
+    },
+    // select: function(event) {
+        select1() {
+           // targetId = event.currentTarget.id;
+           // returns 'foo'
+             this.$router.push({
+        path: '/Announcement',
+        query: {type: "ann"}
+        
+      })
+        },
+       select(event, item) {
+           // targetId = event.currentTarget.id;
+            console.log(item.id); // returns 'foo'
+             this.$router.push({
+        path: '/AnnouncementDetail',
+        query: {id: item.id}
+      })
+        },
+         select1B() {
+           // targetId = event.currentTarget.id;
+           // returns 'foo'
+             this.$router.push({
+        path: '/Announcement',
+         query: {type: "not"}
+        
+      })
+        },
+       selectA(event, item) {
+           // targetId = event.currentTarget.id;
+            console.log(item.id); // returns 'foo'
+             this.$router.push({
+        path: '/NotificationsDetail',
+        query: {id: item.id}
+      })
+        },
     // 退出登錄
     logout() {
       sessionStorage.token = ''
@@ -332,6 +578,7 @@ export default {
         type: 'success',
         message: 'Exit \n Successful'
       })
+             	sessionStorage.setItem("notifications_Count", '')
       this.$router.push("/Login");
       this.isToken = sessionStorage.token
       this.$router.go(0)
@@ -456,6 +703,7 @@ export default {
   font-size: 2.5rem;
   font-family: FandolSong;
   color: #897359;
+  margin-top : 2.5rem;
 }
 /*手机*/
 @media screen and (max-width: 768px) {
@@ -609,5 +857,72 @@ export default {
   border:1px solid #999;
   width:50%;
   margin-left:50%;
+}
+.pos-rel{
+  position:relative;
+}
+.notfctn-btn{
+    width: 18px;
+    height: 18px;
+    border: 1px solid red;
+    position: absolute;
+    border-radius: 50px;
+    background-color: red;
+    top: 10px;
+    right: 12px;
+    color: #fff;
+    font-size: 14px;
+}
+.notifcation-box{
+      width: 400px;
+    min-height: 200px;
+    position: absolute;
+    z-index: 999;
+    background-color: #cbcbcb;
+    right: 73px;
+    top: 64px;
+    border-radius: 15px;
+
+}
+.notfctn-row{
+      display: flex;
+    justify-content: space-between;
+           padding: 15px 30px;
+    /* border-bottom: 1px solid #fff; */
+}
+.notifctn-left{
+      width: 320px;
+    text-align: left;
+    font-size:14px;
+    font-weight:600px;
+}
+.notifctn-right{
+      width: 200px;
+    text-align: right;
+    font-size:14px;
+    padding-top:8px;
+
+}
+
+.attachmnt-text{
+  font-size:12px;
+  color:#cd1f1f;
+  padding-bottom:5px;
+}
+.notfctn-viewall{
+      text-align: center;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: 600;
+}
+.notfctn-row-bg{
+  background-color:#fff;
+}
+.dot-right{
+  color:red;
+  font-size:18px;
+}
+/deep/ #notId .van-cell.van-cell--center{
+  border-bottom: 1px solid #ccc;
 }
 </style>

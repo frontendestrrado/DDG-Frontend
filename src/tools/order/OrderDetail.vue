@@ -90,7 +90,7 @@
           });
         "
       ></van-cell>
-      <van-button v-if="orderData.status === 0 || orderData.status === 3" round block type="info" color="#7C655D" @click="submitAll">
+      <van-button  round block type="info" :disabled="orderStatus==2" color="#7C655D" @click="submitAll">
         Submit all forms
       </van-button>
       <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before submitting</div>
@@ -129,8 +129,7 @@
       autosize
       placeholder="The order feedback"
     />
-    <van-button class="loginBtn" type="info" @click="submit" color="#7C655D"
-      :disabled="orderStatus!=null">Submit Feedback</van-button
+    <van-button class="loginBtn" type="info" @click="submit" color="#7C655D">Submit Feedback</van-button
     >
   </div>
 </template>
@@ -180,6 +179,7 @@ export default {
           console.log(res, "订单反馈");
           this.patchOrder = res.note;
           this.$toast("Feedback submitted successfully");
+          this.patchOrder=''
         })
         .catch((err) => {
           console.log(err.response);

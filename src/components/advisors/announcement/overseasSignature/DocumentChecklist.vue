@@ -104,7 +104,8 @@
       </van-field>
       <van-field
         name="source_of_fund"
-        label="Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
+        label="Source of Fund (to provide the relevant supporting document(s)) 
+Verified by the Agent/ Representative – Bank Statement, Bank passbook"
         center
       >
         <template #input>

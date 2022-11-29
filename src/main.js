@@ -38,6 +38,7 @@ Vue.prototype.$video = Video
 import vueEsign from 'vue-esign'
 Vue.use(vueEsign)
 
+
 // google地圖
 // import 'vue-googlemaps/dist/vue-googlemaps.css'
 // import VueGoogleMaps from 'vue-googlemaps'
@@ -71,8 +72,10 @@ Vue.prototype.$axios = axios;
 Vue.prototype.$sessionStorage = sessionStorage;
 
 if(process.env.NODE_ENV=='development'){
+	console.log("1111111111")
 	Vue.prototype.$build = '/build';
 }else{
+	console.log("2222222222")
 	Vue.prototype.$build = 'https://www.bunchparty.com/trust';
 	// Vue.prototype.$build = 'http://184.168.127.123/trustb'; //正式服
 	// Vue.prototype.$build = 'https://ddgint.com/trustb'; //正式服

@@ -190,6 +190,7 @@
         :required="true"
         type="text"
         label="Mobile Phone No"
+           @keypress="isLetter($event)"
         placeholder="Please enter the Mobile Phone No"
         :rules="[
           { required: true },
@@ -200,6 +201,7 @@
         name="Home"
         center
         type="text"
+          @keypress="isLetter($event)"
         label="Home Phone No"
         placeholder="Please enter the Home Phone No"
       />
@@ -209,6 +211,7 @@
         center
         type="text"
         label="Office Phone No"
+          @keypress="isLetter($event)"
         placeholder="Please enter the Office Phone No"
       />
       <van-field
@@ -414,6 +417,7 @@
         center
         type="text"
         label="Mobile Phone No"
+           @keypress="isLetter($event)"
         placeholder="Please enter the Mobile Phone No"
       />
       <van-field
@@ -422,6 +426,7 @@
         center
         type="text"
         label="Home Phone No"
+          @keypress="isLetter($event)"
         placeholder="Please enter the Home Phone No"
       />
       <van-field
@@ -429,6 +434,7 @@
         name="Office"
         center
         type="text"
+          @keypress="isLetter($event)"
         label="Office Phone No"
         placeholder="Please enter the Office Phone No"
       />
@@ -897,7 +903,7 @@
           </van-radio-group>
         </template>
       </van-field>
-      <div class="minTitle">SECTION E DOCUMENT CHECKLIST</div>
+      <div class="minTitle">SECTION E DOCUMENT CHECKLIST2</div>
       <van-field
         name="Particulars"
         label="Particulars"
@@ -1362,7 +1368,7 @@
         We declare all the information provided is accurate and we will store
         all the data securely
       </div>
-      <div class="tl">Marketing Officer/ Frontline Officer</div>
+      <div class="tl">Advisor's Signature</div>
       <vue-esign
         ref="trustor_signature1"
         :width="1200"
@@ -1560,6 +1566,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { uploadAutograph, smsVerify_code, verdict_code,uploadFile } from "@/api/util";
 import { kyc_form, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
@@ -1569,9 +1576,10 @@ export default {
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       formData: {
         settlor: {
-          Full: '',
+         //Full:  this.$route.query.campanyIndividualName == undefined || this.$route.query.campanyIndividualName === 'undefined' ? "": this.$route.query.campanyIndividualName.name,
+          Full:  this.$store.state.campanyIndividualName1,
           Other: '',
-          New: '',
+          New: this.$store.state.passport_no,
           Old: '',
           Nationality: '',
         },
@@ -1585,11 +1593,11 @@ export default {
           Marital: '',
         },
         settlor_contact_details: {
-          Email: '',
-          Mobile: '',
-          Home: '',
-          Office: '',
-          Residential: '',
+          Email:this.$store.state.email,
+          Mobile:this.$store.state.phone,
+          Home:this.$store.state.house_no,
+          Office:  this.$store.state.office_no,
+          Residential: this.$store.state.address,
           Postcode: '',
           Country: '',
           Length: '',
@@ -1627,8 +1635,8 @@ export default {
           Country2: '',
         },
         settlor_occupation: {
-          Occupation: '',
-          Occupation2: '',
+          Occupation:  '',
+          Occupation2: this.$store.state.occupation,
           Industry: '',
           Name: '',
           Nature: '',
@@ -1728,9 +1736,9 @@ export default {
         },
         declaration: {
           signature: '',
-          Name: '',
+          Name: this.$store.state.campanyIndividualName1,
           // Nric: '',
-          Date: '',
+          Date:  moment(new Date()).format('DD-MM-YYYY'),
         }
       },
       isShowPicker: false, // 日期彈框
@@ -1752,8 +1760,11 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.query, 222222);
+    console.log("...................kkkk.....")
+  //  this.$forceUpdate();
+    console.log(this.$store.state.campanyIndividualName1, "222222yyyyy");
     if(this.$store.state.isOverseaSignature){
+     
       this.from = "create"
       this.isFilled=0
     }else{
@@ -1765,9 +1776,15 @@ export default {
        this.isFilled=this.$route.query.kyc_form
     }
     this.getFormData();
-    this.isDone = !!sessionStorage.getItem('orderStatus')
+    this.isDone = sessionStorage.getItem('orderStatus') === '2'
   },
   methods: {
+    // moblie validation
+     isLetter(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/^[0-9]+$/.test(char)) return true;
+      else e.preventDefault();
+    },
     // 如果已填 獲取數據
     getFormData() {
       if (this.isFilled > 0) {
@@ -1857,9 +1874,9 @@ export default {
                 title: "3/5 Letter Of Wishes",
               });
               if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
-                  this.$router.push(
+                  this.$router.push({path:
                   "/LetterOfWishes?from=create&orderId=" +
-                  this.$route.query.orderId
+                  this.$route.query.orderId,  query: { campanyIndividualName: this.$route.query.campanyIndividualName }}
                 );
               }
             } else {

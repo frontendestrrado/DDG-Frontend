@@ -107,8 +107,11 @@ export default {
             console.log(res);
             this.$toast({
               type: "success",
-              message: "Submitted successfully",
+              message: "Submitted successfully"
             });
+            this.name='',
+            this.content='',
+            this.email=''
           })
           .catch((err) => {
             this.$toast({

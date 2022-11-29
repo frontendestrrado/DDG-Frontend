@@ -81,6 +81,7 @@
         center
         :required="true"
         type="text"
+        @keypress="isLetter($event)"
         label="MOBILE NO"
         placeholder="Please enter the MOBILE NO"
         :rules="[{ required: true }]"
@@ -89,7 +90,7 @@
         v-model="formData.office_no"
         name="office_no"
         center
-        
+          @keypress="isLetter($event)"
         type="text"
         label="OFFICE NO"
         placeholder="Please enter the OFFICE NO"
@@ -99,7 +100,7 @@
         v-model="formData.house_no"
         name="house_no"
         center
-        
+          @keypress="isLetter($event)"
         type="text"
         label="HOUSE NO"
         placeholder="Please enter the HOUSE NO"
@@ -686,6 +687,11 @@ export default {
       //   message: " Oversea Signature setting success",
       // });
        alert("Oversea Signature setting success")
+    },
+       isLetter(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/^[0-9]+$/.test(char)) return true;
+      else e.preventDefault();
     },
     // 如果已填 獲取數據
     getFormData() {

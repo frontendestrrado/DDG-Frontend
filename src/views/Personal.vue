@@ -2,12 +2,13 @@
   <div class="person from_content">
     <van-cell-group>
       <!-- <van-field center label="Name" :readonly="true" v-model="userInfo.name"></van-field> -->
-      <van-uploader
+      <!-- <van-uploader
         v-model="fileList"
-        multiple
         :max-count="1"
         :after-read="afterRead"
-      />
+      /> -->
+        <van-uploader v-model="avatar_image_id" :after-read="afterRead" accept="*"
+            :max-count="1" />
       <!-- <van-field
                 ref="name"
                 center
@@ -19,6 +20,7 @@
             </van-field> -->
       <van-field
         center
+        style="font-weight: bold;"
         label="First Name"
         :readonly="true"
         v-model="userInfo.first_name"
@@ -26,32 +28,37 @@
       <van-field
         center
         label="Surname"
+        style="font-weight: bold;"
         :readonly="true"
         v-model="userInfo.third_name"
       ></van-field>
       <van-field
         center
+        style="font-weight: bold;"
         label="Rank"
         :readonly="true"
         v-model="userInfo.grade"
       ></van-field>
       <van-field
         center
-        label="BTT Code"
+        style="font-weight: bold;"
+        label="QTA Code"
         :readonly="true"
         v-model="userInfo.btt_code"
       ></van-field>
       <van-field
         center
+        style="font-weight: bold;"
         label="NRIC Name or Passport # / Company Re.Number"
         :readonly="true"
         v-model="userInfo.passport"
       ></van-field>
       <van-field
         ref="address"
+        style="font-weight: bold;"
         center
         label="Residential Address"
-        :readonly="actUserBtn == 'address' ? false : true"
+       @click="patchEdit1('address')"
         v-model="userInfo.address"
       >
         <van-icon
@@ -70,10 +77,11 @@
         />
       </van-field>
       <van-field
+        style="font-weight: bold;"
         ref="post_code"
         center
         label="Post Code"
-        :readonly="actUserBtn == 'post_code' ? false : true"
+         @click="patchEdit1('post_code')"
         v-model="userInfo.post_code"
       >
         <van-icon
@@ -93,6 +101,7 @@
       </van-field>
       <van-field
         is-link
+        style="font-weight: bold;"
         arrow-direction="down"
         readonly
         clickable
@@ -115,10 +124,11 @@
         />
       </van-popup>
       <van-field
+      style="font-weight: bold;"
         ref="birthday"
         center
         label="Date of Birth"
-        :readonly="actUserBtn == 'birthday' ? false : true"
+      @click="patchEdit1('birthday')"
         v-model="userInfo.birthday"
         :rules="[{ pattern, message: 'Please enter the correct date of birth' }]"
       >
@@ -139,11 +149,13 @@
       </van-field>
       <van-field
         center
+        style="font-weight: bold;"
         label="Code"
         :readonly="true"
         v-model="userInfo.code"
       ></van-field>
       <van-field
+      style="font-weight: bold;"
         center
         label="Introducer ID"
         :readonly="true"
@@ -151,9 +163,10 @@
       ></van-field>
       <van-field
         ref="bank"
+        style="font-weight: bold;"
         center
         label="Bank Name"
-        :readonly="actUserBtn == 'bank' ? false : true"
+        @click="patchEdit1('bank')"
         v-model="userInfo.bank"
       >
         <van-icon
@@ -174,8 +187,9 @@
       <van-field
         ref="bankAccountNo"
         center
+        style="font-weight: bold;"
         label="Bank Account No."
-        :readonly="actUserBtn == 'bankAccountNo' ? false : true"
+           @click="patchEdit1('bankAccountNo')"
         v-model="userInfo.bankAccountNo"
       >
         <van-icon
@@ -196,8 +210,9 @@
       <van-field
         ref="bankAccountName"
         center
+        style="font-weight: bold;"
         label="Bank Account Name"
-        :readonly="actUserBtn == 'bankAccountName' ? false : true"
+         @click="patchEdit1('bankAccountName')"
         v-model="userInfo.bankAccountName"
       >
         <van-icon
@@ -218,8 +233,9 @@
       <van-field
         ref="phone"
         center
+        style="font-weight: bold;"
         label="Mobile Number"
-        :readonly="actUserBtn == 'phone' ? false : true"
+        @click="patchEdit1('phone')"
         v-model="userInfo.phone"
       >
         <van-icon
@@ -240,8 +256,9 @@
       <van-field
         ref="email"
         center
+        style="font-weight: bold;"
         label="Email"
-        :readonly="actUserBtn == 'email' ? false : true"
+      @click="patchEdit1('email')"
         v-model="userInfo.email"
       >
         <van-icon
@@ -265,6 +282,7 @@
       <van-field
         center
         label="Created Date"
+        style="font-weight: bold;"
         :readonly="true"
         v-model="userInfo.created_at"
       ></van-field>
@@ -280,10 +298,11 @@ export default {
     return {
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       userInfo: "",
+      avatar_image_id:[],
       saveContent: false,
       actUserBtn: -1,
       timer: null,
-      fileList: [],
+      avatar_image_id:[],
       Area: '',
       areaList: [
         {
@@ -345,7 +364,8 @@ export default {
         .then((res) => {
           console.log("111",res);
           this.userInfo = res;
-          this.fileList = [{ url: res.avatar }];
+        //  this.fileList = [{ url: res.avatar }];
+            this.avatar_image_id.push({ url: res.avatar })
         })
         .catch((err) => {
           this.$toast({
@@ -375,6 +395,9 @@ export default {
       }, 60);
     },
     // 保存用户信息
+    patchEdit1(index){
+ this.showEditBtn(index)
+    },
     patchEdit(index, id) {
       this.hideEditBtn(-1);
       var data = {};
@@ -392,7 +415,7 @@ export default {
           return
         }
       }
-      // console.log(index,id)
+      console.log("..data........3333...",data)
       this.$axios({
         method: "PATCH",
         url: "/api/v1/user",
@@ -402,7 +425,7 @@ export default {
         data,
       })
         .then((res) => {
-          console.log(res);
+          console.log(res,"......personal....2222222.....");
           this.userInfo = res;
         })
         .catch((err) => {
@@ -430,7 +453,7 @@ export default {
         .then((res) => {
           console.log(res, "頭像上傳");
           if (res.id) {
-            this.$toast.success("頭像上傳成功");
+            this.$toast.success("Success");
           }
           this.patchEdit("avatar_image_id", res.id);
         })

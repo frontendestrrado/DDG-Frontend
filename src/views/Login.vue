@@ -50,13 +50,13 @@
               center
               :required="true"
               type="text"
-              label="BTT Code"
-              placeholder="Please enter the BTT Code"
+              label="QTA/BTT Code"
+              placeholder="Please enter the BTT Code ( BTT Code format: DDG/BTT/Year/M05/12345 )"
               :rules="[
-                { required: true,message: 'Please enter the BTT Code' },
+                { required: true,message: 'Please enter the BTT Code ( BTT Code format: DDG/BTT/Year/M05/12345 )' },
               ]"
             />
-            <van-field name="uploader" label="BTT Code Picture" :required="true">
+            <van-field name="uploader" label="QTA/BTT Cert" :required="true">
               <template #input>
                 <van-uploader v-model="uploader" :after-read="afterRead" accept="*" :max-count="1" class="picture"/>
               </template>
@@ -278,7 +278,7 @@
             </van-popup>
             <van-field
               v-model="loginForm.username"
-              label="phone"
+              label="Phone"
               :required="true"
               center
               type="tel"
@@ -286,19 +286,15 @@
             />
             <van-field
               v-model="loginForm.password"
-              label="password"
+              label="Password"
               :required="true"
               center
               type="password"
               placeholder="Password* (Must be 6 Digit Numberic)"
             />
           </div>
-          <van-button class="loginBtn" type="default" @click="login()"
-            >Sign In</van-button
-          >
-          <van-button class="loginBtn" type="default" @click="forgetPassword"
-          >Forgot/Change Password</van-button
-          >
+          <van-button class="loginBtn" type="default" @click="login()">Sign In</van-button>
+          <van-button class="loginBtn" type="default" @click="forgetPassword">Forgot/Change Password</van-button>
         </div>
       </van-tab>
     </van-tabs>
@@ -309,6 +305,8 @@
 import Common from "@/components/mode/common.vue";
 import EventHub from '@/util/EventHub'
 import { uploadAutograph, uploadFile } from "@/api/util";
+  import {getUnread} from '@/api/advisors.js'
+  import { getNotificationsList } from '@/api/announcement.js'
 export default {
   components: {
     Common,
@@ -316,10 +314,11 @@ export default {
   name: "Login",
   data() {
     return {
+      notCount: 0,
       pageContent: [],
       pageWidth: "1200",
       isSms: false,
-      activeName: "SignUp",
+      activeName: "SignIn",
       loginForm: {
         username: "",
         password: "",
@@ -405,8 +404,41 @@ export default {
   },
   mounted() {
     this.getPageContent();
+     
   },
   methods: {
+    showMessage () {
+
+				getNotificationsList().then(res => {
+					console.log("---getNotificationsList-111-55555--", res)
+					var qaz = []
+				for (let i = 0; i < res.length; i++) {
+						
+						if (res[i].is_read == 0) {
+							//alert(res[i].is_read)
+
+							qaz.push(res[i].is_read)
+						}
+					}
+				console.log("---getNotificationsList-111--44444444444444-", qaz.length)
+				this.notCount=qaz.length
+           getUnread().then(res => {
+       
+            if(res > 0) {
+                   console.log("_______________11________",res)
+              	
+                	sessionStorage.setItem("notifications_Count", res+qaz.length)
+           
+            }
+          })
+				})
+	
+       console.log("++++++++++333333")
+       
+           console.log("++++++++++444444")
+       
+        
+      },
     forgetPassword() {
       sessionStorage.setItem('currentPage',JSON.stringify({tabbar: '/ChangePassword',
         title: 'Forgot/Change Password'}))
@@ -474,13 +506,16 @@ export default {
           },
         })
           .then((res) => {
+            console.log(res,4444444444);
             if (res) {
+               this.showMessage();
               this.$store.commit("setToken", res.access_token);
               this.$store.commit("setTokenType", res.token_type);
               this.$toast({
                 type: "success",
                 message: "Login \n successful",
               });
+             sessionStorage.setItem('isShow1',false)
               this.getUser();
               const vm = this;
               setTimeout(function () {
@@ -501,7 +536,7 @@ export default {
 				if (!this.areaCode2) {
 					this.$toast('Please select the area code')
 				} else {
-					this.$toast("Please enter your user name and password");
+					this.$toast("Please enter your mobile number and password");
 				}
       }
     },
@@ -515,7 +550,11 @@ export default {
         },
       })
         .then((res) => {
-          sessionStorage.setItem("user_id", res.id);
+          console.log(".......user..details...",res)
+          sessionStorage.setItem("user_id", res.code);
+            sessionStorage.setItem("user_name", res.first_name+" "+res.third_name);
+            sessionStorage.setItem("user_passportNo", res.passport);
+          
         })
         .catch((err) => {
           this.$toast({

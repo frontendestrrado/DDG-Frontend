@@ -618,7 +618,7 @@ export default {
     this.isFilled = this.$route.query.isFilled;
     this.isDone = this.$route.query.status == 1 ? true : false;
     this.getFormData();
-    this.isDone = !!sessionStorage.getItem('orderStatus')
+    this.isDone = sessionStorage.getItem('orderStatus') === '2'
   },
   methods: {
     declarationThirdParty(val){

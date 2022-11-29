@@ -185,6 +185,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { uploadAutograph } from "@/api/util";
 import { pdpa_memo, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
@@ -192,11 +193,11 @@ export default {
   data() {
     return {
       formData: {
-        signature: "",
-        name: "",
-        nric: "",
+        signature: this.$store.state.signature,
+        name:this.$store.state.campanyIndividualName1,
+        nric:this.$store.state.passport_no,
         designation: "",
-        date: "",
+        date:  moment(new Date()).format('DD-MM-YYYY'),
         company_rubber_stamp: "",
       },
       isShowPicker: false, // 控制日期彈框
@@ -225,7 +226,7 @@ export default {
      this.isFilled=this.$route.query.pdpa_memo_form
     }
     this.getFormData();
-    this.isDone = !!sessionStorage.getItem('orderStatus')
+    this.isDone = sessionStorage.getItem('orderStatus') === '2'
   },
   methods: {
     // 如果已填 獲取數據
@@ -281,8 +282,8 @@ export default {
                 title: "5/5 Document Checklist",
               });
               if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
-                  this.$router.push(
-                 "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId
+                  this.$router.push({path:
+                 "/DocumentChecklist?from=create&orderId=" + this.$route.query.orderId, query: { campanyIndividualName: this.$route.query.campanyIndividualName }}
                 );
               }
 

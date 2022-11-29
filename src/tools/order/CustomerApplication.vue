@@ -17,6 +17,7 @@
         center
         :required="true"
         type="text"
+        @change="onCampanyIndividualName"
         label="COMPANY / INDIVIDUAL NAME"
         placeholder="Please enter the COMPANY / INDIVIDUAL NAME"
         :rules="[
@@ -78,8 +79,11 @@
         name="phone"
         center
         :required="true"
+      @keyup.delete="console.log(1)"
+      @keypress="isLetter($event)"
         type="text"
         label="MOBILE NO"
+      
         placeholder="Please enter the MOBILE NO"
         :rules="[{ required: true }]"
       />
@@ -87,7 +91,7 @@
         v-model="formData.office_no"
         name="office_no"
         center
-
+ @keypress="isLetter($event)"
         type="text"
         label="OFFICE NO"
         placeholder="Please enter the OFFICE NO"
@@ -97,7 +101,7 @@
         v-model="formData.house_no"
         name="house_no"
         center
-
+ @keypress="isLetter($event)"
         type="text"
         label="HOUSE NO"
         placeholder="Please enter the HOUSE NO"
@@ -163,6 +167,7 @@
           :required="true"
           type="text"
           label="CONTACT NO"
+             @keypress="isLetter($event)"
           placeholder="Please enter the CONTACT NO"
           :rules="[{ required: true }]"
         />
@@ -221,6 +226,7 @@
         center
         type="text"
         label="CONTACT NO"
+           @keypress="isLetter($event)"
         placeholder="Please enter the CONTACT NO"
       />
       <van-field
@@ -292,6 +298,7 @@
         :required="true"
         type="text"
         label="CONTACT NUMBER"
+           @keypress="isLetter($event)"
         placeholder="Please enter the CONTACT NUMBER"
         :rules="[
           {
@@ -530,7 +537,6 @@
       <vue-esign
         ref="esign"
         v-show="!formData.signature"
-
         :width="1200"
         :height="300"
         :isCrop="false"
@@ -611,6 +617,8 @@
 </template>
 
 <script>
+
+import moment from 'moment'
 import { uploadAutograph } from "@/api/util";
 import { createOrders, getOrdersForms, putOrdersForms } from "@/api/order";
 export default {
@@ -637,8 +645,8 @@ export default {
           },
         ],
         price: "",
-        adviser_name: "",
-        code: "",
+        adviser_name: sessionStorage.getItem("user_name"),
+        code:sessionStorage.getItem("user_id"),
         account_name: "",
         bank: "",
         account_no: "",
@@ -655,7 +663,7 @@ export default {
         witness_passport_no: "",
         signature: "",
         client_name: "",
-        signature_date: "",
+        signature_date: moment(new Date()).format('DD-MM-YYYY'),
         beneficiary_name_trustee: "",
         nric_passport_no_company_no: "",
         relationship: "",
@@ -697,9 +705,19 @@ export default {
     }
 
     this.getFormData();
-    this.isDone = !!sessionStorage.getItem('orderStatus')
+    this.isDone = sessionStorage.getItem('orderStatus') === '2'
   },
   methods: {
+    onCampanyIndividualName(val){
+      console.log("*******************",val.target._value)
+ this.formData.client_name = val.target._value
+    },
+    //  mobile validation (number only)
+     isLetter(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/^[0-9]+$/.test(char)) return true;
+      else e.preventDefault();
+    },
     OverseaSignature(){
        this.$store.commit('changeIsOverseaSignature',true)
       //  this.$toast({
@@ -759,6 +777,7 @@ export default {
     },*/
     // 提交表單
     submit(form) {
+       console.log("555555555555555555555",form);
       console.log(form);
       console.log(this.formData);
       if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
@@ -772,6 +791,7 @@ export default {
         return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
+           console.log("........00000....",data);
       data.beneficiary_info = JSON.stringify(this.formData.beneficiary_info);
       if (this.isFilled > 0) {
         // 修改
@@ -784,6 +804,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
+           
           if(!this.$route.query.isShare){
             this.$router.go(-1);
           }
@@ -791,18 +812,47 @@ export default {
       } else {
         createOrders(data)
           .then((res) => {
-            console.log(res, "訂單創建成功");
+            console.log(data, ".....yyy.......");
             this.$toast.success("Creating a successful");
+            this.$store.commit('ChangecampanyIndividualName',data.name)
+            this.$store.commit('signature',data.signature)
             this.$store.commit("changePage", {
               tabbar: "/KYC",
-              title: "2/5 Compliance Questionnaire",
+              title: "2/5 Compliance Questionnaire"
+               
             });
             if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
               console.log('98974645555555555443333333311111111123')
-              this.$router.push("/KYC?from=create&orderId=" + res.id);
-            }else{
-              console.log(res.id,"hhhhhhh99999")
+              sessionStorage.setItem('abcd',data.name)
               this.$store.commit('changeCustomerApplicationId',res.id)
+              this.$store.commit('ChangecampanyIndividualName',data.name)
+              this.$store.commit('Changepassport_no',data.passport_no)
+              this.$store.commit('Changeemail',data.email)
+              this.$store.commit('Changephone',data.phone)
+              this.$store.commit('Changehouse_no',data.house_no)
+              this.$store.commit('Changeoffice_no',data.office_no)
+              this.$store.commit('Changeaddress',data.address)
+              this.$store.commit('Changeoccupation',data.occupation)
+              this.$store.commit('Changesignature',data.signature)
+              this.$router.push({path:"/KYC?from=create&orderId=" + res.id, query: { campanyIndividualName: data }});
+            }else{
+              console.log(res.id,"iiiiiiiiiiiiiiiiiiiiii")
+              sessionStorage.setItem('abcd',data.name)
+              this.$store.commit('changeCustomerApplicationId',res.id)
+              this.$store.commit('ChangecampanyIndividualName',data.name)
+              this.$store.commit('Changepassport_no',data.passport_no)
+              this.$store.commit('Changeemail',data.email)
+              this.$store.commit('Changephone',data.phone)
+              this.$store.commit('Changehouse_no',data.house_no)
+              this.$store.commit('Changeoffice_no',data.office_no)
+              this.$store.commit('Changeaddress',data.address)
+              this.$store.commit('Changeoccupation',data.occupation)
+              this.$store.commit('Changesignature',data.signature)
+         //     this.$root.$emit('KYC') 
+            //  @click="$emit('onSelect')"
+              this.$emit('onSelect1')
+           //   this.$store.commit('campanyIndividualName',data)
+              
             }
             // this.$router.go(-1)
           })
@@ -821,12 +871,13 @@ export default {
       this.$refs["esign"]
         .generate()
         .then((res) => {
+           console.log(".......img..1....",res);
           uploadAutograph({
             image: res,
             path: "",
           })
             .then((res) => {
-              console.log(res);
+             console.log(".......img...2...",res);
               this.$toast.success("Signature success");
               this.formData.signature = res.path;
             })

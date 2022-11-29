@@ -1,0 +1,227 @@
+<template>
+  <div class="OrderDetail bodybox">
+    <div style="text-align: left; font-weight: bold; padding-left: 16px">
+      Forms
+    </div>
+    <div style="margin-bottom: 40px">
+      <van-cell
+        is-link
+        :value="orderData.gep_kyc_form == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="KYC"
+        @click="
+          $store.commit('changePage', { tabbar: '/CustomerApplicationGep', title: '1/5 KYC' });
+          $router.push({
+            path: '/CustomerApplicationGep',
+            query: { orderId: orderData.id, isFilled: orderData.gep_kyc_form, status: orderData.status },
+          });
+        "
+      ></van-cell>
+      <van-cell
+        is-link
+        :value="orderData.subcriptionform == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="SUBSCRIPTION FORM"
+        @click="
+          $store.commit('changePage', { tabbar: '/KYCGep', title: '2/5 SUBSCRIPTION FORM' });
+          $router.push({
+            path: '/KYCGep',
+            query: { orderId: orderData.id, isFilled: orderData.subcriptionform, status: orderData.status },
+          });
+        "
+      ></van-cell>
+      <van-cell
+        is-link
+        :value="orderData.gepthirdPartyDeclarationForm == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="THIRD PARTY FUND DECLARATION"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/LetterOfWishesGep',
+            title: '3/5 THIRD PARTY FUND DECLARATION',
+          });
+          $router.push({
+            path: '/LetterOfWishesGep',
+            query: { orderId: orderData.id, isFilled: orderData.gepthirdPartyDeclarationForm, status: orderData.status },
+          });
+        "
+      ></van-cell>
+      <van-cell
+        is-link
+        :value="orderData.gepNonDisclosureAgreement == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="NON-DISCLOSURE AGREEMENT"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/PDPAMemoGep',
+            title: '4/5 NON-DISCLOSURE AGREEMENT',
+          });
+          $router.push({ path: '/PDPAMemoGep', query: { orderId: orderData.id,isFilled: orderData.gepNonDisclosureAgreement, status: orderData.status } });
+        "
+      ></van-cell>
+      <van-cell
+        is-link
+        :value="orderData.gepDocumentCheckListForm == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="Document Checklist"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/DocumentChecklistGep',
+            title: '5/5 Document Checklist',
+          });
+          $router.push({ path: '/DocumentChecklistGep', query: { orderId: orderData.id,isFilled: orderData.gepDocumentCheckListForm, status: orderData.status } });
+        "
+      ></van-cell>
+      <!-- <van-cell
+        is-link
+        :value="
+          orderData.third_party_declaration_form == 0 ? 'Not Filled' : 'Filled'
+        "
+        title-style="text-align:left;"
+        title="Third Party Declaration (If Applicable)"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/ThirdPartyDeclaration',
+            title: 'Third Party Declaration',
+          });
+          $router.push({
+            path: '/ThirdPartyDeclaration',
+            query: { orderId: orderData.id,isFilled: orderData.third_party_declaration_form, status: orderData.status },
+          });
+        "
+      ></van-cell> -->
+      <van-button  round block type="info" :disabled="orderStatus==2" color="#7C655D" @click="submitAll">
+        Submit all forms
+      </van-button>
+      <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before submitting</div>
+    </div>
+    <van-cell
+      title-style="text-align:left;"
+      title="Settlor Name"
+      :value="orderData.settlor_name"
+    ></van-cell>
+    <van-cell
+      title-style="text-align:left;"
+      title="amount"
+      :value="orderData.amount"
+    ></van-cell>
+    <van-cell
+      title-style="text-align:left;"
+      title="created_at"
+      :value="orderData.created_at"
+    ></van-cell>
+    <van-cell
+      title-style="text-align:left;"
+      title="Order Number"
+      :value="orderData.no"
+    ></van-cell>
+    <van-cell
+      title-style="text-align:left;"
+      title="Submitted_at"
+      :value="orderData.updated_at"
+    ></van-cell>
+    <div class="orderTitle">The Order Feedback</div>
+    <van-field
+      v-model="patchOrder"
+      class="patchInput"
+      type="textarea"
+      rows="2"
+      autosize
+      placeholder="The order feedback"
+    />
+    <van-button class="loginBtn" type="info" @click="submit" color="#7C655D">Submit Feedback</van-button
+    >
+  </div>
+</template>
+
+<script>
+import { patchOrders } from "@/api/tools";
+import { getOrderDetail, confirmOrder } from "@/api/order";
+export default {
+  data() {
+    return {
+      orderData: {},
+      patchOrder: "",
+      orderStatus: 0
+    };
+  },
+  mounted() {
+    // this.orderData = this.$route.query.data
+    this.orderStatus = sessionStorage.getItem('orderStatus')
+    this.patchOrders();
+    this.getOrderDetail();
+  },
+  methods: {
+    getOrderDetail() {
+      getOrderDetail(this.$route.query.id)
+        .then((res) => {
+          console.log("3333333",res);
+          this.orderData = res;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    patchOrders() {
+      patchOrders(JSON.parse(sessionStorage.orderId))
+        .then((res) => {
+          console.log(res, "订单反馈");
+          this.patchOrder = res.note;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+    // 提交反馈
+    submit() {
+      patchOrders(JSON.parse(sessionStorage.orderId), { note: this.patchOrder })
+        .then((res) => {
+          console.log(res, "订单反馈");
+          this.patchOrder = res.note;
+          this.$toast("Feedback submitted successfully");
+          this.patchOrder=''
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+    // 確認訂單
+    submitAll() {
+      confirmOrder(this.$route.query.id).then(res => {
+        console.log(res, '確認訂單');
+        this.$toast("All submitted successfully");
+        this.getOrderDetail()
+      })
+    }
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.OrderDetail {
+  .orderTitle {
+    text-align: left;
+    margin-top: 40px;
+    padding: 0 16px;
+    font-weight: bold;
+  }
+  .patchInput {
+    width: calc(100% - 32px);
+    margin: auto;
+    text-align: left;
+    padding: 10px 16px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    line-height: 24px;
+  }
+  .loginBtn {
+    width: calc(100% - 32px);
+    height: 46px;
+    line-height: 46px;
+    margin-top: 30px;
+    color: #fff;
+    border-radius: 10px;
+  }
+}
+</style>

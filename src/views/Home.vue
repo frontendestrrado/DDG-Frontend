@@ -1,6 +1,6 @@
 <template>
   <div class="main" @click="autoMenu">
-    <header style="height: auto;" >
+    <header style="height: auto;"  >
       <Top></Top>
     </header>
     <main>
@@ -60,13 +60,13 @@ export default {
   },
   mounted () {
     //判斷模態框是否出現過
-		if (sessionStorage.isNotice) {
+	/*	if (sessionStorage.isNotice) {
 			// this.show = false
       this.hideModal()
 		} else {
 			// this.show = true
       this.showModal()
-		}
+		}*/
     var that = this;
     window.addEventListener('resize', () => {
       let val = document.body.clientWidth >= 768 ? true : false;

@@ -9,7 +9,33 @@ export default new Vuex.Store({
   state: {
     shareOrderData:{},
     // isShare:false,
+
+    passport_no:null,
+    occupation:null,
+    signature:null,
+    email:null,
+    phone:null,
+    house_no:null,
+    office_no:null,
+    address:null,
+
     CustomerApplicationId:null,
+    campanyIndividualName1:null,
+    campanyIndividualName1Gep:null,
+    nationalityGep:null,
+    nric_pass_roc_noGep:null,
+
+    dobGep:null,
+    place_incorporationGep:null,
+    occupationGep:null,
+
+    addressGep:null,
+    postcodeGep:null,
+    countryGep:null,
+    phoneGep:null,
+    emailGep:null,
+    subscriber_signatureGep:null,
+   
     isMenuTop:true,
     isOverseaSignature:false,
     count: 0,
@@ -103,10 +129,10 @@ export default new Vuex.Store({
     },
     // 切换页面tab
     changePage(state, val) {
-      // if(val.title=''){
+      // if(val.title===''){
       //   val.title=state.currentPage.title
       // }
-      // if(val.tabbar=''){
+      // if(val.tabbar===''){
       //   val.tabbar=state.currentPage.tabbar
       // }
       switch(val.title) {
@@ -128,15 +154,30 @@ export default new Vuex.Store({
         case 'OrderDetail':
           val.title = 'Order Detail'
           break;
+          case 'OrderDetailGep':
+            val.title = 'Order Detail Gep'
+            break;
         case 'OrderSignature' :
            val.title=''
            break;
+           case 'OrderSignatureGep' :
+            val.title=''
+            break;
+           case 'Select Product':
+            val.title='Select Product'
+            break;
         case 'Choose':
+          val.title='Select One'
+          break;
+          case 'ChooseGep':
           val.title='Select One'
           break;
         case 'DGG Education Framework':
           val.title='DDG Education Framework'
           break;
+        case 'My Performance':
+          val.title = 'My Performance'
+          break
       }
 
       sessionStorage.setItem('currentPage', JSON.stringify(val));
@@ -153,6 +194,93 @@ export default new Vuex.Store({
       state.CustomerApplicationId=val
       console.log(val,"hhhhh")
     },
+    Changesignature(state,val){
+      state.signature=val
+      console.log(val,"hhhhh")
+    },
+    Changeoccupation(state,val){
+      state.occupation=val
+      console.log(val,"hhhhh")
+    },
+
+    nric_pass_roc_noGep(state,val){
+      state.nric_pass_roc_noGep=val
+      console.log(val,"hhhhh.....................")
+    }, 
+    subscriber_signatureGep(state,val){
+      state.subscriber_signatureGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    emailGep(state,val){
+      state.emailGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    phoneGep(state,val){
+      state.phoneGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    countryGep(state,val){
+      state.countryGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    postcodeGep(state,val){
+      state.postcodeGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    occupationGep(state,val){
+      state.occupationGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    place_incorporationGep(state,val){
+      state.place_incorporationGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    addressGep(state,val){
+      state.addressGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    dobGep(state,val){
+      state.dobGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    nationalityGep(state,val){
+      state.nationalityGep=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangecampanyIndividualNameGep(state,val){
+      state.campanyIndividualName1Gep=val
+      console.log(val,"hhhhh.........ChangecampanyIndividualNameGep............")
+    },
+    ChangecampanyIndividualName(state,val){
+      state.campanyIndividualName1=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changepassport_no(state,val){
+      state.passport_no=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changeemail(state,val){
+      state.email=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changephone(state,val){
+      state.phone=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changehouse_no(state,val){
+      state.house_no=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changeoffice_no(state,val){
+      state.office_no=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changeaddress(state,val){
+      state.address=val
+      console.log(val,"hhhhh.....................")
+    },
+
+      
     // changeisShare(state,val){
     //   state.isShare=val
     //   console.log(val)

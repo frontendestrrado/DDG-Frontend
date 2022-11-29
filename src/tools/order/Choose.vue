@@ -1,10 +1,10 @@
 <template>
     <div >
        <van-button  round block type="info" color="#7C655D" @click="OverseaSignature"  class="Overseas">
-        Overseas Signature
+        Remote Signature
        </van-button>
        <van-button  round block type="info" color="#7C655D" @click="LocalSignature"  class="Local">
-        Local Signature
+        In-Person Signature
       </van-button>
     </div>
 </template>

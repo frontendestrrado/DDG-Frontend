@@ -32,13 +32,16 @@ import MemberDetail from '@/tools/MemberDetail'
 import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
 import OrderSignature from '@/tools/order/OrderSignature'
+import OrderSignatureGep from '@/tools/order/OrderSignatureGep'
 import OrderSignatureCustomers from '@/tools/order/OrderSignatureCustomers'
+import OrderSignatureCustomersGep from '@/tools/order/OrderSignatureCustomersGep'
 import LearnUse from '@/tools/LearnUse'
 import TeachTools from '@/tools/TeachTools'
 import FormsPage from '@/tools/FormsPage'
 import FilesPage from '@/tools/FilesPage'
 import Cases from '@/tools/Cases'
 import AnnouncementDetail from "../views/announcement/AnnouncementDetail.vue";
+import NotificationsDetail from "../views/announcement/NotificationsDetail.vue";
 
 Vue.use(Router)
 
@@ -46,9 +49,13 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'Sign Up / Sign In',
+      redirect: '/Login',
+    },
+    {
+      path: '/Home',
       name: 'Home',
       component: Home,
-      redirect: '/Home',
       children: [{
         path: '/Home',
         name: '首页',
@@ -75,7 +82,7 @@ const router = new Router({
         component: () => import('../views/DDGLeadership'),
       },{
         path: '/Login',
-        name: '登录',
+        name: 'Advisor\'s Sign Up / Sign In',
         component: Login,
       },{
         path: '/ChangePassword',
@@ -90,10 +97,19 @@ const router = new Router({
         path: '/OrderSignatureCustomers',
         name: 'OrderSignatureCustomers',
         component: OrderSignatureCustomers,
+      },
+      {
+        path: '/OrderSignatureCustomersGep',
+        name: 'OrderSignatureCustomersGep',
+        component: OrderSignatureCustomersGep,
       },{
         path: '/OrderSignature',
         name: 'OrderSignature',
         component: OrderSignature,
+      },{
+        path: '/OrderSignatureGep',
+        name: 'OrderSignatureGep',
+        component: OrderSignatureGep,
       },{
         path: '/Personal',
         name: '个人信息',
@@ -126,7 +142,28 @@ const router = new Router({
         path: '/OrganizeChart',
         name: '组织图',
         component: OrganizeChart,
-      },{
+      },
+        {
+          path: '/OrganizeChartDetail',
+          name: 'OrganizeChartDetail',
+          component: () => import('../tools/OrganizeChartDetail.vue'),
+        },
+        {
+          path: '/OrganizeChartDetail1',
+          name: 'OrganizeChartDetail1',
+          component: () => import('../tools/OrganizeChartDetail1.vue'),
+        },
+        {
+          path: '/OrganizeChartDetail2',
+          name: 'OrganizeChartDetail2',
+          component: () => import('../tools/OrganizeChartDetail2.vue'),
+        },
+        {
+          path: '/OrganizeChartDetail3',
+          name: 'OrganizeChartDetail3',
+          component: () => import('../tools/OrganizeChartDetail3.vue'),
+        },
+        {
         path: '/OrganizeList/:id',
         name: '组织图列表',
         component: OrganizeList,
@@ -207,6 +244,11 @@ const router = new Router({
         path: '/OrderDetail',
         name: 'OrderDetail',
         component: () => import('@/tools/order/OrderDetail'),
+      },
+      {
+        path: '/OrderDetailGep',
+        name: 'OrderDetailGep',
+        component: () => import('@/tools/order/OrderDetailGep'),
       },{
         path: '/CreateOrder',
         name: 'CreateOrder',
@@ -215,23 +257,75 @@ const router = new Router({
         path: '/KYC',
         name: 'KYC',
         component: () => import('@/tools/order/KYC'),
+      }
+      ,{
+        path: '/KYCGep',
+        name: 'KYCGep',
+        component: () => import('@/tools/gep/KYCGep'),
+      },
+      {
+        path: '/ViewSendNotifications',
+        name: 'ViewSendNotifications',
+        component: () => import('@/tools/gep/ViewSendNotifications'),
+      },
+       {
+        path: '/SendNotifications',
+        name: 'SendNotifications',
+        component: () => import('@/tools/gep/SendNotifications'),
+      },
+      {
+        path: '/ManageNotifications',
+        name: 'ManageNotifications',
+        component: () => import('@/tools/gep/ManageNotifications'),
+      },{
+        path: '/CustomerApplicationGep',
+        name: 'CustomerApplicationGep',
+        component: () => import('@/tools/gep/CustomerApplicationGep'),
       },{
         path: '/CustomerApplication',
         name: 'CustomerApplication',
         component: () => import('@/tools/order/CustomerApplication'),
       },{
+        path: '/SelectProduct',
+        name: 'SelectProduct',
+        component: () => import('@/tools/order/SelectProduct'),
+      },
+      ,{
+        path: '/Gep',
+        name: 'Gep',
+        component: () => import('@/tools/order/Gep'),
+      },{
         path: '/Choose',
         name: 'Choose',
         component: () => import('@/tools/order/Choose'),
+      },{
+        path: '/ChooseGep',
+        name: 'ChooseGep',
+        component: () => import('@/tools/order/ChooseGep'),
       },{
         path: '/LetterOfWishes',
         name: 'LetterOfWishes',
         component: () => import('@/tools/order/LetterOfWishes'),
       },{
+        path: '/LetterOfWishesGep',
+        name: 'LetterOfWishesGep',
+        component: () => import('@/tools/gep/LetterOfWishesGep'),
+      },{
         path: '/PDPAMemo',
         name: 'PDPAMemo',
         component: () => import('@/tools/order/PDPAMemo'),
+      },
+      {
+        path: '/PDPAMemoGep',
+        name: 'PDPAMemoGep',
+        component: () => import('@/tools/gep/PDPAMemoGep'),
       },{
+        path: '/DocumentChecklistGep',
+        name: 'DocumentChecklistGep',
+        component: () => import('@/tools/gep/DocumentChecklistGep'),
+      },
+      
+      {
         path: '/DocumentChecklist',
         name: 'DocumentChecklist',
         component: () => import('@/tools/order/DocumentChecklist'),
@@ -304,6 +398,18 @@ const router = new Router({
         }
       },
       component: () => import('@/views/announcement/AnnouncementDetail.vue')
+    },
+    {
+      path: '/NotificationsDetail',
+      name: 'NotificationsDetail',
+      beforeEnter: (to,from,next) => {
+        if(sessionStorage.getItem('token')) {
+          next()
+        }else{
+          next(false)
+        }
+      },
+      component: () => import('@/views/announcement/NotificationsDetail.vue')
     },
     {
       path: '/FormList',

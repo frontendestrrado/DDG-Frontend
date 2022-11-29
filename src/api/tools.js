@@ -18,6 +18,7 @@ export const getMyOrders = query => {
 }
 // 根据id获取订单列表
 export const getOrdersById = (query,id) => {
+
   return request({
     url: '/api/v1/users/'+ id +'/orders',
     method: 'get',
@@ -42,6 +43,7 @@ export const getUserData = (query,id) => {
 }
 // 获取会员收集的资料
 export const getOrders = query => {
+  console.log(".....kkkkkkkkk........",query)
   return request({
     url: '/api/v1/orders',
     method: 'get',
@@ -53,5 +55,12 @@ export function getOrganizeChart() {
   return request({
     url: '/api/v1/organization',
     method: 'get',
+  })
+}
+
+export function productList() {
+  return request({
+    url: '/api/v1/product/list',
+    method: 'post',
   })
 }

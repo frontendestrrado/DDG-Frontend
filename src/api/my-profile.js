@@ -8,3 +8,13 @@ export function updateMyProfile(data) {
     data
   })
 }
+
+/**
+ * 獲取用戶信息
+ */
+export function userApi() {
+  return request({
+    url: '/api/v1/user',
+    method: 'get',
+  })
+}

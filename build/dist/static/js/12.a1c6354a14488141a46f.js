@@ -1,0 +1,2 @@
+webpackJsonp([12],{"8jnS":function(e,n){},AMJU:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r={name:"FormList",components:{Header:t("teIl").a}},a={render:function(){var e=this.$createElement,n=this._self._c||e;return n("div",[n("Header"),this._v(" "),n("h1",[this._v("Coming Soon")])],1)},staticRenderFns:[]};var i=t("VU/8")(r,a,!1,function(e){t("8jnS")},"data-v-7cbafd35",null);n.default=i.exports}});
+//# sourceMappingURL=12.a1c6354a14488141a46f.js.map

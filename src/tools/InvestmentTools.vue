@@ -1,56 +1,48 @@
 <template>
-    <div class="ToolBox bodybox">
-        <div class="ToolBox_info">
-            <!-- <van-button type="primary" size="large" @click="$store.commit('changePage',{tabbar: '/InviteCustomers', title: 'InviteCustomers'});$router.push('/InviteCustomers');">招商邀请</van-button> -->
-
-            <!-- 招商列表 -->
-            <!-- <template v-for="(item,index) in cusList">
-                <van-cell :title="item.contact" :value="item.is_open==0?'未查看':'已查看'" :label="item.is_open==1?(item.message?'留言：'+item.message:'留言：无'):''" />
-            </template> -->
-           <span style="font-size:48px;font-weight:bload;"> Coming Soon</span>
-        </div>
+    <div class="outerBox">
+       <van-button round block type="info" color="#7C655D" @click="Aigp"  class="productButton">
+        Notifications
+        
+       </van-button>
     </div>
 </template>
-
 <script>
 export default {
-    data () {
-        return {
-            cusList:[],
-        }
-    },
-    created(){
-        this.getCustomersList();
-    },
-    mounted(){
-
-    },
-    methods:{
-        getCustomersList(){
-            this.$axios({
-                method: 'GET',
-                url: '/api/v1/investment/customer',
-                headers: {
-                    "Authorization": sessionStorage.token_type+sessionStorage.token,
-                },
-            }).then(res => {
-                console.log(res);
-                this.cusList = res;
-            }).catch(err => {
-                this.$toast({
-                    type:'fail',
-                    message:'error'
-                })
-            })
-        }
+  methods:{
+      Aigp(){
+        this.$router.push('/ManageNotifications')
+          this.$store.commit('changePage',{tabbar: '/ManageNotifications', title: 'CRM'});
+       
+      }
     }
 }
 </script>
 <style scoped>
-    /deep/ .van-cell__title{text-align: left;}
-    /deep/ .van-cell__value{color: #323233;}
-    .ToolBox{
-        width: 100%;
-    }
-    .ToolBox_title{font-weight: 500;text-align: left;background-color: #FFC80B;line-height: 35px;text-indent: 20px;}
+.Local{
+  width:70%;margin:0 auto;
+}
+.Overseas{
+  margin:5rem auto;width:70%;
+}
+@media screen and (min-width: 1025px){
+  .Local{
+    width:50%;margin:0 auto;
+  }
+  .Overseas{
+    margin:5rem auto;width:50%;
+  }
+  .productButton{
+        margin: 1em;
+    width: 200px;
+    padding: 100px 60px;
+    border-radius: 20px;
+    float: left;
+    font-size: 30px;
+  }
+  .outerBox{
+        display: block;
+    margin: 0 auto;
+    width: 60%;
+  }
+}
 </style>

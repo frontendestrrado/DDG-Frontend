@@ -13,9 +13,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/build': {
-            target: 'https://www.bunchparty.com/trust',//测试服
+            // target: 'https://www.bunchparty.com/trust',//测试服
             // target: 'http://184.168.127.123/trustb', //正式服
-            // target: 'https://ddgint.com/trustb', //正式服正確的
+            //target: 'https://ddgint.com/trustb', //正式服正確的
+           target: 'https://uat.ddgint.com/backend',
             secure: true,
             changeOrigin: true,//允许跨域
             pathRewrite: {

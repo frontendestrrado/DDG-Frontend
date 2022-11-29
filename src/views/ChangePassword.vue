@@ -7,7 +7,7 @@
       label="Area Code"
       center
       :required="true"
-      :rules="[{ required: true, message: 'Area code' }]"
+      :rules="[{ required: true }]"
       :value="areaCode"
       placeholder="Area Code"
       @click="showPickerAreaCode = true"
@@ -30,7 +30,7 @@
       type="text"
       label="Mobile Number"
       placeholder="Please enter the Mobile Number"
-      :rules="[{ required: true, message: 'Please enter the Mobile Number' }]"
+      :rules="[{ required: true}]"
     >
       <van-button
         class="SMSconfirm"
@@ -48,7 +48,7 @@
       :required="true"
       label="Verification Code"
       placeholder="Verification Code"
-      :rules="[{ required: true, message: 'Verification code' }]"
+      :rules="[{ required: true}]"
     />
     <div style="margin: 16px;">
       <van-button round block type="info" native-type="submit" class="loginBtn">Submit</van-button>
