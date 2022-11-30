@@ -4,6 +4,6 @@ module.exports = {
   // BASE_URL: '"https://www.bunchparty.com/trust"'
   // BASE_URL: '"http://184.168.127.123/trustb"'
   //BASE_URL: '"https://ddgint.com/trustb"'
-  BASE_URL: '"https://uat.ddgint.com/backend"'
+  BASE_URL: '"https://dev.ddgint.com/backend"'
  // http://13.127.184.191/Dev/
 }

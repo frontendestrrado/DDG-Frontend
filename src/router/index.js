@@ -282,6 +282,11 @@ const router = new Router({
         name: 'CustomerApplicationGep',
         component: () => import('@/tools/gep/CustomerApplicationGep'),
       },{
+        path: '/CustomerApplicationGep2',
+        name: 'CustomerApplicationGep2',
+        component: () => import('@/tools/gep/CustomerApplicationGep2'),
+      },
+      {
         path: '/CustomerApplication',
         name: 'CustomerApplication',
         component: () => import('@/tools/order/CustomerApplication'),
@@ -302,6 +307,10 @@ const router = new Router({
         path: '/ChooseGep',
         name: 'ChooseGep',
         component: () => import('@/tools/order/ChooseGep'),
+      },{
+        path: '/ChooseGep2',
+        name: 'ChooseGep2',
+        component: () => import('@/tools/order/ChooseGep2'),
       },{
         path: '/LetterOfWishes',
         name: 'LetterOfWishes',

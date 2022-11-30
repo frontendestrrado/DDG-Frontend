@@ -328,6 +328,7 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
 </template>
 
 <script>
+import moment from 'moment'
 import { uploadAutograph, uploadFile } from "@/api/util";
 import { getOrdersForms, putOrdersForms, document_check_list_form } from "@/api/order";
 export default {
@@ -348,10 +349,10 @@ export default {
         beneficiary_photocopy:false,
         trust_deed: false,
         third_party_declaration: false,
-        signature:this.$store.state.signature,
+        signature:'',
         agent_name: '',
         agent_nric: '',
-        agent_date: '',
+        agent_date: moment(new Date()).format('DD-MM-YYYY'),
         // 12.30新
         source_of_fund: false,
         settlor_photo_file: '',

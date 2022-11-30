@@ -1726,16 +1726,16 @@ export default {
           trustor_signature1: '',
           Name: '',
           Nric: '',
-          Date: '',
+          Date: moment(new Date()).format('DD-MM-YYYY')
         },
         store_manager: {
           trustor_signature2: '',
           Name: '',
           Nric: '',
-          Date: '',
+          Date:  moment(new Date()).format('DD-MM-YYYY')
         },
         declaration: {
-          signature: '',
+          signature:this.$store.state.signature,
           Name: this.$store.state.campanyIndividualName1,
           // Nric: '',
           Date:  moment(new Date()).format('DD-MM-YYYY'),

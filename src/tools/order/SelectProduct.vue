@@ -6,7 +6,7 @@
        </van-button>
       
        <!-- <van-button  round block type="info" color="#7C655D" @click="Gep"  class="productButton">
-        GEP
+        GEP 2
       </van-button> -->
        <!-- <van-button  round block type="info" color="#7C655D" @click="Git"  class="productButton">
         GIT
@@ -55,10 +55,10 @@ export default {
       }
        
       },
-      // Gep(){
-      //     this.$router.push('/CustomerApplicationGep')
-      //     this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep', title: '1/5 KYC'});
-      // },
+      Gep(){
+        this.$router.push('/ChooseGep2')
+          this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep2', title: 'Select One'});
+      },
       //   Git(){
        
       //     this.$router.push('/CustomerApplication')

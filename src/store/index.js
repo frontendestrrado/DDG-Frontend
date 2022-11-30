@@ -172,6 +172,9 @@ export default new Vuex.Store({
           case 'ChooseGep':
           val.title='Select One'
           break;
+          case 'ChooseGep2':
+            val.title='Select One'
+            break;
         case 'DGG Education Framework':
           val.title='DDG Education Framework'
           break;
