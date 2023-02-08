@@ -42,6 +42,7 @@
              {{item.created_at}}
             </b-card-text>
             <b-card-text class="video-status mt-5 mb-1 ml-1">
+              <span>{{item.is_viewed == 0?'Pending':'Completed'}}</span>
 <!--              <i class="iconfont icon-yanjing mr-2"><span>{{item.is_like}}</span></i>
               <i class="iconfont icon-fenxiang mr-2"><span>{{item.share}}</span></i>
               <i class="iconfont icon-wujiaoxingkong mr-2"><span>{{item.like_count}}</span></i>-->
@@ -79,7 +80,9 @@ name: "TrainingCenter",
      * @param status
      */
     getTrainingCenterList (status) {
+      console.log("....videoList..1..",status)
       getTrainingCenterList(status).then(res => {
+        console.log("....videoList..2..",res)
         this.videoList = res.data
       })
     },

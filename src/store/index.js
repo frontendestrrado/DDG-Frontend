@@ -9,7 +9,10 @@ export default new Vuex.Store({
   state: {
     shareOrderData:{},
     // isShare:false,
-
+abc:null,
+details_account_owner:null,
+details_bank_name:null,
+details_account_no:null,
     passport_no:null,
     occupation:null,
     signature:null,
@@ -18,12 +21,14 @@ export default new Vuex.Store({
     house_no:null,
     office_no:null,
     address:null,
-
+    changeGep2Val:null,
     CustomerApplicationId:null,
     campanyIndividualName1:null,
     campanyIndividualName1Gep:null,
+    campanyIndividualName1Gep2:null,
     nationalityGep:null,
     nric_pass_roc_noGep:null,
+    nric_pass_roc_noGep2:null,
 
     dobGep:null,
     place_incorporationGep:null,
@@ -38,6 +43,7 @@ export default new Vuex.Store({
    
     isMenuTop:true,
     isOverseaSignature:false,
+    customerNotificationCount:0,
     count: 0,
     num: 10,
     language: sessionStorage["language"] ? sessionStorage["language"] : 'en',
@@ -47,6 +53,7 @@ export default new Vuex.Store({
       title: '首页',
     },
     token: sessionStorage["token"] ? sessionStorage["token"] : '',
+    userType: sessionStorage["userType"] ? sessionStorage["userType"] : '',
     token_type: sessionStorage["token_type"] ? sessionStorage["token_type"] : '',
     unreadStatus: true,//未讀消息彈框狀態
   },
@@ -64,7 +71,9 @@ export default new Vuex.Store({
     },
     // 刷新token
     refreshToken(state) {
+    //  alert("1")
       if (sessionStorage.token) {
+    //  alert("2")
         axios({
           method: 'PUT',
           url: '/api/v1/authorizations/current',
@@ -83,10 +92,20 @@ export default new Vuex.Store({
           router.push('/Login');
         });
       } else {
+      //  alert("3")
         console.log('no storeToken2');
         sessionStorage.token = '';
-        this.commit('changePage', { tabbar: '/Login', title: 'Sign Up / Sign In' });
-        router.push('/Login');
+        if($sessionStorage.userType ==='advisor'){
+         // alert("4")
+          this.commit('changePage', { tabbar: '/Login', title: 'Sign Up / Sign In' });
+          router.push('/Login');
+        }
+        if($sessionStorage.userType ==='customer'){
+        //  alert("5")
+          this.commit('changePage', { tabbar: '/customerLogin', title: 'Customer Login' });
+          router.push('/customerLogin');
+        }
+      
       }
     },
     // 删除token
@@ -111,6 +130,11 @@ export default new Vuex.Store({
       sessionStorage.setItem('token', val);
       state.token = val;
     },
+    setUserType(state, val) {
+      sessionStorage.setItem('userType', val);
+      state.userType = val;
+    },
+    
     setTokenType(state, val) {
       sessionStorage.setItem('token_type', val);
       state.token_type = val;
@@ -157,22 +181,40 @@ export default new Vuex.Store({
           case 'OrderDetailGep':
             val.title = 'Order Detail Gep'
             break;
+            case 'OrderDetailGep2':
+              val.title = 'Order Detail Gep 2'
+              break;
         case 'OrderSignature' :
            val.title=''
            break;
            case 'OrderSignatureGep' :
             val.title=''
             break;
+            case 'OrderSignatureGep2' :
+              val.title=''
+              break;
            case 'Select Product':
             val.title='Select Product'
             break;
         case 'Choose':
           val.title='Select One'
           break;
+          case 'customerLogin':
+            val.title='Customer Login'
+            break;
+            case 'customerHome':
+              val.title='Customer Home'
+              break;
+              case 'customerNotification':
+                val.title='Customer Notification'
+                break;
           case 'ChooseGep':
           val.title='Select One'
           break;
           case 'ChooseGep2':
+            val.title='Select One'
+            break;
+            case 'ChooseGep2Val':
             val.title='Select One'
             break;
         case 'DGG Education Framework':
@@ -193,6 +235,9 @@ export default new Vuex.Store({
     changeIsOverseaSignature(state,val){
       state.isOverseaSignature = val;
     },
+    changecustomerNotificationCount(state,val){
+      state.customerNotificationCount = val;
+    },
     changeCustomerApplicationId(state,val){
       state.CustomerApplicationId=val
       console.log(val,"hhhhh")
@@ -201,13 +246,35 @@ export default new Vuex.Store({
       state.signature=val
       console.log(val,"hhhhh")
     },
+    Changedetails_account_owner(state,val){
+      state.details_account_owner=val
+      console.log(val,"hhhhh")
+    },
+    Changedetails_bank_name(state,val){
+      state.details_bank_name=val
+      console.log(val,"hhhhh")
+    },
+    Changedetails_account_no(state,val){
+      state.details_account_no=val
+      console.log(val,"hhhhh")
+    },
+    Changeabc(state,val){
+      console.log(val,"..............2......2.........2.........2.......2................")
+      state.abc=val
+   
+    },
     Changeoccupation(state,val){
       state.occupation=val
       console.log(val,"hhhhh")
     },
+    
 
     nric_pass_roc_noGep(state,val){
       state.nric_pass_roc_noGep=val
+      console.log(val,"hhhhh.....................")
+    }, 
+    nric_pass_roc_noGep2(state,val){
+      state.nric_pass_roc_noGep2=val
       console.log(val,"hhhhh.....................")
     }, 
     subscriber_signatureGep(state,val){
@@ -253,6 +320,14 @@ export default new Vuex.Store({
     ChangecampanyIndividualNameGep(state,val){
       state.campanyIndividualName1Gep=val
       console.log(val,"hhhhh.........ChangecampanyIndividualNameGep............")
+    },
+    ChangecampanyIndividualNameGep2(state,val){
+      state.campanyIndividualName1Gep2=val
+      console.log(val,"hhhhh.........ChangecampanyIndividualNameGep............")
+    },
+    changeGep2Val(state,val){
+      state.changeGep2Val=val
+      console.log(val,"hhhhh.........changeGep2Val............")
     },
     ChangecampanyIndividualName(state,val){
       state.campanyIndividualName1=val

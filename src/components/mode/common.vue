@@ -1,8 +1,10 @@
 <template>
-	<div class="main_container">
+	<div class="main_container" >
 		<!-- Banner1 title2 richText3 movie4 singleimage5 imagetext6 showcaseImage7 text8 -->
+		<div class="usrnam" v-if="this.$route.path ==='/Page/10'">Hi, {{advisorName}}</div>
 		<div class="mian_container_page">
-
+			<TilTextDashboard v-if="this.$route.path ==='/Page/10'"></TilTextDashboard>
+			<GraphicDashboard v-if="this.$route.path ==='/Page/10'"></GraphicDashboard>
 		  <div v-for="(item,index) in pageData" :key="index" >
         <Banner v-if="item.type === 1" :bannerData='item' @on-goto="goPage"></Banner>
         <TilText v-if="item.type === 2" :titleData='item'></TilText>
@@ -27,9 +29,11 @@
 	import Banner from '@/components/mode/banner'
 	import RichText from '@/components/mode/richText'
 	import TilText from '@/components/mode/titleText'
+	import TilTextDashboard from '@/components/mode/tilTextDashboard'
 	import Movie from '@/components/mode/movie'
 	import MultiImg from '@/components/mode/multiImg'
 	import Graphic from '@/components/mode/graphic'
+	import GraphicDashboard from '@/components/mode/graphicDashboard'
 	import TextMode from '@/components/mode/textMode'
 	import InputMode from '@/components/mode/inputMode'
 	import File from '@/components/mode/file'
@@ -41,8 +45,10 @@
 			Movie,
 			MultiImg,
 			Graphic,
+			GraphicDashboard,
 			TextMode,
 			InputMode,
+			TilTextDashboard,
       File,
 		},
 		props:{
@@ -164,6 +170,7 @@
 		},
 		data () {
 			return {
+				advisorName: sessionStorage.getItem("user_name")
 			}
 		},
 		mounted(){
@@ -223,6 +230,15 @@
             cursor: pointer;
         }
     }
+	.usrnam{
+		display: block;
+		text-align: left;
+		width: 80%;
+    	margin: 0 auto;
+		font-weight: 600;
+    	margin-bottom: 0.6rem;
+		color: #af998f;
+	}
 @media screen and (min-width: 1200px){
   .mian_container_page{
     width: 80%;

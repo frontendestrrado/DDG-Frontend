@@ -19,6 +19,7 @@
       <van-field
         class="trustorName"
         v-model="formData.trustor_name"
+        autocomplete="off"
         name="trustor_name"
         center
         :required="true"
@@ -31,7 +32,12 @@
           },
         ]"
       />
-      <van-field
+
+      <van-field v-model="formData.trustor_date" autocomplete="off" name="trustor_date" center :required="true"
+        label="DATE OF BIRTH: DD-MM-YYYY" placeholder="Please enter Date of Birth"
+        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
+
+      <!-- <van-field
         readonly
         v-model="formData.trustor_date"
         name="trustor_date"
@@ -46,13 +52,14 @@
             required: true,
           },
         ]"
-      />
+      /> -->
       <van-field
         v-model="formData.nationality"
         name="nationality"
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Nationality "
         placeholder="Please enter the Nationality "
         :rules="[
@@ -66,6 +73,7 @@
         name="trustor_passport"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="NRIC/Passport No"
         placeholder="Please enter the NRIC/Passport No"
@@ -79,6 +87,7 @@
         v-model="formData.trustor_address"
         name="trustor_address"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Proof of current Address of the Individual"
@@ -93,6 +102,7 @@
         v-model="formData.trustor_phone"
         name="trustor_phone"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Contact No"
@@ -113,6 +123,7 @@
         v-model="formData.occupation"
         name="occupation"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Occupation"
@@ -124,6 +135,7 @@
         name="industry"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Industry"
         placeholder="Please enter the Industry"
@@ -134,6 +146,7 @@
         name="name_of_employer"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Name of Employer"
         placeholder="Please enter the Name of Employer"
@@ -142,7 +155,9 @@
       <van-field
         v-model="formData.nature_of_business"
         name="nature_of_business"
+        autocomplete="off"
         center
+        :required="true"
         type="text"
         label="Nature of Business(if Self-Employed)"
         placeholder="Please enter the Nature of Business(if Self-Employed)"
@@ -152,6 +167,7 @@
         v-model="formData.relationship_with_settlor"
         name="relationship_with_settlor"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Relationship with Settlor"
@@ -164,6 +180,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Annual Salary/ Income"
         placeholder="Please enter the Annual Salary/ Income"
         :rules="[{ required: true }]"
@@ -174,6 +191,7 @@
         name="source_of_wealth"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Source of Wealth"
         placeholder="Please enter the Source of Wealth"
@@ -185,6 +203,7 @@
         name="source_of_fund"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Source of Fund(Origin of fund)"
         placeholder="Please enter the Source of Fund(Origin of fund)"
@@ -195,6 +214,7 @@
         v-model="formData.third_party_name"
         name="third_party_name"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Name of Contributor(Company/Organisation)"
@@ -205,7 +225,12 @@
           },
         ]"
       />
-      <van-field
+
+      <van-field v-model="formData.third_party_date" autocomplete="off" name="third_party_date" center :required="true"
+        label="Date of Registration: DD-MM-YYYY" placeholder="Please enter Date of Registration"
+        :rules="[{ pattern, message: 'Please enter the Date of Registration' }]" />
+
+      <!-- <van-field
         readonly
         v-model="formData.third_party_date"
         name="third_party_date"
@@ -220,13 +245,14 @@
             required: true,
           },
         ]"
-      />
+      /> -->
       <van-field
         v-model="formData.third_party_passport"
         name="third_party_passport"
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Company/ Organisation Registration No."
         placeholder="Please enter the Company/ Organisation Registration No."
         :rules="[
@@ -241,6 +267,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Company Contact No"
         placeholder="Please enter the Company Contact No"
         :rules="[{ required: true }]"
@@ -248,6 +275,7 @@
       <van-field
         v-model="formData.third_party_address"
         name="third_party_address"
+        autocomplete="off"
         center
         :required="true"
         type="text"
@@ -263,6 +291,7 @@
         v-model="formData.name_of_director"
         name="name_of_director"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Name of Director(s)"
@@ -273,6 +302,7 @@
         v-model="formData.name_of_shareholder"
         name="name_of_shareholder"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Name of Shareholder(s)"
@@ -283,6 +313,7 @@
         v-model="formData.nature_of_business2"
         name="nature_of_business2"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Nature of Business"
@@ -294,6 +325,7 @@
         name="profit_loss_statement"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Profit & Loss Statement"
         placeholder="Please enter the Profit & Loss Statement"
@@ -304,6 +336,7 @@
         name="source_of_fund2"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Source of Fund"
         placeholder="Please enter the Source of Fund"
@@ -315,6 +348,7 @@
         name="third_party_reference_no"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Relationship with Settlor"
         placeholder="Please enter the Relationship with Settlor"
@@ -325,6 +359,7 @@
         v-model="formData.contributor_name"
         name="contributor_name"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Name"
@@ -337,6 +372,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Contact No"
         placeholder="Please enter the Contact No"
         :rules="[{ required: true }]"
@@ -345,6 +381,7 @@
         v-model="formData.contributor_email"
         name="contributor_email"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Email"
@@ -417,8 +454,9 @@
       <div class="tl">Signature of Settlor</div>
       <vue-esign
         ref="client_signature"
-        v-show="!formData.client_signature"
-        :width="1200"
+        :style="{ display: (this.xyz === '' ? 'block' : formData.client_signature === null || formData.client_signature === '' ? 'block' : 'none') }"
+      
+        :width="800"
         :height="300"
         :isCrop="false"
         :lineWidth="6"
@@ -427,9 +465,9 @@
         style="border: 1px solid #666"
       />
       <van-image
-        v-show="formData.client_signature"
-        width="100%"
-        height="20%"
+      :style="{ border: '1px solid #666', display: (this.xyz === '1' ? formData.client_signature === null || formData.client_signature === '' ? 'none' : 'block' : 'none') }"
+     
+       
         class="esignImgbox"
         :src="formData.client_signature"
       />
@@ -447,6 +485,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Name"
         placeholder="Please enter the Name"
         :rules="[{ required: true }]"
@@ -456,12 +495,19 @@
         name="client_passport"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="NRIC No"
         placeholder="Please enter the NRIC No"
         :rules="[{ required: true }]"
       />
-      <van-field
+
+      <van-field v-model="formData.client_date" autocomplete="off" name="client_date" center :required="true"
+        label="Date: DD-MM-YYYY" placeholder="Please enter the Date"
+        :rules="[{ pattern, message: 'Please enter the Date' }]" />
+
+
+      <!-- <van-field
         readonly
         v-model="formData.client_date"
         name="client_date"
@@ -472,12 +518,13 @@
         placeholder="Please enter the Date"
         @click="onShowPicker('client_date')"
         :rules="[{ required: true }]"
-      />
+      /> -->
       <div class="tl">Signature of Trust Advisor as Witness</div>
       <vue-esign
         ref="witness_signature"
-        v-show="!formData.witness_signature"
-        :width="1200"
+        :style="{ display: (this.xyz1 === '' ? 'block' : formData.witness_signature === null || formData.witness_signature === '' ? 'block' : 'none') }"
+   
+        :width="800"
         :height="300"
         :isCrop="false"
         :lineWidth="6"
@@ -486,10 +533,9 @@
         style="border: 1px solid #666"
       />
       <van-image
-        v-show="formData.witness_signature"
+      :style="{ border: '1px solid #666', display: (this.xyz1 === '1' ? formData.witness_signature === null || formData.witness_signature === '' ? 'none' : 'block' : 'none') }"
         class="esignImgbox"
-        width="100%"
-        height="20%"
+       
         :src="formData.witness_signature"
       />
       <div class="tr">
@@ -505,6 +551,7 @@
         name="witness_name"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Name"
         placeholder="Please enter the Name"
@@ -516,11 +563,16 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="NRIC No"
         placeholder="Please enter the NRIC No"
         :rules="[{ required: true }]"
       />
-      <van-field
+      <van-field v-model="formData.witness_date" autocomplete="off" name="witness_date" center :required="true"
+        label="Date: DD-MM-YYYY" placeholder="Please enter the Date"
+        :rules="[{ pattern, message: 'Please enter the Date' }]" />
+
+      <!-- <van-field
         readonly
         v-model="formData.witness_date"
         name="witness_date"
@@ -531,7 +583,7 @@
         placeholder="Please enter the Date"
         @click="onShowPicker('witness_date')"
         :rules="[{ required: true }]"
-      />
+      /> -->
       <van-button  round block type="info" native-type="submit" color="#7C655D" v-if="!isDone">
         Submit
       </van-button>
@@ -540,6 +592,7 @@
     <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
         v-model="currentContent"
+        input-align="left"
         type="date"
         :min-hour="0"
         confirm-button-text="Confirm"
@@ -562,6 +615,7 @@ import {
 export default {
   data() {
     return {
+      pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       formData: {
         trustor_name: "",
         trustor_date: "",
@@ -604,6 +658,8 @@ export default {
         others_please_specify: '',
         relationship_between: '',
       },
+      xyz: "",
+      xyz1:"",
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -640,6 +696,8 @@ export default {
           .then((res) => {
             console.log(res);
             this.formData = res;
+            this.xyz = "1"
+            this.xyz1 = "1"
           })
           .catch((err) => {});
       }
@@ -698,10 +756,10 @@ export default {
         return "";
       } else {
         var date = new Date(value);
-        var Y = date.getFullYear() + "-";
-        var M = date.getMonth() + 1 + "-";
-        var D = date.getDate();
-        return Y + M + D;
+        var Y = date.getFullYear();
+        var M = ("0" + (date.getMonth()+ 1)).slice(-2)+ "-"
+        var D = date.getDate() + "-";
+        return D + M + Y;
       }
     },
     // 清空画布
@@ -709,9 +767,11 @@ export default {
       this.$refs[val].reset(); //清空画布
       if (val == 'client_signature') {
         this.formData.client_signature = ''
+        this.xyz = ""
       }
       if (val == 'witness_signature') {
         this.formData.witness_signature = ''
+        this.xyz1 = ""
       }
     },
     handleGenerate(val) {
@@ -767,5 +827,23 @@ export default {
   /deep/ .van-field__label {
     width: 30rem;
   }
+}
+
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
+
+.esignImgbox {
+  border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 </style>

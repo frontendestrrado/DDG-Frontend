@@ -8,6 +8,20 @@ export const createOrdersGep = obj => {
   })
 }
 
+export const createOrdersGep2 = obj => {
+  return request({
+    url: '/api/v1/orders/gep-two-subscription',
+    method: 'POST',
+    data: obj
+  })
+}
+export const kyc_formGep2 = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/gep-two-pdpa',
+    method: 'POST',
+    data: obj
+  })
+}
 export const kyc_formGep = (orderId, obj) => {
   return request({
     url: '/api/v1/orders/gep/' + orderId + '/subscribe_form',
@@ -34,6 +48,13 @@ export const kyc_form = (orderId, obj) => {
 export const document_check_list_formGep = (orderId, obj) => {
   return request({
     url: '/api/v1/orders/' + orderId + '/gep_document_checklist_form',
+    method: 'POST',
+    data: obj
+  })
+}
+export const document_check_list_formGep2 = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/gep-two-document-checklist-form',
     method: 'POST',
     data: obj
   })
@@ -121,6 +142,13 @@ export const getOrdersForms = (id,query) => {
 }
 // 修改订单表單數據
 export const putOrdersForms = (id,obj) => {
+  return request({
+    url: '/api/v1/orders/forms/'+id,
+    method: 'put',
+    data: obj
+  })
+}
+export const putOrdersForms2 = (id,obj) => {
   return request({
     url: '/api/v1/orders/forms/'+id,
     method: 'put',

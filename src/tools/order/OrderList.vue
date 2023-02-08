@@ -47,11 +47,11 @@
     </div>
     </div>
   </div>
-    <div class="row">
+    <div class="row bodybox1">
      <div class="col-md-6">
        <van-loading v-if="loadingShow" />
        <div>
-    <b-input-group class="mb-3">
+    <b-input-group class="mb-3 van-search pl-0">
       <b-form-input
         id="example-input"
         v-model="start_date"
@@ -83,7 +83,7 @@
       <div class="col-md-6">
         <van-loading v-if="loadingShow" />
           <div>
-    <b-input-group class="mb-3">
+    <b-input-group class="mb-3 van-search pl-3 pr-0">
       <b-form-input
         id="example-input"
         v-model="end_date"
@@ -158,6 +158,7 @@
          <div class="orderList2">
           <van-tag class="aigp" type="danger" v-if="item.product_id===1" size="large">{{item.product}}</van-tag>
           <van-tag  class="aigp1" type="danger" v-if="item.product_id===2" size="large">{{item.product}}</van-tag>
+          <van-tag  class="aigp2" type="danger" v-if="item.product_id===4" size="large">{{item.product}}</van-tag>
         
         </div>
         <div>
@@ -166,9 +167,25 @@
           <van-tag type="success" v-if="item.status===2" size="large">Approved</van-tag>
           <van-tag type="danger" v-if="item.status===3" size="large">Not Approved</van-tag>
           <van-tag type="danger" v-if="item.status===4" size="large">Canceled</van-tag>
+          <a class="FilledCol reason" @click="showDialog(item.reject_reason)" v-show="item.reject_reason!=null"> Reason? </a>
         </div>
       </van-col>
       <van-col span="8" align="end" class="order-status">
+        <div v-if="item.product_id==4" >
+          <span> Subscription form </span>
+          <span class="NotFilledCol" v-if="item.gepTwoSubscriptionForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div v-if="item.product_id==4" >
+          <span> PDPA </span>
+          <span class="NotFilledCol" v-if="item.GepTwoPdpaForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div v-if="item.product_id==4" >
+          <span> Document Checklist </span>
+          <span class="NotFilledCol" v-if="item.GepTwoDocumentCheckListForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
         <div v-if="item.product_id==1" >
           <span> Customer Application </span>
           <span class="NotFilledCol" v-if="item.customer_app_form==0"> (Not Filled) </span>
@@ -226,10 +243,44 @@
         </div>
       </van-col>
       <van-col span="8" align="end">
+
+
+        <!-- :style="{ border: '1px solid '+i.color_code}" -->
+
+        <div class="pb-3"  v-if="item.product_id==1 && item.status!==0" >
+          <span v-if="item.fund_received_status==='Pending'"> Fund received acknowledgement </span>
+          <span class="txtFund" title="Click to download" @click="download(item.fund_received_file)" v-else> Fund received acknowledgement </span>
+        
+          <span class="NotFilledCol" v-if="item.fund_received_status==='Pending'"> (Pending) </span>
+          <span class="FilledCol" v-else> (Completed) </span>
+           <!-- <span v-if="item.fund_received_status!=='Pending'"><van-image
+							style="width: 15px;height:auto;margin: 0 auto; margin-right:6px;"
+							:src="require('@/assets/img/download.png')"
+							fit="contain"
+              @click="download(item.fund_received_file)"
+              title="Click to download"
+							/></span> -->
+           </div>
+        
+          <!-- <p class="pb-3" v-if="item.product_id==1 && item.status!==0">
+            Trust setup acknowledgement  
+            <span class="NotFilledCol" v-if="item.trust_setup_status==='Pending'"> (Pending) </span>
+          <span class="FilledCol" v-else> (Completed) </span>
+          <span v-if="item.trust_setup_status!=='Pending'"><van-image
+							style="width: 15px;height:auto;margin: 0 auto; margin-right:6px;"
+							:src="require('@/assets/img/download.png')"
+							fit="contain"
+              @click="download(item.trust_setup_file)"
+              title="Click to download"
+							/></span>
+
+          </p> -->
+          
+          
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
         <van-button type="primary"  @click="toFill(item)" size="small">{{item.status===2?"View":"To fill"}}</van-button><br>
          
-        <van-button type="warning" size="small" v-show="item.reject_reason!=null" style="margin-top: 10px" @click="showDialog(item.reject_reason)">Reject Reason</van-button>
+        <!-- <van-button type="warning" size="small" v-show="item.reject_reason!=null" style="margin-top: 10px" @click="showDialog(item.reject_reason)">Reject Reason</van-button> -->
       </van-col>
     </van-row>
     <b-pagination
@@ -307,6 +358,15 @@ export default {
  
      this.getOrders()
     },
+    download(file) {
+      console.log("9999999999999999999",file)
+      let url = file.split('public')
+      console.log("ccccccccccccccccccccc",url)
+      console.log("aaaaaaaaaaaaaaaaaa",url[0])
+      console.log("bbbbbbbbbbbbbbbb",url[1])
+      window.open(url[0] + 'file/download?path=public' + url[1], '_self')
+// window.open(file, '_self')
+},
      onContext(ctx) {
         // The date formatted in the locale, or the `label-no-date-selected` string
         this.formatted = ctx.selectedFormatted
@@ -388,7 +448,9 @@ export default {
       sessionStorage.setItem('orderStatus',item.status)
       this.$router.push({path: '/OrderDetail', query: {id: item.id}});
             }
-            else{
+
+
+            else if (item.product_id === 2){
    this.$store.commit('changePage', {
         tabbar: '/OrderDetailGep',
         title: 'OrderDetailGep',
@@ -398,6 +460,20 @@ export default {
       this.$router.push({path: '/OrderDetailGep', query: {id: item.id}});
 
             }
+
+            else{
+   this.$store.commit('changePage', {
+        tabbar: '/OrderDetailGep2',
+        title: 'OrderDetailGep2',
+      });
+      sessionStorage.setItem('orderId',JSON.stringify(item.id))
+      sessionStorage.setItem('orderStatus',item.status)
+      this.$router.push({path: '/OrderDetailGep2', query: {id: item.id}});
+
+            }
+
+
+
      
     },
     //刪除未提交訂單
@@ -494,11 +570,18 @@ display: -webkit-box;
   padding-left: 13px;
   padding-right: 0px;
 }
+.reason{
+   color: #08a6e3;
+   cursor: pointer;
+}
 .aigp{
    background-color: #08a6e3;
 }
 .aigp1{
    background-color: #cd12c7;
+}
+.aigp2{
+   background-color: #4c201c;
 }
 .orderList{
   border: 1px solid #eef0f5;
@@ -515,4 +598,18 @@ display: -webkit-box;
    
 
 }
+
+.txtFund:hover {
+    text-decoration: underline;
+    color: #08a6e3;
+    cursor: pointer;
+}
+.txtFund {
+    
+    color: #08a6e3;
+    
+}
+
+
+
 </style>

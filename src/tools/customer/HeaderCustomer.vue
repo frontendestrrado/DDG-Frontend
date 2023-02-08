@@ -1,8 +1,7 @@
 <template>
   <div class="header bgAsh">
-    
     <div class="header-main" v-if="$store.state.isMenuTop">
-     
+      
       <!-- <van-row style="height: 100%;" v-if="$store.state.isPC">
 			  	<van-col :span="6">
 			  		<van-image
@@ -22,13 +21,10 @@
 			  	</van-col>
 			</van-row> -->
       <van-row class="fcb" style="height: 100%">
-        <span class="pos-rel">
-                <van-image style="width: 80px;" :src="require('@/assets/img/logo.png')" v-if="$sessionStorage.token && this.$route.path !='/customerLogin' && $sessionStorage.userType !='advisor' " fit="contain"/>
-              </span>
         <van-col :span="5" style="text-align: left;margin-left:20px">
           <van-icon
             name="arrow-left"
-            v-if="$store.state.currentPage.tabbar != '/Home' && this.$route.path !='/Page/10' && this.$route.path !='/customerLogin' && this.$route.path !='/customerHome'"
+            v-if="$store.state.currentPage.tabbar != '/Home' && this.$route.path !='/Page/10'"
             color="#333"
             size="30"
             v-show="$store.state.currentPage.tabbar!=='/Login'"
@@ -58,50 +54,30 @@
         </van-col>
         <!-- <i class="fa-solid fa-house"></i> -->
         <!-- style="display: flex; align-items: center; justify-content: end;" -->
-       
         <van-col :span="5" style="display: flex; align-items: center; justify-content: end;">
           
           <!-- v-if="$store.state.currentPage.tabbar == '/Index'" -->
-          <span  v-on:click="goHome" v-if="$sessionStorage.token && this.$route.path !='/Login' && this.$route.path !='/Page/10' && $sessionStorage.userType !='customer'" class="pos-rel">
+          <span  v-on:click="goHome" v-if="$sessionStorage.token && this.$route.path !='/Login' && this.$route.path !='/Page/10'" class="pos-rel">
             <van-image
 							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
 							:src="require('@/assets/img/home2.png')"
 							fit="contain"
 							/>
               </span>
-          <span  v-on:click="isHidden === false ? isHidden= true:isHidden=false" v-if="$sessionStorage.token && $sessionStorage.userType ==='advisor' && this.$route.path !='/Login'" class="pos-rel"><van-image
+          <!-- <span  v-on:click="isHidden === false ? isHidden= true:isHidden=false" v-if="$sessionStorage.token" class="pos-rel"><van-image
 							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
 							:src="require('@/assets/img/bell.png')"
 							fit="contain"
 							/>
               <div class="notfctn-btn">{{notificationsCount}} </div>
-              </span>
-
-              <span  v-on:click="customerNotification" v-if="$sessionStorage.token && $sessionStorage.userType ==='customer' && this.$route.path !='/customerLogin'" class="pos-rel"><van-image
-							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
-							:src="require('@/assets/img/bell.png')"
-							fit="contain"
-							/>
-              <div class="notfctn-btn">{{this.$store.state.customerNotificationCount}} </div>
-              </span>
+              </span> -->
               <!-- <span  v-on:click="goHome" v-if="$sessionStorage.token && this.$route.path !='/Login' && this.$route.path !='/Page/10'" class="pos-rel"><van-image
 							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
 							:src="require('@/assets/img/home2.png')"
 							fit="contain"
 							/>
               </span> -->
-              <span  v-on:click="isHidden1 === false ? isHidden1= true:isHidden1=false" v-if="$sessionStorage.token && this.$route.path !='/Login' && $sessionStorage.userType !='customer'" class="pos-rel">
-                
-                <van-image
-							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
-							v-bind:src= this.$store.state.abc
-							fit="contain"
-              round
-							/>
-
-              </span>
-
-              <span  v-on:click="isHidden2 === false ? isHidden2= true:isHidden2=false" v-if="$sessionStorage.token && this.$route.path !='/customerLogin' && $sessionStorage.userType !='advisor' " class="pos-rel">
+              <span  v-on:click="isHidden1 === false ? isHidden1= true:isHidden1=false" v-if="$sessionStorage.token && this.$route.path !='/Login'" class="pos-rel">
                 
                 <van-image
 							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
@@ -126,13 +102,6 @@
         </div>
 
   </div>
-  <div class="notifcation-box logot1" v-if="!isHidden2">
-
-        <div class="notfctn-viewall"  v-on:click="toLogin1(),isHidden2 = true">
-          Logout
-        </div>
-
-  </div>
 
 
 
@@ -147,7 +116,7 @@
 <van-cell  center v-for="(item,index) in tableList.slice(0, 3)" :key="index" :style="{background: item.is_viewed == 0? '#cbcbcb' : '#fff' }">
         <div class="notfctn-row p-0">
           <div class="notifctn-left"  id="foo" v-on:click="select($event, item),isHidden = isHidden">
-          <!-- <div class="attachmnt-text">[Announcement]</div> -->
+          <div class="attachmnt-text">[Announcement]</div>
            {{item.title}} <span class="dot-right" v-if="item.is_viewed == 0">*</span>
           </div>
            <div class="notifctn-right">
@@ -168,7 +137,7 @@
          <van-cell  center v-for="(item,index) in tableList1.slice(0, 3)" :key="index" :style="{background: item.is_read == 0? '#cbcbcb' : '#fff' }">
         <div class="notfctn-row p-0" >
           <div class="notifctn-left"  id="foo" v-on:click="selectA($event, item),isHidden = isHidden">
-          <!-- <div class="attachmnt-text">[Notifications]</div> -->
+          <div class="attachmnt-text">[Notifications]</div>
            {{item.title}} <span class="dot-right" v-if="item.is_read == 0">*</span>
           </div>
            <div class="notifctn-right">
@@ -279,7 +248,6 @@ export default {
       noticesList:[],
       isHidden: true,
       isHidden1: true,
-      isHidden2: true,
       	notificationsCount:	sessionStorage.getItem("notifications_Count"),
         targetId:'',
          pageName: '',
@@ -318,13 +286,11 @@ export default {
  
    this.showMessage();
   }  
-  
-  if( this.$route.path !='/Login' && this.$store.state.userType !='customer' &&this.$route.path !='/customerLogin'  ){
+  if( this.$route.path !='/Login'){
 
   
   if(sessionStorage.token_type != undefined  || sessionStorage.token != undefined){
     this.getUser();
-  //  alert("g")
   }
 }
   console.log("....****..1.",sessionStorage.token_type)
@@ -360,7 +326,6 @@ export default {
     })
    
   },
-
   watch: {
     isShowTopUl() {
       if (!this.isShowTopUl) {
@@ -371,10 +336,6 @@ export default {
     },
   },
   methods: {
-    customerNotification(){
-      this.$router.push('/customerNotification')
-       this.$store.commit('changePage',{tabbar: '/customerNotification', title: 'Customer Notification'});
-    },
   //  getPageContent(){
 
 	// 			this.$axios({
@@ -576,22 +537,6 @@ qaz.push(res[i].is_read)
         }
       }
     },
-    toLogin1() {
-      var result = confirm("Are you sure you want to Logout?");
-    if(result){
-        // Delete logic goes here
-    
-      if (this.isToken) {
-        this.logout1()
-      } else {
-        this.$store.commit("changePage", {
-          tabbar: "/customerLogin",
-          title: "Customer Login",
-        });
-        this.$router.push("/customerLogin");
-      }
-    }
-    },
     toLogin() {
       var result = confirm("Are you sure you want to Logout?");
     if(result){
@@ -720,73 +665,14 @@ qaz.push(res[i].is_read)
         
       })
         },
-
-
        selectA(event, item) {
-        this.isHidden = true
-      //       console.log(item.id); 
-      //        this.$router.push({
-      //   path: '/NotificationsDetail',
-      //   query: {id: item.id}
-      // })
-      console.log(".......toFill.......item..",item)
-            console.log(".......toFill.......product_id..",item.product_id)
-            if(item.product_id === 1){
-              this.$store.commit('changePage', {
-        tabbar: '/OrderDetail',
-        title: 'OrderDetail',
-      });
-      sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
-     // sessionStorage.setItem('orderStatus',item.status)
-      this.$router.push({path: '/OrderDetail', query: {id: item.order_id}});
-            }
-
-
-            else if (item.product_id === 2){
-   this.$store.commit('changePage', {
-        tabbar: '/OrderDetailGep',
-        title: 'OrderDetailGep',
-      });
-      sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
-     // sessionStorage.setItem('orderStatus',item.status)
-      this.$router.push({path: '/OrderDetailGep', query: {id: item.order_id}});
-
-            }
-
-            else{
-   this.$store.commit('changePage', {
-        tabbar: '/OrderDetailGep2',
-        title: 'OrderDetailGep2',
-      });
-      sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
-    //  sessionStorage.setItem('orderStatus',item.status)
-      this.$router.push({path: '/OrderDetailGep2', query: {id: item.order_id}});
-
-            }
-
-
-
-
-
-
-        },
-
-
-
-
-        logout1() {
-      sessionStorage.token = ''
-      sessionStorage.token_type = ''
-      sessionStorage.userType = ''
-      this.$toast({
-        type: 'success',
-        message: 'Exit \n Successful'
+           // targetId = event.currentTarget.id;
+            console.log(item.id); // returns 'foo'
+             this.$router.push({
+        path: '/NotificationsDetail',
+        query: {id: item.id}
       })
-             	sessionStorage.setItem("notifications_Count", '')
-      this.$router.push("/customerLogin");
-      this.isToken = sessionStorage.token
-    //  this.$router.go(0)
-    },
+        },
     // 退出登錄
     logout() {
       sessionStorage.token = ''
@@ -1141,14 +1027,6 @@ qaz.push(res[i].is_read)
 }
 .notifcation-box.logot{
   min-height: 100px !important;
-  width: 200px;
-  background-color: #ffffff;
-  right: 10px;
-  border-radius: 15px;
-  border: 1px solid #cbcbcb;
-}
-.notifcation-box.logot1{
-  min-height: 50px !important;
   width: 200px;
   background-color: #ffffff;
   right: 10px;

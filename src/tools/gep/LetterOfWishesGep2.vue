@@ -7,197 +7,94 @@
       :submit-on-enter="false"
       :scroll-to-error="true"
     >
-      <div class="minTitle">
-        DOCUMENT CHECKLIST AND CONFIRMATION FOR HANDOVER TO THE TRUSTEE
-      </div>
-      <div class="minTitle">Settlor’s Information</div>
-      <van-field
-        name="name"
-        label="Name"
-        center
-        autocomplete="off"
+    <div class="minTitle">Applicant’s Informationn</div>
+      <van-field v-model="formData.name" autocomplete="off" name="name" center type="text" label="Name"
+        placeholder="Please enter the Name" 
         :required="true"
-        v-model="formData.name"
-        :rules="[{ required: true ,message: 'Please enter the name'}]"
-      />
-      <van-field
-        name="nric"
-        label="NRIC/Passport No"
-        center
+        :rules="[{ required: true }]"/>
+
+      <van-field v-model="formData.nric" autocomplete="off" name="nric" center type="text" label="NRIC / Passport No."
+        placeholder="Please enter the NRIC / Passport No."
         :required="true"
-        autocomplete="off"
-        v-model="formData.nric"
-        :rules="[{ required: true,message: 'Please enter the NRIC/Passport No' }]"
-      />
-      <div class="minTitle">Documents Completion Status</div>
-      <van-field
-        name="application_form"
-        label="Completed Cash Trust application form"
-        center
-      >
+        :rules="[{ required: true }]"/>
+
+
+      <div class="minTitle">Document’s Completion Status</div>
+      <van-field name="application_form" label="Application Form "  :required="true"
+        :rules="[{ required: true }]" center>
         <template #input>
           <van-checkbox v-model="formData.application_form"></van-checkbox>
         </template>
       </van-field>
-      <van-field
-        name="compliance_qestionnaire"
-        label="Completed and signed Compliance Questionnaire as provided by AITB: a) AITB-AMLA 2(A)"
-        center
-      >
+
+      <van-field name="pdpa_form" label="Privacy Notice and Consent "  :required="true"
+        :rules="[{ required: true }]" center>
         <template #input>
-          <van-checkbox v-model="formData.compliance_qestionnaire"></van-checkbox>
+          <van-checkbox v-model="formData.pdpa_form"></van-checkbox>
         </template>
       </van-field>
-      <van-field
-        name="settlor_photocopy"
-        label="Settlor’s Photocopy of IC (Verified by the Agent/Representative)"
-        center
-      >
+
+      
+      <van-field name="applicants_photocopy"  :required="true"
+        :rules="[{ required: true }]" label="Applicant’s Photocopy of IC (Verified by the Agent/ Representative)
+" center>
         <template #input>
-          <van-checkbox v-model="formData.settlor_photocopy"></van-checkbox>
+          <van-checkbox v-model="formData.applicants_photocopy"></van-checkbox>
         </template>
       </van-field>
-      <van-field name="Documents" label="Documents" >
+      <van-field name="Documents" label="Documents"  >
         <template #input>
-          <van-uploader v-model="settlor_photo_file" :disabled="isDone" :before-delete="beforeRead" :after-read="afterRead" accept="*" :max-count="1" @click-preview="goDetail1(settlor_photo_file)"/>
+          <van-uploader v-model="applicants_photocopy_file" @click-preview="goDetail1(applicants_photocopy_file)" :disabled="isDone" :before-delete="beforeRead" :after-read="afterRead" accept="*"
+            :max-count="1" />
         </template>
       </van-field>
-      <van-field
-        name="letter_of_wishes"
-        label="Signed Letter of Wishes (Un-dated)"
-        center
-      >
+      <van-field name="proof_of_current_address"  :required="true"
+        :rules="[{ required: true }]" label="Proof of Current Address (preferably through the supply of utility bill) (Verified by the Agent / Representative)
+" center>
         <template #input>
-          <van-checkbox v-model="formData.letter_of_wishes"></van-checkbox>
+          <van-checkbox v-model="formData.proof_of_current_address"></van-checkbox>
         </template>
       </van-field>
-      <van-field
-        name="current_address"
-        label="Proof of current address (preferably through the supply of utility bill) (Verified by the Agent / Representative)"
-        center
-      >
+      <van-field name="Documents"   label="Documents">
         <template #input>
-          <van-checkbox v-model="formData.current_address"></van-checkbox>
+          <van-uploader v-model="proof_of_address_file" @click-preview="goDetail1(proof_of_address_file)" :disabled="isDone" :after-read="afterRead2" :before-delete="beforeRead2" accept="*"
+            :max-count="1" />
         </template>
       </van-field>
-      <van-field name="Documents" label="Documents" >
-        <template #input >
-          <van-uploader v-model="proof_of_current_file" :after-read="afterRead2" :before-delete="beforeRead2" accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(proof_of_current_file)"/>
-        </template>
-      </van-field>
-      <van-field
-        name="source_of_wealth"
-        label="Source of Wealth (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return"
-        center
-      >
+      <van-field name="source_of_wealth"  :required="true"
+        :rules="[{ required: true }]" label="Source of Wealth (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Pay slip, EPF statement, Bank statement, Income tax return 
+" center>
         <template #input>
           <van-checkbox v-model="formData.source_of_wealth"></van-checkbox>
         </template>
       </van-field>
-      <van-field name="Documents" label="Documents">
+      <van-field name="Documents"   label="Documents">
         <template #input>
-          <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3" :before-delete="beforeRead3" accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_wealth_file)"/>
+          <van-uploader v-model="source_of_wealth_file" @click-preview="goDetail1(source_of_wealth_file)" :disabled="isDone" :after-read="afterRead3" :before-delete="beforeRead3" accept="*"
+            :max-count="1" />
         </template>
       </van-field>
+
+
       <van-field
         name="source_of_fund"
-        label="Source of Fund (to provide the relevant supporting document(s)) 
-Verified by the Agent/ Representative – Bank Statement, Bank passbook"
+        label="Source of Fund (to provide the relevant supporting document(s)) Verified by the Agent/ Representative – Bank statement, Bank Passbook"
         center
       >
-        
         <template #input>
           <van-checkbox v-model="formData.source_of_fund"></van-checkbox>
         </template>
       </van-field>
+     
       <van-field name="Documents" label="Documents">
         <template #input v-if="this.isFilled==0 ||this.isFilled ==undefined" >
-          <!-- this.isFilled=0 -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"  :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"   :before-delete="beforeRead4" :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3"  accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_wealth_file)"/> -->
-          <van-uploader v-model="source_of_wealth_file1" :after-read="afterRead31" :before-delete="beforeRead31" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_wealth_file2" :after-read="afterRead32" :before-delete="beforeRead32" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_wealth_file3" :after-read="afterRead33" :before-delete="beforeRead33" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_wealth_file4" :after-read="afterRead34" :before-delete="beforeRead34" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_wealth_file5" :after-read="afterRead35" :before-delete="beforeRead35" accept="*" :max-count="1" :disabled="isDone"/>
-          <!-- <van-uploader v-model="source_of_fund_addon11"      :after-read="afterRead811"    :before-delete="beforeRead811"    accept="*"  :max-count="1"  :disabled="isDone" />
-          <van-uploader v-model="source_of_fund_addon21" @click-preview="goDetail1(source_of_fund_addon21)"  :after-read="afterRead911" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon31" @click-preview="goDetail1(source_of_fund_addon31)"  :after-read="afterRead1011" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon51" @click-preview="goDetail1(source_of_fund_addon51)"  :after-read="afterRead1121" accept="*" :max-count="1" :disabled="isDone"/> -->
-        </template>
-        <template #input v-else>
-          <!-- this.isFilled=0 -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"  :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"   :before-delete="beforeRead4" :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <van-uploader v-model="source_of_fund_addon1" @click-preview="goDetail1(source_of_fund_addon1)" :before-delete="beforeRead81" :after-read="afterRead81" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon2" @click-preview="goDetail1(source_of_fund_addon2)" :before-delete="beforeRead91" :after-read="afterRead91" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon3" @click-preview="goDetail1(source_of_fund_addon3)" :before-delete="beforeRead101" :after-read="afterRead101" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon4" @click-preview="goDetail1(source_of_fund_addon4)" :before-delete="beforeRead111" :after-read="afterRead111" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon5" @click-preview="goDetail1(source_of_fund_addon5)" :before-delete="beforeRead112" :after-read="afterRead112" accept="*" :max-count="1" :disabled="isDone"/>
-        </template>
-      </van-field>
-      <van-field
-        name="pdpa"
-        label="Signed dual language personal data protection act (PDPA) document"
-        center
-      >
-        <template #input>
-          <van-checkbox v-model="formData.pdpa"></van-checkbox>
-        </template>
-      </van-field>
-      <van-field
-        name="bank"
-        label="Evidence of Bank Transfer by Cheque/ TT [Note: No Cash (i.e. no cash, no ATM deposit, no deposit at bank counter)]"
-        center
-      >
-        <template #input>
-          <van-checkbox v-model="formData.bank"></van-checkbox>
-        </template>
-      </van-field>
-      <van-field name="Documents" label="Documents">
-        <template #input>
-          <van-uploader v-model="evidence_of_bank_file" @click-preview="goDetail1(evidence_of_bank_file)" :after-read="afterRead5" accept="*" :max-count="1" :disabled="isDone"/>
-        </template>
-      </van-field>
-
-      <van-field
-        name="beneficiary_photocopy"
-        label="Beneficiary's Photocopy of IC (Verified by the Agent/Representative)"
-        center
-      >
-        <template #input>
-          <van-checkbox v-model="formData.beneficiary_photocopy"></van-checkbox>
-        </template>
-      </van-field>
-      <!-- <van-button class="esignBtn" native-type="button" @click="addBeneficiary"
-        >Add</van-button
-      > -->
-      <!-- <template #input>
-          <van-uploader v-model="evidence_of_bank_file" :after-read="afterRead5" accept="*" :max-count="1" :disabled="isDone" multiple/>
-        </template> -->
-      <!-- <div
-        class="beneficiary_info"
-        v-for="(item, inx) in beneficiary_photo_file"
-        :key="inx"
-      > -->
-      <van-field name="Documents" label="Documents">
-        <template #input v-if="this.isFilled==0 ||this.isFilled ==undefined" >
-          <!-- this.isFilled=0 -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"  :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"   :before-delete="beforeRead4" :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3"  accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_wealth_file)"/> -->
+        
           <van-uploader v-model="source_of_wealth_file1x" :after-read="afterRead31x" :before-delete="beforeRead31x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file2x" :after-read="afterRead32x" :before-delete="beforeRead32x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file3x" :after-read="afterRead33x" :before-delete="beforeRead33x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file4x" :after-read="afterRead34x" :before-delete="beforeRead34x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file5x" :after-read="afterRead35x" :before-delete="beforeRead35x" accept="*" :max-count="1" :disabled="isDone"/>
-          <!-- <van-uploader v-model="source_of_fund_addon11"      :after-read="afterRead811"    :before-delete="beforeRead811"    accept="*"  :max-count="1"  :disabled="isDone" />
-          <van-uploader v-model="source_of_fund_addon21" @click-preview="goDetail1(source_of_fund_addon21)"  :after-read="afterRead911" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon31" @click-preview="goDetail1(source_of_fund_addon31)"  :after-read="afterRead1011" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon51" @click-preview="goDetail1(source_of_fund_addon51)"  :after-read="afterRead1121" accept="*" :max-count="1" :disabled="isDone"/> -->
+         
         </template>
         <template #input v-else>
           
@@ -208,107 +105,72 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
           <van-uploader v-model="beneficiary_photo_file5" @click-preview="goDetail1(beneficiary_photo_file5)"  :before-delete="beforeRead11"  :after-read="afterRead11" accept="*" :max-count="1" :disabled="isDone"/>
         </template>
       </van-field>
-        <!-- <van-button
-          class="esignDelBtn"
-          v-if="inx > 0"
-          slot="button"
-          native-type="button"
-
-          @click="delBeneficiary(inx)"
-          >delete</van-button
-
-        > -->
-      <!-- </div> -->
 
 
 
 
+      <van-field name="evidence_of_bank_tranfer"  :required="true"
+        :rules="[{ required: true }]" label="Evidence of Bank Transfer by Cheque/ TT
+[Note: No Cash (i.e. no cash, no ATM deposit, no deposit at bank counter)]
 
-
-      <van-field
-        name="trust_deed"
-        label="Trust deed: a) Signed on execution page; b) Complete schedule 1 & 2; c) 1 original copy; and d) Un-dated"
-        center
-      >
+" center>
         <template #input>
-          <van-checkbox v-model="formData.trust_deed"></van-checkbox>
+          <van-checkbox v-model="formData.evidence_of_bank_tranfer"></van-checkbox>
         </template>
       </van-field>
-      <van-field
-        name="third_party_declaration"
-        label="Third Party Fund Declaration Form (if applicable)"
-        center
-      >
+      <van-field name="Documents"   label="Documents">
         <template #input>
-          <van-checkbox v-model="formData.third_party_declaration"></van-checkbox>
+          <van-uploader v-model="evidence_of_bank_file" @click-preview="goDetail1(evidence_of_bank_file)" :disabled="isDone" :after-read="afterRead5"  :before-delete="beforeRead5" accept="*"
+            :max-count="1" />
         </template>
       </van-field>
+
+
+
+      <van-field name="preference_shares_suscription" label=" Non-disclosure Agreement
+" center>
+        <template #input>
+          <van-checkbox v-model="formData.preference_shares_suscription"></van-checkbox>
+        </template>
+      </van-field>
+
+   
+
+
       <div class="minTitle">
-        Note: Verification means to sign, state name and date
+        Note: Verification means to sign, state name and date 
+
       </div>
       <div class="tl">Signature</div>
-      <vue-esign
-      ref="signature"
-        style="border: 1px solid #666"
-        :width="800"
-   
-        :height="300"
-        :isCrop="false"
-        :lineWidth="6"
-        lineColor="#000000"
-        bgColor.sync="#fff"
-        :style="{ display: (this.xyz === '' ? 'block':formData.signature === null ||formData.signature === ''? 'block' :'none') }"
-      />
-      <van-image
-      :style="{ border: '1px solid #666', display: (this.xyz === '1' ?formData.signature == null ||formData.signature === ''? 'none':'block':'none') }"
-        class="esignImgbox"
-       
-        :src="formData.signature"
-
-      
-      />
+      <vue-esign ref="signature" v-show="sig1" :width="800" :height="300" :isCrop="false" :lineWidth="6"
+        lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
+      <van-image v-show="!sig1" class="esignImgbox" :src="formData.signature" />
       <div class="tr">
         <div class="esignBtn" @click="handleReset('signature')" v-if="!isDone">Clear</div>
         <div class="esignBtn" @click="handleGenerate('signature')" v-if="!isDone">Confirm</div>
       </div>
+
+
       <div class="minTitle">
         Agent/Representative of DDG INTERNATIONAL BERHAD (Company No. 1423557-M)
       </div>
-      <van-field
-        v-model="formData.agent_name"
-        id="5reset"
-        name="agent_name"
-        center
-        :required="true"
-        autocomplete="off"
-        type="text"
-        label="Name"
-        placeholder="Please enter the Name"
-        :rules="[{ required: true }]"
-      />
-      <van-field
-        v-model="formData.agent_nric"
-        name="agent_nric"
-        autocomplete="off"
-        center
-        :required="true"
-        type="text"
-        label="NRIC/Passport No"
-        placeholder="Please enter the NRIC/Passport No"
-        :rules="[
-          { required: true },
-        ]"
-      />
-      <van-field
-        v-model="formData.agent_date"
-        name="agent_date"
-        autocomplete="off"
-        center
-        :required="true"
-        label="Date: DD-MM-YYYY"
-        placeholder="Please enter DD-MM-YYYY"
-        :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
-      />
+
+
+
+
+
+      <van-field v-model="formData.agent_name" autocomplete="off" name="agent_name" center type="text" label="Name"
+        placeholder="Please enter the Name"   :required="true"
+        :rules="[{ required: true }]"/>
+
+      <van-field v-model="formData.agent_nric" autocomplete="off" name="agent_nric" center type="text" label="NRIC / Passport No."
+        placeholder="Please enter the NRIC / Passport No."  :required="true"
+        :rules="[{ required: true }]" />
+
+      <van-field v-model="formData.agent_date" autocomplete="off" name="agent_date" center type="text" label="Date"
+        placeholder="Please enter the Date"  :required="true"
+        :rules="[{ required: true }]"/>
+
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         <span v-if="!this.$route.query.isShare">save</span>
         <span v-else>submit</span>
@@ -318,60 +180,81 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
     <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;"  @click="$emit('onSelect')" v-if="$store.state.isOverseaSignature">
        Copy Link for Sharing with Settlor
     </van-button>
-    <!-- 日期彈框 -->
-<!--    <van-popup v-model="isShowPicker" position="bottom">
-      <van-datetime-picker
-        v-model="currentContent"
-        type="date"
-        :min-hour="0"
-        confirm-button-text="Confirm"
-        cancel-button-text="Cancel"
-        :min-date="minDate"
-        @cancel="onHiddenPicker"
-        @confirm="onConfirmPicker"
-      />
-    </van-popup>-->
+
   </div>
 </template>
 
 <script>
 import moment from 'moment'
 import { uploadAutograph, uploadFile } from "@/api/util";
-import { getOrdersForms, putOrdersForms, document_check_list_form } from "@/api/order";
+import { getOrdersForms, putOrdersForms2, document_check_list_formGep2 } from "@/api/order";
 export default {
   props:['orderDataInfo'],
   data() {
     return {
       formData: {
-        name:this.$store.state.campanyIndividualName1,
-        nric:this.$store.state.passport_no,
-        application_form: false,
-        compliance_qestionnaire: false,
-        settlor_photocopy: false,
-        letter_of_wishes: false,
-        current_address: false,
-        source_of_wealth: false,
-        pdpa: false,
-        bank: false,
-        beneficiary_photocopy:false,
-        trust_deed: false,
-        third_party_declaration: false,
+
+        name:this.$store.state.campanyIndividualName1Gep2,
+        nric:this.$store.state.nric_pass_roc_noGep2,
+        application_form:false,
+        pdpa_form:false,
+        applicants_photocopy:false,
+
+        proof_of_current_address:false,
+        source_of_wealth:false,
+        source_of_fund:false,
+        evidence_of_bank_tranfer:false,
+        non_disclosure_agreement:false,
+        
+
+        applicants_photocopy_file:'',
+        proof_of_address_file:'',
+
+        source_of_wealth_file:'',
+        evidence_of_bank_file:'',
         signature:'',
-        agent_name: sessionStorage.getItem("user_name"),
-        agent_nric: sessionStorage.getItem("user_passportNo"),
-        agent_date: moment(new Date()).format('DD-MM-YYYY'),
-        // 12.30新
-        source_of_fund: false,
-        settlor_photo_file: '',
-        proof_of_current_file: '',
-        source_of_wealth_file: '',
-        source_of_fund_file: '',
-        evidence_of_bank_file: '',
-        beneficiary_photo_file:[{}],
-        source_of_fund_addon:[{}],
-            },
-            xyz:"",
+        agent_name:'',
+        agent_nric:'',
+        agent_date:'',
+
+        source_of_fund_file:[{}]
+
+        // name:this.$store.state.campanyIndividualName1,
+        // nric:this.$store.state.passport_no,
+        // application_form: false,
+        // compliance_qestionnaire: false,
+        // settlor_photocopy: false,
+        // letter_of_wishes: false,
+        // current_address: false,
+        // source_of_wealth: false,
+        // pdpa: false,
+        // bank: false,
+        // beneficiary_photocopy:false,
+        // trust_deed: false,
+        // third_party_declaration: false,
+        // signature:'',
+        // agent_name: '',
+        // agent_nric: '',
+        // agent_date: moment(new Date()).format('DD-MM-YYYY'),
+        // // 12.30新
+        // source_of_fund: false,
+        // settlor_photo_file: '',
+        // proof_of_current_file: '',
+        // source_of_wealth_file: '',
+        // source_of_fund_file: '',
+        // evidence_of_bank_file: '',
+        // beneficiary_photo_file:[{}],
+        // source_of_fund_addon:[{}],
+       // source_of_fund_addon1:''
+        // beneficiary_photo_file1:'',
+        // beneficiary_photo_file2:'',
+        // beneficiary_photo_file3:'',
+        // beneficiary_photo_file4:'',
+        // beneficiary_photo_file5:''
+      },
       sig1:true,
+      applicants_photocopy_file:[],
+      proof_of_address_file:[],
       beneficiary_photo_file:[{}],
       source_of_fund_addon:[{}],
       // isShowPicker: false, // 控制日期彈框
@@ -431,7 +314,7 @@ export default {
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
     if(this.$route.query.isShare){
-      this.isFilled=this.$route.query.documentCheckListForm
+      this.isFilled=this.$route.query.GepTwoDocumentCheckListForm
     }
     this.getFormData();
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
@@ -440,6 +323,38 @@ export default {
   methods: {
     beforeRead31(file){
       this.source_of_wealth_file1 = []
+
+// }
+return true
+// }
+    },
+    beforeRead(file){
+      this.applicants_photocopy_file = []
+      this.formData.applicants_photocopy_file = ''
+
+// }
+return true
+// }
+    },
+    beforeRead2(file){
+      this.proof_of_address_file = []
+      this.formData.proof_of_address_file = ''
+
+// }
+return true
+// }
+    },
+    beforeRead3(file){
+      this.source_of_wealth_file = []
+      this.formData.source_of_wealth_file = ''
+
+// }
+return true
+// }
+    },
+    beforeRead5(file){
+      this.evidence_of_bank_file = []
+      this.formData.evidence_of_bank_file = ''
 
 // }
 return true
@@ -625,16 +540,7 @@ this.submit()
     window.open(goDetail1[0].url)
       }
           
-  //         let url = goDetail1.item.date.split('-')
-  // pdfApi(url[0],url[1]).then(res => {
-  // console.log(".......p...d...f...",res.data)
-  // console.log("9999999999999999999",res.data)
-  //     let url1 = res.data.split('storage')
-  //     console.log("ccccccccccccccccccccc",url1)
-  //     console.log("aaaaaaaaaaaaaaaaaa",url1[0])
-  //     console.log("bbbbbbbbbbbbbbbb",url1[1])
-  //     window.open(url1[0] + 'file/download?path=storage' + url1[1], '_self')
-  //      });
+
     },
     addBeneficiary() {
       if (this.beneficiary_photo_file.length < 5) {
@@ -648,72 +554,89 @@ this.submit()
     // 如果已填 獲取數據
     getFormData() {
       if (this.isFilled > 0) {
-        getOrdersForms(this.isFilled, { type: "Document Checklist" })
+        getOrdersForms(this.isFilled, { type: "GEP II Document Checklist Form" })
           .then((res) => {
             console.log(">>.666.>>",res);
             this.formData=res
-           
-            this.formData.application_form=Number(this.formData.application_form)
-            this.formData.compliance_qestionnaire=Number(this.formData.compliance_qestionnaire)
-            this.formData.settlor_photocopy=Number(this.formData.settlor_photocopy)
-            this.formData.letter_of_wishes=Number(this.formData.letter_of_wishes)
-            this.formData.current_address=Number(this.formData.current_address)
-            this.formData.source_of_fund=Number(this.formData.source_of_fund)
-            this.formData.source_of_wealth=Number(this.formData.source_of_wealth)
-            this.formData.pdpa=Number(this.formData.pdpa)
-            this.formData.third_party_declaration=Number(this.formData.third_party_declaration)
-            this.formData.trust_deed=Number(this.formData.trust_deed)
-            this.formData.beneficiary_photocopy=Number(this.formData.beneficiary_photocopy)
-            this.formData.bank=Number(this.formData.bank)
-            this.settlor_photo_file.push({url: res.settlor_photo_file})
-
-            this.proof_of_current_file.push({url: res.proof_of_current_file})
-            
-            this.source_of_wealth_file.push({url: res.source_of_wealth_file})
-            this.source_of_fund_file.push({url: res.source_of_fund_file})
-            this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
             this.sig1=false
-            this.xyz = "1"
+      //       data.name = (data.name)+''
+      // data.nric = (data.nric)+''
+      // data.application_form = Number(data.application_form)
+      // data.pdpa_form = Number(data.pdpa_form)
+      // data.applicants_photocopy = Number(data.applicants_photocopy)
+      // data.proof_of_current_address = Number(data.proof_of_current_address)
+
+      // data.source_of_wealth = Number(data.source_of_wealth)
+      // data.source_of_fund = Number(data.source_of_fund)
+      // data.evidence_of_bank_tranfer = Number(data.evidence_of_bank_tranfer)
+      // data.non_disclosure_agreement = Number(data.non_disclosure_agreement)
+
+      // data.source_of_fund_file = JSON.stringify(wsx)
+
+
+            this.formData.application_form=Number(this.formData.application_form)
+            this.formData.pdpa_form=Number(this.formData.pdpa_form)
+            this.formData.applicants_photocopy=Number(this.formData.applicants_photocopy)
+            this.formData.proof_of_current_address=Number(this.formData.proof_of_current_address)
+            this.formData.source_of_wealth=Number(this.formData.source_of_wealth)
+            this.formData.source_of_fund=Number(this.formData.source_of_fund)
+            this.formData.evidence_of_bank_tranfer=Number(this.formData.evidence_of_bank_tranfer)
+            this.formData.non_disclosure_agreement=Number(this.formData.non_disclosure_agreement)
+
+            this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+            this.proof_of_address_file.push({url: res.proof_of_address_file})
+            this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
+            this.applicants_photocopy_file.push({url: res.applicants_photocopy_file})
+
+            // this.settlor_photo_file.push({url: res.settlor_photo_file})
+
+            // this.proof_of_current_file.push({url: res.proof_of_current_file})
+            
+            // this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+            // this.source_of_fund_file.push({url: res.source_of_fund_file})
+            // this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
+
+
            // this.qaz.push(res.beneficiary_photo_file)
-           console.log(".......99999999999............",res.source_of_fund_addon.length)
-           console.log("........888888888...........",res.beneficiary_photo_file.length)
-           for (let j = 0; j < res.source_of_fund_addon.length; j++) {
+          //  console.log(".......99999999999............",res.source_of_fund_addon.length)
+          //  console.log("........888888888...........",res.beneficiary_photo_file.length)
+//            for (let j = 0; j < res.source_of_fund_addon.length; j++) {
 
-this.qaz1.push(res.source_of_fund_addon[j])
-}
-            for (let i = 0; i < res.beneficiary_photo_file.length; i++) {
+// this.qaz1.push(res.source_of_fund_addon[j])
+// }
+            for (let i = 0; i < res.source_of_fund_file.length; i++) {
 
-              this.qaz.push(res.beneficiary_photo_file[i])
+              this.qaz.push(res.source_of_fund_file[i])
             }
-if(res.beneficiary_photo_file.length ===1){
-console.log("...1111....1111...",res.beneficiary_photo_file[0])
-  this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+if(res.source_of_fund_file.length ===1){
+console.log("...1111....1111...",res.source_of_fund_file[0])
+  this.beneficiary_photo_file1.push({url: res.source_of_fund_file[0]})
 }
-if(res.beneficiary_photo_file.length ===2){
-  console.log("...2222....2222...",res.beneficiary_photo_file[1])
-  this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-  this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+if(res.source_of_fund_file.length ===2){
+  console.log("...2222....2222...",res.source_of_fund_file[1])
+  this.beneficiary_photo_file1.push({url: res.source_of_fund_file[0]})
+  this.beneficiary_photo_file2.push({url: res.source_of_fund_file[1]})
 }
-if(res.beneficiary_photo_file.length ===3){
-  console.log("...3333....3333...",res.beneficiary_photo_file[2])
-  this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-  this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-  this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+if(res.source_of_fund_file.length ===3){
+  console.log("...3333....3333...",res.source_of_fund_file[2])
+  this.beneficiary_photo_file1.push({url: res.source_of_fund_file[0]})
+  this.beneficiary_photo_file2.push({url: res.source_of_fund_file[1]})
+  this.beneficiary_photo_file3.push({url: res.source_of_fund_file[2]})
 }
-if(res.beneficiary_photo_file.length ===4){
-  console.log("...44444....44444...",res.beneficiary_photo_file[3])
-  this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-  this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-  this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
-  this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
+if(res.source_of_fund_file.length ===4){
+  console.log("...44444....44444...",res.source_of_fund_file[3])
+  this.beneficiary_photo_file1.push({url: res.source_of_fund_file[0]})
+  this.beneficiary_photo_file2.push({url: res.source_of_fund_file[1]})
+  this.beneficiary_photo_file3.push({url: res.source_of_fund_file[2]})
+  this.beneficiary_photo_file4.push({url: res.source_of_fund_file[3]})
 }
-if(res.beneficiary_photo_file.length >4){
-  console.log("...5555....5555...",res.beneficiary_photo_file[4])
-  this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-  this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-  this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
-  this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
-  this.beneficiary_photo_file5.push({url: res.beneficiary_photo_file[4]})
+if(res.source_of_fund_file.length >4){
+  console.log("...5555....5555...",res.source_of_fund_file[4])
+  this.beneficiary_photo_file1.push({url: res.source_of_fund_file[0]})
+  this.beneficiary_photo_file2.push({url: res.source_of_fund_file[1]})
+  this.beneficiary_photo_file3.push({url: res.source_of_fund_file[2]})
+  this.beneficiary_photo_file4.push({url: res.source_of_fund_file[3]})
+  this.beneficiary_photo_file5.push({url: res.source_of_fund_file[4]})
 }
 
         
@@ -758,18 +681,6 @@ if(res.source_of_fund_addon.length > 4){
       
       
 
-           // beneficiary_photo_file1
-//             console.log("......mom..1..",res.beneficiary_photo_file.length)
-// var mom = []
-//             for (let i = 0; i < res.beneficiary_photo_file.length; i++) {
-//               alert("ss")
-//           var pol ={ url : res.beneficiary_photo_file[i]}
-// mom.push(pol)
-//             }
-//             console.log("......mom..2..",mom)
-//             this.beneficiary_photo_file=(res.beneficiary_photo_file)
-//             console.log("......final get...4444.",this.beneficiary_photo_file)
-              // this.beneficiary_photo_file.push(res.beneficiary_photo_file)
           })
           .catch((err) => {});
       }
@@ -786,12 +697,7 @@ if(res.source_of_fund_addon.length > 4){
       console.log("...z1..",this.source_of_wealth_file1)
       console.log("...z2..",this.source_of_fund_addon21)
          console.log("...z3..",this.source_of_fund_addon31)
-      // ader v-model="source_of_fund_addon11" :after-read="afterRead811" accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_fund_addon11)"/>
-      //     <van-uploader v-model="source_of_fund_addon21" @click-preview="goDetail1(source_of_fund_addon21)"  :after-read="afterRead911" accept="*" :max-count="1" :disabled="isDone"/>
-      //     <van-uploader v-model="source_of_fund_addon31" @click-preview="goDetail1(source_of_fund_addon31)"  :after-read="afterRead1011" accept="*" :max-count="1" :disabled="isDone"/>
-      //     <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
-      //     <van-uploader v-model="source_of_fund_addon51" @cli
-      // v-if="this.isFilled==0 ||this.isFilled ==undefined" 
+    
       if(this.isFilled==0 ||this.isFilled ==undefined){
 //this.qaz1.push()
 if(typeof this.source_of_wealth_file1 === "string"){
@@ -845,7 +751,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
       console.log("...aaaaaaa..1",(this.qaz1))
       var wsx = {};
        this.qaz.map((val , index)=>{return wsx[index+1]=val})
-       console.log(".....xxxxxxxxxxxxxxxx.....",JSON.stringify(wsx))
+       console.log(".....xxxxxxxxxxxxxxxx..gep 2...",JSON.stringify(wsx))
       
        var wsx1 = {};
        this.qaz1.map((val , index1)=>{return wsx1[index1+1]=val})
@@ -857,32 +763,37 @@ if(typeof this.source_of_wealth_file5x === "string"){
         return;
       }
       let data = JSON.parse(JSON.stringify(this.formData));
+
+    
+
+    
+
+
       data.name = (data.name)+''
       data.nric = (data.nric)+''
       data.application_form = Number(data.application_form)
-      data.compliance_qestionnaire = Number(data.compliance_qestionnaire)
-      data.settlor_photocopy = Number(data.settlor_photocopy)
-      data.letter_of_wishes = Number(data.letter_of_wishes)
-      data.current_address = Number(data.current_address)
-      data.source_of_wealth = Number(data.source_of_wealth)
-      data.pdpa = Number(data.pdpa)
-      data.beneficiary_photocopy = Number(data.beneficiary_photocopy)
-      data.bank = Number(data.bank)
-      data.trust_deed = Number(data.trust_deed)
-      data.third_party_declaration = Number(data.third_party_declaration)
-      data.source_of_fund = Number(data.source_of_fund)
-      data.source_of_fund_addon=JSON.stringify(wsx1)
-      data.beneficiary_photo_file = JSON.stringify(wsx)
+      data.pdpa_form = Number(data.pdpa_form)
+      data.applicants_photocopy = Number(data.applicants_photocopy)
+      data.proof_of_current_address = Number(data.proof_of_current_address)
 
-      // console.log(data,11111)
+      data.source_of_wealth = Number(data.source_of_wealth)
+      data.source_of_fund = Number(data.source_of_fund)
+      data.evidence_of_bank_tranfer = Number(data.evidence_of_bank_tranfer)
+      data.non_disclosure_agreement = Number(data.non_disclosure_agreement)
+
+      data.source_of_fund_file = this.qaz.length == 0 ?null: JSON.stringify(wsx)
+
+    console.log(data,".................333.............")
+    console.log(JSON.stringify(data),".................444.............")
+    
       // if (this.from == "create") {
       //   data.is_done = 1
       // }
       // console.log( data.is_done,11111)
       if (this.isFilled > 0) {
        //  修改
-        putOrdersForms(this.isFilled, {
-          type: "Document Checklist",
+        putOrdersForms2(this.isFilled, {
+          type: "GEP II Document Checklist Form",
           data: JSON.stringify(data),
         }).then((res) => {
           console.log(res, "修改Document Checklist成功");
@@ -925,6 +836,44 @@ if(typeof this.source_of_wealth_file5x === "string"){
               this.beneficiary_photo_file=[{}],
               this.source_of_fund_addon=[{}],
 
+              this.applicants_photocopy_file=[],
+              this.proof_of_address_file=[],
+              this.beneficiary_photo_file=[{}],
+      this.source_of_fund_addon=[{}],
+   
+      this.settlor_photo_file=[],
+      this.proof_of_current_file= [],
+      this.source_of_wealth_file=[],
+      this.source_of_wealth_file1= [],
+      this.source_of_wealth_file2=[],
+      this.source_of_wealth_file2x= [],
+      this.source_of_wealth_file3=[],
+      this.source_of_wealth_file3x= [],
+      this.source_of_wealth_file4=[],
+      this.source_of_wealth_file4x=[],
+      this.source_of_wealth_file5=[],
+      this.source_of_wealth_file5x= [],
+      this.source_of_wealth_file1x=[],
+      this.source_of_fund_file= [],
+      this.evidence_of_bank_file= [],
+      this.source_of_fund_addon1= [],
+      this.source_of_fund_addon2=[],
+      this.source_of_fund_addon3=[],
+      this.source_of_fund_addon4=[],
+      this.source_of_fund_addon5=[],
+      this.source_of_fund_addon11= [],
+      this.source_of_fund_addon21=[],
+      this.source_of_fund_addon31=[],
+      this.source_of_fund_addon41=[],
+      this.source_of_fund_addon51=[],
+      this.beneficiary_photo_file1=[],
+      this.beneficiary_photo_file2=[],
+      this.beneficiary_photo_file3=[],
+      this.beneficiary_photo_file4=[],
+      this.beneficiary_photo_file5=[],
+      this.qaz= [],
+      this.qaz1= []
+
               this.getFormData()
             }
             
@@ -937,7 +886,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
         }else{
           id=this.$route.query.orderId
         }
-        document_check_list_form(id, data)
+        document_check_list_formGep2(id, data)
           .then((res) => {
             console.log(res);
             this.$toast({
@@ -963,13 +912,11 @@ if(typeof this.source_of_wealth_file5x === "string"){
     },
     // 清空画布
     handleReset(val) {
-      this.formData.signature = ''
+
       // this.$refs[val].resultImg=this.formData.signature
       this.$refs[val].reset(); //清空画布
       this.sig1 = true
-      this.xyz = ""
-      document.getElementById("5reset").focus()
-      
+      this.formData.signature = ''
     },
     handleGenerate(val) {
       var that = this;
@@ -1028,18 +975,14 @@ if(typeof this.source_of_wealth_file5x === "string"){
       }
     },*/
     // 文件上傳
-    beforeRead(file){
-      this.settlor_photo_file = []
-      return true
-    },
-
     afterRead(file) {
-      console.log(file.file.type.split('/').slice(-1)[0],'........iiiii..............');
       if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      console.log(file.file.type.split('/').slice(-1),'上傳的文件');
+      
      // var style = goDetail1[0].url.split('.').slice(-1)
-    
+    //  console.log("----////////--------",style)
       if(file.file.type.split('/').slice(-1) =="pdf" || file.file.type.split('/').slice(-1) =="pptx"){
-       // alert("y")
+      //  alert("y")
         
      // this.settlor_photo_file.push({src: '@/assets/img/photo.png'})
    // window.open(goDetail1[0].url)
@@ -1051,20 +994,14 @@ if(typeof this.source_of_wealth_file5x === "string"){
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
-        this.formData.settlor_photo_file = res.file
+        this.formData.applicants_photocopy_file = res.file
       })
-}
-else{
-  alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
-  this.settlor_photo_file = []
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.applicants_photocopy_file = []
       return true
-}
+      }
     },
-    beforeRead2(file){
-      this.proof_of_current_file = []
-      return true
-    },
-
     afterRead2(file) {
       if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
      // alert("d")
@@ -1072,11 +1009,11 @@ else{
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
-        this.formData.proof_of_current_file = res.file
+        this.formData.proof_of_address_file = res.file
       })
-      }else{
+    }else{
         alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
-  this.proof_of_current_file = []
+  this.proof_of_address_file = []
       return true
       }
     },
@@ -1270,10 +1207,6 @@ else{
       return true
       }
     },
-    beforeRead3(file){
-      this.source_of_wealth_file = []
-      return true
-    },
     afterRead3(file) {
       if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       let data = new FormData()
@@ -1282,11 +1215,10 @@ else{
         this.$toast.success('Success')
         this.formData.source_of_wealth_file = res.file
       })
-      }else{
+    }else{
         alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
   this.source_of_wealth_file = []
       return true
-
       }
     },
     afterRead4(file) {
@@ -1301,7 +1233,6 @@ else{
         alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
   this.source_of_fund_file = []
       return true
-
       }
     },
     afterRead5(file) {
@@ -1330,7 +1261,7 @@ else{
       console.log("...676767.....",this.qaz)
     }else{
         alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
- 
+ // this.evidence_of_bank_file = []
       return true
       }
     },
@@ -1502,7 +1433,7 @@ else{
       })
     }else{
         alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
-  this.source_of_fund_addon31 = []
+  this.source_of_fund_addon3 = []
       return true
       }
     },
@@ -1595,8 +1526,6 @@ else{
   height: 20px;
   line-height: 20px;
 }
-
-
 @media screen and (max-width: 576px) {
   .esignImgbox {
     width: 100% !important;

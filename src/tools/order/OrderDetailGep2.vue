@@ -6,73 +6,73 @@
     <div style="margin-bottom: 40px">
       <van-cell
         is-link
-        :value="orderData.customer_app_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.gepTwoSubscriptionForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
-        title="Customer Application"
+        title="Subscription form"
         @click="
-          $store.commit('changePage', { tabbar: '/CustomerApplication', title: '1/5 Customer Application' });
+          $store.commit('changePage', { tabbar: '/CustomerApplicationGep2', title: '1/3 Subscription form' });
           $router.push({
-            path: '/CustomerApplication',
-            query: { orderId: orderData.id, isFilled: orderData.customer_app_form, status: orderData.status },
+            path: '/CustomerApplicationGep2',
+            query: { orderId: orderData.id, isFilled: orderData.gepTwoSubscriptionForm, status: orderData.status },
           });
         "
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.kyc_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.GepTwoPdpaForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
-        title="Compliance Questionnaire"
+        title="PDPA"
         @click="
-          $store.commit('changePage', { tabbar: '/KYC', title: '2/5 Compliance Questionnaire' });
+          $store.commit('changePage', { tabbar: '/KYCGep2', title: '2/3 PDPA' });
           $router.push({
-            path: '/KYC',
-            query: { orderId: orderData.id, isFilled: orderData.kyc_form, status: orderData.status },
+            path: '/KYCGep2',
+            query: { orderId: orderData.id, isFilled: orderData.GepTwoPdpaForm, status: orderData.status },
           });
         "
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.letter_of_wishes_form == 0 ? 'Not Filled' : 'Filled'"
-        title-style="text-align:left;"
-        title="Letter of Wishes"
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/LetterOfWishes',
-            title: '3/5 Letter Of Wishes',
-          });
-          $router.push({
-            path: '/LetterOfWishes',
-            query: { orderId: orderData.id, isFilled: orderData.letter_of_wishes_form, status: orderData.status },
-          });
-        "
-      ></van-cell>
-      <van-cell
-        is-link
-        :value="orderData.pdpa_memo_form == 0 ? 'Not Filled' : 'Filled'"
-        title-style="text-align:left;"
-        title="PDPA Memo"
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/PDPAMemo',
-            title: '4/5 PDPA Memo',
-          });
-          $router.push({ path: '/PDPAMemo', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form, status: orderData.status } });
-        "
-      ></van-cell>
-      <van-cell
-        is-link
-        :value="orderData.document_check_list_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.GepTwoDocumentCheckListForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Document Checklist"
         @click="
           $store.commit('changePage', {
-            tabbar: '/DocumentChecklist',
-            title: '5/5 Document Checklist',
+            tabbar: '/LetterOfWishesGep2',
+            title: '3/3 Document Checklist',
           });
-          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.document_check_list_form, status: orderData.status } });
+          $router.push({
+            path: '/LetterOfWishesGep2',
+            query: { orderId: orderData.id, isFilled: orderData.GepTwoDocumentCheckListForm, status: orderData.status },
+          });
+        "
+      ></van-cell>
+      <!-- <van-cell
+        is-link
+        :value="orderData.gepNonDisclosureAgreement == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="NON-DISCLOSURE AGREEMENT"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/PDPAMemoGep',
+            title: '4/5 NON-DISCLOSURE AGREEMENT',
+          });
+          $router.push({ path: '/PDPAMemoGep', query: { orderId: orderData.id,isFilled: orderData.gepNonDisclosureAgreement, status: orderData.status } });
         "
       ></van-cell>
       <van-cell
+        is-link
+        :value="orderData.gepDocumentCheckListForm == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;"
+        title="Document Checklist"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/DocumentChecklistGep',
+            title: '5/5 Document Checklist',
+          });
+          $router.push({ path: '/DocumentChecklistGep', query: { orderId: orderData.id,isFilled: orderData.gepDocumentCheckListForm, status: orderData.status } });
+        "
+      ></van-cell> -->
+      <!-- <van-cell
         is-link
         :value="
           orderData.third_party_declaration_form == 0 ? 'Not Filled' : 'Filled'
@@ -89,7 +89,7 @@
             query: { orderId: orderData.id,isFilled: orderData.third_party_declaration_form, status: orderData.status },
           });
         "
-      ></van-cell>
+      ></van-cell> -->
       <van-button  round block type="info" :disabled="orderData.status != 0 && orderData.status != 3 " color="#7C655D" @click="submitAll">
         Submit all forms
       </van-button>
@@ -121,8 +121,8 @@
       :value="orderData.date"
     ></van-cell>
 
-    <van-cell
-    v-if="orderData.fund_received_status === 'Fund Received'"
+    <!-- <van-cell
+    v-if="orderData.fund_received_status === 'Fund Received'" 
       title-style="text-align:left;"
       title=" Fund received acknowledgement"
       :value="orderData.fund_received"
@@ -131,14 +131,15 @@
         <van-button @click="download(orderData.fund_received_file)" v-if="orderData.fund_received_status === 'Fund Received'" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button>
       </van-col>{{ orderData.fund_received }}</van-cell>
 
-    <!-- <van-cell
-    v-if="orderData.trust_setup_status === 'Trust Setup'"
+    <van-cell
+    v-if="orderData.trust_setup_status === 'Trust Setup'" 
       title-style="text-align:left;"
       title=" Trust setup acknowledgement"
       :value="orderData.trust_setup"
     > <van-col span="12" style="text-align:left">
         <van-button @click="download(orderData.trust_setup_file)" v-if="orderData.trust_setup_status === 'Trust Setup'" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button>
       </van-col>{{ orderData.trust_setup }}</van-cell> -->
+
 
     <div class="orderTitle">The Order Feedback</div>
     <van-field
@@ -173,18 +174,13 @@ export default {
   },
   methods: {
     download(file) {
-      console.log("9999999999999999999",file)
-      let url = file.split('public')
-      console.log("ccccccccccccccccccccc",url)
-      console.log("aaaaaaaaaaaaaaaaaa",url[0])
-      console.log("bbbbbbbbbbbbbbbb",url[1])
-      window.open(url[0] + 'file/download?path=public' + url[1], '_self')
-// window.open(file, '_self')
+
+window.open(file, '_self')
 },
     getOrderDetail() {
       getOrderDetail(this.$route.query.id)
         .then((res) => {
-          console.log(">>>>>>>>>>>>>>",res);
+          console.log("3333333",res);
           this.orderData = res;
         })
         .catch((err) => {

@@ -16,6 +16,7 @@ import Page from '@/views/Page'
 import ErrorPage from '@/views/ErrorPage'
 
 import OrganizeChart from '@/tools/OrganizeChart'
+import Faq from '@/tools/Faq'
 import OrganizeList from '@/tools/OrganizeList'
 import OrganizeReport from '@/tools/OrganizeReport'
 import OrganizeUnit from '@/tools/OrganizeUnit'
@@ -33,8 +34,10 @@ import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
 import OrderSignature from '@/tools/order/OrderSignature'
 import OrderSignatureGep from '@/tools/order/OrderSignatureGep'
+import OrderSignatureGep2 from '@/tools/order/OrderSignatureGep2'
 import OrderSignatureCustomers from '@/tools/order/OrderSignatureCustomers'
 import OrderSignatureCustomersGep from '@/tools/order/OrderSignatureCustomersGep'
+import OrderSignatureCustomersGep2 from '@/tools/order/OrderSignatureCustomersGep2'
 import LearnUse from '@/tools/LearnUse'
 import TeachTools from '@/tools/TeachTools'
 import FormsPage from '@/tools/FormsPage'
@@ -52,6 +55,11 @@ const router = new Router({
       name: 'Sign Up / Sign In',
       redirect: '/Login',
     },
+    // {
+    //   path: '/customerLogin',
+    //   name: 'Customer Login',
+    //   redirect: '/customerLogin',
+    // },
     {
       path: '/Home',
       name: 'Home',
@@ -84,7 +92,9 @@ const router = new Router({
         path: '/Login',
         name: 'Advisor\'s Sign Up / Sign In',
         component: Login,
-      },{
+      }
+    
+      ,{
         path: '/ChangePassword',
         name: 'ChangePassword',
         component: () => import('../views/ChangePassword.vue'),
@@ -102,6 +112,11 @@ const router = new Router({
         path: '/OrderSignatureCustomersGep',
         name: 'OrderSignatureCustomersGep',
         component: OrderSignatureCustomersGep,
+      },
+      {
+        path: '/OrderSignatureCustomersGep2',
+        name: 'OrderSignatureCustomersGep2',
+        component: OrderSignatureCustomersGep2,
       },{
         path: '/OrderSignature',
         name: 'OrderSignature',
@@ -110,6 +125,11 @@ const router = new Router({
         path: '/OrderSignatureGep',
         name: 'OrderSignatureGep',
         component: OrderSignatureGep,
+      },
+      {
+        path: '/OrderSignatureGep2',
+        name: 'OrderSignatureGep2',
+        component: OrderSignatureGep2,
       },{
         path: '/Personal',
         name: '个人信息',
@@ -142,6 +162,11 @@ const router = new Router({
         path: '/OrganizeChart',
         name: '组织图',
         component: OrganizeChart,
+      },
+      {
+        path: '/Faq',
+        name: '组织图',
+        component: Faq,
       },
         {
           path: '/OrganizeChartDetail',
@@ -249,6 +274,11 @@ const router = new Router({
         path: '/OrderDetailGep',
         name: 'OrderDetailGep',
         component: () => import('@/tools/order/OrderDetailGep'),
+      },
+      {
+        path: '/OrderDetailGep2',
+        name: 'OrderDetailGep2',
+        component: () => import('@/tools/order/OrderDetailGep2'),
       },{
         path: '/CreateOrder',
         name: 'CreateOrder',
@@ -281,7 +311,18 @@ const router = new Router({
         path: '/CustomerApplicationGep',
         name: 'CustomerApplicationGep',
         component: () => import('@/tools/gep/CustomerApplicationGep'),
-      },{
+      },
+      {
+        path: '/LetterOfWishesGep2',
+        name: 'LetterOfWishesGep2',
+        component: () => import('@/tools/gep/LetterOfWishesGep2'),
+      },
+      {
+        path: '/KYCGep2',
+        name: 'KYCGep2',
+        component: () => import('@/tools/gep/KYCGep2'),
+      },
+      {
         path: '/CustomerApplicationGep2',
         name: 'CustomerApplicationGep2',
         component: () => import('@/tools/gep/CustomerApplicationGep2'),
@@ -300,6 +341,21 @@ const router = new Router({
         name: 'Gep',
         component: () => import('@/tools/order/Gep'),
       },{
+        path: '/customerLogin',
+        name: 'customerLogin',
+        component: () => import('@/tools/customer/customerLogin'),
+      },
+      {
+        path: '/customerHome',
+        name: 'customerHome',
+        component: () => import('@/tools/customer/customerHome'),
+      },
+      {
+        path: '/customerNotification',
+        name: 'customerNotification',
+        component: () => import('@/tools/customer/customerNotification'),
+      },
+      {
         path: '/Choose',
         name: 'Choose',
         component: () => import('@/tools/order/Choose'),
@@ -311,6 +367,11 @@ const router = new Router({
         path: '/ChooseGep2',
         name: 'ChooseGep2',
         component: () => import('@/tools/order/ChooseGep2'),
+      },
+      {
+        path: '/ChooseGep2Val',
+        name: 'ChooseGep2Val',
+        component: () => import('@/tools/order/ChooseGep2Val'),
       },{
         path: '/LetterOfWishes',
         name: 'LetterOfWishes',

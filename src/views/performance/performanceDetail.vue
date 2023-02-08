@@ -47,7 +47,8 @@ export default {
   created() {
     this.getPerformance()
     userApi().then(res => {
-      this.username = res.bankAccountName
+      console.log("...eee..",res)
+      this.username = res.first_name+" "+res.third_name
     })
   },
   data() {

@@ -55,6 +55,7 @@ export default {
   },
   mounted(){
    // alert("dd")
+   this.$store.commit('changeCustomerApplicationId', '')
     let url=window.location.href
     console.log(url,"...u...r...l...")
     this.link=url.split("#")
@@ -106,6 +107,10 @@ this.forceRerender()
       },
 
       async onSelect() {
+        if(this.$store.state.CustomerApplicationId !== ''){
+
+
+        
         // this.$store.commit('changeisShare',true)
         // this.$nextTick(()=>{
         
@@ -122,6 +127,12 @@ this.forceRerender()
        // alert("xxxxxx")
         console.log("nnnnnnnnnn..........", this.$store.state.CustomerApplicationId)
        this.getOrderDetail()
+       if(this.orderData.customer_app_form === 0 || this.orderData.document_check_list_form === 0 || this.orderData.kyc_form === 0  || this.orderData.letter_of_wishes_form === 0  || this.orderData.pdpa_memo_form === 0 ){
+            alert("Please Submit All Forms....")
+          
+         
+        }else{
+
         console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',22222)
         const self = this
           // this.$store.commit('changeIsmenutop',false)
@@ -162,7 +173,11 @@ this.forceRerender()
             this.showPicker=true
           }
         // this.howShare = false;
-        
+      }
+    }else{
+      alert("Please Submit All Forms....")
+
+    }
         },
         //複製
         copyToClipboard (text) {

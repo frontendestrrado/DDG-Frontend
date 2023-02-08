@@ -92,21 +92,21 @@
       </div>
       <div class="tl">SIGNATURE</div>
       <vue-esign
-        ref="signature"
-        v-show="!formData.signature"
-        :width="1200"
+      ref="signature"
+        style="border: 1px solid #666"
+        :width="800"
+   
         :height="300"
         :isCrop="false"
         :lineWidth="6"
         lineColor="#000000"
         bgColor.sync="#fff"
-        style="border: 1px solid #666"
+        :style="{ display: (this.xyz === '' ? 'block':formData.signature === null ||formData.signature === ''? 'block' :'none') }"
       />
       <van-image
-        v-show="formData.signature"
+      :style="{ border: '1px solid #666', display: (this.xyz === '1' ?formData.signature == null ||formData.signature === ''? 'none':'block':'none') }"
         class="esignImgbox"
-        width="100%"
-        height="20%"
+        
         :src="formData.signature"
       />
       <div class="tr">
@@ -115,8 +115,10 @@
       </div>
       <van-field
         v-model="formData.name"
+        id="4reset"
         name="name"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Name"
@@ -128,6 +130,7 @@
         name="nric"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="NRIC"
         placeholder="Please enter the NRIC"
@@ -138,6 +141,7 @@
         name="designation"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Designation"
         placeholder="Please enter the Designation"
@@ -148,6 +152,7 @@
         name="date"
         center
         :required="true"
+        autocomplete="off"
         label="Date: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY"
         :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
@@ -156,6 +161,7 @@
         v-model="formData.company_rubber_stamp"
         name="company_rubber_stamp"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Company Rubber Stamp"
@@ -196,10 +202,12 @@ export default {
         signature: this.$store.state.signature,
         name:this.$store.state.campanyIndividualName1,
         nric:this.$store.state.passport_no,
-        designation: "",
+        designation:this.$store.state.occupation,
         date:  moment(new Date()).format('DD-MM-YYYY'),
         company_rubber_stamp: "",
       },
+      sig1:true,
+      xyz:"",
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -236,6 +244,8 @@ export default {
           .then((res) => {
             console.log(res);
             this.formData = res;
+            this.sig1=false
+            this.xyz = "1"
           })
           .catch((err) => {});
       }
@@ -296,8 +306,12 @@ export default {
     },
     // 清空画布
     handleReset(val) {
-      this.$refs[val].reset(); //清空画布
       this.formData.signature = ''
+      this.$refs[val].reset(); //清空画布
+      this.sig1 = true
+      this.xyz = ""
+      document.getElementById("4reset").focus()
+      
     },
     handleGenerate(val) {
       var that = this;
@@ -375,7 +389,21 @@ export default {
     width: 30rem;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
 .esignImgbox {
   border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 </style>

@@ -13,6 +13,7 @@
         v-model="formData.display_nda_date"
         name="display_nda_date"
         center
+        autocomplete="off"
         type="text"
         label="Date"
         placeholder="Please enter the Date"
@@ -23,6 +24,7 @@
         name="display_nda_name"
         center
         type="text"
+        autocomplete="off"
         label="Name"
         placeholder="Please enter the Name"
         :required="true"
@@ -34,6 +36,7 @@
         v-model="formData.display_nda_nric_no"
         name="display_nda_nric_no"
         center
+        autocomplete="off"
         type="text"
         label="NRIC No./ Business Registration Number:"
         placeholder="Please enter the NRIC No./ Business Registration Number:"
@@ -45,6 +48,7 @@
         v-model="formData.display_address"
         name="witness_name"
         center
+        autocomplete="off"
         type="text"
         label="Residential / Office Address"
         placeholder="Please enter the Residential / Office Address"
@@ -131,13 +135,13 @@
       </div>
 
       <div class="tl">Managing Director Signature</div>
-      <vue-esign ref="director_signature" v-show="!formData.director_signature" :width="1200" :height="300" :isCrop="false"
+      <vue-esign ref="director_signature" v-show="sig1" :width="800" :height="300" :isCrop="false"
         :lineWidth="6" lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
-      <van-image v-show="formData.director_signature" width="100%" height="20%" class="esignImgbox"
+      <van-image v-show="!sig1" class="esignImgbox"
         :src="formData.director_signature" />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset1()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate1()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset1()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate1()" >Confirm</div>
       </div>
 
       
@@ -146,6 +150,7 @@
         name="nda_name"
         center
         type="text"
+        autocomplete="off"
         label="Subscriber Name"
         placeholder="Please enter the Name"
         :required="true"
@@ -153,18 +158,19 @@
       />
 
       <div class="tl">Subscriber’s Signature</div>
-      <vue-esign ref="subscriber_signature" v-show="!formData.subscriber_signature" :width="1200" :height="300" :isCrop="false"
+      <vue-esign ref="subscriber_signature" v-show="sig2" :width="800" :height="300" :isCrop="false"
         :lineWidth="6" lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
-      <van-image v-show="formData.subscriber_signature" width="100%" height="20%" class="esignImgbox"
+      <van-image v-show="!sig2" class="esignImgbox"
         :src="formData.subscriber_signature" />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate()" >Confirm</div>
       </div>
        <van-field
         v-model="formData.nda_nric_no"
         name="nda_nric_no"
         center
+        autocomplete="off"
         type="text"
         label="NRIC No."
         placeholder="Please enter the NRIC No."
@@ -214,6 +220,8 @@ export default {
         director_signature:"",
         subscriber_signature:this.$store.state.subscriber_signatureGep
       },
+      sig1:true,
+      sig2:true,
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -251,10 +259,12 @@ export default {
     // 如果已填 獲取數據
     handleReset(index) {
       this.$refs["subscriber_signature"].reset(); //清空画布
+      this.sig2 = true
       this.formData.subscriber_signature = ''
     },
     handleReset1(index) {
       this.$refs["director_signature"].reset(); //清空画布
+      this.sig1 = true
       this.formData.director_signature = ''
     },
     handleGenerate1(index) {
@@ -328,6 +338,8 @@ export default {
           .then((res) => {
             console.log("....1234567890...",res);
             this.formData = res;
+            this.sig1=false
+            this.sig2=false
           })
           .catch((err) => {});
       }
@@ -473,7 +485,20 @@ export default {
     width: 30rem;
   }
 }
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
 .esignImgbox {
   border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 </style>

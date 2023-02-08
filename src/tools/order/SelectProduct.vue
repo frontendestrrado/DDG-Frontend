@@ -53,12 +53,15 @@ export default {
       else if(id===3){
         alert("Coming Soon.")
       }
-       
-      },
-      Gep(){
-        this.$router.push('/ChooseGep2')
+      else if(id===4){
+        this.$router.push('/ChooseGep2Val')
           this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep2', title: 'Select One'});
+      }
       },
+      // Gep(){
+      //   this.$router.push('/ChooseGep2')
+      //     this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep2', title: 'Select One'});
+      // },
       //   Git(){
        
       //     this.$router.push('/CustomerApplication')

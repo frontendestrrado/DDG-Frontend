@@ -10,7 +10,29 @@ export function organizeChartApi(data) {
     url: '/api/v1/organization',
     method: 'get',
   })
+  }
+  
+export function customerNotification(data) {
+  return request({
+    url: '/api/v1/settlor/header',
+    method: 'get',
+  })
 }
+
+export const faqApi = query => {
+  console.log(".....kkkkkkkkk...4444.....",query)
+  return request({
+    url: '/api/v1/faqs',
+    method: 'get',
+    params: query
+  })
+}
+// export function faqApi(data) {
+//   return request({
+//     url: '/api/v1/faqs',
+//     method: 'get',
+//   })
+// }
 // export function organizeChartApi1(data) {
   export const organizeChartApi1 = query => {
   return request({

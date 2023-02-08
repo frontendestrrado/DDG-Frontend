@@ -7,6 +7,7 @@
       <div class="minTitle">SUBSCRIBER’S INFORMATION</div>
       <!-- 文本框 -->
       <van-field v-model="formData.name" name="name" center :required="true" type="text"
+      autocomplete="off"
       @change="onCampanyIndividualName"
         label="COMPANY / INDIVIDUAL NAME" placeholder="Please enter the COMPANY / INDIVIDUAL NAME" :rules="[
           {
@@ -14,12 +15,14 @@
           },
         ]" />
       <van-field v-model="formData.nationality" name="nationality" center :required="true" type="text"
+      autocomplete="off"
         label="Nationality" placeholder="Please enter the Nationality" :rules="[
           {
             required: true,
           },
         ]" />
       <van-field v-model="formData.nric_pass_roc_no" name="nric_pass_roc_no" center :required="true" type="text"
+      autocomplete="off"
       @change="nricPassRocNo"
         label="ROC / NRIC / PASSPORT NO" placeholder="Please enter the ROC / NRIC / PASSPORT NO" :rules="[
           {
@@ -27,11 +30,13 @@
           },
         ]" />
       <van-field v-model="formData.dob" name="dob" center :required="true" type="text"
+      autocomplete="off"
         label="Date of Birth / Date of Registration : DD-MM-YYYY"
         placeholder="Please enter the Date of Birth / Date of Registration"
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
 
       <van-field v-model="formData.place_incorporation" name="place_incorporation" center :required="true" type="text"
+      autocomplete="off"
         label="Place of Incorporation" placeholder="Please enter the Place of Incorporation" :rules="[
           {
             required: true,
@@ -39,30 +44,36 @@
         ]" />
 
       <van-field v-model="formData.occupation" name="occupation" center :required="true" type="text"
+      autocomplete="off"
         label="Occupation / Industry" placeholder="Please enter the Occupation / Industry"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.address" name="address" center :required="true" type="text"
+      autocomplete="off"
         label="Residential / Office Address" placeholder="Please enter the Residential / Office Address" :rules="[
           {
             required: true,
           },
         ]" />
       <van-field v-model="formData.postcode" name="postcode" center :required="true" type="text" label="Post Code"
+      autocomplete="off"
         placeholder="Please enter the Post Code" :rules="[
           {
             required: true,
           },
         ]" />
       <van-field v-model="formData.country" name="country" center :required="true" type="text" label="Country"
+      autocomplete="off"
         placeholder="Please enter the Country" :rules="[
           {
             required: true,
           },
         ]" />
       <van-field v-model="formData.phone" name="phone" center :required="true" @keyup.delete="console.log(1)"
+      autocomplete="off"
         @keypress="isLetter($event)" type="text" label="MOBILE NO" placeholder="Please enter the MOBILE NO"
         :rules="[{ required: true }]" />
-      <van-field v-model="formData.email" name="email" center  type="text" label="EMAIL ADDRESS"
+      <van-field v-model="formData.email" name="email" center  type="email" label="EMAIL ADDRESS"
+      autocomplete="off"
         placeholder="Please enter the EMAIL ADDRESS" :required="true" :rules="[{ required: true }]" />
 
       <div class="minTitle">SOURCE OF FUNDS</div>
@@ -105,15 +116,18 @@
 <!-- </van-field> -->
 
       <van-field v-if="formData.source_of_funds === '3'"  v-model="formData.last_employment" name="last_employment" center type="text"
+      autocomplete="off"
         label="Last Employment Held" placeholder="Please enter the Last Employment Held" />
       <van-field v-model="formData.employer"  name="employer" center type="text" label="Name of Employer / Company"
+      autocomplete="off"
         placeholder="Please enter the Name of Employer / Company" :required="true" :rules="[{ required: true }]" />
 
       <van-field v-model="formData.position_held" name="position_held" center type="text"
+      autocomplete="off"
         label="Occupation / Position Held" :required="true" :rules="[{ required: true }]" placeholder="Please enter the Occupation / Position Held" />
-      <van-field v-model="formData.duration_employment" name="duration_employment" center type="text"
+      <van-field v-model="formData.duration_employment" autocomplete="off" name="duration_employment" center type="text"
         label="Duration of Employment / Business" :required="true" :rules="[{ required: true }]" placeholder="Please enter the Duration of Employment / Business" />
-      <van-field v-model="formData.year_income" :required="true" :rules="[{ required: true }]" name="year_income" center type="text" label="Annual Income (MYR)"
+      <van-field v-model="formData.year_income" autocomplete="off" :required="true" :rules="[{ required: true }]" name="year_income" center type="text" label="Annual Income (MYR)"
         placeholder="Please enter the Annual Income (MYR)" />
 
       <van-field name="other_income" :required="true" :rules="[{ required: true }]" label="Other Source of Income">
@@ -142,7 +156,7 @@
 
       </div>
       <van-field v-model="formData.purpose_of_invest" :required="true" :rules="[{ required: true }]" name="purpose_of_invest" center type="text"
-        label="What is your intended purpose of investing in DDG Global Expansion Plan 2022? "
+        label="What is your intended purpose of investing in DDG Global Expansion Plan 2022? " autocomplete="off"
         placeholder="Please enter the What is your intended purpose of investing in DDG Global Expansion Plan 2022? "  />
       <van-field name="other_invest" label="Are you investing in other businesses / startups?" :required="true" :rules="[{ required: true }]" >
         <template #input>
@@ -154,7 +168,7 @@
       </van-field>
       <van-field v-if="formData.other_invest == 1" v-model="formData.other_invest_details" name="other_invest_details"
         center type="text" label=""
-        placeholder="Please enter " />
+        placeholder="Please enter " autocomplete="off"/>
       <van-field name="politically_exposed"
         label="Are you, your spouse, your partner and/or immediate family is in the politically exposed person list?" :required="true" :rules="[{ required: true }]">
         <template #input>
@@ -165,7 +179,7 @@
         </template>
       </van-field>
       <van-field v-if="formData.politically_exposed == 1" v-model="formData.political_person_name"
-        name="political_person_name" center type="text" label=""
+        name="political_person_name" center type="text" label="" autocomplete="off"
         placeholder="Please enter " />
 
       <van-field name="income_legitimate" label="Are you sure that your source of income is legitimate?" :required="true" :rules="[{ required: true }]">
@@ -231,40 +245,40 @@
       </div>
 
     
-      <van-field v-model="formData.subcriber_name" name="subcriber_name" center :required="true" type="text"
+      <van-field v-model="formData.subcriber_name" autocomplete="off" name="subcriber_name" center :required="true" type="text"
         label="Subscriber’s Name" placeholder="Please enter the NAME" :rules="[{ required: true }]" />
-      <van-field v-model="formData.nric_no" name="nric_no" center :required="true" type="text"
+      <van-field v-model="formData.nric_no" autocomplete="off" name="nric_no" center :required="true" type="text"
         label="NRIC / Passport No." placeholder="Please enter the NRIC / PASSPORT NO." :rules="[
           { required: true },
         ]" />
       <div class="tl">Subscriber’s Signature</div>
-      <vue-esign ref="esign" v-show="!formData.subscriber_signature" :width="1200" :height="300" :isCrop="false"
+      <vue-esign ref="esign"  :style="{ display: (this.xyz === '' ? 'block' : formData.subscriber_signature === null || formData.subscriber_signature === '' ? 'block' : 'none') }"  :width="800" :height="300" :isCrop="false"
         :lineWidth="6" lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
-      <van-image v-show="formData.subscriber_signature" width="100%" height="20%" class="esignImgbox"
+      <van-image :style="{ border: '1px solid #666', display: (this.xyz === '1' ? formData.subscriber_signature === null || formData.subscriber_signature === '' ? 'none' : 'block' : 'none') }" class="esignImgbox"
         :src="formData.subscriber_signature" />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate()" >Confirm</div>
       </div>
 
       <div class="minTitle">WITNESS DETAIL</div>
      
 
-      <van-field v-model="formData.witness_name" name="witness_name" center :required="true" type="text" label="NAME"
-        placeholder="Witness/Advisor’s Name" :rules="[{ required: true }]" />
+      <van-field v-model="formData.witness_name" autocomplete="off" id="2reset1" name="witness_name" center :required="true" type="text" label="NAME"
+        placeholder="Witness/Advisor’s Name"  :rules="[{ required: true }]" />
         <van-field v-model="formData.witness_nric" name="witness_nric" center :required="true" type="text" label="NRIC/ Passport Number"
-        placeholder="NRIC/ Passport Number" :rules="[{ required: true }]" />
+        placeholder="NRIC/ Passport Number" autocomplete="off" :rules="[{ required: true }]" />
 
         <div class="tl">Witness Signature</div>
-      <vue-esign ref="witness_signature" v-show="!formData.witness_signature" :width="1200" :height="300" :isCrop="false"
+      <vue-esign ref="witness_signature"  :style="{ display: (this.xyz1 === '' ? 'block' : formData.witness_signature === null || formData.witness_signature === '' ? 'block' : 'none') }" :width="800" :height="300" :isCrop="false"
         :lineWidth="6" lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
-      <van-image v-show="formData.witness_signature" width="100%" height="20%" class="esignImgbox"
+      <van-image :style="{ border: '1px solid #666', display: (this.xyz1 === '1' ? formData.witness_signature === null || formData.witness_signature === '' ? 'none' : 'block' : 'none') }" class="esignImgbox"
         :src="formData.witness_signature" />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset1()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate1()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset1()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate1()" >Confirm</div>
       </div>
-      <van-field v-model="formData.date" name="date" center :required="true" type="text" label="DATE: DD-MM-YYYY"
+      <van-field v-model="formData.date" id="2reset2" autocomplete="off" name="date" center :required="true" type="text" label="DATE: DD-MM-YYYY"
         placeholder="Please enter the DATE" :rules="[{ pattern, message: 'Please enter the DATE' }]" />
 
 
@@ -342,6 +356,10 @@ export default {
         date:moment(new Date()).format('DD-MM-YYYY')
       
       },
+      xyz: "",
+      xyz1:"",
+      sig1:true,
+      sig2:true,
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -366,7 +384,7 @@ export default {
   
       this.from = this.$route.query.from;
       this.isFilled = this.$route.query.isFilled;
-      this.isDone = this.$route.query.status == 1 ? true : false;
+      this.isDone = this.$route.query.status == 2 ? true : false;
     }
     if (this.$route.query.isShare) {
      
@@ -417,6 +435,10 @@ console.log("....7777....",this.isFilled)
             console.log(res, "..........edit data........");
             // res.beneficiary_info = JSON.parse(res.beneficiary_info)
             this.formData = res;
+            this.sig1=false
+            this.xyz = "1"
+            this.xyz1 = "1"
+            this.sig2=false
           })
           .catch((err) => {
             console.log(err);
@@ -549,11 +571,17 @@ console.log("....7777....",this.isFilled)
     // 清空画布
     handleReset(index) {
       this.$refs["esign"].reset(); //清空画布
+      this.sig1 = true
+      this.xyz = ""
       this.formData.subscriber_signature = ''
+      document.getElementById("2reset1").focus()
     },
     handleReset1(index) {
       this.$refs["witness_signature"].reset(); //清空画布
+      this.sig2 = true
+      this.xyz1 = ""
       this.formData.witness_signature = ''
+      document.getElementById("2reset2").focus()
     },
     handleGenerate1(index) {
       var that = this;
@@ -726,8 +754,20 @@ console.log("....7777....",this.isFilled)
     width: 30rem;
   }
 }
-
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
 .esignImgbox {
   border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 </style>

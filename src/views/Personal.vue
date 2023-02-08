@@ -451,9 +451,12 @@ export default {
         data: formData,
       })
         .then((res) => {
-          console.log(res, "頭像上傳");
+          console.log(res.path, "...........path.......");
+          console.log(res, ".........res id ............");
           if (res.id) {
             this.$toast.success("Success");
+            this.$store.commit('Changeabc',res.path)
+          //  sessionStorage.setItem("avatar", res.path);
           }
           this.patchEdit("avatar_image_id", res.id);
         })

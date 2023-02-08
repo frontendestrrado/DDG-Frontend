@@ -17,8 +17,8 @@ export default {
       OverseaSignature(){
         sessionStorage.setItem('signAlert',true)
        this.$store.commit('changeIsOverseaSignature',true)
-       this.$router.push('/OrderSignatureGep')
-       this.$store.commit('changePage',{tabbar: '/OrderSignature', title: 'OrderSignature'});
+       this.$router.push('/OrderSignatureGep2')
+       this.$store.commit('changePage',{tabbar: '/OrderSignatureGep2', title: 'OrderSignature'});
       //  this.$store.commit('changeisShare',true)
       },
       LocalSignature(){
@@ -26,7 +26,7 @@ export default {
           sessionStorage.setItem('signAlert',false)
           this.$store.commit('changeIsOverseaSignature',false)
           this.$router.push('/CustomerApplicationGep2')
-          this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep2', title: '1/5 KYC'});
+          this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep2', title: 'Subscription form'});
       }
     }
 }

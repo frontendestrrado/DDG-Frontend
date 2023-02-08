@@ -90,7 +90,7 @@
           });
         "
       ></van-cell> -->
-      <van-button  round block type="info" :disabled="orderStatus==2" color="#7C655D" @click="submitAll">
+      <van-button  round block type="info" :disabled="orderData.status != 0 && orderData.status != 3 " color="#7C655D" @click="submitAll">
         Submit all forms
       </van-button>
       <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before submitting</div>
@@ -115,11 +115,33 @@
       title="Order Number"
       :value="orderData.no"
     ></van-cell>
+
     <van-cell
       title-style="text-align:left;"
       title="Submitted_at"
-      :value="orderData.updated_at"
+      :value="orderData.date"
     ></van-cell>
+
+    <!-- <van-cell
+    v-if="orderData.fund_received_status === 'Fund Received'"
+      title-style="text-align:left;"
+      title=" Fund received acknowledgement"
+      :value="orderData.fund_received"
+    >
+    <van-col span="12" style="text-align:left">
+        <van-button @click="download(orderData.fund_received_file)" v-if="orderData.fund_received_status === 'Fund Received'" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button>
+      </van-col>{{ orderData.fund_received }}</van-cell>
+
+    <van-cell
+    v-if="orderData.trust_setup_status === 'Trust Setup'"
+      title-style="text-align:left;"
+      title=" Trust setup acknowledgement"
+      :value="orderData.trust_setup"
+    > <van-col span="12" style="text-align:left">
+        <van-button @click="download(orderData.trust_setup_file)" v-if="orderData.trust_setup_status === 'Trust Setup'" class="btn" type="primary" size="small" color="#A79278" style="margin-left:10px">Download</van-button>
+      </van-col>{{ orderData.trust_setup }}</van-cell> -->
+
+
     <div class="orderTitle">The Order Feedback</div>
     <van-field
       v-model="patchOrder"
@@ -152,6 +174,10 @@ export default {
     this.getOrderDetail();
   },
   methods: {
+    download(file) {
+
+window.open(file, '_self')
+},
     getOrderDetail() {
       getOrderDetail(this.$route.query.id)
         .then((res) => {

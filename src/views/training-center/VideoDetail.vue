@@ -20,7 +20,7 @@
         </b-row>-->
         <b-row class="mb-5">
           <b-col @mouseenter="videoShowPause()" @mouseleave="videoHidePause()" class="my-video">
-            <video :src="videoDetail.video" controls class="my-video" ref="videoPlayer" >
+            <video :src="videoDetail.video"  @timeupdate="onTimeUpdate" id="video" controls class="my-video" ref="videoPlayer" >
             </video>
             <img src="@/assets/img/traning-center/play.svg" class="play" @click="changePlay(true)" v-show="!status"></img>
             <img src="@/assets/img/traning-center/pause.svg" class="pause" @click="changePlay(false)" v-show="status===true && videoPause===true"></img>
@@ -63,6 +63,13 @@
 import Header from "../../components/Header.vue";
 import Footer from "../../components/common/Footer.vue";
 import {getVideoDetail,collect} from "../../api/trainingCenter.js";
+import { videoCompleteApi } from "@/api/tools";
+var myPlayer = document.querySelector('#video');
+var percentageCompleted = 0;
+var totalLength;
+var videoStarted, videoTwentyFive, videoFifty, videoSeventyFive, videoComplete = false;
+
+
 export default {
   name: "VideoDetail",
   data () {
@@ -85,6 +92,86 @@ export default {
     },
   },
   methods: {
+    // onTimeUpdate () {
+    //       this.currentTime = this.$refs.audio.currentTime
+    //     }
+
+
+        onTimeUpdate() {
+    totalLength = this.$refs.videoPlayer.duration % 60;   
+    console.log("...77777777.....",totalLength)
+    console.log("...77777777.....",this.$refs.videoPlayer.currentTime)
+    percentageCompleted = (this.$refs.videoPlayer.currentTime / totalLength) * 100;
+  //  console.log(totalLength);
+    console.log('percentage', (percentageCompleted+'%'));
+    if(this.$refs.videoPlayer.currentTime==this.$refs.videoPlayer.duration){
+    //  alert("completed")
+      videoCompleteApi(this.$route.query.id)
+  .then((res) => {
+    console.log(".......aaaaaaaaaaa.........", res)
+  //  this.getFaq();
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err.response);
+  });
+      
+    }
+
+    // is 0
+    if ((!videoStarted) && (percentageCompleted > 0)) {
+        console.log('VIDEO_STARTED');
+        videoStarted = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'playStart'
+        });
+    }
+    // is 25
+    if ((!videoTwentyFive) && (percentageCompleted > 25)) {
+        console.log('VIDEO_25');
+        videoTwentyFive = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'playTwentyFive'
+        });
+    }
+    // is 50
+    if ((!videoFifty) && (percentageCompleted > 50)) {
+        console.log('VIDEO_50');
+        videoFifty = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'playFifty'
+        });
+    }
+    // is 75
+    if ((!videoSeventyFive) && (percentageCompleted > 75)) {
+        console.log('VIDEO_75');
+        videoSeventyFive = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'playSeventyFive'
+        });
+    }
+    // is 100
+    if ((!videoComplete) && (percentageCompleted > 99)) {
+   //   alert("usfsg")
+        console.log('VIDEO_100');
+        videoComplete = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'playComplete'
+        });
+    }
+
+
+},
     /**
      * 收藏視頻
      */
@@ -105,8 +192,10 @@ export default {
      * 改變視頻播放狀態
      */
     changePlay (status) {
+    
       this.status = status
       this.status ? this.$refs.videoPlayer.play() : this.$refs.videoPlayer.pause()
+   //   this.getPercentage()
     },
 
     /**

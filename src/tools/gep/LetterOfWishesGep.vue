@@ -29,6 +29,7 @@
        <van-field
         v-model="formData.subscriber_name"
         name="subscriber_name"
+        autocomplete="off"
         center
         type="text"
         label="Name of the Individual, Company or Organisation"
@@ -39,6 +40,7 @@
         v-model="formData.subscriber_dob"
         name="subscriber_dob"
         center
+        autocomplete="off"
         type="text"
         label="Date of Birth / Date of Registration"
         placeholder="Please enter the Date of Birth / Date of Registration"
@@ -49,6 +51,7 @@
         name="subscriber_nric_no"
         center
         type="text"
+        autocomplete="off"
         label="NRIC/Passport/Company/ Organization Registration No"
         placeholder="Please enter the NRIC/Passport/Company/ Organization Registration No"
        
@@ -58,6 +61,7 @@
         name="subscriber_address"
         center
         type="text"
+        autocomplete="off"
         label="Address of the Individual, Company or Organisation"
         placeholder="Please enter the Address of the Individual, Company or Organisation"
       
@@ -68,6 +72,7 @@
         center
         type="text"
         label="Contact No"
+        autocomplete="off"
         placeholder="Please enter the Contact No"
         
       /> <van-field
@@ -75,6 +80,7 @@
         name="subscriber_reference_no"
         center
         type="text"
+        autocomplete="off"
         label="Reference No"
         placeholder="Please enter the Reference No"
         
@@ -84,6 +90,7 @@
  <div class="minTitle">Third-Party Details</div>
        <van-field
         v-model="formData.third_party_name"
+        autocomplete="off"
         name="third_party_name"
         center
         type="text"
@@ -94,6 +101,7 @@
        <van-field
         v-model="formData.third_party_dob"
         name="third_party_dob"
+        autocomplete="off"
         center
         type="text"
         label="Date of Birth / Date of Registration"
@@ -104,6 +112,7 @@
         v-model="formData.third_party_nric_no"
         name="third_party_nric_no"
         center
+        autocomplete="off"
         type="text"
         label="NRIC/Passport/Company/ Organization Registration No"
         placeholder="Please enter the NRIC/Passport/Company/ Organization Registration No"
@@ -114,6 +123,7 @@
         name="third_party_address"
         center
         type="text"
+        autocomplete="off"
         label="Address of the Individual, Company or Organisation"
         placeholder="Please enter the Address of the Individual, Company or Organisation"
      
@@ -124,6 +134,7 @@
         center
         type="text"
         label="Contact No"
+        autocomplete="off"
         placeholder="Please enter the Contact No"
       
       /> <van-field
@@ -131,6 +142,7 @@
         name="third_party_relationship"
         center
         type="text"
+        autocomplete="off"
         label="Relationship"
         placeholder="Please enter the Relationship"
    
@@ -161,13 +173,14 @@
       </van-field>
       <van-field v-if="formData.declaration_third_party === 'other'" v-model="formData.other_details"
         name="other_details" center type="text" label=""
-        placeholder="Please enter " /> 
+        placeholder="Please enter " autocomplete="off"/> 
 
 <van-field
         v-model="formData.subscriber_name_by_thirdparty"
         name="subscriber_name_by_thirdparty"
         center
         type="text"
+        autocomplete="off"
         label="Subscriber’s Name"
         placeholder="Please enter the Subscriber’s Name"
         
@@ -177,6 +190,7 @@
         v-model="formData.subscriber_nric_no_by_thirdparty"
         name="subscriber_nric_no_by_thirdparty"
         center
+        autocomplete="off"
         type="text"
         label="NRIC No."
         placeholder="Please enter the NRIC No."
@@ -187,8 +201,8 @@
 
        <vue-esign
         ref="esign"
-        v-show="!formData.subscriber_signature"
-        :width="1200"
+        v-show="sig1"
+        :width="800"
         :height="300"
         :isCrop="false"
         :lineWidth="6"
@@ -197,21 +211,21 @@
         style="border: 1px solid #666"
       />
       <van-image
-        v-show="formData.subscriber_signature"
-        width="100%"
-        height="20%"
+        v-show="!sig1"
+        
         class="esignImgbox"
         :src="formData.subscriber_signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate()" >Confirm</div>
       </div>
 
       <van-field
         v-model="formData.witness_name"
         name="witness_name"
         center
+        autocomplete="off"
         type="text"
         label="Witness/Advisor’s Name"
         placeholder="Please enter the Witness/Advisor’s Name"
@@ -222,24 +236,26 @@
         name="witness_nric_no"
         center
         type="text"
+        autocomplete="off"
         label="NRIC / Passport No."
         placeholder="Please enter the NRIC / Passport No."
        
       />
       <div class="tl">Witness Signature</div>
-      <vue-esign ref="witness_signature" v-show="!formData.witness_signature" :width="1200" :height="300" :isCrop="false"
+      <vue-esign ref="witness_signature" v-show="sig2" :width="800" :height="300" :isCrop="false"
         :lineWidth="6" lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
-      <van-image v-show="formData.witness_signature" width="100%" height="20%" class="esignImgbox"
+      <van-image v-show="!sig2" class="esignImgbox"
         :src="formData.witness_signature" />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset1()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate1()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset1()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate1()" >Confirm</div>
       </div>
       <van-field
         v-model="formData.witness_date"
         name="witness_date"
         center
         type="text"
+        autocomplete="off"
         label="Date"
         placeholder="Please enter the Date"
         />
@@ -344,6 +360,8 @@ export default {
                         witness_signature:""
                              
       },
+      sig1:true,
+      sig2:true,
       isShowPicker: false,
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -376,11 +394,13 @@ export default {
     // 清空画布
     handleReset(val) {
       this.$refs["esign"].reset(); //清空画布
+      this.sig1 = true
       this.formData.subscriber_signature = ''
 
     },
     handleReset1(index) {
       this.$refs["witness_signature"].reset(); //清空画布
+      this.sig2 = true
       this.formData.witness_signature = ''
     },
     handleGenerate1(index) {
@@ -489,6 +509,8 @@ export default {
           console.log("66666666666",res)
             console.log(res, "獲取lett數據");
             this.formData = res;
+            this.sig1=false
+            this.sig2=false
           }
         );
       }
@@ -599,8 +621,22 @@ export default {
   font-weight: bold;
   line-height: 24px;
 }
+
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
 .esignImgbox {
   border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 .esignBtn {
   color: #fff;

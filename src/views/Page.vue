@@ -132,11 +132,37 @@ notCount: 0,
 				
 			}
 		},
+		getUser() {
+      this.$axios({
+        method: "get",
+        url: "/api/v1/user",
+        headers: {
+          Authorization: sessionStorage.token_type + sessionStorage.token,
+        },
+      })
+        .then((res) => {
+        //   console.log(".......user..details...",res)
+        //   sessionStorage.setItem("user_id", res.code);
+            // sessionStorage.setItem("user_name", res.first_name+" "+res.third_name);
+            // sessionStorage.setItem("user_passportNo", res.passport);
+            this.$store.commit('Changeabc',res.avatar)
+           // sessionStorage.setItem("avatar", res.avatar);
+          
+        })
+        .catch((err) => {
+          this.$toast({
+            type: "fail",
+            message: "error",
+          });
+        });
+    },
 		getPageContent() {
+			this.getUser();
 			this.$axios({
 				method: 'get',
 				url: '/api/v1/customPages?id=' + this.$route.params.page_id,
 			}).then(res => {
+				console.log("....--------.........---...",res)
 				if (res.status === 200) {
 					this.pageContent = res.data.modules;
 					this.pageWidth = res.data.width;

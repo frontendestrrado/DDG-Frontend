@@ -6,11 +6,13 @@
       <van-field v-model="formData.name" name="Name" center type="text" label="Name"
         placeholder="Please enter the Name" 
         :required="true"
+        autocomplete="off"
         :rules="[{ required: true }]"/>
 
       <van-field v-model="formData.nric" name="nric" center type="text" label="NRIC / Passport No."
         placeholder="Please enter the Relationship"
         :required="true"
+        autocomplete="off"
         :rules="[{ required: true }]"/>
       <div class="minTitle">Document’s Completion Status</div>
       <van-field name="subscription_form" label="Subscription Form "  :required="true"
@@ -133,12 +135,12 @@ b) 1 original copy; and Un-dated
 
       </div>
       <div class="tl">Signature</div>
-      <vue-esign ref="signature" v-show="!formData.signature" :width="1200" :height="300" :isCrop="false" :lineWidth="6"
+      <vue-esign ref="signature" v-show="sig1" :width="800" :height="300" :isCrop="false" :lineWidth="6"
         lineColor="#000000" bgColor.sync="#fff" style="border: 1px solid #666" />
-      <van-image v-show="formData.signature" class="esignImgbox" width="100%" height="20%" :src="formData.signature" />
+      <van-image v-show="!sig1" class="esignImgbox" :src="formData.signature" />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset('signature')" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate('signature')" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset('signature')" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate('signature')" >Confirm</div>
       </div>
 
 
@@ -151,14 +153,14 @@ b) 1 original copy; and Un-dated
 
 
       <van-field v-model="formData.agent_name" name="agent_name" center type="text" label="Name"
-        placeholder="Please enter the Name"   :required="true"
+        placeholder="Please enter the Name"  autocomplete="off" :required="true"
         :rules="[{ required: true }]"/>
 
       <van-field v-model="formData.agent_nric" name="agent_nric" center type="text" label="NRIC / Passport No."
-        placeholder="Please enter the NRIC / Passport No."  :required="true"
+        placeholder="Please enter the NRIC / Passport No." autocomplete="off"  :required="true"
         :rules="[{ required: true }]" />
 
-      <van-field v-model="formData.agent_date" name="agent_date" center type="text" label="Date"
+      <van-field v-model="formData.agent_date" name="agent_date" autocomplete="off" center type="text" label="Date"
         placeholder="Please enter the Date"  :required="true"
         :rules="[{ required: true }]"/>
 
@@ -223,6 +225,7 @@ export default {
         agent_nric: this.$store.state.nric_pass_roc_noGep,
         agent_date: moment(new Date()).format('DD-MM-YYYY'),
       },
+      sig1:true,
       // isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -290,7 +293,7 @@ export default {
 
             
           
-
+            this.sig1=false
             
             console.log("........6666666666666666666....")
      
@@ -379,6 +382,7 @@ export default {
 
       // this.$refs[val].resultImg=this.formData.signature
       this.$refs[val].reset(); //清空画布
+      this.sig1 = true
       this.formData.signature = ''
     },
     handleGenerate(val) {
@@ -439,6 +443,7 @@ export default {
        },*/
     // 文件上傳
     afterRead(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       console.log(file, '上傳的文件');
       let data = new FormData()
       data.append('file', file.file)
@@ -446,38 +451,67 @@ export default {
         this.$toast.success('Success')
         this.formData.subscribers_photo_file = res.file
       })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.subscribers_photo_file = []
+      return true
+      }
     },
     afterRead2(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
         this.formData.proof_of_current_file = res.file
       })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.proof_of_current_file = []
+      return true
+      }
     },
     afterRead3(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
         this.formData.source_of_wealth_file = res.file
       })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_wealth_file = []
+      return true
+      }
     },
     afterRead4(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
         this.formData.source_of_fund_file = res.file
       })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_fund_file = []
+      return true
+      }
     },
     afterRead5(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
         this.$toast.success('Success')
         this.formData.evidence_of_bank_file = res.file
       })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.evidence_of_bank_file = []
+      return true
+      }
     },
   },
 };
@@ -511,5 +545,21 @@ export default {
   font-size: 18px;
   height: 20px;
   line-height: 20px;
+}
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
+.esignImgbox {
+  border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 </style>

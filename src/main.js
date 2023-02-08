@@ -39,6 +39,12 @@ import vueEsign from 'vue-esign'
 Vue.use(vueEsign)
 
 
+
+// import VueSignaturePad from 'vue-signature-pad';
+
+// Vue.use(VueSignaturePad);
+
+
 // google地圖
 // import 'vue-googlemaps/dist/vue-googlemaps.css'
 // import VueGoogleMaps from 'vue-googlemaps'

@@ -511,6 +511,8 @@ export default {
                this.showMessage();
               this.$store.commit("setToken", res.access_token);
               this.$store.commit("setTokenType", res.token_type);
+              this.$store.commit("setUserType", res.user_type);
+              sessionStorage.setItem('userType', res.user_type);
               this.$toast({
                 type: "success",
                 message: "Login \n successful",
@@ -526,11 +528,23 @@ export default {
                 vm.$router.push("/Page/10");
               }, 1000);
             }
+        
             EventHub.$emit('isLogin')
           })
           .catch((err) => {
-            this.$toast.allowMultiple();
-						console.log(err.response,3333333);
+            console.log(err.response,3333333);
+            if(err.response === undefined){
+              this.$toast("Please enter your mobile number and password");
+            }
+            else{
+              this.$toast.allowMultiple();
+						
+            }
+          
+            
+            
+           // this.$toast("Please enter your mobile number and password");
+            
           });
       } else {
 				if (!this.areaCode2) {
@@ -554,6 +568,8 @@ export default {
           sessionStorage.setItem("user_id", res.code);
             sessionStorage.setItem("user_name", res.first_name+" "+res.third_name);
             sessionStorage.setItem("user_passportNo", res.passport);
+            this.$store.commit('Changeabc',res.avatar)
+           // sessionStorage.setItem("avatar", res.avatar);
           
         })
         .catch((err) => {

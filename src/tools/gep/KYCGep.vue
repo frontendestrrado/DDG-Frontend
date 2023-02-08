@@ -13,6 +13,7 @@
         name="name"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Individual / Company Name"
         placeholder="Please enter the Individual / Company Name"
@@ -24,6 +25,7 @@
         center
         type="text"
         label="Nationality"
+        autocomplete="off"
         placeholder="Please enter the Nationality"
         :required="true"
         :rules="[{ required: true }]"
@@ -33,6 +35,7 @@
         name="nric_pass_roc_no"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="NRIC / Passport / ROC No."
         placeholder="Please enter the NRIC / Passport / ROC No."
@@ -44,6 +47,7 @@
       />
       <van-field
         v-model="formData.dob"
+        autocomplete="off"
         name="dob"
         center
         type="text"
@@ -57,6 +61,7 @@
         name="place_incorporation"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Place of Incorporation"
         placeholder="Please enter the Place of Incorporation"
@@ -71,6 +76,7 @@
         name="occupation"
         center
         :required="true"
+        autocomplete="off"
         type="text"
         label="Occupation / Industry"
         placeholder="Please enter the Occupation / Industry"
@@ -83,6 +89,7 @@
         <van-field
         v-model="formData.address"
         name="address"
+        autocomplete="off"
         center
         :required="true"
         type="text"
@@ -99,6 +106,7 @@
         v-model="formData.postcode"
         name="postcode"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Post Code"
@@ -113,6 +121,7 @@
         v-model="formData.country"
         name="country"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Country"
@@ -131,6 +140,7 @@
         v-model="formData.contact_name"
         name="contact_name"
         center
+        autocomplete="off"
         type="text"
         label="Individual / Director’s Name"
         placeholder="Please enter the Individual / Director’s Name"
@@ -141,6 +151,7 @@
         v-model="formData.contact_nationality"
         name="contact_nationality"
         center
+        autocomplete="off"
         type="text"
         label="Nationality"
         placeholder="Please enter the Nationality"
@@ -151,6 +162,7 @@
         v-model="formData.contact_address"
         name="contact_address"
         center
+        autocomplete="off"
         type="text"
         label="Residential / Office Address"
         placeholder="Please enter the Residential / Office Address"
@@ -161,6 +173,7 @@
         v-model="formData.contact_postcode"
         name="contact_postcode"
         center
+        autocomplete="off"
         type="text"
         label="Post Code"
         placeholder="Please enter the Post Code"
@@ -171,6 +184,7 @@
         v-model="formData.phone"
         name="phone"
         center
+        autocomplete="off"
         type="text"
         label="Mobile No."
         placeholder="Please enter the Mobile No"
@@ -181,7 +195,8 @@
         v-model="formData.email"
         name="email"
         center
-        type="text"
+        autocomplete="off"
+        type="email"
         label="Email"
         placeholder="Please enter the Email"
         :required="true"
@@ -194,6 +209,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Name"
         placeholder="Please enter the Name"
         :rules="[{ required: true }]"
@@ -204,6 +220,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Nationality"
         placeholder="Please enter the Nationality"
         :rules="[{ required: true }]"
@@ -214,6 +231,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="NRIC / Passport No."
         placeholder="Please enter the NRIC / Passport No."
         :rules="[{ required: true }]"
@@ -224,6 +242,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Date of Birth"
         placeholder="Please enter the Date of Birth"
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
@@ -233,7 +252,8 @@
         name="emergency_email"
         center
         :required="true"
-        type="text"
+        type="email"
+        autocomplete="off"
         label="Email"
         placeholder="Please enter the Email"
         :rules="[{ required: true }]"
@@ -244,6 +264,7 @@
         center
         :required="true"
         type="text"
+        autocomplete="off"
         label="Residential Phone No."
         placeholder="Please enter the Residential Phone No."
         :rules="[{ required: true }]"
@@ -255,6 +276,7 @@
         :required="true"
         type="text"
         label="Mobile No."
+        autocomplete="off"
         placeholder="Please enter the Mobile No."
         :rules="[{ required: true }]"
       />
@@ -262,6 +284,7 @@
         v-model="formData.relationship"
         name="relationship"
         center
+        autocomplete="off"
         :required="true"
         type="text"
         label="Relationship with the Subscriber"
@@ -272,6 +295,7 @@
       <van-field
         v-model="formData.amount"
         name="amount"
+        autocomplete="off"
         center
         type="number"
         label="Subscription Amount (MYR)"
@@ -283,6 +307,7 @@
         v-model="formData.advisor_name"
         name="advisor_name"
         center
+        autocomplete="off"
         type="text"
         label="Authorized Advisor’s Name"
         placeholder="Please enter the Authorized Advisor’s Name"
@@ -293,6 +318,7 @@
         v-model="formData.advisor_id"
         name="advisor_id"
         center
+        autocomplete="off"
         type="text"
         label="DDG Advisor’s ID No."
         placeholder="Please enter the DDG Advisor’s ID No."
@@ -307,6 +333,7 @@
         v-model="formData.nominee_name"
         name="nominee_name"
         center
+        autocomplete="off"
         type="text"
         label="Nominee’s Name"
         placeholder="Please enter the Nominee’s Name"
@@ -317,6 +344,7 @@
         v-model="formData.nominee_nric_no"
         name="nominee_nric_no"
         center
+        autocomplete="off"
         type="text"
         label="NRIC No."
         placeholder="Please enter the NRIC No."
@@ -327,6 +355,7 @@
         v-model="formData.nominee_relation"
         name="nominee_relation"
         center
+        autocomplete="off"
         type="text"
         label="Relationship"
         placeholder="Please enter the Relationship"
@@ -339,6 +368,7 @@
         center
         type="text"
         label="Phone Number"
+        autocomplete="off"
         placeholder="Please enter Phone Number"
         :required="true"
         :rules="[{ required: true }]"
@@ -347,8 +377,9 @@
         v-model="formData.nominee_email"
         name="nominee_email"
         center
-        type="text"
+        type="email"
         label="Email"
+        autocomplete="off"
         placeholder="Please enter the Email"
         :required="true"
         :rules="[{ required: true }]"
@@ -358,6 +389,7 @@
       <van-field
         v-model="formData.bank_name"
         name="bank_name"
+        autocomplete="off"
         center
         type="text"
         label="Name of Bank"
@@ -369,6 +401,7 @@
         v-model="formData.branch"
         name="branch"
         center
+        autocomplete="off"
         type="text"
         label="Branch"
         placeholder="Please enter the Branch"
@@ -380,6 +413,7 @@
         name="account_no"
         center
         type="text"
+        autocomplete="off"
         label="Bank Account No."
         placeholder="Please enter the Bank Account No."
         :required="true"
@@ -389,6 +423,7 @@
         v-model="formData.account_name"
         name="account_name"
         center
+        autocomplete="off"
         type="text"
         label="Bank Account Owner’s Name"
         placeholder="Please enter the Bank Account Owner’s Name"
@@ -439,6 +474,7 @@ Account Number: 3220852216
         name="subcriber_name"
         center
         type="text"
+        autocomplete="off"
         label="Subscriber’s Name"
         placeholder="Please enter the Subscriber’s Name"
         :required="true"
@@ -448,6 +484,7 @@ Account Number: 3220852216
         v-model="formData.advisor_nric_no"
         name="advisor_nric_no"
         center
+        autocomplete="off"
         type="text"
         label="NRIC / Passport No."
         placeholder="Please enter the NRIC / Passport No."
@@ -458,8 +495,8 @@ Account Number: 3220852216
 
        <vue-esign
         ref="esign"
-        v-show="!formData.subscriber_signature"
-        :width="1200"
+        :style="{ display: (this.xyz === '' ? 'block' : formData.subscriber_signature === null || formData.subscriber_signature === '' ? 'block' : 'none') }"
+        :width="800"
         :height="300"
         :isCrop="false"
         :lineWidth="6"
@@ -468,15 +505,14 @@ Account Number: 3220852216
         style="border: 1px solid #666"
       />
       <van-image
-        v-show="formData.subscriber_signature"
-        width="100%"
-        height="20%"
+      :style="{ border: '1px solid #666', display: (this.xyz === '1' ? formData.subscriber_signature === null || formData.subscriber_signature === '' ? 'none' : 'block' : 'none') }"
+      
         class="esignImgbox"
         :src="formData.subscriber_signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset()">Clear</div>
+        <div class="esignBtn" @click="handleGenerate()">Confirm</div>
       </div>
        <!-- <vue-esign
         ref="signature"
@@ -513,9 +549,11 @@ Account Number: 3220852216
       </div> -->
        <van-field
         v-model="formData.witness_advisor_name"
+        id="2reset"
         name="witness_advisor_name"
         center
         type="text"
+        autocomplete="off"
         label="Witness/Advisor’s Name"
         placeholder="Please enter the Witness/Advisor’s Name"
         :required="true"
@@ -526,6 +564,7 @@ Account Number: 3220852216
         name="witness_nric_no"
         center
         type="text"
+        autocomplete="off"
         label="NRIC / Passport No."
         placeholder="Please enter the NRIC / Passport No."
         :required="true"
@@ -533,8 +572,8 @@ Account Number: 3220852216
       />
       <vue-esign
         ref="witness_signature"
-        v-show="!formData.witness_signature"
-        :width="1200"
+        :style="{ display: (this.xyz1 === '' ? 'block' : formData.witness_signature === null || formData.witness_signature === '' ? 'block' : 'none') }"
+        :width="800"
         :height="300"
         :isCrop="false"
         :lineWidth="6"
@@ -543,20 +582,21 @@ Account Number: 3220852216
         style="border: 1px solid #666"
       />
       <van-image
-        v-show="formData.witness_signature"
-        width="100%"
-        height="20%"
+      :style="{ border: '1px solid #666', display: (this.xyz1 === '1' ? formData.witness_signature === null || formData.witness_signature === '' ? 'none' : 'block' : 'none') }"
+      
         class="esignImgbox"
         :src="formData.witness_signature"
       />
       <div class="tr">
-        <div class="esignBtn" @click="handleReset1()" v-if="!isDone">Clear</div>
-        <div class="esignBtn" @click="handleGenerate1()" v-if="!isDone">Confirm</div>
+        <div class="esignBtn" @click="handleReset1()" >Clear</div>
+        <div class="esignBtn" @click="handleGenerate1()">Confirm</div>
       </div>
        <van-field
         v-model="formData.date"
+        id="2reset1"
         name="date"
         center
+        autocomplete="off"
         type="text"
         label="Date"
         placeholder="Please enter the Date"
@@ -655,6 +695,10 @@ export default {
                                            witness_nric_no:sessionStorage.getItem("user_passportNo"),
                                            witness_signature:""
       },
+      sig1:true,
+      sig2:true,
+      xyz: "",
+      xyz1: "",
       isShowPicker: false, // 日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -722,6 +766,10 @@ export default {
             //   this.Documents.push({url: res.document_checklist.Documents})
             // }
             this.formData = res;
+            this.sig1=false
+            this.sig2=false
+            this.xyz = "1"
+            this.xyz1 = "1"
             // this.phone = res.witness_phone.slice(-11);
             // this.areaCode = res.witness_phone.split(this.phone)[0];
           })
@@ -941,13 +989,19 @@ export default {
     // 清空画布
     handleReset1(val) {
           this.$refs["witness_signature"].reset(); //清空画布
+          this.sig2 = true
+          this.xyz1 = ""
       this.formData.witness_signature = ''
+      document.getElementById("2reset1").focus()
   
     },
     handleReset(val) {
 
       this.$refs["esign"].reset(); //清空画布
+      this.sig1 = true
+      this.xyz = ""
       this.formData.subscriber_signature = ''
+      document.getElementById("2reset").focus()
   
     },
     handleGenerate1(index) {
@@ -1145,7 +1199,20 @@ export default {
   line-height: 35px;
   margin: 10px 0 10px 10px;
 }
+@media screen and (max-width: 576px) {
+  .esignImgbox {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+  }
 .esignImgbox {
   border: 1px solid #666666;
+  width: 800px;
+    height: 300px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      height: 112.5px !important;
+  }
+
 }
 </style>

@@ -50,6 +50,38 @@ export const getOrders = query => {
     params: query
   })
 }
+
+
+export const videoCompleteApi = id => {
+  console.log(".....videoComplete...api id.....",id)
+  return request({
+    url: '/api/v1/training_center/'+id+'/view',
+    method: 'post'
+  })
+}
+export const readNot = id => {
+  console.log(".....kkkkkkkkk...4444.....",id)
+  return request({
+    url: '/api/v1/settlor/notices/'+id,
+    method: 'put'
+  })
+}
+export const getOrdersCustomerNot = query => {
+  console.log(".....kkkkkkkkk...4444.....",query)
+  return request({
+    url: '/api/v1/settlor/notices',
+    method: 'post',
+    params: query
+  })
+}
+export const getOrdersCustomer = query => {
+  console.log(".....kkkkkkkkk...4444.....",query)
+  return request({
+    url: '/api/v1/settlor/orders',
+    method: 'post',
+    params: query
+  })
+}
 //獲取Organizational Chart數據
 export function getOrganizeChart() {
   return request({
@@ -58,9 +90,31 @@ export function getOrganizeChart() {
   })
 }
 
+export function productListCustomer() {
+  return request({
+    url: '/api/v1/settlor/product/list',
+    method: 'post',
+  })
+}
 export function productList() {
   return request({
     url: '/api/v1/product/list',
     method: 'post',
   })
 }
+export function customerDetails() {
+  return request({
+    url: '/api/v1/settlor/dashboard',
+    method: 'get',
+  })
+}
+export function productListVal() {
+  return request({
+    url: '/api/v1/gep-two-validation',
+    method: 'get',
+  })
+}
+
+
+
+

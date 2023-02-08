@@ -1,7 +1,7 @@
 <template>
   <div class="OrganizeChart from_content">
   
-    <div class="row">
+    <div class="row mb-4">
      <div class="col-md-6">
       
        <div>
@@ -28,7 +28,7 @@
     </b-input-group>
   </div>
      </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         
      <div>
     <b-input-group class="mb-3">
@@ -53,9 +53,22 @@
       </b-input-group-append>
     </b-input-group>
   </div>
+
       </div>
+      <div class="col-md-6">
+      
+
+      <div class="block">
+      <div id="app" class="slect-boxdiv">
+    <select v-model="product_id" >
+           <option value="">All Products</option>
+           <option  v-for="item in year" :value="item.product_id">{{item.product_name}}</option>
+       </select>
+         </div>
+         </div>
+       </div>
       <div class="col-md-2">
-        <van-button @click="search"  round block type="info"    class="search">
+        <van-button @click="search"  round block type="info"  class="btn-search">
         Search
       </van-button>
        </div>
@@ -288,10 +301,12 @@
 
 <script>
 import  {organizeChartApi, organizeChartApi1} from "../api/organize-chart";
-
+import {productList} from "@/api/tools";
 export default {
   data() {
     return {
+      product_id:'',
+      year: [],
         formatted: '',
         selected: '',
          formatted1: '',
@@ -306,6 +321,7 @@ export default {
   },
   mounted() {
     this.getChildren();
+    this.productList();
   },
   filters: {
     NumFormat(value) {
@@ -316,6 +332,16 @@ export default {
       }
   },
   methods: {
+    productList() {
+      productList()
+        .then((res) => {
+          console.log(".......productList.........",res)
+           this.year = res.product;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
     //获取组织图
      onContext(ctx) {
         // The date formatted in the locale, or the `label-no-date-selected` string
@@ -333,6 +359,7 @@ export default {
     organizeChartApi1({
           start_date: this.start_date,
            end_date: this.end_date,
+           product_id:this.product_id
       })
         .then((res) => {
 
@@ -447,6 +474,24 @@ h1 {
 .right-icon i {
   margin-top: 10px;
   cursor: pointer;
+}
+.slect-boxdiv select{
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.btn-search{
+  background-color: #6c757d;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid #6c757d;
+  height: 35px;
 }
 </style>
 

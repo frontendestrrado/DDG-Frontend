@@ -7,6 +7,12 @@ export function getAnnouncementList() {
     method: 'get',
   })
 }
+export function getdashboard() {
+  return request({
+    url: '/api/v1/user/dashboard',
+    method: 'get',
+  })
+}
 export function getNotificationsList() {
   return request({
     url: '/api/v1/user/notices',
