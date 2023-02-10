@@ -134,6 +134,15 @@
         </template>
       </van-field>
 
+      <van-field name="Documents"   label="Documents">
+        <template #input>
+          <van-uploader v-model="non_disclosure_agreement_file" @click-preview="goDetail1(non_disclosure_agreement_file)" :disabled="isDone" :after-read="afterRead0"  :before-delete="beforeRead6" accept="*"
+            :max-count="1" />
+        </template>
+      </van-field>
+
+
+
    
 
 
@@ -167,9 +176,10 @@
         placeholder="Please enter the NRIC / Passport No."  :required="true"
         :rules="[{ required: true }]" />
 
-      <van-field v-model="formData.agent_date" autocomplete="off" name="agent_date" center type="text" label="Date"
+      <van-field v-model="formData.agent_date" autocomplete="off" name="agent_date" center type="text" label="Date: DD-MM-YYYY"
         placeholder="Please enter the Date"  :required="true"
-        :rules="[{ required: true }]"/>
+        :rules="[{ pattern, message: 'Please enter the DATE ' }]"
+        />
 
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
         <span v-if="!this.$route.query.isShare">save</span>
@@ -212,10 +222,11 @@ export default {
 
         source_of_wealth_file:'',
         evidence_of_bank_file:'',
+        non_disclosure_agreement_file:'',
         signature:'',
-        agent_name:'',
-        agent_nric:'',
-        agent_date:'',
+        agent_name:sessionStorage.getItem("user_name"),
+        agent_nric:sessionStorage.getItem("user_passportNo"),
+        agent_date:moment(new Date()).format('DD-MM-YYYY'),
 
         source_of_fund_file:[{}]
 
@@ -243,6 +254,7 @@ export default {
         // source_of_wealth_file: '',
         // source_of_fund_file: '',
         // evidence_of_bank_file: '',
+        // non_disclosure_agreement_file:'',
         // beneficiary_photo_file:[{}],
         // source_of_fund_addon:[{}],
        // source_of_fund_addon1:''
@@ -278,6 +290,7 @@ export default {
       source_of_wealth_file1x: [],
       source_of_fund_file: [],
       evidence_of_bank_file: [],
+      non_disclosure_agreement_file:[],
       source_of_fund_addon1: [],
       source_of_fund_addon2:[],
       source_of_fund_addon3:[],
@@ -355,6 +368,14 @@ return true
     beforeRead5(file){
       this.evidence_of_bank_file = []
       this.formData.evidence_of_bank_file = ''
+
+// }
+return true
+// }
+    },
+    beforeRead6(file){
+      this.non_disclosure_agreement_file = []
+      this.formData.non_disclosure_agreement_file = ''
 
 // }
 return true
@@ -586,6 +607,7 @@ this.submit()
             this.source_of_wealth_file.push({url: res.source_of_wealth_file})
             this.proof_of_address_file.push({url: res.proof_of_address_file})
             this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
+            this.non_disclosure_agreement_file.push({url: res.non_disclosure_agreement_file})
             this.applicants_photocopy_file.push({url: res.applicants_photocopy_file})
 
             // this.settlor_photo_file.push({url: res.settlor_photo_file})
@@ -595,6 +617,7 @@ this.submit()
             // this.source_of_wealth_file.push({url: res.source_of_wealth_file})
             // this.source_of_fund_file.push({url: res.source_of_fund_file})
             // this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
+            // this.non_disclosure_agreement_file.push({url: res.non_disclosure_agreement_file})
 
 
            // this.qaz.push(res.beneficiary_photo_file)
@@ -821,6 +844,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
               this.source_of_wealth_file= [],
               this.source_of_fund_file= [],
               this.evidence_of_bank_file= [],
+              this.non_disclosure_agreement_file=[],
               this.source_of_fund_addon1=[],
               this.source_of_fund_addon2=[],
               this.source_of_fund_addon3=[],
@@ -856,6 +880,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
       this.source_of_wealth_file1x=[],
       this.source_of_fund_file= [],
       this.evidence_of_bank_file= [],
+      this.non_disclosure_agreement_file=[],
       this.source_of_fund_addon1= [],
       this.source_of_fund_addon2=[],
       this.source_of_fund_addon3=[],
@@ -1249,6 +1274,20 @@ if(typeof this.source_of_wealth_file5x === "string"){
       return true
       }
     },
+    afterRead0(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.$toast.success('Success')
+        this.formData.non_disclosure_agreement_file = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.non_disclosure_agreement_file = []
+      return true
+      }
+    },
     afterRead6(file) {
       if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
       let data = new FormData()
@@ -1262,6 +1301,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
     }else{
         alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
  // this.evidence_of_bank_file = []
+ // this.non_disclosure_agreement_file = []
       return true
       }
     },

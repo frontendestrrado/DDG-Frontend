@@ -379,9 +379,10 @@
       </van-radio-group> -->
 
       <van-field name="eng_agreement"  :required="true"
-        :rules="[{ required: true }]" center>
+    
+      center>
         <template #input>
-          <van-checkbox v-model="formData.eng_agreement">I agree to receive communication on marketing and promotion via email, phone calls, text
+          <van-checkbox   id="engAgId" v-model="formData.eng_agreement">I agree to receive communication on marketing and promotion via email, phone calls, text
           messages and/or newsletters.</van-checkbox>
         </template>
       </van-field>
@@ -404,7 +405,7 @@
       <van-field v-model="formData.eng_nric_passport_no"  autocomplete="off" name="eng_nric_passport_no" center type="text" label="NRIC/Passport No."
         placeholder="Please enter the NRIC/Passport No." :required="true" :rules="[{ required: true }]" />
 
-      <van-field v-model="formData.eng_date" autocomplete="off" name="eng_date" center type="text" label="Date" placeholder="Please enter the Date"
+      <van-field v-model="formData.eng_date" autocomplete="off" name="eng_date" center type="text" label="Date: DD-MM-YYYY" placeholder="Please enter the Date"
         :required="true" :rules="[{ pattern, message: 'Please enter the DATE ' }]" />
 
 
@@ -695,10 +696,13 @@ Alamat: No. 11-2, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau P
 
       </van-radio-group> -->
 
-      <van-field name="malay_agreement"  :required="true"
-        :rules="[{ required: true }]" center>
+      <van-field name="malay_agreement" 
+      :required="true"
+     
+
+        center>
         <template #input>
-          <van-checkbox v-model="formData.malay_agreement">Saya bersetuju untuk menerima komunikasi mengenai pemasaran dan promosi melalui e-mel, panggilan telefon, mesej teks dan/atau surat berita.</van-checkbox>
+          <van-checkbox  id="malayAgId" v-model="formData.malay_agreement">Saya bersetuju untuk menerima komunikasi mengenai pemasaran dan promosi melalui e-mel, panggilan telefon, mesej teks dan/atau surat berita.</van-checkbox>
         </template>
       </van-field>
 
@@ -720,7 +724,7 @@ Alamat: No. 11-2, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau P
       <van-field v-model="formData.malay_nric_passport_no" autocomplete="off" name="malay_nric_passport_no" center type="text" label="No. Kad Pengenalan/Pasport"
         placeholder="Please enter the No. Kad Pengenalan/Pasport" :required="true" :rules="[{ required: true }]" />
 
-      <van-field v-model="formData.malay_date" autocomplete="off" name="malay_date" center type="text" label="Tarikh" placeholder="Please enter the Tarikh"
+      <van-field v-model="formData.malay_date" autocomplete="off" name="malay_date" center type="text" label="Tarikh: DD-MM-YYYY" placeholder="Please enter the Tarikh"
         :required="true" :rules="[{ pattern, message: 'Please enter the Tarikh ' }]" />
 </div>
 
@@ -828,6 +832,8 @@ export default {
       minDate: new Date(1900, 0, 1),
       // Documents: [], // 上传的文件
       isDone: false, // 訂單是否已確認
+      isEng:true,
+      isMal:false
     };
   },
   mounted() {
@@ -862,6 +868,10 @@ export default {
       document.getElementById('engButId').style.background = '#7c655d'
       document.getElementById('engButId').style.color = '#fff'
       document.getElementById('engButId').style.border = '1px solid #7c655d'
+   
+      this.isEng=true
+      this.isMal=false
+
       
      
     },
@@ -874,6 +884,9 @@ export default {
       document.getElementById('malButId').style.background = '#7c655d'
       document.getElementById('malButId').style.color = '#fff'
       document.getElementById('malButId').style.border = '1px solid #7c655d'
+
+      this.isEng=false
+      this.isMal=true
     },
     // moblie validation
     isLetter(e) {
@@ -915,15 +928,81 @@ export default {
       console.log("555555555555555555555", form);
       console.log(form, "6666666666");
       console.log(this.formData, "777777777");
-      console.log(this.formData.subscriber_signature, "form");
+      console.log("...66...",this.formData.eng_signature)
+      console.log("...66...",this.formData.malay_signature)
+      console.log("...malay_agreement...",this.formData.malay_agreement)
+      console.log("...eng_agreement...",this.formData.eng_agreement)
+      console.log("...*******1111***********...",this.isEng)
+      console.log("...*******1111***********...",typeof this.isEng)
+      console.log("...*******2222***********...",this.isMal)
+      console.log("...*******2222***********...",typeof this.isMal)
+    //  console.log(this.formData.subscriber_signature, "form");
+    if (this.isEng == true) {
+    //  alert("1")
       if (!this.formData.eng_signature) {
+       // alert("2")
         this.$toast.fail("Please sign your english signature");
+        this.english()
         return;
       }
+      else if (!this.formData.eng_agreement) {
+      //  alert("3")
+        this.$toast.fail("Please agree to receive promotions");
+               this.english()
+            document.getElementById('engAgId').focus()
+           return;
+     }
+    
+    }
+
+    if (this.isMal == true) {
+      //alert("4")
+        if (!this.formData.malay_signature) {
+        this.$toast.fail("Please sign your malay signature");
+        this.malay()
+        return;
+      }
+      else if (!this.formData.malay_agreement) {
+        this.$toast.fail("Please agree to receive promotions");
+        this.malay()
+            document.getElementById('malayAgId').focus()
+            return;
+      }
+    
+
+    
+    }
+
+
+
+      if (!this.formData.eng_signature) {
+      
+        this.$toast.fail("Please sign your english signature");
+        this.english()
+        return;
+      }
+      else if (!this.formData.eng_agreement) {
+        this.$toast.fail("Please agree to receive promotions");
+               this.english()
+            document.getElementById('engAgId').focus()
+           return;
+     }
+
+
       else if (!this.formData.malay_signature) {
         this.$toast.fail("Please sign your malay signature");
+        this.malay()
         return;
       }
+      else if (!this.formData.malay_agreement) {
+        this.$toast.fail("Please agree to receive promotions");
+        this.malay()
+            document.getElementById('malayAgId').focus()
+            return;
+      }
+    
+
+
 
       console.log(this.formData, "form-----");
 

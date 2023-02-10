@@ -36,9 +36,9 @@
         ]" />
 
       <van-field v-model="formData.born_date" autocomplete="off" name="born_date" center :required="true" type="text"
-        label="Date of Birth / Date of Incorporation"
-        placeholder="Please enter the Date of Birth / Date of Incorporation"
-        :rules="[{ pattern, message: 'Please enter the Date of Birth / Date of Incorporation' }]" />
+        label="Date of Birth / Date of Incorporation: DD-MM-YYYY"
+        placeholder="Please enter the Date of Birth / Date of Incorporation : DD-MM-YYYY"
+        :rules="[{ pattern, message: 'Please enter the Date of Birth / Date of Incorporation : DD-MM-YYYY' }]" />
 
       <van-field v-model="formData.occupation" autocomplete="off" name="occupation" center :required="true" type="text"
         label="Occupation / Industry" placeholder="Please enter the Occupation / Industry" :rules="[
@@ -165,8 +165,9 @@ label="NRIC / Passport No." placeholder="Please enter the NRIC / Passport No." :
 ]" />
  <van-field v-model="formData.emergency_contact_dob" autocomplete="off" name="emergency_contact_dob" center :required="true" type="text"
         label="Date of Birth: DD-MM-YYYY"
-        placeholder="Please enter the Date of Birth / Date of Registration"
-        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
+        placeholder="Please enter the Date of Birth / Date of Registration : DD-MM-YYYY"
+        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH : DD-MM-YYYY' }]"
+         />
 
 
 <van-field v-model="formData.emergency_contact_email"
@@ -221,21 +222,26 @@ placeholder="Please enter the Relationship with the Subscriber"
 
 
 
+
+<div class="minTitle">BANK DETAILS OF EMERGENCY CONTACT</div>
+
+<van-field v-model="formData.emergency_bank_name" autocomplete="off" name="emergency_bank_name" center type="text"
+label="Name of Bank:" placeholder="Please enter the Name of Bank" />
+
+<van-field v-model="formData.emergency_bank_branch" autocomplete="off" name="emergency_bank_branch" center type="text"
+label="Branch:" placeholder="Please enter the Branch" />
+
+<van-field v-model="formData.emergency_bank_acc_no" autocomplete="off" name="emergency_bank_acc_no" center type="text"
+label="Bank Account No.:" placeholder="Please enter the Bank Account No." />
+
+<van-field v-model="formData.emergency_bank_owner_name" autocomplete="off" name="emergency_bank_owner_name" center type="text"
+label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Owner's Name" />
+
+
+
+
       <div class="minTitle">INVESTMENT INFORMATION</div>
-
-      <!-- <van-field
-        v-model="formData.office_no"
-        name="office_no"
-        center
- @keypress="isLetter($event)"
-        type="text"
-        label="OFFICE NO"
-        placeholder="Please enter the OFFICE NO"
-
-      /> -->
-
-
-   
+ 
     
 
       <van-field   v-model="formData.investment_amount" name="investment_amount" center type="text"
@@ -289,16 +295,12 @@ placeholder="Please enter the Relationship with the Subscriber"
       </div>
       
     
-      <van-field v-model="formData.invsetment_acc_name" autocomplete="off" name="invsetment_acc_name" center :required="true" type="text"
-        label="Account Name" placeholder="Please enter the Account Name" :rules="[{ required: true }]" />
-      <van-field v-model="formData.invsetment_bank" autocomplete="off" name="invsetment_bank" center :required="true" type="text"
-        label="Bank" placeholder="Please enter the Bank" :rules="[
-          { required: true },
-        ]" />
-          <van-field v-model="formData.invsetment_acc_no" autocomplete="off" name="invsetment_acc_no" center :required="true" type="text"
-        label="Account Number" placeholder="Please enter the Account Number" :rules="[
-          { required: true },
-        ]" />
+      <van-field v-model="formData.invsetment_acc_name" autocomplete="off" name="invsetment_acc_name" center type="text" disabled
+        label="Account Name" placeholder="Please enter the Account Name" />
+      <van-field v-model="formData.invsetment_bank" autocomplete="off" name="invsetment_bank" center type="text" disabled
+        label="Bank" placeholder="Please enter the Bank" />
+          <van-field v-model="formData.invsetment_acc_no" autocomplete="off" name="invsetment_acc_no" center type="text" disabled
+        label="Account Number" placeholder="Please enter the Account Number" />
         <div class="minTitle">
           APPLICANT’ DECLARATION
       </div>
@@ -345,9 +347,9 @@ placeholder="Please enter the Relationship with the Subscriber"
           { required: true },
         ]" />
             <van-field v-model="formData.applicant_date" autocomplete="off" name="applicant_date" center :required="true" type="text"
-        label="Date" placeholder="Please enter the Date" :rules="[
-          { required: true },
-        ]" />
+        label="Date: DD-MM-YYYY" placeholder="Please enter the Date" 
+        :rules="[{ pattern, message: 'Please enter the DATE ' }]"
+        />
 
 <div class="tl">WITNESS’S (ADVISOR) SIGNATURE</div>
       <vue-esign ref="esign1" v-show="sig2"  :width="800" :height="300" :isCrop="false"
@@ -368,9 +370,9 @@ placeholder="Please enter the Relationship with the Subscriber"
           { required: true },
         ]" />
             <van-field v-model="formData.witness_date" autocomplete="off" name="witness_date" center :required="true" type="text"
-        label="Date" placeholder="Please enter the Date" :rules="[
-          { required: true },
-        ]" />
+        label="Date: DD-MM-YYYY" placeholder="Please enter the Date"
+        :rules="[{ pattern, message: 'Please enter the DATE ' }]"
+         />
 
 
 
@@ -452,9 +454,9 @@ advisor_id:sessionStorage.getItem("user_id"),
 details_bank_name:'',
 details_bank_branch:'',
 //details_bank_address:'',
-invsetment_acc_name: '',
-invsetment_bank: '',
-invsetment_acc_no:'',
+invsetment_acc_name: 'GEP II Capital Sdn Bhd',
+invsetment_bank: 'Ambank',
+invsetment_acc_no:'8881052336972',
 details_bank_acc_no:'',
 details_bank_owner_name:'',
 applicant_name:'',
@@ -464,7 +466,11 @@ applicant_date:moment(new Date()).format('DD-MM-YYYY'),
 witness_name:'',
 witness_passport_no:'',
 witness_signature:'',
-witness_date:''
+witness_date:moment(new Date()).format('DD-MM-YYYY'),
+emergency_bank_name:'',
+emergency_bank_branch:'',
+emergency_bank_acc_no:'',
+emergency_bank_owner_name:''
       },
       sig1:true,
       sig2:true,

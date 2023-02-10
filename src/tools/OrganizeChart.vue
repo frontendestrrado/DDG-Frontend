@@ -295,11 +295,18 @@
 
 
     </div>
-   <!-- <h1>Loading...</h1> -->
+    <div>
+   <h1 class="loader" :id="'lodingId'">Loading...</h1>
   </div>
+  </div>
+ 
+ 
 </template>
 
+ 
+ 
 <script>
+import moment from 'moment'
 import  {organizeChartApi, organizeChartApi1} from "../api/organize-chart";
 import {productList} from "@/api/tools";
 export default {
@@ -311,16 +318,15 @@ export default {
         selected: '',
          formatted1: '',
         selected1: '',
-         start_date: '',
-            end_date: '',
+         start_date: moment(new Date(new Date().getFullYear(), 0, 1)).format('YYYY-MM-DD'),
+            end_date:moment(new Date()).format('YYYY-MM-DD'),
 			me: {},
 		  down_line: [],
-      start_date:"",
-      end_date:""
+  
 		};
   },
   mounted() {
-    this.getChildren();
+    this.search();
     this.productList();
   },
   filters: {
@@ -356,35 +362,34 @@ export default {
         this.selected1 = ctx.selectedYMD
       },
       search() {
+        document.getElementById('lodingId').style.display = 'block'
+        this.down_line =[]
     organizeChartApi1({
           start_date: this.start_date,
            end_date: this.end_date,
            product_id:this.product_id
       })
         .then((res) => {
-
+          document.getElementById('lodingId').style.display = 'none'
         console.log("....sss......",res)
         this.me = res.me
         this.down_line = res.first_level_advisor
         
       })
       },
-        changeActTab(id,length) {
-console.log(".....id.....id....id....","qaz"+id)
-console.log(".....length.....length....length....",length)
-//document.getElementById("qaz"+id).style.display = "block";
-for (let i = 0; i < length; i++) {
-  if(document.getElementById("qaz"+id+i).style.display === "block"){
-document.getElementById("qaz"+id+i).style.display = "none";
-  }
-  else{
-document.getElementById("qaz"+id+i).style.display = "block";
-  }
-
-console.log(".....length.....length....length....","qaz"+id+i)
-}
-
-        },
+    changeActTab(id, length) {
+      console.log(".....id.....id....id....", "qaz" + id)
+      console.log(".....length.....length....length....", length)
+      for (let i = 0; i < length; i++) {
+        if (document.getElementById("qaz" + id + i).style.display === "block") {
+          document.getElementById("qaz" + id + i).style.display = "none";
+        }
+        else {
+          document.getElementById("qaz" + id + i).style.display = "block";
+        }
+        console.log(".....length.....length....length....", "qaz" + id + i)
+      }
+    },
     getChildren() {
       organizeChartApi().then(res => {
         console.log("aaaaaaaaa",res)
@@ -492,6 +497,10 @@ h1 {
   border-radius: 10px;
   border: 1px solid #6c757d;
   height: 35px;
+}
+
+.loader{
+  margin-top: 5rem;
 }
 </style>
 

@@ -82,6 +82,7 @@ details_account_no:null,
           }
         }).then(res => {
           console.log('refreshToken');
+          console.log('refreshToken----',res);
           sessionStorage.setItem('token', res.access_token);
           this.commit('setToken', res.access_token);
           window.location.reload();
@@ -95,16 +96,19 @@ details_account_no:null,
       //  alert("3")
         console.log('no storeToken2');
         sessionStorage.token = '';
-        if($sessionStorage.userType ==='advisor'){
+        // console.log('$sessionStorage.userType----',$sessionStorage.userType);
+        // if($sessionStorage.userType ==='advisor'){
          // alert("4")
+         console.log('------advisor--------');
           this.commit('changePage', { tabbar: '/Login', title: 'Sign Up / Sign In' });
           router.push('/Login');
-        }
-        if($sessionStorage.userType ==='customer'){
-        //  alert("5")
-          this.commit('changePage', { tabbar: '/customerLogin', title: 'Customer Login' });
-          router.push('/customerLogin');
-        }
+        // }
+        // if($sessionStorage.userType ==='customer'){
+        // //  alert("5")
+        // console.log('----------customer-----------');
+        //   this.commit('changePage', { tabbar: '/customerLogin', title: 'Customer Login' });
+        //   router.push('/customerLogin');
+        // }
       
       }
     },

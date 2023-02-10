@@ -35,6 +35,7 @@ export const faqApi = query => {
 // }
 // export function organizeChartApi1(data) {
   export const organizeChartApi1 = query => {
+    console.log("...params...",query)
   return request({
     url: '/api/v1/organization',
     method: 'post',
