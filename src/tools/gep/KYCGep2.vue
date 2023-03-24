@@ -939,7 +939,7 @@ export default {
     //  console.log(this.formData.subscriber_signature, "form");
     if (this.isEng == true) {
     //  alert("1")
-      if (!this.formData.eng_signature) {
+      if (!this.formData.eng_signature&&!this.$store.state.isOverseaSignature) {
        // alert("2")
         this.$toast.fail("Please sign your english signature");
         this.english()
@@ -957,7 +957,7 @@ export default {
 
     if (this.isMal == true) {
       //alert("4")
-        if (!this.formData.malay_signature) {
+        if (!this.formData.malay_signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your malay signature");
         this.malay()
         return;
@@ -975,7 +975,7 @@ export default {
 
 
 
-      if (!this.formData.eng_signature) {
+      if (!this.formData.eng_signature&&!this.$store.state.isOverseaSignature) {
       
         this.$toast.fail("Please sign your english signature");
         this.english()
@@ -989,7 +989,7 @@ export default {
      }
 
 
-      else if (!this.formData.malay_signature) {
+      else if (!this.formData.malay_signature&&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your malay signature");
         this.malay()
         return;
@@ -1027,7 +1027,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if (!this.$route.query.isShare) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
 
@@ -1045,6 +1045,7 @@ export default {
         kyc_formGep2(id, this.formData)
           .then((res) => {
             console.log(res, "111111111111");
+            this.isFilled = res.GepTwoPdpaForm
             this.$toast({
               type: "success",
               message: "You can Just moved to Next form",
@@ -1207,6 +1208,7 @@ export default {
       this.formData.malay_signature = ''
     },
     handleGenerate1(index) {
+      if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign1"]
         .generate()
@@ -1236,6 +1238,10 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber can add the signature from the copy link page.")
+      }
     },
     handleReset(index) {
       this.$refs["esign"].reset(); //清空画布
@@ -1244,6 +1250,7 @@ export default {
     },
   
     handleGenerate(index) {
+      if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign"]
         .generate()
@@ -1273,6 +1280,10 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber can add the signature from the copy link page.")
+      }
     },
     // 展示日期弹框
     /*    onShowPicker(val,val2,inx) {

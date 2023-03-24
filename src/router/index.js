@@ -17,6 +17,10 @@ import ErrorPage from '@/views/ErrorPage'
 
 import OrganizeChart from '@/tools/OrganizeChart'
 import Faq from '@/tools/Faq'
+import Birthday from '@/tools/Birthday'
+import HelpDesk from '@/tools/HelpDesk'
+import RequestDetails from '@/tools/RequestDetails'
+import NewRequest from '@/tools/NewRequest'
 import OrganizeList from '@/tools/OrganizeList'
 import OrganizeReport from '@/tools/OrganizeReport'
 import OrganizeUnit from '@/tools/OrganizeUnit'
@@ -165,8 +169,28 @@ const router = new Router({
       },
       {
         path: '/Faq',
-        name: '组织图',
+        name: 'Faq',
         component: Faq,
+      },
+      {
+        path: '/birthday',
+        name: 'Birthday',
+        component: Birthday,
+      },
+      {
+        path: '/NewRequest',
+        name: 'SubmitANewRequest',
+        component: NewRequest,
+      },
+      {
+        path: '/helpDesk',
+        name: 'HelpDesk',
+        component: HelpDesk,
+      },
+      {
+        path: '/RequestDetails',
+        name: 'RequestDetails',
+        component: RequestDetails,
       },
         {
           path: '/OrganizeChartDetail',
@@ -331,6 +355,11 @@ const router = new Router({
         path: '/CustomerApplication',
         name: 'CustomerApplication',
         component: () => import('@/tools/order/CustomerApplication'),
+      },
+      {
+        path: '/CustomerApplicationNew',
+        name: 'CustomerApplicationNew',
+        component: () => import('@/tools/advisorNew/CustomerApplicationNew'),
       },{
         path: '/SelectProduct',
         name: 'SelectProduct',
@@ -345,6 +374,7 @@ const router = new Router({
         name: 'customerLogin',
         component: () => import('@/tools/customer/customerLogin'),
       },
+      
       {
         path: '/customerHome',
         name: 'customerHome',

@@ -235,6 +235,23 @@ export default {
     }
     this.getFormData();
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
+
+  //   if(this.$store.state.reorder == 1){
+
+  //     if (this.$store.state.reorderpdpa_memo_form > 0) {
+  //       getOrdersForms(this.$store.state.reorderpdpa_memo_form, { type: "PDPA Memo" })
+  //         .then((res) => {
+  //           console.log(res);
+  //           this.formData = res;
+  //           this.sig1=false
+  //           this.xyz = "1"
+  //         })
+  //         .catch((err) => {});
+  //     }
+
+  // }
+
+
   },
   methods: {
     // 如果已填 獲取數據
@@ -268,7 +285,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if(!this.$route.query.isShare){
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
             this.$router.go(-1);
           }
         });
@@ -281,7 +298,8 @@ export default {
         }
         pdpa_memo(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("----4---4--4-4--4",res);
+            this.isFilled = res.pdpa_memo_form
             this.$toast({
               type: "success",
               message: "Submitted successfully",

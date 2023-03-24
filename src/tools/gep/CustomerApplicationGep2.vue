@@ -225,16 +225,16 @@ placeholder="Please enter the Relationship with the Subscriber"
 
 <div class="minTitle">BANK DETAILS OF EMERGENCY CONTACT</div>
 
-<van-field v-model="formData.emergency_bank_name" autocomplete="off" name="emergency_bank_name" center type="text"
+<van-field v-model="formData.emergency_bank_name" autocomplete="off" name="emergency_bank_name" center type="text" :rules="[{ required: true }]" :required="true"
 label="Name of Bank:" placeholder="Please enter the Name of Bank" />
 
-<van-field v-model="formData.emergency_bank_branch" autocomplete="off" name="emergency_bank_branch" center type="text"
+<van-field v-model="formData.emergency_bank_branch" autocomplete="off" name="emergency_bank_branch" center type="text" :rules="[{ required: true }]" :required="true"
 label="Branch:" placeholder="Please enter the Branch" />
 
-<van-field v-model="formData.emergency_bank_acc_no" autocomplete="off" name="emergency_bank_acc_no" center type="text"
+<van-field v-model="formData.emergency_bank_acc_no" autocomplete="off" name="emergency_bank_acc_no" center type="text" :rules="[{ required: true }]" :required="true"
 label="Bank Account No.:" placeholder="Please enter the Bank Account No." />
 
-<van-field v-model="formData.emergency_bank_owner_name" autocomplete="off" name="emergency_bank_owner_name" center type="text"
+<van-field v-model="formData.emergency_bank_owner_name" autocomplete="off" name="emergency_bank_owner_name" center type="text" :rules="[{ required: true }]" :required="true"
 label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Owner's Name" />
 
 
@@ -679,7 +679,7 @@ console.log("....7777....",this.isFilled)
             type: "success",
             message: "Modify the success",
           });
-          if (!this.$route.query.isShare) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
         });
@@ -687,6 +687,7 @@ console.log("....7777....",this.isFilled)
         console.log("+++++++++++....222.....+++++++++++++", data)
         createOrdersGep2(data)
           .then((res) => {
+            this.isFilled = res.gepTwoSubscriptionForm
             console.log(data, "......xxx....createOrdersGep2...");
             console.log(res, "......xxx.......");
             this.$toast.success("You can Just moved to Next form");

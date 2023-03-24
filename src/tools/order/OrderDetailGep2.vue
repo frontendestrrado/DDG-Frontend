@@ -4,48 +4,33 @@
       Forms
     </div>
     <div style="margin-bottom: 40px">
-      <van-cell
-        is-link
-        :value="orderData.gepTwoSubscriptionForm == 0 ? 'Not Filled' : 'Filled'"
-        title-style="text-align:left;"
-        title="Subscription form"
-        @click="
-          $store.commit('changePage', { tabbar: '/CustomerApplicationGep2', title: '1/3 Subscription form' });
-          $router.push({
-            path: '/CustomerApplicationGep2',
-            query: { orderId: orderData.id, isFilled: orderData.gepTwoSubscriptionForm, status: orderData.status },
-          });
-        "
-      ></van-cell>
-      <van-cell
-        is-link
-        :value="orderData.GepTwoPdpaForm == 0 ? 'Not Filled' : 'Filled'"
-        title-style="text-align:left;"
-        title="PDPA"
-        @click="
-          $store.commit('changePage', { tabbar: '/KYCGep2', title: '2/3 PDPA' });
-          $router.push({
-            path: '/KYCGep2',
-            query: { orderId: orderData.id, isFilled: orderData.GepTwoPdpaForm, status: orderData.status },
-          });
-        "
-      ></van-cell>
-      <van-cell
-        is-link
-        :value="orderData.GepTwoDocumentCheckListForm == 0 ? 'Not Filled' : 'Filled'"
-        title-style="text-align:left;"
-        title="Document Checklist"
-        @click="
-          $store.commit('changePage', {
-            tabbar: '/LetterOfWishesGep2',
-            title: '3/3 Document Checklist',
-          });
-          $router.push({
-            path: '/LetterOfWishesGep2',
-            query: { orderId: orderData.id, isFilled: orderData.GepTwoDocumentCheckListForm, status: orderData.status },
-          });
-        "
-      ></van-cell>
+      <van-cell is-link :value="orderData.gepTwoSubscriptionForm == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;" title="Subscription form" @click="
+  $store.commit('changePage', { tabbar: '/CustomerApplicationGep2', title: '1/3 Subscription form' });
+$router.push({
+  path: '/CustomerApplicationGep2',
+  query: { orderId: orderData.id, isFilled: orderData.gepTwoSubscriptionForm, status: orderData.status },
+});
+        "></van-cell>
+      <van-cell is-link :value="orderData.GepTwoPdpaForm == 0 ? 'Not Filled' : 'Filled'" title-style="text-align:left;"
+        title="PDPA" @click="
+  $store.commit('changePage', { tabbar: '/KYCGep2', title: '2/3 PDPA' });
+$router.push({
+  path: '/KYCGep2',
+  query: { orderId: orderData.id, isFilled: orderData.GepTwoPdpaForm, status: orderData.status },
+});
+        "></van-cell>
+      <van-cell is-link :value="orderData.GepTwoDocumentCheckListForm == 0 ? 'Not Filled' : 'Filled'"
+        title-style="text-align:left;" title="Document Checklist" @click="
+  $store.commit('changePage', {
+    tabbar: '/LetterOfWishesGep2',
+    title: '3/3 Document Checklist',
+  });
+$router.push({
+  path: '/LetterOfWishesGep2',
+  query: { orderId: orderData.id, isFilled: orderData.GepTwoDocumentCheckListForm, status: orderData.status },
+});
+        "></van-cell>
       <!-- <van-cell
         is-link
         :value="orderData.gepNonDisclosureAgreement == 0 ? 'Not Filled' : 'Filled'"
@@ -90,36 +75,24 @@
           });
         "
       ></van-cell> -->
-      <van-button  round block type="info" :disabled="orderData.status != 0 && orderData.status != 3 " color="#7C655D" @click="submitAll">
+      <div>
+        <van-button round block type="info" :disabled="orderData.status != 0 && orderData.status != 3" style="margin-bottom:10px;" color="#7C655D" @click="shareLink">
+          Copy Link for Sharing with Settlor
+        </van-button>
+      </div>
+
+      <van-button round block type="info" :disabled="orderData.status != 0 && orderData.status != 3" color="#7C655D"
+        @click="submitAll">
         Submit all forms
       </van-button>
-      <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before submitting</div>
+      <div v-if="orderData.status == 0" style="margin-top:10px;">* Please confirm that all forms are completed before
+        submitting</div>
     </div>
-    <van-cell
-      title-style="text-align:left;"
-      title="Settlor Name"
-      :value="orderData.settlor_name"
-    ></van-cell>
-    <van-cell
-      title-style="text-align:left;"
-      title="amount"
-      :value="orderData.amount"
-    ></van-cell>
-    <van-cell
-      title-style="text-align:left;"
-      title="created_at"
-      :value="orderData.created_at"
-    ></van-cell>
-    <van-cell
-      title-style="text-align:left;"
-      title="Order Number"
-      :value="orderData.no"
-    ></van-cell>
-    <van-cell
-      title-style="text-align:left;"
-      title="Submitted_at"
-      :value="orderData.date"
-    ></van-cell>
+    <van-cell title-style="text-align:left;" title="Settlor Name" :value="orderData.settlor_name"></van-cell>
+    <van-cell title-style="text-align:left;" title="amount" :value="orderData.amount"></van-cell>
+    <van-cell title-style="text-align:left;" title="created_at" :value="orderData.created_at"></van-cell>
+    <van-cell title-style="text-align:left;" title="Order Number" :value="orderData.no"></van-cell>
+    <van-cell title-style="text-align:left;" title="Submitted_at" :value="orderData.date"></van-cell>
 
     <!-- <van-cell
     v-if="orderData.fund_received_status === 'Fund Received'" 
@@ -142,20 +115,24 @@
 
 
     <div class="orderTitle">The Order Feedback</div>
-    <van-field
-      v-model="patchOrder"
-      class="patchInput"
-      type="textarea"
-      rows="2"
-      autosize
-      placeholder="The order feedback"
-    />
-    <van-button class="loginBtn" type="info" @click="submit" color="#7C655D">Submit Feedback</van-button
-    >
+    <van-field v-model="patchOrder" class="patchInput" type="textarea" rows="2" autosize
+      placeholder="The order feedback" />
+    <van-button class="loginBtn" type="info" @click="submit" color="#7C655D">Submit Feedback</van-button>
+
+    <van-share-sheet
+        v-model='showPicker'
+        :options="options"
+        title="Share with Settlor"
+        description=""
+        @select="share"
+        cancel-text="Cancel"
+        />
+
   </div>
 </template>
 
 <script>
+import NativeShare from 'nativeshare'
 import { patchOrders } from "@/api/tools";
 import { getOrderDetail, confirmOrder } from "@/api/order";
 export default {
@@ -163,7 +140,14 @@ export default {
     return {
       orderData: {},
       patchOrder: "",
-      orderStatus: 0
+      orderStatus: 0, link: '',
+      showPicker: false,
+      shareURL: '',
+      options: [
+        // { name: '微信', icon: 'wechat' },
+        // { name: '微博', icon: 'weibo' },
+        { name: 'Copy Link', icon: 'link', description: '' },
+      ]
     };
   },
   mounted() {
@@ -171,16 +155,126 @@ export default {
     this.orderStatus = sessionStorage.getItem('orderStatus')
     this.patchOrders();
     this.getOrderDetail();
+
+    let url = window.location.href
+    this.link = url.split("#")
+    this.link[1] = '/OrderSignatureCustomersGep2'
   },
   methods: {
+    async  shareLink() {
+          // console.log(",.....88.....",this.$store.state.CustomerApplicationId)
+          // console.log(",.....99.....",typeof this.$store.state.CustomerApplicationId)
+          if(this.$route.query.id !== ''){
+            
+          
+         // alert("aa")
+          // this.$store.commit('changeisShare',true)
+          // this.$nextTick(()=>{
+          //   this.getOrderDetail()
+          // })
+          // if(this.orderData.id==undefined){
+          //   this.$toast('請提交之前的表單')
+          //   return
+          await this.getOrderDetail()
+          // }
+          this.getOrderDetail()
+          console.log("....jjjjjjj...",this.orderData)
+          if(this.orderData.gepTwoSubscriptionForm === 0 || this.orderData.GepTwoPdpaForm === 0 || this.orderData.GepTwoDocumentCheckListForm === 0 ){
+            alert("Please Submit All Forms....")
+          
+         
+        }else{
+// console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&gep_kyc_form='+this.orderData.gep_kyc_form+'&subcriptionform='+this.orderData.subcriptionform+'&gepNonDisclosureAgreement='+this.orderData.gepNonDisclosureAgreement+'&gepDocumentCheckListForm='+this.orderData.gepthirdPartyDeclarationForm+'&gepthirdPartyDeclarationForm='+this.orderData.gepthirdPartyDeclarationForm+'&isShare=true',22222)
+const self = this
+          
+          // this.$store.commit('changeIsmenutop',false)
+          var nativeShare = new NativeShare({
+            wechatConfig: {
+              appId: '',
+              timestamp: '',
+              nonceStr: '',
+              signature: '',
+            },
+            // 让你修改的分享的文案同步到标签里，比如title文案会同步到<title>标签中
+            // 这样可以让一些不支持分享的浏览器也能修改部分文案，默认都不会同步
+            syncDescToTag: false,
+            syncIconToTag: false,
+            syncTitleToTag: false,
+          })
+
+
+           // 设置分享文案
+          nativeShare.setShareData({
+            icon: '@/assets/img/logo.png',
+            link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&gepTwoSubscriptionForm='+this.orderData.gepTwoSubscriptionForm+'&GepTwoPdpaForm='+this.orderData.GepTwoPdpaForm+'&GepTwoDocumentCheckListForm='+this.orderData.GepTwoDocumentCheckListForm+'&isShare=true',
+            title: 'DDG',
+            desc:'Order Signature',
+            from: '@fa-ge',
+          })
+
+          // 唤起浏览器原生分享组件(如果在微信中不会唤起，此时call方法只会设置文案。类似setShareData)
+          try {
+               nativeShare.call()
+            //  nativeShare.call('wechatFriend')
+            // 如果是分享到微信则需要 nativeShare.call('wechatFriend')
+            // 类似的命令下面有介绍
+            console.log('支持')
+          } catch(err) {
+            // 如果不支持，你可以在这里做降级处理
+            // self.$toast('The browser does not support automatic sharing. Please share manually')
+            this.showPicker=true
+          }
+        // this.showShare = false;
+
+        }
+      }
+      else{
+        alert("Please Submit All Forms....")
+      }
+          },
+          //複製
+          copyToClipboard (text) {
+          if (!document.createRange || !window.getSelection || !document.execCommand) {
+            return false;
+          }
+          const node = document.createElement('span');
+          node.innerText = text;
+          document.body.appendChild(node);
+          const range = document.createRange();
+          range.selectNode(node);
+          const selection = window.getSelection();
+          selection.empty();
+          selection.addRange(range);
+          document.execCommand('copy');
+
+          selection.empty();
+          range.detach();
+          document.body.removeChild(node);
+
+          return true;
+        }, 
+    share(option,index){
+        console.log(option,index,"share..................")
+        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&gepTwoSubscriptionForm='+this.orderData.gepTwoSubscriptionForm+'&GepTwoPdpaForm='+this.orderData.GepTwoPdpaForm+'&GepTwoDocumentCheckListForm='+this.orderData.GepTwoDocumentCheckListForm+'&isShare=true'
+        if(index==0){
+          console.log(this.shareURL)
+          if(this.copyToClipboard(this.shareURL)){
+            this.$toast("Copy Successful")
+          }else{
+            this.$toast("Copy failed")
+          }
+          
+        }
+      },
+
     download(file) {
 
-window.open(file, '_self')
-},
+      window.open(file, '_self')
+    },
     getOrderDetail() {
       getOrderDetail(this.$route.query.id)
         .then((res) => {
-          console.log("3333333",res);
+          console.log("3333333", res);
           this.orderData = res;
         })
         .catch((err) => {
@@ -204,7 +298,7 @@ window.open(file, '_self')
           console.log(res, "订单反馈");
           this.patchOrder = res.note;
           this.$toast("Feedback submitted successfully");
-          this.patchOrder=''
+          this.patchOrder = ''
         })
         .catch((err) => {
           console.log(err.response);
@@ -230,6 +324,7 @@ window.open(file, '_self')
     padding: 0 16px;
     font-weight: bold;
   }
+
   .patchInput {
     width: calc(100% - 32px);
     margin: auto;
@@ -240,6 +335,7 @@ window.open(file, '_self')
     border-radius: 10px;
     line-height: 24px;
   }
+
   .loginBtn {
     width: calc(100% - 32px);
     height: 46px;

@@ -813,7 +813,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if(!this.$route.query.isShare){
+          if(!this.$route.query.isShare  && !this.$store.state.isOverseaSignature){
             this.$router.go(-1);
           }
 
@@ -831,6 +831,7 @@ export default {
         kyc_formGep(id, this.formData)
           .then((res) => {
             console.log(res,"111111111111");
+            this.isFilled = res.subcriptionform
             this.$toast({
               type: "success",
               message: "You can Just moved to Next form",

@@ -31,3 +31,11 @@ export const uploadFile = obj => {
     data: obj
   })
 }
+export const uploadFileRequest = obj => {
+  console.log("_______Request param____",obj)
+  return request({
+    url: '/api/v1/user/helpdesk/tickets/upload/attachment',
+    method: 'POST',
+    data: obj
+  })
+}

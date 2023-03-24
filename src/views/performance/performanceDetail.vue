@@ -101,6 +101,7 @@ export default {
      */
     exportPDF() {
       exportApi(this.$route.query).then(res => {
+        console.log("----jjjjjjjjj----",res)
         fileDownload(res,this.$route.query.year + '-' + this.$route.query.month+'.xls')
       })
     }

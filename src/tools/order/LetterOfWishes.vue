@@ -137,6 +137,21 @@ export default {
     this.getFormData();
     console.log(this.$route.query.campanyIndividualName, 333)
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
+    if(this.$store.state.reorder == 1){
+      
+      if (this.$store.state.reorderletter_of_wishes_form > 0) {
+        getOrdersForms(this.$store.state.reorderletter_of_wishes_form, { type: "Letter Of Wishes" }).then(res => {
+          console.log(res, "獲取lett數據");
+        res.signature = ""
+          this.formData = res;
+
+          this.sig1 = false
+          this.xyz = "1"
+        }
+        );
+      }
+
+  }
   },
   methods: {
     // 清空画布
@@ -218,7 +233,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if (!this.$route.query.isShare) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
         });
@@ -231,7 +246,8 @@ export default {
         }
         letter_wishes_form(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("-----33-3-3-3-3--3-3-3---",res);
+            this.isFilled = res.letter_of_wishes_form
             this.$toast({
               type: "success",
               message: "Submitted successfully",

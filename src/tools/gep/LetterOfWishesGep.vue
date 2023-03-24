@@ -346,7 +346,7 @@ export default {
                third_party_phone: "",
                 third_party_relationship: "",
 
-                 declaration_third_party: "",
+                 declaration_third_party: null,
 
 
                   other_details: "",
@@ -540,7 +540,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if(!this.$route.query.isShare){
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
             this.$router.go(-1);
           }
         });
@@ -555,7 +555,8 @@ export default {
       console.log("555555555",data)
         letter_wishes_formGep(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("---gep1------",res);
+            this.isFilled = res.gepthirdPartyDeclarationForm
             this.$toast({
               type: "success",
               message: "You can Just moved to Next form",

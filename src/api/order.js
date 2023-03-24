@@ -15,6 +15,20 @@ export const createOrdersGep2 = obj => {
     data: obj
   })
 }
+export const createNewRequest = obj => {
+  return request({
+    url: '/api/v1/user/helpdesk/tickets/create',
+    method: 'POST',
+    data: obj
+  })
+}
+export const postComments = obj => {
+  return request({
+    url: '/api/v1/user/helpdesk/tickets/comment/create',
+    method: 'POST',
+    data: obj
+  })
+}
 export const kyc_formGep2 = (orderId, obj) => {
   return request({
     url: '/api/v1/orders/' + orderId + '/gep-two-pdpa',
@@ -125,6 +139,24 @@ export const getNotificationData = (orderId) => {
     method: 'get',
   })
 }
+
+export const getOrderDetailFor3rdParty = query => {
+  console.log(".....kkkkkkkkk...4444.....",query)
+  return request({
+    url: '/api/v1/get-form-ids',
+    method: 'get',
+    params: query
+  })
+}
+
+export const getRequestDetail = (orderId) => {
+  return request({
+    url: '/api/v1/user/helpdesk/tickets/view',
+    method: 'get',
+    params: orderId
+  })
+}
+
 export const getOrderDetail = (orderId) => {
   return request({
     url: '/api/v1/orders/' + orderId,

@@ -90,6 +90,20 @@
 							fit="contain"
 							/>
               </span> -->
+
+              <!-- <span v-on:click="goWhtasapp" v-if="$sessionStorage.token && this.$route.path !='/Login' && $sessionStorage.userType !='customer'" class="pos-rel">
+                
+                <van-image
+							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
+							v-bind:src= "require('@/assets/img/wats.png')"
+							fit="contain"
+              
+              round
+							/>
+
+              </span> -->
+
+
               <span  v-on:click="isHidden1 === false ? isHidden1= true:isHidden1=false" v-if="$sessionStorage.token && this.$route.path !='/Login' && $sessionStorage.userType !='customer'" class="pos-rel">
                 
                 <van-image
@@ -111,6 +125,7 @@
 							/>
 
               </span>
+              
               <!-- <img v-bind:src=avatar> -->
               
              
@@ -677,6 +692,9 @@ qaz.push(res[i].is_read)
           });
         });
     },
+    goWhtasapp() {
+           window.open("https://api.whatsapp.com/send?phone=919778420812&;text='", '_blank');
+                    },
     goHome() {
            // targetId = event.currentTarget.id;
            // returns 'foo'

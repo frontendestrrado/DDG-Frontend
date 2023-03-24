@@ -1011,6 +1011,111 @@ export default {
     }
     this.getFormData();
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
+
+    if(this.$store.state.reorder == 1){
+     
+      if (this.$store.state.reorderkyc_form > 0) {
+        getOrdersForms(this.$store.state.reorderkyc_form, { type: "KYC" })
+          .then((res) => {
+            delete res.id
+            delete res.order_id
+            delete res.created_at
+            delete res.updated_at
+            console.log(res, 'kyc');
+            for (let key in res) {
+              res[key] = JSON.parse(res[key])
+            }
+            console.log(res, "--------333333333333333333333333333333333333-4--");
+            // if (res.document_checklist.Documents) {
+            //   this.Documents.push({url: res.document_checklist.Documents})
+            // }
+            res.bank_one = {
+          Bank: "",
+          Account: "",
+          Account2: "",
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+        };
+        res.bank_two= {
+          Bank: '',
+          Account: '',
+          Account2: '',
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+          Mode: '',
+        };
+       var reOrderParticulars= []  
+       for (var i = 0; i < res.document_checklist.Particulars.length; i++) {
+            if (res.document_checklist.Particulars[i] == 1 || res.document_checklist.Particulars[i] == 2) {
+              //  var spliced = arr.splice(i, 1);
+                // console.log("Removed element: " + spliced);
+                // console.log("Remaining elements: " + arr);
+                //
+              //  alert(res.document_checklist.Particulars[i] )
+                reOrderParticulars.push(res.document_checklist.Particulars[i])
+            }
+        }
+        console.log("***************reOrderParticulars***************",reOrderParticulars)
+        res.document_checklist.Particulars = reOrderParticulars
+        res.declaration.signature= "";
+
+        res.client_details.Is3= "";
+        res.client_details.Is4= "";
+        res.client_details.On= "";
+        res.client_details.Face= "";
+        res.client_details.Non= "";
+        
+
+        res.interaction= [{
+          Date: '',
+          Time: '',
+          Place: '',
+          CommentComment: '',
+        }];
+   res.assessment_of_client= {
+          Any: [],
+          Please: '',
+          Risk: '',
+          Any2: '',
+          Recommended: '',
+          Please2: '',
+          Remark: '',
+        };
+        res. store_marketing_officer.trustor_signature1= ''
+
+        res.store_manager.trustor_signature2 = ''
+            //       data.c_two_yes.Relationship = data.c_two_yes.Relationship.toString()
+            // data.spouse_non_malaysia.Marital = data.spouse_non_malaysia.Marital.toString()
+            // data.spouse_non_malaysia.Gender = data.spouse_non_malaysia.Gender.toString()
+            // data.spouse_occupation.Occupation = data.spouse_occupation.Occupation.toString()
+            this.formData = res;
+            this.formData.c_two_yes.Relationship = (this.formData.c_two_yes.Relationship === '' ? [] : this.formData.c_two_yes.Relationship)
+            this.formData.spouse_non_malaysia.Marital = (this.formData.spouse_non_malaysia.Marital === '' ? [] : this.formData.spouse_non_malaysia.Marital)
+            this.formData.spouse_non_malaysia.Gender = (this.formData.spouse_non_malaysia.Gender === '' ? [] : this.formData.spouse_non_malaysia.Gender)
+            this.formData.spouse_occupation.Occupation = (this.formData.spouse_occupation.Occupation === '' ? [] : this.formData.spouse_occupation.Occupation)
+            this.formData.assessment_of_client.Any = (this.formData.assessment_of_client.Any === '' ? [] : this.formData.assessment_of_client.Any)
+           
+            // this.formData.assessment_of_client.Any=(this.formData.assessment_of_client.Any === ''?[]:this.formData.assessment_of_client.Any)
+            this.sig1 = false
+            this.xyz = "1"
+            this.xyz1 = "1"
+            this.xyz2 = "1"
+            this.sig2 = false
+            this.sig3 = false
+
+            // this.phone = res.witness_phone.slice(-11);
+            // this.areaCode = res.witness_phone.split(this.phone)[0];
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+   }
+
+
   },
   methods: {
     // moblie validation
@@ -1036,17 +1141,18 @@ export default {
             // if (res.document_checklist.Documents) {
             //   this.Documents.push({url: res.document_checklist.Documents})
             // }
-            this.formData = res;
+        
             //       data.c_two_yes.Relationship = data.c_two_yes.Relationship.toString()
             // data.spouse_non_malaysia.Marital = data.spouse_non_malaysia.Marital.toString()
             // data.spouse_non_malaysia.Gender = data.spouse_non_malaysia.Gender.toString()
             // data.spouse_occupation.Occupation = data.spouse_occupation.Occupation.toString()
-
-            this.formData.c_two_yes.Relationship = (this.formData.c_two_yes.Relationship === '' ? [] : [this.formData.c_two_yes.Relationship])
-            this.formData.spouse_non_malaysia.Marital = (this.formData.spouse_non_malaysia.Marital === '' ? [] : [this.formData.spouse_non_malaysia.Marital])
-            this.formData.spouse_non_malaysia.Gender = (this.formData.spouse_non_malaysia.Gender === '' ? [] : [this.formData.spouse_non_malaysia.Gender])
-            this.formData.spouse_occupation.Occupation = (this.formData.spouse_occupation.Occupation === '' ? [] : [this.formData.spouse_occupation.Occupation])
-            this.formData.assessment_of_client.Any = (this.formData.assessment_of_client.Any === '' ? [] : [this.formData.assessment_of_client.Any])
+            this.formData = res;
+            this.formData.c_two_yes.Relationship = (this.formData.c_two_yes.Relationship === '' ? [] : this.formData.c_two_yes.Relationship)
+            this.formData.spouse_non_malaysia.Marital = (this.formData.spouse_non_malaysia.Marital === '' ? [] : this.formData.spouse_non_malaysia.Marital)
+            this.formData.spouse_non_malaysia.Gender = (this.formData.spouse_non_malaysia.Gender === '' ? [] : this.formData.spouse_non_malaysia.Gender)
+            this.formData.spouse_occupation.Occupation = (this.formData.spouse_occupation.Occupation === '' ? [] : this.formData.spouse_occupation.Occupation)
+            this.formData.assessment_of_client.Any = (this.formData.assessment_of_client.Any === '' ? [] : this.formData.assessment_of_client.Any)
+           
             // this.formData.assessment_of_client.Any=(this.formData.assessment_of_client.Any === ''?[]:this.formData.assessment_of_client.Any)
             this.sig1 = false
             this.xyz = "1"
@@ -1208,7 +1314,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if (!this.$route.query.isShare) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
 
@@ -1223,7 +1329,8 @@ export default {
         }
         kyc_form(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("----222---2--2--2-2---",res);
+            this.isFilled = res.kyc_form
             this.$toast({
               type: "success",
               message: "Submitted successfully",

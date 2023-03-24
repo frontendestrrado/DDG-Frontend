@@ -4,6 +4,11 @@
         Notifications
         
        </van-button>
+
+       <van-button round block type="info" color="#7C655D" @click="birthday"  class="productButton">
+        Birthday
+        
+       </van-button>
     </div>
 </template>
 <script>
@@ -12,6 +17,11 @@ export default {
       Aigp(){
         this.$router.push('/ManageNotifications')
           this.$store.commit('changePage',{tabbar: '/ManageNotifications', title: 'CRM'});
+       
+      },
+      birthday(){
+        this.$router.push('/birthday')
+          this.$store.commit('changePage',{tabbar: '/birthday', title: 'Birthday'});
        
       }
     }

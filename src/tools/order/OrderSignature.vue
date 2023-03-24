@@ -8,8 +8,14 @@
     <LetterOfWishes v-if="renderComponent"></LetterOfWishes>
     <div class="title">4/5 PDPA Memo</div>
     <PDPAMemo v-if="renderComponent"></PDPAMemo>
+
+
     <div class="title">5/5 Document Checklist</div>
-    <DocumentChecklist v-if="renderComponent" @getOrderDetail="getOrderDetail" @onSelect='onSelect'></DocumentChecklist>
+    <DocumentChecklist v-if="renderComponent" @getOrderDetail="getOrderDetail" @onSelect='onSelect' @onSelect3='onSelect3' @onSelect4='onSelect4'></DocumentChecklist>
+
+    <div v-if="renderComponent3" class="title">THIRD-PARTY FUNDS DECLARATION FORM</div>
+<ThirdPartyDeclaration v-if="renderComponent3" @getOrderDetail="getOrderDetail" @onSelect='onSelect'></ThirdPartyDeclaration>
+
     <!-- <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;" @click="onSelect()">
      Copy Link for Sharing with Settlor
     </van-button> -->
@@ -31,6 +37,7 @@ import KYC from "@/tools/order/KYC";
 import LetterOfWishes from "@/tools/order/LetterOfWishes";
 import PDPAMemo from "@/tools/order/PDPAMemo";
 import DocumentChecklist from "@/tools/order/DocumentChecklist";
+import ThirdPartyDeclaration from "@/tools/order/ThirdPartyDeclaration";
 import { getOrderDetail} from "@/api/order"
 import { nextTick, ref } from 'vue';
 
@@ -38,6 +45,7 @@ export default {
   data(){
     return{
       renderComponent: true,
+      renderComponent3: false,
       link:'',
       setData :false,
       showPicker:false,
@@ -51,7 +59,7 @@ export default {
     }
   },
   components:{
-      CustomerApplication,KYC,LetterOfWishes,PDPAMemo,DocumentChecklist
+      CustomerApplication,KYC,LetterOfWishes,PDPAMemo,DocumentChecklist,ThirdPartyDeclaration
   },
   mounted(){
    // alert("dd")
@@ -74,9 +82,35 @@ export default {
       // Add the component back in
       this.renderComponent = true;
     },
+    async forceRerender3() {
+      // Remove MyComponent from the DOM
+      this.renderComponent3 = false;
+
+			// Wait for the change to get flushed to the DOM
+      await this.$nextTick();
+
+      // Add the component back in
+      this.renderComponent3 = true;
+    },
+    async forceRerender4() {
+      // Remove MyComponent from the DOM
+      this.renderComponent3 = true;
+
+			// Wait for the change to get flushed to the DOM
+      await this.$nextTick();
+
+      // Add the component back in
+      this.renderComponent3 = false;
+    },
     share(option,index){
       console.log(option,index)
-      this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true'
+      if(this.orderData.third_party_declaration_form > 0){
+        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&third_party_declaration_form='+this.orderData.third_party_declaration_form+'&isShare=true'
+      }
+      else{
+        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true'
+      }
+     
       if(index==0){
         console.log(this.shareURL)
         if(this.copyToClipboard(this.shareURL)){
@@ -97,6 +131,21 @@ export default {
             console.log(err);
           });
           this.$store.commit("changeShareOrderData",this.orderData)
+      },
+      onSelect4(){
+     //   alert("selct 4")
+//this.forceRerender4()
+ //   alert("dddd")
+        this.renderComponent3 = false;
+        
+     //   alert("dfdhbfhdvhbdjhb")
+      },
+      onSelect3(){
+this.forceRerender3()
+ //   alert("dddd")
+        this.renderComponent3 = false;
+        
+     //   alert("dfdhbfhdvhbdjhb")
       },
       onSelect1(){
 this.forceRerender()
@@ -127,13 +176,18 @@ this.forceRerender()
        // alert("xxxxxx")
         console.log("nnnnnnnnnn..........", this.$store.state.CustomerApplicationId)
        this.getOrderDetail()
-       if(this.orderData.customer_app_form === 0 || this.orderData.document_check_list_form === 0 || this.orderData.kyc_form === 0  || this.orderData.letter_of_wishes_form === 0  || this.orderData.pdpa_memo_form === 0 ){
+       if(this.orderData.customer_app_form === 0 || this.orderData.document_check_list_form === 0 || this.orderData.kyc_form === 0  || this.orderData.letter_of_wishes_form === 0  || this.orderData.pdpa_memo_form === 0 || ( this.renderComponent3 == true && this.orderData.third_party_declaration_form === 0)  ){
             alert("Please Submit All Forms....")
           
          
         }else{
-
+          if(this.orderData.third_party_declaration_form > 0){
+            console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&third_party_declaration_form='+this.orderData.third_party_declaration_form+'&isShare=true',22222)
+      }
+      else{
         console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',22222)
+      }
+       
         const self = this
           // this.$store.commit('changeIsmenutop',false)
           var nativeShare = new NativeShare({
@@ -152,13 +206,26 @@ this.forceRerender()
 
 
            // 设置分享文案
-          nativeShare.setShareData({
+           if(this.orderData.third_party_declaration_form > 0){
+            nativeShare.setShareData({
+            icon: '@/assets/img/logo.png',
+            link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&third_party_declaration_form='+this.orderData.third_party_declaration_form+'&isShare=true',
+            title: 'DDG',
+            desc:'Order Signature',
+            from: '@fa-ge',
+          })
+      }
+      else{
+        nativeShare.setShareData({
             icon: '@/assets/img/logo.png',
             link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',
             title: 'DDG',
             desc:'Order Signature',
             from: '@fa-ge',
           })
+      }
+
+      
 
           // 唤起浏览器原生分享组件(如果在微信中不会唤起，此时call方法只会设置文案。类似setShareData)
           try {

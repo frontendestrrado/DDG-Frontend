@@ -11,15 +11,12 @@
     />
     </div>
    </div>
+
+
   <div class="row bodybox1">
      <div class="col-md-6">
        <van-loading v-if="loadingShow" />
-     <!-- <van-search
-      v-model="product_id"
-      placeholder="Product Name"
-      @search="onSearch"
-      @clear="clearSearch"
-    /> -->
+ 
     <div class="van-search block">
     <div id="app" class="slect-boxdiv">
   <select @change="onSearch" v-model="product_id" >
@@ -31,12 +28,6 @@
      </div>
     <div class="col-md-6">
       <van-loading v-if="loadingShow" />
-     <!-- <van-search
-      v-model="status"
-      placeholder="All orders"
-      @search="onSearch"
-      @clear="clearSearch"
-    /> -->
        <div class="van-search block1">
       <div id="app" class="slect-boxdiv">
   <select  @change="onSearch" v-model="status" >
@@ -133,7 +124,41 @@
     />
        </div>
        </div>
+       <div class="row bodybox1">
+     <div class="col-md-6">
+       <van-loading v-if="loadingShow" />
+ 
+    <div class="van-search block">
+    <div id="app" class="slect-boxdiv">
+      <select v-model="order" >
+         <option  v-for="item in year4" :value="item.value">{{item.text}}</option>
+     </select>
+       </div>
+       </div>
+     </div>
+
+  </div>
+       
+   <!-- <div class="row bodybox1">
+    <div class="col-md-6">
+      <van-loading v-if="loadingShow" />
+       <div class="van-search block1">
+      <div id="app" class="slect-boxdiv">
+  <select v-model="order" >
+         <option  v-for="item in year4" :value="item.value">{{item.text}}</option>
+     </select>
+       </div>
+    </div>
+    </div>
+  </div> -->
         <div class="row col-md-12 btn-rightalign">
+
+          <div class="col-md-2">
+        <van-button  round block type="info"   @click="onExport"   class="btn-export">
+        Export
+      </van-button>
+       </div>
+
       <div class="col-md-2">
          <van-button  round block type="info" @click="reset"   class="btn-reset">
         Reset
@@ -161,6 +186,15 @@
           <van-tag  class="aigp2" type="danger" v-if="item.product_id===4" size="large">{{item.product}}</van-tag>
         
         </div>
+        <div class="orderList2">
+       
+          <!-- moment(new Date()).format('YYYY-MM-DD'), -->
+          <van-tag type="success" plain  size="large">Effective Date : {{item.effective_date}}</van-tag>
+        </div>
+      <div class="orderList2">
+          <van-tag type="success" plain  size="large">Maturity Date :{{item.maturity_date}}</van-tag>
+        </div>
+        
         <div>
           <van-tag type="danger" v-if="item.status===0" size="large">Not Yet Submit</van-tag>
           <van-tag type="success" plain v-if="item.status===1" size="large">Waiting For Approval</van-tag>
@@ -253,15 +287,20 @@
         
           <span class="NotFilledCol" v-if="item.fund_received_status==='Pending'"> (Pending) </span>
           <span class="FilledCol" v-else> (Completed) </span>
-           <!-- <span v-if="item.fund_received_status!=='Pending'"><van-image
-							style="width: 15px;height:auto;margin: 0 auto; margin-right:6px;"
-							:src="require('@/assets/img/download.png')"
-							fit="contain"
-              @click="download(item.fund_received_file)"
-              title="Click to download"
-							/></span> -->
+         
            </div>
         
+
+           <div class="pb-3"  v-if="item.product_id==1 && item.status!==0" >
+          <span v-if="item.trust_setup_status==='Pending'">Trust setup acknowledgement   </span>
+          <span class="txtFund" title="Click to download" @click="download(item.trust_setup_file)" v-else> Trust setup acknowledgement </span>
+        
+          <span class="NotFilledCol" v-if="item.trust_setup_status==='Pending'"> (Pending) </span>
+          <span class="FilledCol" v-else> (Completed) </span>
+         
+           </div>
+
+           
           <!-- <p class="pb-3" v-if="item.product_id==1 && item.status!==0">
             Trust setup acknowledgement  
             <span class="NotFilledCol" v-if="item.trust_setup_status==='Pending'"> (Pending) </span>
@@ -276,7 +315,7 @@
 
           </p> -->
           
-          
+          <van-button class="aigp" type="danger" v-if="item.product_id===1" size="small" @click="reorder(item)">Reorder</van-button>  
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
         <van-button type="primary"  @click="toFill(item)" size="small">{{item.status===2?"View":"To fill"}}</van-button><br>
          
@@ -294,9 +333,12 @@
 </template>
 
 <script>
-import { getOrders ,productList} from "@/api/tools";
+import moment from 'moment'
+import { getOrders ,productList, getOrdersExport} from "@/api/tools";
+import { createOrders, getOrdersForms, putOrdersForms } from "@/api/order";
 import {deleteOrder} from '@/api/order'
 import { Dialog } from 'vant';
+import fileDownload from 'js-file-download'
 export default {
   data() {
     return {
@@ -317,6 +359,11 @@ export default {
           { value: '3', text: 'Not Approved'  },
           { value: '4', text: 'Canceled'  }
         ],
+        year4: [
+          { value: 'date_desc', text: 'Order date desc' }, 
+          { value: 'maturity_date', text: 'Maturity'  }
+        ],
+
         item: {
           value: '',
           text: ''
@@ -328,7 +375,7 @@ export default {
           start_date: '',
             end_date: '',
               price_from: '',
-              order:'',
+              order:'date_desc',
                 price_to: '',
                   product_id: '',
       loadingShow: true,
@@ -341,6 +388,13 @@ export default {
     this.$store.commit('changeIsOverseaSignature',false)
     this.getOrders();
       this.productList();
+      this.$store.commit('ChangeReorder', '')
+      this.$store.commit('ChangeIdReorder', '')
+      this.$store.commit('ChangeAigtId1', '')
+      this.$store.commit('ChangeAigtId2', '')
+      this.$store.commit('ChangeAigtId3', '')
+      this.$store.commit('ChangeAigtId4', '')
+      this.$store.commit('ChangeAigtId5', '')
   },
   computed: {
   },
@@ -352,7 +406,7 @@ export default {
  this.end_date= '',
  this.price_from= '',
  this.price_to= '',
- this.order='',
+ this.order='date_desc',
  this.product_id= '',
  this.currentPage=1
  
@@ -427,12 +481,46 @@ export default {
           console.log(err.response);
         });
     },
+    onExport(){
+      getOrdersExport({
+        search: this.searchVal,
+         status: this.status,
+          start_date: this.start_date,
+           end_date: this.end_date,
+            price_from: this.price_from,
+             price_to: this.price_to,
+              product_id: this.product_id,
+        order: this.order,
+     //   order: "date_desc",
+        page: this.currentPage
+      })
+        .then((res) => {
+          console.log(".......555....export.....",res)
+
+          let url1 = res.file.split('storage')
+      console.log("ccccccccccccccccccccc",url1)
+      console.log("aaaaaaaaaaaaaaaaaa",url1[0])
+      console.log("bbbbbbbbbbbbbbbb",url1[1])
+      window.open(url1[0] + 'file/download?path=storage' + url1[1], '_self')
+
+        //  fileDownload(res.file,'file.xls')
+          // this.orderList = res;
+          // this.per_page = res.meta.per_page
+          // this.rows = res.meta.total
+          // this.loadingShow = false
+          // console.log(res)
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+
+    },
     onSearch() {
-      this.order = "date_desc";
+     // this.order = "date_desc";
       this.getOrders()
     },
     clearSearch() {
-      this.order = '';
+      this.order = 'date_desc';
       this.getOrders()
     },
     //繼續填寫訂單
@@ -475,6 +563,61 @@ export default {
 
 
      
+    },
+    reorder(item){
+
+      this.$store.commit('changeIsOverseaSignature',true)
+      console.log("---item------",item)
+      
+      this.$store.commit('ChangeReorder', 1)
+
+      this.$store.commit('ChangeIdReorder', item.id)
+      this.$store.commit('ChangeAigtId1', item.customer_app_form)
+      this.$store.commit('ChangeAigtId2', item.kyc_form)
+      this.$store.commit('ChangeAigtId3', item.letter_of_wishes_form)
+      this.$store.commit('ChangeAigtId4', item.pdpa_memo_form)
+      this.$store.commit('ChangeAigtId5', item.document_check_list_form)
+               this.$store.commit('changeIsOverseaSignature',true)
+       this.$router.push('/OrderSignature')
+       this.$store.commit('changePage',{tabbar: '/OrderSignature', title: 'OrderSignature'});
+
+      // if (item.customer_app_form > 0) {
+      //   console.log("QQQQQQ", item.customer_app_form)
+      //   getOrdersForms(item.customer_app_form, { type: "Customer Application" })
+      //     .then((res) => {
+      //       console.log(res, "獲取Customer Application數據");
+           
+      //       this.$store.commit('Changebeneficiary_infoReorder', JSON.parse(res.beneficiary_info))
+
+      //       this.$store.commit('Changebeneficiary_name_trusteeReorder', res.beneficiary_name_trustee)
+      //       this.$store.commit('Changenric_passport_no_company_noReorder', res.nric_passport_no_company_no)
+      //       this.$store.commit('ChangerelationshipReorder', res.relationship)
+      //       this.$store.commit('Changecontact_noReorder', res.contact_no)
+      //       this.$store.commit('Changepercentage_of_distributionReorder', res.percentage_of_distribution)
+
+      //        this.$store.commit('ChangepriceReorder', res.price)
+
+      //       this.$store.commit('Changedetails_bank_nameReorder', res.details_bank_name)
+      //       this.$store.commit('Changedetails_account_noReorder', res.details_account_no)
+      //       this.$store.commit('Changedetails_account_ownerReorder', res.details_account_owner)
+
+      //       this.$store.commit('Changeaccount_nameReorder', res.account_name)
+      //       this.$store.commit('ChangebankReorder', res.bank)
+      //       this.$store.commit('Changeaccount_noReorder', res.account_no)
+      //       this.$store.commit('Changeswift_codeReorder', res.swift_code)
+
+      //       this.$store.commit('ChangesignatureReorder', res.signature)
+
+      //       this.$store.commit('changeIsOverseaSignature',true)
+      //  this.$router.push('/OrderSignature')
+      //  this.$store.commit('changePage',{tabbar: '/OrderSignature', title: 'OrderSignature'});
+
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     });
+      // }
+    
     },
     //刪除未提交訂單
     del(id) {
@@ -524,6 +667,12 @@ export default {
     border-radius: 10px;
     color: red;
     border: 1px solid #6c757d;
+  }
+  .btn-export{
+      background-color: #897359;
+      color: #fff;
+       border-radius: 10px;
+      border: 1px solid #897359;
   }
   .btn-search{
       background-color: #6c757d;

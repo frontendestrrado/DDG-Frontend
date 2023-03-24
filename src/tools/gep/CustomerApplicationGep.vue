@@ -346,7 +346,7 @@ export default {
         income_legitimate: "",
         income_legitimate_details: "",
         have_high_risk: "",
-        have_high_risk_details: "",
+        have_high_risk_details: null,
         subcriber_name: "",
         nric_no: "",
         subscriber_signature: "",
@@ -513,7 +513,7 @@ console.log("....7777....",this.isFilled)
             type: "success",
             message: "Modify the success",
           });
-          if (!this.$route.query.isShare) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
         });
@@ -523,6 +523,7 @@ console.log("....7777....",this.isFilled)
           .then((res) => {
             console.log(data, "......xxx.......");
             console.log(res, "......xxx.......");
+            this.isFilled = res.gep_kyc_form
             this.$toast.success("You can Just moved to Next form");
             this.$store.commit("changePage", {
               tabbar: "/KYCGep",

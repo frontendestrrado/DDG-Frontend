@@ -368,7 +368,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if(!this.$route.query.isShare){
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
             this.$router.go(-1);
           }
         });
@@ -381,7 +381,8 @@ export default {
         }
         pdpa_memoGep(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("----gep1-----4--",res);
+            this.isFilled = res.gepNonDisclosureAgreement
             this.$toast({
               type: "success",
               message: "You can Just moved to Next form",

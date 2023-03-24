@@ -50,6 +50,33 @@ export const getOrders = query => {
     params: query
   })
 }
+export const getHelpDesk = query => {
+  console.log(".....kkkkkkkkk.....getHelpDesk...",query)
+  return request({
+    url: '/api/v1/user/helpdesk/tickets',
+    method: 'get',
+    params: query
+  })
+}
+
+export const getBirthday = query => {
+  console.log(".....kkkkkkkkk.....getBirthday...",query)
+  return request({
+    url: '/api/v1/user/settlor/birthday',
+    method: 'get',
+    params: query
+  })
+}
+
+
+export const getOrdersExport = query => {
+  console.log(".....kkkkkkkkk........",query)
+  return request({
+    url: '/api/v1/user/orders/export',
+    method: 'get',
+    params: query
+  })
+}
 
 
 export const videoCompleteApi = id => {

@@ -6,31 +6,50 @@
       </van-button> -->
       <div class="minTitle">GENERAL INFORMATION</div>
       <!-- 文本框 -->
-      <van-field v-model="formData.name" name="name" autocomplete="off" center :required="true"  @input="formData.name = formData.name.toUpperCase()" type="text"
-        @change="onCampanyIndividualName" label="COMPANY / INDIVIDUAL NAME"
-        placeholder="Please enter the COMPANY / INDIVIDUAL NAME" :rules="[
-          {
-            required: true,
-          },
-        ]" />
-      <van-field v-model="formData.passport_no" autocomplete="off" @input="formData.passport_no = formData.passport_no.toUpperCase()" name="passport_no" center :required="true"
-        type="text" label="ROC / NRIC / PASSPORT NO" placeholder="Please enter the ROC / NRIC / PASSPORT NO" :rules="[
-          {
-            required: true,
-          },
-        ]" />
-      <van-field v-model="formData.born_date"  autocomplete="off" name="born_date" center :required="true"
+      <div class="row">
+        <div class="col-md-6">
+          <van-field v-model="formData.name" name="name" autocomplete="off" center :required="true" type="text"
+            @change="onCampanyIndividualName" label="COMPANY / INDIVIDUAL NAME"
+            placeholder="Please enter the COMPANY / INDIVIDUAL NAME" :rules="[
+              {
+                required: true,
+              },
+            ]" />
+        </div>
+        <div class="col-md-6">
+          <van-field v-model="formData.passport_no" autocomplete="off" name="passport_no" center :required="true"
+            type="text" label="ROC / NRIC / PASSPORT NO" placeholder="Please enter the ROC / NRIC / PASSPORT NO" :rules="[
+              {
+                required: true,
+              },
+            ]" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+
+      <van-field v-model="formData.born_date" autocomplete="off" name="born_date" center :required="true"
         label="DATE OF BIRTH: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
-      <van-field v-model="formData.occupation" @input="formData.occupation = formData.occupation.toUpperCase()" autocomplete="off" name="occupation" center :required="true" type="text"
+      </div>
+        <div class="col-md-6">
+      <van-field v-model="formData.occupation" autocomplete="off" name="occupation" center :required="true" type="text"
         label="OCCUPATION" placeholder="Please enter the OCCUPATION" :rules="[{ required: true }]" />
-      <van-field v-model="formData.address" @input="formData.address = formData.address.toUpperCase()" autocomplete="off" name="address" center :required="true" type="text"
+      </div>
+        
+        </div>
+        
+
+        
+      <van-field v-model="formData.address" autocomplete="off" name="address" center :required="true" type="text"
         label="ROC REGISTERED / RESIDENTIAL ADDRESS" placeholder="Please enter the ROC REGISTERED / RESIDENTIAL ADDRESS"
         :rules="[
           {
             required: true,
           },
         ]" />
+
       <div class="minTitle">CONTACT DETAILS</div>
       <van-field v-model="formData.phone" autocomplete="off" name="phone" center :required="true"
         @keyup.delete="console.log(1)" @keypress="isLetter($event)" type="text" label="MOBILE NO"
@@ -46,14 +65,14 @@
         Individual Trustor Only)</span>
       <van-button class="esignBtn" native-type="button" @click="addBeneficiary">Add</van-button>
       <div class="beneficiary_info" v-for="(item, inx) in formData.beneficiary_info" :key="inx">
-        <van-field v-model="item.BENEFICIARY_NAME"  @input="item.BENEFICIARY_NAME = item.BENEFICIARY_NAME.toUpperCase()"  name="BENEFICIARY_NAME" autocomplete="off" :required="true" center
+        <van-field v-model="item.BENEFICIARY_NAME" name="BENEFICIARY_NAME" autocomplete="off" :required="true" center
           type="text" label="BENEFICIARY NAME / TRUSTEE" placeholder="Please enter the BENEFICIARY NAME / TRUSTEE"
-          :rules="[{ required: true }]"  />
-        <van-field v-model="item.COMPANY_NO" autocomplete="off"  @input="item.COMPANY_NO = item.COMPANY_NO.toUpperCase()"  name="COMPANY_NO" center :required="true" type="text"
+          :rules="[{ required: true }]" />
+        <van-field v-model="item.COMPANY_NO" autocomplete="off" name="COMPANY_NO" center :required="true" type="text"
           label="NRIC / PASSPORT NO COMPANY NO." placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO."
           :rules="[{ required: true }]" />
-        <van-field v-model="item.RELATIONSHIP"  @input="item.RELATIONSHIP = item.RELATIONSHIP.toUpperCase()"  name="RELATIONSHIP" center autocomplete="off" :required="true"
-          type="text" label="RELATIONSHIP" placeholder="Please enter the RELATIONSHIP" :rules="[{ required: true }]" />
+        <van-field v-model="item.RELATIONSHIP" name="RELATIONSHIP" center autocomplete="off" :required="true" type="text"
+          label="RELATIONSHIP" placeholder="Please enter the RELATIONSHIP" :rules="[{ required: true }]" />
         <van-field v-model="item.CONTACT_NO" name="CONTACT_NO" autocomplete="off" center :required="true" type="text"
           label="CONTACT NO" @keypress="isLetter($event)" placeholder="Please enter the CONTACT NO"
           :rules="[{ required: true }]" />
@@ -67,18 +86,17 @@
       <div class="minTitle">
         SUBSITUTED BENEFICIARY(IES)(Applicable for Individual Trustor Only)
       </div>
-      <van-field v-model="formData.beneficiary_name_trustee" @input="formData.beneficiary_name_trustee = formData.beneficiary_name_trustee.toUpperCase()"  name="beneficiary_name_trustee" center autocomplete="off"
+      <van-field v-model="formData.beneficiary_name_trustee" name="beneficiary_name_trustee" center autocomplete="off"
         type="text" label="BENEFICIARY NAME / TRUSTEE" placeholder="Please enter the BENEFICIARY NAME / TRUSTEE" />
-      <van-field v-model="formData.nric_passport_no_company_no" @input="formData.nric_passport_no_company_no = formData.nric_passport_no_company_no.toUpperCase()" name="nric_passport_no_company_no" center
+      <van-field v-model="formData.nric_passport_no_company_no" name="nric_passport_no_company_no" center
         autocomplete="off" type="text" label="NRIC / PASSPORT NO COMPANY NO"
         placeholder="Please enter the NRIC / PASSPORT NO COMPANY NO" />
-      <van-field v-model="formData.relationship" @input="formData.relationship = formData.relationship.toUpperCase()" name="relationship" center autocomplete="off" type="text"
+      <van-field v-model="formData.relationship" name="relationship" center autocomplete="off" type="text"
         label="RELATIONSHIP" placeholder="Please enter the RELATIONSHIP" />
-      <van-field v-model="formData.contact_no" name="contact_no" center autocomplete="off" type="text"
-        label="CONTACT NO" @keypress="isLetter($event)" placeholder="Please enter the CONTACT NO" />
+      <van-field v-model="formData.contact_no" name="contact_no" center autocomplete="off" type="text" label="CONTACT NO"
+        @keypress="isLetter($event)" placeholder="Please enter the CONTACT NO" />
       <van-field v-model="formData.percentage_of_distribution" name="percentage_of_distribution" center type="text"
-        autocomplete="off" label="PERCENTAGE OF DISTRIBUTION"
-        placeholder="Please enter the PERCENTAGE OF DISTRIBUTION" />
+        autocomplete="off" label="PERCENTAGE OF DISTRIBUTION" placeholder="Please enter the PERCENTAGE OF DISTRIBUTION" />
       <div class="minTitle">
         EMERGENCY CONTACT PARTICULARS (INDIVIDUAL OVER 18 YEARS OLD)
       </div>
@@ -140,9 +158,8 @@
         BANK DETAILS – SOURCE OF FUND (CASH is Not Acceptable) To insert ‘Not
         Applicable’ if Cheque is received
       </div>
-      <van-field v-model="formData.details_bank_name" name="details_bank_name" center autocomplete="off"
-        :required="true" type="text" label="NAME OF BANK" placeholder="Please enter the NAME OF BANK"
-        :rules="[{ required: true }]" />
+      <van-field v-model="formData.details_bank_name" name="details_bank_name" center autocomplete="off" :required="true"
+        type="text" label="NAME OF BANK" placeholder="Please enter the NAME OF BANK" :rules="[{ required: true }]" />
       <van-field v-model="formData.details_account_no" name="details_account_no" center autocomplete="off"
         :required="true" type="text" label="ACCOUNT NO" placeholder="Please enter the ACCOUNT NO"
         :rules="[{ required: true }]" />
@@ -203,7 +220,7 @@
         Conditions of AI GENERATION Trust and note that these may be updated from
         time to time.
       </div>
-    <br></br>
+      <br></br>
       <!-- :style="{ border: '1px solid #666', background: '#7c655d' }" -->
       <div class="tl">SETTLOR SIGNATURE</div>
 
@@ -211,11 +228,11 @@
       <vue-esign ref="esign" style="border: 1px solid #666" :width="800" :height="300" :isCrop="false" :lineWidth="6"
         lineColor="#000000" :bgColor.sync='qwe' :id="'can1'"
         :style="{ display: (this.xyz === '' ? 'block' : formData.signature === null || formData.signature === '' ? 'block' : 'none') }" />
-     
+
       <van-image
         :style="{ border: '1px solid #666', display: (this.xyz === '1' ? formData.signature === null || formData.signature === '' ? 'none' : 'block' : 'none') }"
-        :id="'img1'" class="esignImgbox"  :src="formData.signature" />
-    
+        :id="'img1'" class="esignImgbox" :src="formData.signature" />
+
       <!-- <vue-esign
         ref="esign"
         v-show="sig1"
@@ -248,7 +265,7 @@
         label="DATE: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE' }]" />
 
-        <div class="minTitle">WITNESS DETAIL</div>
+      <div class="minTitle">WITNESS DETAIL</div>
       <van-field v-model="formData.witness_name" name="witness_name" center :required="true" autocomplete="off"
         type="text" label="NAME" placeholder="Please enter the NAME" :rules="[{ required: true }]" />
       <van-field v-model="formData.witness_passport_no" name="witness_passport_no" center autocomplete="off"
@@ -331,7 +348,7 @@ export default {
         account_name: "",
         bank: "",
         account_no: "",
-        swift_code:"",
+        swift_code: "",
 
 
 
@@ -345,11 +362,11 @@ export default {
         dividend_account_owner: "MBBEMYKL",
         witness_name: "",
         witness_passport_no: "",
-        signature:  "",
+        signature: "",
         client_name: "",
         signature_date: moment(new Date()).format('DD-MM-YYYY'),
         beneficiary_name_trustee: "",
-        nric_passport_no_company_no:  "",
+        nric_passport_no_company_no: "",
         relationship: "",
         contact_no: "",
         percentage_of_distribution: "",
@@ -362,15 +379,15 @@ export default {
         reorder: this.$store.state.reorder,
         reorder_ref: this.$store.state.reorderId,
       },
-      qwe:'',
-      sig1: this.$store.state.reorder == 0 ? true: false,
+      qwe: '',
+      sig1: this.$store.state.reorder == 0 ? true : false,
       isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
       from: "", // 記錄哪個頁面進入的
       isFilled: "", // 表單id(未填0)
       minDate: new Date(1900, 0, 1),
-      xyz: this.$store.state.reorder == 0 ? '':'1',
+      xyz: this.$store.state.reorder == 0 ? '' : '1',
       isDone: false, // 訂單是否已確認
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
     };
@@ -380,10 +397,10 @@ export default {
   //           this.xyz = "1"
   mounted() {
     console.log(this.$route.query, 222222);
-    
+
     console.log("this.$store.state.reorderId", this.$store.state.reorderId);
     console.log("this.$store.state.reorder", this.$store.state.reorder);
-    
+
     // this.from = this.$route.query.from;
     // this.isFilled = this.$route.query.isFilled;
     // this.isDone = this.$route.query.status == 1 ? true : false;
@@ -403,27 +420,27 @@ export default {
 
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
     this.getFormData();
-    console.log("this.$store.state.reorder...........................",this.$store.state.reorder)
+    console.log("this.$store.state.reorder...........................", this.$store.state.reorder)
     console.log("QQQQQQ", this.$store.state.reordercustomer_app_form)
-    if(this.$store.state.reorder == 1){
-     
+    if (this.$store.state.reorder == 1) {
+
       if (this.$store.state.reordercustomer_app_form > 0) {
-      
+
         getOrdersForms(this.$store.state.reordercustomer_app_form, { type: "Customer Application" })
           .then((res) => {
-           
+
             console.log(res, "---------5---5---5---5--");
-            res.beneficiary_info =  [
-          {
-            BENEFICIARY_NAME: "",
-            COMPANY_NO: "",
-            RELATIONSHIP: "",
-            CONTACT_NO: "",
-            PERCENTAGE: "",
-          },
-        ];
-       
-        res.beneficiary_name_trustee = ""
+            res.beneficiary_info = [
+              {
+                BENEFICIARY_NAME: "",
+                COMPANY_NO: "",
+                RELATIONSHIP: "",
+                CONTACT_NO: "",
+                PERCENTAGE: "",
+              },
+            ];
+
+            res.beneficiary_name_trustee = ""
             res.nric_passport_no_company_no = ""
             res.relationship = ""
             res.contact_no = ""
@@ -433,19 +450,19 @@ export default {
             res.details_account_no = ""
             res.details_account_owner = ""
             res.account_name = ""
-          
+
             res.bank = ""
             res.account_no = ""
             res.swift_code = ""
             res.signature = ""
-          
-            console.log("*********3*3*3**1*",res)
+
+            console.log("*********3*3*3**1*", res)
             res.reorder = this.$store.state.reorder
             res.reorder_ref = this.$store.state.reorderId
-        //     reorder: this.$store.state.reorder,
-        // reorder_ref: this.$store.state.reorderId,
+            //     reorder: this.$store.state.reorder,
+            // reorder_ref: this.$store.state.reorderId,
             this.formData = res;
-            console.log("*********3*3*3**2*",this.formData)
+            console.log("*********3*3*3**2*", this.formData)
             this.sig1 = false
             this.xyz = "1"
             // document.getElementById('img1').style.display = 'block'
@@ -459,9 +476,6 @@ export default {
     }
   },
   methods: {
-    uppercase() {
-        this.code = this.code.toUpperCase();
-    },
     onCampanyIndividualName(val) {
       console.log("*******************", val.target._value)
       this.formData.client_name = val.target._value
@@ -538,9 +552,9 @@ export default {
     submit(form) {
       console.log("555555555555555555555", form);
       console.log(form);
-      console.log("-----4----4---4",this.formData);
+      console.log("-----4----4---4", this.formData);
       console.log("this.$store.state.reorderId------1", this.$store.state.reorderId);
-    console.log("this.$store.state.reorder---------2", this.$store.state.reorder);
+      console.log("this.$store.state.reorder---------2", this.$store.state.reorder);
       if (!this.formData.signature && !this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
@@ -566,7 +580,7 @@ export default {
             message: "Modify the success",
           });
 
-          if (!this.$route.query.isShare&& !this.$store.state.isOverseaSignature) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
         });
@@ -617,7 +631,7 @@ export default {
               this.$store.commit('Changedetails_account_owner', data.details_account_owner)
               this.$store.commit('Changedetails_bank_name', data.details_bank_name)
               this.$store.commit('Changedetails_account_no', data.details_account_no)
-              
+
               //     this.$root.$emit('KYC') 
               //  @click="$emit('onSelect')"
               this.$emit('onSelect1')
@@ -635,13 +649,13 @@ export default {
     handleReset(index) {
       this.formData.signature = ''
       this.$refs["esign"].reset(); //清空画布
-     // this.$refs.esign.reset()
+      // this.$refs.esign.reset()
       this.sig1 = true
       this.xyz = ""
       document.getElementById("reset1").focus()
       // document.getElementById('img1').style.display = 'none'
       //       document.getElementById('can1').style.display = 'block'
-  
+
     },
     handleGenerate(index) {
       var that = this;
@@ -754,7 +768,7 @@ export default {
 
 
 
-    /* @media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
       .esignImgbox {
     width: 200px !important;
     height: auto !important;
@@ -765,20 +779,20 @@ export default {
 /* width="800px" height="300px" */
 
 element.style {
-    border: 1px solid rgb(102, 102, 102);
-    display: block;
+  border: 1px solid rgb(102, 102, 102);
+  display: block;
 }
 
 .esignImgbox {
 
   border: 1px solid #666666;
   width: 800px;
-    height: 300px;
-    @media screen and (max-width: 576px) {
-      width: 100% !important;
-      height: 112.5px !important;
-  }
-    
-}
+  height: 300px;
 
+  @media screen and (max-width: 576px) {
+    width: 100% !important;
+    height: 112.5px !important;
+  }
+
+}
 </style>

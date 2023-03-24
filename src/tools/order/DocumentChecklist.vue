@@ -238,9 +238,30 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
         name="third_party_declaration"
         label="Third Party Fund Declaration Form (if applicable)"
         center
+        v-if="!this.$route.query.isShare"
+      
       >
+      <!-- this.$route.query.isShare -->
         <template #input>
-          <van-checkbox v-model="formData.third_party_declaration"></van-checkbox>
+          
+            <van-checkbox  @click="thirdParty" v-model="formData.third_party_declaration"></van-checkbox>
+          
+         
+        </template>
+      </van-field>
+      <van-field
+        name="third_party_declaration"
+        label="Third Party Fund Declaration Form (if applicable)"
+        center
+        
+        v-if="this.$route.query.isShare"
+      >
+      <!-- this.$route.query.isShare -->
+        <template #input>
+          
+            <van-checkbox  @click="thirdParty" v-model="formData.third_party_declaration" :disabled="true"></van-checkbox>
+          
+         
         </template>
       </van-field>
       <div class="minTitle">
@@ -310,14 +331,29 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
         :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
       />
       <van-button v-if="!isDone" round block type="info" native-type="submit" color="#7C655D">
+        <div v-if="this.formData.third_party_declaration == true">
+          <div v-if="this.formData.third_party_declaration == true && this.$route.query.isShare">
+            <span v-if="!this.$route.query.isShare">Save/Next</span>
+          </div>
+          <!-- <div v-if="this.formData.third_party_declaration == true && this.$route.query.isShare">
+            <span v-if="!this.$route.query.isShare">Save/Next</span>
+          </div>
+           -->
+        <span v-if="!this.$route.query.isShare">Save/Next</span>
+        <span v-else>submit</span>
+      </div>
+      <div v-else>
         <span v-if="!this.$route.query.isShare">save</span>
         <span v-else>submit</span>
+      </div>
       </van-button>
 
     </van-form>
-    <van-button  round block type="info" color="#7C655D" style="margin-top:5rem;"  @click="$emit('onSelect')" v-if="$store.state.isOverseaSignature">
+    <div v-if="formData.third_party_declaration == false">
+    <van-button   round block type="info" color="#7C655D" style="margin-top:5rem;"  @click="$emit('onSelect')" v-if="$store.state.isOverseaSignature">
        Copy Link for Sharing with Settlor
     </van-button>
+  </div>
     <!-- 日期彈框 -->
 <!--    <van-popup v-model="isShowPicker" position="bottom">
       <van-datetime-picker
@@ -337,11 +373,54 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
 <script>
 import moment from 'moment'
 import { uploadAutograph, uploadFile } from "@/api/util";
-import { getOrdersForms, putOrdersForms, document_check_list_form } from "@/api/order";
+import { getOrdersForms, putOrdersForms, document_check_list_form, third_party_declaration_form, getOrderDetailFor3rdParty} from "@/api/order";
+
 export default {
   props:['orderDataInfo'],
   data() {
     return {
+      formData3: {
+        trustor_name: "",
+        trustor_date: "",
+        trustor_passport: "",
+        trustor_address: "",
+        trustor_phone: "",
+        // trustor_reference_no: "",
+        third_party_name: "",
+        third_party_date: "",
+        third_party_passport: "",
+        third_party_address: "",
+        third_party_phone: "",
+        third_party_reference_no: "",
+        declaration_third_party: 0,
+        client_signature: "",
+        client_name: "",
+        client_passport: "",
+        client_date: "",
+        witness_signature: "",
+        witness_name: "",
+        witness_passport: "",
+        witness_date: "",
+        nationality: '',
+        occupation: '',
+        industry: '',
+        name_of_employer: '',
+        nature_of_business: '',
+        relationship_with_settlor: '',
+        annual_salary_income: '',
+        source_of_wealth: '',
+        source_of_fund: '',
+        name_of_director: '',
+        name_of_shareholder: '',
+        nature_of_business2: '',
+        profit_loss_statement: '',
+        source_of_fund2: '',
+        contributor_name: '',
+        contributor_contact: '',
+        contributor_email: '',
+        others_please_specify: '',
+        relationship_between: '',
+      },
       formData: {
         name:this.$store.state.campanyIndividualName1,
         nric:this.$store.state.passport_no,
@@ -411,14 +490,17 @@ export default {
       beneficiary_photo_file4:[],
       beneficiary_photo_file5:[],
       qaz: [],
+      orderData: {},
       qaz1: [],
       isDone: false, // 訂單是否已確認
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
-      isDelete :false
+      isDelete :false,
+      third_party_declaration_Id : ''
     };
   },
   mounted() {
     console.log(Number(false) ,222222222);
+    
     // this.from = this.$route.query.from;
     // this.isFilled = this.$route.query.isFilled;
     // this.isDone = this.$route.query.status == 1 ? true : false;
@@ -436,8 +518,163 @@ export default {
     this.getFormData();
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
     console.log("....888....88...88.8...8....",this.isFilled)
+
+     if(this.$store.state.reorder == 1){
+      
+      if (this.$store.state.reorderdocument_check_list_form > 0) {
+    
+    getOrdersForms(this.$store.state.reorderdocument_check_list_form, { type: "Document Checklist" })
+      .then((res) => {
+        console.log(">>.666.>>",res);
+  
+        res.compliance_qestionnaire = false
+        res.application_form = false
+        res.letter_of_wishes = false
+        res.source_of_wealth = false
+        res.source_of_wealth_file= ''
+        res.source_of_fund_file= ''
+        res.source_of_fund_addon=[{}]
+        res.source_of_fund = false
+        res.pdpa =  false
+        res.bank = false
+        res.evidence_of_bank_file = ''
+        res.beneficiary_photocopy =false
+        res.beneficiary_photo_file =[{}]
+        res.trust_deed =false
+        res.third_party_declaration=false
+        res.signature= ''
+        res.agent_date= moment(new Date()).format('DD-MM-YYYY')
+        this.formData=res
+       
+        this.formData.application_form=Number(this.formData.application_form)
+        this.formData.compliance_qestionnaire=Number(this.formData.compliance_qestionnaire)
+        this.formData.settlor_photocopy=Number(this.formData.settlor_photocopy)
+        this.formData.letter_of_wishes=Number(this.formData.letter_of_wishes)
+        this.formData.current_address=Number(this.formData.current_address)
+        this.formData.source_of_fund=Number(this.formData.source_of_fund)
+        this.formData.source_of_wealth=Number(this.formData.source_of_wealth)
+        this.formData.pdpa=Number(this.formData.pdpa)
+        this.formData.third_party_declaration=Number(this.formData.third_party_declaration)
+        this.formData.trust_deed=Number(this.formData.trust_deed)
+        this.formData.beneficiary_photocopy=Number(this.formData.beneficiary_photocopy)
+        this.formData.bank=Number(this.formData.bank)
+        this.settlor_photo_file.push({url: res.settlor_photo_file})
+
+        this.proof_of_current_file.push({url: res.proof_of_current_file})
+        
+        this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+        this.source_of_fund_file.push({url: res.source_of_fund_file})
+        this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
+        this.sig1=false
+        this.xyz = "1"
+       // this.qaz.push(res.beneficiary_photo_file)
+       console.log(".......99999999999............",res.source_of_fund_addon.length)
+       console.log("........888888888...........",res.beneficiary_photo_file.length)
+       for (let j = 0; j < res.source_of_fund_addon.length; j++) {
+
+this.qaz1.push(res.source_of_fund_addon[j])
+}
+        for (let i = 0; i < res.beneficiary_photo_file.length; i++) {
+
+          this.qaz.push(res.beneficiary_photo_file[i])
+        }
+if(res.beneficiary_photo_file.length ===1){
+console.log("...1111....1111...",res.beneficiary_photo_file[0])
+this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+}
+if(res.beneficiary_photo_file.length ===2){
+console.log("...2222....2222...",res.beneficiary_photo_file[1])
+this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+}
+if(res.beneficiary_photo_file.length ===3){
+console.log("...3333....3333...",res.beneficiary_photo_file[2])
+this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+}
+if(res.beneficiary_photo_file.length ===4){
+console.log("...44444....44444...",res.beneficiary_photo_file[3])
+this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
+}
+if(res.beneficiary_photo_file.length >4){
+console.log("...5555....5555...",res.beneficiary_photo_file[4])
+this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
+this.beneficiary_photo_file5.push({url: res.beneficiary_photo_file[4]})
+}
+
+    
+   
+// this.qaz1.push(res.source_of_fund_addon)
+        // for (let j = 0; j < res.source_of_fund_addon.length; j++) {
+
+        //   this.qaz1.push(res.source_of_fund_addon[j])
+        // }
+if(res.source_of_fund_addon.length ===1){
+console.log("...1111....1111...",res.source_of_fund_addon[0])
+this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+}
+if(res.source_of_fund_addon.length ===2){
+console.log("...2222....2222...",res.source_of_fund_addon[1])
+this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+}
+if(res.source_of_fund_addon.length ===3){
+console.log("...3333....3333...",res.source_of_fund_addon[2])
+this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
+}
+if(res.source_of_fund_addon.length ===4){
+console.log("...44444....44444...",res.source_of_fund_addon[3])
+this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
+this.source_of_fund_addon4.push({url: res.source_of_fund_addon[3]})
+}
+if(res.source_of_fund_addon.length > 4){
+console.log("...44444....44444...",res.source_of_fund_addon[3])
+this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
+this.source_of_fund_addon4.push({url: res.source_of_fund_addon[3]})
+this.source_of_fund_addon5.push({url: res.source_of_fund_addon[4]})
+}
+
+      })
+      .catch((err) => {});
+  }
+
+  }
+    
   },
   methods: {
+    getOrderDetailFor3rdParty() {
+
+      if(this.$store.state.isOverseaSignature){
+          idFor3=this.$store.state.CustomerApplicationId
+        }else{
+          idFor3=this.$route.query.orderId
+        }
+
+      console.log(">>>>>>>>>>3333>>>>",idFor3);
+        getOrderDetailFor3rdParty({
+          order_id: idFor3
+})
+      .then(res => {
+        console.log("+++++++++++++++3333333333++++++++++++++++++++++", res.third_party_declaration_form)
+        this.third_party_declaration_Id = res.third_party_declaration_form
+        //this.faqData = res
+      })
+
+
+    },
     beforeRead31(file){
       this.source_of_wealth_file1 = []
 
@@ -505,7 +742,7 @@ return true
       this.source_of_wealth_file5 = []
 
 // }
-return true
+return truesubmit
 // }
     },
     beforeRead4(){
@@ -645,9 +882,31 @@ this.submit()
     delBeneficiary(inx) {
       this.beneficiary_photo_file.splice(inx, 1);
     },
+    getFormData3(id3) {
+      if (id3 > 0) {
+        getOrdersForms(id3, { type: "Third Party Declaration" })
+          .then((res) => {
+            console.log(res);
+            this.formData3 = res;
+            let data = JSON.parse(JSON.stringify(this.formData3));
+            putOrdersForms(id3, {
+          type: "Third Party Declaration",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改Third Party Declaration成功");
+        
+       
+          
+        });
+          
+          })
+          .catch((err) => {});
+      }
+    },
     // 如果已填 獲取數據
     getFormData() {
       if (this.isFilled > 0) {
+    
         getOrdersForms(this.isFilled, { type: "Document Checklist" })
           .then((res) => {
             console.log(">>.666.>>",res);
@@ -775,6 +1034,15 @@ if(res.source_of_fund_addon.length > 4){
       }
 
     },
+    thirdParty(){
+      if (this.formData.third_party_declaration == true) {
+              this.$emit('onSelect3')
+            }
+            else{
+              this.$emit('onSelect4')
+
+            }
+    },
     submit(form) {
       //this.afterRead31()
       console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file1)
@@ -856,6 +1124,8 @@ if(typeof this.source_of_wealth_file5x === "string"){
         this.$toast.fail("Please sign your name");
         return;
       }
+      let data3 = JSON.parse(JSON.stringify(this.formData3));
+
       let data = JSON.parse(JSON.stringify(this.formData));
       data.name = (data.name)+''
       data.nric = (data.nric)+''
@@ -891,8 +1161,28 @@ if(typeof this.source_of_wealth_file5x === "string"){
             type: "success",
             message: "Modify the success",
          });
+         this.getOrderDetailFor3rdParty();
+
+         if (this.formData.third_party_declaration == true) {
+         // alert("1")
+        //  console.log("--------------oo---oo-o-o-o-o------",this.orderData)
+          if(this.third_party_declaration_Id > 0){
+         //   alert("1")
+            this.getFormData3(this.third_party_declaration_Id)
+          }
+          else{
+             third_party_declaration_form(this.$route.query.orderId, data3)
+          .then((res) => {
+    
+          })
+          .catch((err) => {});
+
+          }
+
+
+         }
         }
-          if(!this.$route.query.isShare){
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
             if(this.isDelete === false){
               this.$router.go(-1);
             }
@@ -939,21 +1229,62 @@ if(typeof this.source_of_wealth_file5x === "string"){
         }
         document_check_list_form(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("----5-5-5-5-5--5-5",res);
+            this.isFilled = res.document_check_list_form
+
             this.$toast({
               type: "success",
               message: "Submitted \n successfully",
             });
+
+
+            console.log(".....third_party_declaration....third_party_declaration...",this.formData.third_party_declaration)
+            // if (this.formData.third_party_declaration == true) {
+            //   this.$emit('onSelect3')
+            // }
+            // else{
+            //   this.$emit('onSelect4')
+
+            // }
+
+            if (this.formData.third_party_declaration == true) {
+              third_party_declaration_form(id, data3)
+          .then((res) => {
+    
+          })
+          .catch((err) => {});
+            }
+          
             if (this.from == "create") {
+              console.log("..1..")
               this.$store.commit("changePage", {
                 tabbar: "/SelectProduct",
                 title: "SelectProduct",
               });
               if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
-                this.$router.push("/SelectProduct");
+                console.log("..2..")
+                if (this.formData.third_party_declaration == true) {
+                  console.log("..3..")
+                  this.$store.commit("changePage", {
+                tabbar: "/ThirdPartyDeclaration",
+                title: "Third Party Declaration Form",
+              });
+                  this.$router.push({
+                  path:
+                    "/ThirdPartyDeclaration?from=create&orderId=" + this.$route.query.orderId, query: { campanyIndividualName: this.$route.query.campanyIndividualName }
+                })
+
+                
+                }
+                else{
+                  console.log("..4..")
+                  this.$router.push("/SelectProduct");
+                }
+                
               }
 
             } else {
+              console.log("..5..")
               this.$router.go(-1);
             }
           })

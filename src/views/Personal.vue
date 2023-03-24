@@ -405,6 +405,7 @@ export default {
         data[index] = id;
       } else {
         data[index] = this.userInfo[index];
+        data['bankAccountNo'] = this.userInfo['bankAccountNo'];
       }
       if(index==='birthday') {
         if(!this.pattern.test(data[index])) {

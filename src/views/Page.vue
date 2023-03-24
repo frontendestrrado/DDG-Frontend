@@ -58,6 +58,9 @@ notCount: 0,
 		}
 	},
 	mounted() {
+		this.$store.commit('ChangeDateFlag', true)
+
+		
 		console.log("*****2****2****", sessionStorage.getItem('isShow1'))
 		if (sessionStorage.getItem('isShow1') === "false") {
 			console.log("yyyyyyyyyyyyy")

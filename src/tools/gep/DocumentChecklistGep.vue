@@ -342,7 +342,7 @@ export default {
             type: "success",
             message: "Modify the success",
           });
-          if (!this.$route.query.isShare) {
+          if (!this.$route.query.isShare && !this.$store.state.isOverseaSignature) {
             this.$router.go(-1);
           }
         });
@@ -355,7 +355,8 @@ export default {
         }
         document_check_list_formGep(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("---gep1---5---",res);
+            this.isFilled = res.gepDocumentCheckListForm
             this.$toast({
               type: "success",
               message: "Submitted \n successfully",

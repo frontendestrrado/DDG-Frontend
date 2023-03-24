@@ -136,7 +136,7 @@
         <van-cell class="outBox1" :style="{ border: '1px solid '+i.color_code}" center  v-for="i in item" :key="i.code">
 
     <div>
-          <span class="custom-title" @click="changeActTab(i.code,i.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{i.name}}</b></span> <span class="custom-title">({{i.grade}})</span>
+          <span class="custom-title" @click="changeActTab(i.code,i.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{i.name}}</b></span> {{" "}}[<span class="custom-title">{{i.grade}}</span>]{{" "}}[<span class="custom-title">{{i.code}}</span>]{{" "}}[<span class="custom-title">{{i.phone}}</span>]
     </div>
      <div>
    <span class="custom-title" @click="$router.push('/OrganizeChartDetail2?code='+i.code)">Personal Sales: <b>{{Number(i.personal_sales).toLocaleString()}}</b></span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+i.code)"> | Organizational Sales: <b>{{Number(i.grade_advisor_sales).toLocaleString()}}</b></span>
@@ -148,7 +148,8 @@
         <van-cell class="outBox1" :id="'qaz' + j.introducer+j.index" :style="{ border: '1px solid '+j.color_code , display: 'none'}" center  v-for="j in item1" :key="j.code">
           
     <div>
-          <span class="custom-title" @click="changeActTab(j.code,j.grade_advisor_list_count)"> - </span><span class="custom-title">{{j.name}}</span> <span class="custom-title">({{j.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(j.code,j.grade_advisor_list_count)"> - </span><span class="custom-title">{{j.name}}</span> <span class="custom-title">({{j.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(j.code,j.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{j.name}}</b></span> {{" "}}[<span class="custom-title">{{j.grade}}</span>]{{" "}}[<span class="custom-title">{{j.code}}</span>]{{" "}}[<span class="custom-title">{{j.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+j.code)">Personal Sales: {{Number(j.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+j.code)"> | Organizational Sales: {{Number(j.grade_advisor_sales).toLocaleString()}}</span>
@@ -159,7 +160,8 @@
         <van-cell class="outBox1" :id="'qaz' + k.introducer+k.index" :style="{ border: '1px solid '+k.color_code , display: 'none'}" center  v-for="k in item2" :key="k.code">
       
     <div>
-          <span class="custom-title"  @click="changeActTab(k.code,k.grade_advisor_list_count)"> - </span><span class="custom-title">{{k.name}}</span> <span class="custom-title">({{k.grade}})</span>
+          <!-- <span class="custom-title"  @click="changeActTab(k.code,k.grade_advisor_list_count)"> - </span><span class="custom-title">{{k.name}}</span> <span class="custom-title">({{k.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(k.code,k.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{k.name}}</b></span> {{" "}}[<span class="custom-title">{{k.grade}}</span>]{{" "}}[<span class="custom-title">{{k.code}}</span>]{{" "}}[<span class="custom-title">{{k.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+k.code)">Personal Sales: {{Number(k.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+k.code)"> | Organizational Sales: {{Number(k.grade_advisor_sales).toLocaleString()}}</span>
@@ -169,7 +171,8 @@
 <van-cell-group title="" v-for="(item3,index3) in  k.grade_advisor_list" :key="index3" >
         <van-cell class="outBox1" :id="'qaz' + l.introducer+l.index" :style="{ border: '1px solid '+l.color_code , display: 'none'}" center  v-for="l in item3" :key="l.code">
     <div>
-          <span class="custom-title" @click="changeActTab(l.code,l.grade_advisor_list_count)"> - </span><span class="custom-title">{{l.name}}</span> <span class="custom-title">({{l.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(l.code,l.grade_advisor_list_count)"> - </span><span class="custom-title">{{l.name}}</span> <span class="custom-title">({{l.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(l.code,l.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{l.name}}</b></span> {{" "}}[<span class="custom-title">{{l.grade}}</span>]{{" "}}[<span class="custom-title">{{l.code}}</span>]{{" "}}[<span class="custom-title">{{l.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+l.code)">Personal Sales: {{Number(l.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+l.code)"> | Organizational Sales: {{Number(l.grade_advisor_sales).toLocaleString()}}</span>
@@ -179,7 +182,8 @@
 <van-cell-group title="" v-for="(item4,index4) in  l.grade_advisor_list" :key="index4" >
         <van-cell class="outBox1" :id="'qaz' + m.introducer+m.index" :style="{ border: '1px solid '+m.color_code , display: 'none'}" center  v-for="m in item4" :key="m.code">
     <div>
-          <span class="custom-title" @click="changeActTab(m.code,m.grade_advisor_list_count)"> - </span><span class="custom-title">{{m.name}}</span> <span class="custom-title">({{m.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(m.code,m.grade_advisor_list_count)"> - </span><span class="custom-title">{{m.name}}</span> <span class="custom-title">({{m.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(m.code,m.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{m.name}}</b></span> {{" "}}[<span class="custom-title">{{m.grade}}</span>]{{" "}}[<span class="custom-title">{{m.code}}</span>]{{" "}}[<span class="custom-title">{{m.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+m.code)">Personal Sales: {{Number(m.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+m.code)"> | Organizational Sales: {{Number(m.grade_advisor_sales).toLocaleString()}}</span>
@@ -190,7 +194,8 @@
 <van-cell-group title="" v-for="(item5,index5) in  m.grade_advisor_list" :key="index5" >
         <van-cell class="outBox1" :id="'qaz' + n.introducer+n.index" :style="{ border: '1px solid '+n.color_code , display: 'none'}" center  v-for="n in item5" :key="n.code">
     <div>
-          <span class="custom-title" @click="changeActTab(n.code,n.grade_advisor_list_count)"> - </span><span class="custom-title">{{n.name}}</span> <span class="custom-title">({{n.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(n.code,n.grade_advisor_list_count)"> - </span><span class="custom-title">{{n.name}}</span> <span class="custom-title">({{n.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(n.code,n.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{n.name}}</b></span> {{" "}}[<span class="custom-title">{{n.grade}}</span>]{{" "}}[<span class="custom-title">{{n.code}}</span>]{{" "}}[<span class="custom-title">{{n.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+n.code)">Personal Sales: {{Number(n.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+n.code)"> | Organizational Sales: {{Number(n.grade_advisor_sales).toLocaleString()}}</span>
@@ -200,7 +205,8 @@
 <van-cell-group title="" v-for="(item6,index6) in  n.grade_advisor_list" :key="index6" >
         <van-cell class="outBox1" :id="'qaz' + o.introducer+o.index" :style="{ border: '1px solid '+o.color_code , display: 'none'}" center  v-for="o in item6" :key="o.code">
     <div>
-          <span class="custom-title" @click="changeActTab(o.code,o.grade_advisor_list_count)"> - </span><span class="custom-title">{{o.name}}</span> <span class="custom-title">({{o.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(o.code,o.grade_advisor_list_count)"> - </span><span class="custom-title">{{o.name}}</span> <span class="custom-title">({{o.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(o.code,o.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{o.name}}</b></span> {{" "}}[<span class="custom-title">{{o.grade}}</span>]{{" "}}[<span class="custom-title">{{o.code}}</span>]{{" "}}[<span class="custom-title">{{o.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+o.code)">Personal Sales: {{Number(o.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+o.code)"> | Organizational Sales: {{Number(o.grade_advisor_sales).toLocaleString()}}</span>
@@ -211,7 +217,8 @@
 <van-cell-group title="" v-for="(item7,index7) in  o.grade_advisor_list" :key="index7" >
         <van-cell class="outBox1" :id="'qaz' + p.introducer+p.index" :style="{ border: '1px solid '+p.color_code , display: 'none'}" center  v-for="p in item7" :key="p.code">
     <div>
-          <span class="custom-title"  @click="changeActTab(p.code,p.grade_advisor_list_count)"> - </span><span class="custom-title">{{p.name}}</span> <span class="custom-title">({{p.grade}})</span>
+          <!-- <span class="custom-title"  @click="changeActTab(p.code,p.grade_advisor_list_count)"> - </span><span class="custom-title">{{p.name}}</span> <span class="custom-title">({{p.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(p.code,p.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{p.name}}</b></span> {{" "}}[<span class="custom-title">{{p.grade}}</span>]{{" "}}[<span class="custom-title">{{p.code}}</span>]{{" "}}[<span class="custom-title">{{p.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+p.code)">Personal Sales: {{Number(p.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+p.code)"> | Organizational Sales: {{Number(p.grade_advisor_sales).toLocaleString()}}</span>
@@ -222,7 +229,8 @@
 <van-cell-group title="" v-for="(item8,index8) in  p.grade_advisor_list" :key="index8" >
         <van-cell class="outBox1" :id="'qaz' + q.introducer+q.index" :style="{ border: '1px solid '+q.color_code , display: 'none'}" center  v-for="q in item8" :key="q.code">
     <div>
-          <span class="custom-title" @click="changeActTab(q.code,q.grade_advisor_list_count)"> - </span><span class="custom-title">{{q.name}}</span> <span class="custom-title">({{q.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(q.code,q.grade_advisor_list_count)"> - </span><span class="custom-title">{{q.name}}</span> <span class="custom-title">({{q.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(q.code,q.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{q.name}}</b></span> {{" "}}[<span class="custom-title">{{q.grade}}</span>]{{" "}}[<span class="custom-title">{{q.code}}</span>]{{" "}}[<span class="custom-title">{{q.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+q.code)">Personal Sales: {{Number(q.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+q.code)"> | Organizational Sales: {{Number(q.grade_advisor_sales).toLocaleString()}}</span>
@@ -232,7 +240,8 @@
 <van-cell-group title="" v-for="(item9,index9) in  q.grade_advisor_list" :key="index9" >
         <van-cell class="outBox1" :id="'qaz' + r.introducer+r.index" :style="{ border: '1px solid '+r.color_code , display: 'none'}" center  v-for="r in item9" :key="r.code">
     <div>
-          <span class="custom-title" @click="changeActTab(r.code,r.grade_advisor_list_count)"> - </span><span class="custom-title">{{r.name}}</span> <span class="custom-title">({{r.grade}})</span>
+          <!-- <span class="custom-title" @click="changeActTab(r.code,r.grade_advisor_list_count)"> - </span><span class="custom-title">{{r.name}}</span> <span class="custom-title">({{r.grade}})</span> -->
+          <span class="custom-title" @click="changeActTab(r.code,r.grade_advisor_list_count)" ><b>- </b></span><span class="custom-title"><b>{{r.name}}</b></span> {{" "}}[<span class="custom-title">{{r.grade}}</span>]{{" "}}[<span class="custom-title">{{r.code}}</span>]{{" "}}[<span class="custom-title">{{r.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+r.code)">Personal Sales: {{Number(r.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+r.code)"> | Organizational Sales: {{Number(r.grade_advisor_sales).toLocaleString()}}</span>
@@ -242,7 +251,8 @@
 <van-cell-group title="" v-for="(item10,index10) in  r.grade_advisor_list" :key="index10" >
         <van-cell class="outBox1" :id="'qaz' + s.introducer+s.index" :style="{ border: '1px solid '+s.color_code , display: 'none'}" center  v-for="s in item10" :key="s.code">
     <div>
-          <span class="custom-title"> - </span><span class="custom-title">{{s.name}}</span> <span class="custom-title">({{s.grade}})</span>
+          <!-- <span class="custom-title"> - </span><span class="custom-title">{{s.name}}</span> <span class="custom-title">({{s.grade}})</span> -->
+          <span class="custom-title"><b>- </b></span><span class="custom-title"><b>{{s.name}}</b></span> {{" "}}[<span class="custom-title">{{s.grade}}</span>]{{" "}}[<span class="custom-title">{{s.code}}</span>]{{" "}}[<span class="custom-title">{{s.phone}}</span>]
     </div>
      <div>
    <span class="custom-title"  @click="$router.push('/OrganizeChartDetail2?code='+s.code)">Personal Sales: {{Number(s.personal_sales).toLocaleString()}}</span> <span class="custom-title" @click="$router.push('/OrganizeChartDetail?code='+s.code)"> | Organizational Sales: {{Number(s.grade_advisor_sales).toLocaleString()}}</span>
@@ -318,7 +328,9 @@ export default {
         selected: '',
          formatted1: '',
         selected1: '',
-         start_date: moment(new Date(new Date().getFullYear(), 0, 1)).format('YYYY-MM-DD'),
+        //  start_date: moment(new Date(new Date().getFullYear(), 0, 1)).format('YYYY-MM-DD'),
+        start_date: this.$store.state.dateFlag == true ?  (moment(new Date(new Date().getFullYear(), 0, 1)).format('YYYY-MM-DD')) : ( moment(new Date(new Date().getFullYear(), new Date().getMonth(), 1)).format('YYYY-MM-DD')),
+       // start_date: moment(new Date(new Date().getFullYear(), new Date().getMonth(), 1)).format('YYYY-MM-DD'),
             end_date:moment(new Date()).format('YYYY-MM-DD'),
 			me: {},
 		  down_line: [],

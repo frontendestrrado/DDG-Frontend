@@ -8,6 +8,45 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     shareOrderData:{},
+    reorderId:'',
+    reorder:'',
+    reordercustomer_app_form: '',
+    reorderkyc_form:'',
+    reorderletter_of_wishes_form:'',
+    reorderpdpa_memo_form:'',
+    reorderdocument_check_list_form:'',
+    
+    // beneficiary_infoReorder: [
+    //   {
+    //     BENEFICIARY_NAME: "",
+    //     COMPANY_NO: "",
+    //     RELATIONSHIP: "",
+    //     CONTACT_NO: "",
+    //     PERCENTAGE: "",
+    //   },
+    // ],
+    // beneficiary_name_trusteeReorder: null,
+    // nric_passport_no_company_noReorder: null,
+    // relationshipReorder: null,
+    // contact_noReorder: null,
+    // percentage_of_distributionReorder: null,
+
+    // priceReorder: null,
+
+    // details_bank_nameReorder: null,
+    // details_account_noReorder: null,
+    // details_account_ownerReorder: null,
+
+    // swift_codeReorder: null,
+    // account_noReorder: null,
+    // bankReorder: null,
+    // account_nameReorder: null,
+
+    // signatureReorder:null,
+
+    //
+
+    // ///
     // isShare:false,
 abc:null,
 details_account_owner:null,
@@ -24,6 +63,7 @@ details_account_no:null,
     changeGep2Val:null,
     CustomerApplicationId:null,
     campanyIndividualName1:null,
+    dateFlag:null,
     campanyIndividualName1Gep:null,
     campanyIndividualName1Gep2:null,
     nationalityGep:null,
@@ -206,6 +246,15 @@ details_account_no:null,
           case 'customerLogin':
             val.title='Customer Login'
             break;
+            case 'helpdesk':
+              val.title='Help desk'
+              break;
+               case 'RequestDetails':
+              val.title='Request Details'
+              break;
+              case 'NewRequest':
+                val.title='Submit a New Request'
+                break;
             case 'customerHome':
               val.title='Customer Home'
               break;
@@ -250,6 +299,108 @@ details_account_no:null,
       state.signature=val
       console.log(val,"hhhhh")
     },
+
+// ---Re Order -----
+
+ChangeIdReorder(state,val){
+  state.reorderId=val
+  console.log(val,"hhhhh")
+},
+ChangeReorder(state,val){
+  state.reorder=val
+  console.log(val,"hhhhh")
+},
+ChangeAigtId1(state,val){
+  state.reordercustomer_app_form=val
+  console.log(val,"hhhhh")
+},
+ChangeAigtId2(state,val){
+  state.reorderkyc_form=val
+  console.log(val,"hhhhh")
+},
+ChangeAigtId3(state,val){
+  state.reorderletter_of_wishes_form=val
+  console.log(val,"hhhhh")
+},
+ChangeAigtId4(state,val){
+  state.reorderpdpa_memo_form=val
+  console.log(val,"hhhhh")
+},
+ChangeAigtId5(state,val){
+  state.reorderdocument_check_list_form=val
+  console.log(val,"hhhhh")
+},
+
+
+
+
+
+// Changebeneficiary_infoReorder(state,val){
+//   state.beneficiary_infoReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changebeneficiary_name_trusteeReorder(state,val){
+//   state.beneficiary_name_trusteeReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changenric_passport_no_company_noReorder(state,val){
+//   state.nric_passport_no_company_noReorder=val
+//   console.log(val,"hhhhh")
+// },
+// ChangerelationshipReorder(state,val){
+//   state.relationshipReorder=val
+//   console.log(val,"hhhhh")
+// },Changecontact_noReorder(state,val){
+//   state.contact_noReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changepercentage_of_distributionReorder(state,val){
+//   state.percentage_of_distributionReorder=val
+//   console.log(val,"hhhhh")
+// },
+// ChangepriceReorder(state,val){
+//   state.priceReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changedetails_bank_nameReorder(state,val){
+//   state.details_bank_nameReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changedetails_account_noReorder(state,val){
+//   state.details_account_noReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changedetails_account_ownerReorder(state,val){
+//   state.details_account_ownerReorder=val
+//   console.log(val,"hhhhh")
+// },
+
+// Changeaccount_nameReorder(state,val){
+//   state.account_nameReorder=val
+//   console.log(val,"hhhhh")
+// },
+// ChangebankReorder(state,val){
+//   state.bankReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changeaccount_noReorder(state,val){
+//   state.account_noReorder=val
+//   console.log(val,"hhhhh")
+// },
+// Changeswift_codeReorder(state,val){
+//   state.swift_codeReorder=val
+//   console.log(val,"hhhhh")
+// },
+
+// ChangesignatureReorder(state,val){
+//   state.signatureReorder=val
+//   console.log(val,"hhhhh")
+// },
+
+
+
+// ---Re Order -----
+
     Changedetails_account_owner(state,val){
       state.details_account_owner=val
       console.log(val,"hhhhh")
@@ -335,6 +486,10 @@ details_account_no:null,
     },
     ChangecampanyIndividualName(state,val){
       state.campanyIndividualName1=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangeDateFlag(state,val){
+      state.dateFlag=val
       console.log(val,"hhhhh.....................")
     },
     Changepassport_no(state,val){

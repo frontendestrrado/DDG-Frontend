@@ -127,10 +127,9 @@
 
 
 
-      <van-field name="preference_shares_suscription" label=" Non-disclosure Agreement
-" center>
+      <van-field name="non_disclosure_agreement" label=" Non-disclosure Agreement" center>
         <template #input>
-          <van-checkbox v-model="formData.preference_shares_suscription"></van-checkbox>
+          <van-checkbox v-model="formData.non_disclosure_agreement"></van-checkbox>
         </template>
       </van-field>
 
@@ -826,7 +825,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
             message: "Modify the success",
          });
         }
-          if(!this.$route.query.isShare){
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
             if(this.isDelete === false){
               this.$router.go(-1);
             }
@@ -913,7 +912,8 @@ if(typeof this.source_of_wealth_file5x === "string"){
         }
         document_check_list_formGep2(id, data)
           .then((res) => {
-            console.log(res);
+            console.log("86876878697867",res);
+            this.isFilled = res.GepTwoDocumentCheckListForm
             this.$toast({
               type: "success",
               message: "Submitted \n successfully",
@@ -1067,7 +1067,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
       let data = new FormData()
       data.append('file', file.file)
       console.log("...ggggggg.2..",this.source_of_wealth_file1)
-      console.log("...ggggggg.3..",file.file)
+      console.log("...ggggggg.3..",data)
      
       uploadFile(data).then(res => {
 

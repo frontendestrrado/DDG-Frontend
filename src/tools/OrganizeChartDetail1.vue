@@ -20,8 +20,10 @@ export default {
   data() {
     return {
       fields: [
-        {key: 'date',label: 'Date'},
+        
         {key: 'settlor_name',label: 'Advisor Name'},
+        {key: 'code',label: 'Advisor Code'},
+        {key: 'phone',label: 'Phone Number'},
         {key: 'amount',label: 'Amount'}
       ],
       list: []
@@ -38,6 +40,7 @@ export default {
   },
   created() {
     organizeChartDetailApi(this.$route.query).then(res => {
+      console.log("---iii---",res)
       this.list = res.data
     })
   },

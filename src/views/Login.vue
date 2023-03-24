@@ -8,18 +8,7 @@
 					</div> -->
 
           <van-form validate-first @failed="onFailed" @submit="verifyCode" :submit-on-enter="false">
-            <van-field
-              v-model="registForm.firstName"
-              name="firstName"
-              center
-              :required="true"
-              type="text"
-              label="First Name (as per NRIC)"
-              placeholder="Please enter the First Name (as per NRIC)"
-              :rules="[
-                { required: true,message: 'Please enter the First Name (as per NRIC)' },
-              ]"
-            />
+        
             <van-field
               v-model="registForm.thirdName"
               name="thirdName"
@@ -30,6 +19,18 @@
               placeholder="Please enter the Surname"
               :rules="[
                 { required: true, message: ' Please enter the Surname'},
+              ]"
+            />
+            <van-field
+              v-model="registForm.firstName"
+              name="firstName"
+              center
+              :required="true"
+              type="text"
+              label="First Name"
+              placeholder="Please enter the First Name"
+              :rules="[
+                { required: true,message: 'Please enter the First Name' },
               ]"
             />
             <van-field

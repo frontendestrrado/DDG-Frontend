@@ -26,6 +26,14 @@ export default {
     },
       mounted() {
       this.productList();
+      
+      this.$store.commit('ChangeReorder', '')
+      this.$store.commit('ChangeIdReorder', '')
+      this.$store.commit('ChangeAigtId1', '')
+      this.$store.commit('ChangeAigtId2', '')
+      this.$store.commit('ChangeAigtId3', '')
+      this.$store.commit('ChangeAigtId4', '')
+      this.$store.commit('ChangeAigtId5', '')
   },
   methods:{
        productList() {
