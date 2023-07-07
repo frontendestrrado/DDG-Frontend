@@ -4,12 +4,14 @@
 
       <div class="minTitle">Subscriber’s Information</div>
       <van-field v-model="formData.name" name="Name" center type="text" label="Name"
+      @input="formData.name = formData.name.toUpperCase()"
         placeholder="Please enter the Name" 
         :required="true"
         autocomplete="off"
         :rules="[{ required: true }]"/>
 
       <van-field v-model="formData.nric" name="nric" center type="text" label="NRIC / Passport No."
+      @input="formData.nric = formData.nric.toUpperCase()"
         placeholder="Please enter the Relationship"
         :required="true"
         autocomplete="off"
@@ -153,10 +155,12 @@ b) 1 original copy; and Un-dated
 
 
       <van-field v-model="formData.agent_name" name="agent_name" center type="text" label="Name"
+      @input="formData.agent_name = formData.agent_name.toUpperCase()"
         placeholder="Please enter the Name"  autocomplete="off" :required="true"
         :rules="[{ required: true }]"/>
 
       <van-field v-model="formData.agent_nric" name="agent_nric" center type="text" label="NRIC / Passport No."
+      @input="formData.agent_nric = formData.agent_nric.toUpperCase()"
         placeholder="Please enter the NRIC / Passport No." autocomplete="off"  :required="true"
         :rules="[{ required: true }]" />
 

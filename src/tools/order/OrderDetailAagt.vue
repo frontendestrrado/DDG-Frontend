@@ -6,87 +6,87 @@
     <div style="margin-bottom: 40px">
       <van-cell
         is-link
-        :value="orderData.customer_app_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.AagtApplicationForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Customer Application"
         @click="
-          $store.commit('changePage', { tabbar: '/CustomerApplication', title: '1/5 Customer Application' });
+          $store.commit('changePage', { tabbar: '/CustomerApplicationAagt', title: '1/5 Customer Application' });
           $router.push({
-            path: '/CustomerApplication',
-            query: { orderId: orderData.id, isFilled: orderData.customer_app_form, status: orderData.status },
+            path: '/CustomerApplicationAagt',
+            query: { orderId: orderData.id, isFilled: orderData.AagtApplicationForm, status: orderData.status },
           });
         "
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.kyc_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.AagtKycQuestionnaireForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Compliance Questionnaire"
         @click="
-          $store.commit('changePage', { tabbar: '/KYC', title: '2/5 Compliance Questionnaire' });
+          $store.commit('changePage', { tabbar: '/KYCAagt', title: '2/5 Compliance Questionnaire' });
           $router.push({
-            path: '/KYC',
-            query: { orderId: orderData.id, isFilled: orderData.kyc_form, status: orderData.status },
+            path: '/KYCAagt',
+            query: { orderId: orderData.id, isFilled: orderData.AagtKycQuestionnaireForm, status: orderData.status },
           });
         "
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.letter_of_wishes_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.AagtLetterOfWishesForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Letter of Wishes"
         @click="
           $store.commit('changePage', {
-            tabbar: '/LetterOfWishes',
+            tabbar: '/LetterOfWishesAagt',
             title: '3/5 Letter Of Wishes',
           });
           $router.push({
-            path: '/LetterOfWishes',
-            query: { orderId: orderData.id, isFilled: orderData.letter_of_wishes_form, status: orderData.status },
+            path: '/LetterOfWishesAagt',
+            query: { orderId: orderData.id, isFilled: orderData.AagtLetterOfWishesForm, status: orderData.status },
           });
         "
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.pdpa_memo_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.AagtPdpaForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="PDPA Memo"
         @click="
           $store.commit('changePage', {
-            tabbar: '/PDPAMemo',
+            tabbar: '/PdpaAagt',
             title: '4/5 PDPA Memo',
           });
-          $router.push({ path: '/PDPAMemo', query: { orderId: orderData.id,isFilled: orderData.pdpa_memo_form, status: orderData.status } });
+          $router.push({ path: '/PdpaAagt', query: { orderId: orderData.id,isFilled: orderData.AagtPdpaForm, status: orderData.status } });
         "
       ></van-cell>
       <van-cell
         is-link
-        :value="orderData.document_check_list_form == 0 ? 'Not Filled' : 'Filled'"
+        :value="orderData.AagtDocumentCheckListForm == 0 ? 'Not Filled' : 'Filled'"
         title-style="text-align:left;"
         title="Document Checklist"
         @click="
           $store.commit('changePage', {
-            tabbar: '/DocumentChecklist',
+            tabbar: '/DocumentChecklistAagt',
             title: '5/5 Document Checklist',
           });
-          $router.push({ path: '/DocumentChecklist', query: { orderId: orderData.id,isFilled: orderData.document_check_list_form, status: orderData.status } });
+          $router.push({ path: '/DocumentChecklistAagt', query: { orderId: orderData.id,isFilled: orderData.AagtDocumentCheckListForm, status: orderData.status } });
         "
       ></van-cell>
       <van-cell
         is-link
         :value="
-          orderData.third_party_declaration_form == 0 ? 'Not Filled' : 'Filled'
+          orderData.AagtThirdPartyDeclarationForm == 0 ? 'Not Filled' : 'Filled'
         "
         title-style="text-align:left;"
         title="Third Party Declaration (If Applicable)"
         @click="
           $store.commit('changePage', {
-            tabbar: '/ThirdPartyDeclaration',
+            tabbar: '/ThirdPartyDeclarationAagt',
             title: 'Third Party Declaration',
           });
           $router.push({
-            path: '/ThirdPartyDeclaration',
-            query: { orderId: orderData.id,isFilled: orderData.third_party_declaration_form, status: orderData.status },
+            path: '/ThirdPartyDeclarationAagt',
+            query: { orderId: orderData.id,isFilled: orderData.AagtThirdPartyDeclarationForm, status: orderData.status },
           });
         "
       ></van-cell>
@@ -211,7 +211,7 @@ export default {
     let url=window.location.href
     console.log(url,"...u...r...l...")
     this.link=url.split("#")
-    this.link[1]='/OrderSignatureCustomers' 
+    this.link[1]='/OrderSignatureCustomersAagt' 
     
   },
   methods: {
@@ -236,16 +236,16 @@ export default {
        // alert("xxxxxx")
         console.log("nnnnnnnnnn..........", this.$route.query.id)
        this.getOrderDetail()
-       if(this.orderData.customer_app_form === 0 || this.orderData.document_check_list_form === 0 || this.orderData.kyc_form === 0  || this.orderData.letter_of_wishes_form === 0  || this.orderData.pdpa_memo_form === 0 || ( this.renderComponent3 == true && this.orderData.third_party_declaration_form === 0)  ){
+       if(this.orderData.AagtApplicationForm === 0 || this.orderData.AagtDocumentCheckListForm === 0 || this.orderData.AagtKycQuestionnaireForm === 0  || this.orderData.AagtLetterOfWishesForm === 0  || this.orderData.AagtPdpaForm === 0 || ( this.renderComponent3 == true && this.orderData.AagtThirdPartyDeclarationForm === 0)  ){
             alert("Please Submit All Forms....")
           
          
         }else{
-          if(this.orderData.third_party_declaration_form > 0){
-            console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&third_party_declaration_form='+this.orderData.third_party_declaration_form+'&isShare=true',22222)
+          if(this.orderData.AagtThirdPartyDeclarationForm > 0){
+            console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&AagtApplicationForm='+this.orderData.AagtApplicationForm+'&AagtDocumentCheckListForm='+this.orderData.AagtDocumentCheckListForm+'&AagtKycQuestionnaireForm='+this.orderData.AagtKycQuestionnaireForm+'&AagtLetterOfWishesForm='+this.orderData.AagtLetterOfWishesForm+'&AagtPdpaForm='+this.orderData.AagtPdpaForm+'&AagtThirdPartyDeclarationForm='+this.orderData.AagtThirdPartyDeclarationForm+'&isShare=true',22222)
       }
       else{
-        console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',22222)
+        console.log(this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&AagtApplicationForm='+this.orderData.AagtApplicationForm+'&AagtDocumentCheckListForm='+this.orderData.AagtDocumentCheckListForm+'&AagtKycQuestionnaireForm='+this.orderData.AagtKycQuestionnaireForm+'&AagtLetterOfWishesForm='+this.orderData.AagtLetterOfWishesForm+'&AagtPdpaForm='+this.orderData.AagtPdpaForm+'&isShare=true',22222)
       }
        
         const self = this
@@ -269,18 +269,20 @@ export default {
 
            // 设置分享文案
            if(this.orderData.third_party_enabled === "1"){
+            //alert("1")
             nativeShare.setShareData({
             icon: '@/assets/img/logo.png',
-            link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&third_party_declaration_form='+this.orderData.third_party_declaration_form+'&isShare=true',
+            link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&AagtApplicationForm='+this.orderData.AagtApplicationForm+'&AagtDocumentCheckListForm='+this.orderData.AagtDocumentCheckListForm+'&AagtKycQuestionnaireForm='+this.orderData.AagtKycQuestionnaireForm+'&AagtLetterOfWishesForm='+this.orderData.AagtLetterOfWishesForm+'&AagtPdpaForm='+this.orderData.AagtPdpaForm+'&AagtThirdPartyDeclarationForm='+this.orderData.AagtThirdPartyDeclarationForm+'&isShare=true',
             title: 'DDG',
             desc:'Order Signature',
             from: '@fa-ge',
           })
       }
       else{
+     //   alert("2")
         nativeShare.setShareData({
             icon: '@/assets/img/logo.png',
-            link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true',
+            link: this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&AagtApplicationForm='+this.orderData.AagtApplicationForm+'&AagtDocumentCheckListForm='+this.orderData.AagtDocumentCheckListForm+'&AagtKycQuestionnaireForm='+this.orderData.AagtKycQuestionnaireForm+'&AagtLetterOfWishesForm='+this.orderData.AagtLetterOfWishesForm+'&AagtPdpaForm='+this.orderData.AagtPdpaForm+'&isShare=true',
             title: 'DDG',
             desc:'Order Signature',
             from: '@fa-ge',
@@ -322,13 +324,14 @@ export default {
       getOrderDetail(this.$route.query.id)
         .then((res) => {
           console.log(">>>>>>>>>>>>>>",res);
+          console.log(">>>>>>>>>1>>>>>",res.remote);
           if(res.remote == 'true'){
-         //  alert("a")
+        //    alert("a")
             this.$store.commit('changeIsOverseaSignatureRemote',true)
           }
           else
           {
-         //  alert("b")
+          //  alert("b")
             this.$store.commit('changeIsOverseaSignatureRemote',false)
           }
           this.orderData = res;
@@ -393,10 +396,12 @@ export default {
       share(option,index){
       console.log(option,index)
       if(this.orderData.third_party_enabled === "1"){
-        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&third_party_declaration_form='+this.orderData.third_party_declaration_form+'&isShare=true'
+      //  alert("3")
+        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&AagtApplicationForm='+this.orderData.AagtApplicationForm+'&AagtDocumentCheckListForm='+this.orderData.AagtDocumentCheckListForm+'&AagtKycQuestionnaireForm='+this.orderData.AagtKycQuestionnaireForm+'&AagtLetterOfWishesForm='+this.orderData.AagtLetterOfWishesForm+'&AagtPdpaForm='+this.orderData.AagtPdpaForm+'&AagtThirdPartyDeclarationForm='+this.orderData.AagtThirdPartyDeclarationForm+'&isShare=true'
       }
       else{
-        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&customer_app_form='+this.orderData.customer_app_form+'&documentCheckListForm='+this.orderData.document_check_list_form+'&kyc_form='+this.orderData.kyc_form+'&letter_of_wishes_form='+this.orderData.letter_of_wishes_form+'&pdpa_memo_form='+this.orderData.pdpa_memo_form+'&isShare=true'
+       // alert("4")
+        this.shareURL=this.link.join('#')+'?orderId='+this.orderData.id+'&status='+this.orderData.status+'&AagtApplicationForm='+this.orderData.AagtApplicationForm+'&AagtDocumentCheckListForm='+this.orderData.AagtDocumentCheckListForm+'&AagtKycQuestionnaireForm='+this.orderData.AagtKycQuestionnaireForm+'&AagtLetterOfWishesForm='+this.orderData.AagtLetterOfWishesForm+'&AagtPdpaForm='+this.orderData.AagtPdpaForm+'&isShare=true'
       }
      
       if(index==0){

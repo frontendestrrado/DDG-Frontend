@@ -50,7 +50,9 @@ export default {
       tabbar: "",
       title: 'Personal Sales',
     });
+    console.log("______*___*___**________",this.$route.query)
     organizeChartPersonalSalesApi(this.$route.query).then(res => {
+      console.log("_____________res____________",res)
       this.list = Object.values(res.data)
     })
   },

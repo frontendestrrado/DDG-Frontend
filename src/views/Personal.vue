@@ -7,7 +7,7 @@
         :max-count="1"
         :after-read="afterRead"
       /> -->
-        <van-uploader v-model="avatar_image_id" :after-read="afterRead" accept="*"
+        <van-uploader v-model="avatar_image_id" :after-read="afterRead" accept="*" :before-delete="beforeRead"
             :max-count="1" />
       <!-- <van-field
                 ref="name"
@@ -233,6 +233,7 @@
       <van-field
         ref="phone"
         center
+        @keypress="isLetter($event)"
         style="font-weight: bold;"
         label="Mobile Number"
         @click="patchEdit1('phone')"
@@ -353,6 +354,8 @@ export default {
     this.getUser();
   },
   methods: {
+
+  
     getUser() {
       this.$axios({
         method: "get",
@@ -381,6 +384,11 @@ export default {
         this.userInfo = res
       })
 
+    },
+    isLetter(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/^[0-9]+$/.test(char)) return true;
+      else e.preventDefault();
     },
     showEditBtn(index) {
       this.actUserBtn = index;
@@ -437,12 +445,41 @@ export default {
         });
     },
     // 頭像上傳
+    beforeRead(file){
+     // alert("jij")
+   //   this.hideEditBtn(-1);
+      var data = {};
+        data['bankAccountNo'] = this.userInfo['bankAccountNo'];
+        data['avatar_image_id'] = 0;
+      
+      console.log("..data........3333...",data)
+      this.$axios({
+        method: "PATCH",
+        url: "/api/v1/user",
+        headers: {
+          Authorization: sessionStorage.token_type + sessionStorage.token,
+        },
+        data,
+      })
+        .then((res) => {
+          console.log(res,"......personal....2222222.....");
+          this.userInfo = res;
+          
+        })
+        .catch((err) => {
+          this.$toast({
+            type: "fail",
+            message: "error",
+          });
+        });
+        return true
+    },
     afterRead(file) {
       console.log(file, "頭像");
       let formData = new FormData();
       formData.append("image", file.file); // 要提交给后台的文件
       formData.append("type", "avatar");
-      console.log(formData);
+      console.log("---------form data----------",formData);
       this.$axios({
         method: "POST",
         url: "/api/v1/images",

@@ -93,6 +93,14 @@ export const readNot = id => {
     method: 'put'
   })
 }
+export const getBttCode = query => {
+  console.log(".....kkkkkkkkk...4444...getBttCode..",query)
+  return request({
+    url: '/api/v1/check-introducer',
+    method: 'post',
+    params: query
+  })
+}
 export const getOrdersCustomerNot = query => {
   console.log(".....kkkkkkkkk...4444.....",query)
   return request({

@@ -10,6 +10,7 @@
       <div class="minTitle">SUBSCRIBER’S INFORMATION</div>
       <van-field
         v-model="formData.name"
+        @input="formData.name = formData.name.toUpperCase()"
         name="name"
         center
         :required="true"
@@ -21,6 +22,7 @@
       />
       <van-field
         v-model="formData.nationality"
+        @input="formData.nationality = formData.nationality.toUpperCase()"
         name="nationality"
         center
         type="text"
@@ -32,6 +34,7 @@
       />
       <van-field
         v-model="formData.nric_pass_roc_no"
+        @input="formData.nric_pass_roc_no = formData.nric_pass_roc_no.toUpperCase()"
         name="nric_pass_roc_no"
         center
         :required="true"
@@ -62,6 +65,7 @@
         center
         :required="true"
         autocomplete="off"
+        @input="formData.place_incorporation = formData.place_incorporation.toUpperCase()"
         type="text"
         label="Place of Incorporation"
         placeholder="Please enter the Place of Incorporation"
@@ -77,6 +81,7 @@
         center
         :required="true"
         autocomplete="off"
+        @input="formData.occupation = formData.occupation.toUpperCase()"
         type="text"
         label="Occupation / Industry"
         placeholder="Please enter the Occupation / Industry"
@@ -90,6 +95,7 @@
         v-model="formData.address"
         name="address"
         autocomplete="off"
+        @input="formData.address = formData.address.toUpperCase()"
         center
         :required="true"
         type="text"
@@ -105,6 +111,7 @@
         <van-field
         v-model="formData.postcode"
         name="postcode"
+        @input="formData.postcode = formData.postcode.toUpperCase()"
         center
         autocomplete="off"
         :required="true"
@@ -123,6 +130,7 @@
         center
         autocomplete="off"
         :required="true"
+        @input="formData.country = formData.country.toUpperCase()"
         type="text"
         label="Country"
         placeholder="Please enter the Country"
@@ -140,6 +148,7 @@
         v-model="formData.contact_name"
         name="contact_name"
         center
+        @input="formData.contact_name = formData.contact_name.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Individual / Director’s Name"
@@ -152,6 +161,7 @@
         name="contact_nationality"
         center
         autocomplete="off"
+        @input="formData.contact_nationality = formData.contact_nationality.toUpperCase()"
         type="text"
         label="Nationality"
         placeholder="Please enter the Nationality"
@@ -163,6 +173,7 @@
         name="contact_address"
         center
         autocomplete="off"
+        @input="formData.contact_address = formData.contact_address.toUpperCase()"
         type="text"
         label="Residential / Office Address"
         placeholder="Please enter the Residential / Office Address"
@@ -174,6 +185,7 @@
         name="contact_postcode"
         center
         autocomplete="off"
+        @input="formData.contact_postcode = formData.contact_postcode.toUpperCase()"
         type="text"
         label="Post Code"
         placeholder="Please enter the Post Code"
@@ -210,6 +222,7 @@
         :required="true"
         type="text"
         autocomplete="off"
+        @input="formData.emergency_name = formData.emergency_name.toUpperCase()"
         label="Name"
         placeholder="Please enter the Name"
         :rules="[{ required: true }]"
@@ -218,6 +231,7 @@
         v-model="formData.emergency_nationality"
         name="emergency_nationality"
         center
+        @input="formData.emergency_nationality = formData.emergency_nationality.toUpperCase()"
         :required="true"
         type="text"
         autocomplete="off"
@@ -229,6 +243,7 @@
         v-model="formData.emergency_nric_no"
         name="emergency_nric_no"
         center
+        @input="formData.emergency_nric_no = formData.emergency_nric_no.toUpperCase()"
         :required="true"
         type="text"
         autocomplete="off"
@@ -284,6 +299,7 @@
         v-model="formData.relationship"
         name="relationship"
         center
+        @input="formData.relationship = formData.relationship.toUpperCase()"
         autocomplete="off"
         :required="true"
         type="text"
@@ -308,6 +324,7 @@
         name="advisor_name"
         center
         autocomplete="off"
+        @input="formData.advisor_name = formData.advisor_name.toUpperCase()"
         type="text"
         label="Authorized Advisor’s Name"
         placeholder="Please enter the Authorized Advisor’s Name"
@@ -335,6 +352,7 @@
         center
         autocomplete="off"
         type="text"
+        @input="formData.nominee_name = formData.nominee_name.toUpperCase()"
         label="Nominee’s Name"
         placeholder="Please enter the Nominee’s Name"
         :required="true"
@@ -344,6 +362,7 @@
         v-model="formData.nominee_nric_no"
         name="nominee_nric_no"
         center
+        @input="formData.nominee_nric_no = formData.nominee_nric_no.toUpperCase()"
         autocomplete="off"
         type="text"
         label="NRIC No."
@@ -355,6 +374,7 @@
         v-model="formData.nominee_relation"
         name="nominee_relation"
         center
+        @input="formData.nominee_relation = formData.nominee_relation.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Relationship"
@@ -391,6 +411,7 @@
         name="bank_name"
         autocomplete="off"
         center
+        @input="formData.bank_name = formData.bank_name.toUpperCase()"
         type="text"
         label="Name of Bank"
         placeholder="Please enter the Name of Bank"
@@ -403,6 +424,7 @@
         center
         autocomplete="off"
         type="text"
+        @input="formData.branch = formData.branch.toUpperCase()"
         label="Branch"
         placeholder="Please enter the Branch"
         :required="true"
@@ -425,6 +447,7 @@
         center
         autocomplete="off"
         type="text"
+        @input="formData.account_name = formData.account_name.toUpperCase()"
         label="Bank Account Owner’s Name"
         placeholder="Please enter the Bank Account Owner’s Name"
         :required="true"
@@ -473,6 +496,7 @@ Account Number: 3220852216
         v-model="formData.subcriber_name"
         name="subcriber_name"
         center
+        @input="formData.subcriber_name = formData.subcriber_name.toUpperCase()"
         type="text"
         autocomplete="off"
         label="Subscriber’s Name"
@@ -484,6 +508,7 @@ Account Number: 3220852216
         v-model="formData.advisor_nric_no"
         name="advisor_nric_no"
         center
+        @input="formData.advisor_nric_no = formData.advisor_nric_no.toUpperCase()"
         autocomplete="off"
         type="text"
         label="NRIC / Passport No."
@@ -551,6 +576,7 @@ Account Number: 3220852216
         v-model="formData.witness_advisor_name"
         id="2reset"
         name="witness_advisor_name"
+        @input="formData.witness_advisor_name = formData.witness_advisor_name.toUpperCase()"
         center
         type="text"
         autocomplete="off"
@@ -564,6 +590,7 @@ Account Number: 3220852216
         name="witness_nric_no"
         center
         type="text"
+        @input="formData.witness_nric_no = formData.witness_nric_no.toUpperCase()"
         autocomplete="off"
         label="NRIC / Passport No."
         placeholder="Please enter the NRIC / Passport No."
@@ -783,7 +810,7 @@ export default {
       console.log(form,"6666666666");
       console.log(this.formData,"777777777");
       console.log(this.formData.subscriber_signature, "form");
-      if (!this.formData.subscriber_signature) {
+      if (!this.formData.subscriber_signature &&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       }
@@ -1037,6 +1064,7 @@ export default {
         });
     },
    handleGenerate(index) {
+    if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign"]
         .generate()
@@ -1066,6 +1094,11 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
+        this.$refs["esign"].reset(); 
+      }
     },
     // 展示日期弹框
 /*    onShowPicker(val,val2,inx) {

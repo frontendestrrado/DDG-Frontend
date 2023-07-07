@@ -275,6 +275,15 @@ const self = this
       getOrderDetail(this.$route.query.id)
         .then((res) => {
           console.log("3333333", res);
+          if(res.remote == 'true'){
+         //  alert("a")
+            this.$store.commit('changeIsOverseaSignatureRemote',true)
+          }
+          else
+          {
+         //  alert("b")
+            this.$store.commit('changeIsOverseaSignatureRemote',false)
+          }
           this.orderData = res;
         })
         .catch((err) => {

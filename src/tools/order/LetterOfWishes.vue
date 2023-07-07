@@ -2,8 +2,16 @@
   <div class="LetterOfWishes bodybox">
     <van-form validate-first @submit="submit" :submit-on-enter="false" :scroll-to-error="true">
       <!-- @click="onShowPicker('date')" -->
-      <van-field readonly v-model="formData.date" name="date" autocomplete="off" center disabled label="Date"
-        placeholder="[Leave Blank]" />
+      <!-- <van-field readonly v-model="formData.date" name="date" autocomplete="off" center disabled label="Date"
+        placeholder="[Leave Blank]" /> -->
+
+        <van-field v-model="formData.date" name="date" autocomplete="off" center 
+      :rules="[{ required: true,pattern, message: 'Please enter the DATE' }]"
+      label="Date: DD-MM-YYYY"
+      :required="true"
+      placeholder="Please enter DD-MM-YYYY" />
+
+
       <div class="minTitle">ASIA INTERNATIONAL TRUST BERHAD</div>
       <div class="minTitle">Suite 8.01, Level 8, Menara Binjai,</div>
       <div class="minTitle">No. 2 Jalan Binjai,</div>
@@ -64,9 +72,11 @@
         </div>
       </div>
       <van-field v-model="formData.client_name" name="client_name" id="3reset" center autocomplete="off"
+      @input="formData.client_name = formData.client_name.toUpperCase()"
         :required="true" type="text" label="Settlor Name" placeholder="Please enter the Settlor Name"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.passport_no" name="passport_no" center autocomplete="off" :required="true"
+      @input="formData.passport_no = formData.passport_no.toUpperCase()"
         type="text" label="NRIC/Passport No" placeholder="Please enter the NRIC/Passport No" :rules="[
           { required: true },
         ]" />
@@ -92,6 +102,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import {
   letter_wishes_form,
   getOrdersForms,
@@ -103,11 +114,12 @@ export default {
   data() {
     return {
       formData: {
-        date: "",
+        date:  moment(new Date()).format('DD-MM-YYYY'),
         client_name: this.$store.state.campanyIndividualName1,
         passport_no: this.$store.state.passport_no,
         signature: this.$store.state.signature,
       },
+      pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       sig1: true,
       xyz: "",
       isShowPicker: false,
@@ -167,6 +179,7 @@ export default {
       // }
     },
     handleGenerate(val) {
+      // if(!this.$store.state.isOverseaSignature){
       console.log(this.$refs[val].generate().PromiseState)
       var that = this;
       this.$refs[val]
@@ -201,6 +214,12 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+
+      // }
+      // else{
+      //   alert("Settlor Signature should be added by the Settlor from the shared link.")
+      //   this.$refs["signature"].reset(); 
+      // }
     },
     // 獲取表單數據
     getFormData() {
@@ -218,7 +237,11 @@ export default {
     submit(form) {
       console.log(form);
       let data = JSON.parse(JSON.stringify(this.formData));
-      if (!this.formData.signature && !this.$store.state.isOverseaSignature) {
+      // if (!this.formData.signature && !this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      if (!this.formData.signature && this.$route.query.isShare) {
         this.$toast.fail("Please sign your name");
         return;
       }
@@ -244,6 +267,13 @@ export default {
         } else {
           id = this.$route.query.orderId
         }
+        if(id=== "" ){
+    
+    this.$toast({
+            message: "Please submit upper forms on one by one.",
+          });
+   }
+   else{
         letter_wishes_form(id, data)
           .then((res) => {
             console.log("-----33-3-3-3-3--3-3-3---",res);
@@ -270,6 +300,7 @@ export default {
             }
           })
           .catch((err) => { });
+        }
       }
     },
     // 展示日期弹框

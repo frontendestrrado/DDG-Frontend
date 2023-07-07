@@ -9,11 +9,13 @@
     >
     <div class="minTitle">Applicant’s Informationn</div>
       <van-field v-model="formData.name" autocomplete="off" name="name" center type="text" label="Name"
+      @input="formData.name = formData.name.toUpperCase()"
         placeholder="Please enter the Name" 
         :required="true"
         :rules="[{ required: true }]"/>
 
       <van-field v-model="formData.nric" autocomplete="off" name="nric" center type="text" label="NRIC / Passport No."
+      @input="formData.nric = formData.nric.toUpperCase()"
         placeholder="Please enter the NRIC / Passport No."
         :required="true"
         :rules="[{ required: true }]"/>
@@ -168,10 +170,12 @@
 
 
       <van-field v-model="formData.agent_name" autocomplete="off" name="agent_name" center type="text" label="Name"
+      @input="formData.agent_name = formData.agent_name.toUpperCase()"
         placeholder="Please enter the Name"   :required="true"
         :rules="[{ required: true }]"/>
 
       <van-field v-model="formData.agent_nric" autocomplete="off" name="agent_nric" center type="text" label="NRIC / Passport No."
+      @input="formData.agent_nric = formData.agent_nric.toUpperCase()"
         placeholder="Please enter the NRIC / Passport No."  :required="true"
         :rules="[{ required: true }]" />
 

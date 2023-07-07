@@ -37,9 +37,11 @@ import MemberDetail from '@/tools/MemberDetail'
 import InvestmentTools from '@/tools/InvestmentTools'
 import InfoIcollected from '@/tools/InfoIcollected'
 import OrderSignature from '@/tools/order/OrderSignature'
+import OrderSignatureAagt from '@/tools/order/OrderSignatureAagt'
 import OrderSignatureGep from '@/tools/order/OrderSignatureGep'
 import OrderSignatureGep2 from '@/tools/order/OrderSignatureGep2'
 import OrderSignatureCustomers from '@/tools/order/OrderSignatureCustomers'
+import OrderSignatureCustomersAagt from '@/tools/order/OrderSignatureCustomersAagt'
 import OrderSignatureCustomersGep from '@/tools/order/OrderSignatureCustomersGep'
 import OrderSignatureCustomersGep2 from '@/tools/order/OrderSignatureCustomersGep2'
 import LearnUse from '@/tools/LearnUse'
@@ -113,6 +115,11 @@ const router = new Router({
         component: OrderSignatureCustomers,
       },
       {
+        path: '/OrderSignatureCustomersAagt',
+        name: 'OrderSignatureCustomersAagt',
+        component: OrderSignatureCustomersAagt,
+      },
+      {
         path: '/OrderSignatureCustomersGep',
         name: 'OrderSignatureCustomersGep',
         component: OrderSignatureCustomersGep,
@@ -125,6 +132,11 @@ const router = new Router({
         path: '/OrderSignature',
         name: 'OrderSignature',
         component: OrderSignature,
+      },
+      {
+        path: '/OrderSignatureAagt',
+        name: 'OrderSignatureAagt',
+        component: OrderSignatureAagt,
       },{
         path: '/OrderSignatureGep',
         name: 'OrderSignatureGep',
@@ -295,6 +307,11 @@ const router = new Router({
         component: () => import('@/tools/order/OrderDetail'),
       },
       {
+        path: '/OrderDetailAagt',
+        name: 'OrderDetailAagt',
+        component: () => import('@/tools/order/OrderDetailAagt'),
+      },
+      {
         path: '/OrderDetailGep',
         name: 'OrderDetailGep',
         component: () => import('@/tools/order/OrderDetailGep'),
@@ -311,6 +328,11 @@ const router = new Router({
         path: '/KYC',
         name: 'KYC',
         component: () => import('@/tools/order/KYC'),
+      }
+      ,{
+        path: '/KYCAagt',
+        name: 'KYCAagt',
+        component: () => import('@/tools/order/KYCAagt'),
       }
       ,{
         path: '/KYCGep',
@@ -357,6 +379,11 @@ const router = new Router({
         component: () => import('@/tools/order/CustomerApplication'),
       },
       {
+        path: '/CustomerApplicationAagt',
+        name: 'CustomerApplicationAagt',
+        component: () => import('@/tools/order/CustomerApplicationAagt'),
+      },
+      {
         path: '/CustomerApplicationNew',
         name: 'CustomerApplicationNew',
         component: () => import('@/tools/advisorNew/CustomerApplicationNew'),
@@ -389,6 +416,11 @@ const router = new Router({
         path: '/Choose',
         name: 'Choose',
         component: () => import('@/tools/order/Choose'),
+      },
+      {
+        path: '/ChooseAagt',
+        name: 'ChooseAagt',
+        component: () => import('@/tools/order/ChooseAagt'),
       },{
         path: '/ChooseGep',
         name: 'ChooseGep',
@@ -406,6 +438,11 @@ const router = new Router({
         path: '/LetterOfWishes',
         name: 'LetterOfWishes',
         component: () => import('@/tools/order/LetterOfWishes'),
+      },
+      {
+        path: '/LetterOfWishesAagt',
+        name: 'LetterOfWishesAagt',
+        component: () => import('@/tools/order/LetterOfWishesAagt'),
       },{
         path: '/LetterOfWishesGep',
         name: 'LetterOfWishesGep',
@@ -414,6 +451,11 @@ const router = new Router({
         path: '/PDPAMemo',
         name: 'PDPAMemo',
         component: () => import('@/tools/order/PDPAMemo'),
+      },
+      {
+        path: '/PdpaAagt',
+        name: 'PdpaAagt',
+        component: () => import('@/tools/order/PdpaAagt'),
       },
       {
         path: '/PDPAMemoGep',
@@ -429,10 +471,22 @@ const router = new Router({
         path: '/DocumentChecklist',
         name: 'DocumentChecklist',
         component: () => import('@/tools/order/DocumentChecklist'),
+      },
+      {
+        path: '/DocumentChecklistAagt',
+        name: 'DocumentChecklistAagt',
+        component: () => import('@/tools/order/DocumentChecklistAagt'),
       },{
+
         path: '/ThirdPartyDeclaration',
         name: 'ThirdPartyDeclaration',
         component: () => import('@/tools/order/ThirdPartyDeclaration'),
+      },
+      {
+
+        path: '/ThirdPartyDeclarationAagt',
+        name: 'ThirdPartyDeclarationAagt',
+        component: () => import('@/tools/order/ThirdPartyDeclarationAagt'),
       },{
         path: '/LearnUse',
         name: '培训计划',

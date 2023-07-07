@@ -19,9 +19,11 @@
             required: true,
           },
         ]" />
-      <van-field v-model="formData.born_date"  autocomplete="off" name="born_date" center :required="true"
+      <van-field v-model="formData.born_date"  id="date1" autocomplete="off" name="born_date" center :required="true"
         label="DATE OF BIRTH: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY"
-        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
+        :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" 
+        
+        />
       <van-field v-model="formData.occupation" @input="formData.occupation = formData.occupation.toUpperCase()" autocomplete="off" name="occupation" center :required="true" type="text"
         label="OCCUPATION" placeholder="Please enter the OCCUPATION" :rules="[{ required: true }]" />
       <van-field v-model="formData.address" @input="formData.address = formData.address.toUpperCase()" autocomplete="off" name="address" center :required="true" type="text"
@@ -82,13 +84,14 @@
       <div class="minTitle">
         EMERGENCY CONTACT PARTICULARS (INDIVIDUAL OVER 18 YEARS OLD)
       </div>
-      <van-field v-model="formData.emergency_contact_name" name="emergency_contact_name" center :required="true"
+      <van-field v-model="formData.emergency_contact_name" @input="formData.emergency_contact_name = formData.emergency_contact_name.toUpperCase()"  name="emergency_contact_name" center :required="true"
         type="text" autocomplete="off" label="NAME" placeholder="Please enter the NAME" :rules="[
           {
             required: true,
           },
         ]" />
       <van-field v-model="formData.emergency_contact_nric" name="emergency_contact_nric" center autocomplete="off"
+      @input="formData.emergency_contact_nric = formData.emergency_contact_nric.toUpperCase()"
         :required="true" type="text" label="NRIC / PASSPORT NO." placeholder="Please enter the NRIC / PASSPORT NO."
         :rules="[
           {
@@ -99,8 +102,9 @@
         :required="true" label="DATE OF BIRTH: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY"
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
       <van-field v-model="formData.emergency_contact_relationshiop" name="emergency_contact_relationshiop" center
-        :required="true" autocomplete="off" type="text" label="RELATIONSHIOP WITH SETTLOR"
-        placeholder="Please enter the RELATIONSHIOP WITH SETTLOR" :rules="[
+        :required="true" autocomplete="off" type="text" label="RELATIONSHIP WITH SETTLOR"
+        @input="formData.emergency_contact_relationshiop = formData.emergency_contact_relationshiop.toUpperCase()"
+        placeholder="Please enter the RELATIONSHIP WITH SETTLOR" :rules="[
           {
             required: true,
           },
@@ -126,6 +130,7 @@
           },
         ]" />
       <van-field v-model="formData.adviser_name" name="adviser_name" center :required="true" autocomplete="off"
+      @input="formData.adviser_name = formData.adviser_name.toUpperCase()"
         type="text" label="AUTHORIZED TRUST ADVISOR NAME" placeholder="Please enter the AUTHORIZED TRUST ADVISOR NAME"
         :rules="[
           {
@@ -137,16 +142,17 @@
           { required: true },
         ]" />
       <div class="minTitle">
-        BANK DETAILS – SOURCE OF FUND (CASH is Not Acceptable) To insert ‘Not
-        Applicable’ if Cheque is received
+        BANK DETAILS – SOURCE OF FUND (CASH is Not Acceptable).
       </div>
       <van-field v-model="formData.details_bank_name" name="details_bank_name" center autocomplete="off"
+      @input="formData.details_bank_name = formData.details_bank_name.toUpperCase()"
         :required="true" type="text" label="NAME OF BANK" placeholder="Please enter the NAME OF BANK"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.details_account_no" name="details_account_no" center autocomplete="off"
         :required="true" type="text" label="ACCOUNT NO" placeholder="Please enter the ACCOUNT NO"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.details_account_owner" name="details_account_owner" center autocomplete="off"
+      @input="formData.details_account_owner = formData.details_account_owner.toUpperCase()"
         :required="true" type="text" label="ACCOUNT OWNER" placeholder="Please enter the ACCOUNT OWNER" :rules="[
           { required: true },
         ]" />
@@ -155,12 +161,21 @@
         which payments to the Settlor / Authorized person are to be transferred:
       </div>
       <van-field v-model="formData.account_name" name="account_name" center :required="true" autocomplete="off"
+      @input="formData.account_name = formData.account_name.toUpperCase()"
         type="text" label="NAME OF BANK" placeholder="Please enter the NAME OF BANK" :rules="[{ required: true }]" />
+
+
       <van-field v-model="formData.bank" name="bank" center :required="true" autocomplete="off" type="text"
         label="ACCOUNT NO" placeholder="Please enter the ACCOUNT NO" :rules="[{ required: true }]" />
+
+
       <van-field v-model="formData.account_no" name="account_no" center :required="true" autocomplete="off" type="text"
+      @input="formData.account_no = formData.account_no.toUpperCase()"
         label="BANK LOCATION" placeholder="Please enter the BANK LOCATION" :rules="[{ required: true }]" />
+
+
       <van-field v-model="formData.swift_code" name="swift_code" autocomplete="off" center :required="true" type="text"
+      @input="formData.swift_code = formData.swift_code.toUpperCase()"
         label="ACCOUNT OWNER" placeholder="Please enter the ACCOUNT OWNER" :rules="[{ required: true }]" />
       <!-- <van-field
         v-model="formData.ref"
@@ -243,6 +258,7 @@
         <div class="esignBtn" @click="handleGenerate()" v-if="!isDone">Confirm</div>
       </div>
       <van-field v-model="formData.client_name" id="reset1" name="client_name" center :required="true" type="text"
+      @input="formData.client_name = formData.client_name.toUpperCase()"
         autocomplete="off" label="NAME" placeholder="Please enter the NAME" :rules="[{ required: true }]" />
       <van-field v-model="formData.signature_date" name="signature_date" center autocomplete="off" :required="true"
         label="DATE: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY"
@@ -250,8 +266,10 @@
 
         <div class="minTitle">WITNESS DETAIL</div>
       <van-field v-model="formData.witness_name" name="witness_name" center :required="true" autocomplete="off"
+      @input="formData.witness_name = formData.witness_name.toUpperCase()"
         type="text" label="NAME" placeholder="Please enter the NAME" :rules="[{ required: true }]" />
       <van-field v-model="formData.witness_passport_no" name="witness_passport_no" center autocomplete="off"
+      @input="formData.witness_passport_no = formData.witness_passport_no.toUpperCase()"
         :required="true" type="text" label="NRIC / PASSPORT NO." placeholder="Please enter the NRIC / PASSPORT NO."
         :rules="[
           { required: true },
@@ -298,6 +316,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 
 import moment from 'moment'
 import { uploadAutograph } from "@/api/util";
@@ -361,6 +380,7 @@ export default {
         emergency_contact_email: "",
         reorder: this.$store.state.reorder,
         reorder_ref: this.$store.state.reorderId,
+        remote:this.$store.state.isOverseaSignature.toString()
       },
       qwe:'',
       sig1: this.$store.state.reorder == 0 ? true: false,
@@ -406,7 +426,7 @@ export default {
     console.log("this.$store.state.reorder...........................",this.$store.state.reorder)
     console.log("QQQQQQ", this.$store.state.reordercustomer_app_form)
     if(this.$store.state.reorder == 1){
-     
+      this.$store.commit('changeCustomerApplicationId', '')
       if (this.$store.state.reordercustomer_app_form > 0) {
       
         getOrdersForms(this.$store.state.reordercustomer_app_form, { type: "Customer Application" })
@@ -433,6 +453,7 @@ export default {
             res.details_account_no = ""
             res.details_account_owner = ""
             res.account_name = ""
+            res.signature_date = moment(new Date()).format('DD-MM-YYYY')
           
             res.bank = ""
             res.account_no = ""
@@ -462,6 +483,25 @@ export default {
     uppercase() {
         this.code = this.code.toUpperCase();
     },
+    onDateFormate(val){
+      $("input[id*='date1']:first").keyup(function (e) {
+
+var key = String.fromCharCode(e.keyCode);
+
+if (!(key >= 0 && key <= 9)) $(this).val($(this).val().substr(0, $(this).val().length - 1));
+
+var value = $(this).val();
+console.log("----------dd------dd-----dd-------",value)
+
+//this.formData.born_date = value
+if (value.length == 2 || value.length == 5) $(this).val($(this).val() + '-');
+
+}
+
+);
+
+    },
+    
     onCampanyIndividualName(val) {
       console.log("*******************", val.target._value)
       this.formData.client_name = val.target._value
@@ -536,12 +576,16 @@ export default {
        },*/
     // 提交表單
     submit(form) {
+     // alert("d")
       console.log("555555555555555555555", form);
       console.log(form);
       console.log("-----4----4---4",this.formData);
       console.log("this.$store.state.reorderId------1", this.$store.state.reorderId);
     console.log("this.$store.state.reorder---------2", this.$store.state.reorder);
-      if (!this.formData.signature && !this.$store.state.isOverseaSignature) {
+      // if (!this.formData.signature && !this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      if (!this.formData.signature && this.$route.query.isShare) {
         this.$toast.fail("Please sign your name");
         return;
       } else if (!this.formData.born_date) {
@@ -553,6 +597,11 @@ export default {
       }
       let data = JSON.parse(JSON.stringify(this.formData));
       console.log("........00000....", data);
+      console.log("........00000..1..", this.formData.beneficiary_info);
+      console.log("........00000...2.", JSON.stringify(this.formData.beneficiary_info));
+    //  alert("d")
+      console.log("........00000....", this.isFilled);
+
       data.beneficiary_info = JSON.stringify(this.formData.beneficiary_info);
       if (this.isFilled > 0) {
         // 修改
@@ -571,6 +620,20 @@ export default {
           }
         });
       } else {
+     //   alert("d")
+        console.log('---------rrrrrrrrrrrrrrr-------------',this.formData.beneficiary_info)
+        console.log('---------rrrrrrrrrrrrrrr----length---------',this.formData.beneficiary_info.length)
+        for (let i = 0; i < this.formData.beneficiary_info.length; i++) {
+       //   alert("b")
+  if(this.formData.beneficiary_info[i].RELATIONSHIP === "wife" || this.formData.beneficiary_info[i].RELATIONSHIP === "WIFE" || this.formData.beneficiary_info[i].RELATIONSHIP === "husband" || this.formData.beneficiary_info[i].RELATIONSHIP === "HUSBAND"){
+  // alert("a")
+   console.log('---------rrrrrrrrrrrrrrr-------------',this.formData.beneficiary_info[i].BENEFICIARY_NAME)
+   console.log('---------rrrrrrrrrrrrrrr-------------',this.formData.beneficiary_info[i].COMPANY_NO)
+    this.$store.commit('ChangeBENEFICIARY_NAME', this.formData.beneficiary_info[i].BENEFICIARY_NAME)
+    this.$store.commit('ChangeCOMPANY_NO', this.formData.beneficiary_info[i].COMPANY_NO)
+
+  }
+}
         createOrders(data)
           .then((res) => {
             console.log(res, ".....yyy.......");
@@ -644,6 +707,7 @@ export default {
   
     },
     handleGenerate(index) {
+      // if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign"]
         .generate()
@@ -673,6 +737,12 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+
+      // }
+      // else{
+      //   alert("Settlor Signature should be added by the Settlor from the shared link.")
+      //   this.$refs["esign"].reset(); 
+      // }
     },
     // 添加beneficiary_info
     addBeneficiary() {

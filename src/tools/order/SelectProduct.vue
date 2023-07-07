@@ -25,6 +25,10 @@ export default {
       sessionStorage.setItem('orderStatus','')
     },
       mounted() {
+
+        
+        this.$store.commit('ChangeEditSig', false)
+
       this.productList();
       
       this.$store.commit('ChangeReorder', '')
@@ -34,6 +38,13 @@ export default {
       this.$store.commit('ChangeAigtId3', '')
       this.$store.commit('ChangeAigtId4', '')
       this.$store.commit('ChangeAigtId5', '')
+
+      this.$store.commit('ChangeAagtId1', '')
+      this.$store.commit('ChangeAagtId2', '')
+      this.$store.commit('ChangeAagtId3', '')
+      this.$store.commit('ChangeAagtId4', '')
+      this.$store.commit('ChangeAagtId5', '')
+      this.$store.commit('ChangeEditStatus', false)
   },
   methods:{
        productList() {
@@ -64,6 +75,10 @@ export default {
       else if(id===4){
         this.$router.push('/ChooseGep2Val')
           this.$store.commit('changePage',{tabbar: '/CustomerApplicationGep2', title: 'Select One'});
+      }
+      else if(id===5){
+        this.$router.push('/ChooseAagt')
+        this.$store.commit('changePage',{tabbar: '/OrderSignatureAagt', title: 'Select One'});
       }
       },
       // Gep(){

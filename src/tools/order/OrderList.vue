@@ -184,6 +184,7 @@
           <van-tag class="aigp" type="danger" v-if="item.product_id===1" size="large">{{item.product}}</van-tag>
           <van-tag  class="aigp1" type="danger" v-if="item.product_id===2" size="large">{{item.product}}</van-tag>
           <van-tag  class="aigp2" type="danger" v-if="item.product_id===4" size="large">{{item.product}}</van-tag>
+          <van-tag  class="aigp3" type="danger" v-if="item.product_id===5" size="large">{{item.product}}</van-tag>
         
         </div>
         <div class="orderList2">
@@ -201,78 +202,294 @@
           <van-tag type="success" v-if="item.status===2" size="large">Approved</van-tag>
           <van-tag type="danger" v-if="item.status===3" size="large">Not Approved</van-tag>
           <van-tag type="danger" v-if="item.status===4" size="large">Canceled</van-tag>
-          <a class="FilledCol reason" @click="showDialog(item.reject_reason)" v-show="item.reject_reason!=null"> Reason? </a>
+          <a class="FilledCol reason" @click="showDialog(item.reject_reason)" v-show="item.status == 3"> Reason? </a>
         </div>
       </van-col>
       <van-col span="8" align="end" class="order-status">
-        <div v-if="item.product_id==4" >
-          <span> Subscription form </span>
-          <span class="NotFilledCol" v-if="item.gepTwoSubscriptionForm==0"> (Not Filled) </span>
-          <span class="FilledCol" v-else> (Filled) </span>
+        <div v-if="item.product_id==4" 
+        @click="
+  $store.commit('changePage', { tabbar: '/CustomerApplicationGep2', title: '1/3 Subscription form' });
+    
+$router.push({
+  path: '/CustomerApplicationGep2',
+  query: { orderId: item.id, isFilled: item.gepTwoSubscriptionForm, status: item.status },
+});
+        "
+        >
+          <span class="txtFund1"> Subscription form </span>
+          <span class="NotFilledCol " v-if="item.gepTwoSubscriptionForm==0"> (Not Filled) </span>
+          <span class="FilledCol " v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==4" >
-          <span> PDPA </span>
+        <div v-if="item.product_id==4" 
+        @click="
+  $store.commit('changePage', { tabbar: '/KYCGep2', title: '2/3 PDPA' });
+$router.push({
+  path: '/KYCGep2',
+  query: { orderId: item.id, isFilled: item.GepTwoPdpaForm, status: item.status },
+});
+        "
+        >
+          <span class="txtFund1"> PDPA </span>
           <span class="NotFilledCol" v-if="item.GepTwoPdpaForm==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==4" >
-          <span> Document Checklist </span>
+        <div v-if="item.product_id==4" 
+        @click="
+  $store.commit('changePage', {
+    tabbar: '/LetterOfWishesGep2',
+    title: '3/3 Document Checklist',
+  });
+$router.push({
+  path: '/LetterOfWishesGep2',
+  query: { orderId: item.id, isFilled: item.GepTwoDocumentCheckListForm, status: item.status },
+});
+        "
+        >
+          <span class="txtFund1"> Document Checklist </span>
           <span class="NotFilledCol" v-if="item.GepTwoDocumentCheckListForm==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==1" >
-          <span> Customer Application </span>
+        <div v-if="item.product_id==5" 
+        @click="
+          $store.commit('changePage', { tabbar: '/CustomerApplicationAagt', title: '1/5 Customer Application' });
+          $router.push({
+            path: '/CustomerApplicationAagt',
+            query: { orderId: item.id, isFilled: item.AagtApplicationForm, status: item.status },
+          });
+        "
+        >
+          <span @click="getOrderDetail(item.id)" class="txtFund1"> Customer Application </span>
+          <span class="NotFilledCol" v-if="item.AagtApplicationForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div v-if="item.product_id==1" 
+        @click="
+          $store.commit('changePage', { tabbar: '/CustomerApplication', title: '1/5 Customer Application' });
+          // this.$store.commit('ChangeEditSig', true);
+          $router.push({
+            path: '/CustomerApplication',
+            query: { orderId: item.id, isFilled: item.customer_app_form, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> Customer Application </span>
           <span class="NotFilledCol" v-if="item.customer_app_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==2" >
-          <span> KYC form </span>
+        <div v-if="item.product_id==2" 
+        @click="
+          $store.commit('changePage', { tabbar: '/CustomerApplicationGep', title: '1/5 KYC' });
+          $router.push({
+            path: '/CustomerApplicationGep',
+            query: { orderId: item.id, isFilled: item.gep_kyc_form, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> KYC form </span>
           <span class="NotFilledCol" v-if="item.gep_kyc_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==1">
-          <span> Compliance Questionaire </span>
+        <div v-if="item.product_id==5"
+        @click="
+          $store.commit('changePage', { tabbar: '/KYCAagt', title: '2/5 Compliance Questionnaire' });
+          $router.push({
+            path: '/KYCAagt',
+            query: { orderId: item.id, isFilled: item.AagtKycQuestionnaireForm, status: item.status },
+          });
+        "
+        >
+          <span @click="getOrderDetail(item.id)" class="txtFund1"> Compliance Questionaire </span>
+          <span class="NotFilledCol" v-if="item.AagtKycQuestionnaireForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+
+        <div v-if="item.product_id==1"
+        @click="
+          $store.commit('changePage', { tabbar: '/KYC', title: '2/5 Compliance Questionnaire' });
+          $router.push({
+            path: '/KYC',
+            query: { orderId: item.id, isFilled: item.kyc_form, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> Compliance Questionaire </span>
           <span class="NotFilledCol" v-if="item.kyc_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==2">
-          <span> Subscription form </span>
+        <div v-if="item.product_id==2"
+        @click="
+          $store.commit('changePage', { tabbar: '/KYCGep', title: '2/5 SUBSCRIPTION FORM' });
+          $router.push({
+            path: '/KYCGep',
+            query: { orderId: item.id, isFilled: item.subcriptionform, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> Subscription form </span>
           <span class="NotFilledCol" v-if="item.subcriptionform==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==1">
-          <span> Letter Of Wishes  </span>
+        <div v-if="item.product_id==5"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/LetterOfWishesAagt',
+            title: '3/5 Letter Of Wishes',
+          });
+          $router.push({
+            path: '/LetterOfWishesAagt',
+            query: { orderId: item.id, isFilled: item.AagtLetterOfWishesForm, status: item.status },
+          });
+        ">
+
+          <span @click="getOrderDetail(item.id)" class="txtFund1"> Letter Of Wishes  </span>
+          <span class="NotFilledCol" v-if="item.AagtLetterOfWishesForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div v-if="item.product_id==1"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/LetterOfWishes',
+            title: '3/5 Letter Of Wishes',
+          });
+          $router.push({
+            path: '/LetterOfWishes',
+            query: { orderId: item.id, isFilled: item.letter_of_wishes_form, status: item.status },
+          });
+        ">
+
+          <span class="txtFund1"> Letter Of Wishes  </span>
           <span class="NotFilledCol" v-if="item.letter_of_wishes_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==2">
-          <span> Non Disclosure Agreement  </span>
+        <div v-if="item.product_id==2"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/PDPAMemoGep',
+            title: '4/5 NON-DISCLOSURE AGREEMENT',
+          });
+          $router.push({ path: '/PDPAMemoGep', query: { orderId: item.id,isFilled: item.gepNonDisclosureAgreement, status: item.status } });
+        "
+        >
+          <span class="txtFund1"> Non Disclosure Agreement  </span>
           <span class="NotFilledCol" v-if="item.gepNonDisclosureAgreement==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==1">
-          <span> PDPA Memo </span>
+        <div v-if="item.product_id==5"
+        
+        @click="
+    
+          $store.commit('changePage', {
+            tabbar: '/PdpaAagt',
+            title: '4/5 PDPA Memo',
+          });
+          $router.push({ path: '/PdpaAagt', query: { orderId: item.id,isFilled: item.AagtPdpaForm, status: item.status } });
+        "
+        >
+          <span   @click="getOrderDetail(item.id)" class="txtFund1"> PDPA Memo </span>
+          <span class="NotFilledCol" v-if="item.AagtPdpaForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div v-if="item.product_id==1"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/PDPAMemo',
+            title: '4/5 PDPA Memo',
+          });
+          $router.push({ path: '/PDPAMemo', query: { orderId: item.id,isFilled: item.pdpa_memo_form, status: item.status } });
+        "
+        >
+          <span class="txtFund1"> PDPA Memo </span>
           <span class="NotFilledCol" v-if="item.pdpa_memo_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==2">
-          <span> Document Checklist  </span>
+        <div v-if="item.product_id==2"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/DocumentChecklistGep',
+            title: '5/5 Document Checklist',
+          });
+          $router.push({ path: '/DocumentChecklistGep', query: { orderId: item.id,isFilled: item.gepDocumentCheckListForm, status: item.status } });
+        "
+        >
+          <span class="txtFund1"> Document Checklist  </span>
           <span class="NotFilledCol" v-if="item.gepDocumentCheckListForm==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==1">
-          <span> Document Checklist </span>
+        <div v-if="item.product_id==5"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/DocumentChecklistAagt',
+            title: '5/5 Document Checklist',
+          });
+          $router.push({ path: '/DocumentChecklistAagt', query: { orderId: item.id,isFilled: item.AagtDocumentCheckListForm, status: item.status } });
+        "
+        >
+          <span @click="getOrderDetail(item.id)" class="txtFund1"> Document Checklist </span>
+          <span class="NotFilledCol" v-if="item.AagtDocumentCheckListForm==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+        <div v-if="item.product_id==1"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/DocumentChecklist',
+            title: '5/5 Document Checklist',
+          });
+          $router.push({ path: '/DocumentChecklist', query: { orderId: item.id,isFilled: item.document_check_list_form, status: item.status } });
+        "
+        >
+          <span class="txtFund1" @click="getOrderDetail(item.id)"> Document Checklist </span>
           <span class="NotFilledCol" v-if="item.document_check_list_form==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==2">
-          <span> Third Party Declaration form </span>
+        <div v-if="item.product_id==2"
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/LetterOfWishesGep',
+            title: '3/5 THIRD PARTY FUND DECLARATION',
+          });
+          $router.push({
+            path: '/LetterOfWishesGep',
+            query: { orderId: item.id, isFilled: item.gepthirdPartyDeclarationForm, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> Third Party Declaration form </span>
           <span class="NotFilledCol" v-if="item.gepthirdPartyDeclarationForm==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
-        <div v-if="item.product_id==1">
-          <span> Third Party Declaration </span>
+        <div v-if="item.product_id==1"
+        
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/ThirdPartyDeclaration',
+            title: 'Third Party Declaration',
+          });
+          $router.push({
+            path: '/ThirdPartyDeclaration',
+            query: { orderId: item.id,isFilled: item.third_party_declaration_form, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> Third Party Declaration </span>
           <span class="NotFilledCol" v-if="item.third_party_declaration_form==0"> (Not Filled) </span>
+          <span class="FilledCol" v-else> (Filled) </span>
+        </div>
+
+        <div v-if="item.product_id==5"
+        
+        @click="
+          $store.commit('changePage', {
+            tabbar: '/ThirdPartyDeclarationAagt',
+            title: 'Third Party Declaration',
+          });
+          $router.push({
+            path: '/ThirdPartyDeclarationAagt',
+            query: { orderId: item.id,isFilled: item.AagtThirdPartyDeclarationForm, status: item.status },
+          });
+        "
+        >
+          <span class="txtFund1"> Third Party Declaration </span>
+          <span class="NotFilledCol" v-if="item.AagtThirdPartyDeclarationForm==0"> (Not Filled) </span>
           <span class="FilledCol" v-else> (Filled) </span>
         </div>
       </van-col>
@@ -315,7 +532,7 @@
 
           </p> -->
           
-          <van-button class="aigp" type="danger" v-if="item.product_id===1" size="small" @click="reorder(item)">Reorder</van-button>  
+          <van-button class="aigp" type="danger" v-if="item.product_id===1 || item.product_id===5 " size="small" @click="reorder(item)">Reorder</van-button>  
         <van-button type="danger" :disabled="item.status!==0" size="small" @click="del(item.id)">Delete</van-button>
         <van-button type="primary"  @click="toFill(item)" size="small">{{item.status===2?"View":"To fill"}}</van-button><br>
          
@@ -335,7 +552,7 @@
 <script>
 import moment from 'moment'
 import { getOrders ,productList, getOrdersExport} from "@/api/tools";
-import { createOrders, getOrdersForms, putOrdersForms } from "@/api/order";
+import { createOrders, getOrdersForms, putOrdersForms,getOrderDetail } from "@/api/order";
 import {deleteOrder} from '@/api/order'
 import { Dialog } from 'vant';
 import fileDownload from 'js-file-download'
@@ -386,6 +603,9 @@ export default {
   },
   mounted() {
     this.$store.commit('changeIsOverseaSignature',false)
+    this.$store.commit('ChangeEditStatus', true)
+   this.$store.commit('ChangeEditSig', false)
+    
     this.getOrders();
       this.productList();
       this.$store.commit('ChangeReorder', '')
@@ -395,10 +615,39 @@ export default {
       this.$store.commit('ChangeAigtId3', '')
       this.$store.commit('ChangeAigtId4', '')
       this.$store.commit('ChangeAigtId5', '')
+
+      this.$store.commit('ChangeAagtId1', '')
+      this.$store.commit('ChangeAagtId2', '')
+      this.$store.commit('ChangeAagtId3', '')
+      this.$store.commit('ChangeAagtId4', '')
+      this.$store.commit('ChangeAagtId5', '')
+
   },
   computed: {
   },
   methods: {
+    getOrderDetail(id) {
+      this.$store.commit('ChangeEditSig', true)
+     // alert("ffffff")
+      getOrderDetail(id)
+        .then((res) => {
+          console.log(">>>>>>>>>>>>>>",res);
+          console.log(">>>>>>>>>1>>>>>",res.remote);
+          if(res.remote == 'true'){
+         //  alert("a")
+            this.$store.commit('changeIsOverseaSignatureRemote',true)
+          }
+          else
+          {
+         //  alert("b")
+            this.$store.commit('changeIsOverseaSignatureRemote',false)
+          }
+        
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     reset(){
  this.searchVal= '',
  this.status= '',
@@ -532,6 +781,8 @@ export default {
         tabbar: '/OrderDetail',
         title: 'OrderDetail',
       });
+
+      this.$store.commit('ChangeEditSig', true)
       sessionStorage.setItem('orderId',JSON.stringify(item.id))
       sessionStorage.setItem('orderStatus',item.status)
       this.$router.push({path: '/OrderDetail', query: {id: item.id}});
@@ -543,22 +794,35 @@ export default {
         tabbar: '/OrderDetailGep',
         title: 'OrderDetailGep',
       });
+      this.$store.commit('ChangeEditSig', true)
       sessionStorage.setItem('orderId',JSON.stringify(item.id))
       sessionStorage.setItem('orderStatus',item.status)
       this.$router.push({path: '/OrderDetailGep', query: {id: item.id}});
 
             }
 
-            else{
+            else if (item.product_id === 4){
    this.$store.commit('changePage', {
         tabbar: '/OrderDetailGep2',
         title: 'OrderDetailGep2',
       });
+      this.$store.commit('ChangeEditSig', true)
       sessionStorage.setItem('orderId',JSON.stringify(item.id))
       sessionStorage.setItem('orderStatus',item.status)
       this.$router.push({path: '/OrderDetailGep2', query: {id: item.id}});
 
             }
+            else if (item.product_id === 5){
+              this.$store.commit('changePage', {
+        tabbar: '/OrderDetailAagt',
+        title: 'OrderDetailAagt',
+      });
+      this.$store.commit('ChangeEditSig', true)
+      sessionStorage.setItem('orderId',JSON.stringify(item.id))
+      sessionStorage.setItem('orderStatus',item.status)
+      this.$router.push({path: '/OrderDetailAagt', query: {id: item.id}});
+            }
+
 
 
 
@@ -566,7 +830,8 @@ export default {
     },
     reorder(item){
 
-      this.$store.commit('changeIsOverseaSignature',true)
+      if(item.product_id===1 ){
+        this.$store.commit('changeIsOverseaSignature',true)
       console.log("---item------",item)
       
       this.$store.commit('ChangeReorder', 1)
@@ -581,44 +846,31 @@ export default {
        this.$router.push('/OrderSignature')
        this.$store.commit('changePage',{tabbar: '/OrderSignature', title: 'OrderSignature'});
 
-      // if (item.customer_app_form > 0) {
-      //   console.log("QQQQQQ", item.customer_app_form)
-      //   getOrdersForms(item.customer_app_form, { type: "Customer Application" })
-      //     .then((res) => {
-      //       console.log(res, "獲取Customer Application數據");
-           
-      //       this.$store.commit('Changebeneficiary_infoReorder', JSON.parse(res.beneficiary_info))
+      }
 
-      //       this.$store.commit('Changebeneficiary_name_trusteeReorder', res.beneficiary_name_trustee)
-      //       this.$store.commit('Changenric_passport_no_company_noReorder', res.nric_passport_no_company_no)
-      //       this.$store.commit('ChangerelationshipReorder', res.relationship)
-      //       this.$store.commit('Changecontact_noReorder', res.contact_no)
-      //       this.$store.commit('Changepercentage_of_distributionReorder', res.percentage_of_distribution)
+      if(item.product_id===5 ){
+        this.$store.commit('ChangeEditStatus', false)
+        this.$store.commit('changeIsOverseaSignature',true)
+      console.log("---item------",item)
+      
+      this.$store.commit('ChangeReorder', 1)
 
-      //        this.$store.commit('ChangepriceReorder', res.price)
+      this.$store.commit('ChangeIdReorder', item.id)
+      this.$store.commit('ChangeAagtId1', item.AagtApplicationForm)
+      this.$store.commit('ChangeAagtId2', item.AagtKycQuestionnaireForm)
+      this.$store.commit('ChangeAagtId3', item.AagtLetterOfWishesForm)
+      this.$store.commit('ChangeAagtId4', item.AagtPdpaForm)
+      this.$store.commit('ChangeAagtId5', item.AagtDocumentCheckListForm)
+               this.$store.commit('changeIsOverseaSignature',true)
+       this.$router.push('/OrderSignatureAagt')
+       this.$store.commit('changePage',{tabbar: '/OrderSignatureAagt', title: 'OrderSignatureAagt'});
 
-      //       this.$store.commit('Changedetails_bank_nameReorder', res.details_bank_name)
-      //       this.$store.commit('Changedetails_account_noReorder', res.details_account_no)
-      //       this.$store.commit('Changedetails_account_ownerReorder', res.details_account_owner)
-
-      //       this.$store.commit('Changeaccount_nameReorder', res.account_name)
-      //       this.$store.commit('ChangebankReorder', res.bank)
-      //       this.$store.commit('Changeaccount_noReorder', res.account_no)
-      //       this.$store.commit('Changeswift_codeReorder', res.swift_code)
-
-      //       this.$store.commit('ChangesignatureReorder', res.signature)
-
-      //       this.$store.commit('changeIsOverseaSignature',true)
-      //  this.$router.push('/OrderSignature')
-      //  this.$store.commit('changePage',{tabbar: '/OrderSignature', title: 'OrderSignature'});
-
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      // }
+      }
+    
+    
     
     },
+    
     //刪除未提交訂單
     del(id) {
       deleteOrder(id).then(res => {
@@ -732,6 +984,9 @@ display: -webkit-box;
 .aigp2{
    background-color: #4c201c;
 }
+.aigp3{
+   background-color: #000000;
+}
 .orderList{
   border: 1px solid #eef0f5;
     border-radius: 12px;
@@ -759,6 +1014,12 @@ display: -webkit-box;
     
 }
 
+
+.txtFund1:hover {
+    text-decoration: underline;
+    color: #bd0d0d;
+    cursor: pointer;
+}
 
 
 </style>

@@ -1,5 +1,14 @@
 import request from '@/http/index'
 
+
+export const createOrdersAagt = obj => {
+  return request({
+    url: '/api/v1/orders/aagt-application-form',
+    method: 'POST',
+    data: obj
+  })
+}
+
 export const createOrdersGep = obj => {
   return request({
     url: '/api/v1/orders/gep',
@@ -29,6 +38,13 @@ export const postComments = obj => {
     data: obj
   })
 }
+export const kyc_formGep2Aagt = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/aagt-pdpa-form',
+    method: 'POST',
+    data: obj
+  })
+}
 export const kyc_formGep2 = (orderId, obj) => {
   return request({
     url: '/api/v1/orders/' + orderId + '/gep-two-pdpa',
@@ -47,6 +63,14 @@ export const kyc_formGep = (orderId, obj) => {
 export const createOrders = obj => {
   return request({
     url: '/api/v1/orders',
+    method: 'POST',
+    data: obj
+  })
+}
+
+export const kyc_formAagt = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/aagt-kyc-form',
     method: 'POST',
     data: obj
   })
@@ -87,6 +111,14 @@ export const letter_wishes_formGep = (orderId, obj) => {
     data: obj
   })
 }
+
+export const letter_wishes_formAagt = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/aagt-low-form',
+    method: 'POST',
+    data: obj
+  })
+}
 // 提交Letter Of Wishes
 export const letter_wishes_form = (orderId, obj) => {
   return request({
@@ -110,10 +142,24 @@ export const pdpa_memo = (orderId, obj) => {
     data: obj
   })
 }
+export const document_check_list_formAagt = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/aagt-document-check-list-form',
+    method: 'POST',
+    data: obj
+  })
+}
 // 提交Document Checklist
 export const document_check_list_form = (orderId, obj) => {
   return request({
     url: '/api/v1/orders/' + orderId + '/document_check_list_form',
+    method: 'POST',
+    data: obj
+  })
+}
+export const third_party_declaration_formAagt = (orderId, obj) => {
+  return request({
+    url: '/api/v1/orders/' + orderId + '/aagt-third-party-declaration-form',
     method: 'POST',
     data: obj
   })
@@ -156,6 +202,20 @@ export const getRequestDetail = (orderId) => {
     params: orderId
   })
 }
+export const getOrderDetailSignature = query => {
+  console.log(".....kkkkkkkkk........",query)
+  return request({
+    url: '/api/v1/get-form-signatures',
+    method: 'get',
+    params: query
+  })
+}
+// export const getOrderDetailSignature = (orderId) => {
+//   return request({
+//     url: '/api/v1/get-form-signatures/' + orderId,
+//     method: 'get',
+//   })
+// }
 
 export const getOrderDetail = (orderId) => {
   return request({

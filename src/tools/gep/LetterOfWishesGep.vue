@@ -30,6 +30,7 @@
         v-model="formData.subscriber_name"
         name="subscriber_name"
         autocomplete="off"
+        @input="formData.subscriber_name = formData.subscriber_name.toUpperCase()"
         center
         type="text"
         label="Name of the Individual, Company or Organisation"
@@ -41,6 +42,7 @@
         name="subscriber_dob"
         center
         autocomplete="off"
+
         type="text"
         label="Date of Birth / Date of Registration"
         placeholder="Please enter the Date of Birth / Date of Registration"
@@ -50,6 +52,7 @@
         v-model="formData.subscriber_nric_no"
         name="subscriber_nric_no"
         center
+        @input="formData.subscriber_nric_no = formData.subscriber_nric_no.toUpperCase()"
         type="text"
         autocomplete="off"
         label="NRIC/Passport/Company/ Organization Registration No"
@@ -62,6 +65,7 @@
         center
         type="text"
         autocomplete="off"
+        @input="formData.subscriber_address = formData.subscriber_address.toUpperCase()"
         label="Address of the Individual, Company or Organisation"
         placeholder="Please enter the Address of the Individual, Company or Organisation"
       
@@ -79,6 +83,7 @@
         v-model="formData.subscriber_reference_no"
         name="subscriber_reference_no"
         center
+        @input="formData.subscriber_reference_no = formData.subscriber_reference_no.toUpperCase()"
         type="text"
         autocomplete="off"
         label="Reference No"
@@ -92,6 +97,7 @@
         v-model="formData.third_party_name"
         autocomplete="off"
         name="third_party_name"
+        @input="formData.third_party_name = formData.third_party_name.toUpperCase()"
         center
         type="text"
         label="Name of the Individual, Company or Organisation"
@@ -112,6 +118,7 @@
         v-model="formData.third_party_nric_no"
         name="third_party_nric_no"
         center
+        @input="formData.third_party_nric_no = formData.third_party_nric_no.toUpperCase()"
         autocomplete="off"
         type="text"
         label="NRIC/Passport/Company/ Organization Registration No"
@@ -123,6 +130,7 @@
         name="third_party_address"
         center
         type="text"
+        @input="formData.third_party_address = formData.third_party_address.toUpperCase()"
         autocomplete="off"
         label="Address of the Individual, Company or Organisation"
         placeholder="Please enter the Address of the Individual, Company or Organisation"
@@ -143,6 +151,7 @@
         center
         type="text"
         autocomplete="off"
+        @input="formData.third_party_relationship = formData.third_party_relationship.toUpperCase()"
         label="Relationship"
         placeholder="Please enter the Relationship"
    
@@ -172,6 +181,7 @@
              </template>
       </van-field>
       <van-field v-if="formData.declaration_third_party === 'other'" v-model="formData.other_details"
+      @input="formData.other_details = formData.other_details.toUpperCase()"
         name="other_details" center type="text" label=""
         placeholder="Please enter " autocomplete="off"/> 
 
@@ -179,6 +189,7 @@
         v-model="formData.subscriber_name_by_thirdparty"
         name="subscriber_name_by_thirdparty"
         center
+        @input="formData.subscriber_name_by_thirdparty = formData.subscriber_name_by_thirdparty.toUpperCase()"
         type="text"
         autocomplete="off"
         label="Subscriber’s Name"
@@ -191,6 +202,7 @@
         name="subscriber_nric_no_by_thirdparty"
         center
         autocomplete="off"
+        @input="formData.subscriber_nric_no_by_thirdparty = formData.subscriber_nric_no_by_thirdparty.toUpperCase()"
         type="text"
         label="NRIC No."
         placeholder="Please enter the NRIC No."
@@ -225,6 +237,7 @@
         v-model="formData.witness_name"
         name="witness_name"
         center
+        @input="formData.witness_name = formData.witness_name.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Witness/Advisor’s Name"
@@ -234,6 +247,7 @@
       <van-field
         v-model="formData.witness_nric_no"
         name="witness_nric_no"
+        @input="formData.witness_nric_no = formData.witness_nric_no.toUpperCase()"
         center
         type="text"
         autocomplete="off"
@@ -435,6 +449,7 @@ export default {
         });
     },
     handleGenerate(val) {
+      if(!this.$store.state.isOverseaSignature){
      console.log(this.$refs[val].generate().PromiseState)
       var that = this;
       this.$refs[val]
@@ -469,8 +484,14 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
+        this.$refs["esign"].reset(); 
+      }
     },
      handleGenerate(index) {
+      if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign"]
         .generate()
@@ -500,6 +521,11 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
+        this.$refs["esign"].reset(); 
+      }
     },
     // 獲取表單數據
     getFormData() {

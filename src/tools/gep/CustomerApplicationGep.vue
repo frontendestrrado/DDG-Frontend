@@ -7,6 +7,7 @@
       <div class="minTitle">SUBSCRIBER’S INFORMATION</div>
       <!-- 文本框 -->
       <van-field v-model="formData.name" name="name" center :required="true" type="text"
+      @input="formData.name = formData.name.toUpperCase()"
       autocomplete="off"
       @change="onCampanyIndividualName"
         label="COMPANY / INDIVIDUAL NAME" placeholder="Please enter the COMPANY / INDIVIDUAL NAME" :rules="[
@@ -15,6 +16,7 @@
           },
         ]" />
       <van-field v-model="formData.nationality" name="nationality" center :required="true" type="text"
+      @input="formData.nationality = formData.nationality.toUpperCase()"
       autocomplete="off"
         label="Nationality" placeholder="Please enter the Nationality" :rules="[
           {
@@ -22,6 +24,7 @@
           },
         ]" />
       <van-field v-model="formData.nric_pass_roc_no" name="nric_pass_roc_no" center :required="true" type="text"
+      @input="formData.nric_pass_roc_no = formData.nric_pass_roc_no.toUpperCase()"
       autocomplete="off"
       @change="nricPassRocNo"
         label="ROC / NRIC / PASSPORT NO" placeholder="Please enter the ROC / NRIC / PASSPORT NO" :rules="[
@@ -36,6 +39,7 @@
         :rules="[{ pattern, message: 'Please enter the DATE OF BIRTH' }]" />
 
       <van-field v-model="formData.place_incorporation" name="place_incorporation" center :required="true" type="text"
+      @input="formData.place_incorporation = formData.place_incorporation.toUpperCase()"
       autocomplete="off"
         label="Place of Incorporation" placeholder="Please enter the Place of Incorporation" :rules="[
           {
@@ -44,10 +48,12 @@
         ]" />
 
       <van-field v-model="formData.occupation" name="occupation" center :required="true" type="text"
+      @input="formData.occupation = formData.occupation.toUpperCase()"
       autocomplete="off"
         label="Occupation / Industry" placeholder="Please enter the Occupation / Industry"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.address" name="address" center :required="true" type="text"
+      @input="formData.address = formData.address.toUpperCase()"
       autocomplete="off"
         label="Residential / Office Address" placeholder="Please enter the Residential / Office Address" :rules="[
           {
@@ -55,6 +61,7 @@
           },
         ]" />
       <van-field v-model="formData.postcode" name="postcode" center :required="true" type="text" label="Post Code"
+      @input="formData.postcode = formData.postcode.toUpperCase()"
       autocomplete="off"
         placeholder="Please enter the Post Code" :rules="[
           {
@@ -62,6 +69,7 @@
           },
         ]" />
       <van-field v-model="formData.country" name="country" center :required="true" type="text" label="Country"
+      @input="formData.country = formData.country.toUpperCase()"
       autocomplete="off"
         placeholder="Please enter the Country" :rules="[
           {
@@ -116,16 +124,20 @@
 <!-- </van-field> -->
 
       <van-field v-if="formData.source_of_funds === '3'"  v-model="formData.last_employment" name="last_employment" center type="text"
+      @input="formData.last_employment = formData.last_employment.toUpperCase()"
       autocomplete="off"
         label="Last Employment Held" placeholder="Please enter the Last Employment Held" />
       <van-field v-model="formData.employer"  name="employer" center type="text" label="Name of Employer / Company"
+      @input="formData.employer = formData.employer.toUpperCase()"
       autocomplete="off"
         placeholder="Please enter the Name of Employer / Company" :required="true" :rules="[{ required: true }]" />
 
       <van-field v-model="formData.position_held" name="position_held" center type="text"
+      @input="formData.position_held = formData.position_held.toUpperCase()"
       autocomplete="off"
         label="Occupation / Position Held" :required="true" :rules="[{ required: true }]" placeholder="Please enter the Occupation / Position Held" />
       <van-field v-model="formData.duration_employment" autocomplete="off" name="duration_employment" center type="text"
+      @input="formData.duration_employment = formData.duration_employment.toUpperCase()"
         label="Duration of Employment / Business" :required="true" :rules="[{ required: true }]" placeholder="Please enter the Duration of Employment / Business" />
       <van-field v-model="formData.year_income" autocomplete="off" :required="true" :rules="[{ required: true }]" name="year_income" center type="text" label="Annual Income (MYR)"
         placeholder="Please enter the Annual Income (MYR)" />
@@ -156,6 +168,7 @@
 
       </div>
       <van-field v-model="formData.purpose_of_invest" :required="true" :rules="[{ required: true }]" name="purpose_of_invest" center type="text"
+      @input="formData.purpose_of_invest = formData.purpose_of_invest.toUpperCase()"
         label="What is your intended purpose of investing in DDG Global Expansion Plan 2022? " autocomplete="off"
         placeholder="Please enter the What is your intended purpose of investing in DDG Global Expansion Plan 2022? "  />
       <van-field name="other_invest" label="Are you investing in other businesses / startups?" :required="true" :rules="[{ required: true }]" >
@@ -167,6 +180,7 @@
         </template>
       </van-field>
       <van-field v-if="formData.other_invest == 1" v-model="formData.other_invest_details" name="other_invest_details"
+      @input="formData.other_invest_details = formData.other_invest_details.toUpperCase()"
         center type="text" label=""
         placeholder="Please enter " autocomplete="off"/>
       <van-field name="politically_exposed"
@@ -179,6 +193,7 @@
         </template>
       </van-field>
       <van-field v-if="formData.politically_exposed == 1" v-model="formData.political_person_name"
+      @input="formData.political_person_name = formData.political_person_name.toUpperCase()"
         name="political_person_name" center type="text" label="" autocomplete="off"
         placeholder="Please enter " />
 
@@ -246,8 +261,10 @@
 
     
       <van-field v-model="formData.subcriber_name" autocomplete="off" name="subcriber_name" center :required="true" type="text"
+      @input="formData.subcriber_name = formData.subcriber_name.toUpperCase()"
         label="Subscriber’s Name" placeholder="Please enter the NAME" :rules="[{ required: true }]" />
       <van-field v-model="formData.nric_no" autocomplete="off" name="nric_no" center :required="true" type="text"
+      @input="formData.nric_no = formData.nric_no.toUpperCase()"
         label="NRIC / Passport No." placeholder="Please enter the NRIC / PASSPORT NO." :rules="[
           { required: true },
         ]" />
@@ -265,8 +282,10 @@
      
 
       <van-field v-model="formData.witness_name" autocomplete="off" id="2reset1" name="witness_name" center :required="true" type="text" label="NAME"
+      @input="formData.witness_name = formData.witness_name.toUpperCase()"
         placeholder="Witness/Advisor’s Name"  :rules="[{ required: true }]" />
         <van-field v-model="formData.witness_nric" name="witness_nric" center :required="true" type="text" label="NRIC/ Passport Number"
+        @input="formData.witness_nric = formData.witness_nric.toUpperCase()"
         placeholder="NRIC/ Passport Number" autocomplete="off" :rules="[{ required: true }]" />
 
         <div class="tl">Witness Signature</div>
@@ -353,7 +372,8 @@ export default {
         witness_name: sessionStorage.getItem("user_name"),
         witness_nric:"",
         witness_signature:"",
-        date:moment(new Date()).format('DD-MM-YYYY')
+        date:moment(new Date()).format('DD-MM-YYYY'),
+        remote:this.$store.state.isOverseaSignature.toString()
       
       },
       xyz: "",
@@ -485,7 +505,7 @@ console.log("....7777....",this.isFilled)
       console.log("555555555555555555555", form);
       console.log(form);
       console.log(this.formData);
-      if (!this.formData.subscriber_signature) {
+      if (!this.formData.subscriber_signature && !this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       } else if (!this.formData.date) {
@@ -616,6 +636,7 @@ console.log("....7777....",this.isFilled)
         });
     },
     handleGenerate(index) {
+      if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign"]
         .generate()
@@ -645,6 +666,11 @@ console.log("....7777....",this.isFilled)
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
+        this.$refs["esign"].reset(); 
+      }
     },
     // 添加beneficiary_info
     addBeneficiary() {

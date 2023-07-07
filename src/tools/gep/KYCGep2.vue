@@ -401,8 +401,10 @@
       </div>
 
       <van-field v-model="formData.eng_name" autocomplete="off" name="eng_name" center type="text" label="Name"
+      @input="formData.eng_name = formData.eng_name.toUpperCase()"
         placeholder="Please enter the Name" :required="true" :rules="[{ required: true }]" />
       <van-field v-model="formData.eng_nric_passport_no"  autocomplete="off" name="eng_nric_passport_no" center type="text" label="NRIC/Passport No."
+      @input="formData.eng_nric_passport_no = formData.eng_nric_passport_no.toUpperCase()"
         placeholder="Please enter the NRIC/Passport No." :required="true" :rules="[{ required: true }]" />
 
       <van-field v-model="formData.eng_date" autocomplete="off" name="eng_date" center type="text" label="Date: DD-MM-YYYY" placeholder="Please enter the Date"
@@ -720,8 +722,10 @@ Alamat: No. 11-2, Jalan Kampung Jawa, Off Bagan Luar, 12000 Butterworth, Pulau P
       </div>
 
       <van-field v-model="formData.malay_name" autocomplete="off" name="malay_name" center type="text" label="Nama"
+      @input="formData.malay_name = formData.malay_name.toUpperCase()"
         placeholder="Please enter the Nama" :required="true" :rules="[{ required: true }]" />
       <van-field v-model="formData.malay_nric_passport_no" autocomplete="off" name="malay_nric_passport_no" center type="text" label="No. Kad Pengenalan/Pasport"
+      @input="formData.malay_nric_passport_no = formData.malay_nric_passport_no.toUpperCase()"
         placeholder="Please enter the No. Kad Pengenalan/Pasport" :required="true" :rules="[{ required: true }]" />
 
       <van-field v-model="formData.malay_date" autocomplete="off" name="malay_date" center type="text" label="Tarikh: DD-MM-YYYY" placeholder="Please enter the Tarikh"
@@ -1240,7 +1244,7 @@ export default {
         });
       }
       else{
-        alert("Subscriber can add the signature from the copy link page.")
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
       }
     },
     handleReset(index) {
@@ -1282,7 +1286,7 @@ export default {
         });
       }
       else{
-        alert("Subscriber can add the signature from the copy link page.")
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
       }
     },
     // 展示日期弹框

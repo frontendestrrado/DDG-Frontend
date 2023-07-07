@@ -16,6 +16,7 @@
         label="Name"
         center
         autocomplete="off"
+        @input="formData.name = formData.name.toUpperCase()"
         :required="true"
         v-model="formData.name"
         :rules="[{ required: true ,message: 'Please enter the name'}]"
@@ -24,6 +25,7 @@
         name="nric"
         label="NRIC/Passport No"
         center
+        @input="formData.nric = formData.nric.toUpperCase()"
         :required="true"
         autocomplete="off"
         v-model="formData.nric"
@@ -111,26 +113,17 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
         </template>
       </van-field>
       <van-field name="Documents" label="Documents">
-        <template #input v-if="this.isFilled==0 ||this.isFilled ==undefined" >
-          <!-- this.isFilled=0 -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"  :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"   :before-delete="beforeRead4" :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_wealth_file" :after-read="afterRead3"  accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_wealth_file)"/> -->
+        <template #input v-if="this.isFilled==0 ||this.isFilled ==undefined">
+         
           <van-uploader v-model="source_of_wealth_file1" :after-read="afterRead31" :before-delete="beforeRead31" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file2" :after-read="afterRead32" :before-delete="beforeRead32" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file3" :after-read="afterRead33" :before-delete="beforeRead33" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file4" :after-read="afterRead34" :before-delete="beforeRead34" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file5" :after-read="afterRead35" :before-delete="beforeRead35" accept="*" :max-count="1" :disabled="isDone"/>
-          <!-- <van-uploader v-model="source_of_fund_addon11"      :after-read="afterRead811"    :before-delete="beforeRead811"    accept="*"  :max-count="1"  :disabled="isDone" />
-          <van-uploader v-model="source_of_fund_addon21" @click-preview="goDetail1(source_of_fund_addon21)"  :after-read="afterRead911" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon31" @click-preview="goDetail1(source_of_fund_addon31)"  :after-read="afterRead1011" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
-          <van-uploader v-model="source_of_fund_addon51" @click-preview="goDetail1(source_of_fund_addon51)"  :after-read="afterRead1121" accept="*" :max-count="1" :disabled="isDone"/> -->
+         
         </template>
         <template #input v-else>
-          <!-- this.isFilled=0 -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"  :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
-          <!-- <van-uploader v-model="source_of_fund_file"   @click-preview="goDetail1(source_of_fund_file)"   :before-delete="beforeRead4" :after-read="afterRead4" accept="*" :max-count="1" :disabled="isDone" /> -->
+        
           <van-uploader v-model="source_of_fund_addon1" @click-preview="goDetail1(source_of_fund_addon1)" :before-delete="beforeRead81" :after-read="afterRead81" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_fund_addon2" @click-preview="goDetail1(source_of_fund_addon2)" :before-delete="beforeRead91" :after-read="afterRead91" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_fund_addon3" @click-preview="goDetail1(source_of_fund_addon3)" :before-delete="beforeRead101" :after-read="afterRead101" accept="*" :max-count="1" :disabled="isDone"/>
@@ -156,11 +149,32 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
           <van-checkbox v-model="formData.bank"></van-checkbox>
         </template>
       </van-field>
-      <van-field name="Documents" label="Documents">
+      <!-- <van-field name="Documents" label="Documents">
         <template #input>
           <van-uploader v-model="evidence_of_bank_file" @click-preview="goDetail1(evidence_of_bank_file)" :after-read="afterRead5" accept="*" :max-count="1" :disabled="isDone"/>
         </template>
+      </van-field> -->
+
+      <van-field name="Documents" label="Documents">
+        <template #input v-if="this.isFilled==0 ||this.isFilled ==undefined">
+         
+          <van-uploader v-model="source_of_wealth_file1y" :after-read="afterRead31y" :before-delete="beforeRead31y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_wealth_file2y" :after-read="afterRead32y" :before-delete="beforeRead32y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_wealth_file3y" :after-read="afterRead33y" :before-delete="beforeRead33y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_wealth_file4y" :after-read="afterRead34y" :before-delete="beforeRead34y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_wealth_file5y" :after-read="afterRead35y" :before-delete="beforeRead35y" accept="*" :max-count="1" :disabled="isDone"/>
+         
+        </template>
+        <template #input v-else>
+        
+          <van-uploader v-model="source_of_fund_addon1y" @click-preview="goDetail1(source_of_fund_addon1y)" :before-delete="beforeRead81y" :after-read="afterRead81y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_fund_addon2y" @click-preview="goDetail1(source_of_fund_addon2y)" :before-delete="beforeRead91y" :after-read="afterRead91y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_fund_addon3y" @click-preview="goDetail1(source_of_fund_addon3y)" :before-delete="beforeRead101y" :after-read="afterRead101y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_fund_addon4y" @click-preview="goDetail1(source_of_fund_addon4y)" :before-delete="beforeRead111y" :after-read="afterRead111y" accept="*" :max-count="1" :disabled="isDone"/>
+          <van-uploader v-model="source_of_fund_addon5y" @click-preview="goDetail1(source_of_fund_addon5y)" :before-delete="beforeRead112y" :after-read="afterRead112y" accept="*" :max-count="1" :disabled="isDone"/>
+        </template>
       </van-field>
+
 
       <van-field
         name="beneficiary_photocopy"
@@ -299,6 +313,7 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
         v-model="formData.agent_name"
         id="5reset"
         name="agent_name"
+        @input="formData.agent_name = formData.agent_name.toUpperCase()"
         center
         :required="true"
         autocomplete="off"
@@ -309,6 +324,7 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
       />
       <van-field
         v-model="formData.agent_nric"
+        @input="formData.agent_nric = formData.agent_nric.toUpperCase()"
         name="agent_nric"
         autocomplete="off"
         center
@@ -373,7 +389,7 @@ Verified by the Agent/ Representative – Bank Statement, Bank passbook"
 <script>
 import moment from 'moment'
 import { uploadAutograph, uploadFile } from "@/api/util";
-import { getOrdersForms, putOrdersForms, document_check_list_form, third_party_declaration_form, getOrderDetailFor3rdParty} from "@/api/order";
+import { getOrdersForms, putOrdersForms, document_check_list_form, third_party_declaration_form, getOrderDetailFor3rdParty, getOrderDetailSignature} from "@/api/order";
 
 export default {
   props:['orderDataInfo'],
@@ -448,11 +464,13 @@ export default {
         evidence_of_bank_file: '',
         beneficiary_photo_file:[{}],
         source_of_fund_addon:[{}],
+        evidence_of_bank_addon:[{}],
             },
             xyz:"",
       sig1:true,
       beneficiary_photo_file:[{}],
       source_of_fund_addon:[{}],
+      evidence_of_bank_addon:[{}],
       // isShowPicker: false, // 控制日期彈框
       currentContent: new Date(), // 日期彈框顯示當前日期
       whichDate: "", // 區分是哪個日期觸發彈框
@@ -463,22 +481,32 @@ export default {
       proof_of_current_file: [],
       source_of_wealth_file: [],
       source_of_wealth_file1: [],
+      source_of_wealth_file1y: [],
       source_of_wealth_file2: [],
+      source_of_wealth_file2y: [],
       source_of_wealth_file2x: [],
       source_of_wealth_file3: [],
+      source_of_wealth_file3y: [],
       source_of_wealth_file3x: [],
       source_of_wealth_file4: [],
+      source_of_wealth_file4y: [],
       source_of_wealth_file4x:[],
       source_of_wealth_file5: [],
+      source_of_wealth_file5y: [],
       source_of_wealth_file5x: [],
       source_of_wealth_file1x: [],
       source_of_fund_file: [],
       evidence_of_bank_file: [],
       source_of_fund_addon1: [],
+      source_of_fund_addon1y: [],
       source_of_fund_addon2:[],
+      source_of_fund_addon2y:[],
       source_of_fund_addon3:[],
+      source_of_fund_addon3y:[],
       source_of_fund_addon4:[],
+      source_of_fund_addon4y:[],
       source_of_fund_addon5:[],
+      source_of_fund_addon5y:[],
       source_of_fund_addon11: [],
       source_of_fund_addon21:[],
       source_of_fund_addon31:[],
@@ -492,6 +520,7 @@ export default {
       qaz: [],
       orderData: {},
       qaz1: [],
+      qaz2: [],
       isDone: false, // 訂單是否已確認
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       isDelete :false,
@@ -534,6 +563,7 @@ export default {
         res.source_of_wealth_file= ''
         res.source_of_fund_file= ''
         res.source_of_fund_addon=[{}]
+        res.evidence_of_bank_addon=[{}]
         res.source_of_fund = false
         res.pdpa =  false
         res.bank = false
@@ -558,11 +588,35 @@ export default {
         this.formData.trust_deed=Number(this.formData.trust_deed)
         this.formData.beneficiary_photocopy=Number(this.formData.beneficiary_photocopy)
         this.formData.bank=Number(this.formData.bank)
-        this.settlor_photo_file.push({url: res.settlor_photo_file})
+      //  this.settlor_photo_file.push({url: res.settlor_photo_file})
 
-        this.proof_of_current_file.push({url: res.proof_of_current_file})
+      //  this.proof_of_current_file.push({url: res.proof_of_current_file})
         
-        this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+       // this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+
+        if(res.settlor_photo_file != null  && res.settlor_photo_file != ''){
+              this.settlor_photo_file.push({url: res.settlor_photo_file})
+            }
+            else{
+              this.settlor_photo_file = []
+            }
+          
+            if(res.proof_of_current_file != null  && res.proof_of_current_file != ''){
+              this.proof_of_current_file.push({url: res.proof_of_current_file})
+            }
+            else{
+              this.proof_of_current_file = []
+            }
+
+            if(res.source_of_wealth_file != null && res.source_of_wealth_file != '' ){
+              this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+            }
+            else{
+              this.source_of_wealth_file = []
+            }
+
+
+
         this.source_of_fund_file.push({url: res.source_of_fund_file})
         this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
         this.sig1=false
@@ -570,44 +624,48 @@ export default {
        // this.qaz.push(res.beneficiary_photo_file)
        console.log(".......99999999999............",res.source_of_fund_addon.length)
        console.log("........888888888...........",res.beneficiary_photo_file.length)
-       for (let j = 0; j < res.source_of_fund_addon.length; j++) {
+//        for (let j = 0; j < res.source_of_fund_addon.length; j++) {
 
-this.qaz1.push(res.source_of_fund_addon[j])
-}
-        for (let i = 0; i < res.beneficiary_photo_file.length; i++) {
+// this.qaz1.push(res.source_of_fund_addon[j])
+// }
+// for (let l = 0; l < res.evidence_of_bank_addon.length; l++) {
 
-          this.qaz.push(res.beneficiary_photo_file[i])
-        }
-if(res.beneficiary_photo_file.length ===1){
-console.log("...1111....1111...",res.beneficiary_photo_file[0])
-this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-}
-if(res.beneficiary_photo_file.length ===2){
-console.log("...2222....2222...",res.beneficiary_photo_file[1])
-this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-}
-if(res.beneficiary_photo_file.length ===3){
-console.log("...3333....3333...",res.beneficiary_photo_file[2])
-this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
-}
-if(res.beneficiary_photo_file.length ===4){
-console.log("...44444....44444...",res.beneficiary_photo_file[3])
-this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
-this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
-}
-if(res.beneficiary_photo_file.length >4){
-console.log("...5555....5555...",res.beneficiary_photo_file[4])
-this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
-this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
-this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
-this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
-this.beneficiary_photo_file5.push({url: res.beneficiary_photo_file[4]})
-}
+// this.qaz2.push(res.evidence_of_bank_addon[l])
+// }
+//         for (let k = 0; k < res.beneficiary_photo_file.length; k++) {
+
+//           this.qaz.push(res.beneficiary_photo_file[k])
+//         }
+// if(res.beneficiary_photo_file.length ===1){
+// console.log("...1111....1111...",res.beneficiary_photo_file[0])
+// this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+// }
+// if(res.beneficiary_photo_file.length ===2){
+// console.log("...2222....2222...",res.beneficiary_photo_file[1])
+// this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+// this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+// }
+// if(res.beneficiary_photo_file.length ===3){
+// console.log("...3333....3333...",res.beneficiary_photo_file[2])
+// this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+// this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+// this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+// }
+// if(res.beneficiary_photo_file.length ===4){
+// console.log("...44444....44444...",res.beneficiary_photo_file[3])
+// this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+// this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+// this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+// this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
+// }
+// if(res.beneficiary_photo_file.length >4){
+// console.log("...5555....5555...",res.beneficiary_photo_file[4])
+// this.beneficiary_photo_file1.push({url: res.beneficiary_photo_file[0]})
+// this.beneficiary_photo_file2.push({url: res.beneficiary_photo_file[1]})
+// this.beneficiary_photo_file3.push({url: res.beneficiary_photo_file[2]})
+// this.beneficiary_photo_file4.push({url: res.beneficiary_photo_file[3]})
+// this.beneficiary_photo_file5.push({url: res.beneficiary_photo_file[4]})
+// }
 
     
    
@@ -616,36 +674,70 @@ this.beneficiary_photo_file5.push({url: res.beneficiary_photo_file[4]})
 
         //   this.qaz1.push(res.source_of_fund_addon[j])
         // }
-if(res.source_of_fund_addon.length ===1){
-console.log("...1111....1111...",res.source_of_fund_addon[0])
-this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
-}
-if(res.source_of_fund_addon.length ===2){
-console.log("...2222....2222...",res.source_of_fund_addon[1])
-this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
-this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
-}
-if(res.source_of_fund_addon.length ===3){
-console.log("...3333....3333...",res.source_of_fund_addon[2])
-this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
-this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
-this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
-}
-if(res.source_of_fund_addon.length ===4){
-console.log("...44444....44444...",res.source_of_fund_addon[3])
-this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
-this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
-this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
-this.source_of_fund_addon4.push({url: res.source_of_fund_addon[3]})
-}
-if(res.source_of_fund_addon.length > 4){
-console.log("...44444....44444...",res.source_of_fund_addon[3])
-this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
-this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
-this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
-this.source_of_fund_addon4.push({url: res.source_of_fund_addon[3]})
-this.source_of_fund_addon5.push({url: res.source_of_fund_addon[4]})
-}
+// if(res.source_of_fund_addon.length ===1){
+// console.log("...1111....1111...",res.source_of_fund_addon[0])
+// this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+// }
+// if(res.source_of_fund_addon.length ===2){
+// console.log("...2222....2222...",res.source_of_fund_addon[1])
+// this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+// this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+// }
+// if(res.source_of_fund_addon.length ===3){
+// console.log("...3333....3333...",res.source_of_fund_addon[2])
+// this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+// this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+// this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
+// }
+// if(res.source_of_fund_addon.length ===4){
+// console.log("...44444....44444...",res.source_of_fund_addon[3])
+// this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+// this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+// this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
+// this.source_of_fund_addon4.push({url: res.source_of_fund_addon[3]})
+// }
+// if(res.source_of_fund_addon.length > 4){
+// console.log("...44444....44444...",res.source_of_fund_addon[3])
+// this.source_of_fund_addon1.push({url: res.source_of_fund_addon[0]})
+// this.source_of_fund_addon2.push({url: res.source_of_fund_addon[1]})
+// this.source_of_fund_addon3.push({url: res.source_of_fund_addon[2]})
+// this.source_of_fund_addon4.push({url: res.source_of_fund_addon[3]})
+// this.source_of_fund_addon5.push({url: res.source_of_fund_addon[4]})
+// }
+
+
+// if(res.evidence_of_bank_addon.length ===1){
+// console.log("...1111....1111...",res.evidence_of_bank_addon[0])
+// this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+// }
+// if(res.evidence_of_bank_addon.length ===2){
+// console.log("...2222....2222...",res.evidence_of_bank_addon[1])
+// this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+// this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+// }
+// if(res.evidence_of_bank_addon.length ===3){
+// console.log("...3333....3333...",res.evidence_of_bank_addon[2])
+// this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+// this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+// this.source_of_fund_addon3y.push({url: res.evidence_of_bank_addon[2]})
+// }
+// if(res.evidence_of_bank_addon.length ===4){
+// console.log("...44444....44444...",res.evidence_of_bank_addon[3])
+// this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+// this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+// this.source_of_fund_addon3y.push({url: res.evidence_of_bank_addon[2]})
+// this.source_of_fund_addon4y.push({url: res.evidence_of_bank_addon[3]})
+// }
+// if(res.evidence_of_bank_addon.length > 4){
+// console.log("...44444....44444...",res.evidence_of_bank_addon[3])
+// this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+// this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+// this.source_of_fund_addon3y.push({url: res.evidence_of_bank_addon[2]})
+// this.source_of_fund_addon4y.push({url: res.evidence_of_bank_addon[3]})
+// this.source_of_fund_addon5y.push({url: res.evidence_of_bank_addon[4]})
+// }
+
+
 
       })
       .catch((err) => {});
@@ -656,7 +748,7 @@ this.source_of_fund_addon5.push({url: res.source_of_fund_addon[4]})
   },
   methods: {
     getOrderDetailFor3rdParty() {
-
+      let idFor3 = ''
       if(this.$store.state.isOverseaSignature){
           idFor3=this.$store.state.CustomerApplicationId
         }else{
@@ -676,7 +768,15 @@ this.source_of_fund_addon5.push({url: res.source_of_fund_addon[4]})
 
     },
     beforeRead31(file){
+    //  alert("5")
       this.source_of_wealth_file1 = []
+
+// }
+return true
+// }
+    },
+    beforeRead31y(file){
+      this.source_of_wealth_file1y = []
 
 // }
 return true
@@ -684,6 +784,13 @@ return true
     },
     beforeRead31x(file){
       this.source_of_wealth_file1x = []
+
+// }
+return true
+// }
+    },
+    beforeRead32y(file){
+      this.source_of_wealth_file2y = []
 
 // }
 return true
@@ -703,6 +810,13 @@ return true
 return true
 // }
     },
+    beforeRead33y(file){
+      this.source_of_wealth_file3y = []
+
+// }
+return true
+// }
+    },
     beforeRead33(file){
       this.source_of_wealth_file3 = []
 
@@ -712,6 +826,13 @@ return true
     },
     beforeRead33x(file){
       this.source_of_wealth_file3x = []
+
+// }
+return true
+// }
+    },
+    beforeRead34y(file){
+      this.source_of_wealth_file4y = []
 
 // }
 return true
@@ -738,17 +859,28 @@ return true
 return true
 // }
     },
+    beforeRead35y(file){
+      this.source_of_wealth_file5y = []
+
+// }
+return true
+// }
+    },
     beforeRead35(file){
       this.source_of_wealth_file5 = []
 
 // }
-return truesubmit
+return true
 // }
     },
     beforeRead4(){
       this.isDelete = true
 this.formData.source_of_fund_file= ''
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead811(file){
     //  alert("x")
@@ -761,6 +893,22 @@ this.submit()
 // this.submit()
 return true
     },
+    beforeRead81y(){
+    //  alert("x")
+      this.isDelete = true
+//alert("1111111111111111111")
+this.qaz2.splice(0, 1);
+//delete this.qaz[0];
+console.log(".....444444....qaz2....",this.qaz1)
+console.log(".....555555.....qaz2...",this.qaz1.length)
+
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+
+    },
     beforeRead81(){
     //  alert("x")
       this.isDelete = true
@@ -769,7 +917,24 @@ this.qaz1.splice(0, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz1)
 console.log(".....555555........",this.qaz1.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+    },
+    beforeRead112y(){
+      this.isDelete = true
+//alert("1111111111111111111")
+this.qaz2.splice(4, 1);
+//delete this.qaz[0];
+console.log(".....444444........",this.qaz1)
+console.log(".....555555........",this.qaz1.length)
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead112(){
       this.isDelete = true
@@ -778,7 +943,24 @@ this.qaz1.splice(4, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz1)
 console.log(".....555555........",this.qaz1.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+    },
+    beforeRead111y(){
+      this.isDelete = true
+//alert("1111111111111111111")
+this.qaz2.splice(3, 1);
+//delete this.qaz[0];
+console.log(".....444444........",this.qaz1)
+console.log(".....555555........",this.qaz1.length)
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead111(){
       this.isDelete = true
@@ -787,7 +969,24 @@ this.qaz1.splice(3, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz1)
 console.log(".....555555........",this.qaz1.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+    },
+    beforeRead91y(){
+      this.isDelete = true
+//alert("1111111111111111111")
+this.qaz2.splice(1, 1);
+//delete this.qaz[0];
+console.log(".....444444........",this.qaz1)
+console.log(".....555555........",this.qaz1.length)
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead91(){
       this.isDelete = true
@@ -796,7 +995,24 @@ this.qaz1.splice(1, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz1)
 console.log(".....555555........",this.qaz1.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+    },
+    beforeRead101y(){
+      this.isDelete = true
+//alert("1111111111111111111")
+this.qaz2.splice(2, 1);
+//delete this.qaz[0];
+console.log(".....444444........",this.qaz1)
+console.log(".....555555........",this.qaz1.length)
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead101(){
       this.isDelete = true
@@ -805,7 +1021,11 @@ this.qaz1.splice(2, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz1)
 console.log(".....555555........",this.qaz1.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead7(){
       this.isDelete = true
@@ -814,7 +1034,11 @@ this.qaz.splice(0, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz)
 console.log(".....555555........",this.qaz.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead8(){
       this.isDelete = true
@@ -823,7 +1047,11 @@ this.qaz.splice(1, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz)
 console.log(".....555555........",this.qaz.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead9(){
       this.isDelete = true
@@ -832,7 +1060,11 @@ this.qaz.splice(2, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz)
 console.log(".....555555........",this.qaz.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead10(){
       this.isDelete = true
@@ -841,7 +1073,11 @@ this.qaz.splice(3, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz)
 console.log(".....555555........",this.qaz.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     beforeRead11(){
       this.isDelete = true
@@ -850,7 +1086,11 @@ this.qaz.splice(4, 1);
 //delete this.qaz[0];
 console.log(".....444444........",this.qaz)
 console.log(".....555555........",this.qaz.length)
-this.submit()
+if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
     },
     goDetail1(goDetail1) {
   //    alert("s")
@@ -924,11 +1164,30 @@ this.submit()
             this.formData.trust_deed=Number(this.formData.trust_deed)
             this.formData.beneficiary_photocopy=Number(this.formData.beneficiary_photocopy)
             this.formData.bank=Number(this.formData.bank)
-            this.settlor_photo_file.push({url: res.settlor_photo_file})
+            if(res.settlor_photo_file != null){
+              this.settlor_photo_file.push({url: res.settlor_photo_file})
+            }
+            else{
+              this.settlor_photo_file = []
+            }
+          
+            if(res.proof_of_current_file != null){
+              this.proof_of_current_file.push({url: res.proof_of_current_file})
+            }
+            else{
+              this.proof_of_current_file = []
+            }
 
-            this.proof_of_current_file.push({url: res.proof_of_current_file})
+            if(res.source_of_wealth_file != null){
+              this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+            }
+            else{
+              this.source_of_wealth_file = []
+            }
+
+          //  this.proof_of_current_file.push({url: res.proof_of_current_file})
             
-            this.source_of_wealth_file.push({url: res.source_of_wealth_file})
+           // this.source_of_wealth_file.push({url: res.source_of_wealth_file})
             this.source_of_fund_file.push({url: res.source_of_fund_file})
             this.evidence_of_bank_file.push({url: res.evidence_of_bank_file})
             this.sig1=false
@@ -939,6 +1198,10 @@ this.submit()
            for (let j = 0; j < res.source_of_fund_addon.length; j++) {
 
 this.qaz1.push(res.source_of_fund_addon[j])
+}
+for (let m = 0; m < res.evidence_of_bank_addon.length; m++) {
+
+this.qaz2.push(res.evidence_of_bank_addon[m])
 }
             for (let i = 0; i < res.beneficiary_photo_file.length; i++) {
 
@@ -1014,7 +1277,36 @@ if(res.source_of_fund_addon.length > 4){
 }
 
 
-      
+if(res.evidence_of_bank_addon.length ===1){
+console.log("...1111....1111...",res.evidence_of_bank_addon[0])
+  this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+}
+if(res.evidence_of_bank_addon.length ===2){
+  console.log("...2222....2222...",res.evidence_of_bank_addon[1])
+  this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+  this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+}
+if(res.evidence_of_bank_addon.length ===3){
+  console.log("...3333....3333...",res.evidence_of_bank_addon[2])
+  this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+  this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+  this.source_of_fund_addon3y.push({url: res.evidence_of_bank_addon[2]})
+}
+if(res.evidence_of_bank_addon.length ===4){
+  console.log("...44444....44444...",res.evidence_of_bank_addon[3])
+  this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+  this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+  this.source_of_fund_addon3y.push({url: res.evidence_of_bank_addon[2]})
+  this.source_of_fund_addon4y.push({url: res.evidence_of_bank_addon[3]})
+}
+if(res.evidence_of_bank_addon.length > 4){
+  console.log("...44444....44444...",res.evidence_of_bank_addon[3])
+  this.source_of_fund_addon1y.push({url: res.evidence_of_bank_addon[0]})
+  this.source_of_fund_addon2y.push({url: res.evidence_of_bank_addon[1]})
+  this.source_of_fund_addon3y.push({url: res.evidence_of_bank_addon[2]})
+  this.source_of_fund_addon4y.push({url: res.evidence_of_bank_addon[3]})
+  this.source_of_fund_addon5y.push({url: res.evidence_of_bank_addon[4]})
+}
       
 
            // beneficiary_photo_file1
@@ -1043,15 +1335,26 @@ if(res.source_of_fund_addon.length > 4){
 
             }
     },
-    submit(form) {
-      //this.afterRead31()
-      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file1)
+    submitLink(){
+   //   alert("submitLink")
+     if(this.$store.state.reorder != 1){
+      if (!this.formData.signature && !this.$route.query.isShare) {
+        this.$toast.fail("Please sign your name");
+        return;
+      }
+     }
+     
+      
+      // if (!this.formData.signature&&this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
       console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file2)
       console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file3)
       console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file4)
       console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file5)
       
-      console.log("...z1..",this.source_of_wealth_file1)
+      
       console.log("...z2..",this.source_of_fund_addon21)
          console.log("...z3..",this.source_of_fund_addon31)
       // ader v-model="source_of_fund_addon11" :after-read="afterRead811" accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_fund_addon11)"/>
@@ -1060,6 +1363,362 @@ if(res.source_of_fund_addon.length > 4){
       //     <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
       //     <van-uploader v-model="source_of_fund_addon51" @cli
       // v-if="this.isFilled==0 ||this.isFilled ==undefined" 
+
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1y === "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file1y)
+}
+if(typeof this.source_of_wealth_file2y === "string"){
+ // alert("2")
+ this.qaz2.push(this.source_of_wealth_file2y)
+}
+if(typeof this.source_of_wealth_file3y === "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file3y)
+}
+if(typeof this.source_of_wealth_file4y=== "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file4y)
+}
+if(typeof this.source_of_wealth_file5y === "string"){
+  this.qaz2.push(this.source_of_wealth_file5y)
+ // alert("1")
+}
+
+      }
+
+
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1 === "string"){
+ // alert("1")
+ this.qaz1.push(this.source_of_wealth_file1)
+}
+if(typeof this.source_of_wealth_file2 === "string"){
+ // alert("2")
+ this.qaz1.push(this.source_of_wealth_file2)
+}
+if(typeof this.source_of_wealth_file3 === "string"){
+ // alert("1")
+ this.qaz1.push(this.source_of_wealth_file3)
+}
+if(typeof this.source_of_wealth_file4 === "string"){
+ // alert("1")
+ this.qaz1.push(this.source_of_wealth_file4)
+}
+if(typeof this.source_of_wealth_file5 === "string"){
+  this.qaz1.push(this.source_of_wealth_file5)
+ // alert("1")
+}
+
+      }
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1x === "string"){
+ // alert("1")
+ this.qaz.push(this.source_of_wealth_file1x)
+}
+if(typeof this.source_of_wealth_file2x === "string"){
+ // alert("2")
+ this.qaz.push(this.source_of_wealth_file2x)
+}
+if(typeof this.source_of_wealth_file3x === "string"){
+ // alert("1")
+ this.qaz.push(this.source_of_wealth_file3x)
+}
+if(typeof this.source_of_wealth_file4x === "string"){
+ // alert("1")
+ this.qaz.push(this.source_of_wealth_file4x)
+}
+if(typeof this.source_of_wealth_file5x === "string"){
+  this.qaz.push(this.source_of_wealth_file5x)
+ // alert("1")
+}
+
+      }
+    //  console.log(form,11111);
+      console.log("...aaaaaaa..",(this.qaz))
+      console.log("...aaaaaaa..1",(this.qaz1))
+      console.log("...aaaaaaa..2",(this.qaz2))
+      var wsx = {};
+       this.qaz.map((val , index)=>{return wsx[index+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx.....",JSON.stringify(wsx))
+      
+       var wsx1 = {};
+       this.qaz1.map((val , index1)=>{return wsx1[index1+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx..1...",JSON.stringify(wsx1))
+      
+
+          
+       var wsx2 = {};
+       
+       this.qaz2.map((val , index2)=>{return wsx2[index2+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx..2...",JSON.stringify(wsx2))
+
+
+      let data3 = JSON.parse(JSON.stringify(this.formData3));
+
+      let data = JSON.parse(JSON.stringify(this.formData));
+      data.name = (data.name)+''
+      data.nric = (data.nric)+''
+      data.application_form = Number(data.application_form)
+      data.compliance_qestionnaire = Number(data.compliance_qestionnaire)
+      data.settlor_photocopy = Number(data.settlor_photocopy)
+      data.letter_of_wishes = Number(data.letter_of_wishes)
+      data.current_address = Number(data.current_address)
+      data.source_of_wealth = Number(data.source_of_wealth)
+      data.pdpa = Number(data.pdpa)
+      data.beneficiary_photocopy = Number(data.beneficiary_photocopy)
+      data.bank = Number(data.bank)
+      data.trust_deed = Number(data.trust_deed)
+      data.third_party_declaration = Number(data.third_party_declaration)
+      data.source_of_fund = Number(data.source_of_fund)
+      data.source_of_fund_addon=JSON.stringify(wsx1)
+      data.evidence_of_bank_addon=JSON.stringify(wsx2)
+      data.beneficiary_photo_file = JSON.stringify(wsx)
+      console.log(data, "------------data--------data------4444444444444444444-----");
+      // console.log(data,11111)
+      // if (this.from == "create") {
+      //   data.is_done = 1
+      // }
+      // console.log( data.is_done,11111)
+      if (this.isFilled > 0) {
+       //  修改
+          console.log(data, "------------data--------data-----------");
+        putOrdersForms(this.isFilled, {
+          type: "Document Checklist",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改Document Checklist成功");
+          if(this.isDelete === false){
+          this.$toast({
+            type: "success",
+            message: "Modify the success",
+         });
+         this.getOrderDetailFor3rdParty();
+
+         if (this.formData.third_party_declaration == true) {
+         // alert("1")
+        //  console.log("--------------oo---oo-o-o-o-o------",this.orderData)
+          if(this.third_party_declaration_Id > 0){
+         //   alert("1")
+            this.getFormData3(this.third_party_declaration_Id)
+          }
+          else{
+             third_party_declaration_form(this.$route.query.orderId, data3)
+          .then((res) => {
+    
+          })
+          .catch((err) => {});
+
+          }
+
+
+         }
+        }
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
+            if(this.isDelete === false){
+              this.$router.go(-1);
+            }
+            else{
+              this.isDelete =false
+              this.beneficiary_photo_file1= []
+              this.beneficiary_photo_file2= []
+              this.beneficiary_photo_file3= []
+              this.beneficiary_photo_file4= []
+              this.beneficiary_photo_file5= []
+              this.qaz=[],
+
+              this.settlor_photo_file= [],
+              this.proof_of_current_file= [],
+              this.source_of_wealth_file= [],
+              this.source_of_fund_file= [],
+              this.evidence_of_bank_file= [],
+              this.source_of_fund_addon1=[],
+              this.source_of_fund_addon1y=[],
+              this.source_of_fund_addon2=[],
+              this.source_of_fund_addon2y=[],
+              this.source_of_fund_addon3=[],
+              this.source_of_fund_addon3y=[],
+              this.source_of_fund_addon4=[],
+              this.source_of_fund_addon4y=[],
+              this.source_of_fund_addon5=[],
+              this.source_of_fund_addon5y=[],
+              this.beneficiary_photo_file1=[],
+              this.beneficiary_photo_file2=[],
+              this.beneficiary_photo_file3=[],
+              this.beneficiary_photo_file4=[],
+              this.beneficiary_photo_file5=[],
+              this.qaz= [],
+              this.qaz1= [],
+              this.qaz2= [],
+              this.beneficiary_photo_file=[{}],
+              this.source_of_fund_addon=[{}],
+              this.evidence_of_bank_addon=[{}],
+
+              this.getFormData()
+            }
+            
+          }
+        });
+        
+      } else {
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        console.log("----id----------------------------------------",typeof id);
+        // this.$store.state.reorder != 1
+        if(this.$store.state.reorder != 1){
+     if(id=== ""){
+    
+      this.$toast({
+              message: "Please submit upper forms on one by one.",
+            });
+     }
+     else{
+        document_check_list_form(id, data)
+          .then((res) => {
+            console.log("----5-5-5-5-5--5-5",res);
+            this.isFilled = res.document_check_list_form
+
+            this.$toast({
+              type: "success",
+              message: "Submitted \n successfully",
+            });
+
+
+            console.log(".....third_party_declaration....third_party_declaration...",this.formData.third_party_declaration)
+            // if (this.formData.third_party_declaration == true) {
+            //   this.$emit('onSelect3')
+            // }
+            // else{
+            //   this.$emit('onSelect4')
+
+            // }
+
+          //   if (this.formData.third_party_declaration == true) {
+          //     third_party_declaration_form(id, data3)
+          // .then((res) => {
+    
+          // })
+          // .catch((err) => {});
+          //   }
+          
+            if (this.from == "create") {
+              console.log("..1..")
+              this.$store.commit("changePage", {
+                tabbar: "/SelectProduct",
+                title: "SelectProduct",
+              });
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
+                console.log("..2..")
+                if (this.formData.third_party_declaration == true) {
+                  console.log("..3..")
+                  this.$store.commit("changePage", {
+                tabbar: "/ThirdPartyDeclaration",
+                title: "Third Party Declaration Form",
+              });
+                  this.$router.push({
+                  path:
+                    "/ThirdPartyDeclaration?from=create&orderId=" + this.$route.query.orderId, query: { campanyIndividualName: this.$route.query.campanyIndividualName }
+                })
+
+                
+                }
+                else{
+                  console.log("..4..")
+                  this.$router.push("/SelectProduct");
+                }
+                
+              }
+
+            } else {
+              console.log("..5..")
+              this.$router.go(-1);
+            }
+          })
+          .catch((err) => {});
+        }
+      }
+      }
+      this.$emit('getOrderDetail')
+      this.$emit('onSelect10')
+    },
+    submit(form) {
+
+      if (this.$route.query.isShare) {
+      //  this.isDelete = true
+        getOrderDetailSignature({
+          order_id: this.$route.query.orderId
+        })
+          .then((res) => {
+          console.log("__________sig list_______",res)
+          if (res.aigt_signatures.customerApp_signature == '' || res.aigt_signatures.customerApp_signature == null ||
+          res.aigt_signatures.complianceQuestionnaireForm_declaration == '' || res.aigt_signatures.complianceQuestionnaireForm_declaration == null ||
+          res.aigt_signatures.letterOfWishes_signature == '' || res.aigt_signatures.letterOfWishes_signature == null ||
+          res.aigt_signatures.pdpa_signature == '' || res.aigt_signatures.pdpa_signature == null )
+          {
+            alert("Please sign your name in above forms")
+         return;
+
+
+          }
+          else{
+            if (!this.formData.signature && !this.$route.query.isShare) {
+        this.$toast.fail("Please sign your name");
+        return;
+      }
+      
+      // if (!this.formData.signature&&this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file2)
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file3)
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file4)
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file5)
+      
+      
+      console.log("...z2..",this.source_of_fund_addon21)
+         console.log("...z3..",this.source_of_fund_addon31)
+      // ader v-model="source_of_fund_addon11" :after-read="afterRead811" accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_fund_addon11)"/>
+      //     <van-uploader v-model="source_of_fund_addon21" @click-preview="goDetail1(source_of_fund_addon21)"  :after-read="afterRead911" accept="*" :max-count="1" :disabled="isDone"/>
+      //     <van-uploader v-model="source_of_fund_addon31" @click-preview="goDetail1(source_of_fund_addon31)"  :after-read="afterRead1011" accept="*" :max-count="1" :disabled="isDone"/>
+      //     <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
+      //     <van-uploader v-model="source_of_fund_addon51" @cli
+      // v-if="this.isFilled==0 ||this.isFilled ==undefined" 
+
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1y === "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file1y)
+}
+if(typeof this.source_of_wealth_file2y === "string"){
+ // alert("2")
+ this.qaz2.push(this.source_of_wealth_file2y)
+}
+if(typeof this.source_of_wealth_file3y === "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file3y)
+}
+if(typeof this.source_of_wealth_file4y=== "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file4y)
+}
+if(typeof this.source_of_wealth_file5y === "string"){
+  this.qaz2.push(this.source_of_wealth_file5y)
+ // alert("1")
+}
+
+      }
+
+console.log("____________77777777777____",typeof this.source_of_wealth_file1 === "string")
       if(this.isFilled==0 ||this.isFilled ==undefined){
 //this.qaz1.push()
 if(typeof this.source_of_wealth_file1 === "string"){
@@ -1111,6 +1770,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
       console.log(form,11111);
       console.log("...aaaaaaa..",(this.qaz))
       console.log("...aaaaaaa..1",(this.qaz1))
+      console.log("...aaaaaaa..2",(this.qaz2))
       var wsx = {};
        this.qaz.map((val , index)=>{return wsx[index+1]=val})
        console.log(".....xxxxxxxxxxxxxxxx.....",JSON.stringify(wsx))
@@ -1120,10 +1780,13 @@ if(typeof this.source_of_wealth_file5x === "string"){
        console.log(".....xxxxxxxxxxxxxxxx..1...",JSON.stringify(wsx1))
       
 
-      if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
-        this.$toast.fail("Please sign your name");
-        return;
-      }
+          
+       var wsx2 = {};
+       
+       this.qaz2.map((val , index2)=>{return wsx2[index2+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx..2...",JSON.stringify(wsx2))
+
+
       let data3 = JSON.parse(JSON.stringify(this.formData3));
 
       let data = JSON.parse(JSON.stringify(this.formData));
@@ -1142,8 +1805,9 @@ if(typeof this.source_of_wealth_file5x === "string"){
       data.third_party_declaration = Number(data.third_party_declaration)
       data.source_of_fund = Number(data.source_of_fund)
       data.source_of_fund_addon=JSON.stringify(wsx1)
+      data.evidence_of_bank_addon=JSON.stringify(wsx2)
       data.beneficiary_photo_file = JSON.stringify(wsx)
-
+      console.log(data, "------------data--------data------4444444444444444444-----");
       // console.log(data,11111)
       // if (this.from == "create") {
       //   data.is_done = 1
@@ -1151,6 +1815,7 @@ if(typeof this.source_of_wealth_file5x === "string"){
       // console.log( data.is_done,11111)
       if (this.isFilled > 0) {
        //  修改
+          console.log(data, "------------data--------data-----------");
         putOrdersForms(this.isFilled, {
           type: "Document Checklist",
           data: JSON.stringify(data),
@@ -1161,13 +1826,13 @@ if(typeof this.source_of_wealth_file5x === "string"){
             type: "success",
             message: "Modify the success",
          });
+
          this.getOrderDetailFor3rdParty();
 
          if (this.formData.third_party_declaration == true) {
-         // alert("1")
-        //  console.log("--------------oo---oo-o-o-o-o------",this.orderData)
+       
           if(this.third_party_declaration_Id > 0){
-         //   alert("1")
+        
             this.getFormData3(this.third_party_declaration_Id)
           }
           else{
@@ -1176,11 +1841,10 @@ if(typeof this.source_of_wealth_file5x === "string"){
     
           })
           .catch((err) => {});
-
           }
-
-
          }
+
+
         }
           if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
             if(this.isDelete === false){
@@ -1201,10 +1865,15 @@ if(typeof this.source_of_wealth_file5x === "string"){
               this.source_of_fund_file= [],
               this.evidence_of_bank_file= [],
               this.source_of_fund_addon1=[],
+              this.source_of_fund_addon1y=[],
               this.source_of_fund_addon2=[],
+              this.source_of_fund_addon2y=[],
               this.source_of_fund_addon3=[],
+              this.source_of_fund_addon3y=[],
               this.source_of_fund_addon4=[],
+              this.source_of_fund_addon4y=[],
               this.source_of_fund_addon5=[],
+              this.source_of_fund_addon5y=[],
               this.beneficiary_photo_file1=[],
               this.beneficiary_photo_file2=[],
               this.beneficiary_photo_file3=[],
@@ -1212,8 +1881,10 @@ if(typeof this.source_of_wealth_file5x === "string"){
               this.beneficiary_photo_file5=[],
               this.qaz= [],
               this.qaz1= [],
+              this.qaz2= [],
               this.beneficiary_photo_file=[{}],
               this.source_of_fund_addon=[{}],
+              this.evidence_of_bank_addon=[{}],
 
               this.getFormData()
             }
@@ -1227,6 +1898,14 @@ if(typeof this.source_of_wealth_file5x === "string"){
         }else{
           id=this.$route.query.orderId
         }
+        console.log("----id----------------------------------------",typeof id);
+     if(id=== "" ){
+    
+      this.$toast({
+              message: "Please submit upper forms on one by one.",
+            });
+     }
+     else{
         document_check_list_form(id, data)
           .then((res) => {
             console.log("----5-5-5-5-5--5-5",res);
@@ -1247,13 +1926,13 @@ if(typeof this.source_of_wealth_file5x === "string"){
 
             // }
 
-            if (this.formData.third_party_declaration == true) {
-              third_party_declaration_form(id, data3)
-          .then((res) => {
+          //   if (this.formData.third_party_declaration == true) {
+          //     third_party_declaration_form(id, data3)
+          // .then((res) => {
     
-          })
-          .catch((err) => {});
-            }
+          // })
+          // .catch((err) => {});
+          //   }
           
             if (this.from == "create") {
               console.log("..1..")
@@ -1289,8 +1968,365 @@ if(typeof this.source_of_wealth_file5x === "string"){
             }
           })
           .catch((err) => {});
+        }
       }
       this.$emit('getOrderDetail')
+          }
+         
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+      }
+      else{
+      //  alert("2")
+        if (!this.formData.signature && !this.$route.query.isShare) {
+        this.$toast.fail("Please sign your name");
+        return;
+      }
+      
+      // if (!this.formData.signature&&this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file2)
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file3)
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file4)
+      console.log("AAAAAAAAAAAAAAAAAAA",typeof this.source_of_wealth_file5)
+      
+      
+      console.log("...z2..",this.source_of_fund_addon21)
+         console.log("...z3..",this.source_of_fund_addon31)
+      // ader v-model="source_of_fund_addon11" :after-read="afterRead811" accept="*" :max-count="1" :disabled="isDone" @click-preview="goDetail1(source_of_fund_addon11)"/>
+      //     <van-uploader v-model="source_of_fund_addon21" @click-preview="goDetail1(source_of_fund_addon21)"  :after-read="afterRead911" accept="*" :max-count="1" :disabled="isDone"/>
+      //     <van-uploader v-model="source_of_fund_addon31" @click-preview="goDetail1(source_of_fund_addon31)"  :after-read="afterRead1011" accept="*" :max-count="1" :disabled="isDone"/>
+      //     <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
+      //     <van-uploader v-model="source_of_fund_addon51" @cli
+      // v-if="this.isFilled==0 ||this.isFilled ==undefined" 
+
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1y === "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file1y)
+}
+if(typeof this.source_of_wealth_file2y === "string"){
+ // alert("2")
+ this.qaz2.push(this.source_of_wealth_file2y)
+}
+if(typeof this.source_of_wealth_file3y === "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file3y)
+}
+if(typeof this.source_of_wealth_file4y=== "string"){
+ // alert("1")
+ this.qaz2.push(this.source_of_wealth_file4y)
+}
+if(typeof this.source_of_wealth_file5y === "string"){
+  this.qaz2.push(this.source_of_wealth_file5y)
+ // alert("1")
+}
+
+      }
+
+
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1 === "string"){
+ // alert("1")
+ this.qaz1.push(this.source_of_wealth_file1)
+}
+if(typeof this.source_of_wealth_file2 === "string"){
+ // alert("2")
+ this.qaz1.push(this.source_of_wealth_file2)
+}
+if(typeof this.source_of_wealth_file3 === "string"){
+ // alert("1")
+ this.qaz1.push(this.source_of_wealth_file3)
+}
+if(typeof this.source_of_wealth_file4 === "string"){
+ // alert("1")
+ this.qaz1.push(this.source_of_wealth_file4)
+}
+if(typeof this.source_of_wealth_file5 === "string"){
+  this.qaz1.push(this.source_of_wealth_file5)
+ // alert("1")
+}
+
+      }
+      if(this.isFilled==0 ||this.isFilled ==undefined){
+//this.qaz1.push()
+if(typeof this.source_of_wealth_file1x === "string"){
+ // alert("1")
+ this.qaz.push(this.source_of_wealth_file1x)
+}
+if(typeof this.source_of_wealth_file2x === "string"){
+ // alert("2")
+ this.qaz.push(this.source_of_wealth_file2x)
+}
+if(typeof this.source_of_wealth_file3x === "string"){
+ // alert("1")
+ this.qaz.push(this.source_of_wealth_file3x)
+}
+if(typeof this.source_of_wealth_file4x === "string"){
+ // alert("1")
+ this.qaz.push(this.source_of_wealth_file4x)
+}
+if(typeof this.source_of_wealth_file5x === "string"){
+  this.qaz.push(this.source_of_wealth_file5x)
+ // alert("1")
+}
+
+      }
+   //   console.log(form,11111);
+      console.log("...aaaaaaa..",(this.qaz))
+      console.log("...aaaaaaa..1",(this.qaz1))
+      console.log("...aaaaaaa..2",(this.qaz2))
+      var wsx = {};
+       this.qaz.map((val , index)=>{return wsx[index+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx...qqqqqqqqqqqqqqq..",JSON.stringify(wsx))
+      
+       var wsx1 = {};
+       this.qaz1.map((val , index1)=>{return wsx1[index1+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx..1..qqqqqqqqqqqq.",JSON.stringify(wsx1))
+      
+
+          
+       var wsx2 = {};
+       
+       this.qaz2.map((val , index2)=>{return wsx2[index2+1]=val})
+       console.log(".....xxxxxxxxxxxxxxxx..2..qqqqqqqqqqqq.",JSON.stringify(wsx2))
+
+
+      let data3 = JSON.parse(JSON.stringify(this.formData3));
+
+      let data = JSON.parse(JSON.stringify(this.formData));
+      data.name = (data.name)+''
+      data.nric = (data.nric)+''
+      data.application_form = Number(data.application_form)
+      data.compliance_qestionnaire = Number(data.compliance_qestionnaire)
+      data.settlor_photocopy = Number(data.settlor_photocopy)
+      data.letter_of_wishes = Number(data.letter_of_wishes)
+      data.current_address = Number(data.current_address)
+      data.source_of_wealth = Number(data.source_of_wealth)
+      data.pdpa = Number(data.pdpa)
+      data.beneficiary_photocopy = Number(data.beneficiary_photocopy)
+      data.bank = Number(data.bank)
+      data.trust_deed = Number(data.trust_deed)
+      data.third_party_declaration = Number(data.third_party_declaration)
+      data.source_of_fund = Number(data.source_of_fund)
+      data.source_of_fund_addon=JSON.stringify(wsx1)
+      data.evidence_of_bank_addon=JSON.stringify(wsx2)
+      data.beneficiary_photo_file = JSON.stringify(wsx)
+      console.log(data, "------------data--------data------4444444444444444444---qqqqqqqqqqqqqq--");
+      // console.log(data,11111)
+      // if (this.from == "create") {
+      //   data.is_done = 1
+      // }
+      // console.log( data.is_done,11111)
+      if (this.isFilled > 0) {
+       //  修改
+          console.log(data, "------------data--------data-----------");
+        putOrdersForms(this.isFilled, {
+          type: "Document Checklist",
+          data: JSON.stringify(data),
+        }).then((res) => {
+          console.log(res, "修改Document Checklist成功");
+          if(this.isDelete === false){
+          this.$toast({
+            type: "success",
+            message: "Modify the success",
+         });
+     if( !this.$store.state.editSig){
+         this.getOrderDetailFor3rdParty();
+
+         if (this.formData.third_party_declaration == true) {
+         // alert("1")
+        //  console.log("--------------oo---oo-o-o-o-o------",this.orderData)
+          if(this.third_party_declaration_Id > 0){
+         //   alert("1")
+            this.getFormData3(this.third_party_declaration_Id)
+          }
+          else{
+             third_party_declaration_form(this.$route.query.orderId, data3)
+          .then((res) => {
+    
+          })
+          .catch((err) => {});
+
+          }
+
+        }
+         }
+        }
+          if(!this.$route.query.isShare && !this.$store.state.isOverseaSignature){
+            if(this.isDelete === false){
+              this.$router.go(-1);
+            }
+            else{
+              this.isDelete =false
+              this.beneficiary_photo_file1= []
+              this.beneficiary_photo_file2= []
+              this.beneficiary_photo_file3= []
+              this.beneficiary_photo_file4= []
+              this.beneficiary_photo_file5= []
+              this.qaz=[],
+
+              this.settlor_photo_file= [],
+              this.proof_of_current_file= [],
+              this.source_of_wealth_file= [],
+              this.source_of_fund_file= [],
+              this.evidence_of_bank_file= [],
+              this.source_of_fund_addon1=[],
+              this.source_of_fund_addon1y=[],
+              this.source_of_fund_addon2=[],
+              this.source_of_fund_addon2y=[],
+              this.source_of_fund_addon3=[],
+              this.source_of_fund_addon3y=[],
+              this.source_of_fund_addon4=[],
+              this.source_of_fund_addon4y=[],
+              this.source_of_fund_addon5=[],
+              this.source_of_fund_addon5y=[],
+              this.beneficiary_photo_file1=[],
+              this.beneficiary_photo_file2=[],
+              this.beneficiary_photo_file3=[],
+              this.beneficiary_photo_file4=[],
+              this.beneficiary_photo_file5=[],
+              this.qaz= [],
+              this.qaz1= [],
+              this.qaz2= [],
+              this.beneficiary_photo_file=[{}],
+              this.source_of_fund_addon=[{}],
+              this.evidence_of_bank_addon=[{}],
+
+              this.getFormData()
+            }
+            
+          }
+        });
+      } else {
+        let id=null
+        if(this.$store.state.isOverseaSignature){
+          id=this.$store.state.CustomerApplicationId
+        }else{
+          id=this.$route.query.orderId
+        }
+        console.log("----id----------------qqqqqqqqqqqqq------------------------",typeof id);
+     if(id=== "" ){
+    
+      this.$toast({
+              message: "Please submit upper forms on one by one.",
+            });
+     }
+     else{
+        document_check_list_form(id, data)
+          .then((res) => {
+            console.log("----5-5-5-5-5--5-5qqqqqqqqqqqqqqqqqqqqqqqqqqqq",res);
+            this.isFilled = res.document_check_list_form
+            
+
+            this.beneficiary_photo_file1= []
+              this.beneficiary_photo_file2= []
+              this.beneficiary_photo_file3= []
+              this.beneficiary_photo_file4= []
+              this.beneficiary_photo_file5= []
+              this.qaz=[],
+
+              this.settlor_photo_file= [],
+              this.proof_of_current_file= [],
+              this.source_of_wealth_file= [],
+              this.source_of_fund_file= [],
+              this.evidence_of_bank_file= [],
+              this.source_of_fund_addon1=[],
+              this.source_of_fund_addon1y=[],
+              this.source_of_fund_addon2=[],
+              this.source_of_fund_addon2y=[],
+              this.source_of_fund_addon3=[],
+              this.source_of_fund_addon3y=[],
+              this.source_of_fund_addon4=[],
+              this.source_of_fund_addon4y=[],
+              this.source_of_fund_addon5=[],
+              this.source_of_fund_addon5y=[],
+              this.beneficiary_photo_file1=[],
+              this.beneficiary_photo_file2=[],
+              this.beneficiary_photo_file3=[],
+              this.beneficiary_photo_file4=[],
+              this.beneficiary_photo_file5=[],
+              this.qaz= [],
+              this.qaz1= [],
+              this.qaz2= [],
+              this.beneficiary_photo_file=[{}],
+              this.source_of_fund_addon=[{}],
+              this.evidence_of_bank_addon=[{}],
+
+              this.getFormData()
+
+       
+
+            this.$toast({
+              type: "success",
+              message: "Submitted \n successfully",
+            });
+
+
+            console.log("....qqqqqqqqqqqqqqqqqqqqqqqqqqqqqq.third_party_declaration....third_party_declaration...",this.formData.third_party_declaration)
+            // if (this.formData.third_party_declaration == true) {
+            //   this.$emit('onSelect3')
+            // }
+            // else{
+            //   this.$emit('onSelect4')
+
+            // }
+
+          //   if (this.formData.third_party_declaration == true) {
+          //     third_party_declaration_form(id, data3)
+          // .then((res) => {
+    
+          // })
+          // .catch((err) => {});
+          //   }
+          
+            if (this.from == "create") {
+              console.log("..1.qqqqqqqqqqqqqqqqqqq.")
+              this.$store.commit("changePage", {
+                tabbar: "/SelectProduct",
+                title: "SelectProduct",
+              });
+              if(!this.$store.state.isOverseaSignature&&!this.$route.query.isShare){
+                console.log("..2.qqqqqqqqqqqqqqqqqqq.")
+                if (this.formData.third_party_declaration == true) {
+                  console.log("..3.qqqqqqqqqqqqqqqqqqq.")
+                  this.$store.commit("changePage", {
+                tabbar: "/ThirdPartyDeclaration",
+                title: "Third Party Declaration Form",
+              });
+                  this.$router.push({
+                  path:
+                    "/ThirdPartyDeclaration?from=create&orderId=" + this.$route.query.orderId, query: { campanyIndividualName: this.$route.query.campanyIndividualName }
+                })
+
+                
+                }
+                else{
+                  console.log("..4.qqqqqqqqqqqqqqqqqqqq.")
+                  this.$router.push("/SelectProduct");
+                }
+                
+              }
+
+            } else {
+              console.log("..5..qqqqqqqqqqqqqqqqqq")
+              this.$router.go(-1);
+            }
+          })
+          .catch((err) => {});
+        }
+      }
+      this.$emit('getOrderDetail')
+
+      }
+      //this.afterRead31()
+     
     },
     // 清空画布
     handleReset(val) {
@@ -1360,13 +2396,23 @@ if(typeof this.source_of_wealth_file5x === "string"){
     },*/
     // 文件上傳
     beforeRead(file){
+     // alert("d")
+      this.isDelete = true
       this.settlor_photo_file = []
-      return true
+      this.formData.settlor_photo_file = null
+      if (this.$route.query.isShare || this.$store.state.reorder == 1) {
+   // alert("1")
+        this.submitLink()
+      }else{
+     //   alert("2")
+        this.submit()
+      }
+     // return true
     },
 
     afterRead(file) {
       console.log(file.file.type.split('/').slice(-1)[0],'........iiiii..............');
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
      // var style = goDetail1[0].url.split('.').slice(-1)
     
       if(file.file.type.split('/').slice(-1) =="pdf" || file.file.type.split('/').slice(-1) =="pptx"){
@@ -1392,12 +2438,22 @@ else{
 }
     },
     beforeRead2(file){
+      this.isDelete = true
       this.proof_of_current_file = []
-      return true
+      this.formData.proof_of_current_file = null
+      if (this.$route.query.isShare|| this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+    
+
+      // this.proof_of_current_file = []
+      // return true
     },
 
     afterRead2(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
      // alert("d")
       let data = new FormData()
       data.append('file', file.file)
@@ -1411,8 +2467,27 @@ else{
       return true
       }
     },
+    afterRead31y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      console.log("...ggggggg..1.",file)
+      let data = new FormData()
+      data.append('file', file.file)
+      console.log("...ggggggg.2..",this.source_of_wealth_file1y)
+      console.log("...ggggggg.3..",file.file)
+     
+      uploadFile(data).then(res => {
+
+        this.$toast.success('Success')
+        this.source_of_wealth_file1y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_wealth_file1y = []
+      return true
+      }
+    },
     afterRead31(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
@@ -1431,11 +2506,11 @@ else{
       }
     },
     afterRead31x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1450,11 +2525,11 @@ else{
       }
     },
     afterRead32x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1468,12 +2543,31 @@ else{
       return true
       }
     },
-    afterRead32(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+    afterRead32y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
+      console.log("...ggggggg.3..",file.file)
+     
+      uploadFile(data).then(res => {
+
+        this.$toast.success('Success')
+        this.source_of_wealth_file2y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_wealth_file2y = []
+      return true
+      }
+    },
+    afterRead32(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      console.log("...ggggggg..1.",file)
+      let data = new FormData()
+      data.append('file', file.file)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1487,12 +2581,31 @@ else{
       return true
       }
     },
-    afterRead33(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+    afterRead33y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
+      console.log("...ggggggg.3..",file.file)
+     
+      uploadFile(data).then(res => {
+
+        this.$toast.success('Success')
+        this.source_of_wealth_file3y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_wealth_file3y = []
+      return true
+      }
+    },
+    afterRead33(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      console.log("...ggggggg..1.",file)
+      let data = new FormData()
+      data.append('file', file.file)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1507,11 +2620,11 @@ else{
       }
     },
     afterRead33x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1526,11 +2639,11 @@ else{
       }
     },
     afterRead34x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1545,11 +2658,11 @@ else{
       }
     },
     afterRead34(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1563,12 +2676,50 @@ else{
       return true
       }
     },
-    afterRead35(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+    afterRead34y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
+      console.log("...ggggggg.3..",file.file)
+     
+      uploadFile(data).then(res => {
+
+        this.$toast.success('Success')
+        this.source_of_wealth_file4y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_wealth_file4y = []
+      return true
+      }
+    },
+    afterRead35y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      console.log("...ggggggg..1.",file)
+      let data = new FormData()
+      data.append('file', file.file)
+      
+      console.log("...ggggggg.3..",file.file)
+     
+      uploadFile(data).then(res => {
+
+        this.$toast.success('Success')
+        this.source_of_wealth_file5y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_wealth_file5y= []
+      return true
+      }
+    },
+    afterRead35(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      console.log("...ggggggg..1.",file)
+      let data = new FormData()
+      data.append('file', file.file)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1583,11 +2734,11 @@ else{
       }
     },
     afterRead35x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('file', file.file)
-      console.log("...ggggggg.2..",this.source_of_wealth_file1)
+      
       console.log("...ggggggg.3..",file.file)
      
       uploadFile(data).then(res => {
@@ -1602,11 +2753,22 @@ else{
       }
     },
     beforeRead3(file){
+      this.isDelete = true
       this.source_of_wealth_file = []
-      return true
+      this.formData.source_of_wealth_file = null
+      if (this.$route.query.isShare|| this.$store.state.reorder == 1) {
+        this.submitLink()
+      }else{
+        this.submit()
+      }
+    
+
+
+      // this.source_of_wealth_file = []
+ //return true
     },
     afterRead3(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1621,7 +2783,7 @@ else{
       }
     },
     afterRead4(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1636,7 +2798,7 @@ else{
       }
     },
     afterRead5(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1650,7 +2812,7 @@ else{
       }
     },
     afterRead6(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1666,7 +2828,7 @@ else{
       }
     },
     afterRead7(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1682,7 +2844,7 @@ else{
       }
     },
     afterRead8(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1698,7 +2860,7 @@ else{
       }
     },
     afterRead9(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1713,7 +2875,7 @@ else{
       }
     },
     afterRead10(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1728,7 +2890,7 @@ else{
       }
     },
     afterRead11(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1748,7 +2910,7 @@ else{
     //       <van-uploader v-model="source_of_fund_addon41" @click-preview="goDetail1(source_of_fund_addon41)"  :after-read="afterRead1111" accept="*" :max-count="1" :disabled="isDone"/>
     //       <van-uploader v-model="source_of_fund_addon51" @click-preview="goDetail1(source_of_fund_addon51)"  :after-read="afterRead1121" a
     afterRead811(file) { 
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1762,8 +2924,23 @@ else{
       return true
       }
     },
+    afterRead81y(file) { 
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.qaz2.push(res.file)
+        this.$toast.success('Success')
+        this.source_of_fund_addon1y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_fund_addon1y = []
+      return true
+      }
+    },
     afterRead81(file) { 
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1778,7 +2955,7 @@ else{
       }
     },
     afterRead911(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1792,8 +2969,23 @@ else{
       return true
       }
     },
+    afterRead91y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.qaz2.push(res.file)
+        this.$toast.success('Success')
+        this.source_of_fund_addon2y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_fund_addon2y = []
+      return true
+      }
+    },
     afterRead91(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1808,7 +3000,7 @@ else{
       }
     },
     afterRead1011(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1822,8 +3014,23 @@ else{
       return true
       }
     },
+    afterRead101y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.qaz2.push(res.file)
+        this.$toast.success('Success')
+        this.source_of_fund_addon3y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_fund_addon31y = []
+      return true
+      }
+    },
     afterRead101(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1838,7 +3045,7 @@ else{
       }
     },
     afterRead1111(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1852,8 +3059,23 @@ else{
       return true
       }
     },
+    afterRead111y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.qaz2.push(res.file)
+        this.$toast.success('Success')
+        this.source_of_fund_addon4y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_fund_addon4y = []
+      return true
+      }
+    },
     afterRead111(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1868,7 +3090,7 @@ else{
       }
     },
     afterRead1121(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {
@@ -1882,8 +3104,23 @@ else{
       return true
       }
     },
+    afterRead112y(file) {
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation" ){
+      let data = new FormData()
+      data.append('file', file.file)
+      uploadFile(data).then(res => {
+        this.qaz2.push(res.file)
+        this.$toast.success('Success')
+        this.source_of_fund_addon5y = res.file
+      })
+    }else{
+        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+  this.source_of_fund_addon5y = []
+      return true
+      }
+    },
     afterRead112(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf" ||file.file.type.split('/').slice(-1)[0] === "vnd.openxmlformats-officedocument.presentationml.presentation"){
       let data = new FormData()
       data.append('file', file.file)
       uploadFile(data).then(res => {

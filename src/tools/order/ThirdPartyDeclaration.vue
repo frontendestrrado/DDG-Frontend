@@ -20,6 +20,7 @@
       <van-field
         class="trustorName"
         v-model="formData.trustor_name"
+        @input="formData.trustor_name = formData.trustor_name.toUpperCase()"
         autocomplete="off"
         name="trustor_name"
         center
@@ -54,7 +55,7 @@
         v-model="formData.nationality"
         name="nationality"
         center
-       
+        @input="formData.nationality = formData.nationality.toUpperCase()"
         type="text"
         autocomplete="off"
         label="Nationality "
@@ -65,7 +66,7 @@
         v-model="formData.trustor_passport"
         name="trustor_passport"
         center
-      
+        @input="formData.trustor_passport = formData.trustor_passport.toUpperCase()"
         autocomplete="off"
         type="text"
         label="NRIC/Passport No"
@@ -77,6 +78,7 @@
         name="trustor_address"
         center
         autocomplete="off"
+        @input="formData.trustor_address = formData.trustor_address.toUpperCase()"
         
         type="text"
         label="Proof of current Address of the Individual"
@@ -108,6 +110,7 @@
         v-model="formData.occupation"
         name="occupation"
         center
+        @input="formData.occupation = formData.occupation.toUpperCase()"
         autocomplete="off"
        
         type="text"
@@ -119,7 +122,7 @@
         v-model="formData.industry"
         name="industry"
         center
-        
+        @input="formData.industry = formData.industry.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Industry"
@@ -132,6 +135,7 @@
         center
         
         autocomplete="off"
+        @input="formData.name_of_employer = formData.name_of_employer.toUpperCase()"
         type="text"
         label="Name of Employer"
         placeholder="Please enter the Name of Employer"
@@ -142,7 +146,7 @@
         name="nature_of_business"
         autocomplete="off"
         center
-        
+        @input="formData.nature_of_business = formData.nature_of_business.toUpperCase()"
         type="text"
         label="Nature of Business(if Self-Employed)"
         placeholder="Please enter the Nature of Business(if Self-Employed)"
@@ -153,7 +157,7 @@
         name="relationship_with_settlor"
         center
         autocomplete="off"
-        
+        @input="formData.relationship_with_settlor = formData.relationship_with_settlor.toUpperCase()"
         type="text"
         label="Relationship with Settlor"
         placeholder="Please enter the Relationship with Settlor"
@@ -175,7 +179,7 @@
         v-model="formData.source_of_wealth"
         name="source_of_wealth"
         center
-        
+        @input="formData.source_of_wealth = formData.source_of_wealth.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Source of Wealth"
@@ -187,7 +191,7 @@
         v-model="formData.source_of_fund"
         name="source_of_fund"
         center
-        
+        @input="formData.source_of_fund = formData.source_of_fund.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Source of Fund(Origin of fund)"
@@ -200,6 +204,7 @@
         name="third_party_name"
         center
         autocomplete="off"
+        @input="formData.third_party_name = formData.third_party_name.toUpperCase()"
         
         type="text"
         label="Name of Contributor(Company/Organisation)"
@@ -231,7 +236,7 @@
         v-model="formData.third_party_passport"
         name="third_party_passport"
         center
-        
+        @input="formData.third_party_passport = formData.third_party_passport.toUpperCase()"
         type="text"
         autocomplete="off"
         label="Company/ Organisation Registration No."
@@ -254,6 +259,7 @@
         name="third_party_address"
         autocomplete="off"
         center
+        @input="formData.third_party_address = formData.third_party_address.toUpperCase()"
         
         type="text"
         label="Proof of current Address of the Company/ Organisation"
@@ -265,6 +271,7 @@
         name="name_of_director"
         center
         autocomplete="off"
+        @input="formData.name_of_director = formData.name_of_director.toUpperCase()"
         
         type="text"
         label="Name of Director(s)"
@@ -276,6 +283,7 @@
         name="name_of_shareholder"
         center
         autocomplete="off"
+        @input="formData.name_of_shareholder = formData.name_of_shareholder.toUpperCase()"
         
         type="text"
         label="Name of Shareholder(s)"
@@ -287,7 +295,7 @@
         name="nature_of_business2"
         center
         autocomplete="off"
-        
+        @input="formData.nature_of_business2 = formData.nature_of_business2.toUpperCase()"
         type="text"
         label="Nature of Business"
         placeholder="Please enter the Nature of Business"
@@ -297,7 +305,7 @@
         v-model="formData.profit_loss_statement"
         name="profit_loss_statement"
         center
-        
+        @input="formData.profit_loss_statement = formData.profit_loss_statement.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Profit & Loss Statement"
@@ -308,7 +316,7 @@
         v-model="formData.source_of_fund2"
         name="source_of_fund2"
         center
-        
+        @input="formData.source_of_fund2 = formData.source_of_fund2.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Source of Fund"
@@ -320,7 +328,7 @@
         v-model="formData.third_party_reference_no"
         name="third_party_reference_no"
         center
-        
+        @input="formData.third_party_reference_no = formData.third_party_reference_no.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Relationship with Settlor"
@@ -333,7 +341,7 @@
         name="contributor_name"
         center
         autocomplete="off"
-        
+        @input="formData.contributor_name = formData.contributor_name.toUpperCase()"
         type="text"
         label="Name"
         placeholder="Please enter the Name"
@@ -382,6 +390,7 @@
               v-model="formData.others_please_specify"
               name="others_please_specify"
               center
+              @input="formData.others_please_specify = formData.others_please_specify.toUpperCase()"
               type="text"
               label=""
               placeholder="Please enter the Others, please specify"
@@ -395,6 +404,7 @@
               center
               type="text"
               label=""
+              @input="formData.relationship_between = formData.relationship_between.toUpperCase()"
               placeholder="Please enter the Relationship between the Settlor and Third-Party"
               :rules="[{ required: isrelationship_between }]"
             />
@@ -454,6 +464,7 @@
         center
         
         type="text"
+        @input="formData.client_name = formData.client_name.toUpperCase()"
         autocomplete="off"
         label="Name"
         placeholder="Please enter the Name"
@@ -463,7 +474,7 @@
         v-model="formData.client_passport"
         name="client_passport"
         center
-       
+        @input="formData.client_passport = formData.client_passport.toUpperCase()"
         autocomplete="off"
         type="text"
         label="NRIC No"
@@ -519,7 +530,7 @@
         v-model="formData.witness_name"
         name="witness_name"
         center
-        
+        @input="formData.witness_name = formData.witness_name.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Name"
@@ -530,7 +541,7 @@
         v-model="formData.witness_passport"
         name="witness_passport"
         center
-        
+        @input="formData.witness_passport = formData.witness_passport.toUpperCase()"
         type="text"
         autocomplete="off"
         label="NRIC No"
@@ -581,6 +592,7 @@
         autocomplete="off"
         name="trustor_name"
         center
+        @input="formData.trustor_name = formData.trustor_name.toUpperCase()"
         :required="true"
         type="text"
         label="Name of the Contributor(Individual)"
@@ -616,6 +628,7 @@
         v-model="formData.nationality"
         name="nationality"
         center
+        @input="formData.nationality = formData.nationality.toUpperCase()"
         :required="true"
         type="text"
         autocomplete="off"
@@ -631,6 +644,7 @@
         v-model="formData.trustor_passport"
         name="trustor_passport"
         center
+        @input="formData.trustor_passport = formData.trustor_passport.toUpperCase()"
         :required="true"
         autocomplete="off"
         type="text"
@@ -648,6 +662,7 @@
         center
         autocomplete="off"
         :required="true"
+        @input="formData.trustor_address = formData.trustor_address.toUpperCase()"
         type="text"
         label="Proof of current Address of the Individual"
         placeholder="Please enter the Proof of current Address of the Individual"
@@ -664,6 +679,7 @@
         autocomplete="off"
         :required="true"
         type="text"
+        @input="formData.trustor_phone = formData.trustor_phone.toUpperCase()"
         label="Contact No"
         placeholder="Please enter the Contact No"
         :rules="[{ required: true }]"
@@ -683,6 +699,7 @@
         name="occupation"
         center
         autocomplete="off"
+        @input="formData.occupation = formData.occupation.toUpperCase()"
         :required="true"
         type="text"
         label="Occupation"
@@ -696,6 +713,7 @@
         :required="true"
         autocomplete="off"
         type="text"
+        @input="formData.industry = formData.industry.toUpperCase()"
         label="Industry"
         placeholder="Please enter the Industry"
         :rules="[{ required: true }]"
@@ -706,6 +724,7 @@
         center
         :required="true"
         autocomplete="off"
+        @input="formData.name_of_employer = formData.name_of_employer.toUpperCase()"
         type="text"
         label="Name of Employer"
         placeholder="Please enter the Name of Employer"
@@ -717,6 +736,7 @@
         autocomplete="off"
         center
         :required="true"
+        @input="formData.nature_of_business = formData.nature_of_business.toUpperCase()"
         type="text"
         label="Nature of Business(if Self-Employed)"
         placeholder="Please enter the Nature of Business(if Self-Employed)"
@@ -728,6 +748,7 @@
         center
         autocomplete="off"
         :required="true"
+        @input="formData.relationship_with_settlor = formData.relationship_with_settlor.toUpperCase()"
         type="text"
         label="Relationship with Settlor"
         placeholder="Please enter the Relationship with Settlor"
@@ -751,6 +772,7 @@
         center
         :required="true"
         autocomplete="off"
+        @input="formData.source_of_wealth = formData.source_of_wealth.toUpperCase()"
         type="text"
         label="Source of Wealth"
         placeholder="Please enter the Source of Wealth"
@@ -762,6 +784,7 @@
         name="source_of_fund"
         center
         :required="true"
+        @input="formData.source_of_fund = formData.source_of_fund.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Source of Fund(Origin of fund)"
@@ -774,6 +797,7 @@
         name="third_party_name"
         center
         autocomplete="off"
+        @input="formData.third_party_name = formData.third_party_name.toUpperCase()"
         :required="true"
         type="text"
         label="Name of Contributor(Company/Organisation)"
@@ -810,6 +834,7 @@
         name="third_party_passport"
         center
         :required="true"
+        @input="formData.third_party_passport = formData.third_party_passport.toUpperCase()"
         type="text"
         autocomplete="off"
         label="Company/ Organisation Registration No."
@@ -837,6 +862,7 @@
         autocomplete="off"
         center
         :required="true"
+        @input="formData.third_party_address = formData.third_party_address.toUpperCase()"
         type="text"
         label="Proof of current Address of the Company/ Organisation"
         placeholder="Please enter the Proof of current Address of the Company/ Organisation"
@@ -851,6 +877,7 @@
         name="name_of_director"
         center
         autocomplete="off"
+        @input="formData.name_of_director = formData.name_of_director.toUpperCase()"
         :required="true"
         type="text"
         label="Name of Director(s)"
@@ -861,6 +888,7 @@
         v-model="formData.name_of_shareholder"
         name="name_of_shareholder"
         center
+        @input="formData.name_of_shareholder = formData.name_of_shareholder.toUpperCase()"
         autocomplete="off"
         :required="true"
         type="text"
@@ -874,6 +902,7 @@
         center
         autocomplete="off"
         :required="true"
+        @input="formData.nature_of_business2 = formData.nature_of_business2.toUpperCase()"
         type="text"
         label="Nature of Business"
         placeholder="Please enter the Nature of Business"
@@ -884,6 +913,7 @@
         name="profit_loss_statement"
         center
         :required="true"
+        @input="formData.profit_loss_statement = formData.profit_loss_statement.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Profit & Loss Statement"
@@ -895,6 +925,7 @@
         name="source_of_fund2"
         center
         :required="true"
+        @input="formData.source_of_fund2 = formData.source_of_fund2.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Source of Fund"
@@ -909,6 +940,7 @@
         :required="true"
         autocomplete="off"
         type="text"
+        @input="formData.third_party_reference_no = formData.third_party_reference_no.toUpperCase()"
         label="Relationship with Settlor"
         placeholder="Please enter the Relationship with Settlor"
         :rules="[{ required: true }]"
@@ -921,6 +953,7 @@
         autocomplete="off"
         :required="true"
         type="text"
+        @input="formData.contributor_name = formData.contributor_name.toUpperCase()"
         label="Name"
         placeholder="Please enter the Name"
         :rules="[{ required: true }]"
@@ -974,6 +1007,7 @@
               center
               type="text"
               label=""
+              @input="formData.others_please_specify = formData.others_please_specify.toUpperCase()"
               placeholder="Please enter the Others, please specify"
               :rules="[{ required:isothers_please_specify }]"
             />
@@ -984,6 +1018,7 @@
               name="relationship_between"
               center
               type="text"
+              @input="formData.relationship_between = formData.relationship_between.toUpperCase()"
               label=""
               placeholder="Please enter the Relationship between the Settlor and Third-Party"
               :rules="[{ required: isrelationship_between }]"
@@ -1044,6 +1079,7 @@
         center
         :required="true"
         type="text"
+        @input="formData.client_name = formData.client_name.toUpperCase()"
         autocomplete="off"
         label="Name"
         placeholder="Please enter the Name"
@@ -1055,6 +1091,7 @@
         center
         :required="true"
         autocomplete="off"
+        @input="formData.client_passport = formData.client_passport.toUpperCase()"
         type="text"
         label="NRIC No"
         placeholder="Please enter the NRIC No"
@@ -1110,6 +1147,7 @@
         name="witness_name"
         center
         :required="true"
+        @input="formData.witness_name = formData.witness_name.toUpperCase()"
         autocomplete="off"
         type="text"
         label="Name"
@@ -1120,6 +1158,7 @@
         v-model="formData.witness_passport"
         name="witness_passport"
         center
+        @input="formData.witness_passport = formData.witness_passport.toUpperCase()"
         :required="true"
         type="text"
         autocomplete="off"
@@ -1177,6 +1216,7 @@ import {
   putOrdersForms,
 } from "@/api/order";
 export default {
+  props: ['orderDataInfo'],
   data() {
     return {
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
@@ -1236,6 +1276,8 @@ export default {
     };
   },
   mounted() {
+   // alert("fsb")
+    console.log("===============",this.$store.state.isOverseaSignature)
 
     if(this.$store.state.isOverseaSignature){
       this.from = "create"
@@ -1273,7 +1315,7 @@ export default {
       if (this.isFilled > 0) {
         getOrdersForms(this.isFilled, { type: "Third Party Declaration" })
           .then((res) => {
-            console.log(res);
+            console.log("------3rd---get data -------",res);
             this.formData = res;
             this.xyz = "1"
             this.xyz1 = "1"
@@ -1283,17 +1325,40 @@ export default {
     },
     submit(form) {
       console.log(form);
-      if(this.$store.state.isOverseaSignature != true){
+    //   if(this.$store.state.isOverseaSignature == true){
+    //     if (!this.formData.client_signature) {
+    //     this.$toast.fail("Please sign your name");
+    //     return;
+
+    //   }
+    // }
+    if(this.$route.query.isShare){
         if (!this.formData.client_signature) {
         this.$toast.fail("Please sign your name");
         return;
-      } else if (!this.formData.witness_signature) {
-        this.$toast.fail("Please sign your name");
-        return;
-      }
-      }
-  
 
+      }
+    }
+
+    if(!this.$route.query.isShare){
+       
+       if (!this.formData.witness_signature) {
+         this.$toast.fail("Please sign your name");
+         return;
+       }
+       
+       }
+      // if(this.$store.state.isOverseaSignature == false){
+       
+      // if (!this.formData.witness_signature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      
+      // }
+  
+console.log("---3rd--this.filled..submit.-----",this.isFilled)
+console.log("---3rd--this.filled..submit.-data----",this.formData)
       let data = JSON.parse(JSON.stringify(this.formData));
       if (this.isFilled > 0) {
         // 修改
@@ -1319,6 +1384,8 @@ export default {
         }else{
           id=this.$route.query.orderId
         }
+        console.log("------id 3rd-id-",id)
+        console.log("------id 3rd-data-",data)
         third_party_declaration_form(id, data)
           .then((res) => {
             console.log("----6-6-6--6-6-6---",res)
@@ -1389,6 +1456,7 @@ export default {
       }
     },
     handleGenerate(val) {
+      // if(!this.$store.state.isOverseaSignature || val === "witness_signature"){
       var that = this;
       this.$refs[val]
         .generate()
@@ -1417,6 +1485,13 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+
+      // }
+      // else{
+      //   alert("Settlor Signature should be added by the Settlor from the shared link.")
+        
+      //   this.$refs["client_signature"].reset(); 
+      // }
     },
   },
 };

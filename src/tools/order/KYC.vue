@@ -32,19 +32,26 @@
       </div>
       <div class="minTitle">Settlor</div>
       <van-field v-model="formData.settlor.Full" name="Full" center :required="true" type="text" autocomplete="off"
+      @input="formData.settlor.Full = formData.settlor.Full.toUpperCase()"
         label="Full Name" placeholder="Please enter the Full Name" :rules="[{ required: true }]" />
       <van-field v-model="formData.settlor.Other" name="Other" center autocomplete="off" type="text"
+      @input="formData.settlor.Other = formData.settlor.Other.toUpperCase()"
         label="Other/Previous Name (if any)" placeholder="Please enter the Other/Previous Name (if any)" />
+        
       <van-field v-model="formData.settlor.New" name="New" autocomplete="off" center :required="true" type="text"
+      @input="formData.settlor.New = formData.settlor.New.toUpperCase()"
         label="NEW - Malaysia NRIC No" placeholder="Please enter the NEW - Malaysia NRIC No" :rules="[
           {
             required: true,
           },
         ]" />
+
       <van-field v-model="formData.settlor.Old" name="Old" autocomplete="off" center type="text"
+      @input="formData.settlor.Old = formData.settlor.Old.toUpperCase()"
         label="OLD - Malaysia NRIC No.(if applicable)"
         placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)" />
       <van-field v-model="formData.settlor.Nationality" name="Nationality" autocomplete="off" center :required="true"
+      @input="formData.settlor.Nationality = formData.settlor.Nationality.toUpperCase()"
         type="text" label="Nationality(state all if multiple nationality)"
         placeholder="Please enter the Nationality(state all if multiple nationality)" :rules="[
           {
@@ -55,14 +62,17 @@
         For Non-Malaysia NRIC Holders, please provide passport details
       </div>
       <van-field v-model="formData.settlor_non_malaysia.Passport" name="Passport" center type="text" autocomplete="off"
+      @input="formData.settlor_non_malaysia.Passport = formData.settlor_non_malaysia.Passport.toUpperCase()"
         label="Passport Number" placeholder="Please enter the Passport Number" />
       <van-field v-model="formData.settlor_non_malaysia.Passport2" name="Passport2" center autocomplete="off"
         type="text" label="Passport Expiry Date: DD-MM-YYYY" placeholder="Please enter the Passport Expiry Date" />
       <van-field v-model="formData.settlor_non_malaysia.Passport3" name="Passport3" center type="text"
+      @input="formData.settlor_non_malaysia.Passport3 = formData.settlor_non_malaysia.Passport3.toUpperCase()"
         autocomplete="off" label="Passport Issuing Country" placeholder="Please enter the Passport Issuing Country" />
       <van-field v-model="formData.settlor_non_malaysia.Date" name="Date" autocomplete="off" center
         label="Date of Birth: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY" />
       <van-field v-model="formData.settlor_non_malaysia.Country" name="Country" center :required="true" type="text"
+      @input="formData.settlor_non_malaysia.Country = formData.settlor_non_malaysia.Country.toUpperCase()"
         autocomplete="off" label="Country of Birth" placeholder="Please enter the Country of Birth" :rules="[
           { required: true },
         ]" />
@@ -100,15 +110,18 @@
       <van-field v-model="formData.settlor_contact_details.Office" name="Office" center autocomplete="off" type="text"
         label="Office Phone No" @keypress="isLetter($event)" placeholder="Please enter the Office Phone No" />
       <van-field v-model="formData.settlor_contact_details.Residential" name="Residential" center :required="true"
+      @input="formData.settlor_contact_details.Residential = formData.settlor_contact_details.Residential.toUpperCase()"
         type="text" autocomplete="off" label="Residential Address" placeholder="Please enter the Residential Address"
         :rules="[
           { required: true },
         ]" />
       <van-field v-model="formData.settlor_contact_details.Postcode" name="Postcode" autocomplete="off" center
+      @input="formData.settlor_contact_details.Postcode = formData.settlor_contact_details.Postcode.toUpperCase()"
         :required="true" type="text" label="Postcode" placeholder="Please enter the Postcode" :rules="[
           { required: true },
         ]" />
       <van-field v-model="formData.settlor_contact_details.Country" name="Country" autocomplete="off" center
+      @input="formData.settlor_contact_details.Country = formData.settlor_contact_details.Country.toUpperCase()"
         :required="true" type="text" label="Country" placeholder="Please enter the Country" :rules="[
           { required: true },
         ]" />
@@ -120,37 +133,61 @@
           },
         ]" />
       <van-field v-model="formData.settlor_contact_details.Mailing" name="Mailing" autocomplete="off" center type="text"
+      @input="formData.settlor_contact_details.Mailing = formData.settlor_contact_details.Mailing.toUpperCase()"
         label="Mailing Address(if different from the above address)"
         placeholder="Please enter the Mailing Address(if different from the above address)" />
       <van-field v-model="formData.settlor_contact_details.Postcode2" name="Postcode2" center type="text"
+      @input="formData.settlor_contact_details.Postcode2 = formData.settlor_contact_details.Postcode2.toUpperCase()"
         autocomplete="off" label="Postcode" placeholder="Please enter the Postcode" />
       <van-field v-model="formData.settlor_contact_details.Country2" name="Country2" center type="text" label="Country"
+      @input="formData.settlor_contact_details.Country2 = formData.settlor_contact_details.Country2.toUpperCase()"
         autocomplete="off" placeholder="Please enter the Country" />
       <div class="minTitle">Spouse</div>
-      <van-field v-model="formData.spouse.Full" name="Full" autocomplete="off" center type="text" label="Full Name"
+
+      <van-field v-model="formData.spouse.Full" v-if="formData.settlor_non_malaysia.Marital != 2" name="Full" autocomplete="off" center type="text" label="Full Name"
+      @input="formData.spouse.Full = formData.spouse.Full.toUpperCase()" placeholder="Please enter the Full Name" />
+
+
+        <van-field v-model="formData.spouse.Full"
+        @input="formData.spouse.Full = formData.spouse.Full.toUpperCase()" 
+         v-if="formData.settlor_non_malaysia.Marital == 2" :rules="[{ required: true }]"  :required="true" name="Full" autocomplete="off" center type="text" label="Full Name"
         placeholder="Please enter the Full Name" />
-      <van-field v-model="formData.spouse.Other" name="Other" center autocomplete="off" type="text"
+
+
+      <van-field v-model="formData.spouse.Other"  name="Other" center autocomplete="off" type="text"
+      @input="formData.spouse.Other = formData.spouse.Other.toUpperCase()"
         label="Other/Previous Name (if any)" placeholder="Please enter the Other/Previous Name (if any)" />
-      <van-field v-model="formData.spouse.New" name="New" center type="text" autocomplete="off"
+
+      <van-field v-model="formData.spouse.New" @input="formData.spouse.New = formData.spouse.New.toUpperCase()" v-if="formData.settlor_non_malaysia.Marital != 2" name="New" center type="text" autocomplete="off"
         label="NEW - Malaysia NRIC No" placeholder="Please enter the NEW - Malaysia NRIC No" />
+        <van-field v-model="formData.spouse.New" @input="formData.spouse.New = formData.spouse.New.toUpperCase()" v-if="formData.settlor_non_malaysia.Marital == 2" :rules="[{ required: true }]"  :required="true" name="New" center type="text" autocomplete="off"
+        label="NEW - Malaysia NRIC No" placeholder="Please enter the NEW - Malaysia NRIC No" />
+
+
+
       <van-field v-model="formData.spouse.Old" name="Old" center autocomplete="off" type="text"
+      @input="formData.spouse.Old = formData.spouse.Old.toUpperCase()"
         label="OLD - Malaysia NRIC No.(if applicable)"
         placeholder="Please enter the OLD - Malaysia NRIC No.(if applicable)" />
       <van-field v-model="formData.spouse.Nationality" name="Nationality" center autocomplete="off" type="text"
+      @input="formData.spouse.Nationality = formData.spouse.Nationality.toUpperCase()"
         label="Nationality(state all if multiple nationality)"
         placeholder="Please enter the Nationality(state all if multiple nationality)" />
       <div class="minTitle">
         For Non-Malaysia NRIC Holders, please provide passport details
       </div>
       <van-field v-model="formData.spouse_non_malaysia.Passport" name="Passport" autocomplete="off" center type="text"
+      @input="formData.spouse_non_malaysia.Passport = formData.spouse_non_malaysia.Passport.toUpperCase()"
         label="Passport Number" placeholder="Please enter the Passport Number" />
       <van-field v-model="formData.spouse_non_malaysia.Passport2" name="Passport2" center type="text" autocomplete="off"
         label="Passport Expiry Date: DD-MM-YYYY" placeholder="Please enter the Passport Expiry Date" />
       <van-field v-model="formData.spouse_non_malaysia.Passport3" name="Passport3" center type="text" autocomplete="off"
+      @input="formData.spouse_non_malaysia.Passport3 = formData.spouse_non_malaysia.Passport3.toUpperCase()"
         label="Passport Issuing Country" placeholder="Please enter the Passport Issuing Country" />
       <van-field v-model="formData.spouse_non_malaysia.Date" name="Date" autocomplete="off" center type="text"
         label="Date of Birth: DD-MM-YYYY" placeholder="Please enter DD-MM-YYYY" />
       <van-field v-model="formData.spouse_non_malaysia.Country" name="Country" autocomplete="off" center type="text"
+      @input="formData.spouse_non_malaysia.Country = formData.spouse_non_malaysia.Country.toUpperCase()"
         label="Country of Birth" placeholder="Please enter the Country of Birth" />
       <van-field name="Gender" label="Gender">
         <template #input>
@@ -192,20 +229,30 @@
       <van-field v-model="formData.spouse_contact_details.Office" name="Office" autocomplete="off" center type="text"
         @keypress="isLetter($event)" label="Office Phone No" placeholder="Please enter the Office Phone No" />
       <van-field v-model="formData.spouse_contact_details.Residential" name="Residential" autocomplete="off" center
+      @input="formData.spouse_contact_details.Residential = formData.spouse_contact_details.Residential.toUpperCase()"
         type="text" label="Residential Address" placeholder="Please enter the Residential Address" />
       <van-field v-model="formData.spouse_contact_details.Postcode" name="Postcode" center autocomplete="off"
         type="text" label="Postcode" placeholder="Please enter the Postcode" />
       <van-field v-model="formData.spouse_contact_details.Country" name="Country" autocomplete="off" center type="text"
+      @input="formData.spouse_contact_details.Country = formData.spouse_contact_details.Country.toUpperCase()"
         label="Country" placeholder="Please enter the Country" />
       <van-field v-model="formData.spouse_contact_details.Length" name="Length" center autocomplete="off" type="text"
         label="Length of stay (Years) " placeholder="Please enter the Length of stay (Years) " />
       <van-field v-model="formData.spouse_contact_details.Mailing" name="Mailing" center autocomplete="off" type="text"
+      @input="formData.spouse_contact_details.Mailing = formData.spouse_contact_details.Mailing.toUpperCase()"
         label="Mailing Address(if different from the above address)"
         placeholder="Please enter the Mailing Address(if different from the above address)" />
       <van-field v-model="formData.spouse_contact_details.Postcode2" name="Postcode2" center type="text"
+      @input="formData.spouse_contact_details.Postcode2 = formData.spouse_contact_details.Postcode2.toUpperCase()"
         autocomplete="off" label="Postcode" placeholder="Please enter the Postcode" />
+
       <van-field v-model="formData.spouse_contact_details.Country2" name="Country2" center autocomplete="off"
+      @input="formData.spouse_contact_details.Country2 = formData.spouse_contact_details.Country2.toUpperCase()"
         type="text" label="Country" placeholder="Please enter the Country" />
+<br>
+
+
+
 
       <div class="minTitle">SECTION B OCCUPATION</div>
       <div class="minTitle">Settlor</div>
@@ -217,19 +264,28 @@
             <van-radio :name="1">Salaried</van-radio>
             <van-radio :name="2">Self-Employed</van-radio>
             <van-radio :name="3">Retiree</van-radio>
+            <van-radio :name="4">Other</van-radio>
           </van-radio-group>
         </template>
       </van-field>
+      <van-field v-show="formData.settlor_occupation.Occupation == 4" v-model="formData.settlor_occupation.Occupation_Type"
+      @input="formData.settlor_occupation.Occupation_Type = formData.settlor_occupation.Occupation_Type.toUpperCase()"
+        name="Occupation_Type" center type="text" label="Other" autocomplete="off" placeholder="Other" />
+        
       <van-field v-model="formData.settlor_occupation.Occupation2" name="Occupation2" center :required="true"
+      @input="formData.settlor_occupation.Occupation2 = formData.settlor_occupation.Occupation2.toUpperCase()"
         autocomplete="off" type="text" label="Occupation" placeholder="Please enter the Occupation"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.settlor_occupation.Industry" name="Industry" autocomplete="off" center type="text"
+      @input="formData.settlor_occupation.Industry = formData.settlor_occupation.Industry.toUpperCase()"
         label="Industry" placeholder="Please enter the Industry" />
       <van-field v-model="formData.settlor_occupation.Name" name="Name" center autocomplete="off" :required="true"
+      @input="formData.settlor_occupation.Name = formData.settlor_occupation.Name.toUpperCase()"
         type="text" label="Name of Employer" placeholder="Please enter the Name of Employer" :rules="[
           { required: true },
         ]" />
       <van-field v-model="formData.settlor_occupation.Nature" name="Nature" center type="text" autocomplete="off"
+      @input="formData.settlor_occupation.Nature = formData.settlor_occupation.Nature.toUpperCase()"
         label="Nature of Business(if Self-Employed)"
         placeholder="Please enter the Nature of Business(if Self-Employed)" />
       <van-field v-model="formData.settlor_occupation.Annual" name="Annual" center :required="true" type="text"
@@ -261,15 +317,20 @@
 
       </van-field>
 
-      <van-field v-if="formData.spouse_occupation.Occupation == 4" v-model="formData.spouse_occupation.Occupation_Type"
+      <van-field v-show="formData.spouse_occupation.Occupation == 4" v-model="formData.spouse_occupation.Occupation_Type"
+      @input="formData.spouse_occupation.Occupation_Type = formData.spouse_occupation.Occupation_Type.toUpperCase()"
         name="Occupation_Type" center type="text" label="Other" autocomplete="off" placeholder="Other" />
       <van-field v-model="formData.spouse_occupation.Occupation2" name="Occupation2" center autocomplete="off"
+      @input="formData.spouse_occupation.Occupation2 = formData.spouse_occupation.Occupation2.toUpperCase()"
         type="text" label="Occupation" placeholder="Please enter the Occupation" />
       <van-field v-model="formData.spouse_occupation.Industry" name="Industry" center type="text" label="Industry"
+      @input="formData.spouse_occupation.Industry = formData.spouse_occupation.Industry.toUpperCase()"
         autocomplete="off" placeholder="Please enter the Industry" />
       <van-field v-model="formData.spouse_occupation.Name" name="Name" center autocomplete="off" type="text"
+      @input="formData.spouse_occupation.Name = formData.spouse_occupation.Name.toUpperCase()"
         label="Name of Employer" placeholder="Please enter the Name of Employer" />
       <van-field v-model="formData.spouse_occupation.Nature" name="Nature" center autocomplete="off" type="text"
+      @input="formData.spouse_occupation.Nature = formData.spouse_occupation.Nature.toUpperCase()"
         label="Nature of Business(if Self-Employed)"
         placeholder="Please enter the Nature of Business(if Self-Employed)" />
       <van-field v-model="formData.spouse_occupation.Annual" name="Annual" center type="text" autocomplete="off"
@@ -306,6 +367,7 @@
         If the answer to C2 is YES, please provide the following details:
       </div>
       <van-field v-model="formData.c_two_yes.Pep" name="Pep" center autocomplete="off" type="text"
+      @input="formData.c_two_yes.Pep = formData.c_two_yes.Pep.toUpperCase()"
         label="PEP’s Full Name" placeholder="Please enter the PEP’s Full Name" />
       <van-field name="Relationship" label="Relationship with the PEP">
         <template #input>
@@ -332,8 +394,10 @@
         </template>
       </van-field>
       <van-field v-model="formData.c_two_yes.Close" name="Close" center autocomplete="off" type="text"
+      @input="formData.c_two_yes.Close = formData.c_two_yes.Close.toUpperCase()"
         label="Close Associate, please specify" placeholder="Please enter the Close Associate, please specify" />
       <van-field v-model="formData.c_two_yes.Others" name="Others" center autocomplete="off" type="text"
+      @input="formData.c_two_yes.Others = formData.c_two_yes.Others.toUpperCase()"
         label="Others, please specify" placeholder="Please enter the Others, please specify" />
       <van-field name="Are" label="Are you an undischarged bankrupt?" :required="true" :rules="[
         {
@@ -360,6 +424,7 @@
         </template>
       </van-field>
       <van-field v-model="formData.c_two_yes.If" name="If" center autocomplete="off" type="text"
+      @input="formData.c_two_yes.If = formData.c_two_yes.If.toUpperCase()"
         label="If YES, please indicate the TIN" placeholder="Please enter the If YES, please indicate the TIN" />
       <div class="minTitle">
         SECTION D SOURCE OF FUND – The bank from which the fund is forwarded to
@@ -367,10 +432,12 @@
       </div>
       <div class="minTitle">Bank 1</div>
       <van-field v-model="formData.bank_one.Bank" name="Bank" center :required="true" autocomplete="off" type="text"
+      @input="formData.bank_one.Bank = formData.bank_one.Bank.toUpperCase()"
         label="Bank" placeholder="Please enter the Bank" :rules="[{ required: true }]" />
       <van-field v-model="formData.bank_one.Account" name="Account" center :required="true" autocomplete="off"
         type="text" label="Account No" placeholder="Please enter the Account No" :rules="[{ required: true }]" />
       <van-field v-model="formData.bank_one.Account2" name="Account2" center autocomplete="off" :required="true"
+      @input="formData.bank_one.Account2 = formData.bank_one.Account2.toUpperCase()"
         type="text" label="Account Holder" placeholder="Please enter the Account Holder" :rules="[
           { required: true },
         ]" />
@@ -378,7 +445,7 @@
         type="number" label="Transaction Amount" placeholder="Please enter the Transaction Amount" :rules="[
           { required: true },
         ]" />
-      <van-field v-model="formData.bank_one.Years" name="Years" autocomplete="off" center :required="true" type="text"
+      <van-field v-model="formData.bank_one.Years" @keypress="isLetter($event)" name="Years" autocomplete="off" center :required="true" type="text"
         label="Years (estimated) maintaining the account "
         placeholder="Please enter the Years (estimated) maintaining the account " :rules="[
           {
@@ -386,24 +453,46 @@
           },
         ]" />
       <van-field v-model="formData.bank_one.Relationship" name="Relationship" center :required="true" autocomplete="off"
+      @input="formData.bank_one.Relationship = formData.bank_one.Relationship.toUpperCase()"
         type="text" label="Relationship with Settlor" placeholder="Please enter the Relationship with Settlor" :rules="[
           {
             required: true,
           },
         ]" />
+
+<van-button class="esignBtn" v-if="!bank2" id="addBankId" native-type="button" @click="addBank">Add Bank</van-button>
+<van-button class="esignBtn"  v-else id="removeBankId" native-type="button" @click="removeBank">Remove Bank</van-button>
+
+<div v-if="bank2" id="bank2Id">
       <div class="minTitle">Bank 2</div>
-      <van-field v-model="formData.bank_two.Bank" name="Bank" center type="text" autocomplete="off" label="Bank"
+      <van-field v-model="formData.bank_two.Bank" :required="true" :rules="[
+        { required: true },
+      ]" name="Bank" center type="text" autocomplete="off" label="Bank"
+      @input="formData.bank_two.Bank = formData.bank_two.Bank.toUpperCase()"
         placeholder="Please enter the Bank" />
-      <van-field v-model="formData.bank_two.Account" name="Account" center autocomplete="off" type="text"
+
+      <van-field :required="true" :rules="[
+        { required: true },
+      ]" v-model="formData.bank_two.Account" name="Account" center autocomplete="off" type="text"
         label="Account No" placeholder="Please enter the Account No" />
-      <van-field v-model="formData.bank_two.Account2" name="Account2" center autocomplete="off" type="text"
+      <van-field :required="true" :rules="[
+        { required: true },
+      ]" v-model="formData.bank_two.Account2" name="Account2" center autocomplete="off" type="text"
+      @input="formData.bank_two.Account2 = formData.bank_two.Account2.toUpperCase()"
         label="Account Holder" placeholder="Please enter the Account Holder" />
-      <van-field v-model="formData.bank_two.Transaction" name="Transaction" autocomplete="off" center type="number"
+      <van-field :required="true" :rules="[
+        { required: true },
+      ]" v-model="formData.bank_two.Transaction" name="Transaction" autocomplete="off" center type="number"
         label="Transaction Amount" placeholder="Please enter the Transaction Amount" />
-      <van-field v-model="formData.bank_two.Years" name="Years" autocomplete="off" center type="text"
+      <van-field :required="true" :rules="[
+        { required: true },
+      ]" v-model="formData.bank_two.Years" @keypress="isLetter($event)" name="Years" autocomplete="off" center type="text"
         label="Years (estimated) maintaining the account "
         placeholder="Please enter the Years (estimated) maintaining the account " />
-      <van-field v-model="formData.bank_two.Relationship" name="Relationship" center type="text" autocomplete="off"
+      <van-field :required="true" :rules="[
+        { required: true },
+      ]" v-model="formData.bank_two.Relationship" name="Relationship" center type="text" autocomplete="off"
+      @input="formData.bank_two.Relationship = formData.bank_two.Relationship.toUpperCase()"
         label="Relationship with Settlor" placeholder="Please enter the Relationship with Settlor" />
       <van-field name="Mode" label="Mode of Payment(Cash not accepted)" :required="true" :rules="[
         { required: true },
@@ -415,6 +504,10 @@
           </van-radio-group>
         </template>
       </van-field>
+
+    </div>
+
+
       <div class="minTitle">SECTION E DOCUMENT CHECKLIST2</div>
       <van-field name="Particulars" label="Particulars" :required="true" :rules="[{ required: true }]">
         <template #input>
@@ -450,6 +543,7 @@
         </template>
       </van-field>
       <van-field v-model="formData.document_checklist.If" name="If" center autocomplete="off" type="text"
+      @input="formData.document_checklist.If = formData.document_checklist.If.toUpperCase()"
         label="If yes, Kindly indicate what the services provided"
         placeholder="Please enter the If yes, Kindly indicate what the services provided" />
       <div class="minTitle">SECTION F DECLARATION</div>
@@ -479,7 +573,7 @@
        :width="800"
         :height="300"
         style="border: 1px solid #666" lineColor="#000000" bgColor.sync="#fff" :id="'can1'"
-        :style="{ display: (this.xyz === '' ? 'block' : formData.declaration.signaturee === null || formData.declaration.signature === '' ? 'block' : 'none') }" />
+        :style="{ display: (this.xyz === '' ? 'block' : formData.declaration.signature === null || formData.declaration.signature === '' ? 'block' : 'none') }" />
       <van-image
         :style="{ border: '1px solid #666', display: (this.xyz === '1' ? formData.declaration.signature === null || formData.declaration.signature === '' ? 'none' : 'block' : 'none') }"
         :id="'img1'" class="esignImgbox" :src="formData.declaration.signature" />
@@ -494,6 +588,7 @@
         </div>
       </div>
       <van-field v-model="formData.declaration.Name" id="2reset1" name="Name" center :required="true" autocomplete="off"
+      @input="formData.declaration.Name = formData.declaration.Name.toUpperCase()"
         type="text" label="Name" placeholder="Please enter the Name" :rules="[{ required: true }]" />
       <van-field v-model="formData.declaration.Date" name="Date" center autocomplete="off" label="Date: DD-MM-YYYY"
         :required="true" placeholder="Please enter DD-MM-YYYY"
@@ -509,23 +604,28 @@
       </div>
       <div class="minTitle">Distribution Agent Details(Response)</div>
       <van-field v-model="formData.distribution_agent_details.Distribution" name="Distribution" center
+      @input="formData.distribution_agent_details.Distribution = formData.distribution_agent_details.Distribution.toUpperCase()"
         autocomplete="off" type="text" label="Distribution Agent Name / Marketing Officer "
         placeholder="Please enter the Distribution Agent Name / Marketing Officer " :required="true"
         :rules="[{ required: true }]" />
       <van-field v-model="formData.distribution_agent_details.Marketing" name="Marketing" center autocomplete="off"
+      @input="formData.distribution_agent_details.Marketing = formData.distribution_agent_details.Marketing.toUpperCase()"
         type="text" label="Marketing Officer Name 2 (list all if there are more than one agent)"
         placeholder="Please enter the Marketing Officer Name 2 (list all if there are more than one agent)" />
       <div class="minTitle">
         Distribution Agent Details(Comment for Compliance Officer (if any))
       </div>
       <van-field v-model="formData.distribution_agent_details.Distribution2" name="Distribution2" center
+      @input="formData.distribution_agent_details.Distribution2 = formData.distribution_agent_details.Distribution2.toUpperCase()"
         autocomplete="off" type="text" label="Distribution Agent Name / Marketing Officer "
         placeholder="Please enter the Distribution Agent Name / Marketing Officer " />
       <van-field v-model="formData.distribution_agent_details.Marketing2" name="Marketing2" center type="text"
+      @input="formData.distribution_agent_details.Marketing2 = formData.distribution_agent_details.Marketing2.toUpperCase()"
         autocomplete="off" label="Marketing Officer Name 2 (list all if there are more than one agent)"
         placeholder="Please enter the Marketing Officer Name 2 (list all if there are more than one agent)" />
       <div class="minTitle">Client Details</div>
       <van-field v-model="formData.client_details.Client" name="Client" center autocomplete="off" :required="true"
+      @input="formData.client_details.Client = formData.client_details.Client.toUpperCase()"
         type="text" label="Client Name " placeholder="Please enter the Client Name " :rules="[{ required: true }]" />
       <van-field name="Is" label="Is the photocopy of the IC match the physical person (settlor)? " :required="true"
         :rules="[
@@ -589,10 +689,12 @@
         </template>
       </van-field>
       <van-field v-model="formData.client_details.Face" name="Face" center autocomplete="off" :required="true"
+      @input="formData.client_details.Face = formData.client_details.Face.toUpperCase()"
         type="text" label="FACE-TO-FACE times" placeholder="Please enter the FACE-TO-FACE times" :rules="[
           { required: true },
         ]" />
       <van-field v-model="formData.client_details.Non" name="Non" center autocomplete="off" :required="true" type="text"
+      @input="formData.client_details.Non = formData.client_details.Non.toUpperCase()"
         label="NON FACE-TO-FACE, times" placeholder="Please enter the NON FACE-TO-FACE, times" :rules="[
           {
             required: true,
@@ -607,8 +709,10 @@
         <van-field v-model="item.Time" name="Time" center type="text" autocomplete="off" label="Time"
           placeholder="Please enter the Time" />
         <van-field v-model="item.Place" name="Place" center autocomplete="off" type="text" label="Place"
+        @input="item.Place = item.Place.toUpperCase()"
           placeholder="Please enter the Place" />
         <van-field v-model="item.Comment" name="Comment" center autocomplete="off" type="text" label="Comment"
+        @input="item.Comment = item.Comment.toUpperCase()"
           placeholder="Please enter the Comment" />
         <van-button class="esignDelBtn" v-if="inx > 0" slot="button" native-type="button"
           @click="delBeneficiary(inx)">delete</van-button>
@@ -626,6 +730,7 @@
         </template>
       </van-field>
       <van-field v-model="formData.assessment_of_client.Please" name="Please" center autocomplete="off" type="text"
+      @input="formData.assessment_of_client.Please = formData.assessment_of_client.Please.toUpperCase()"
         label="Please state the Name of introducer"
         placeholder="Please enter the Please state the Name of introducer" />
       <div class="minTitle">Assessment of Client</div>
@@ -644,6 +749,7 @@
         </template>
       </van-field>
       <van-field v-model="formData.assessment_of_client.Any2" name="Any2" center autocomplete="off" type="text"
+      @input="formData.assessment_of_client.Any2 = formData.assessment_of_client.Any2.toUpperCase()"
         label="Any indication or information to suggest the client is of high risk? Please elaborate."
         placeholder="Please enter the Any indication or information to suggest the client is of high risk? Please elaborate." />
       <van-field name="Recommended" label="Recommended Decision" :required="true" :rules="[
@@ -657,9 +763,11 @@
         </template>
       </van-field>
       <van-field v-model="formData.assessment_of_client.Please2" name="Please2" center autocomplete="off" type="text"
+      @input="formData.assessment_of_client.Please2 = formData.assessment_of_client.Please2.toUpperCase()"
         label="Please elaborate your decision regardless the answer above is rejected or accepted."
         placeholder="Please enter the Please elaborate your decision regardless the answer above is rejected or accepted." />
       <van-field v-model="formData.assessment_of_client.Remark" name="Remark" center autocomplete="off" type="text"
+      @input="formData.assessment_of_client.Remark = formData.assessment_of_client.Remark.toUpperCase()"
         label="Remark/ Comments:" placeholder="Please enter the Remark/ Comments:" />
       <div class="minTitle">
         We declare all the information provided is accurate and we will store
@@ -683,8 +791,10 @@
         </div>
       </div>
       <van-field v-model="formData.store_marketing_officer.Name" id="2reset3" name="Name" center autocomplete="off"
+      @input="formData.store_marketing_officer.Name = formData.store_marketing_officer.Name.toUpperCase()"
         :required="true" type="text" label="Name" placeholder="Please enter the Name" :rules="[{ required: true }]" />
       <van-field v-model="formData.store_marketing_officer.Nric" name="Nric" autocomplete="off" center :required="true"
+      @input="formData.store_marketing_officer.Nric = formData.store_marketing_officer.Nric.toUpperCase()"
         type="text" label="NRIC No" placeholder="Please enter the NRIC No" :rules="[{ required: true }]" />
       <van-field v-model="formData.store_marketing_officer.Date" name="Date" autocomplete="off" center
         label="Date: DD-MM-YYYY" :required="true" placeholder="Please enter DD-MM-YYYY"
@@ -705,8 +815,10 @@
         </div>
       </div>
       <van-field v-model="formData.store_manager.Name" id="2reset2" name="Name" autocomplete="off" center type="text"
+      @input="formData.store_manager.Name = formData.store_manager.Name.toUpperCase()"
         label="Name" placeholder="Please enter the Name" />
       <van-field v-model="formData.store_manager.Nric" name="Nric" center type="text" autocomplete="off" label="NRIC No"
+      @input="formData.store_manager.Nric = formData.store_manager.Nric.toUpperCase()"
         placeholder="Please enter the NRIC No" />
       <van-field v-model="formData.store_manager.Date" name="Date" center autocomplete="off" label="Date: DD-MM-YYYY"
         placeholder="Please enter DD-MM-YYYY" />
@@ -832,9 +944,9 @@ export default {
           Country2: '',
         },
         spouse: {
-          Full: '',
+          Full: this.$store.state.benificary_nme,
           Other: '',
-          New: '',
+          New: this.$store.state.COMPANY_NO,
           Old: '',
           Nationality: '',
         },
@@ -861,6 +973,7 @@ export default {
           Country2: '',
         },
         settlor_occupation: {
+          Occupation_Type:'',
           Occupation: '',
           Occupation2: this.$store.state.occupation,
           Industry: '',
@@ -968,6 +1081,7 @@ export default {
           Date: moment(new Date()).format('DD-MM-YYYY'),
         }
       },
+      bank2:false,
       sig1: true,
       xyz: "",
       xyz1: "",
@@ -996,22 +1110,25 @@ export default {
   mounted() {
     console.log("...................kkkk.....")
     //  this.$forceUpdate();
-    console.log(this.$store.state.campanyIndividualName1, "222222yyyyy");
+    console.log(this.$store.state.isOverseaSignature, "isOverseaSignature-----------------");
     if (this.$store.state.isOverseaSignature) {
+     // alert("1")
 
       this.from = "create"
       this.isFilled = 0
     } else {
+      //alert("2")
       this.from = this.$route.query.from;
       this.isFilled = this.$route.query.isFilled;
       this.isDone = this.$route.query.status == 1 ? true : false;
     }
     if (this.$route.query.isShare) {
+      //alert("3")
       this.isFilled = this.$route.query.kyc_form
     }
     this.getFormData();
     this.isDone = sessionStorage.getItem('orderStatus') === '2'
-
+console.log("--------------AAAAA--------------",this.$store.state.isFilled)
     if(this.$store.state.reorder == 1){
      
       if (this.$store.state.reorderkyc_form > 0) {
@@ -1029,6 +1146,13 @@ export default {
             // if (res.document_checklist.Documents) {
             //   this.Documents.push({url: res.document_checklist.Documents})
             // }
+            res.spouse = {
+          Full: this.$store.state.benificary_nme,
+          Other: '',
+          New: this.$store.state.COMPANY_NO,
+          Old: '',
+          Nationality: '',
+        };
             res.bank_one = {
           Bank: "",
           Account: "",
@@ -1060,6 +1184,8 @@ export default {
         console.log("***************reOrderParticulars***************",reOrderParticulars)
         res.document_checklist.Particulars = reOrderParticulars
         res.declaration.signature= "";
+        res.declaration.Date= moment(new Date()).format('DD-MM-YYYY')
+      
 
         res.client_details.Is3= "";
         res.client_details.Is4= "";
@@ -1083,9 +1209,13 @@ export default {
           Please2: '',
           Remark: '',
         };
+     
         res. store_marketing_officer.trustor_signature1= ''
+        res. store_marketing_officer.Date= moment(new Date()).format('DD-MM-YYYY')
 
         res.store_manager.trustor_signature2 = ''
+        res.store_manager.Date = moment(new Date()).format('DD-MM-YYYY')
+     
             //       data.c_two_yes.Relationship = data.c_two_yes.Relationship.toString()
             // data.spouse_non_malaysia.Marital = data.spouse_non_malaysia.Marital.toString()
             // data.spouse_non_malaysia.Gender = data.spouse_non_malaysia.Gender.toString()
@@ -1118,6 +1248,23 @@ export default {
 
   },
   methods: {
+    addBank(){
+      this.bank2 = true
+      
+    },
+    removeBank(){
+      this.bank2 = false
+      this.formData.bank_two = {
+        Bank: '',
+          Account: '',
+          Account2: '',
+          Transaction: '',
+          Years: '',
+          Relationship: '',
+          Mode: '',
+            };
+    
+    },
     // moblie validation
     isLetter(e) {
       let char = String.fromCharCode(e.keyCode);
@@ -1126,7 +1273,9 @@ export default {
     },
     // 如果已填 獲取數據
     getFormData() {
+     // alert("e")
       if (this.isFilled > 0) {
+       // alert("2")
         getOrdersForms(this.isFilled, { type: "KYC" })
           .then((res) => {
             delete res.id
@@ -1153,6 +1302,12 @@ export default {
             this.formData.spouse_occupation.Occupation = (this.formData.spouse_occupation.Occupation === '' ? [] : this.formData.spouse_occupation.Occupation)
             this.formData.assessment_of_client.Any = (this.formData.assessment_of_client.Any === '' ? [] : this.formData.assessment_of_client.Any)
            
+            if(this.formData.bank_two.Bank === ''){
+              this.bank2 = false
+            }
+            else{
+              this.bank2 = true
+            }
             // this.formData.assessment_of_client.Any=(this.formData.assessment_of_client.Any === ''?[]:this.formData.assessment_of_client.Any)
             this.sig1 = false
             this.xyz = "1"
@@ -1272,18 +1427,26 @@ export default {
     },
     submit(form) {
       console.log(form, "form");
-      if (!this.formData.store_marketing_officer.trustor_signature1 && !this.$store.state.isOverseaSignature) {
+      if (!this.formData.store_marketing_officer.trustor_signature1 && !this.$route.query.isShare) {
         this.$toast.fail("Please sign your name");
         return;
       }
-      if (!this.formData.store_manager.trustor_signature2 && !this.$store.state.isOverseaSignature) {
+      // if (!this.formData.store_marketing_officer.trustor_signature1 && this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      // if (!this.formData.store_manager.trustor_signature2 && !this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      if (!this.formData.declaration.signature && this.$route.query.isShare) {
         this.$toast.fail("Please sign your name");
         return;
       }
-      if (!this.formData.declaration.signature && !this.$store.state.isOverseaSignature) {
-        this.$toast.fail("Please sign your name");
-        return;
-      }
+      // if (!this.formData.declaration.signature && !this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
       // else if (!this.formData.store_manager.trustor_signature2) {
       //   this.$toast.fail("Please sign your name");
       //   return;
@@ -1327,6 +1490,14 @@ export default {
         } else {
           id = this.$route.query.orderId
         }
+        if(id=== "" ){
+    
+    this.$toast({
+            message: "Please submit upper forms on one by one.",
+          });
+   }
+   else{
+
         kyc_form(id, data)
           .then((res) => {
             console.log("----222---2--2--2-2---",res);
@@ -1355,6 +1526,7 @@ export default {
           .catch((err) => {
             console.log(err.response);
           });
+        }
       }
       // // 验证验证码
       // let data = [];
@@ -1517,6 +1689,7 @@ export default {
 
     },
     handleGenerate(val, val2) {
+      // if(!this.$store.state.isOverseaSignature || val === "trustor_signature1"|| val === "trustor_signature2"){
       console.log(this.$refs[val].generate().PromiseState)
       var that = this;
       this.$refs[val]
@@ -1551,6 +1724,11 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      // }
+      // else{
+      //   alert("Settlor Signature should be added by the Settlor from the shared link.")
+      //   this.$refs["signature"].reset(); 
+      // }
     },
     // 展示日期弹框
     /*    onShowPicker(val,val2,inx) {

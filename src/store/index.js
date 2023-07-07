@@ -10,11 +10,19 @@ export default new Vuex.Store({
     shareOrderData:{},
     reorderId:'',
     reorder:'',
+    editSig:false,
+    editStatus:false,
     reordercustomer_app_form: '',
     reorderkyc_form:'',
     reorderletter_of_wishes_form:'',
     reorderpdpa_memo_form:'',
     reorderdocument_check_list_form:'',
+
+    reordercustomer_app_formAagt: '',
+    reorderkyc_formAagt:'',
+    reorderletter_of_wishes_formAagt:'',
+    reorderpdpa_memo_formAagt:'',
+    reorderdocument_check_list_formAagt:'',
     
     // beneficiary_infoReorder: [
     //   {
@@ -48,21 +56,44 @@ export default new Vuex.Store({
 
     // ///
     // isShare:false,
+    /////
+    bank_twoAccount2:null,
+    bank_twoAccount:null,
+    bank_twoBank:null,
+    bank_oneAccount2:null,
+    bank_oneAccount:null,
+    bank_oneBank:null,
+
+
+    benificary_nme:null,
+    benificary_nmeAagt:'',
+    COMPANY_NO:null,
+    COMPANY_NOAagt:'',
 abc:null,
 details_account_owner:null,
+details_account_ownerAagt:null,
 details_bank_name:null,
 details_account_no:null,
+details_account_noAagt:null,
     passport_no:null,
+    born_dateAagt:null,
+    passport_noAagt:null,
     occupation:null,
+    occupationAagt:null,
     signature:null,
     email:null,
+    emailAagt:null,
     phone:null,
+    phoneAagt:null,
     house_no:null,
     office_no:null,
+    office_noAagt:null,
     address:null,
+    addressAagt:null,
     changeGep2Val:null,
     CustomerApplicationId:null,
     campanyIndividualName1:null,
+    campanyIndividualName1Aagt:null,
     dateFlag:null,
     campanyIndividualName1Gep:null,
     campanyIndividualName1Gep2:null,
@@ -83,6 +114,7 @@ details_account_no:null,
    
     isMenuTop:true,
     isOverseaSignature:false,
+    isOverseaSignatureRemote:false,
     customerNotificationCount:0,
     count: 0,
     num: 10,
@@ -231,6 +263,9 @@ details_account_no:null,
         case 'OrderSignature' :
            val.title=''
            break;
+           case 'OrderSignatureAagt' :
+            val.title=''
+            break;
            case 'OrderSignatureGep' :
             val.title=''
             break;
@@ -243,6 +278,9 @@ details_account_no:null,
         case 'Choose':
           val.title='Select One'
           break;
+          case 'ChooseAagt':
+            val.title='Select One'
+            break;
           case 'customerLogin':
             val.title='Customer Login'
             break;
@@ -288,6 +326,9 @@ details_account_no:null,
     changeIsOverseaSignature(state,val){
       state.isOverseaSignature = val;
     },
+    changeIsOverseaSignatureRemote(state,val){
+      state.isOverseaSignatureRemote = val;
+    },
     changecustomerNotificationCount(state,val){
       state.customerNotificationCount = val;
     },
@@ -306,6 +347,50 @@ ChangeIdReorder(state,val){
   state.reorderId=val
   console.log(val,"hhhhh")
 },
+
+
+
+
+Changebank_oneBank(state,val){
+  state.bank_oneBank=val
+  console.log(val,"hhhhh")
+},
+
+Changebank_oneAccount(state,val){
+  state.bank_oneAccount=val
+  console.log(val,"hhhhh")
+},
+Changebank_oneAccount2(state,val){
+  state.bank_oneAccount2=val
+  console.log(val,"hhhhh")
+},
+Changebank_twoBank(state,val){
+  state.bank_twoBank=val
+  console.log(val,"hhhhh")
+},
+
+Changebank_twoAccount(state,val){
+  state.bank_twoAccount=val
+  console.log(val,"hhhhh")
+},
+Changebank_twoAccount2(state,val){
+  state.bank_twoAccount2=val
+  console.log(val,"hhhhh")
+},
+
+
+
+ChangeEditStatus(state,val){
+  state.editStatus=val
+  console.log(val,"hhhhh")
+},
+
+ChangeEditSig(state,val){
+  state.editSig=val
+  console.log(val,"hhhhh")
+},
+
+
 ChangeReorder(state,val){
   state.reorder=val
   console.log(val,"hhhhh")
@@ -314,16 +399,32 @@ ChangeAigtId1(state,val){
   state.reordercustomer_app_form=val
   console.log(val,"hhhhh")
 },
+ChangeAagtId1(state,val){
+  state.reordercustomer_app_formAagt=val
+  console.log(val,"hhhhh")
+},
 ChangeAigtId2(state,val){
   state.reorderkyc_form=val
+  console.log(val,"hhhhh")
+},
+ChangeAagtId2(state,val){
+  state.reorderkyc_formAagt=val
   console.log(val,"hhhhh")
 },
 ChangeAigtId3(state,val){
   state.reorderletter_of_wishes_form=val
   console.log(val,"hhhhh")
 },
+ChangeAagtId3(state,val){
+  state.reorderletter_of_wishes_formAagt=val
+  console.log(val,"hhhhh")
+},
 ChangeAigtId4(state,val){
   state.reorderpdpa_memo_form=val
+  console.log(val,"hhhhh")
+},
+ChangeAagtId4(state,val){
+  state.reorderpdpa_memo_formAagt=val
   console.log(val,"hhhhh")
 },
 ChangeAigtId5(state,val){
@@ -331,6 +432,10 @@ ChangeAigtId5(state,val){
   console.log(val,"hhhhh")
 },
 
+ChangeAagtId5(state,val){
+  state.reorderdocument_check_list_formAagt=val
+  console.log(val,"hhhhh")
+},
 
 
 
@@ -405,12 +510,20 @@ ChangeAigtId5(state,val){
       state.details_account_owner=val
       console.log(val,"hhhhh")
     },
+    Changedetails_account_ownerAagt(state,val){
+      state.details_account_owner=val
+      console.log(val,"hhhhh")
+    },
     Changedetails_bank_name(state,val){
       state.details_bank_name=val
       console.log(val,"hhhhh")
     },
     Changedetails_account_no(state,val){
       state.details_account_no=val
+      console.log(val,"hhhhh")
+    },
+    Changedetails_account_noAagt(state,val){
+      state.details_account_noAagt=val
       console.log(val,"hhhhh")
     },
     Changeabc(state,val){
@@ -422,7 +535,10 @@ ChangeAigtId5(state,val){
       state.occupation=val
       console.log(val,"hhhhh")
     },
-    
+    ChangeoccupationAagt(state,val){
+      state.occupationAagt=val
+      console.log(val,"hhhhh")
+    },
 
     nric_pass_roc_noGep(state,val){
       state.nric_pass_roc_noGep=val
@@ -488,16 +604,53 @@ ChangeAigtId5(state,val){
       state.campanyIndividualName1=val
       console.log(val,"hhhhh.....................")
     },
+    ChangecampanyIndividualNameAagt(state,val){
+      state.campanyIndividualName1Aagt=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangeBENEFICIARY_NAMEAagt(state,val){
+      state.benificary_nmeAagt=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangeBENEFICIARY_NAME(state,val){
+      state.benificary_nme=val
+      console.log(val,"hhhhh.....................")
+    },
+
+    ChangeCOMPANY_NOAagt(state,val){
+      state.COMPANY_NOAagt=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangeCOMPANY_NO(state,val){
+      state.COMPANY_NO=val
+      console.log(val,"hhhhh.....................")
+    },
     ChangeDateFlag(state,val){
       state.dateFlag=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changeborn_dateAagt(state,val){
+      state.born_dateAagt=val
       console.log(val,"hhhhh.....................")
     },
     Changepassport_no(state,val){
       state.passport_no=val
       console.log(val,"hhhhh.....................")
     },
+    Changepassport_noAagt(state,val){
+      state.passport_noAagt=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangeemailAagt(state,val){
+      state.emailAagt=val
+      console.log(val,"hhhhh.....................")
+    },
     Changeemail(state,val){
       state.email=val
+      console.log(val,"hhhhh.....................")
+    },
+    ChangephoneAagt(state,val){
+      state.phoneAagt=val
       console.log(val,"hhhhh.....................")
     },
     Changephone(state,val){
@@ -506,6 +659,10 @@ ChangeAigtId5(state,val){
     },
     Changehouse_no(state,val){
       state.house_no=val
+      console.log(val,"hhhhh.....................")
+    },
+    Changeoffice_noAagt(state,val){
+      state.office_noAagt=val
       console.log(val,"hhhhh.....................")
     },
     Changeoffice_no(state,val){
@@ -517,7 +674,10 @@ ChangeAigtId5(state,val){
       console.log(val,"hhhhh.....................")
     },
 
-      
+    ChangeaddressAagt(state,val){
+      state.addressAagt=val
+      console.log(val,"hhhhh.....................")
+    },
     // changeisShare(state,val){
     //   state.isShare=val
     //   console.log(val)

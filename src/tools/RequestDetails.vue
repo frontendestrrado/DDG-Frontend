@@ -60,12 +60,20 @@
         <b-col>Attachments:
             <div class="row mt-3">
               <div   v-for="item in ticket_attachments" class="col-md-3">
-            <van-image
+            <van-image v-if="item.is_image == true"
 							style="width: 100%;height:auto;"
 							v-bind:src= 'item.image_path'
 							fit="contain"
                             square
 							/>
+
+              <span  @click="goDetail1(item.image_path)" v-if="item.is_image == false" class="pos-rel"><van-image
+                style="width: 100%;height:auto;"
+							:src="require('@/assets/img/fileAttach.png')"
+							fit="contain"
+							/>
+
+            </span>
                         </div>
                     </div>
         </b-col>
@@ -174,6 +182,27 @@
           <div>
             {{ commentsData.description }}
           </div>
+          <div>
+            <van-image v-if="commentsData.attachments.is_image == true"
+							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
+							v-bind:src= 'commentsData.attachments.file'
+							fit="contain"
+
+              @click="goDetail1(commentsData.attachments.file)"
+                            
+                            class="cmtImge"
+                        
+							/>
+
+
+              <span  @click="goDetail1(commentsData.attachments.file)" v-if="commentsData.attachments.is_image == false" class="pos-rel"><van-image
+							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
+							:src="require('@/assets/img/fileAttach.png')"
+							fit="contain"
+							/>
+
+            </span>
+          </div>
         </div>
     </div>
 
@@ -263,7 +292,10 @@ activity_log:[]
  
 
     },
-
+    goDetail1(a) {
+console.log(".........aaaa......",a)
+window.open(a)
+  },
     announcementsShow() {
       document.getElementById('annId').style.display = 'block'
       document.getElementById('notId').style.display = 'none'
@@ -325,7 +357,8 @@ postComments(data)
 
 },
     afterRead31x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+   
+        if(file.file.type.split('/')[0] === "application" || file.file.type.split('/')[0] === "image" ||file.file.type.split('/')[0] === "video"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       console.log("...ggggggg.2.2.",data)
@@ -343,7 +376,7 @@ postComments(data)
         this.formData.attachments = res.id
       })
     }else{
-        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+      alert("Only image, video and document files are accepted.")
   this.source_of_wealth_file1x = []
   this.source_of_wealth_file1xId=''
   this.formData.attachments = ''

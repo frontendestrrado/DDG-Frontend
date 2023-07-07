@@ -32,8 +32,26 @@
     </div>
     <div class="bodybox1">
     <section :style="{ width: '100%'}"  >
-      <!-- <b-table hover :fields="fields" :items="list" style="cursor: pointer" :per-page="per_page" id="my-table" :current-page="currentPage"> -->
-      <b-table hover @row-clicked="GoDetail" :items="list" :fields="fields" style="cursor: pointer" :per-page="per_page" id="my-table"
+     
+
+      <b-table hover @row-clicked="GoDetail" :items="list" :fields="fields" style="cursor: pointer" :per-page="perPage" id="my-table" :current-page="currentPage">
+        <template #cell(status)="row">
+          <b-button v-if="row.value === 'Closed'" size="sm" variant="success">
+            {{ row.value }}
+          </b-button>
+          <b-button v-if="row.value === 'In Progress'" size="sm" variant="warning">
+            {{ row.value }}
+          </b-button>
+          <b-button v-if="row.value === 'Open'" variant="danger" size="sm">
+            {{ row.value }}
+          </b-button>
+        </template>
+        </b-table>
+
+        <b-pagination v-model="currentPage" :total-rows="rows" :per-page="per_page" 
+            align="center"
+                @input="changePage"></b-pagination>
+      <!-- <b-table hover @row-clicked="GoDetail" :items="list" :fields="fields" style="cursor: pointer" :per-page="per_page" id="my-table"
         :current-page="currentPage" >
         <template #cell(status)="row">
           <b-button v-if="row.value === 'Closed'" size="sm" variant="success">
@@ -46,15 +64,13 @@
             {{ row.value }}
           </b-button>
         </template>
-      </b-table>
-      <div class="page">
+      </b-table> -->
+      <!-- <div class="page">
 
         <b-pagination v-model="currentPage" :total-rows="rows" :per-page="per_page" align="center"
           @input="changePage"></b-pagination>
-
-
       </div>
-   
+    -->
     </section>
   </div>
   </div>
@@ -112,6 +128,9 @@ export default {
   this.getMonth()
 },
     getMonth() {
+      console.log(".......this.currentPage.....",this.currentPage)
+      console.log(".......this.searchval....",this.searchval)
+      console.log(".......this.status.....",this.status)
   getHelpDesk({
     page: this.currentPage,
     search: this.searchval,
@@ -122,9 +141,10 @@ export default {
     //   return this.res.data.map((d, index) => ({ ...d, sno: index + 1 }))
     //   console.log("----d--d--d--d-d--d--",d)
       this.list = res.data;
-      this.per_page = res.meta.per_page
+    this.per_page = res.meta.per_page
       this.rows = res.meta.total
       this.loadingShow = false
+      console.log(res)
     //   console.log(".......555....bbb dddd.....",res.data)
     })
     .catch((err) => {
@@ -133,6 +153,7 @@ export default {
 
 
     },
+
     GoDetail(item) {
       console.log("&&&&&&&&&&&", item)
       this.$router.push({

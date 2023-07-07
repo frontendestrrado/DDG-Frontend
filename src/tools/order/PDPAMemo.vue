@@ -115,6 +115,7 @@
       </div>
       <van-field
         v-model="formData.name"
+        @input="formData.name = formData.name.toUpperCase()"
         id="4reset"
         name="name"
         center
@@ -127,6 +128,7 @@
       />
       <van-field
         v-model="formData.nric"
+        @input="formData.nric = formData.nric.toUpperCase()"
         name="nric"
         center
         :required="true"
@@ -138,6 +140,7 @@
       />
       <van-field
         v-model="formData.designation"
+        @input="formData.designation = formData.designation.toUpperCase()"
         name="designation"
         center
         :required="true"
@@ -159,6 +162,7 @@
       />
       <van-field
         v-model="formData.company_rubber_stamp"
+        @input="formData.company_rubber_stamp = formData.company_rubber_stamp.toUpperCase()"
         name="company_rubber_stamp"
         center
         autocomplete="off"
@@ -269,7 +273,11 @@ export default {
     },
     submit(form) {
       console.log(form);
-      if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
+      // if (!this.formData.signature&&!this.$store.state.isOverseaSignature) {
+      //   this.$toast.fail("Please sign your name");
+      //   return;
+      // }
+      if (!this.formData.signature && this.$route.query.isShare) {
         this.$toast.fail("Please sign your name");
         return;
       }
@@ -296,6 +304,13 @@ export default {
         }else{
           id=this.$route.query.orderId
         }
+        if(id=== "" ){
+    
+    this.$toast({
+            message: "Please submit upper forms on one by one.",
+          });
+   }
+   else{
         pdpa_memo(id, data)
           .then((res) => {
             console.log("----4---4--4-4--4",res);
@@ -320,6 +335,7 @@ export default {
             }
           })
           .catch((err) => {});
+        }
       }
     },
     // 清空画布
@@ -332,6 +348,7 @@ export default {
       
     },
     handleGenerate(val) {
+      // if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs[val]
         .generate()
@@ -360,6 +377,11 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      // }
+      // else{
+      //   alert("Settlor Signature should be added by the Settlor from the shared link.")
+      //   this.$refs["signature"].reset(); 
+      // }
     },
     // 展示日期弹框
 /*    onShowPicker(val) {

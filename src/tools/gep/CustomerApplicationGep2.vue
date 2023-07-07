@@ -7,6 +7,7 @@
       <div class="minTitle">APPLICANT’S INFORMATION</div>
       <!-- 文本框 -->
       <van-field v-model="formData.name" autocomplete="off" name="name" center :required="true" type="text"
+      @input="formData.name = formData.name.toUpperCase()"
       @change="onCampanyIndividualName"
         label="Individual / Company Name" placeholder="Please enter the Individual / Company Name" :rules="[
           {
@@ -14,6 +15,7 @@
           },
         ]" />
       <van-field v-model="formData.nationality" name="nationality" center :required="true" type="text"
+      @input="formData.nationality = formData.nationality.toUpperCase()"
       @change="onNationality" autocomplete="off"
         label="Nationality / Place of Incorporation" placeholder="Please enter the Nationality / Place of Incorporation" :rules="[
           {
@@ -21,6 +23,7 @@
           },
         ]" />
       <van-field v-model="formData.passport_no" name="passport_no" center :required="true" type="text"
+      @input="formData.passport_no = formData.passport_no.toUpperCase()"
       @change="nricPassRocNo"
         label="NRIC / Passport / Registration No" placeholder="Please enter the NRIC / Passport / Registration No" :rules="[
           {
@@ -29,6 +32,7 @@
         ]" />
 
          <van-field v-model="formData.gender" autocomplete="off" name="gender" center :required="true" type="text"
+         @input="formData.gender = formData.gender.toUpperCase()"
         label="Gender (Male / Female)" placeholder="Please enter the Gender" :rules="[
           {
             required: true,
@@ -41,6 +45,7 @@
         :rules="[{ pattern, message: 'Please enter the Date of Birth / Date of Incorporation : DD-MM-YYYY' }]" />
 
       <van-field v-model="formData.occupation" autocomplete="off" name="occupation" center :required="true" type="text"
+      @input="formData.occupation = formData.occupation.toUpperCase()"
         label="Occupation / Industry" placeholder="Please enter the Occupation / Industry" :rules="[
           {
             required: true,
@@ -48,6 +53,7 @@
         ]" />
 
       <van-field v-model="formData.address" autocomplete="off" name="address" center :required="true" type="text"
+      @input="formData.address = formData.address.toUpperCase()"
       @change="onAddress"
         label="Residential / Business Address" placeholder="Please enter the Residential / Business Address" :rules="[
           {
@@ -55,6 +61,7 @@
           },
         ]" />
       <van-field v-model="formData.postcode" autocomplete="off" name="postcode" center :required="true" type="text" label="Post Code"
+      @input="formData.postcode = formData.postcode.toUpperCase()"
       @change="onPostcode"
         placeholder="Please enter the Post Code" :rules="[
           {
@@ -63,6 +70,7 @@
         ]" />
         
       <van-field v-model="formData.country" autocomplete="off" name="country" center :required="true" type="text" label="Country"
+      @input="formData.country = formData.country.toUpperCase()"
         placeholder="Please enter the Country" :rules="[
           {
             required: true,
@@ -78,6 +86,7 @@
         <div class="minTitle">CONTACT INFORMATION</div>
 
         <van-field v-model="formData.contact_name" autocomplete="off" name="contact_name" center :required="true" type="text"
+        @input="formData.contact_name = formData.contact_name.toUpperCase()"
      
         label="Individual / Director’s Name" placeholder="Please enter the Individual / Director’s Name" :rules="[
           {
@@ -85,6 +94,7 @@
           },
         ]" />
       <van-field v-model="formData.contact_nationality" autocomplete="off" name="contact_nationality" center :required="true" type="text"
+      @input="formData.contact_nationality = formData.contact_nationality.toUpperCase()"
         label="Nationality" placeholder="Please enter the Nationality" :rules="[
           {
             required: true,
@@ -92,12 +102,14 @@
         ]" />
     
       <van-field v-model="formData.contact_address" autocomplete="off" name="contact_address" center :required="true" type="text"
+      @input="formData.contact_address = formData.contact_address.toUpperCase()"
         label="Residential / Business Address" placeholder="Please enter the Residential / Business Address" :rules="[
           {
             required: true,
           },
         ]" />
       <van-field v-model="formData.contact_postcode" autocomplete="off" name="contact_postcode" center :required="true" type="text" label="Post Code"
+      @input="formData.contact_postcode = formData.contact_postcode.toUpperCase()"
         placeholder="Please enter the Post Code" :rules="[
           {
             required: true,
@@ -138,13 +150,14 @@
       <div class="minTitle">NOMINEE/ EMERGENCY CONTACT INFORMATION</div>
 
 <van-field v-model="formData.emergency_contact_name" autocomplete="off" name="emergency_contact_name" center :required="true" type="text"
-
+@input="formData.emergency_contact_name = formData.emergency_contact_name.toUpperCase()"
 label="Name" placeholder="Please enter the Name" :rules="[
   {
     required: true,
   },
 ]" />
 <van-field v-model="formData.emergency_contact_nationality" autocomplete="off" name="emergency_contact_nationality" center :required="true" type="text"
+@input="formData.emergency_contact_nationality = formData.emergency_contact_nationality.toUpperCase()"
 label="Nationality" placeholder="Please enter the Nationality" :rules="[
   {
     required: true,
@@ -152,12 +165,14 @@ label="Nationality" placeholder="Please enter the Nationality" :rules="[
 ]" />
 
 <van-field v-model="formData.emergency_contact_address" autocomplete="off" name="emergency_contact_address" center :required="true" type="text"
+@input="formData.emergency_contact_address = formData.emergency_contact_address.toUpperCase()"
 label="Address" placeholder="Please enter the Address" :rules="[
   {
     required: true,
   },
 ]" />
 <van-field v-model="formData.emergency_contact_nric" autocomplete="off" name="emergency_contact_nric" center :required="true" type="text"
+@input="formData.emergency_contact_nric = formData.emergency_contact_nric.toUpperCase()"
 label="NRIC / Passport No." placeholder="Please enter the NRIC / Passport No." :rules="[
   {
     required: true,
@@ -188,6 +203,7 @@ placeholder="Please enter the Email" :rules="[
 v-model="formData.emergency_contact_residential"
 name="emergency_contact_residential"
 center
+@input="formData.emergency_contact_residential = formData.emergency_contact_residential.toUpperCase()"
 autocomplete="off"
 type="text"
 label="Residential Phone No."
@@ -212,6 +228,7 @@ placeholder="Please enter the Mobile No."
 v-model="formData.emergency_contact_relationship"
 name="emergency_contact_relationship"
 center
+@input="formData.emergency_contact_relationship = formData.emergency_contact_relationship.toUpperCase()"
 :required="true"
 autocomplete="off"
 type="text"
@@ -226,15 +243,18 @@ placeholder="Please enter the Relationship with the Subscriber"
 <div class="minTitle">BANK DETAILS OF EMERGENCY CONTACT</div>
 
 <van-field v-model="formData.emergency_bank_name" autocomplete="off" name="emergency_bank_name" center type="text" :rules="[{ required: true }]" :required="true"
+@input="formData.emergency_bank_name = formData.emergency_bank_name.toUpperCase()"
 label="Name of Bank:" placeholder="Please enter the Name of Bank" />
 
 <van-field v-model="formData.emergency_bank_branch" autocomplete="off" name="emergency_bank_branch" center type="text" :rules="[{ required: true }]" :required="true"
+@input="formData.emergency_bank_branch = formData.emergency_bank_branch.toUpperCase()"
 label="Branch:" placeholder="Please enter the Branch" />
 
 <van-field v-model="formData.emergency_bank_acc_no" autocomplete="off" name="emergency_bank_acc_no" center type="text" :rules="[{ required: true }]" :required="true"
 label="Bank Account No.:" placeholder="Please enter the Bank Account No." />
 
 <van-field v-model="formData.emergency_bank_owner_name" autocomplete="off" name="emergency_bank_owner_name" center type="text" :rules="[{ required: true }]" :required="true"
+@input="formData.emergency_bank_owner_name = formData.emergency_bank_owner_name.toUpperCase()"
 label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Owner's Name" />
 
 
@@ -248,6 +268,7 @@ label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Ow
         label="Investment Amount (MYR)" autocomplete="off" placeholder="Please enter the Investment Amount (MYR)" readonly/>
 
       <van-field v-model="formData.advisor_name"  autocomplete="off" name="advisor_name" center type="text" label="Authorized DDG Advisor’s Name"
+      @input="formData.advisor_name = formData.advisor_name.toUpperCase()"
         placeholder="Please enter the Authorized DDG Advisor’s Name" :required="true" :rules="[{ required: true }]" />
 
       <van-field v-model="formData.advisor_id" autocomplete="off" name="advisor_id" center type="text"
@@ -265,9 +286,11 @@ label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Ow
       </div>
       <van-field v-model="formData.details_bank_name" autocomplete="off" :required="true" :rules="[{ required: true }]" name="details_bank_name" center type="text"
         label="Name of Bank"
+        @input="formData.details_bank_name = formData.details_bank_name.toUpperCase()"
         placeholder="Please enter the Name of Bank "  />
         <van-field v-model="formData.details_bank_branch" autocomplete="off" :required="true" :rules="[{ required: true }]" name="details_bank_branch" center type="text"
         label="Branch"
+        @input="formData.details_bank_branch = formData.details_bank_branch.toUpperCase()"
         placeholder="Please enter the Branch "  />
         <!-- <van-field v-model="formData.details_bank_address" :required="true" :rules="[{ required: true }]" name="details_bank_address" center type="text"
         label="Address"
@@ -278,6 +301,7 @@ label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Ow
         placeholder="Please enter the Bank Account No. "  />
         <van-field v-model="formData.details_bank_owner_name" autocomplete="off" :required="true" :rules="[{ required: true }]" name="details_bank_owner_name" center type="text"
         label="Name of Bank Account Owner’s Name"
+        @input="formData.details_bank_owner_name = formData.details_bank_owner_name.toUpperCase()"
         placeholder="Please enter the Bank Account Owner’s Name "  />
 
 
@@ -339,10 +363,12 @@ label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Ow
       </div>
       
       <van-field v-model="formData.applicant_name" autocomplete="off" name="applicant_name" center :required="true" type="text"
+      @input="formData.applicant_name = formData.applicant_name.toUpperCase()"
         label="Name" placeholder="Please enter the Name" :rules="[
           { required: true },
         ]" />
             <van-field v-model="formData.applicant_passport_no" autocomplete="off" name="applicant_passport_no" center :required="true" type="text"
+            @input="formData.applicant_passport_no = formData.applicant_passport_no.toUpperCase()"
         label="NRIC / Passport No." placeholder="Please enter the NRIC / PASSPORT NO." :rules="[
           { required: true },
         ]" />
@@ -362,10 +388,12 @@ label="Bank Account Owner's Name:" placeholder="Please enter the Bank Account Ow
       </div>
 
       <van-field v-model="formData.witness_name" autocomplete="off" name="witness_name" center :required="true" type="text"
+      @input="formData.witness_name = formData.witness_name.toUpperCase()"
         label="Name" placeholder="Please enter the Name" :rules="[
           { required: true },
         ]" />
             <van-field v-model="formData.witness_passport_no" autocomplete="off" name="witness_passport_no" center :required="true" type="text"
+            @input="formData.witness_passport_no = formData.witness_passport_no.toUpperCase()"
         label="NRIC / Passport No." placeholder="Please enter the NRIC / PASSPORT NO." :rules="[
           { required: true },
         ]" />
@@ -470,7 +498,8 @@ witness_date:moment(new Date()).format('DD-MM-YYYY'),
 emergency_bank_name:'',
 emergency_bank_branch:'',
 emergency_bank_acc_no:'',
-emergency_bank_owner_name:''
+emergency_bank_owner_name:'',
+remote:this.$store.state.isOverseaSignature.toString()
       },
       sig1:true,
       sig2:true,
@@ -650,7 +679,7 @@ console.log("....7777....",this.isFilled)
       console.log("555555555555555555555", form);
       console.log(form);
       console.log(this.formData);
-      if (!this.formData.applicant_signature) {
+      if (!this.formData.applicant_signature && !this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       } 
@@ -760,6 +789,7 @@ console.log("....7777....",this.isFilled)
         });
     },
     handleGenerate(index) {
+      if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["esign"]
         .generate()
@@ -789,6 +819,11 @@ console.log("....7777....",this.isFilled)
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
+        this.$refs["esign"].reset(); 
+      }
     },
     // 添加beneficiary_info
     addBeneficiary() {

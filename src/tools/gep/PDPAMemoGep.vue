@@ -24,6 +24,7 @@
         name="display_nda_name"
         center
         type="text"
+        @input="formData.display_nda_name = formData.display_nda_name.toUpperCase()"
         autocomplete="off"
         label="Name"
         placeholder="Please enter the Name"
@@ -38,6 +39,7 @@
         center
         autocomplete="off"
         type="text"
+        @input="formData.display_nda_nric_no = formData.display_nda_nric_no.toUpperCase()"
         label="NRIC No./ Business Registration Number:"
         placeholder="Please enter the NRIC No./ Business Registration Number:"
         :required="true"
@@ -49,6 +51,7 @@
         name="witness_name"
         center
         autocomplete="off"
+        @input="formData.display_address = formData.display_address.toUpperCase()"
         type="text"
         label="Residential / Office Address"
         placeholder="Please enter the Residential / Office Address"
@@ -150,6 +153,7 @@
         name="nda_name"
         center
         type="text"
+        @input="formData.nda_name = formData.nda_name.toUpperCase()"
         autocomplete="off"
         label="Subscriber Name"
         placeholder="Please enter the Name"
@@ -170,6 +174,7 @@
         v-model="formData.nda_nric_no"
         name="nda_nric_no"
         center
+        @input="formData.nda_nric_no = formData.nda_nric_no.toUpperCase()"
         autocomplete="off"
         type="text"
         label="NRIC No."
@@ -299,6 +304,7 @@ export default {
         });
     },
     handleGenerate(index) {
+      if(!this.$store.state.isOverseaSignature){
       var that = this;
       this.$refs["subscriber_signature"]
         .generate()
@@ -328,6 +334,11 @@ export default {
           });
           alert(err); // 画布没有签字时会执行这里 'Not Signned'
         });
+      }
+      else{
+        alert("Subscriber Signature should be added by the Subscriber from the shared link.")
+        this.$refs["subscriber_signature"].reset(); 
+      }
     },
     getFormData() {
       if (this.isFilled > 0) {
@@ -349,7 +360,7 @@ export default {
    
       let data = JSON.parse(JSON.stringify(this.formData));
       console.log(".......33333.........",data)
-      if (!this.formData.subscriber_signature) {
+      if (!this.formData.subscriber_signature &&!this.$store.state.isOverseaSignature) {
         this.$toast.fail("Please sign your name");
         return;
       }

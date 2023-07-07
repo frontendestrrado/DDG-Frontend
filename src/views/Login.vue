@@ -52,11 +52,21 @@
               :required="true"
               type="text"
               label="QTA/BTT Code"
+              
               placeholder="Please enter the BTT Code ( BTT Code format: DDG/BTT/Year/M05/12345 )"
               :rules="[
                 { required: true,message: 'Please enter the BTT Code ( BTT Code format: DDG/BTT/Year/M05/12345 )' },
               ]"
             />
+
+
+          
+            
+
+
+
+
+
             <van-field name="uploader" label="QTA/BTT Cert" :required="true">
               <template #input>
                 <van-uploader v-model="uploader" :after-read="afterRead" accept="*" :max-count="1" class="picture"/>
@@ -137,6 +147,7 @@
             <van-field
               v-model="registForm.sponsor"
               name="Introducer ID"
+              @keyup="onChangeBtt"
               center
               :required="true"
               type="text"
@@ -144,6 +155,9 @@
               placeholder="DDG/surname/0001"
               :rules="[{ required: true, message: 'Please enter the Introducer ID' }]"
             />
+            <div  v-click-outside="hide" class="bttDrop"  @click="setBttCode" :id="'bttId'" :style="{ display: 'none' }">
+{{this.bttCodeValue}}{{" - "}}{{this.bttCodeValueName}}       </div>
+       
             <van-field
               v-model="registForm.bank"
               name="Bank Name"
@@ -219,6 +233,10 @@
               v-model="registForm.phone"
               name="Mobile Number"
               center
+              id="regPhoneId"
+              @paste="onpaste"
+              @keypress="isLetter($event)"
+              @keyup="abc"
               :required="true"
               type="text"
               label="Mobile Number"
@@ -303,11 +321,13 @@
 </template>
 
 <script>
+import { getBttCode } from "@/api/tools";
 import Common from "@/components/mode/common.vue";
 import EventHub from '@/util/EventHub'
 import { uploadAutograph, uploadFile } from "@/api/util";
   import {getUnread} from '@/api/advisors.js'
   import { getNotificationsList } from '@/api/announcement.js'
+  import ClickOutside from 'vue-click-outside'
 export default {
   components: {
     Common,
@@ -349,7 +369,8 @@ export default {
         verify_code: "",
         isSms: false,
       },
-
+bttCodeValue:"",
+bttCodeValueName:"",
       areaCode: "",
       areaCode2: "",
       showPicker: false,
@@ -401,13 +422,70 @@ export default {
       uploader: [],
       pattern: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,// 正则验证时间
       showPickerAreaCode: false,//地區碼選項卡是否彈出
+       setBttFlag:true
     };
   },
   mounted() {
     this.getPageContent();
      
   },
+  directives: {
+    ClickOutside
+  },
   methods: {
+    hide () {
+    //  this.opened = false
+    document.getElementById('bttId').style.display = 'none'
+    //this.setBttFlag=true
+    
+   // alert("3")
+   if(this.setBttFlag == false){
+    this.registForm.sponsor = this.bttCodeValue
+   }
+   else{
+    this.registForm.sponsor = ''
+   }
+    },
+    setBttCode(){
+      this.setBttFlag=false
+      this.registForm.sponsor = this.bttCodeValue
+      
+      document.getElementById('bttId').style.display = 'none'
+      if(this.bttCodeValue === "User Not Found"){
+        this.registForm.sponsor = ''
+      }
+    },
+    onChangeBtt(val){
+      this.setBttFlag=true
+      console.log("denhb",val.target._value.length)
+      getBttCode({
+        introducer: val.target._value
+})
+  .then((res) => {
+    console.log(".......555.....btt code....", res)
+    document.getElementById('bttId').style.display = 'block'
+    if(res.state_code == 200){
+      
+      this.bttCodeValue = res.data.code
+      this.bttCodeValueName = res.data.name
+      
+    }
+    else{
+      this.bttCodeValue = "User Not Found"
+      this.bttCodeValueName = ""
+    }
+    
+    // this.orderList = res.data;
+    
+    //  this.per_page = res.meta.per_page
+    //   this.rows = res.meta.total
+    // this.loadingShow = false
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err.response);
+  });
+    },
     showMessage () {
 
 				getNotificationsList().then(res => {
@@ -444,6 +522,33 @@ export default {
       sessionStorage.setItem('currentPage',JSON.stringify({tabbar: '/ChangePassword',
         title: 'Forgot/Change Password'}))
       this.$router.push('/ChangePassword')
+    },
+
+  abc(){
+//alert("d")
+  },
+
+    onpaste(evt){
+      console.log('11111111111111111111111111', this.registForm.phone)
+      console.log('22222222222222222222222222', document.getElementById('regPhoneId').value)
+    //  this.registForm.phone = ''
+      console.log('on paste', evt.clipboardData.getData('text'))
+      evt.preventDefault()
+    //   var value = $('#first').val();
+    // var updated = value.replace(/[^A-Za-z0-9&. ]/g, '');
+    // $('#first').val(updated);
+    
+
+//alert("2222222")
+var a=evt.clipboardData.getData('text');
+a=a.replace(/\-/g,''); // 1125, but a string, so convert it to number
+a=parseInt(a,10);
+console.log("__________a___________",a)
+this.registForm.phone = a
+
+console.log('111111111111111***************11111111111', this.registForm.phone)
+     
+      return true;
     },
     onConfirmArea(e) {
       this.Area = e
@@ -507,7 +612,7 @@ export default {
           },
         })
           .then((res) => {
-            console.log(res,4444444444);
+            console.log(res,".....a.a.a.a.a.a..a.a.a.a.a.a..a.a.a.a.a.a.a.a.a...");
             if (res) {
                this.showMessage();
               this.$store.commit("setToken", res.access_token);
@@ -522,11 +627,20 @@ export default {
               this.getUser();
               const vm = this;
               setTimeout(function () {
+                
+               if(res.design_type === 'old'){
+                
                 vm.$store.commit("changePage", {
                   tabbar: "/Page/10",
                   title: "Advisors",
                 });
                 vm.$router.push("/Page/10");
+              }
+              else{
+                window.location = "https://qa.ddgint.com/New/#/Page/10";
+              }
+        
+
               }, 1000);
             }
         
@@ -567,7 +681,7 @@ export default {
         .then((res) => {
           console.log(".......user..details...",res)
           sessionStorage.setItem("user_id", res.code);
-            sessionStorage.setItem("user_name", res.first_name+" "+res.third_name);
+            sessionStorage.setItem("user_name", (res.first_name+" "+res.third_name).toUpperCase());
             sessionStorage.setItem("user_passportNo", res.passport);
             this.$store.commit('Changeabc',res.avatar)
            // sessionStorage.setItem("avatar", res.avatar);
@@ -688,10 +802,32 @@ export default {
           });
         });
     },
+    isLetter(event) {
+
+      var regex = new RegExp("^[0-9]+$");
+    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+       event.preventDefault();
+       return false;
+    }
+console.log("_________key_______",key)
+
+    // var a='1-125';
+// a=a.replace(/\-/g,''); // 1125, but a string, so convert it to number
+// a=parseInt(a,10);
+// console.log("__________a___________",a)
+
+
+      // let char = String.fromCharCode(e.keyCode);
+      // if (/^[0-9]+$/.test(char)) return true;
+      // else e.preventDefault();
+    },
     /**
      * 註冊
      */
     register() {
+
+
       if (this.registForm.password != this.registForm.password_confirmation) {
         this.$toast("The passwords are inconsistent");
         return;
@@ -700,6 +836,9 @@ export default {
         this.$toast("Please upload BTT Code Picture");
         return;
       }
+
+    
+      console.log("____*****________this.registForm.sponsor,___",this.registForm.sponsor)
       this.$axios({
         method: "post",
         url: "/api/v1/users",
@@ -730,9 +869,31 @@ export default {
               type: "success",
               message: "Registration successful, please go to log in",
             });
+         
+            this.registForm.firstName = ''
+           this.registForm.thirdName= ''
+           this.registForm.email= ''
+           this.registForm.bttCode= ''
+           this.registForm.password= ''
+           this.areaCode= ''
+          this.registForm.phone = ''
+           this.Area= ''
+           this.registForm.post_code= ''
+           this.registForm.passport= ''
+           this.registForm.address= ''
+           this.registForm.birthday= ''
+           this.registForm.sponsor= ''
+           this.registForm.bank= ''
+           this.registForm.bankAccountNo= ''
+           this.registForm.bankAccountName= ''
+           this.registForm.password_confirmation= ''
+           this.uploader[0].url= ''
+           this.phoneList.verify_code = ''
+
             const vm = this;
             setTimeout(function () {
-              // vm.$router.push('/');
+         //vm.$router.push('/');
+         window.location.reload();
               vm.activeName = "SignIn";
             }, 1000);
           }
@@ -834,5 +995,26 @@ export default {
 }
 .picture {
   padding-top: 10px;
+}
+.bttDrop{
+  display: none;
+    z-index: 1;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    width: 90%;
+    padding: 15px 10px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 16px 40px 0px;
+    cursor: pointer;
+}
+.bttDrop:hover{
+  display: none;
+    z-index: 1;
+    position: absolute;
+    background:#af998f;
+    color: #fff;
+    width: 90%;
+    padding: 15px 10px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 16px 40px 0px;
+    cursor: pointer;
 }
 </style>

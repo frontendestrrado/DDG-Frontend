@@ -43,23 +43,26 @@
      
       <van-field type="tel" label="Attachment"> 
        
+       
     <template #input>
    
-
-      <van-uploader v-model="source_of_wealth_file1x" :after-read="afterRead31x" :before-delete="beforeRead31x" accept="*" :max-count="1" :disabled="isDone"/>
+ 
+      <van-uploader v-model="source_of_wealth_file1x" :max-size="maxSize" :after-read="afterRead31x" :before-delete="beforeRead31x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file2x" :after-read="afterRead32x" :before-delete="beforeRead32x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file3x" :after-read="afterRead33x" :before-delete="beforeRead33x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file4x" :after-read="afterRead34x" :before-delete="beforeRead34x" accept="*" :max-count="1" :disabled="isDone"/>
           <van-uploader v-model="source_of_wealth_file5x" :after-read="afterRead35x" :before-delete="beforeRead35x" accept="*" :max-count="1" :disabled="isDone"/>
-  
+          <span>Maximum Upload Limit is 100 MB</span>
+          
 </template>
+ <span>Maximum Upload Limit is 100 MB</span>
     </van-field>
 
-
+ 
     <van-field type="tel" label=""> 
-       
+      
     </van-field>
-
+ 
   
       
     
@@ -84,6 +87,10 @@ export default {
   props:['orderDataInfo'],
   data() {
     return {
+      maxSize:{
+        type: Number,
+        default : 1 *1024
+      },
       file1: null,  
       notice_date: moment(new Date()).format('DD-MM-YYYY'),
         formData: {
@@ -138,7 +145,19 @@ return true
 // }
     },
     afterRead33x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      console.log(file.file.size)
+      const fileSizeBytes = file.file.size; // bytes
+let fileSizeMB = fileSizeBytes / (1024 ** 2)
+
+console.log(fileSizeMB);
+if(fileSizeMB > 100){
+  alert("Uploaded file exceeds 100 MB.")
+  this.source_of_wealth_file3x = []
+  this.source_of_wealth_file3xId = ''
+return true
+}
+else{
+      if(file.file.type.split('/')[0] === "application" || file.file.type.split('/')[0] === "image" ||file.file.type.split('/')[0] === "video"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('image', file.file)
@@ -153,11 +172,12 @@ return true
         this.source_of_wealth_file3xId = res.id
       })
     }else{
-        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+      alert("Only image, video and document files are accepted.")
   this.source_of_wealth_file3x = []
   this.source_of_wealth_file3xId = ''
       return true
       }
+}
     },
     beforeRead34x(file){
       this.source_of_wealth_file4x = []
@@ -168,7 +188,19 @@ return true
 // }
     },
     afterRead34x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      console.log(file.file.size)
+      const fileSizeBytes = file.file.size; // bytes
+let fileSizeMB = fileSizeBytes / (1024 ** 2)
+
+console.log(fileSizeMB);
+if(fileSizeMB > 100){
+  alert("Uploaded file exceeds 100 MB.")
+  this.source_of_wealth_file4x = []
+  this.source_of_wealth_file4xId = ''
+return true
+}
+else{
+      if(file.file.type.split('/')[0] === "application" || file.file.type.split('/')[0] === "image" ||file.file.type.split('/')[0] === "video"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('image', file.file)
@@ -183,11 +215,12 @@ return true
         this.source_of_wealth_file4xId = res.id
       })
     }else{
-        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+      alert("Only image, video and document files are accepted.")
   this.source_of_wealth_file4x = []
   this.source_of_wealth_file4xId = ''
       return true
       }
+}
     },
     beforeRead35x(file){
       this.source_of_wealth_file5x = []
@@ -195,7 +228,19 @@ return true
 return true
     },
     afterRead35x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+      console.log(file.file.size)
+      const fileSizeBytes = file.file.size; // bytes
+let fileSizeMB = fileSizeBytes / (1024 ** 2)
+
+console.log(fileSizeMB);
+if(fileSizeMB > 100){
+  alert("Uploaded file exceeds 100 MB.")
+  this.source_of_wealth_file5x = []
+      this.source_of_wealth_file5xId=''
+return true
+}
+else{
+      if(file.file.type.split('/')[0] === "application" || file.file.type.split('/')[0] === "image" ||file.file.type.split('/')[0] === "video"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       data.append('image', file.file)
@@ -210,11 +255,12 @@ return true
         this.source_of_wealth_file5xId = res.id
       })
     }else{
-        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+      alert("Only image, video and document files are accepted.")
   this.source_of_wealth_file5x = []
   this.source_of_wealth_file5xId = ''
       return true
       }
+}
     },
     beforeRead32x(file){
       this.source_of_wealth_file2x = []
@@ -225,7 +271,21 @@ return true
 // }
     },
     afterRead32x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+
+      console.log(file.file.size)
+      const fileSizeBytes = file.file.size; // bytes
+let fileSizeMB = fileSizeBytes / (1024 ** 2)
+
+console.log(fileSizeMB);
+if(fileSizeMB > 100){
+  alert("Uploaded file exceeds 100 MB.")
+  this.source_of_wealth_file2x = []
+  this.source_of_wealth_file2xId= ''
+return true
+}
+else{
+
+      if(file.file.type.split('/')[0] === "application" || file.file.type.split('/')[0] === "image" ||file.file.type.split('/')[0] === "video"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       
@@ -241,14 +301,31 @@ return true
         this.source_of_wealth_file2xId = res.id
       })
     }else{
-        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
+      alert("Only image, video and document files are accepted.")
   this.source_of_wealth_file2x = []
   this.source_of_wealth_file2xId= ''
       return true
       }
+}
     },
     afterRead31x(file) {
-      if(file.file.type.split('/').slice(-1)[0] === "jpeg" || file.file.type.split('/').slice(-1)[0] === "jpg" ||file.file.type.split('/').slice(-1)[0] === "png" ||file.file.type.split('/').slice(-1)[0] === "pptx" ||file.file.type.split('/').slice(-1)[0] === "pdf"){
+console.log(file.file.size)
+      const fileSizeBytes = file.file.size; // bytes
+let fileSizeMB = fileSizeBytes / (1024 ** 2)
+
+console.log(fileSizeMB);
+if(fileSizeMB > 100){
+  alert("Uploaded file exceeds 100 MB.")
+  this.source_of_wealth_file1x = []
+      this.source_of_wealth_file1xId=''
+return true
+}
+else{
+
+console.log("__d_D_D_D_D__D_D_D_____",file.file.type.split('/')[0])
+
+
+      if(file.file.type.split('/')[0] === "application" || file.file.type.split('/')[0] === "image" ||file.file.type.split('/')[0] === "video"){
       console.log("...ggggggg..1.",file)
       let data = new FormData()
       console.log("...ggggggg.2.2.",data)
@@ -264,12 +341,15 @@ return true
         this.source_of_wealth_file1x = res.full_path
         this.source_of_wealth_file1xId= res.id
       })
-    }else{
-        alert("Accept file type are pdf/pptx/jpeg/jpg/png !")
-  this.source_of_wealth_file1x = []
-  this.source_of_wealth_file1xId=''
-      return true
+
       }
+      else{
+        alert("Only image, video and document files are accepted.")
+  this.source_of_wealth_file1x = []
+      this.source_of_wealth_file1xId=''
+return true
+      }
+}
     },
     beforeRead31x(file){
       this.source_of_wealth_file1x = []

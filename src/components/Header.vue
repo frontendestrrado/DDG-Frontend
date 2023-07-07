@@ -84,27 +84,9 @@
 							/>
               <div class="notfctn-btn">{{this.$store.state.customerNotificationCount}} </div>
               </span>
-              <!-- <span  v-on:click="goHome" v-if="$sessionStorage.token && this.$route.path !='/Login' && this.$route.path !='/Page/10'" class="pos-rel"><van-image
-							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
-							:src="require('@/assets/img/home2.png')"
-							fit="contain"
-							/>
-              </span> -->
-
-              <!-- <span v-on:click="goWhtasapp" v-if="$sessionStorage.token && this.$route.path !='/Login' && $sessionStorage.userType !='customer'" class="pos-rel">
-                
-                <van-image
-							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
-							v-bind:src= "require('@/assets/img/wats.png')"
-							fit="contain"
-              
-              round
-							/>
-
-              </span> -->
 
 
-              <span  v-on:click="isHidden1 === false ? isHidden1= true:isHidden1=false" v-if="$sessionStorage.token && this.$route.path !='/Login' && $sessionStorage.userType !='customer'" class="pos-rel">
+              <span   v-on:click="isHidden1 === false ? isHidden1= true:isHidden1=false" v-if="$sessionStorage.token && this.$route.path !='/Login' && $sessionStorage.userType !='customer'" class="pos-rel">
                 
                 <van-image
 							style="width: 40px;height:auto;margin: 0 auto; margin-right:10px;"
@@ -130,7 +112,7 @@
               
              
 
-              <div class="notifcation-box logot" v-if="!isHidden1">
+              <div class="notifcation-box logot"  v-if="!isHidden1">
 
 
 <div class="notfctn-viewall" v-on:click="select11(),isHidden1 = true">
@@ -152,7 +134,7 @@
 
 
 
-               <div class="notifcation-box" v-if="!isHidden">
+               <div :id="'clickbox'" v-on:click="test()"  class="notifcation-box" v-if="!isHidden">
 <div  class="notfctn-viewall" >
   <span class="p-3" v-on:click="announcementsShow" :style="{color: '#897359' }" :id="'annButId'">Announcements</span> <span :style="{color: '#2c3e50' }" :id="'notButId'" class="p-3" v-on:click="notificationsShow">Notifications</span>
 
@@ -276,13 +258,28 @@
   </div>
 
 </template>
+
 <script>
 import MenuTop from "@/components/MenuTop";
 import EventHub from '@/util/EventHub';
   import {getUnread} from '@/api/advisors.js'
    import {getAnnouncementList} from '@/api/announcement.js'
    import {getNotificationsList} from '@/api/announcement.js'
-  
+   import ClickOutside from 'vue-click-outside'
+//    window.addEventListener('click', function(e){   
+//   if (document.getElementById('clickbox').contains(e.target)){
+//     // Clicked in box
+//     alert(isHidden)
+//     console.log(C)
+//   } else{
+//     alert("f")
+// console.log(this.isHidden)
+//    // isHidden === false ? isHidden= true:isHidden=false
+//    // this.isHidden = false
+//     // Clicked outside the box
+//   }
+// });
+
 export default {
   components: {
     MenuTop,
@@ -376,6 +373,34 @@ export default {
    
   },
 
+//   created() {
+//       window.addEventListener('click', function(e){   
+//   if (document.getElementById('clickbox').contains(e.target)){
+//     // Clicked in box
+//     alert(isHidden)
+//     console.log(C)
+//   } else{
+//     alert("f")
+// console.log(this.isHidden)
+//    // isHidden === false ? isHidden= true:isHidden=false
+//    // this.isHidden = false
+//     // Clicked outside the box
+//   }
+// });
+//   },
+//   events: {
+//   nameOfCustomEventToCall (event) {
+//     alert("cnfvsdghbjkskj")
+//     // do something - probably hide the dropdown menu / modal etc.
+//   }
+// },
+  // events: {
+  //   closeEvent () {
+  //     console.log('close event called')
+  //     this.isHidden = true
+  //    // this.hide()
+  //   }
+  // },
   watch: {
     isShowTopUl() {
       if (!this.isShowTopUl) {
@@ -385,7 +410,56 @@ export default {
       }
     },
   },
+  directives: {
+    ClickOutside
+  },
   methods: {
+  
+    hide2 () {
+    //  alert("2")
+    //  this.opened = false
+    this.isHidden = true
+  //  this.isHidden === false ? this.isHidden= true:this.isHidden=false
+    console.log("______B__________")
+   // alert("2")
+   // return false;
+    },
+    hide1 () {
+    //  alert("2")
+    //  this.opened = false
+    this.isHidden1 = true
+  //  this.isHidden === false ? this.isHidden= true:this.isHidden=false
+    console.log("______B__________")
+   // alert("2")
+   // return false;
+    },
+    xyz(){
+     // alert("3")
+      this.isHidden = true
+      this.isHidden1 = false
+    },
+    qbc(){
+     // alert("4")
+      this.isHidden = false
+      this.isHidden1 = true
+
+    },
+    hide () {
+   //   alert("5")
+    //  this.opened = false
+    this.isHidden = true
+    this.isHidden1 = true
+    console.log("______A__________")
+  //  alert("1")
+    },
+    test1(){
+    //  alert("1")
+  this.isHidden1 = false
+    },
+    test(){
+    //  alert("1")
+  this.isHidden = false
+    },
     customerNotification(){
       this.$router.push('/customerNotification')
        this.$store.commit('changePage',{tabbar: '/customerNotification', title: 'Customer Notification'});
@@ -748,39 +822,43 @@ qaz.push(res[i].is_read)
       //   query: {id: item.id}
       // })
       console.log(".......toFill.......item..",item)
-            console.log(".......toFill.......product_id..",item.product_id)
-            if(item.product_id === 1){
-              this.$store.commit('changePage', {
-        tabbar: '/OrderDetail',
-        title: 'OrderDetail',
-      });
-      sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
-     // sessionStorage.setItem('orderStatus',item.status)
-      this.$router.push({path: '/OrderDetail', query: {id: item.order_id}});
-            }
+          //  console.log(".......toFill.......product_id..",item.product_id)
+            this.$router.push({
+        path: '/RequestDetails',
+        query: { id: item.ticket_id }
+      })
+  //           if(item.product_id === 1){
+  //             this.$store.commit('changePage', {
+  //       tabbar: '/OrderDetail',
+  //       title: 'OrderDetail',
+  //     });
+  //     sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
+  //    // sessionStorage.setItem('orderStatus',item.status)
+  //     this.$router.push({path: '/OrderDetail', query: {id: item.order_id}});
+  //           }
 
 
-            else if (item.product_id === 2){
-   this.$store.commit('changePage', {
-        tabbar: '/OrderDetailGep',
-        title: 'OrderDetailGep',
-      });
-      sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
-     // sessionStorage.setItem('orderStatus',item.status)
-      this.$router.push({path: '/OrderDetailGep', query: {id: item.order_id}});
+  //           else if (item.product_id === 2){
+  //  this.$store.commit('changePage', {
+  //       tabbar: '/OrderDetailGep',
+  //       title: 'OrderDetailGep',
+  //     });
+  //     sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
+  //    // sessionStorage.setItem('orderStatus',item.status)
+  //     this.$router.push({path: '/OrderDetailGep', query: {id: item.order_id}});
 
-            }
+  //           }
 
-            else{
-   this.$store.commit('changePage', {
-        tabbar: '/OrderDetailGep2',
-        title: 'OrderDetailGep2',
-      });
-      sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
-    //  sessionStorage.setItem('orderStatus',item.status)
-      this.$router.push({path: '/OrderDetailGep2', query: {id: item.order_id}});
+  //           else{
+  //  this.$store.commit('changePage', {
+  //       tabbar: '/OrderDetailGep2',
+  //       title: 'OrderDetailGep2',
+  //     });
+  //     sessionStorage.setItem('orderId',JSON.stringify(item.order_id))
+  //   //  sessionStorage.setItem('orderStatus',item.status)
+  //     this.$router.push({path: '/OrderDetailGep2', query: {id: item.order_id}});
 
-            }
+  //           }
 
 
 

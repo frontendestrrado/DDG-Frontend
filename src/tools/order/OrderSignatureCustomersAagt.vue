@@ -1,32 +1,41 @@
 <template>
     <div>
         <div class="title">1/5 Customer Application</div>
-      <CustomerApplication :orderDataInfo="orderDataInfo"></CustomerApplication>
+      <CustomerApplicationAagt :orderDataInfo="orderDataInfo"></CustomerApplicationAagt>
       <div class="title">2/5 Compliance Questionnaire</div>
-      <KYC :orderDataInfo='orderDataInfo'></KYC>
+      <KYCAagt :orderDataInfo='orderDataInfo' @onSelect4='onSelect4'></KYCAagt>
       <div class="title">3/5 Letter Of Wishes</div>
-      <LetterOfWishes :orderDataInfo='orderDataInfo'></LetterOfWishes>
+      <LetterOfWishesAagt :orderDataInfo='orderDataInfo'></LetterOfWishesAagt>
       <div class="title">4/5 PDPA Memo</div>
-      <PDPAMemo :orderDataInfo='orderDataInfo'></PDPAMemo>
+      <PDPAMemoAagt :orderDataInfo='orderDataInfo'></PDPAMemoAagt>
       <div class="title">5/5 Document Checklist</div>
-      <DocumentChecklist v-if="renderComponent" :orderDataInfo='orderDataInfo' @onSelect10='onSelect10'></DocumentChecklist>
+      <DocumentChecklistAagt :orderDataInfo='orderDataInfo'></DocumentChecklistAagt>
       
-      <div v-if="this.$route.query.third_party_declaration_form > 0"  class="title">THIRD-PARTY FUNDS DECLARATION FORM</div>
-      <ThirdPartyDeclaration v-if="this.$route.query.third_party_declaration_form > 0" :orderDataInfo='orderDataInfo'></ThirdPartyDeclaration>
+      <div v-if="this.$route.query.AagtThirdPartyDeclarationForm > 0 && renderComponent"  class="title">THIRD-PARTY FUNDS DECLARATION FORM</div>
+      <ThirdPartyDeclarationAagt v-if="this.$route.query.AagtThirdPartyDeclarationForm > 0 && renderComponent" :user="'....XXX.....'" :orderDataInfo='orderDataInfo'></ThirdPartyDeclarationAagt>
     </div>
 </template>
 <script>
-import CustomerApplication from "@/tools/order/CustomerApplication";
-import KYC from "@/tools/order/KYC";
-import LetterOfWishes from "@/tools/order/LetterOfWishes";
-import PDPAMemo from "@/tools/order/PDPAMemo";
-import DocumentChecklist from "@/tools/order/DocumentChecklist";
-import ThirdPartyDeclaration from "@/tools/order/ThirdPartyDeclaration";
-import { getOrderDetail} from "@/api/order"
+
+
+
+
+
+import CustomerApplicationAagt from "@/tools/order/CustomerApplicationAagt";
+
+import KYCAagt from "@/tools/order/KYCAagt";
+
+import LetterOfWishesAagt from "@/tools/order/LetterOfWishesAagt";
+import PDPAMemoAagt from "@/tools/order/PdpaAagt";
+import DocumentChecklistAagt from "@/tools/order/DocumentChecklistAagt";
+import ThirdPartyDeclarationAagt from "@/tools/order/ThirdPartyDeclarationAagt";
+import { getOrderDetail} from "@/api/order";
 import { nextTick, ref } from 'vue';
+
+
 export default {
     components:{
-        CustomerApplication,KYC,LetterOfWishes,PDPAMemo,DocumentChecklist,ThirdPartyDeclaration
+        CustomerApplicationAagt,KYCAagt,LetterOfWishesAagt,PDPAMemoAagt,DocumentChecklistAagt,ThirdPartyDeclarationAagt
     },
     data(){
         return{
@@ -40,11 +49,13 @@ export default {
     },
     mounted(){
         this.orderDataInfo.orderId=this.$route.query.orderId
-        console.log("_________AAAA______________",this.orderDataInfo.orderId)
+        console.log("----999---9-9-9-99999999999999------",this.orderDataInfo.orderId)
         // this.orderDataInfo.isFilled=this.$route.query.isFilled
         // this.orderDataInfo.status=this.$$route.query.status
     },
     methods:{
+
+
       async forceRerender() {
       // Remove MyComponent from the DOM
       this.renderComponent = false;
@@ -55,13 +66,22 @@ export default {
       // Add the component back in
       this.renderComponent = true;
     },
-      onSelect10(){
+    onSelect4(){
+     // alert("h")
 this.forceRerender()
  //   alert("dddd")
         this.renderComponent = false;
         
      //   alert("dfdhbfhdvhbdjhb")
       },
+  //     onSelect4(){
+  //       this.forceRerender()
+  //     alert("5")
+  // this.renderComponent3 = true;
+        
+  //    alert("hgg")
+  //     },
+
      getOrderDetail() {
       console.log("jdedu")
       getOrderDetail(this.$route.query.id)
